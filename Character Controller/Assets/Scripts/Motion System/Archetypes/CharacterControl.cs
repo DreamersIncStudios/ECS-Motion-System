@@ -26,10 +26,18 @@ namespace MotionSystem.Archetypes
             RB = this.GetComponent<Rigidbody>();
             var control = new CharController() { CapsuleRadius = Col.radius, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass };
             dstManager.AddComponentData(entity, control);
-            if (AI_Control) {
+            if (AI_Control)
+            {
                 var move = new Movement() { };
+                var AI = new AI_Control() { };
                 this.gameObject.AddComponent<NavMeshAgent>();
                 dstManager.AddComponentData(entity, move);
+                dstManager.AddComponentData(entity, AI);
+
+            }
+            else {
+                var player = new Player_Control() { };
+                dstManager.AddComponentData(entity, player);
             }
         }
 
