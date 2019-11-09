@@ -818,7 +818,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &138171637870420373
 CapsuleCollider:
@@ -847,6 +847,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_Control: 0
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_JumpPower: 12
+  m_GravityMultiplier: 2
+  m_RunCycleLegOffset: 0.2
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1
+  m_GroundCheckDistance: 0.25
 --- !u!114 &9201517454205682406
 MonoBehaviour:
   m_ObjectHideFlags: 0
