@@ -68,7 +68,7 @@ namespace MotionSystem.System{
                 // calculate camera relative direction to move:
                 m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
                 control.Move = control.V * m_CamForward + control.H * Camera.main.transform.right;
-              
+
 
 
                 if (control.Walk) control.Move *= 0.5f;

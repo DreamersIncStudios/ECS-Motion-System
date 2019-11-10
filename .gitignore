@@ -4,3 +4,10 @@ Character Controller/Assembly-CSharp.csproj
 Character Controller/Assembly-CSharp-Editor-firstpass.csproj
 Character Controller/Assembly-CSharp-firstpass.csproj
 Character Controller/.vs/
+Character Controller/Assets/Scenes/PlayGround/LightingData.asset.meta
+Character Controller/Assets/Scenes/PlayGround/Lightmap-0_comp_dir.png
+Character Controller/Assets/Scenes/PlayGround/Lightmap-0_comp_dir.png.meta
+Character Controller/Assets/Scenes/PlayGround/Lightmap-0_comp_light.exr
+Character Controller/Assets/Scenes/PlayGround/Lightmap-0_comp_light.exr.meta
+Character Controller/Assets/Scenes/PlayGround/ReflectionProbe-0.exr
+Character Controller/Assets/Scenes/PlayGround/ReflectionProbe-0.exr.meta

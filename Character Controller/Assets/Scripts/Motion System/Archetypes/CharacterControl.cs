@@ -13,6 +13,7 @@ namespace MotionSystem.Archetypes
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof (NavMeshAgent))]
 
 
     public class CharacterControl : MonoBehaviour,IConvertGameObjectToEntity
@@ -20,7 +21,8 @@ namespace MotionSystem.Archetypes
         CapsuleCollider Col;
         Rigidbody RB;
         public bool AI_Control;
-
+        public bool Party;
+        NavMeshAgent Agent;
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
@@ -32,6 +34,14 @@ namespace MotionSystem.Archetypes
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+            Agent = this.GetComponent<NavMeshAgent>();
+            var data = new ECS.Utilities.TransformComponenet { };
+            dstManager.AddComponentData(entity, data);
+            if (Party) {
+                var playerparty = new PlayerParty() { };
+                dstManager.AddComponentData(entity, playerparty);
+            
+                }
             Col = this.GetComponent<CapsuleCollider>();
             RB = this.GetComponent<Rigidbody>();
             var control = new CharController() { CapsuleRadius = Col.radius, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
@@ -52,6 +62,7 @@ namespace MotionSystem.Archetypes
 
             }
             else {
+                Agent.enabled = false;
                 var player = new Player_Control() { };
                 dstManager.AddComponentData(entity, player);
             }
