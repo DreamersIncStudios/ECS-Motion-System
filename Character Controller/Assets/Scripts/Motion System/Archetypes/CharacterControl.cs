@@ -45,9 +45,9 @@ namespace MotionSystem.Archetypes
             Col = this.GetComponent<CapsuleCollider>();
             RB = this.GetComponent<Rigidbody>();
             var control = new CharController() { CapsuleRadius = Col.radius, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
-               m_AnimSpeedMultiplier=m_AnimSpeedMultiplier, m_GravityMultiplier=m_GravityMultiplier,m_JumpPower=m_JumpPower, m_MoveSpeedMultiplier=m_MoveSpeedMultiplier,
-               m_MovingTurnSpeed=m_MovingTurnSpeed,m_RunCycleLegOffset=m_RunCycleLegOffset, m_StationaryTurnSpeed=m_StationaryTurnSpeed,
-               m_OrigGroundCheckDistance=m_GroundCheckDistance
+                m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower, m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
+                m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
+                m_OrigGroundCheckDistance = m_GroundCheckDistance, IsGrounded = true
                
 
             };
@@ -56,7 +56,7 @@ namespace MotionSystem.Archetypes
             {
                 var move = new Movement() { };
                 var AI = new AI_Control() { };
-                this.gameObject.AddComponent<NavMeshAgent>();
+               // this.gameObject.AddComponent<NavMeshAgent>();
                 dstManager.AddComponentData(entity, move);
                 dstManager.AddComponentData(entity, AI);
 
@@ -68,16 +68,6 @@ namespace MotionSystem.Archetypes
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

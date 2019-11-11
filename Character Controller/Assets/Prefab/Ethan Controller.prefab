@@ -761,6 +761,7 @@ GameObject:
   - component: {fileID: 138171637870420373}
   - component: {fileID: 138171637870420372}
   - component: {fileID: 9201517454205682406}
+  - component: {fileID: 8462758012450299863}
   m_Layer: 0
   m_Name: Ethan Controller
   m_TagString: Untagged
@@ -846,7 +847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a453f62927d5eb4e9b9b4fd03ebc85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI_Control: 0
+  AI_Control: 1
+  Party: 1
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
   m_JumpPower: 12
@@ -868,6 +870,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
+--- !u!195 &8462758012450299863
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207975482275191352}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7207975482275191354
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,13 +8,87 @@ using MotionSystem.Components;
 using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
+using Unity.Collections;
+using Unity.Jobs;
 
-namespace MotionSystem.System{
+namespace MotionSystem.System {
+
+    [UpdateBefore(typeof(InputSystem))]
+    public class Grounded : ComponentSystem
+    {
+        EntityQueryDesc GroundChecker = new EntityQueryDesc()
+        {
+            All = new ComponentType[] { typeof(CharController), typeof(Transform), typeof(Animator)}
+        };
+
+        protected override void OnUpdate()
+        {
+
+            NativeArray<CharController> chars = GetEntityQuery(GroundChecker).ToComponentDataArray<CharController>(Allocator.Persistent);
+            Transform[] transforms = GetEntityQuery(GroundChecker).ToComponentArray<Transform>();
+            Animator[] Anim = GetEntityQuery(GroundChecker).ToComponentArray<Animator>();
+            NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Persistent);
+            // GroundCheck using raycastCommand 
+            for (int index = 0; index < chars.Length; index++)
+            {
+                //RaycastHit hitInfo;
+                //#if UNITY_EDITOR
+                //                // helper to visualise the ground check ray in the scene view
+                //                Debug.DrawLine(transforms[index].position + (Vector3.up * 0.1f), transforms[index].position + (Vector3.up * 0.1f) + (Vector3.down * chars[index].GroundCheckDistance));
+                //#endif
+
+
+                GroundCheck.Add(new RaycastCommand()
+                {
+                    from = transforms[index].position + (Vector3.up * .01f),
+                    direction = Vector3.down,
+                    distance = chars[index].GroundCheckDistance,
+                    layerMask = ~0 >> 6,
+                    maxHits = 1
+                });
+            }
+
+            NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(GroundCheck.Length, Allocator.Persistent);
+
+            JobHandle Handle = RaycastCommand.ScheduleBatch(GroundCheck, results, 1);
+            Handle.Complete();
+            for (int index = 0; index < chars.Length; index++)
+            {
+               // Debug.Log(results[0].collider.name);
+                CharController temp = chars[index];
+                // if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+
+                if (results[index].collider != null)
+                {
+                    temp.GroundNormal = results[0].normal;
+                    temp.IsGrounded = true;
+                 
+                }
+                else
+                {
+                    temp.GroundNormal = Vector3.up;
+
+                    temp.IsGrounded = false;
+                }
+                chars[index] = temp;
+
+
+            }
+            Debug.Log(chars[0].IsGrounded);
+            chars.Dispose();
+            results.Dispose();
+            GroundCheck.Dispose();
+
+
+        }
+    }
+
     public class InputSystem : ComponentSystem
     {
 
         const float k_Half = 0.5f;
         bool m_Crouching;
+
         protected override void OnUpdate()
         {
             Entities.ForEach((ref Player_Control PCC, ref CharController Control) =>
@@ -28,6 +102,7 @@ namespace MotionSystem.System{
                     Control.Jump = CrossPlatformInputManager.GetButtonDown("Jump");
                 }
                 Control.Walk = Input.GetKey(KeyCode.LeftShift);
+                Debug.Log(Control.IsGrounded);
 
             });
 
@@ -49,14 +124,12 @@ namespace MotionSystem.System{
 
             });
 
-
             Vector3 m_CamForward;             // The current forward direction of the camera
 
             Entities.ForEach((ref CharController control, Transform transform, Animator Anim, Rigidbody RB) =>
             {
                 float m_TurnAmount;
                 float m_ForwardAmount;
-
                 if (Camera.main == null)
                 {
                     Debug.LogWarning(
@@ -76,7 +149,8 @@ namespace MotionSystem.System{
                 if (control.Move.magnitude > 1.0f)
                     control.Move.Normalize();
                 control.Move = transform.InverseTransformDirection(control.Move);
-                control.IsGrounded = Anim.applyRootMotion = CheckGroundStatus(transform, control.GroundCheckDistance, out control.GroundNormal);
+                //                control.IsGrounded = Anim.applyRootMotion = CheckGroundStatus(transform, control.GroundCheckDistance, out control.GroundNormal);
+                Anim.applyRootMotion = control.IsGrounded;
                 control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
@@ -92,8 +166,8 @@ namespace MotionSystem.System{
                     {
                         // jump!
                        RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
-                        control.IsGrounded = false;
-                        Anim.applyRootMotion = false;
+                            control.IsGrounded = false;
+                            Anim.applyRootMotion = false;
                         control.GroundCheckDistance = 0.1f;
                     }
                 }
@@ -101,7 +175,7 @@ namespace MotionSystem.System{
                     Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
                     RB.AddForce(extraGravityForce);
 
-                    control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.01f;
+                   // control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.01f;
                 }
 
                 //ScaleCapsules Collider
@@ -158,18 +232,41 @@ namespace MotionSystem.System{
                 // helper to visualise the ground check ray in the scene view
                 Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
-                if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
-                {
+            //NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Persistent);
+
+            //GroundCheck.Add( new RaycastCommand()
+            //{
+            //    from = transform.position + (Vector3.up * .01f),
+            //    direction = Vector3.down,
+            //    distance = m_GroundCheckDistance,
+            //    layerMask = ~0>>6,
+            //    maxHits = 1
+            //});
+
+            //NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(1, Allocator.Persistent);
+
+            //JobHandle Handle = RaycastCommand.ScheduleBatch(GroundCheck,results,10);
+            //Handle.Complete();
+            
+           // Debug.Log(results[0].collider.name);
+
+          if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+           // if (results[0].collider!=null)
+            {
                     m_GroundNormal = hitInfo.normal;
-                 //   m_Animator.applyRootMotion = true;
+                //   m_Animator.applyRootMotion = true;
+                //GroundCheck.Dispose();
+              //  results.Dispose();
                     return true;
 
                 }
                 else
                 {
                     m_GroundNormal = Vector3.up;
-                 //   m_Animator.applyRootMotion = false;
-                    return false;
+                //   m_Animator.applyRootMotion = false;
+               // GroundCheck.Dispose();
+              //  results.Dispose();
+                return false;
                 }
         }
 
