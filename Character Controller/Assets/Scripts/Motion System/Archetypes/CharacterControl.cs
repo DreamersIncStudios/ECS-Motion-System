@@ -5,7 +5,7 @@ using Unity.Entities;
 using UnityEngine.AI;
 using MotionSystem.Components;
 using IAUS.ECS.Component;
-
+using ECS.Utilities;
 
 namespace MotionSystem.Archetypes
 {
@@ -47,8 +47,8 @@ namespace MotionSystem.Archetypes
             var control = new CharController() { CapsuleRadius = Col.radius, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
                 m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower, m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
-                m_OrigGroundCheckDistance = m_GroundCheckDistance, IsGrounded = true, Test = Test,GroundCheckDistance=m_GroundCheckDistance
-               
+                m_OrigGroundCheckDistance = m_GroundCheckDistance, Test = Test, GroundCheckDistance = m_GroundCheckDistance
+               , IsGrounded = true
 
             };
             dstManager.AddComponentData(entity, control);
@@ -66,6 +66,8 @@ namespace MotionSystem.Archetypes
                 var player = new Player_Control() { };
                 dstManager.AddComponentData(entity, player);
             }
+            var transformtransitiion = new TransformComponenet();
+            dstManager.AddComponentData(entity,transformtransitiion);
         }
 
 
