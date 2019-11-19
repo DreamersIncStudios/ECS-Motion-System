@@ -8,6 +8,7 @@ using Unity.Jobs;
 
 namespace MotionSystem.System
 {
+
    [DisableAutoCreation]
     public class AnimatorUpdate : ComponentSystem
     {
