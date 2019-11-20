@@ -28,9 +28,10 @@ namespace MotionSystem.System {
         {
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharController Control) =>
             {
+                bool m_Crouching = new bool();
                 Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
                 Control.V = CrossPlatformInputManager.GetAxis("Vertical");
-                Control.Crouch = Input.GetKey(KeyCode.C);
+               m_Crouching = Input.GetKey(KeyCode.C);
 
 
    
@@ -39,6 +40,32 @@ namespace MotionSystem.System {
         
                 Control.Walk = Input.GetKey(KeyCode.LeftShift);
                 //    Debug.Log(Control.IsGrounded);
+
+
+
+                if (Control.IsGrounded && m_Crouching)
+                {
+                    if (Control.Crouch)
+                    { return; }
+                    Control.CapsuleHeight = Control.CapsuleHeight / 2f;
+                    Control.CapsuleCenter = Control.CapsuleCenter / 2f;
+                   Control.Crouch = true;
+                }
+                else
+                {
+                    Ray crouchRay = new Ray(RB.position + Vector3.up * Control.CapsuleRadius * k_Half, Vector3.up);
+                    float crouchRayLength = Control.CapsuleHeight - Control.CapsuleRadius * k_Half;
+                    if (Physics.SphereCast(crouchRay, Control.CapsuleRadius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+                    {
+                       Control.Crouch = true;
+                        return;
+                    }
+                    //add orginial capsule stats
+
+                    Control.CapsuleHeight = Control.OGCapsuleHeight;
+                    Control.CapsuleCenter = Control.OGCapsuleCenter;
+                   Control.Crouch = false;
+                }
 
             });
 
@@ -74,7 +101,7 @@ namespace MotionSystem.System {
                 else {
                     m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
                     Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
-
+                    transform.rotation = quaternion.Euler(new Vector3(0, 0, 0));
                 }
 
                 if (Control.Walk)
@@ -83,15 +110,26 @@ namespace MotionSystem.System {
                     Control.Move.Normalize();
                 Control.Move = transform.InverseTransformDirection(Control.Move);
 
+
+
+
+             
+
             });
 
+            Entities.ForEach((ref CharController Control, CapsuleCollider capsule) =>
+            {
+                capsule.center = Control.CapsuleCenter;
+                capsule.height = Control.CapsuleHeight;
+
+            }
+            );
 
 
 
-    
- 
 
-        }
+
+            }
 
         
 

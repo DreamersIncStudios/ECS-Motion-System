@@ -18,7 +18,6 @@ namespace MotionSystem.System
             All = new ComponentType[] { typeof(CharController), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         const float k_Half = 0.5f;
-        bool m_Crouching;
         protected override void OnUpdate()
         {
 
@@ -27,6 +26,8 @@ namespace MotionSystem.System
             {
                 float m_TurnAmount;
                 float m_ForwardAmount;
+
+
                 Anim.applyRootMotion = control.IsGrounded;
                 control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
@@ -66,7 +67,7 @@ namespace MotionSystem.System
                 // update the animator parameters
                 Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-                Anim.SetBool("Crouch", m_Crouching);
+                Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
                 if (!control.IsGrounded)
                 {

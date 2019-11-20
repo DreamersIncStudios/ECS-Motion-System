@@ -44,8 +44,10 @@ namespace MotionSystem.Archetypes
                 }
             Col = this.GetComponent<CapsuleCollider>();
             RB = this.GetComponent<Rigidbody>();
-            var control = new CharController() { CapsuleRadius = Col.radius, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
-                m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower, m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
+            var control = new CharController() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
+                OGCapsuleCenter = Col.center, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
+                m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower,
+                m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
                 m_OrigGroundCheckDistance = m_GroundCheckDistance, Test = Test, GroundCheckDistance = m_GroundCheckDistance
                , IsGrounded = true

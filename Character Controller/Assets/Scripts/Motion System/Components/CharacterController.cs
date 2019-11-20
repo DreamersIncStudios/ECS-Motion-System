@@ -12,7 +12,8 @@ namespace MotionSystem.Components
         public float Mass;
         public float CapsuleRadius;
         public float CapsuleHeight;
-
+        public float3 OGCapsuleCenter;
+        public float OGCapsuleHeight;
         public float Forward;
         public float Turn;
         public float H;
