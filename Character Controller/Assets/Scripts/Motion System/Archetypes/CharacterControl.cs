@@ -13,7 +13,7 @@ namespace MotionSystem.Archetypes
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof (NavMeshAgent))]
+  //  [RequireComponent(typeof (NavMeshAgent))]
 
 
     public class CharacterControl : MonoBehaviour,IConvertGameObjectToEntity
@@ -22,7 +22,7 @@ namespace MotionSystem.Archetypes
         Rigidbody RB;
         public bool AI_Control;
         public bool Party;
-        NavMeshAgent Agent;
+       //NavMeshAgent Agent;
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
@@ -32,9 +32,15 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
         public LayerMask Test;
+
+        public void Start()
+        {
+            RB = this.GetComponent<Rigidbody>();
+            RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            Agent = this.GetComponent<NavMeshAgent>();
+        //    Agent = this.GetComponent<NavMeshAgent>();
             var data = new ECS.Utilities.TransformComponenet { };
             dstManager.AddComponentData(entity, data);
             if (Party) {
@@ -43,9 +49,8 @@ namespace MotionSystem.Archetypes
             
                 }
             Col = this.GetComponent<CapsuleCollider>();
-            RB = this.GetComponent<Rigidbody>();
-            var control = new CharController() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
-                OGCapsuleCenter = Col.center, CapsuleCenter = Col.center, CapsuleHeight = Col.height, Mass = RB.mass,
+            var control = new CharControllerE() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
+                OGCapsuleCenter = Col.center, CapsuleCenter = Col.center, CapsuleHeight = Col.height,
                 m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower,
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
@@ -64,12 +69,12 @@ namespace MotionSystem.Archetypes
 
             }
             else {
-                Agent.enabled = false;
+                //Agent.enabled = false;
                 var player = new Player_Control() { };
                 dstManager.AddComponentData(entity, player);
             }
-            var transformtransitiion = new TransformComponenet();
-            dstManager.AddComponentData(entity,transformtransitiion);
+            //var transformtransitiion = new TransformComponenet();
+            //dstManager.AddComponentData(entity,transformtransitiion);
         }
 
 

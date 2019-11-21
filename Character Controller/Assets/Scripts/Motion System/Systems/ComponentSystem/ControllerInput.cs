@@ -21,12 +21,25 @@ namespace MotionSystem.System {
 
         EntityQueryDesc GroundChecker = new EntityQueryDesc()
         {
-            All = new ComponentType[] { typeof(CharController), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
+            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
+        Transform m_mainCam;
 
         protected override void OnUpdate()
         {
-            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharController Control) =>
+            if ( m_mainCam == null) {
+                if (Camera.main != null)
+                {
+                    m_mainCam = Camera.main.transform;
+                }
+                else
+                {
+                    Debug.LogWarning(
+        "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
+                    // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
+                }
+            }
+            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
                 Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -39,7 +52,6 @@ namespace MotionSystem.System {
                     Control.Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         
                 Control.Walk = Input.GetKey(KeyCode.LeftShift);
-                //    Debug.Log(Control.IsGrounded);
 
 
 
@@ -49,7 +61,8 @@ namespace MotionSystem.System {
                     { return; }
                     Control.CapsuleHeight = Control.CapsuleHeight / 2f;
                     Control.CapsuleCenter = Control.CapsuleCenter / 2f;
-                   Control.Crouch = true;
+                    Control.Crouch = true;
+                    RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
                 else
                 {
@@ -57,19 +70,21 @@ namespace MotionSystem.System {
                     float crouchRayLength = Control.CapsuleHeight - Control.CapsuleRadius * k_Half;
                     if (Physics.SphereCast(crouchRay, Control.CapsuleRadius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
                     {
-                       Control.Crouch = true;
+                        Control.Crouch = true;
                         return;
                     }
                     //add orginial capsule stats
+                    RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
 
                     Control.CapsuleHeight = Control.OGCapsuleHeight;
                     Control.CapsuleCenter = Control.OGCapsuleCenter;
-                   Control.Crouch = false;
+                    Control.Crouch = false;
                 }
 
             });
 
-            Entities.ForEach((NavMeshAgent agent, ref AI_Control ACC, ref CharController Control, ref Movement mover) =>
+            Entities.ForEach((NavMeshAgent agent, ref AI_Control ACC, ref CharControllerE Control, ref Movement mover) =>
             {
 
                 if (mover.CanMove)
@@ -88,20 +103,17 @@ namespace MotionSystem.System {
             });
 
             Vector3 m_CamForward;             // The current forward direction of the camera
-            Camera Main = Camera.main;
-            Entities.ForEach((ref CharController Control, Transform transform) =>
+            Entities.ForEach((ref CharControllerE Control, Transform transform) =>
             {
-                if (Main == null)
+                if (m_mainCam != null)
                 {
-                    Debug.LogWarning(
-                        "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
-                    // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
-                    Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
-                }
-                else {
+
                     m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
                     Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
-                    transform.rotation = quaternion.Euler(new Vector3(0, 0, 0));
+                }
+                else
+                {
+                    Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
                 }
 
                 if (Control.Walk)
@@ -117,13 +129,7 @@ namespace MotionSystem.System {
 
             });
 
-            Entities.ForEach((ref CharController Control, CapsuleCollider capsule) =>
-            {
-                capsule.center = Control.CapsuleCenter;
-                capsule.height = Control.CapsuleHeight;
-
-            }
-            );
+      
 
 
 

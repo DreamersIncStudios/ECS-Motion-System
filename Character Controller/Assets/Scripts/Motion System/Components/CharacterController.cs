@@ -6,10 +6,9 @@ using Unity.Mathematics;
 
 namespace MotionSystem.Components
 {
-    public struct CharController: IComponentData
+    public struct CharControllerE: IComponentData
     {
         public float3 CapsuleCenter;
-        public float Mass;
         public float CapsuleRadius;
         public float CapsuleHeight;
         public float3 OGCapsuleCenter;

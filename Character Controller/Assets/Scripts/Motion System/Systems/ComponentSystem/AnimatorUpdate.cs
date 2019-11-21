@@ -15,14 +15,14 @@ namespace MotionSystem.System
 
         EntityQueryDesc GroundChecker = new EntityQueryDesc()
         {
-            All = new ComponentType[] { typeof(CharController), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
+            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         const float k_Half = 0.5f;
         protected override void OnUpdate()
         {
 
 
-            Entities.ForEach((ref CharController control, Transform transform, Animator Anim, Rigidbody RB) =>
+            Entities.ForEach((ref CharControllerE control, Transform transform, Animator Anim, Rigidbody RB) =>
             {
                 float m_TurnAmount;
                 float m_ForwardAmount;
@@ -35,7 +35,7 @@ namespace MotionSystem.System
                 m_ForwardAmount = control.Move.z;
 
                 float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+                transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
 
 
                 if (control.IsGrounded)
@@ -65,8 +65,8 @@ namespace MotionSystem.System
                 // Animator Updater
 
                 // update the animator parameters
-                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
+                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.fixedDeltaTime);
+                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
                 if (!control.IsGrounded)
@@ -103,7 +103,13 @@ namespace MotionSystem.System
 
 
             });
+            Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+            {
+                capsule.center = Control.CapsuleCenter;
+                capsule.height = Control.CapsuleHeight;
 
+            }
+      );
         }
 
 

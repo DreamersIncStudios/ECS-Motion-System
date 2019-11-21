@@ -13,11 +13,11 @@ namespace MotionSystem.System
 
         EntityQueryDesc GroundChecker = new EntityQueryDesc()
         {
-            All = new ComponentType[] { typeof(CharController), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
+            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         protected override void OnUpdate()
         {
-            NativeArray<CharController> chars = GetEntityQuery(GroundChecker).ToComponentDataArray<CharController>(Allocator.TempJob);
+            NativeArray<CharControllerE> chars = GetEntityQuery(GroundChecker).ToComponentDataArray<CharControllerE>(Allocator.TempJob);
             Transform[] transforms = GetEntityQuery(GroundChecker).ToComponentArray<Transform>();
             Animator[] Anims = GetEntityQuery(GroundChecker).ToComponentArray<Animator>();
 
@@ -62,7 +62,7 @@ namespace MotionSystem.System
             //    //  Debug.Log(chars[index].IsGrounded);
      
             //}
-            Entities.With(GetEntityQuery(GroundChecker)).ForEach((Entity entity, ref CharController Control) => {
+            Entities.With(GetEntityQuery(GroundChecker)).ForEach((Entity entity, ref CharControllerE Control) => {
         
 
 
@@ -70,7 +70,6 @@ namespace MotionSystem.System
                 {
                     Control.GroundNormal = results[0].normal;
                     Control.IsGrounded = true;
-
                 }
                 else
                 {
