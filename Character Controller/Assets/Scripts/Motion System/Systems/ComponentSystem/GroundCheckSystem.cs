@@ -17,56 +17,56 @@ namespace MotionSystem.System
         };
         protected override void OnUpdate()
         {
-            NativeArray<CharControllerE> chars = GetEntityQuery(GroundChecker).ToComponentDataArray<CharControllerE>(Allocator.TempJob);
-            Transform[] transforms = GetEntityQuery(GroundChecker).ToComponentArray<Transform>();
-            Animator[] Anims = GetEntityQuery(GroundChecker).ToComponentArray<Animator>();
-
-            NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Persistent);
-
-            for (int index = 0; index < chars.Length; index++)
+            //    NativeArray<CharControllerE> chars = GetEntityQuery(GroundChecker).ToComponentDataArray<CharControllerE>(Allocator.TempJob);
+            //    Transform[] transforms = GetEntityQuery(GroundChecker).ToComponentArray<Transform>();
+            //    Animator[] Anims = GetEntityQuery(GroundChecker).ToComponentArray<Animator>();
+            Entities.With(GetEntityQuery(GroundChecker)).ForEach((Entity entity, ref CharControllerE Control, Transform transform) =>
             {
+
+
+                NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Persistent);
+
+
                 GroundCheck.Add(new RaycastCommand()
                 {
-                    from = transforms[index].position + (Vector3.up * .1f),
+                    from = transform.position + (Vector3.up * .1f),
                     direction = Vector3.down,
-                    distance = chars[index].GroundCheckDistance,
-                    layerMask = chars[index].Test,
+                    distance = Control.GroundCheckDistance,
+                    layerMask = Control.Test,
                     maxHits = 1
                 });
-            }
-
-            NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(GroundCheck.Length, Allocator.Persistent);
-
-            JobHandle Handle = RaycastCommand.ScheduleBatch(GroundCheck, results, 1);
-            Handle.Complete();
-            //CharController temp;
-            //for (int index = 0; index < chars.Length; index++)
-            //{
-            //    // Debug.Log(results[0].collider.name);
-            //temp = chars[index];
-
-            //    if (results[index].collider != null)
-            //    {
-            //        temp.GroundNormal = results[0].normal;
-            //        temp.IsGrounded = true;
-
-            //    }
-            //    else
-            //    {
-            //        temp.GroundNormal = Vector3.up;
-
-            //        temp.IsGrounded = false;
-            //    }
-          
-            //    chars[index] = temp;
-            //    //  Debug.Log(chars[index].IsGrounded);
-     
-            //}
-            Entities.With(GetEntityQuery(GroundChecker)).ForEach((Entity entity, ref CharControllerE Control) => {
-        
 
 
-                if (results[entity.Index].collider != null)
+                NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(GroundCheck.Length, Allocator.Persistent);
+
+                JobHandle Handle = RaycastCommand.ScheduleBatch(GroundCheck, results, 1);
+                Handle.Complete();
+                //CharController temp;
+                //for (int index = 0; index < chars.Length; index++)
+                //{
+                //    // Debug.Log(results[0].collider.name);
+                //temp = chars[index];
+
+                //    if (results[index].collider != null)
+                //    {
+                //        temp.GroundNormal = results[0].normal;
+                //        temp.IsGrounded = true;
+
+                //    }
+                //    else
+                //    {
+                //        temp.GroundNormal = Vector3.up;
+
+                //        temp.IsGrounded = false;
+                //    }
+
+                //    chars[index] = temp;
+                //    //  Debug.Log(chars[index].IsGrounded);
+
+                //}
+
+
+                if (results[0].collider != null)
                 {
                     Control.GroundNormal = results[0].normal;
                     Control.IsGrounded = true;
@@ -77,12 +77,13 @@ namespace MotionSystem.System
 
                     Control.IsGrounded = false;
                 }
+
+
+                //   chars.Dispose();
+                results.Dispose();
+                GroundCheck.Dispose();
+
             });
-
-            chars.Dispose();
-            results.Dispose();
-            GroundCheck.Dispose();
         }
-
     }
 }

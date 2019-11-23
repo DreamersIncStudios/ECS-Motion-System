@@ -39,6 +39,7 @@ namespace MotionSystem.System {
                     // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
                 }
             }
+
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
