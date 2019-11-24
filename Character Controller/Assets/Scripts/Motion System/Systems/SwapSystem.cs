@@ -18,39 +18,49 @@ namespace MotionSystem.Archetypes
         {
             All= new ComponentType[] { typeof(PlayerParty), typeof(Player_Control), typeof(NavMeshAgent)}
         };
-        int index = 0;
-        bool StartUp;
+        int index;
+        public  GameMasterSystem GMS;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            GMS = GameMasterSystem.GMS;
+            index = new int();
+
+        }
+
         protected override void OnUpdate()
         {
-
-            NativeArray<Entity> PartyArray = GetEntityQuery(Party).ToEntityArray(Allocator.Persistent);
-            NavMeshAgent[] Agents = GetEntityQuery(Party).ToComponentArray<NavMeshAgent>();
-            NativeArray<Entity> player = GetEntityQuery(Player).ToEntityArray(Allocator.Persistent);
-            NavMeshAgent[] AgentsPlayer = GetEntityQuery(Player).ToComponentArray<NavMeshAgent>();
-
-
-            if (Input.GetKeyUp(KeyCode.P)) {
-
-                if (index >= PartyArray.Length-1)
+            if (GMS == null) {
+                GMS = GameMasterSystem.GMS;
+                index = new int();
+            }
+            else
+            {
+                if (GMS.PlayerIndex != index)
                 {
-                    index = 0;
+                    PostUpdateCommands.RemoveComponent<Player_Control>(GMS.Party[index]);
+                    PostUpdateCommands.AddComponent<AI_Control>(GMS.Party[index]);
+
+                    index = GMS.PlayerIndex;
+
+                    PostUpdateCommands.AddComponent<Player_Control>(GMS.Party[index]);
+                    PostUpdateCommands.RemoveComponent<AI_Control>(GMS.Party[index]);
+
+                    Entities.ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
+                    {
+                        if (Agent.enabled)
+                            Agent.enabled = false;
+                    });
+                    Entities.ForEach((ref AI_Control AI, NavMeshAgent Agent) =>
+                    {
+                        if (!Agent.enabled)
+                            Agent.enabled = true;
+                    });
+
                 }
-                else
-                    index++;
-                PostUpdateCommands.RemoveComponent<AI_Control>(PartyArray[index]);
-                PostUpdateCommands.AddComponent<Player_Control>(PartyArray[index]);
-                Agents[index].enabled = false;
-                Agents[index].tag = "Player";
-                PostUpdateCommands.RemoveComponent<Player_Control>(player[0]);
-                PostUpdateCommands.AddComponent<AI_Control>(player[0]);
-                AgentsPlayer[0].enabled = true;
-                AgentsPlayer[0].tag = "Untagged";
-
-
             }
 
-            PartyArray.Dispose();
-            player.Dispose();
         }
     }
 }

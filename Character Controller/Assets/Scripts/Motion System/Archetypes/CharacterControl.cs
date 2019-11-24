@@ -37,26 +37,34 @@ namespace MotionSystem.Archetypes
          Entity ObjectEntity;
          EntityManager Manager;
 
-
+        GameMasterSystem GMS;
 
         public void Start()
         {
+            GMS = GameMasterSystem.GMS;
+
             RB = this.GetComponent<Rigidbody>();
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            if(Party)
+            GMS.Party.Add(ObjectEntity);
+
         }
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+            GMS = GameMasterSystem.GMS;
             ObjectEntity = entity;
             Manager = dstManager;
 
             Agent = this.GetComponent<NavMeshAgent>();
             var data = new ECS.Utilities.TransformComponenet { };
             dstManager.AddComponentData(entity, data);
-            if (Party) {
+
+            if (Party)
+            {
                 var playerparty = new PlayerParty() { };
                 dstManager.AddComponentData(entity, playerparty);
-            
-                }
+            }
+         
 
             Col = this.GetComponent<CapsuleCollider>();
             var control = new CharControllerE() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
@@ -78,15 +86,16 @@ namespace MotionSystem.Archetypes
 
             }
             else {
-                if (Party)
+                if (Party )
                 {
                     Agent.enabled = false;
                     var player = new Player_Control() { };
                     dstManager.AddComponentData(entity, player);
                 }
             }
-            //var transformtransitiion = new TransformComponenet();
-            //dstManager.AddComponentData(entity,transformtransitiion);
+            var transformtransitiion = new TransformComponenet();
+            dstManager.AddComponentData(entity, transformtransitiion);
+            
         }
         private void OnDisable()
         {

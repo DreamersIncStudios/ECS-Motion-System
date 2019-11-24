@@ -847,8 +847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a453f62927d5eb4e9b9b4fd03ebc85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI_Control: 0
-  Party: 1
+  AI_Control: 1
+  Party: 0
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
   m_JumpPower: 12

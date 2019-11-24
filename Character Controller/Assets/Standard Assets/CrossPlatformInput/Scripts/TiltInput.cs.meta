@@ -5,9 +5,11 @@ labels:
 - Fully
 - Implemented
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-  executionOrder: -1001
+  executionOrder: -17000
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+  assetBundleVariant: 
