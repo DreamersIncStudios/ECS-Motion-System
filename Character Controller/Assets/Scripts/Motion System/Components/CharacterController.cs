@@ -34,8 +34,8 @@ namespace MotionSystem.Components
         public float m_MoveSpeedMultiplier;
         public float m_AnimSpeedMultiplier;
         public float m_OrigGroundCheckDistance;
-
-        public LayerMask Test;
+        public bool AI;
+        public LayerMask GroundCheckLayerMask;
     }
 
     public struct AI_Control : IComponentData { }

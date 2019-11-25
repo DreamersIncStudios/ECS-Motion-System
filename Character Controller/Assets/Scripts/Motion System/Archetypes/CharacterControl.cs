@@ -31,7 +31,7 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
-        public LayerMask Test;
+        public LayerMask GroundCheckLayer;
 
 
          Entity ObjectEntity;
@@ -72,14 +72,14 @@ namespace MotionSystem.Archetypes
                 m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower,
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
-                m_OrigGroundCheckDistance = m_GroundCheckDistance, Test = Test, GroundCheckDistance = m_GroundCheckDistance
-               , IsGrounded = true
+                m_OrigGroundCheckDistance = m_GroundCheckDistance, GroundCheckLayerMask = GroundCheckLayer, GroundCheckDistance = m_GroundCheckDistance
+               , IsGrounded = true, AI = AI_Control
 
             };
             dstManager.AddComponentData(entity, control);
             if (AI_Control)
             {
-                var move = new Movement() { };
+                var move = new Movement() { CanMove = true};
                 var AI = new AI_Control() { };
                 dstManager.AddComponentData(entity, move);
                 dstManager.AddComponentData(entity, AI);

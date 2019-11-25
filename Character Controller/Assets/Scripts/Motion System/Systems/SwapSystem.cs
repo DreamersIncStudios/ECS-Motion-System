@@ -10,14 +10,7 @@ namespace MotionSystem.Archetypes
 {
     public class SwapSystem : ComponentSystem
     {
-        EntityQueryDesc Party = new EntityQueryDesc() {
-            All = new ComponentType[] { typeof(PlayerParty), typeof(NavMeshAgent) },
 
-        };
-        EntityQueryDesc Player = new EntityQueryDesc()
-        {
-            All= new ComponentType[] { typeof(PlayerParty), typeof(Player_Control), typeof(NavMeshAgent)}
-        };
         int index;
         public  GameMasterSystem GMS;
 
@@ -28,9 +21,12 @@ namespace MotionSystem.Archetypes
             index = new int();
 
         }
-
+        public ComponentDataFromEntity<CharControllerE> Control;
         protected override void OnUpdate()
         {
+
+       
+
             if (GMS == null) {
                 GMS = GameMasterSystem.GMS;
                 index = new int();
@@ -39,23 +35,36 @@ namespace MotionSystem.Archetypes
             {
                 if (GMS.PlayerIndex != index)
                 {
+
+
                     PostUpdateCommands.RemoveComponent<Player_Control>(GMS.Party[index]);
                     PostUpdateCommands.AddComponent<AI_Control>(GMS.Party[index]);
+
+
+                    Control = GetComponentDataFromEntity<CharControllerE>(false);
+                    var test = Control[GMS.Party[index]];
+                    test.AI = true;
+                    Control[GMS.Party[index]]= test;
 
                     index = GMS.PlayerIndex;
 
                     PostUpdateCommands.AddComponent<Player_Control>(GMS.Party[index]);
                     PostUpdateCommands.RemoveComponent<AI_Control>(GMS.Party[index]);
+                    test = Control[GMS.Party[index]];
+                    test.AI = false;
+                    Control[GMS.Party[index]] = test;
 
                     Entities.ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
                     {
                         if (Agent.enabled)
                             Agent.enabled = false;
+                        Agent.tag = "Player";
                     });
                     Entities.ForEach((ref AI_Control AI, NavMeshAgent Agent) =>
                     {
                         if (!Agent.enabled)
                             Agent.enabled = true;
+                        Agent.tag = "Untagged";
                     });
 
                 }

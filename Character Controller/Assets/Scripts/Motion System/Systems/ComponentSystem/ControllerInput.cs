@@ -90,12 +90,16 @@ namespace MotionSystem.System {
 
                 if (mover.CanMove)
                 {
+
                     Control.Move = agent.desiredVelocity;
                     Control.Crouch = false;
                     Control.Jump = false;
                 }
                 else
                 {
+                    if (!agent.isStopped) {
+                        agent.isStopped = true;
+                    }
                     Control.Move = float3.zero;
                     Control.Crouch = false;
                     Control.Jump = false;
@@ -106,15 +110,17 @@ namespace MotionSystem.System {
             Vector3 m_CamForward;             // The current forward direction of the camera
             Entities.ForEach((ref CharControllerE Control, Transform transform) =>
             {
-                if (m_mainCam != null)
-                {
+                if (!Control.AI) {
+                    if (m_mainCam != null)
+                    {
 
-                    m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-                    Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
-                }
-                else
-                {
-                    Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
+                        m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+                        Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
+                    }
+                    else
+                    {
+                        Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
+                    }
                 }
 
                 if (Control.Walk)

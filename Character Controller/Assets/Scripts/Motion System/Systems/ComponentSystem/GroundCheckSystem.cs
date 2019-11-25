@@ -32,7 +32,7 @@ namespace MotionSystem.System
                     from = transform.position + (Vector3.up * .1f),
                     direction = Vector3.down,
                     distance = Control.GroundCheckDistance,
-                    layerMask = Control.Test,
+                    layerMask = Control.GroundCheckLayerMask,
                     maxHits = 1
                 });
 
