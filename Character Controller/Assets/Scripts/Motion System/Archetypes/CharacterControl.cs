@@ -45,7 +45,7 @@ namespace MotionSystem.Archetypes
 
             RB = this.GetComponent<Rigidbody>();
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            if(Party)
+            if(Party && GMS.Party.Count<= GMS.MaxParty )
             GMS.Party.Add(ObjectEntity);
 
         }

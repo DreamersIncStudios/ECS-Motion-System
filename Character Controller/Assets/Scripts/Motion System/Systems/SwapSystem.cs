@@ -5,8 +5,9 @@ using Unity.Entities;
 using MotionSystem.Components;
 using Unity.Collections;
 using UnityEngine.AI;
+using Unity.Jobs;
 
-namespace MotionSystem.Archetypes
+namespace MotionSystem.System
 {
     public class SwapSystem : ComponentSystem
     {
@@ -14,11 +15,22 @@ namespace MotionSystem.Archetypes
         int index;
         public  GameMasterSystem GMS;
 
+        EntityQueryDesc Party = new EntityQueryDesc()
+        {
+            All = new ComponentType[] { typeof(PlayerParty), typeof(NavMeshAgent), typeof(CharControllerE)},
+            None = new ComponentType[]  { typeof(Player_Control)}
+
+        };
+
+        EntityQueryDesc Player = new EntityQueryDesc()
+        {
+            All = new ComponentType[] { typeof(PlayerParty), typeof(Player_Control), typeof(NavMeshAgent) }
+        };
         protected override void OnCreate()
         {
             base.OnCreate();
             GMS = GameMasterSystem.GMS;
-            index = new int();
+            index = 0;
 
         }
         public ComponentDataFromEntity<CharControllerE> Control;
@@ -42,9 +54,10 @@ namespace MotionSystem.Archetypes
 
 
                     Control = GetComponentDataFromEntity<CharControllerE>(false);
+
                     var test = Control[GMS.Party[index]];
                     test.AI = true;
-                    Control[GMS.Party[index]]= test;
+                    Control[GMS.Party[index]] = test;
 
                     index = GMS.PlayerIndex;
 
@@ -53,23 +66,44 @@ namespace MotionSystem.Archetypes
                     test = Control[GMS.Party[index]];
                     test.AI = false;
                     Control[GMS.Party[index]] = test;
-
-                    Entities.ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
+                }
+                    Entities.With(GetEntityQuery(Player)).ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
                     {
                         if (Agent.enabled)
+                        {
                             Agent.enabled = false;
-                        Agent.tag = "Player";
-                    });
-                    Entities.ForEach((ref AI_Control AI, NavMeshAgent Agent) =>
-                    {
-                        if (!Agent.enabled)
-                            Agent.enabled = true;
-                        Agent.tag = "Untagged";
+                            Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
+
+                        }
+                        Agent.gameObject.tag = "Player";
                     });
 
-                }
+                    Entities.With(GetEntityQuery(Party)).ForEach((ref AI_Control AI, NavMeshAgent Agent) =>
+                    {
+                        if (!Agent.enabled &&AI.IsGrounded )
+                            Agent.enabled = true;
+                        Agent.gameObject.tag = "Untagged";
+                    });
+
+                
             }
 
+        }
+    }
+    public class LinkAI : JobComponentSystem
+    {
+        struct LinkAIJob : IJobForEach<AI_Control, CharControllerE>
+        {
+            public void Execute(ref AI_Control c0, ref CharControllerE c1)
+            {
+                c0.IsGrounded = c1.IsGrounded;
+            }
+        }
+
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+            var job = new LinkAIJob();
+            return job.Schedule(this, inputDeps);
         }
     }
 }

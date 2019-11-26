@@ -38,7 +38,9 @@ namespace MotionSystem.Components
         public LayerMask GroundCheckLayerMask;
     }
 
-    public struct AI_Control : IComponentData { }
+    public struct AI_Control : IComponentData {
+        public bool IsGrounded;
+    }
     public struct Player_Control : IComponentData { }
 }
 

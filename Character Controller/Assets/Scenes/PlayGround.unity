@@ -76549,6 +76549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxParty: 4
+  PlayerIndex: 0
 --- !u!1001 &1750625310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78926,7 +78927,7 @@ PrefabInstance:
     - target: {fileID: 138171637870420372, guid: b633c68e371aa63429176ba15a3daeee,
         type: 3}
       propertyPath: AI_Control
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 138171637870420372, guid: b633c68e371aa63429176ba15a3daeee,
         type: 3}
@@ -93151,6 +93152,10 @@ PrefabInstance:
     - target: {fileID: 3940210311403815095, guid: 0c6a0cec54d9210479403ea1519368f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100767713, guid: 0c6a0cec54d9210479403ea1519368f2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

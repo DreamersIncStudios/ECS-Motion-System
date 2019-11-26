@@ -41,29 +41,6 @@ namespace MotionSystem.System
 
                 JobHandle Handle = RaycastCommand.ScheduleBatch(GroundCheck, results, 1);
                 Handle.Complete();
-                //CharController temp;
-                //for (int index = 0; index < chars.Length; index++)
-                //{
-                //    // Debug.Log(results[0].collider.name);
-                //temp = chars[index];
-
-                //    if (results[index].collider != null)
-                //    {
-                //        temp.GroundNormal = results[0].normal;
-                //        temp.IsGrounded = true;
-
-                //    }
-                //    else
-                //    {
-                //        temp.GroundNormal = Vector3.up;
-
-                //        temp.IsGrounded = false;
-                //    }
-
-                //    chars[index] = temp;
-                //    //  Debug.Log(chars[index].IsGrounded);
-
-                //}
 
 
                 if (results[0].collider != null)
