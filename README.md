@@ -1,6 +1,12 @@
 # ECS-Motion-System
 __Copyright 2019, Dreamers Inc Studios__
-  
+
+Note 12/2/2019
+This project will be partial broken as we are starting to us properitary animation to build the combat system. My animation folder will be add to my gitignore as I can not share the animation. If you have access to the full project, you can either purchase the animation I am using at the following links or create your own animator controller. 
+
+https://assetstore.unity.com/packages/3d/animations/oriental-sword-animation-71318
+https://assetstore.unity.com/packages/3d/animations/rapier-anim-set-148084
+https://assetstore.unity.com/packages/3d/animations/grim-reaper-set-147220
 
 This project is a recreation and adaption of the Unity Standard Assets Third Person Character Controllor using Unity DOTS Framework. In my initial testing, I have found that running roughly 500 of the MonoBehaviour Character controllers in a scene drops performance down to 60FPS at 800 by 600 at medium quality settings running on a 1800X OC 4.0ghz with RX5700XT. 
 The ultimate goal would be to get the same number of characters running using ECS at twice the framerate. 
