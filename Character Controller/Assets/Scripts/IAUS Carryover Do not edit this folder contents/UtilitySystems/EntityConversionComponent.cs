@@ -23,8 +23,8 @@ namespace EssentialConversion
 
         private void OnDisable()
         {
-            if (Manager != null && Manager.IsCreated && Manager.Exists(ObjectEntity))
-                Manager.DestroyEntity(ObjectEntity);
+            //if (Manager != null && Manager.IsCreated && Manager.Exists(ObjectEntity))
+            //    Manager.DestroyEntity(ObjectEntity);
 
          //  Manager = null;
          //  ObjectEntity = Entity.Null;
@@ -33,8 +33,8 @@ namespace EssentialConversion
         private void OnEnable()
         {
 
-            if (Manager != null && Manager.IsCreated && !Manager.Exists(ObjectEntity))
-                ConvertToEntity.ConvertAndInjectOriginal(gameObject);
+            //if (Manager != null && Manager.IsCreated && !Manager.Exists(ObjectEntity))
+            //    ConvertToEntity.ConvertAndInjectOriginal(gameObject);
 
         }
 

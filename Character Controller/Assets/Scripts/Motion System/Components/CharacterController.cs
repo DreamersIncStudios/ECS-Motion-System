@@ -36,6 +36,15 @@ namespace MotionSystem.Components
         public float m_OrigGroundCheckDistance;
         public bool AI;
         public LayerMask GroundCheckLayerMask;
+
+        public bool EquipWeapon;
+        public float EquipResetTimer;
+        public float TimerForEquipReset;
+        public bool LightAtk;
+        public bool HeavyAtk;
+        public bool ProjectileAtk;
+
+      
     }
 
     public struct AI_Control : IComponentData {

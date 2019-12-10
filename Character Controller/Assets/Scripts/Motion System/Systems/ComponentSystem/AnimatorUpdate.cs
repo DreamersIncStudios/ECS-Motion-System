@@ -18,6 +18,7 @@ namespace MotionSystem.System
             All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         const float k_Half = 0.5f;
+
         protected override void OnUpdate()
         {
 
@@ -69,11 +70,17 @@ namespace MotionSystem.System
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
-                Anim.SetBool("Weapon Drawn", Input.GetKey(KeyCode.O));
-                if (!control.IsGrounded)
+                if (control.LightAtk)
+                {
+                    Anim.SetTrigger("Light Attack");
+                    control.EquipWeapon = true;
+                    control.LightAtk = false; 
+                }
+                    if (!control.IsGrounded)
                 {
                     Anim.SetFloat("Jump", RB.velocity.y);
                 }
+                Anim.SetBool("Weapon Drawn", control.EquipWeapon);
 
                 // calculate which leg is behind, so as to leave that leg trailing in the jump animation
                 // (This code is reliant on the specific run cycle offset in our animations,

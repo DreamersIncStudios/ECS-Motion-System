@@ -17,7 +17,7 @@ namespace MotionSystem.System {
         {
             if (AnimUpdate == null)
             {
-                AnimUpdate = World.Active.GetOrCreateSystem<AnimatorUpdate>();
+                AnimUpdate = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AnimatorUpdate>();
             }
                 AnimUpdate.Update(); 
         }

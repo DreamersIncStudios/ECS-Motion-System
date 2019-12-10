@@ -18,11 +18,13 @@ namespace MotionSystem.Archetypes
 
     public class CharacterControl : MonoBehaviour,IConvertGameObjectToEntity
     {
-        CapsuleCollider Col;
-        Rigidbody RB;
+        [Header("Party")]
         public bool AI_Control;
         public bool Party;
-       NavMeshAgent Agent;
+        NavMeshAgent Agent;
+        CapsuleCollider Col;
+        Rigidbody RB;
+        [Header("Animation Movement Specs")]
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
@@ -33,8 +35,10 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_GroundCheckDistance = 0.1f;
         public LayerMask GroundCheckLayer;
 
+        [Header("Weapon Specs")]
+        public float EquipResetTimer;
 
-         Entity ObjectEntity;
+        Entity ObjectEntity;
          EntityManager Manager;
 
         GameMasterSystem GMS;
@@ -73,7 +77,8 @@ namespace MotionSystem.Archetypes
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
                 m_OrigGroundCheckDistance = m_GroundCheckDistance, GroundCheckLayerMask = GroundCheckLayer, GroundCheckDistance = m_GroundCheckDistance
-               , IsGrounded = true, AI = AI_Control
+               , IsGrounded = true, AI = AI_Control,
+                EquipResetTimer = EquipResetTimer
 
             };
             dstManager.AddComponentData(entity, control);
@@ -97,21 +102,6 @@ namespace MotionSystem.Archetypes
             dstManager.AddComponentData(entity, transformtransitiion);
             
         }
-        private void OnDisable()
-        {
-            if (Manager != null && Manager.IsCreated && Manager.Exists(ObjectEntity))
-                Manager.DestroyEntity(ObjectEntity);
-
-            //  Manager = null;
-            //  ObjectEntity = Entity.Null;
-        }
-        private void OnEnable()
-        {
-
-            if (Manager != null && Manager.IsCreated && !Manager.Exists(ObjectEntity))
-                ConvertToEntity.ConvertAndInjectOriginal(gameObject);
-
-        }
-
+// Need To Determine a New method for disabling gameobject. See performance different for destorying and recreating. 
     }
 }

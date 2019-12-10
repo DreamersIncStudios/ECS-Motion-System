@@ -1,72 +1,69 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputSettings : MonoBehaviour
+[System.Serializable]
+public class InputSettings
 {
     public PlatformOptions TargetPlatform;
     public ControllerScheme UserScheme;
-#if UNITY_STANDALONE_WIN
+
+
     public bool Controller; // if true input will be based on controller
 
-#endif
 
 
-    public void Start()
+    public void SetUp()
     {
-#if UNITY_STANDALONE_WIN
-        TargetPlatform = PlatformOptions.PC;
-#endif
-#if UNITY_XBOXONE
-        TargetPlatform = PlatformOptions.XBOX;
-#endif
-#if UNITY_PS4
-        TargetPlatform = PlatformOptions.PC;
-#endif
+
 
         switch (TargetPlatform)
         {
 
             case PlatformOptions.XBOX:
-            UserScheme = new XboxScheme();
+                UserScheme = Resources.Load<ControllerScheme>("Controller/XboxOne");
+
                 break;
             case PlatformOptions.PC:
-                UserScheme = new PCKeyboardScheme();
+                if (Controller)
+                {
+
+                    UserScheme = Resources.Load<ControllerScheme>("Controller/PCXbox");
+                }
+                else
+                {
+                    UserScheme = Resources.Load<ControllerScheme>("Controller/PCKeyboard");
+                }
+                break;
+            case PlatformOptions.PS4:
+                UserScheme = Resources.Load<ControllerScheme>("Controller/PS4One");
+
                 break;
         }
     }
 
-
-
 }
-
 public interface ButtonConfigs {
-    KeyCode Jump { get; }
-    KeyCode LightAttack { get; }
-    KeyCode HeavyAttack { get; }
+    KeyCode Jump { get; set; }
+    KeyCode LightAttack { get; set; }
+    KeyCode HeavyAttack { get; set; }
 
 }
-public class ControllerScheme : ButtonConfigs
+
+[CreateAssetMenu(fileName = "InputData", menuName = "GameParts/InputField", order = 100)]
+public class ControllerScheme :ScriptableObject, ButtonConfigs
 {
-    public KeyCode Jump { get;}
-    public KeyCode LightAttack { get;  }
-    public KeyCode HeavyAttack { get; }
-}
-public class XboxScheme : ControllerScheme
-{
-    public new KeyCode Jump { get { return KeyCode.Joystick1Button0; } }
-    public new KeyCode LightAttack { get { return KeyCode.Joystick1Button0; } }
-    public new KeyCode HeavyAttack { get { return KeyCode.Joystick1Button1; } }
+    [SerializeField] public KeyCode _jump;
+    [SerializeField] public KeyCode _lightAttack;
+    [SerializeField] public KeyCode _heavyAttack;
 
+   public KeyCode Jump { get { return _jump;}set { _jump = value; } }
+   public KeyCode LightAttack { get { return _lightAttack; } set { _lightAttack = value; } }
+   public KeyCode HeavyAttack { get { return _heavyAttack; } set { _heavyAttack = value; } }
 }
 
-public class PCKeyboardScheme : ControllerScheme
-{
-    public new KeyCode Jump { get { return KeyCode.Joystick1Button0; } }
-    public new KeyCode LightAttack { get { return KeyCode.Joystick1Button0; } }
-    public new KeyCode HeavyAttack { get { return KeyCode.Joystick1Button1; } }
 
-}
 public enum PlatformOptions {
     PC,XBOX,PS4, Switch
 }

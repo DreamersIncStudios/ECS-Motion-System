@@ -24,6 +24,9 @@ namespace MotionSystem.System {
             All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         Transform m_mainCam;
+        ControllerScheme InputSet;
+
+
 
         protected override void OnUpdate()
         {
@@ -39,6 +42,9 @@ namespace MotionSystem.System {
                     // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
                 }
             }
+          
+        //    if(InputSet == null)
+                InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
 
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
@@ -50,8 +56,12 @@ namespace MotionSystem.System {
 
    
                 if (!Control.Jump)
-                    Control.Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                    Control.Jump = Input.GetKeyDown(InputSet.Jump);
+                if (Input.GetKeyUp(InputSet.LightAttack)) {
+                    Control.LightAtk = true;
+                }
         
+          
                 Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
 
@@ -129,10 +139,18 @@ namespace MotionSystem.System {
                     Control.Move.Normalize();
                 Control.Move = transform.InverseTransformDirection(Control.Move);
 
+                // This section of code can be moved to a  job??
+                if (Control.EquipWeapon && Control.TimerForEquipReset == 0.0f)
+                    Control.TimerForEquipReset = Control.EquipResetTimer;
 
-
-
-             
+                if (Control.TimerForEquipReset > 0.0f) {
+                    Control.TimerForEquipReset -= Time.DeltaTime;
+                }
+                if (Control.TimerForEquipReset <= 0.0f)
+                {
+                    Control.TimerForEquipReset = 0.0f;
+                    Control.EquipWeapon = false;
+                }
 
             });
 
