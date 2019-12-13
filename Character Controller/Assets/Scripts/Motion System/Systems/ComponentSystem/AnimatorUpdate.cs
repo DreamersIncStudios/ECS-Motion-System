@@ -70,12 +70,7 @@ namespace MotionSystem.System
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
-                if (control.LightAtk)
-                {
-                    Anim.SetTrigger("Light Attack");
-                    control.EquipWeapon = true;
-                    control.LightAtk = false; 
-                }
+
                     if (!control.IsGrounded)
                 {
                     Anim.SetFloat("Jump", RB.velocity.y);
@@ -111,7 +106,18 @@ namespace MotionSystem.System
 
 
             });
-            Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+            Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput, Animator Anim) => {
+                if (QueueInput.InputQueue.Count > 0) {
+                    string Dequeue = QueueInput.InputQueue.Dequeue() as string;
+                    if (!Control.EquipWeapon){
+                        Control.EquipWeapon = true;
+                    }
+                    Anim.SetTrigger(Dequeue);
+                    Control.TimerForEquipReset = Control.EquipResetTimer;
+                }
+
+            });
+                Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
             {
                 capsule.center = Control.CapsuleCenter;
                 capsule.height = Control.CapsuleHeight;

@@ -51,7 +51,7 @@ namespace MotionSystem.Archetypes
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             if(Party && GMS.Party.Count<= GMS.MaxParty )
             GMS.Party.Add(ObjectEntity);
-
+       
         }
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {

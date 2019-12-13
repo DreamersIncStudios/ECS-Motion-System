@@ -40,10 +40,10 @@ namespace MotionSystem.Components
         public bool EquipWeapon;
         public float EquipResetTimer;
         public float TimerForEquipReset;
-        public bool LightAtk;
-        public bool HeavyAtk;
-        public bool ProjectileAtk;
 
+
+        public bool canInput { get { return InputTimer < 0.0f; } }
+        public float InputTimer;
       
     }
 

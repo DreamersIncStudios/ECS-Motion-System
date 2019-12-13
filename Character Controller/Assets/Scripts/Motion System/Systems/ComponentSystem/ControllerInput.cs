@@ -25,8 +25,8 @@ namespace MotionSystem.System {
         };
         Transform m_mainCam;
         ControllerScheme InputSet;
-
-
+   
+  
 
         protected override void OnUpdate()
         {
@@ -45,6 +45,30 @@ namespace MotionSystem.System {
           
         //    if(InputSet == null)
                 InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
+            Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput) =>
+            {
+
+                if (!Control.AI && Control.canInput)
+                {
+
+                    if (Input.GetKeyUp(InputSet.LightAttack))
+                    {
+                        QueueInput.InputQueue.Enqueue("Light Attack");
+                        Control.InputTimer = .2f;
+                    }
+                    if (Input.GetKeyUp(InputSet.HeavyAttack))
+                    {
+                        QueueInput.InputQueue.Enqueue("Heavy Attack");
+                        Control.InputTimer = .2f;
+
+                    }
+
+                }
+                if (!Control.canInput)
+                {
+                    Control.InputTimer -= Time.DeltaTime;
+                }
+            });
 
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
@@ -54,14 +78,17 @@ namespace MotionSystem.System {
                m_Crouching = Input.GetKey(KeyCode.C);
 
 
-   
-                if (!Control.Jump)
+                if (!Control.Jump && Control.canInput && Control.IsGrounded)
+                {
                     Control.Jump = Input.GetKeyDown(InputSet.Jump);
-                if (Input.GetKeyUp(InputSet.LightAttack)) {
-                    Control.LightAtk = true;
+                   
                 }
-        
-          
+                if (Control.Jump) {
+                    Control.InputTimer = .2f;
+                }
+
+
+
                 Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
 
@@ -140,8 +167,7 @@ namespace MotionSystem.System {
                 Control.Move = transform.InverseTransformDirection(Control.Move);
 
                 // This section of code can be moved to a  job??
-                if (Control.EquipWeapon && Control.TimerForEquipReset == 0.0f)
-                    Control.TimerForEquipReset = Control.EquipResetTimer;
+             
 
                 if (Control.TimerForEquipReset > 0.0f) {
                     Control.TimerForEquipReset -= Time.DeltaTime;
@@ -154,15 +180,13 @@ namespace MotionSystem.System {
 
             });
 
-      
+
 
 
 
 
 
             }
-
-        
 
 
     }
