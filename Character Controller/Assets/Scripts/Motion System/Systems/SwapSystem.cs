@@ -37,7 +37,7 @@ namespace MotionSystem.System
         protected override void OnUpdate()
         {
 
-       
+
 
             if (GMS == null) {
                 GMS = GameMasterSystem.GMS;
@@ -85,7 +85,18 @@ namespace MotionSystem.System
                         Agent.gameObject.tag = "Untagged";
                     });
 
-                
+                if (Input.GetAxis("Quick Acces Horizontal") >.5f)
+                {
+                    GMS.PlayerIndex = 0;
+                    Debug.Log("Pressed");
+                }
+                if (Input.GetAxis("Quick Acces Horizontal") ==-1) {
+                    GMS.PlayerIndex = 1;
+                }
+                if (Input.GetAxis("Quick Acces Vertical") == -1) {
+                    GMS.PlayerIndex = 2;
+                }
+
             }
 
         }

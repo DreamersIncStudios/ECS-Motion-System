@@ -7,8 +7,9 @@ using Unity.Entities;
 public class GameMasterSystem : MonoBehaviour
 {
     public static GameMasterSystem GMS;
-    public int MaxParty;
-    public int PlayerIndex;
+    public int MaxParty { get { return 3; } } // Change Value if you want to increase party size.
+    //Value of 3 selected as player will change characters using Dpad on xbox controller
+    public int PlayerIndex { get; set; }
     [SerializeField] public List<Entity> Party = new List<Entity>();
     [SerializeField] public InputSettings InputSettings;
     // Start is called before the first frame update
@@ -53,16 +54,6 @@ public class GameMasterSystem : MonoBehaviour
         }
 
 
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-
-            if (PlayerIndex >= Party.Count - 1)
-            {
-                PlayerIndex = 0;
-            }
-            else
-                PlayerIndex++;
-        }
 
     }
 }
