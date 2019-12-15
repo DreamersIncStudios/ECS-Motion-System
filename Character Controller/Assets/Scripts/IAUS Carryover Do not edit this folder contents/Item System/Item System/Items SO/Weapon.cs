@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using Stats;
 using UnityEngine;
-using UnityEditor;
 
 
 
 
 namespace ItemSystem
 {
+    public interface IConjuredWeapon
+    {
+        Material Shader { get; }
+        float RevealRate { get; }
+        float DissolveDelay { get; }
+    }
+
     public class Weapon : EquipableItem, IWeapon, IRendered
     {
         [SerializeField] WeaponStyle _weaponType;
         [SerializeField] Vector3 _handPosition;
         [SerializeField] Vector3 _handRotation;
-        int ModelID;
         [SerializeField] int _strengthMod;
         [SerializeField] int _vitalityMod;
         [SerializeField] int _speedMod;
@@ -51,12 +56,13 @@ namespace ItemSystem
         public int SkillMod { get { return _skillMod; } }
 
         public int ConcentrationMod { get { return _concentrationMod; } }
-        public int modelID { get { return ModelID; } } 
+        public GameObject modelID { get; set; } 
         public override void OnEquip(PlayerCharacter PC, ArmorType Check)
         {
             base.OnEquip(PC, Check);
             Animator Anim =PC.GetComponent<Animator>();
-            GameObject Wpn= Instantiate(GO, Anim.GetBoneTransform(SpawnBone));
+       
+            GameObject Wpn= modelID = Instantiate(GO, Anim.GetBoneTransform(SpawnBone));
 
             Wpn.transform.localPosition= _pos;
             Wpn.transform.localRotation = Quaternion.Euler(Rotation);
@@ -65,15 +71,15 @@ namespace ItemSystem
             Col.center = ColCenter;
             Col.size = ColSize;
 
-            ModelID = new int();
-            ModelID = Wpn.gameObject.GetInstanceID();
+          
+          
 
         }
         public override void OnUnequip(PlayerCharacter PC)
         {
             base.OnUnequip(PC);
-            GameObject Del = (GameObject)EditorUtility.InstanceIDToObject(ModelID);
-            Destroy(Del);
+     
+            Destroy(modelID);
         }
 
 

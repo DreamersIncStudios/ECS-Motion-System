@@ -11,7 +11,7 @@ public class GameMasterSystem : MonoBehaviour
     //Value of 3 selected as player will change characters using Dpad on xbox controller
     public int PlayerIndex { get; set; }
     [SerializeField] public List<Entity> Party = new List<Entity>();
-    [SerializeField] public InputSettings InputSettings;
+    [SerializeField] public InputSettings InputSettings = new InputSettings();
     // Start is called before the first frame update
     private void Awake()
     {

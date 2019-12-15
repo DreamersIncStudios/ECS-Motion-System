@@ -23,6 +23,7 @@ namespace ItemSystem
         {
            Armor test;
             ScriptableObjectUtility.CreateAsset<Armor>( out test);
+            test.itemType = ItemType.Armor;
             ItemDatabase.LoadDatabaseForce();
             test.ItemID = ItemDatabase._items.Count + 1;
         }
@@ -31,10 +32,30 @@ namespace ItemSystem
         {
             Weapon test;
             ScriptableObjectUtility.CreateAsset<Weapon>(out test);
+
             ItemDatabase.LoadDatabaseForce();
             test.ItemID = ItemDatabase._items.Count + 1;
         }
+        //[MenuItem("Assets/Create/RPG/Animated Weapon")]
+        //static public void CreateAnimatedWeapon()
+        //{
+        //    AnimatedWeapon test;
+        //    ScriptableObjectUtility.CreateAsset<AnimatedWeapon>(out test);
+        //    test.itemType = ItemType.Weapon;
 
+        //    ItemDatabase.LoadDatabaseForce();
+        //    test.ItemID = ItemDatabase._items.Count + 1;
+        //}
+        [MenuItem("Assets/Create/RPG/Conjured Weapon")]
+        static public void CreateConjuredWeapon()
+        {
+            ConjuredWeapon test;
+            ScriptableObjectUtility.CreateAsset<ConjuredWeapon>(out test);
+            test.itemType = ItemType.Weapon;
+
+            ItemDatabase.LoadDatabaseForce();
+            test.ItemID = ItemDatabase._items.Count + 1;
+        }
     }
 
 

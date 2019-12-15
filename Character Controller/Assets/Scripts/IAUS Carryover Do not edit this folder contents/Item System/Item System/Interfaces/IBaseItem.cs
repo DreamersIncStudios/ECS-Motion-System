@@ -8,7 +8,7 @@ namespace ItemSystem
         Sprite Icon { get; set; }
         uint Value { get; set; }
         string Description { get; set; }
-        ItemType itemType { get; }
+        ItemType itemType { get; set; }
         bool Consumable { get; }
         bool Stackable { get; }
         bool canBeStored { get; } // as in deep storage system

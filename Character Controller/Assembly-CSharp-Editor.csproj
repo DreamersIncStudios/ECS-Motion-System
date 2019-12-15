@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Samples\High Definition RP\7.1.6\Procedural Sky\Editor\ProceduralSky\ProceduralSkyEditor.cs" />
     <Compile Include="Assets\Scripts\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\Editor Scripts.cs" />
     <Compile Include="Assets\Scripts\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\ScriptableObjectUtility.cs" />
     <Reference Include="UnityEditor.TestRunner">
@@ -109,11 +110,20 @@
     <Reference Include="Unity.Burst.Editor">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Scenes.Hybrid">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Scenes.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Runtime">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Scenes.Editor">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Scenes.Editor.dll</HintPath>
@@ -139,11 +149,17 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Entities.BuildUtils">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Entities.BuildUtils.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Entities.Hybrid.EndToEnd.Tests">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Entities.Hybrid.EndToEnd.Tests.dll</HintPath>
@@ -157,6 +173,9 @@
     <Reference Include="Unity.Properties">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Properties.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Entities">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Entities.dll</HintPath>
     </Reference>
@@ -169,11 +188,23 @@
     <Reference Include="Unity.Build">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Build.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Editor">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -381,6 +412,9 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.3.0-preview.0/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.render-pipelines.core@7.1.6/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

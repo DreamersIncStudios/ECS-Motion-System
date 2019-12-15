@@ -19,6 +19,6 @@ namespace ItemSystem
     }
 
 
-    public enum WeaponStyle { Sword = 0, Two_Handed_Sword = 1, Gloves = 2, Pole = 3, Pistol = 4, Revolver = 5 }
+    public enum WeaponStyle { Sword = 0, Two_Handed_Sword = 1, Gloves = 2, Pole = 3, Pistol = 4, Revolver = 5, Scythe = 6 }
 
 }

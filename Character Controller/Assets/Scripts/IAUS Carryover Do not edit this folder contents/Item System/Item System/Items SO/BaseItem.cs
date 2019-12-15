@@ -27,7 +27,7 @@ namespace ItemSystem {
         public uint Value { get { return _gold; } set { _gold = value; } }
         public Sprite Icon { get { return icon; } set { icon = value; } }
         public string Description { get { return desc; } set { desc = value; } }
-        public ItemType itemType { get { return Type; } }
+        public ItemType itemType { get { return Type; }set { Type = value; } }
         public uint size { get { return Size; } set { Size = value; } }
         public Quality Quality { get { return _quality; } }
 

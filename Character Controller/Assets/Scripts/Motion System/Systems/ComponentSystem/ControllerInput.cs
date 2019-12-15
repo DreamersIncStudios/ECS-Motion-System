@@ -24,9 +24,14 @@ namespace MotionSystem.System {
             All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
         };
         Transform m_mainCam;
-        ControllerScheme InputSet;
-   
-  
+        public ControllerScheme InputSet;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+         //   InputSet = new ControllerScheme();
+            //InputSet = Resources.Load<ControllerScheme>("Controller/PCXbox");
+        }
 
         protected override void OnUpdate()
         {
@@ -43,20 +48,19 @@ namespace MotionSystem.System {
                 }
             }
           
-        //    if(InputSet == null)
-                InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
+
             Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput) =>
             {
 
                 if (!Control.AI && Control.canInput)
                 {
 
-                    if (Input.GetKeyUp(InputSet.LightAttack))
+                    if (Input.GetKeyUp(KeyCode.JoystickButton2))
                     {
                         QueueInput.InputQueue.Enqueue("Light Attack");
                         Control.InputTimer = .2f;
                     }
-                    if (Input.GetKeyUp(InputSet.HeavyAttack))
+                    if (Input.GetKeyUp(KeyCode.JoystickButton3))
                     {
                         QueueInput.InputQueue.Enqueue("Heavy Attack");
                         Control.InputTimer = .2f;
@@ -80,7 +84,7 @@ namespace MotionSystem.System {
 
                 if (!Control.Jump && Control.canInput && Control.IsGrounded)
                 {
-                    Control.Jump = Input.GetKeyDown(InputSet.Jump);
+                    Control.Jump = Input.GetKeyDown(KeyCode.JoystickButton0);
                    
                 }
                 if (Control.Jump) {

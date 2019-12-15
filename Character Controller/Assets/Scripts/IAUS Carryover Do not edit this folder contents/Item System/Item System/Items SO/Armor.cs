@@ -35,14 +35,14 @@ namespace ItemSystem {
         [SerializeField] Vector3 _pos;
         [SerializeField] Vector3 _rot;
         int ModelID;
-
+        
         public int SpeedMod { get { return _speedMod;} set { _speedMod = value; } }
         public int ResistanceMod { get { return _resistanceMod; } }
         public int VitalityMod { get { return _vitalityMod; } }
         public int CharismaMod { get { return _charismaMod; } }
         public int Awareness { get { return _awarenessMod; } }
         public ArmorType armor { get { return _armorType; } }
-
+    
         public GameObject GO { get { return _go; } }
         public HumanBodyBones SpawnBone { get {
                                 switch (_armorType)
