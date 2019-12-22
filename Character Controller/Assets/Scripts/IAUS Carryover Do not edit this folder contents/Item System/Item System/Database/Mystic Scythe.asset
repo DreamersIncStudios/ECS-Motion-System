@@ -32,7 +32,7 @@ MonoBehaviour:
   _speedMod: 25
   _skillMod: 25
   _concentrationMod: 25
-  _go: {fileID: -927199367670048503, guid: fcb9f1c9fca2ebd4480a43a1a6d1be9d, type: 3}
+  _go: {fileID: 4086121578898055948, guid: b572c85218b37744b96a187d4602a36a, type: 3}
   _spawnBone: 7
   _pos: {x: 0.45, y: 0.05, z: -0.2}
   _rot: {x: 0, y: 90, z: 0}

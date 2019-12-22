@@ -113,7 +113,7 @@ namespace MotionSystem.System
                         Control.EquipWeapon = true;
                     }
                     Anim.SetTrigger(Dequeue);
-                    Control.TimerForEquipReset = Control.EquipResetTimer;
+                    Control.TimerForEquipReset = Control.EquipResetTimer; 
                 }
 
             });
