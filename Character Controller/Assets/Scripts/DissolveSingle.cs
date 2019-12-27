@@ -15,7 +15,7 @@ public class DissolveSingle : MonoBehaviour
     void Start()
     {
         Anim = this.GetComponentInParent<Animator>();
-        Anim.SetFloat("Dissolve", 1.0f);
+
     }
 
     // Update is called once per frame

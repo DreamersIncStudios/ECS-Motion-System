@@ -38,7 +38,7 @@ namespace MotionSystem.Archetypes
         [Header("Weapon Specs")]
         public float EquipResetTimer;
 
-        Entity ObjectEntity;
+        public Entity ObjectEntity;
          EntityManager Manager;
 
         GameMasterSystem GMS;
