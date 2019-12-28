@@ -12,6 +12,7 @@ public class GameMasterSystem : MonoBehaviour
     public int PlayerIndex { get; set; }
     [SerializeField] public List<Entity> Party = new List<Entity>();
     [SerializeField] public InputSettings InputSettings = new InputSettings();
+    public bool IKGlobal = true;  // consider making an enum to make player only or everyyone????? Will this be run Server side??
     // Start is called before the first frame update
     private void Awake()
     {
