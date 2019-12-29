@@ -46,11 +46,10 @@ namespace MotionSystem.System.AnimatorIK
         {
 
      
-                 anim.applyRootMotion = true;
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Equip Light Attack"))
-            {
-                anim.MatchTarget(HandPos, HandRot, AvatarTarget.RightHand, new MatchTargetWeightMask(Vector3.one, 0), 0.05f, 0.35f);
-            }
+            //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Equip Light Attack"))
+            //{
+            //    anim.MatchTarget(HandPos, HandRot, AvatarTarget.RightHand, new MatchTargetWeightMask(Vector3.one, 0), 0.05f, 0.35f);
+            //}
 
             
         }
@@ -58,7 +57,7 @@ namespace MotionSystem.System.AnimatorIK
         private void OnAnimatorIK(int layerIndex)
         {
             #region FootIK
-            if (IKStatus  && !anim.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
+            if (IKStatus && !anim.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
             {
                 anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, LeftFootWeight);
                 anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, RightFootWeight);
@@ -117,7 +116,7 @@ namespace MotionSystem.System.AnimatorIK
             }
             #endregion
 
-       
+
         }
 
     }
