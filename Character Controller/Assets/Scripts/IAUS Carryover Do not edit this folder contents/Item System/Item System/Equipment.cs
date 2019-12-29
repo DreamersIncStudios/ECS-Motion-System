@@ -15,7 +15,7 @@ namespace Stats
         public Armor Boots;
         public Armor Shield;
         public Weapon Sword; //Need to rename for clarity
-        public Weapon Sword2; //Need to rename for clarity
+       // public Weapon Sword2; //Need to rename for clarity
 
         [HideInInspector] public GameObject HelmetGO;
         [HideInInspector] public GameObject ChestGO;
@@ -46,7 +46,7 @@ namespace Stats
 
             if (Sword != null)
             {
-                Sword.OnEquip(PC, (ArmorType)0);
+                Sword.OnEquip(PC, 0);
                 Wpn = Sword.modelID;
             }
             

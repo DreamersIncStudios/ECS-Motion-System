@@ -9,7 +9,7 @@ namespace ItemSystem
         WeaponStyle WType { get; }
         Vector3 HandPosition { get; }
         Vector3 HandRotation { get; }
-
+        Transform MatchTargetHand { get; }
         int StrengthMod { get; }
         int VitalityMod { get; }
         int SpeedMod { get; }

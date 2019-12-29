@@ -57,6 +57,7 @@ namespace ItemSystem
 
         public int ConcentrationMod { get { return _concentrationMod; } }
         public GameObject modelID { get; set; } 
+        public Transform MatchTargetHand { get { return modelID.GetComponentInChildren<weaponTag>().transform; } }
         public override void OnEquip(PlayerCharacter PC, ArmorType Check)
         {
             base.OnEquip(PC, Check);

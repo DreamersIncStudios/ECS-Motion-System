@@ -6,6 +6,9 @@ using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
 
+
+//
+
 namespace MotionSystem.System.AnimatorIK
 {
     public class AnimatorIK : MonoBehaviour
@@ -27,7 +30,7 @@ namespace MotionSystem.System.AnimatorIK
         float RightFootWeight { get { return anim.GetFloat("Right Foot"); } }
         Vector3 LFposFinal;
         Vector3 RFposFinal;
-
+   
         Quaternion LFRotFinal;
         Quaternion RFRotFinal;
 
@@ -37,10 +40,25 @@ namespace MotionSystem.System.AnimatorIK
         Quaternion LeftFootRot { get { return anim.GetBoneTransform(HumanBodyBones.LeftFoot).transform.localRotation; } }
         Quaternion RightFootRot { get { return anim.GetBoneTransform(HumanBodyBones.RightFoot).transform.localRotation; } }
 
+        public Vector3 HandPos { get { return GetComponent<Stats.Equipment>().Sword.MatchTargetHand.position; } }// get data from Equipment system
+        public Quaternion HandRot { get {return GetComponent<Stats.Equipment>().Sword.MatchTargetHand.rotation; } } // get data from Equipment system
+        private void Update()
+        {
+
+     
+                 anim.applyRootMotion = true;
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Equip Light Attack"))
+            {
+                anim.MatchTarget(HandPos, HandRot, AvatarTarget.RightHand, new MatchTargetWeightMask(Vector3.one, 0), 0.05f, 0.35f);
+            }
+
+            
+        }
+
         private void OnAnimatorIK(int layerIndex)
         {
             #region FootIK
-            if (IKStatus)
+            if (IKStatus  && !anim.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
             {
                 anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, LeftFootWeight);
                 anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, RightFootWeight);
@@ -98,6 +116,8 @@ namespace MotionSystem.System.AnimatorIK
                 Results.Dispose();
             }
             #endregion
+
+       
         }
 
     }

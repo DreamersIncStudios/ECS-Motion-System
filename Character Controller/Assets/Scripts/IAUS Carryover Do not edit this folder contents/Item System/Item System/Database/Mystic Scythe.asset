@@ -25,7 +25,7 @@ MonoBehaviour:
   _quality: 0
   LevelReq: 0
   _weaponType: 6
-  _handPosition: {x: 0.2, y: 0, z: -0.7}
+  _handPosition: {x: 0.16, y: 0.03, z: -0.72}
   _handRotation: {x: 30, y: 180, z: -225}
   _strengthMod: 25
   _vitalityMod: 25
@@ -34,8 +34,8 @@ MonoBehaviour:
   _concentrationMod: 25
   _go: {fileID: 4086121578898055948, guid: b572c85218b37744b96a187d4602a36a, type: 3}
   _spawnBone: 7
-  _pos: {x: 0.45, y: 0.05, z: -0.2}
-  _rot: {x: 0, y: 90, z: 0}
+  _pos: {x: 0.33, y: 0, z: -0.25}
+  _rot: {x: 5, y: 90, z: 0}
   ColCenter: {x: 0, y: 0, z: 0}
   ColSize: {x: 0, y: 0, z: 0}
   _shader: {fileID: 0}

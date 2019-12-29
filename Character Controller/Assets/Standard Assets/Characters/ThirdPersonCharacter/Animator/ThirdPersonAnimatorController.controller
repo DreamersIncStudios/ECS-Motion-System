@@ -198,7 +198,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Equip Light Attack
-  m_Speed: 6
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5316937597901581293}
@@ -314,7 +314,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1641570790810438479}
-    m_Position: {x: 663.71216, y: -59.253174, z: 0}
+    m_Position: {x: 660, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6221665730399536031}
     m_Position: {x: 520, y: 40, z: 0}
@@ -433,7 +433,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.24239975
   m_TransitionOffset: 0
   m_ExitTime: 0.268655
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -541,6 +541,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Right Hand
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -561,7 +567,7 @@ AnimatorController:
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
-    m_SyncedLayerIndex: 0
+    m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
@@ -1425,7 +1431,7 @@ AnimatorStateMachine:
     m_Position: {x: 1360, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5360518194566698259}
-    m_Position: {x: 1140, y: 70, z: 0}
+    m_Position: {x: 930, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7785146370138914399}
     m_Position: {x: 1510, y: -160, z: 0}
@@ -1800,7 +1806,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Equip
-  m_Speed: 6
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 794862047264335718}
