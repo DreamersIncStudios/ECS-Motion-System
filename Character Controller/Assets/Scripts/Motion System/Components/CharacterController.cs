@@ -8,6 +8,7 @@ namespace MotionSystem.Components
 {
     public struct CharControllerE: IComponentData
     {
+
         public float3 CapsuleCenter;
         public float CapsuleRadius;
         public float CapsuleHeight;
@@ -20,12 +21,14 @@ namespace MotionSystem.Components
         public bool Jump;
         public bool Crouch;
 
+        public bool CombatCapable;
+
         public Vector3 Move;
         public bool Walk;
         public Vector3 GroundNormal;
         public bool IsGrounded;
         public float GroundCheckDistance;
-
+        public bool block;
         public float m_MovingTurnSpeed;
         public float m_StationaryTurnSpeed;
         public float m_JumpPower;

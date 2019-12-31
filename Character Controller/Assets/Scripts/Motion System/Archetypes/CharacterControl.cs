@@ -21,6 +21,7 @@ namespace MotionSystem.Archetypes
         [Header("Party")]
         public bool AI_Control;
         public bool Party;
+        public bool CombatCapable;
         NavMeshAgent Agent;
         CapsuleCollider Col;
         Rigidbody RB;
@@ -77,7 +78,7 @@ namespace MotionSystem.Archetypes
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
                 m_OrigGroundCheckDistance = m_GroundCheckDistance, GroundCheckLayerMask = GroundCheckLayer, GroundCheckDistance = m_GroundCheckDistance
-               , IsGrounded = true, AI = AI_Control,
+               , IsGrounded = true, AI = AI_Control, CombatCapable = CombatCapable,
                 EquipResetTimer = EquipResetTimer
 
             };

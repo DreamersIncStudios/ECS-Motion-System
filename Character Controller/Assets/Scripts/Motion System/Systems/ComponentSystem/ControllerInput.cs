@@ -47,8 +47,10 @@ namespace MotionSystem.System {
 
             Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput) =>
             {
+                if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
+                    return;
 
-                if (!Control.AI && Control.canInput)
+                if (!Control.AI && Control.canInput && !Control.block)
                 {
 
                     if (Input.GetKeyUp(InputSet.LightAttack))
@@ -64,6 +66,11 @@ namespace MotionSystem.System {
                     }
 
                 }
+                if (Input.GetKeyDown(InputSet.Block))
+                    Control.block = true;
+                if (Input.GetKeyUp(InputSet.Block))
+                    Control.block = false;
+
                 if (!Control.canInput)
                 {
                     Control.InputTimer -= Time.DeltaTime;

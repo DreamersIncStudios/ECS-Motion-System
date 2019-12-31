@@ -9,12 +9,8 @@ public class DissolveSingle : MonoBehaviour
     private void Awake()
     {
         DissolveInstance = this.GetComponent<Renderer>().material;
-     
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
         Anim = this.GetComponentInParent<Animator>();
+
 
     }
 

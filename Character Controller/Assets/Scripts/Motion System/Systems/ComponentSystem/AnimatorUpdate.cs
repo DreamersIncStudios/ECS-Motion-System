@@ -107,6 +107,13 @@ namespace MotionSystem.System
 
             });
             Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput, Animator Anim) => {
+                if (!Control.CombatCapable)
+                    return;
+                Anim.SetBool("Block", Control.block);
+                if (Control.block)
+                {
+                    Control.TimerForEquipReset = Control.EquipResetTimer;
+                }
                 if (QueueInput.InputQueue.Count > 0) {
                     string Dequeue = QueueInput.InputQueue.Dequeue() as string;
                     if (!Control.EquipWeapon){
@@ -116,6 +123,9 @@ namespace MotionSystem.System
                     Control.TimerForEquipReset = Control.EquipResetTimer; 
                 }
 
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsTag("EndCombo")) {
+                    Anim.ResetTrigger("Light Attack");
+                }
             });
                 Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
             {
