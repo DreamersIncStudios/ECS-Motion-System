@@ -23,4 +23,10 @@ namespace MotionSystem.System {
         }
     }
 
+
+
+    public struct GameSetting {
+
+
+    }
 }

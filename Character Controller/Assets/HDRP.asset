@@ -189,7 +189,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
+    supportSSR: 1
     supportSSAO: 1
     supportSubsurfaceScattering: 1
     increaseSssSampleCount: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
     colorBufferFormat: 48
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 1
     supportDecals: 1
     msaaSampleCount: 1
     supportMotionVectors: 1
@@ -221,9 +221,9 @@ MonoBehaviour:
     supportRayTracing: 0
     supportedRaytracingTier: 2
     lightLoopSettings:
-      cookieSize: 128
+      cookieSize: 512
       cookieTexArraySize: 16
-      pointCookieSize: 128
+      pointCookieSize: 512
       cubeCookieTexArraySize: 16
       planarReflectionProbeCacheSize: 2
       planarReflectionTextureSize: 1024
@@ -231,7 +231,7 @@ MonoBehaviour:
       reflectionCubemapSize: 256
       reflectionCacheCompressed: 0
       planarReflectionCacheCompressed: 0
-      skyReflectionSize: 256
+      skyReflectionSize: 2048
       skyLightingOverrideLayerMask:
         serializedVersion: 2
         m_Bits: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000000
+        m_Values: 000101
         m_SchemaId:
           m_Id: 
     maximumLODLevel:

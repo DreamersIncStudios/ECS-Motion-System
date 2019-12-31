@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DissolveSingle : MonoBehaviour
+
+namespace VisualEffect
 {
-    public Animator Anim;
-    public Material DissolveInstance;
-    private void Awake()
+    public class DissolveSingle : MonoBehaviour
     {
-        DissolveInstance = this.GetComponent<Renderer>().material;
-     
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        Anim = this.GetComponentInParent<Animator>();
+        public Animator Anim;
+        public Material DissolveInstance;
+        private void Awake()
+        {
+            DissolveInstance = this.GetComponent<Renderer>().material;
+            Anim = this.GetComponentInParent<Animator>();
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        DissolveInstance.SetFloat("Dissolve", Anim.GetFloat("Dissolve"));
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            DissolveInstance.SetFloat("Dissolve", Anim.GetFloat("Dissolve"));
+        }
     }
 }

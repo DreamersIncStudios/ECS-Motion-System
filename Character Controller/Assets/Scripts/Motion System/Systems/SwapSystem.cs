@@ -6,6 +6,9 @@ using MotionSystem.Components;
 using Unity.Collections;
 using UnityEngine.AI;
 using Unity.Jobs;
+using Unity.Burst;
+using GameMaster;
+
 
 namespace MotionSystem.System
 {
@@ -103,6 +106,7 @@ namespace MotionSystem.System
     }
     public class LinkAI : JobComponentSystem
     {
+    
         struct LinkAIJob : IJobForEach<AI_Control, CharControllerE>
         {
             public void Execute(ref AI_Control c0, ref CharControllerE c1)

@@ -408,13 +408,13 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.2.0-preview.9/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.2.0-preview.11/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.3.0-preview.0/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.4.0-preview.6/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.render-pipelines.core@7.1.6/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.render-pipelines.core@7.1.7/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

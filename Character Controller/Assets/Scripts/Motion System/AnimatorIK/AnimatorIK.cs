@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
-
+using GameMaster;
 
 //
 
@@ -14,8 +14,8 @@ namespace MotionSystem.System.AnimatorIK
     public class AnimatorIK : MonoBehaviour
     {
         Animator anim;
-        Entity entity { get { return this.GetComponent<MotionSystem.Archetypes.CharacterControl>().ObjectEntity; } }
-        public bool IKStatus { get { return GameMasterSystem.GMS.IKGlobal; } }
+       public  GameMasterSystem GMS;
+        public bool _IKStatus { get { return GMS.IKGlobal; } }
         public float offsetY;
         public LayerMask TargetLayers; // check AI System To see how it was used in RayCast Command 
         private void Awake()
@@ -24,6 +24,8 @@ namespace MotionSystem.System.AnimatorIK
             {
                 anim = this.GetComponent<Animator>();
             }
+            if(GMS == null)
+                GMS = GameMasterSystem.GMS;
         }
 
         float LeftFootWeight { get { return anim.GetFloat("Left Foot"); } }
@@ -46,19 +48,21 @@ namespace MotionSystem.System.AnimatorIK
         {
 
      
-            //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Equip Light Attack"))
-            //{
-            //    anim.MatchTarget(HandPos, HandRot, AvatarTarget.RightHand, new MatchTargetWeightMask(Vector3.one, 0), 0.05f, 0.35f);
-            //}
+                //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Equip Light Attack"))
+                //{
+                //    anim.MatchTarget(HandPos, HandRot, AvatarTarget.RightHand, new MatchTargetWeightMask(Vector3.one, 0), 0.05f, 0.35f);
+                //}
 
             
         }
 
+
+
         private void OnAnimatorIK(int layerIndex)
         {
             #region FootIK
-            if (IKStatus && !anim.GetCurrentAnimatorStateInfo(0).IsName("Airborne"))
-            {
+            if (!_IKStatus)
+                return;
                 anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, LeftFootWeight);
                 anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, RightFootWeight);
 
@@ -113,7 +117,7 @@ namespace MotionSystem.System.AnimatorIK
 
                 commands.Dispose();
                 Results.Dispose();
-            }
+            
             #endregion
 
 

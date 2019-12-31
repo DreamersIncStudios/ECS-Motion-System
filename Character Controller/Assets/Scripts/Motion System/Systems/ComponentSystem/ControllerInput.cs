@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Transforms;
+﻿
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.Entities;
@@ -8,8 +6,9 @@ using MotionSystem.Components;
 using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
-using Unity.Collections;
-using Unity.Jobs;
+using GameMaster;
+
+
 namespace MotionSystem.System {
 
    
@@ -47,8 +46,10 @@ namespace MotionSystem.System {
 
             Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput) =>
             {
+                if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
+                    return;
 
-                if (!Control.AI && Control.canInput)
+                if (!Control.AI && Control.canInput && !Control.block)
                 {
 
                     if (Input.GetKeyUp(InputSet.LightAttack))
@@ -64,6 +65,11 @@ namespace MotionSystem.System {
                     }
 
                 }
+                if (Input.GetKeyDown(InputSet.Block))
+                    Control.block = true;
+                if (Input.GetKeyUp(InputSet.Block))
+                    Control.block = false;
+
                 if (!Control.canInput)
                 {
                     Control.InputTimer -= Time.DeltaTime;
@@ -73,24 +79,27 @@ namespace MotionSystem.System {
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
-                Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
-                Control.V = CrossPlatformInputManager.GetAxis("Vertical");
-               m_Crouching = Input.GetKey(KeyCode.C);
-
-
-                if (!Control.Jump && Control.canInput && Control.IsGrounded)
+                if (!Control.block)
                 {
-                    Control.Jump = Input.GetKeyDown(InputSet.Jump);
-                   
+                    Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
+                    Control.V = CrossPlatformInputManager.GetAxis("Vertical");
+                    m_Crouching = Input.GetKey(KeyCode.C);
+
+
+                    if (!Control.Jump && Control.canInput && Control.IsGrounded)
+                    {
+                        Control.Jump = Input.GetKeyDown(InputSet.Jump);
+
+                    }
+                    if (Control.Jump)
+                    {
+                        Control.InputTimer = .2f;
+                    }
+
+
+
+                    Control.Walk = Input.GetKey(KeyCode.LeftShift);
                 }
-                if (Control.Jump) {
-                    Control.InputTimer = .2f;
-                }
-
-
-
-                Control.Walk = Input.GetKey(KeyCode.LeftShift);
-
 
 
                 if (Control.IsGrounded && m_Crouching)
