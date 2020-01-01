@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace VisualEffect
 {
-<<<<<<< HEAD
     public class DissolveSingle : MonoBehaviour
     {
         public Animator Anim;
@@ -15,17 +14,6 @@ namespace VisualEffect
             DissolveInstance = this.GetComponent<Renderer>().material;
             Anim = this.GetComponentInParent<Animator>();
 
-=======
-    public Animator Anim;
-    public Material DissolveInstance;
-    private void Awake()
-    {
-        DissolveInstance = this.GetComponent<Renderer>().material;
-        Anim = this.GetComponentInParent<Animator>();
-
-
-    }
->>>>>>> 8ff764df9e264f29935341465e14496604252a57
 
         }
 

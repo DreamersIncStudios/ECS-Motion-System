@@ -7,11 +7,8 @@ using Unity.Collections;
 using UnityEngine.AI;
 using Unity.Jobs;
 using Unity.Burst;
-<<<<<<< HEAD
 using GameMaster;
 
-=======
->>>>>>> 8ff764df9e264f29935341465e14496604252a57
 
 namespace MotionSystem.System
 {
