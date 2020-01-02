@@ -9,7 +9,7 @@ namespace Stats
         private string _name;
         private int _level;
         private uint _freeExp;
-        private Profession _class;
+        //private Profession _class;
         private Attributes[] _primaryAttribute;
         private Vital[] _vital;
         private Stat[] _stats;
@@ -22,7 +22,6 @@ namespace Stats
             _name = string.Empty;
             _level = 0;
             _freeExp = 0;
-            _class = new  Profession(); _class.Class = Professions.Dragoon;
             _primaryAttribute = new Attributes[Enum.GetValues(typeof(AttributeName)).Length];
             _vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
             _stats = new Stat[Enum.GetValues(typeof(StatName)).Length];
@@ -34,7 +33,6 @@ namespace Stats
             SetupVitals();
             SetupStats();
             SetupAbilities();
-            SetupAttributeLevelup();
            // SetupElementalMods();
         }
 
@@ -213,34 +211,7 @@ namespace Stats
 
         }
 
-        public void SetupAttributeLevelup() {
-            switch (_class.Class)
-                {
-                case Professions.Dragoon:
-                    PrimaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    SecondaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    break;
-                case Professions.Medic:
-                    PrimaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                        SecondaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    break;
-                case Professions.Aria:
-                    PrimaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                        SecondaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    break;
-                case Professions.Knight:
-                    PrimaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                        SecondaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    break;
-                case Professions.Summoner:
-                    PrimaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                        SecondaryMod(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                    break;
-            }
 
-
-
-        }
 
         public virtual void StatUpdate()
         {
@@ -253,36 +224,6 @@ namespace Stats
         }
 
 
-        void PrimaryMod(int level, int Str, int vit, int Awr, int Spd, int Skl, int Res, int Con, int Will, int Chars, int Lck)
-        {
-            _class.PrimaryStatLevelUP = new int[System.Enum.GetValues(typeof(AttributeName)).Length];
-            _class.PrimaryStatLevelUP[0] = level;
-            _class.PrimaryStatLevelUP[1] = Str;
-            _class.PrimaryStatLevelUP[2] = vit;
-            _class.PrimaryStatLevelUP[3] = Awr;
-            _class.PrimaryStatLevelUP[4] = Spd;
-            _class.PrimaryStatLevelUP[5] = Skl;
-            _class.PrimaryStatLevelUP[6] = Res;
-            _class.PrimaryStatLevelUP[7] = Con;
-            _class.PrimaryStatLevelUP[8] = Will;
-            _class.PrimaryStatLevelUP[9] = Chars;
-            _class.PrimaryStatLevelUP[10] = Lck;
-        }
-        void SecondaryMod(int level, int Str, int vit, int Awr, int Spd, int Skl, int Res, int Con, int Will, int Chars, int Lck)
-        {
-            _class.SecondaryStatLevelUP = new int[System.Enum.GetValues(typeof(AttributeName)).Length];
-
-            _class.SecondaryStatLevelUP[0] = level;
-            _class.SecondaryStatLevelUP[1] = Str;
-            _class.SecondaryStatLevelUP[2] = vit;
-            _class.SecondaryStatLevelUP[3] = Awr;
-            _class.SecondaryStatLevelUP[4] = Spd;
-            _class.SecondaryStatLevelUP[5] = Skl;
-            _class.SecondaryStatLevelUP[6] = Res;
-            _class.SecondaryStatLevelUP[7] = Con;
-            _class.SecondaryStatLevelUP[8] = Will;
-            _class.SecondaryStatLevelUP[9] = Chars;
-            _class.SecondaryStatLevelUP[10] = Lck;
-        }
+    
     }
 }
