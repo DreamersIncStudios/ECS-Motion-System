@@ -91,7 +91,6 @@ namespace MotionSystem.System
                 if (Input.GetAxis("Quick Acces Horizontal") >.5f)
                 {
                     GMS.PlayerIndex = 0;
-                    Debug.Log("Pressed");
                 }
                 if (Input.GetAxis("Quick Acces Horizontal") ==-1) {
                     GMS.PlayerIndex = 1;

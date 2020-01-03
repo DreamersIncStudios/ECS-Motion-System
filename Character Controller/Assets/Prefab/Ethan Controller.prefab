@@ -758,13 +758,14 @@ GameObject:
   - component: {fileID: 7207975482275087960}
   - component: {fileID: 7207975482265806864}
   - component: {fileID: 138171637870420374}
+  - component: {fileID: 6221044954758155065}
   - component: {fileID: 138171637870420373}
   - component: {fileID: 3143155789722044706}
   - component: {fileID: 138171637870420372}
   - component: {fileID: 9201517454205682406}
-  - component: {fileID: 489565652}
   - component: {fileID: 581434733494346471}
   - component: {fileID: 5051236517756378207}
+  - component: {fileID: 2919276838346026013}
   m_Layer: 0
   m_Name: Ethan Controller
   m_TagString: Untagged
@@ -824,6 +825,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!195 &6221044954758155065
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207975482275191352}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!136 &138171637870420373
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -864,6 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AI_Control: 0
   Party: 1
+  CombatCapable: 0
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
   m_JumpPower: 12
@@ -889,28 +913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
---- !u!195 &489565652
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &581434733494346471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,12 +950,40 @@ MonoBehaviour:
   Gloves: {fileID: 0}
   Boots: {fileID: 0}
   Shield: {fileID: 0}
-  Sword: {fileID: 11400000, guid: 5c133c4f04262e548bf6a513b8ee3785, type: 2}
+  Sword: {fileID: 0}
   HelmetGO: {fileID: 0}
   ChestGO: {fileID: 0}
   GlovesGO: {fileID: 0}
   BootsGO: {fileID: 0}
   ShieldGO: {fileID: 0}
+--- !u!114 &2919276838346026013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207975482275191352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb07daeab116e04cb4b6ba23f2d7970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharClass:
+    title: 7
+    Level: 1
+    Strength: 20
+    Vitality: 20
+    Awareness: 20
+    Speed: 20
+    Skill: 20
+    Resistance: 20
+    Concentration: 20
+    WillPower: 20
+    Charisma: 20
+    Luck: 20
+    difficultyMod: 1
+    LevelMod: 1
+  CharacterName: Tester
 --- !u!1 &7207975482275191354
 GameObject:
   m_ObjectHideFlags: 0

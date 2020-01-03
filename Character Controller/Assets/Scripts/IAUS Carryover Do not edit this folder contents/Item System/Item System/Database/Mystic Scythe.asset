@@ -36,8 +36,8 @@ MonoBehaviour:
   _spawnBone: 7
   _pos: {x: 0.33, y: 0, z: -0.25}
   _rot: {x: 5, y: 90, z: 0}
-  ColCenter: {x: 0, y: 0, z: 0}
-  ColSize: {x: 0, y: 0, z: 0}
+  ColCenter: {x: 0.2, y: 0.1, z: -0.15}
+  ColSize: {x: 0.75, y: 0.1, z: 1.1}
   _shader: {fileID: 0}
   _revealRate: 0
   _dissolveDelay: 0

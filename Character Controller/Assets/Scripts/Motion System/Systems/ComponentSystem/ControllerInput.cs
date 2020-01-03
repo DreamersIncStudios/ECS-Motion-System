@@ -44,7 +44,7 @@ namespace MotionSystem.System {
             //if (InputSet == null)
                 InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
 
-            Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput) =>
+            Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC) =>
             {
                 if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
                     return;

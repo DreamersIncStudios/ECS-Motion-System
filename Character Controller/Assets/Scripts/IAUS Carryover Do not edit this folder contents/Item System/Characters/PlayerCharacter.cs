@@ -26,12 +26,13 @@ namespace Stats
             base.StatUpdate();
             CurHealth = MaxHealth = GetVital((int)VitalName.Health).AdjustBaseValue;
             CurMana = MaxMana = GetVital((int)VitalName.Mana).AdjustBaseValue;
+            MagicDef = 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f));// why is this divide by 100?????????????
+            MeleeAttack = GetStat((int)StatName.Melee_Offence).AdjustBaseValue;
+            MeleeDef = 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defence).AdjustBaseValue / 100.0f));
         }
         private void Start()
         {
-            MagicDef =  1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f));// why is this divide by 100?????????????
-            MeleeAttack = GetStat((int)StatName.Melee_Offence).AdjustBaseValue;
-            MeleeDef = 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defence).AdjustBaseValue / 100.0f));
+
         }
         public void AdjustHealth(int adj)
         {

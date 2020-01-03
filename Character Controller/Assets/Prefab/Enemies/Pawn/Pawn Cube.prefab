@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7639730275295054737}
   - component: {fileID: 522217896132698861}
   - component: {fileID: -5554049622317102157}
+  - component: {fileID: 1000563817}
   m_Layer: 0
   m_Name: Pawn Cube
   m_TagString: Enemy
@@ -131,10 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fight: 0
-  CurHealth: 0
-  MaxHealth: 0
-  CurMana: 0
-  MaxMana: 0
+  CurHealth: 20
+  MaxHealth: 20
+  CurMana: 20
+  MaxMana: 20
   MagicDef: 0
   MeleeAttack: 0
   MeleeDef: 0
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497680971784983383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa32b5e035732454eb7f27eea4a5ff51, type: 3}
   m_Name: 
@@ -161,3 +162,30 @@ MonoBehaviour:
   GlovesGO: {fileID: 0}
   BootsGO: {fileID: 0}
   ShieldGO: {fileID: 0}
+--- !u!114 &1000563817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497680971784983383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08bfcd63a4c4e14a9437e887605d6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharClass:
+    title: 0
+    Level: 2
+    Strength: 10
+    Vitality: 10
+    Awareness: 10
+    Speed: 10
+    Skill: 10
+    Resistance: 10
+    Concentration: 10
+    WillPower: 10
+    Charisma: 10
+    Luck: 10
+    difficultyMod: 1
+    LevelMod: 1

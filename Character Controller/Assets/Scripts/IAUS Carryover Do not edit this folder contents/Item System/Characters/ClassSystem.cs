@@ -14,7 +14,7 @@
         public int Charisma;
         public int Luck;
 
-        public float diffultyMod;
+        public float difficultyMod;
         public float LevelMod;
 
     }

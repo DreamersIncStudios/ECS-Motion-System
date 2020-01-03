@@ -23,10 +23,8 @@ namespace Stats
         [HideInInspector] public GameObject BootsGO;
         [HideInInspector] public GameObject ShieldGO;
         GameObject Wpn;
-        // Start is called before the first frame update
 
-        //public List<AbilitySystem.BaseAbility> Skills;
-        void Start()
+        private void Awake()
         {
             if (anim == null)
             {
@@ -34,10 +32,16 @@ namespace Stats
 
             }
 
-            if (PC == null) {
+            if (PC == null)
+            {
                 PC = this.GetComponent<PlayerCharacter>();
-                PC.Level = 10;
+
             }
+        }
+
+        void Start()
+        {
+
             //if (Helmet!=null) { Helmet.OnEquip(PC, ArmorType.Helmet); }
             //if (Chest != null) { Chest.OnEquip(PC, ArmorType.Chest); }
             //if (Gloves != null) { Gloves.OnEquip(PC, ArmorType.Gloves); }
@@ -50,7 +54,7 @@ namespace Stats
                 Wpn = Sword.modelID;
             }
             
-            PC.StatUpdate();
+           // PC.StatUpdate();
         }
 
         private void Update()
@@ -70,8 +74,7 @@ namespace Stats
         }
         public void EquipWeaponAnim()
         {
-            //GameObject Wpn = (GameObject)EditorUtility.InstanceIDToObject(Sword.modelID);
-            anim.SetBool("CanDoDamage", true);
+         //   anim.SetBool("CanDoDamage", true);
             Wpn.transform.SetParent( anim.GetBoneTransform(HumanBodyBones.RightHand));
             Wpn.transform.localPosition = Sword.HandPosition;
             Wpn.transform.localRotation = Quaternion.Euler(Sword.HandRotation);
@@ -79,8 +82,7 @@ namespace Stats
 
         public void UnequipWeaponAnim()
         {
-          // GameObject Wpn = (GameObject)EditorUtility.InstanceIDToObject(Sword.modelID);
-            anim.SetBool("CanDoDamage", false);
+         //   anim.SetBool("CanDoDamage", false);
             Wpn.transform.parent = anim.GetBoneTransform(HumanBodyBones.Spine);
             Wpn.transform.localPosition = Sword.Position;
             Wpn.transform.localRotation = Quaternion.Euler(Sword.Rotation);

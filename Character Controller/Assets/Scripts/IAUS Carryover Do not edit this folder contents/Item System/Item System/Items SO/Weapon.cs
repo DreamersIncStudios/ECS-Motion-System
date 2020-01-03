@@ -68,6 +68,7 @@ namespace ItemSystem
             Wpn.transform.localPosition= _pos;
             Wpn.transform.localRotation = Quaternion.Euler(Rotation);
             BoxCollider Col =Wpn.AddComponent<BoxCollider>();
+            Wpn.AddComponent<WeaponDamage>();
             Col.isTrigger=true;
             Col.center = ColCenter;
             Col.size = ColSize;
