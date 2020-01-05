@@ -22,6 +22,8 @@ namespace Stats
         public float MeleeAttack;
         public float MeleeDef;
 
+        public bool InvincibleMode;
+
         public override void StatUpdate() {
             base.StatUpdate();
             CurHealth = MaxHealth = GetVital((int)VitalName.Health).AdjustBaseValue;
@@ -32,10 +34,15 @@ namespace Stats
         }
         private void Start()
         {
-
+#if UNITY_EDITOR
+            if (InvincibleMode)
+                Debug.LogWarning("This Character is in Invincible Mode and will not take Damage", this);
+#endif
         }
         public void AdjustHealth(int adj)
         {
+            if (InvincibleMode)
+                return;
             CurHealth += adj;
             if (CurHealth < 0) { CurHealth = 0; }
             if (CurHealth > MaxHealth) { CurHealth = MaxHealth; }

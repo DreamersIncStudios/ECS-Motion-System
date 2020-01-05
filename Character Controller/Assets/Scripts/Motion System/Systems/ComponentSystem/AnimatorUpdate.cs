@@ -41,13 +41,17 @@ namespace MotionSystem.System
 
                 if (control.IsGrounded)
                 {
-                    if (control.Jump && !control.Crouch && Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+                    if (control.Jump && !control.Crouch)
                     {
-                        // jump!
-                        RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
-                        control.IsGrounded = false;
-                        Anim.applyRootMotion = false;
-                        control.GroundCheckDistance = 0.1f;
+                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Reaper locomation Grounded"))
+                        {
+                            // jump!
+                            Debug.Log("Jump");
+                            RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
+                            control.IsGrounded = false;
+                            Anim.applyRootMotion = false;
+                            control.GroundCheckDistance = 0.1f;
+                        }
                     }
                 }
                 else
