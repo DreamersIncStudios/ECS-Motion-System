@@ -201,19 +201,28 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
+    m_Motion: {fileID: 8993902097722301239, guid: 6cb6aad983e38144b8d3cb5bb0460397,
+      type: 3}
+    m_Threshold: -5
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 3
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Jump
+    m_Mirror: 0
+  - serializedVersion: 2
     m_Motion: {fileID: 8993902097722301239, guid: 4633efb9c1045c04387939e16a750c8f,
       type: 3}
-    m_Threshold: 0
+    m_Threshold: 5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: Forward
+    m_DirectBlendParameter: Jump
     m_Mirror: 0
   m_BlendParameter: Jump
   m_BlendParameterY: Forward
-  m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MinThreshold: -5
+  m_MaxThreshold: 5
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1101 &-5602214372774433185
@@ -229,6 +238,9 @@ AnimatorStateTransition:
     m_EventTreshold: 0.15
   - m_ConditionMode: 2
     m_ConditionEvent: Weapon Drawn
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: OnGround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1641570790810438479}
@@ -2350,9 +2362,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: Jump
-    m_EventTreshold: -2
   - m_ConditionMode: 1
     m_ConditionEvent: OnGround
     m_EventTreshold: 0
@@ -2709,6 +2718,9 @@ AnimatorStateTransition:
     m_EventTreshold: 0.15
   - m_ConditionMode: 1
     m_ConditionEvent: Weapon Drawn
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: OnGround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5221055493002986786}

@@ -1950,6 +1950,15 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
+            time: 0.39801013
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
             time: 0.4535815
             value: 1
             inSlope: 0
@@ -1961,6 +1970,15 @@ ModelImporter:
           - serializedVersion: 3
             time: 0.6392571
             value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.69651777
+            value: 0
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -1994,6 +2012,15 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.11671047
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.17412864
             value: 0
             inSlope: 0
             outSlope: 0
@@ -2003,6 +2030,15 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.5596821
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.80099493
             value: 0
             inSlope: 0
             outSlope: 0
