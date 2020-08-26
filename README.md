@@ -1,6 +1,5 @@
 # ECS-Motion-System
 __Copyright 2019, Dreamers Inc Studios__
-Notice: Due to unfortunate circumstances, this project will be temporary shelfed as I have some pressing matter to take care of that will leave me with out access to a pc  for at least 2 or 3 weeks. I will continue to update this project and other projects when I return. If you have any questions regarding the code, please log and issues in the appropriate and I will try to answer them when possible. 
 
 Note 12/2/2019
 This project will be partial broken as we are starting to us properitary animation to build the combat system. My animation folder will be add to my gitignore as I can not share the animation. If you have access to the full project, you can either purchase the animation I am using at the following links or create your own animator controller. 
