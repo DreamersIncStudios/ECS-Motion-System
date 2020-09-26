@@ -63,8 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\TestTypes.cs" />
-    <None Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\Unity.Entities.CodeGen.Tests.TestTypes.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\TestTypes.cs" />
+    <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\Unity.Entities.CodeGen.Tests.TestTypes.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

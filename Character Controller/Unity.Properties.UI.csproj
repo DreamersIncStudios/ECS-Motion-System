@@ -63,17 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\CreateInstanceOnInspectionAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\DelayedValueAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\DisplayNameAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\InspectorAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\InspectorOptionsAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\MinMaxAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\MinValueAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Attributes\PaginationAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Extensions\VisualElementExtensions.cs" />
-    <None Include="Library\PackageCache\com.unity.properties.ui@1.1.1-preview\Runtime\Unity.Properties.UI.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\CreateInstanceOnInspectionAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\DelayedValueAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\DisplayNameAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\InspectorAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\InspectorOptionsAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\MinMaxAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\MinValueAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Attributes\PaginationAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Extensions\VisualElementExtensions.cs" />
+    <None Include="Library\PackageCache\com.unity.properties.ui@1.3.0-preview\Runtime\Unity.Properties.UI.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -270,7 +270,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.0-preview.12/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.6/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.9.0-preview.6/System.Runtime.CompilerServices.Unsafe.dll</HintPath>

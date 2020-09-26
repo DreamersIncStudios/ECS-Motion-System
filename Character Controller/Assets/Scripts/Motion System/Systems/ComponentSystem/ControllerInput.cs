@@ -25,7 +25,12 @@ namespace MotionSystem.System {
         Transform m_mainCam;
         public ControllerScheme InputSet;
 
+        protected override void OnStartRunning()
+        {
+            base.OnStartRunning();
+            InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
 
+        }
         protected override void OnUpdate()
         {
             if ( m_mainCam == null) {
@@ -41,8 +46,6 @@ namespace MotionSystem.System {
                 }
             }
 
-            //if (InputSet == null)
-                InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
 
             Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC) =>
             {
@@ -79,7 +82,12 @@ namespace MotionSystem.System {
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
-                if (!Control.block)
+                if (Control.block || Input.GetKey(InputSet.ActivateCADMenu))
+                {
+                    Control.H = 0.0f;
+                    Control.V = 0.0f;
+                }
+                else
                 {
                     Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
                     Control.V = CrossPlatformInputManager.GetAxis("Vertical");

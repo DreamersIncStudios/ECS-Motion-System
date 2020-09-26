@@ -63,28 +63,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Attributes\PerformanceAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Attributes\VersionAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\Editor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\Hardware.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\Player.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\Project.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\Run.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\SampleGroup.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\SampleUnit.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Data\TestResult.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Measure.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Measurements\FramesMeasurement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Measurements\FrametimeMeasurement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Measurements\MethodMeasurement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Measurements\ProfilerMarkerMeasurement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\PerformanceTest.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\PerformanceTestException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\PlayerCallbacks.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\SampleGroup.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Utils.cs" />
-    <None Include="Library\PackageCache\com.unity.test-framework.performance@2.0.8-preview\Runtime\Unity.PerformanceTesting.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Attributes\PerformanceAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Attributes\VersionAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\Editor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\Hardware.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\Player.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\Project.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\Run.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\SampleGroup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\SampleUnit.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Data\TestResult.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Measure.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Measurements\FramesMeasurement.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Measurements\FrametimeMeasurement.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Measurements\MethodMeasurement.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Measurements\ProfilerMarkerMeasurement.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\PerformanceTest.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\PerformanceTestException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\PlayerCallbacks.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\SampleGroup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Utils.cs" />
+    <None Include="Library\PackageCache\com.unity.test-framework.performance@2.3.1-preview\Runtime\Unity.PerformanceTesting.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

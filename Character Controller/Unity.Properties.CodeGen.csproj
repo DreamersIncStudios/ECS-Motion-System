@@ -63,17 +63,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\AssemblyResolver.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Blocks\Property.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Blocks\PropertyBag.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Blocks\PropertyBagRegistry.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Blocks\ReflectedProperty.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\CecilExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Context.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\PostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Utility.cs" />
-    <None Include="Library\PackageCache\com.unity.properties@1.2.0-preview\Editor\Unity.Properties.CodeGen\Unity.Properties.CodeGen.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\AssemblyResolver.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Blocks\Property.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Blocks\PropertyBag.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Blocks\PropertyBagRegistry.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Blocks\ReflectedProperty.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\CecilExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Context.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\PostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\PostProcessorReflectionImporter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Utility.cs" />
+    <None Include="Library\PackageCache\com.unity.properties@1.3.0-preview\Editor\Unity.Properties.CodeGen\Unity.Properties.CodeGen.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -270,13 +271,13 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

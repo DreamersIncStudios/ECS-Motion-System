@@ -17,6 +17,14 @@ namespace MotionSystem.System
 
         int index;
         public  GameMasterSystem GMS;
+        public ControllerScheme InputSet;
+
+        protected override void OnStartRunning()
+        {
+            base.OnStartRunning();
+            InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
+
+        }
 
         EntityQueryDesc Party = new EntityQueryDesc()
         {
@@ -48,6 +56,7 @@ namespace MotionSystem.System
             }
             else
             {
+                
                 if (GMS.PlayerIndex != index)
                 {
 
@@ -88,15 +97,18 @@ namespace MotionSystem.System
                         Agent.gameObject.tag = "Untagged";
                     });
 
-                if (Input.GetAxis("Quick Acces Horizontal") >.5f)
-                {
-                    GMS.PlayerIndex = 0;
-                }
-                if (Input.GetAxis("Quick Acces Horizontal") ==-1) {
-                    GMS.PlayerIndex = 1;
-                }
-                if (Input.GetAxis("Quick Acces Vertical") == -1) {
-                    GMS.PlayerIndex = 2;
+                if (!Input.GetKey(InputSet.ActivateCADMenu)) {
+                   
+                    if (Input.GetAxis("Quick Acces Horizontal") > .5f)
+                    {
+                        GMS.PlayerIndex = 0;
+                    }
+                    if (Input.GetAxis("Quick Acces Horizontal") == -1) {
+                        GMS.PlayerIndex = 1;
+                    }
+                    if (Input.GetAxis("Quick Acces Vertical") == -1) {
+                        GMS.PlayerIndex = 2;
+                    } 
                 }
 
             }

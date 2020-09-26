@@ -63,20 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CompanionGameObjectUpdateTransformSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyInitialTransformFromGameObjectProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyInitialTransformFromGameObjectSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyTransformFromGameObjectProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyTransformFromGameObjectSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyTransformToGameObjectProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\CopyTransformToGameObjectSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\LocalToWorldProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\NonUniformScaleProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\RotationProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\TransformConversion.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\TranslationProxy.cs" />
-    <None Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Transforms.Hybrid\Unity.Transforms.Hybrid.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CompanionGameObjectUpdateTransformSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyInitialTransformFromGameObjectProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyInitialTransformFromGameObjectSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyTransformFromGameObjectProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyTransformFromGameObjectSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyTransformToGameObjectProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\CopyTransformToGameObjectSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\LocalToWorldProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\NonUniformScaleProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\RotationProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\TransformConversion.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\TranslationProxy.cs" />
+    <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Transforms.Hybrid\Unity.Transforms.Hybrid.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -273,7 +273,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.0-preview.12/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.6/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.9.0-preview.6/System.Runtime.CompilerServices.Unsafe.dll</HintPath>

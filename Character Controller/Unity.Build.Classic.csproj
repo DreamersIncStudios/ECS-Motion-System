@@ -63,13 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\ClassicBuildPipelineCustomizer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\Components\ClassicBuildOptions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\Components\ClassicBuildProfile.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\Components\ClassicScriptingSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\Components\ClassicScriptingSettingsInspector.cs" />
-    <None Include="Library\PackageCache\com.unity.platforms@0.3.0-preview.4\Editor\Unity.Build.Classic\Unity.Build.Classic.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\ClassicBuildPipelineCustomizer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicBuildOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicBuildProfile.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicCodeStrippingOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicScriptingSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicScriptingSettingsInspector.cs" />
+    <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Unity.Build.Classic.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -266,7 +267,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="bee">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.platforms@0.3.0-preview.4/Editor/Unity.Build.Classic.Private/bee_as_library/bee.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.platforms@0.4.0-preview.5/Editor/Unity.Build.Classic.Private/bee_as_library/bee.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

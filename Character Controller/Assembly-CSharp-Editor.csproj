@@ -260,7 +260,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.0-preview.12/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.burst@1.3.6/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.collections@0.9.0-preview.6/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -662,6 +662,10 @@
       <Project>{6611DBCC-5121-AABD-BDC6-B8F211DF8687}</Project>
       <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="StandardAssets.csproj">
+      <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
+      <Name>StandardAssets</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Jobs.csproj">
       <Project>{0CCB3511-CCBC-D36F-C489-BA0CA384017A}</Project>
       <Name>Unity.Jobs</Name>
@@ -702,6 +706,10 @@
       <Project>{F57E10BA-BE4B-CED4-F9DE-569C90A75260}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Build.SlimPlayerRuntime.csproj">
+      <Project>{46014767-934A-248C-3FD2-06DC65675D45}</Project>
+      <Name>Unity.Build.SlimPlayerRuntime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Scenes.Hybrid.csproj">
       <Project>{BB194E82-B0A5-31A0-CD25-7AB516F09CE8}</Project>
       <Name>Unity.Scenes.Hybrid</Name>
@@ -721,6 +729,10 @@
     <ProjectReference Include="Unity.Mathematics.Extensions.csproj">
       <Project>{513B6FBB-8821-02C3-61F3-584668BEEDCA}</Project>
       <Name>Unity.Mathematics.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="CharacterControl.csproj">
+      <Project>{FC81B69D-1F0A-B28F-AC06-AEACC4E33887}</Project>
+      <Name>CharacterControl</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{DC1E038B-DA3A-71E0-3456-C72F36C3830D}</Project>
@@ -826,6 +838,10 @@
       <Project>{5221CCB6-1319-240F-EB70-0F27CD9EDDF4}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
+    <ProjectReference Include="CodeToBeReplace.csproj">
+      <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
+      <Name>CodeToBeReplace</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
       <Name>UnityEditor.UI</Name>
@@ -833,18 +849,6 @@
     <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
       <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
       <Name>Unity.Transforms.Hybrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="CharacterControl.csproj">
-      <Project>{FC81B69D-1F0A-B28F-AC06-AEACC4E33887}</Project>
-      <Name>CharacterControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="CodeToBeReplace.csproj">
-      <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
-      <Name>CodeToBeReplace</Name>
-    </ProjectReference>
-    <ProjectReference Include="StandardAssets.csproj">
-      <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
-      <Name>StandardAssets</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

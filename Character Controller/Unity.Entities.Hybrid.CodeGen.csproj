@@ -63,10 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IBufferElementData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IComponentData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_Shared.cs" />
-    <None Include="Library\PackageCache\com.unity.entities@0.11.1-preview.4\Unity.Entities.Hybrid.CodeGen\Unity.Entities.Hybrid.CodeGen.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IBufferElementData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IComponentData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_Shared.cs" />
+    <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid.CodeGen\Unity.Entities.Hybrid.CodeGen.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -263,13 +263,13 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.5-preview/Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/nuget.mono-cecil@0.1.6-preview/Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/Main Game Folder/ECS Motion System/Character Controller/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
