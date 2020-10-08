@@ -115,21 +115,49 @@ namespace MotionSystem.System
 
         }
     }
-    public class LinkAI : JobComponentSystem
+    public class LinkAI :SystemBase
     {
-    
-        struct LinkAIJob : IJobForEach<AI_Control, CharControllerE>
+        private EntityQuery AIQuery;
+
+        protected override void OnCreate()
         {
-            public void Execute(ref AI_Control c0, ref CharControllerE c1)
+            base.OnCreate();
+            AIQuery = GetEntityQuery(new EntityQueryDesc() { 
+                All = new ComponentType[] { ComponentType.ReadOnly(typeof(CharControllerE)),ComponentType.ReadWrite(typeof(AI_Control))}
+            });
+        }
+        protected override void OnUpdate()
+        {
+            JobHandle systemDeps = Dependency;
+            systemDeps = new LinkAIJob()
             {
-                c0.IsGrounded = c1.IsGrounded;
+                ControlChunk = GetArchetypeChunkComponentType<AI_Control>(true),
+                ControllerChunk = GetArchetypeChunkComponentType<CharControllerE>(false)
+            }.ScheduleParallel(AIQuery, systemDeps);
+               
+        }
+
+        struct LinkAIJob : IJobChunk
+        {
+            public ArchetypeChunkComponentType<AI_Control> ControlChunk;
+            public ArchetypeChunkComponentType<CharControllerE> ControllerChunk;
+     
+
+            public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
+            {
+                NativeArray<AI_Control> Controls = chunk.GetNativeArray(ControlChunk);
+                NativeArray<CharControllerE> characters = chunk.GetNativeArray(ControllerChunk);
+                for (int i = 0; i < chunk.Count; i++)
+                {
+                    AI_Control AI = Controls[i];
+                    CharControllerE charController = characters[i];
+                    AI.IsGrounded = charController.IsGrounded;
+
+                    Controls[i] = AI;
+                }
             }
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
-        {
-            var job = new LinkAIJob();
-            return job.Schedule(this, inputDeps);
-        }
+   
     }
 }

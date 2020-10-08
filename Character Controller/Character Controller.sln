@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Deformations", "Unity
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.RenderPipelines.Core.ShaderLibrary", "Unity.RenderPipelines.Core.ShaderLibrary.csproj", "{951A881C-A9EB-1804-B8F3-33C8CD5866B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TargetingSystem", "TargetingSystem.csproj", "{B4B292A5-4566-012B-58B1-C8EE50A6B56A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.ShaderGraph.Editor", "Unity.ShaderGraph.Editor.csproj", "{8C13E1D3-88A1-EC87-015B-F92D8FA3E081}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Build", "Unity.Build.csproj", "{F173DD83-435F-DD0C-D32D-5E82E4F666A5}"
@@ -293,6 +295,10 @@ Global
 		{951A881C-A9EB-1804-B8F3-33C8CD5866B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951A881C-A9EB-1804-B8F3-33C8CD5866B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951A881C-A9EB-1804-B8F3-33C8CD5866B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B292A5-4566-012B-58B1-C8EE50A6B56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B292A5-4566-012B-58B1-C8EE50A6B56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B292A5-4566-012B-58B1-C8EE50A6B56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B292A5-4566-012B-58B1-C8EE50A6B56A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C13E1D3-88A1-EC87-015B-F92D8FA3E081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C13E1D3-88A1-EC87-015B-F92D8FA3E081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C13E1D3-88A1-EC87-015B-F92D8FA3E081}.Release|Any CPU.ActiveCfg = Release|Any CPU
