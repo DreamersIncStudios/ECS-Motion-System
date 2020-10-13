@@ -646,6 +646,10 @@
       <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
       <Name>Unity.Entities.Hybrid</Name>
     </ProjectReference>
+    <ProjectReference Include="Global.csproj">
+      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
       <Name>UnityEditor.UI</Name>

@@ -646,6 +646,10 @@
       <Project>{D01E9907-5975-DA9C-168B-4CCC9B2B336A}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.CacheServer.csproj">
       <Project>{054A58A5-F0DC-9009-20E5-ED153D67B88F}</Project>
       <Name>UnityEditor.CacheServer</Name>
@@ -762,6 +766,10 @@
       <Project>{A2C67A1E-AEF0-F731-F474-EF2248FBEE11}</Project>
       <Name>Unity.Entities.BuildUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="Global.csproj">
+      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Serialization.csproj">
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
       <Name>Unity.Serialization</Name>
@@ -802,6 +810,10 @@
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
       <Name>Unity.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="TargetingSystem.csproj">
+      <Project>{B4B292A5-4566-012B-58B1-C8EE50A6B56A}</Project>
+      <Name>TargetingSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Transforms.csproj">
       <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
       <Name>Unity.Transforms</Name>
@@ -809,6 +821,10 @@
     <ProjectReference Include="Unity.Transforms.Editor.csproj">
       <Project>{7AE09ADF-1304-509C-6669-9530B9042434}</Project>
       <Name>Unity.Transforms.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{4AC75C88-A043-9404-4016-4D128D0CECFC}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualEffectGraph.Editor.csproj">
       <Project>{79402A01-6304-E8D0-0091-12C0547DC1E6}</Project>
@@ -849,10 +865,6 @@
     <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
       <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
       <Name>Unity.Transforms.Hybrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="TargetingSystem.csproj">
-      <Project>{B4B292A5-4566-012B-58B1-C8EE50A6B56A}</Project>
-      <Name>TargetingSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

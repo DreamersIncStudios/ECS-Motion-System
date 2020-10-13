@@ -742,7 +742,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 1
@@ -862,7 +862,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400006, guid: 6fb3851da6a6f5948ab6892bee8ba920, type: 3}
     m_Threshold: 0.1904762
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 1.05, y: -0.02}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: 

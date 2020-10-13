@@ -33,7 +33,8 @@ namespace MotionSystem.System {
         }
         protected override void OnUpdate()
         {
-            if ( m_mainCam == null) {
+            if (m_mainCam == null)
+            {
                 if (Camera.main != null)
                 {
                     m_mainCam = Camera.main.transform;
@@ -54,25 +55,32 @@ namespace MotionSystem.System {
 
                 if (!Control.AI && Control.canInput && !Control.block)
                 {
-
-                    if (Input.GetKeyUp(InputSet.LightAttack))
+                    if (!Input.GetKey(InputSet.ActivateCADMenu))
                     {
-                        QueueInput.InputQueue.Enqueue("Light Attack");
-                        Control.InputTimer = .2f;
-                    }
-                    if (Input.GetKeyUp(InputSet.HeavyAttack))
-                    {
-                        QueueInput.InputQueue.Enqueue("Heavy Attack");
-                        Control.InputTimer = .2f;
+                        if (Input.GetKeyUp(InputSet.LightAttack))
+                        {
+                            QueueInput.InputQueue.Enqueue("Light Attack");
+                            Control.InputTimer = .2f;
+                        }
+                        if (Input.GetKeyUp(InputSet.HeavyAttack))
+                        {
+                            QueueInput.InputQueue.Enqueue("Heavy Attack");
+                            Control.InputTimer = .2f;
+
+                        }
 
                     }
-
                 }
-                if (Input.GetKeyDown(InputSet.Block))
-                    Control.block = true;
-                if (Input.GetKeyUp(InputSet.Block))
-                    Control.block = false;
-
+                if (!Input.GetKey(InputSet.ActivateCADMenu))
+                { 
+                    if (Input.GetKey(InputSet.Block))
+                        Control.block = true;
+                    if (Input.GetKeyUp(InputSet.Block))
+                        Control.block = false;
+                    if (Control.block && !Input.GetKey(InputSet.Block))
+                        Control.block = false;
+                }
+                
                 if (!Control.canInput)
                 {
                     Control.InputTimer -= Time.DeltaTime;
@@ -82,7 +90,7 @@ namespace MotionSystem.System {
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
-                if (Control.block || Input.GetKey(InputSet.ActivateCADMenu))
+                if (Control.block)
                 {
                     Control.H = 0.0f;
                     Control.V = 0.0f;
@@ -94,7 +102,7 @@ namespace MotionSystem.System {
                     m_Crouching = Input.GetKey(KeyCode.C);
 
 
-                    if (!Control.Jump && Control.canInput && Control.IsGrounded)
+                    if (!Control.Jump && Control.canInput && Control.IsGrounded && !Input.GetKey(InputSet.ActivateCADMenu))
                     {
                         Control.Jump = Input.GetKeyDown(InputSet.Jump);
 
@@ -167,9 +175,8 @@ namespace MotionSystem.System {
                 if (!Control.AI) {
                     if (m_mainCam != null)
                     {
-
-                        m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-                        Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
+                        m_CamForward = Vector3.Scale(m_mainCam.forward, new Vector3(1, 0, 1)).normalized;
+                        Control.Move = Control.V * m_CamForward + Control.H * m_mainCam.right;
                     }
                     else
                     {

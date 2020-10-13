@@ -4,14 +4,48 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
 using Unity.Collections;
+using Unity.Jobs;
 
 namespace DreamersStudio.TargetingSystem
 {
     public class TargetingSystem : SystemBase
     {
+        private EntityQuery Targetters;
+        private EntityQuery Targets;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Targetters = GetEntityQuery(new EntityQueryDesc() { 
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(TargetBuffer)), ComponentType.ReadOnly(typeof(LocalToWorld)),
+                ComponentType.ReadOnly(typeof(Player_Control))}
+            });
+            Targets = GetEntityQuery(new EntityQueryDesc()
+            {
+                All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)) }
+            });
+        }
         protected override void OnUpdate()
         {
-            throw new System.NotImplementedException();
+            JobHandle systemDeps = Dependency;
+            systemDeps = new GetTargetsList()
+            {
+                BufferChunk = GetArchetypeChunkBufferType<TargetBuffer>(false),
+                PositionChunk = GetArchetypeChunkComponentType<LocalToWorld>(true),
+                TargetablesArray = Targets.ToComponentDataArray<Targetable>(Allocator.TempJob),
+                TargetPositions = Targets.ToComponentDataArray<LocalToWorld>(Allocator.TempJob)
+            }.ScheduleParallel(Targetters, systemDeps);
+
+            Dependency = systemDeps;
+
+            while (Input.GetAxis("Target Trigger")>.5f)
+            {
+                Debug.Log("test");
+
+            }
+
+
+
         }
     }
 
@@ -19,8 +53,8 @@ namespace DreamersStudio.TargetingSystem
     {
         public ArchetypeChunkBufferType<TargetBuffer> BufferChunk;
         [ReadOnly] public ArchetypeChunkComponentType<LocalToWorld> PositionChunk;
-        [ReadOnly] public NativeArray<Targetable> TargetablesArray;
-        [ReadOnly] public NativeArray<LocalToWorld> TargetPositions;
+        [ReadOnly] [DeallocateOnJobCompletion] public NativeArray<Targetable> TargetablesArray;
+        [ReadOnly] [DeallocateOnJobCompletion] public NativeArray<LocalToWorld> TargetPositions;
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
             BufferAccessor<TargetBuffer> Buffers = chunk.GetBufferAccessor(BufferChunk);
@@ -35,13 +69,27 @@ namespace DreamersStudio.TargetingSystem
                     float dist = Vector3.Distance(Pos.Position, TargetPositions[j].Position);
                     if(dist<40) // Create a character skill/stat for range or determine a hardcode number
                     {
+
+                        Vector3 dir = ((Vector3)TargetPositions[j].Position - (Vector3)Pos.Position).normalized;
+                        float Output = new float();
+                        if (dir.x >= 0)
+                        {
+                            Output = Vector3.Angle(Vector3.forward, dir);
+                          
+                        }
+                        if (dir.x < 0)
+                        {
+                            Output = Vector3.Angle(Vector3.forward, dir);
+                         
+                        }
                         Target.Add(new TargetBuffer()
                         {
-                            Target = new Target()
+                            target = new Target()
                             {
-                                isFriendly = false
+                                isFriendly = isFriendly(TargetablesArray[j].TargetType, TargetType.Human),
+                                CameraAngle = Output
                             }
-                        });
+                        }); ;
                         
                     
                     }
@@ -50,5 +98,37 @@ namespace DreamersStudio.TargetingSystem
 
             }
         }
+        public bool isFriendly(TargetType targetType, TargetType Looker)
+        {
+            bool answer = false;
+            switch (targetType)
+            {
+                case TargetType.Human:
+                    switch (Looker)
+                    {
+                        case TargetType.Human:
+                            answer = true;
+                            break;
+                        case TargetType.Angel:
+                            answer = true;
+                            break;
+                        case TargetType.Daemon:
+                            answer = false;
+                            break;
+                    }
+
+                    break;
+                case TargetType.Angel:
+                    break;
+                case TargetType.Daemon:
+                    break;
+            }
+            return answer;
+        }
     }
+
+    public struct LookAtTarget : IComponentData {
+        public int BufferIndex;
+    }
+
 }

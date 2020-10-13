@@ -6,7 +6,7 @@ using MotionSystem.Components;
 using Unity.Collections;
 using UnityEngine.AI;
 using Unity.Jobs;
-using Unity.Burst;
+using Cinemachine;
 using GameMaster;
 
 
@@ -18,12 +18,11 @@ namespace MotionSystem.System
         int index;
         public  GameMasterSystem GMS;
         public ControllerScheme InputSet;
-
+        public CinemachineFreeLook FollowCamera;
         protected override void OnStartRunning()
         {
             base.OnStartRunning();
             InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
-
         }
 
         EntityQueryDesc Party = new EntityQueryDesc()
@@ -42,13 +41,15 @@ namespace MotionSystem.System
             base.OnCreate();
             GMS = GameMasterSystem.GMS;
             index = 0;
+          //  FollowCamera = GameObject.FindGameObjectWithTag("follow").GetComponent<CinemachineVirtualCamera>();
 
         }
         public ComponentDataFromEntity<CharControllerE> Control;
         protected override void OnUpdate()
         {
 
-
+     
+                FollowCamera = GameObject.FindGameObjectWithTag("Follow").GetComponent<CinemachineFreeLook>();
 
             if (GMS == null) {
                 GMS = GameMasterSystem.GMS;
@@ -79,12 +80,16 @@ namespace MotionSystem.System
                     test.AI = false;
                     Control[GMS.Party[index]] = test;
                 }
-                    Entities.With(GetEntityQuery(Player)).ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
+                    Entities.With(GetEntityQuery(Player)).ForEach((ref Player_Control PC, NavMeshAgent Agent )=>
                     {
                         if (Agent.enabled)
                         {
                             Agent.enabled = false;
-                            Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
+                            //   Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
+                            // Getupdate virtual camera;
+                            FollowCamera.Follow = Agent.gameObject.transform;
+                            FollowCamera.LookAt = Agent.gameObject.GetComponentInChildren<FollowPointRef>().transform;
+
 
                         }
                         Agent.gameObject.tag = "Player";
@@ -131,16 +136,17 @@ namespace MotionSystem.System
             JobHandle systemDeps = Dependency;
             systemDeps = new LinkAIJob()
             {
-                ControlChunk = GetArchetypeChunkComponentType<AI_Control>(true),
-                ControllerChunk = GetArchetypeChunkComponentType<CharControllerE>(false)
+                ControlChunk = GetArchetypeChunkComponentType<AI_Control>(false),
+                ControllerChunk = GetArchetypeChunkComponentType<CharControllerE>(true)
             }.ScheduleParallel(AIQuery, systemDeps);
-               
+     Dependency = systemDeps;
+
         }
 
         struct LinkAIJob : IJobChunk
         {
             public ArchetypeChunkComponentType<AI_Control> ControlChunk;
-            public ArchetypeChunkComponentType<CharControllerE> ControllerChunk;
+            [ReadOnly]public ArchetypeChunkComponentType<CharControllerE> ControllerChunk;
      
 
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)

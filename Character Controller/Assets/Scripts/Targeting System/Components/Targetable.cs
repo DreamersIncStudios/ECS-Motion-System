@@ -9,7 +9,7 @@ namespace DreamersStudio.TargetingSystem
     }
 
     public enum TargetType {
-        Ally, Enemy // More Types of be added 
+        Angel, Daemon, Human // More Types of be added 
 
     }
 }
