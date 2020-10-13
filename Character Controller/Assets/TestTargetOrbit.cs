@@ -23,8 +23,6 @@ public class TestTargetOrbit : MonoBehaviour
     {
       dir = (-FollowPoint.transform.position + Target.transform.position).normalized;
 
-        Output = Vector3.Angle(FollowPoint.forward, dir);
-    
         if (dir.x >= 0)
         {
             Output = Vector3.Angle(Vector3.forward, dir);

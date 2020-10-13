@@ -6,7 +6,7 @@ using MotionSystem.Components;
 using Unity.Collections;
 using UnityEngine.AI;
 using Unity.Jobs;
-using Cinemachine;
+using DreamersStudio.CameraControlSystem;
 using GameMaster;
 
 
@@ -18,7 +18,7 @@ namespace MotionSystem.System
         int index;
         public  GameMasterSystem GMS;
         public ControllerScheme InputSet;
-        public CinemachineFreeLook FollowCamera;
+
         protected override void OnStartRunning()
         {
             base.OnStartRunning();
@@ -41,7 +41,6 @@ namespace MotionSystem.System
             base.OnCreate();
             GMS = GameMasterSystem.GMS;
             index = 0;
-          //  FollowCamera = GameObject.FindGameObjectWithTag("follow").GetComponent<CinemachineVirtualCamera>();
 
         }
         public ComponentDataFromEntity<CharControllerE> Control;
@@ -49,7 +48,7 @@ namespace MotionSystem.System
         {
 
      
-                FollowCamera = GameObject.FindGameObjectWithTag("Follow").GetComponent<CinemachineFreeLook>();
+
 
             if (GMS == null) {
                 GMS = GameMasterSystem.GMS;
@@ -87,9 +86,7 @@ namespace MotionSystem.System
                             Agent.enabled = false;
                             //   Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
                             // Getupdate virtual camera;
-                            FollowCamera.Follow = Agent.gameObject.transform;
-                            FollowCamera.LookAt = Agent.gameObject.GetComponentInChildren<FollowPointRef>().transform;
-
+                           CameraControl.Instance.SwapFocus( Agent.gameObject.transform);
 
                         }
                         Agent.gameObject.tag = "Player";

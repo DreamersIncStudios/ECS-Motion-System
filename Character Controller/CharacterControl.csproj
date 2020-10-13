@@ -65,8 +65,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Motion System\AnimatorIK\AnimatorIK.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Camera System\FollowPointRef.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Camera System\OrbitController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Components\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
@@ -676,13 +674,13 @@
       <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
       <Name>StandardAssets</Name>
     </ProjectReference>
-    <ProjectReference Include="Cinemachine.csproj">
-      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
-      <Name>Cinemachine</Name>
-    </ProjectReference>
     <ProjectReference Include="Global.csproj">
       <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
       <Name>Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="TargetingSystem.csproj">
+      <Project>{B4B292A5-4566-012B-58B1-C8EE50A6B56A}</Project>
+      <Name>TargetingSystem</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

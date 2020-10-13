@@ -5,6 +5,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Collections;
 using Unity.Jobs;
+using DreamersStudio.CameraControlSystem;
 
 namespace DreamersStudio.TargetingSystem
 {
@@ -38,9 +39,14 @@ namespace DreamersStudio.TargetingSystem
 
             Dependency = systemDeps;
 
-            while (Input.GetAxis("Target Trigger")>.5f)
+            if (Input.GetAxis("Target Trigger")>.6f)
             {
-                Debug.Log("test");
+                CameraControl.Instance.isTargeting = true;
+
+            }
+            if (Input.GetAxis("Target Trigger") < .6f && Input.GetAxis("Target Trigger") > .2f) { 
+                CameraControl.Instance.isTargeting = false;
+
 
             }
 

@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Other Code\DissolveEffect.cs" />
     <Compile Include="Assets\Scripts\Other Code\DissolveSingle.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Abilities.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Attribute.cs" />

@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Targeting System\Components\Camera System\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Targeting System\Components\Camera System\FollowPointRef.cs" />
     <Compile Include="Assets\Scripts\Targeting System\Components\TargetBuffer.cs" />
     <Compile Include="Assets\Scripts\Targeting System\Components\Targetable.cs" />
     <Compile Include="Assets\Scripts\Targeting System\Systems\TargetingSystem.cs" />
@@ -649,6 +651,10 @@
     <ProjectReference Include="Global.csproj">
       <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
       <Name>Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
+      <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
