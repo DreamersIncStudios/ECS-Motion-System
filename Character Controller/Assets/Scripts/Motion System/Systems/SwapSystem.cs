@@ -86,8 +86,9 @@ namespace MotionSystem.System
                             Agent.enabled = false;
                             //   Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
                             // Getupdate virtual camera;
-                           CameraControl.Instance.SwapFocus( Agent.gameObject.transform);
-
+                        
+                                CameraControl.Instance.SwapFocus(Agent.gameObject.transform);
+                            
                         }
                         Agent.gameObject.tag = "Player";
                     });
@@ -99,7 +100,8 @@ namespace MotionSystem.System
                         Agent.gameObject.tag = "Untagged";
                     });
 
-                if (!Input.GetKey(InputSet.ActivateCADMenu)) {
+                if (!Input.GetKey(InputSet.ActivateCADMenu) &&  Input.GetAxis("Target Trigger") <= 0.15f)
+                     {
                    
                     if (Input.GetAxis("Quick Acces Horizontal") > .5f)
                     {

@@ -17,7 +17,7 @@ namespace Stats
 
         }
 
-        public void StatsUpdate(PlayerCharacter CharacterStats)
+        public void StatsUpdate(BaseCharacter CharacterStats)
         {
             CharacterStats.Level = CharClass.Level;
             float ModValue = CharClass.difficultyMod * CharClass.LevelMod * CharClass.Level;
@@ -37,5 +37,31 @@ namespace Stats
             CharacterStats.StatUpdate();
 
         }
+
+
+    }
+    [System.Serializable]
+    public struct CharacterClass
+    {
+        public ClassTitle title;
+        public int Level;
+        public int Strength;
+        public int Vitality;
+        public int Awareness;
+        public int Speed;
+        public int Skill;
+        public int Resistance;
+        public int Concentration;
+        public int WillPower;
+        public int Charisma;
+        public int Luck;
+
+        public float difficultyMod;
+        public float LevelMod;
+
+    }
+    public enum ClassTitle
+    {
+        Grunt, Soldier, Ranger, Archer, Sorcer, Mage, Monk, Swordman, Thief, Knight, Bot, Generalist, Pugiblist
     }
 }

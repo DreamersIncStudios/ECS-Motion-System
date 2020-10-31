@@ -48,7 +48,7 @@ public class WeaponDamage : MonoBehaviour {
     {
         if (EC.Alive && CanDamage)
         {
-            EC.AdjustHealth(-(int)(EC.MeleeDef * PC.MeleeAttack));
+            EC.DecreaseHealth((int)(EC.MeleeDef * PC.MeleeAttack),0,0);
 #if UNITY_EDITOR
             Debug.Log("Hit the enemy for " + (int)(EC.MeleeDef * PC.MeleeAttack) + " HP pts ", this);
 #endif  

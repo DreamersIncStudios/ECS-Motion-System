@@ -64,19 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Other Code\DissolveSingle.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Abilities.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Attribute.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\BaseCharacter.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\BaseStat.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\CharaterGenerator.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\ClassSystem.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Elemental.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\EnemyCharacter.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\MagicClass.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\ModifiedStat.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\PlayerCharacter.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Stats.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Characters\Vital.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\ECS Components\DirectThrowComponent.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\Editor Scripts.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\ScriptableObjectUtility.cs" />
@@ -692,6 +679,10 @@
     <ProjectReference Include="Unity.Transforms.csproj">
       <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
       <Name>Unity.Transforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayerCharacterSystem.csproj">
+      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
+      <Name>PlayerCharacterSystem</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

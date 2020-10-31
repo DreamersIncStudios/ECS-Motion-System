@@ -678,9 +678,9 @@
       <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
       <Name>Global</Name>
     </ProjectReference>
-    <ProjectReference Include="TargetingSystem.csproj">
-      <Project>{B4B292A5-4566-012B-58B1-C8EE50A6B56A}</Project>
-      <Name>TargetingSystem</Name>
+    <ProjectReference Include="AggressionandTargeting.csproj">
+      <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>
+      <Name>AggressionandTargeting</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

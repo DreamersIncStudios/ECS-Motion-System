@@ -654,6 +654,10 @@
       <Project>{054A58A5-F0DC-9009-20E5-ED153D67B88F}</Project>
       <Name>UnityEditor.CacheServer</Name>
     </ProjectReference>
+    <ProjectReference Include="AggressionandTargeting.csproj">
+      <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>
+      <Name>AggressionandTargeting</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.ScriptableBuildPipeline.Editor.csproj">
       <Project>{BE0C68BA-D9E3-0FC9-818F-4CEC5E3C962B}</Project>
       <Name>Unity.ScriptableBuildPipeline.Editor</Name>
@@ -810,10 +814,6 @@
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
       <Name>Unity.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="TargetingSystem.csproj">
-      <Project>{B4B292A5-4566-012B-58B1-C8EE50A6B56A}</Project>
-      <Name>TargetingSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Transforms.csproj">
       <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
       <Name>Unity.Transforms</Name>
@@ -857,6 +857,10 @@
     <ProjectReference Include="CodeToBeReplace.csproj">
       <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
       <Name>CodeToBeReplace</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayerCharacterSystem.csproj">
+      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
+      <Name>PlayerCharacterSystem</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

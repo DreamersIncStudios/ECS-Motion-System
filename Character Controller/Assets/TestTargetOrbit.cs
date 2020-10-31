@@ -12,10 +12,12 @@ public class TestTargetOrbit : MonoBehaviour
     public Vector3 dir;
     CinemachineFreeLook look;
     public float Output;
+
     // Start is called before the first frame update
     void Start()
     {
         look = GetComponent<CinemachineFreeLook>();
+        
     }
 
     // Update is called once per frame
