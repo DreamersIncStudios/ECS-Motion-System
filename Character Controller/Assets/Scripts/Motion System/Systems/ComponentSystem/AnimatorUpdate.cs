@@ -13,10 +13,7 @@ namespace MotionSystem.System
     public class AnimatorUpdate : ComponentSystem
     {
 
-        EntityQueryDesc GroundChecker = new EntityQueryDesc()
-        {
-            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
-        };
+
         const float k_Half = 0.5f;
 
         protected override void OnUpdate()

@@ -19,7 +19,6 @@ namespace DreamersStudio.TargetingSystem
     {
         private EntityQuery Targetters;
         private EntityQuery Targets;
-        EntityCommandBufferSystem _entityCommandBufferSystem;
     
         protected override void OnCreate()
         {
@@ -32,11 +31,15 @@ namespace DreamersStudio.TargetingSystem
             {
                 All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)) }
             });
-            _entityCommandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
             ChangeDelay = new float();
         }
 
         float ChangeDelay;
+        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
+        bool PausingBetweenChange => ChangeDelay > 0.0f;
+        bool ChangeTargetNeg => CrossPlatformInputManager.GetAxis("Change Target") < -.5f;
+        bool ChangeTargetPos => CrossPlatformInputManager.GetAxis("Change Target") > .5f;
+
         protected override void OnUpdate()
         {
             JobHandle systemDeps = Dependency;
@@ -48,20 +51,10 @@ namespace DreamersStudio.TargetingSystem
                 TargetPositions = Targets.ToComponentDataArray<LocalToWorld>(Allocator.TempJob)
             }.ScheduleParallel(Targetters, systemDeps);
 
-            //_entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
-            bool test = new bool();
+         
             Dependency = systemDeps;
             Dependency.Complete();
 
-            if (CrossPlatformInputManager.GetAxis("Target Trigger")>.3f)
-            {
-                CameraControl.Instance.isTargeting = true;
-                    test = true;
-            }
-            if (CrossPlatformInputManager.GetAxis("Target Trigger") < .3f && CameraControl.Instance.isTargeting) { 
-                CameraControl.Instance.isTargeting = false;
-                test = false;
-            }
 
 
             Entities.WithoutBurst().
@@ -70,25 +63,27 @@ namespace DreamersStudio.TargetingSystem
 
                 if (buffer.Length == 0)
                     return;
-                if (ChangeDelay > 0.0f) {
+
+                if (PausingBetweenChange) {
                     ChangeDelay -= Time.DeltaTime;
                     return;                
                 }
-                if (!test)
+                CameraControl.Instance.isTargeting = IsTargeting;
+                if (!IsTargeting)
                 {
                     lookAt.BufferIndex = 0;
                 }
                 else
                 {
-                    if (CrossPlatformInputManager.GetAxis("Change Target") < -.5)
+                    if (ChangeTargetNeg)
                     {
                         lookAt.BufferIndex--;
                         if (lookAt.BufferIndex < 0)
                             lookAt.BufferIndex = buffer.Length - 1;
-                        ChangeDelay = .75f;
+                        ChangeDelay = .35f;
                     }
 
-                    if (CrossPlatformInputManager.GetAxis("Change Target") >.5)
+                    if (ChangeTargetPos)
                     {
                         lookAt.BufferIndex++;
                         if (lookAt.BufferIndex > buffer.Length - 1)
@@ -154,7 +149,7 @@ namespace DreamersStudio.TargetingSystem
                         {
                             target = new Target()
                             {
-                                isFriendly = isFriendly(TargetablesArray[j].TargetType, TargetType.Human),
+                                isFriendly = IsFriendly(TargetablesArray[j].TargetType, TargetType.Human),
                                 CameraAngle = Output,
                                 ID = TargetablesArray[j].ID
                             }
@@ -167,7 +162,7 @@ namespace DreamersStudio.TargetingSystem
 
             }
         }
-        public bool isFriendly(TargetType targetType, TargetType Looker)
+        public bool IsFriendly(TargetType targetType, TargetType Looker)
         {
             bool answer = false;
             switch (targetType)

@@ -16,12 +16,6 @@ namespace MotionSystem.System {
     {
        
         const float k_Half = 0.5f;
-        bool m_Crouching;
-
-        EntityQueryDesc GroundChecker = new EntityQueryDesc()
-        {
-            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
-        };
         Transform m_mainCam;
         public ControllerScheme InputSet;
 
@@ -122,8 +116,8 @@ namespace MotionSystem.System {
                 {
                     if (Control.Crouch)
                     { return; }
-                    Control.CapsuleHeight = Control.CapsuleHeight / 2f;
-                    Control.CapsuleCenter = Control.CapsuleCenter / 2f;
+                    Control.CapsuleHeight /= 2f;
+                    Control.CapsuleCenter /= 2f;
                     Control.Crouch = true;
                     RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
