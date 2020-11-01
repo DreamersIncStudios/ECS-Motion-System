@@ -6,6 +6,7 @@ using Unity.Transforms;
 using Unity.Collections;
 using Unity.Jobs;
 using DreamersStudio.CameraControlSystem;
+using UnityStandardAssets.CrossPlatformInput;
 using AISenses;
 
 namespace DreamersStudio.TargetingSystem
@@ -29,11 +30,13 @@ namespace DreamersStudio.TargetingSystem
             });
             Targets = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadOnly(typeof(Transform)) }
+                All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)) }
             });
             _entityCommandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-
+            ChangeDelay = new float();
         }
+
+        float ChangeDelay;
         protected override void OnUpdate()
         {
             JobHandle systemDeps = Dependency;
@@ -45,65 +48,70 @@ namespace DreamersStudio.TargetingSystem
                 TargetPositions = Targets.ToComponentDataArray<LocalToWorld>(Allocator.TempJob)
             }.ScheduleParallel(Targetters, systemDeps);
 
-            _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+            //_entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
             bool test = new bool();
             Dependency = systemDeps;
             Dependency.Complete();
 
-            if (Input.GetAxis("Target Trigger")>.3f)
+            if (CrossPlatformInputManager.GetAxis("Target Trigger")>.3f)
             {
                 CameraControl.Instance.isTargeting = true;
-                test = true;
+                    test = true;
             }
-            if (Input.GetAxis("Target Trigger") < .3f && CameraControl.Instance.isTargeting) { 
+            if (CrossPlatformInputManager.GetAxis("Target Trigger") < .3f && CameraControl.Instance.isTargeting) { 
                 CameraControl.Instance.isTargeting = false;
                 test = false;
             }
-            Debug.Log(test);
-           Entities.ForEach((ref Player_Control PC, ref DynamicBuffer<TargetBuffer> buffer, ref LookAtTarget lookAt) => {
+
+
+            Entities.WithoutBurst().
+                ForEach((ref Player_Control PC, ref DynamicBuffer<TargetBuffer> buffer, ref LookAtTarget lookAt) =>
+            {
+
+                if (buffer.Length == 0)
+                    return;
+                if (ChangeDelay > 0.0f) {
+                    ChangeDelay -= Time.DeltaTime;
+                    return;                
+                }
                 if (!test)
                 {
                     lookAt.BufferIndex = 0;
                 }
-                else {
-                    if (Input.GetKeyDown(KeyCode.R))
+                else
+                {
+                    if (CrossPlatformInputManager.GetAxis("Change Target") < -.5)
                     {
                         lookAt.BufferIndex--;
-                       if (lookAt.BufferIndex < 0)
-                            lookAt.BufferIndex = buffer.Length-1;
-
+                        if (lookAt.BufferIndex < 0)
+                            lookAt.BufferIndex = buffer.Length - 1;
+                        ChangeDelay = .75f;
                     }
 
-                   if (Input.GetKeyDown(KeyCode.T))
-                   {
-                       lookAt.BufferIndex++;
-                       if (lookAt.BufferIndex > buffer.Length-1)
-                           lookAt.BufferIndex = 0;
-                       Debug.Log("lawd");
-                   }
+                    if (CrossPlatformInputManager.GetAxis("Change Target") >.5)
+                    {
+                        lookAt.BufferIndex++;
+                        if (lookAt.BufferIndex > buffer.Length - 1)
+                            lookAt.BufferIndex = 0;
+                        ChangeDelay = .75f;
+
+                    }
                 }
-
-               CameraControl.Instance.Target.m_XAxis.Value = buffer[lookAt.BufferIndex].target.CameraAngle;
-              GameObject temp = (GameObject)FindObjectFromInstanceID(buffer[lookAt.BufferIndex].target.ID);
-               CameraControl.Instance.Target.LookAt = temp.transform;
             }).Run();
-
-
-        }
-
-
-        public static Object FindObjectFromInstanceID(int iid)
-        {
-            return (Object)typeof(Object)
-                    .GetMethod("FindObjectFromInstanceID", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
-                    .Invoke(null, new object[] { iid });
+          
+          
 
         }
+
+
 
 
 
     }
-
+    /// <summary>
+    /// need to add stat based range 
+    /// need to order list based on distance 
+    /// </summary>
     public struct GetTargetsList : IJobChunk
     {
         public ArchetypeChunkBufferType<TargetBuffer> BufferChunk;
@@ -185,6 +193,34 @@ namespace DreamersStudio.TargetingSystem
                     break;
             }
             return answer;
+        }
+    }
+
+    [UpdateAfter(typeof(TargetingSystem))]
+    public class CameraSync : SystemBase
+    {
+        protected override void OnUpdate()
+        {
+            Entities.WithChangeFilter<LookAtTarget>().WithoutBurst()
+              .ForEach((ref Player_Control PC, ref DynamicBuffer<TargetBuffer> buffer, ref LookAtTarget lookAt) =>
+              {
+                  if (buffer.Length == 0)
+                      return;
+
+                  CameraControl.Instance.Target.m_XAxis.Value = buffer[lookAt.BufferIndex].target.CameraAngle;
+                  GameObject temp = (GameObject)FindObjectFromInstanceID(buffer[lookAt.BufferIndex].target.ID);
+                  if (temp != null)
+                      CameraControl.Instance.Target.LookAt = temp.transform;
+              }).Run();
+        }
+
+
+        public static Object FindObjectFromInstanceID(int iid)
+        {
+            return (Object)typeof(Object)
+                    .GetMethod("FindObjectFromInstanceID", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                    .Invoke(null, new object[] { iid });
+
         }
     }
 
