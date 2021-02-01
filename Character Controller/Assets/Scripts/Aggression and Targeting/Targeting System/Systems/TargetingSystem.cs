@@ -19,7 +19,9 @@ namespace DreamersStudio.TargetingSystem
     {
         private EntityQuery Targetters;
         private EntityQuery Targets;
-    
+        /// <summary>
+        /// system will require 2 buffers One Friend and one Enemies. 
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -29,7 +31,7 @@ namespace DreamersStudio.TargetingSystem
             });
             Targets = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)) }
+                All = new ComponentType[] { ComponentType.ReadOnly(typeof(Targetable)), ComponentType.ReadOnly(typeof(LocalToWorld)) },
             });
             ChangeDelay = new float();
         }
