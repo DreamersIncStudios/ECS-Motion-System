@@ -6,7 +6,7 @@ using MotionSystem.Components;
 using Unity.Collections;
 using UnityEngine.AI;
 using Unity.Jobs;
-using Unity.Burst;
+using DreamersStudio.CameraControlSystem;
 using GameMaster;
 
 
@@ -23,7 +23,6 @@ namespace MotionSystem.System
         {
             base.OnStartRunning();
             InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
-
         }
 
         EntityQueryDesc Party = new EntityQueryDesc()
@@ -48,6 +47,7 @@ namespace MotionSystem.System
         protected override void OnUpdate()
         {
 
+     
 
 
             if (GMS == null) {
@@ -79,13 +79,16 @@ namespace MotionSystem.System
                     test.AI = false;
                     Control[GMS.Party[index]] = test;
                 }
-                    Entities.With(GetEntityQuery(Player)).ForEach((ref Player_Control PC, NavMeshAgent Agent) =>
+                    Entities.With(GetEntityQuery(Player)).ForEach((ref Player_Control PC, NavMeshAgent Agent )=>
                     {
                         if (Agent.enabled)
                         {
                             Agent.enabled = false;
-                            Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
-
+                            //   Camera.main.GetComponentInParent<UnityStandardAssets.Cameras.AutoCam>().Target = Agent.gameObject.transform;
+                            // Getupdate virtual camera;
+                        
+                                CameraControl.Instance.SwapFocus(Agent.gameObject.transform);
+                            
                         }
                         Agent.gameObject.tag = "Player";
                     });
@@ -97,7 +100,8 @@ namespace MotionSystem.System
                         Agent.gameObject.tag = "Untagged";
                     });
 
-                if (!Input.GetKey(InputSet.ActivateCADMenu)) {
+                if (!Input.GetKey(InputSet.ActivateCADMenu) &&  Input.GetAxis("Target Trigger") <= 0.15f)
+                     {
                    
                     if (Input.GetAxis("Quick Acces Horizontal") > .5f)
                     {
@@ -115,21 +119,50 @@ namespace MotionSystem.System
 
         }
     }
-    public class LinkAI : JobComponentSystem
+    public class LinkAI :SystemBase
     {
-    
-        struct LinkAIJob : IJobForEach<AI_Control, CharControllerE>
+        private EntityQuery AIQuery;
+
+        protected override void OnCreate()
         {
-            public void Execute(ref AI_Control c0, ref CharControllerE c1)
+            base.OnCreate();
+            AIQuery = GetEntityQuery(new EntityQueryDesc() { 
+                All = new ComponentType[] { ComponentType.ReadOnly(typeof(CharControllerE)),ComponentType.ReadWrite(typeof(AI_Control))}
+            });
+        }
+        protected override void OnUpdate()
+        {
+            JobHandle systemDeps = Dependency;
+            systemDeps = new LinkAIJob()
             {
-                c0.IsGrounded = c1.IsGrounded;
+                ControlChunk = GetArchetypeChunkComponentType<AI_Control>(false),
+                ControllerChunk = GetArchetypeChunkComponentType<CharControllerE>(true)
+            }.ScheduleParallel(AIQuery, systemDeps);
+     Dependency = systemDeps;
+
+        }
+
+        struct LinkAIJob : IJobChunk
+        {
+            public ArchetypeChunkComponentType<AI_Control> ControlChunk;
+            [ReadOnly]public ArchetypeChunkComponentType<CharControllerE> ControllerChunk;
+     
+
+            public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
+            {
+                NativeArray<AI_Control> Controls = chunk.GetNativeArray(ControlChunk);
+                NativeArray<CharControllerE> characters = chunk.GetNativeArray(ControllerChunk);
+                for (int i = 0; i < chunk.Count; i++)
+                {
+                    AI_Control AI = Controls[i];
+                    CharControllerE charController = characters[i];
+                    AI.IsGrounded = charController.IsGrounded;
+
+                    Controls[i] = AI;
+                }
             }
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
-        {
-            var job = new LinkAIJob();
-            return job.Schedule(this, inputDeps);
-        }
+   
     }
 }

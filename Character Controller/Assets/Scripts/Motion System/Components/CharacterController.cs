@@ -47,12 +47,11 @@ namespace MotionSystem.Components
 
         public bool canInput { get { return InputTimer < 0.0f; } }
         public float InputTimer;
-      
     }
 
     public struct AI_Control : IComponentData {
         public bool IsGrounded;
     }
-    public struct Player_Control : IComponentData { }
+
 }
 

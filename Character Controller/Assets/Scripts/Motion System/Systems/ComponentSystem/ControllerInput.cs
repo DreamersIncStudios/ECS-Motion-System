@@ -16,12 +16,6 @@ namespace MotionSystem.System {
     {
        
         const float k_Half = 0.5f;
-        bool m_Crouching;
-
-        EntityQueryDesc GroundChecker = new EntityQueryDesc()
-        {
-            All = new ComponentType[] { typeof(CharControllerE), typeof(Transform), typeof(Animator), typeof(Rigidbody) }
-        };
         Transform m_mainCam;
         public ControllerScheme InputSet;
 
@@ -33,7 +27,8 @@ namespace MotionSystem.System {
         }
         protected override void OnUpdate()
         {
-            if ( m_mainCam == null) {
+            if (m_mainCam == null)
+            {
                 if (Camera.main != null)
                 {
                     m_mainCam = Camera.main.transform;
@@ -47,42 +42,51 @@ namespace MotionSystem.System {
             }
 
 
-            Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC) =>
+            Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC, ref InSafeZoneTag safe) =>
             {
                 if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
                     return;
-
-                if (!Control.AI && Control.canInput && !Control.block)
-                {
-
-                    if (Input.GetKeyUp(InputSet.LightAttack))
+                if (!safe.InZone) {
+                    if (!Control.AI && Control.canInput && !Control.block)
                     {
-                        QueueInput.InputQueue.Enqueue("Light Attack");
-                        Control.InputTimer = .2f;
+                        if (!Input.GetKey(InputSet.ActivateCADMenu))
+                        {
+                            if (Input.GetKeyUp(InputSet.LightAttack))
+                            {
+                                QueueInput.InputQueue.Enqueue("Light Attack");
+                                Control.InputTimer = .2f;
+                            }
+                            if (Input.GetKeyUp(InputSet.HeavyAttack))
+                            {
+                                QueueInput.InputQueue.Enqueue("Heavy Attack");
+                                Control.InputTimer = .2f;
+
+                            }
+
+                        }
                     }
-                    if (Input.GetKeyUp(InputSet.HeavyAttack))
+
+                    if (!Input.GetKey(InputSet.ActivateCADMenu))
                     {
-                        QueueInput.InputQueue.Enqueue("Heavy Attack");
-                        Control.InputTimer = .2f;
-
+                        if (Input.GetKey(InputSet.Block))
+                            Control.block = true;
+                        if (Input.GetKeyUp(InputSet.Block))
+                            Control.block = false;
+                        if (Control.block && !Input.GetKey(InputSet.Block))
+                            Control.block = false;
                     }
 
-                }
-                if (Input.GetKeyDown(InputSet.Block))
-                    Control.block = true;
-                if (Input.GetKeyUp(InputSet.Block))
-                    Control.block = false;
-
-                if (!Control.canInput)
-                {
-                    Control.InputTimer -= Time.DeltaTime;
+                    if (!Control.canInput)
+                    {
+                        Control.InputTimer -= Time.DeltaTime;
+                    } 
                 }
             });
 
-            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
+            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control, ref InSafeZoneTag safe) =>
             {
                 bool m_Crouching = new bool();
-                if (Control.block || Input.GetKey(InputSet.ActivateCADMenu))
+                if (Control.block)
                 {
                     Control.H = 0.0f;
                     Control.V = 0.0f;
@@ -93,20 +97,23 @@ namespace MotionSystem.System {
                     Control.V = CrossPlatformInputManager.GetAxis("Vertical");
                     m_Crouching = Input.GetKey(KeyCode.C);
 
+                    if (!safe.InZone) {
+                        if (!Control.Jump && Control.canInput && Control.IsGrounded && !Input.GetKey(InputSet.ActivateCADMenu))
+                        {
+                            Control.Jump = Input.GetKeyDown(InputSet.Jump);
 
-                    if (!Control.Jump && Control.canInput && Control.IsGrounded)
-                    {
-                        Control.Jump = Input.GetKeyDown(InputSet.Jump);
+                        }
+                        if (Control.Jump)
+                        {
+                            Control.InputTimer = .2f;
+                        }
+                        Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
                     }
-                    if (Control.Jump)
-                    {
-                        Control.InputTimer = .2f;
+                    else {
+                        Control.Walk = true;
                     }
 
-
-
-                    Control.Walk = Input.GetKey(KeyCode.LeftShift);
                 }
 
 
@@ -114,8 +121,8 @@ namespace MotionSystem.System {
                 {
                     if (Control.Crouch)
                     { return; }
-                    Control.CapsuleHeight = Control.CapsuleHeight / 2f;
-                    Control.CapsuleCenter = Control.CapsuleCenter / 2f;
+                    Control.CapsuleHeight /= 2f;
+                    Control.CapsuleCenter /= 2f;
                     Control.Crouch = true;
                     RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
@@ -167,9 +174,8 @@ namespace MotionSystem.System {
                 if (!Control.AI) {
                     if (m_mainCam != null)
                     {
-
-                        m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-                        Control.Move = Control.V * m_CamForward + Control.H * Camera.main.transform.right;
+                        m_CamForward = Vector3.Scale(m_mainCam.forward, new Vector3(1, 0, 1)).normalized;
+                        Control.Move = Control.V * m_CamForward + Control.H * m_mainCam.right;
                     }
                     else
                     {

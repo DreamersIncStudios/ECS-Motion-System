@@ -40,7 +40,6 @@ namespace MotionSystem.Archetypes
         public float EquipResetTimer;
 
         public Entity ObjectEntity;
-         EntityManager Manager;
 
         GameMasterSystem GMS;
 
@@ -58,7 +57,6 @@ namespace MotionSystem.Archetypes
         {
             GMS = GameMasterSystem.GMS;
             ObjectEntity = entity;
-            Manager = dstManager;
 
             Agent = this.GetComponent<NavMeshAgent>();
             var data = new ECS.Utilities.TransformComponenet { };
@@ -69,7 +67,7 @@ namespace MotionSystem.Archetypes
                 var playerparty = new PlayerParty() { };
                 dstManager.AddComponentData(entity, playerparty);
             }
-         
+            dstManager.AddComponent<InSafeZoneTag>(entity);
 
             Col = this.GetComponent<CapsuleCollider>();
             var control = new CharControllerE() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
