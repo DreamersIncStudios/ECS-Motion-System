@@ -6,7 +6,7 @@ using MotionSystem.Archetypes;
 
 namespace MotionSystem.Components
 {
-
+    [RequireComponent(typeof(BoxCollider))]
     public class SafeZone : MonoBehaviour
     {
 

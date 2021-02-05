@@ -135,8 +135,8 @@ namespace MotionSystem.System
             JobHandle systemDeps = Dependency;
             systemDeps = new LinkAIJob()
             {
-                ControlChunk = GetArchetypeChunkComponentType<AI_Control>(false),
-                ControllerChunk = GetArchetypeChunkComponentType<CharControllerE>(true)
+                ControlChunk = GetComponentTypeHandle<AI_Control>(false),
+                ControllerChunk = GetComponentTypeHandle<CharControllerE>(true)
             }.ScheduleParallel(AIQuery, systemDeps);
      Dependency = systemDeps;
 
@@ -144,8 +144,8 @@ namespace MotionSystem.System
 
         struct LinkAIJob : IJobChunk
         {
-            public ArchetypeChunkComponentType<AI_Control> ControlChunk;
-            [ReadOnly]public ArchetypeChunkComponentType<CharControllerE> ControllerChunk;
+            public ComponentTypeHandle<AI_Control> ControlChunk;
+            [ReadOnly]public ComponentTypeHandle<CharControllerE> ControllerChunk;
      
 
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)

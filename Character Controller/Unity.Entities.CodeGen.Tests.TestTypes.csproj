@@ -56,10 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\TestTypes.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\TestTypes.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\Unity.Entities.CodeGen.Tests.TestTypes.asmdef" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen.Tests\Unity.Entities.CodeGen.Tests.TestTypes\Unity.Entities.CodeGen.Tests.TestTypes.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

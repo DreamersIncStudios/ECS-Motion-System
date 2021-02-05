@@ -1,5 +1,6 @@
 {
     "name": "AggressionandTargeting",
+    "rootNamespace": "",
     "references": [
         "GUID:734d92eba21c94caba915361bd5ac177",
         "GUID:a5baed0c9693541a5bd947d336ec7659",
@@ -8,9 +9,10 @@
         "GUID:e0cd26848372d4e5c891c569017e11f1",
         "GUID:8819f35a0fc84499b990e90a4ca1911f",
         "GUID:44dcb2bf5b9be4b5aa76674c8edcd1d5",
-        "GUID:0d2efe5993723c843aaa8eb2c59d923a",
-        "GUID:4307f53044263cf4b835bd812fc161a4",
         "GUID:27fbc99f6a1cdf944a05c31320c04f5e",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:0d2efe5993723c843aaa8eb2c59d923a",
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
         "GUID:0c5bed323dad3e94894c9149ae6f8794"
     ],
     "includePlatforms": [],

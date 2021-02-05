@@ -56,11 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputButtonBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXUIDropdownBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXVelocityBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\PackageInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXVisibilityEventBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXPlaneBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXUIToggleBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\VFXPropertyBindingAttribute.cs" />
@@ -69,34 +65,38 @@
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\Playables\VisualEffectActivation\VisualEffectActivationClip.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputTouchBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\Playables\VisualEffectActivation\VisualEffectActivationMixerBehaviour.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXPositionBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXMouseEventBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\Playables\VisualEffectActivation\VisualEffectActivationBehaviour.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXTriggerEventBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputKeyBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXPreviousPositionBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\VFXBinderAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\CustomSpawners\LoopAndDelay.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXAudioSpectrumBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXSphereBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXUISliderBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXRaycastBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputButtonBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXVelocityBinder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\PackageInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXVisibilityEventBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\CustomSpawners\IncrementStripIndexOnStart.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXHierarchyAttributeMapBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXTransformBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\CustomSpawners\SetSpawnTime.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\OutputEventHandlers\VFXOutputEventAbstractHandler.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXTerrainBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXPositionBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXMouseEventBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXLightBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\Playables\VisualEffectActivation\VisualEffectActivationBehaviour.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXTriggerEventBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputKeyBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\VFXBinderBase.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\VFXEventBinderBase.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXMultiplePositionBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXPreviousPositionBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\VFXBinderAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\ExposedProperty.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\CustomSpawners\LoopAndDelay.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXAudioSpectrumBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\CustomSpawners\SpawnOverDistance.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXSphereBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\Playables\VisualEffectActivation\VisualEffectActivationTrack.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXEnabledBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXUISliderBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\EventBinding\Implementation\VFXRigidBodyCollisionEventBinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXInputAxisBinder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Runtime\Utilities\PropertyBinding\Implementation\VFXRaycastBinder.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Library\PackageCache\com.unity.visualeffectgraph@10.2.2\Editor Default Resources\uss\VFXFlow.uss" />
@@ -464,17 +464,26 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.3.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

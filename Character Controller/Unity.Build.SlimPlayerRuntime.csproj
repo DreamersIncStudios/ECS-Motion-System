@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{46014767-934A-248C-3FD2-06DC65675D45}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,7 +60,7 @@
     <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Runtime\Unity.Build.SlimPlayerRuntime\SlimRuntimeStartup.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Runtime\Unity.Build.SlimPlayerRuntime\Unity.Build.SlimPlayerRuntime.asmdef" />
+    <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Runtime\Unity.Build.SlimPlayerRuntime\Unity.Build.SlimPlayerRuntime.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

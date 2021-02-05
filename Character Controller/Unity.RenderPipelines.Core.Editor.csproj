@@ -60,61 +60,61 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\DisplayWindow.EnvironmentLibrarySidePanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugUIDrawer.Builtins.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\SerializedDataParameter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\LookDev.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\Drawers\IntParameterDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\CoreEditorUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\CoreLightEditorUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ShaderGeneratorMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESObject.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\DropArea.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESImporterEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\Drawers\FloatParameterDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\RenderGraph\RenderGraphViewer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\Drawers\Vector4ParameterDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\Stage.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeComponentEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeComponentListEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\InspectorCurveEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESImporter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\DisplayWindow.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeProfileEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\Environment.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\ComparisonGizmoController.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESEngine.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Utilities\SerializedBitArray.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ContextualMenuDispatcher.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeParameterDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\CSharpToHLSL.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\ComparisonGizmoState.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\CoreEditorStyles.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeComponentProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Gizmo\HierarchicalSphere.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\Context.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\CameraState.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ShaderTypeGeneration.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\EnvironmentLibrary.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugUIDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\LookDevRenderer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ExpandedState.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\CoreEditorDrawers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Gizmo\HierarchicalBox.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\MaterialUpgrader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESReader.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\PropertyFetcher.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\Compositor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\QuaternionPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugUIHandlerCanvasEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\ToolbarRadio.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\DisplayWindow.DebugSidePanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugState.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\FilterWindow.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\UIFoldoutEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeMenuItems.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\LookDev.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ShaderGeneratorMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESObject.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\DropArea.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESImporterEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\RenderGraph\RenderGraphViewer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\Drawers\Vector4ParameterDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeComponentListEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\InspectorCurveEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESImporter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\ComparisonGizmoController.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeParameterDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\CSharpToHLSL.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeComponentProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\CameraState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ShaderTypeGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugUIDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ExpandedState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\CoreEditorDrawers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Gizmo\HierarchicalBox.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Debugging\DebugWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Lighting\IESReader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\Compositor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\FilterWindow.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\Drawers\ColorParameterDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeProfileFactory.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\LookDev\CameraController.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\Volume\VolumeMenuItems.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\EditorPrefBoolFlags.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\CameraEditorUtils.cs" />
   </ItemGroup>
@@ -364,17 +364,26 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.3.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

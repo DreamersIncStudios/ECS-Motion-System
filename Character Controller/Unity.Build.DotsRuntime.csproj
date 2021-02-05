@@ -56,10 +56,18 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.DotsRuntime\IDotsRuntimeBuildModifier.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\BuildTarget.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\DotsRuntimeBuildPipelineConstructor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\Components\BuildSettingToggle.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\Components\DotsRuntimeRootAssembly.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\DotsRuntimeBuildPipelineBase.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\IDotsRuntimeBuildModifier.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\Components\IL2CPPSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\Components\DotsRuntimeBuildProfile.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.DotsRuntime\Unity.Build.DotsRuntime.asmdef" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.DotsRuntime\Unity.Build.DotsRuntime.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -297,17 +305,26 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.3.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -663,9 +680,17 @@
       <Project>{F173DD83-435F-DD0C-D32D-5E82E4F666A5}</Project>
       <Name>Unity.Build</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Build.Internals.csproj">
+      <Project>{680C3EDE-C159-4431-D685-A5B808CB7EC6}</Project>
+      <Name>Unity.Build.Internals</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Serialization.csproj">
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
       <Name>Unity.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Properties.csproj">
+      <Project>{B061187C-358D-AC5D-EA62-5A7C3EE77104}</Project>
+      <Name>Unity.Properties</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

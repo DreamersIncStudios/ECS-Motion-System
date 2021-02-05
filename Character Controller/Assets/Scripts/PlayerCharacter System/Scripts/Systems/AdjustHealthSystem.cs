@@ -35,9 +35,9 @@ namespace Stats
             systemDeps = new IncreaseVitalJob()
             {
                 DeltaTime = Time.DeltaTime,
-                IncreaseChunk = GetArchetypeChunkBufferType<ChangeVitalBuffer>(false),
-                StatsChunk = GetArchetypeChunkComponentType<PlayerStatComponent>(false),
-                entityCommandBuffer = _entityCommandBufferSystem.CreateCommandBuffer().ToConcurrent()
+                IncreaseChunk = GetBufferTypeHandle<ChangeVitalBuffer>(false),
+                StatsChunk = GetComponentTypeHandle<PlayerStatComponent>(false),
+                entityCommandBuffer = _entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
             }.Schedule(_ChangeVitals, systemDeps);
 
 
@@ -52,10 +52,10 @@ namespace Stats
 
     public struct IncreaseVitalJob : IJobChunk
     {
-        public ArchetypeChunkComponentType<PlayerStatComponent> StatsChunk;
-        public ArchetypeChunkBufferType<ChangeVitalBuffer> IncreaseChunk;
+        public ComponentTypeHandle<PlayerStatComponent> StatsChunk;
+        public BufferTypeHandle<ChangeVitalBuffer> IncreaseChunk;
         public float DeltaTime;
-        public EntityCommandBuffer.Concurrent entityCommandBuffer;
+        public EntityCommandBuffer.ParallelWriter entityCommandBuffer;
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {

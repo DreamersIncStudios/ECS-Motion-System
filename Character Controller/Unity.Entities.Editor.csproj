@@ -56,65 +56,60 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\ChunkInfoListView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Primitives.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\Decompiler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\BurstInteropCodegen\BurstInteropCodeGenerator.gen.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\ComponentTypeFilterUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\LiveLinkToolbar.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\EntityIMGUIVisitor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ScriptTemplates\ScriptTemplates.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Entity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\Icons.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\WorldPopup.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PropertyDrawers\WrappedComponentDataDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\RepaintLimiter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\EntitySelectionProxyEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\DynamicBufferContainer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityDebuggerStyles.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PostprocessedILInspector\PostprocessedILWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ExtraTypesProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\EditorCompanionGameObjectUpdateSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\StartLiveLinkWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\UIElementHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\GUIStyleAsset.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\LiveLinkCommands.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\GUIHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\EntityContainer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Default.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PostprocessedILInspector\TypeDefinitionExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\EntityQueryGUIControl.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\SystemInclusionList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PropertyDrawers\LayerFieldDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityListQuery.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\ComponentTypeChooser.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityArrayListAdapter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.UnityEngine.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\LiveLinkConnectionsDropdown.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\Editors\DynamicBufferProxyBaseEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\LiveLink\LiveLinkStyles.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityQueryListView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\CommonGUI\EntityQueryGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.EntityGuid.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Mathematics.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\Editors\GameObjectEntityEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityListView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\EntityDebugger.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\Editors\ComponentDataProxyBaseEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ComponentSystemProcessing.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityInspector\EntitySelectionProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\BurstInteropCodegen\BurstInteropCodeGenerator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\SystemListView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\EntityDebugger\ComponentTypeListView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Primitives.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\ComponentTypeFilterUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\LiveLinkToolbar.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Entity.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\DynamicBufferContainer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\PostprocessedILInspector\PostprocessedILWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\EditorCompanionGameObjectUpdateSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\GUIStyleAsset.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\PostprocessedILInspector\TypeDefinitionExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\EntityQueryGUIControl.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\PropertyDrawers\LayerFieldDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityListQuery.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\ComponentTypeChooser.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityArrayListAdapter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.UnityEngine.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\LiveLinkConnectionsDropdown.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\LiveLinkStyles.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityQueryListView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\EntityQueryGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.EntityGuid.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Mathematics.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\Editors\GameObjectEntityEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityListView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityDebugger.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ComponentSystemProcessing.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\SystemListView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\ChunkInfoListView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\Decompiler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\EntityIMGUIVisitor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ScriptTemplates\ScriptTemplates.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\Icons.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\WorldPopup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\RepaintLimiter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\EntitySelectionProxyEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\EntityDebuggerStyles.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ExtraTypesProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\StartLiveLinkWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\UIElementHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\LiveLink\LiveLinkMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\GUIHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\EntityContainer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\Adapters\IMGUIAdapter.Default.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\CommonGUI\SystemInclusionList.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityInspector\EntitySelectionProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\EntityDebugger\ComponentTypeListView.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PostprocessedILInspector\ILPostProcessorWindow.uxml" />
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\Unity.Entities.Editor.asmdef" />
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ScriptTemplates\AuthoringComponent.txt" />
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ScriptTemplates\RunTimeComponent.txt" />
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\ScriptTemplates\System.txt" />
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Editor\PostprocessedILInspector\ILPostProcessorWindow.uss" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\PostprocessedILInspector\ILPostProcessorWindow.uxml" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\Unity.Entities.Editor.asmdef" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ScriptTemplates\AuthoringComponent.txt" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ScriptTemplates\RunTimeComponent.txt" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\ScriptTemplates\System.txt" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Editor\PostprocessedILInspector\ILPostProcessorWindow.uss" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -354,12 +349,6 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\nuget.mono-cecil@0.1.6-preview\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="bee">
-      <HintPath>Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\bee_as_library\bee.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -731,13 +720,17 @@
       <Project>{B061187C-358D-AC5D-EA62-5A7C3EE77104}</Project>
       <Name>Unity.Properties</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Properties.Editor.csproj">
+      <Project>{41CAD031-60EF-3960-6B0B-6005540F879F}</Project>
+      <Name>Unity.Properties.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Scenes.Editor.csproj">
       <Project>{E86EDB73-6805-FC60-A667-E59DC8ADFA97}</Project>
       <Name>Unity.Scenes.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Scenes.Hybrid.csproj">
-      <Project>{BB194E82-B0A5-31A0-CD25-7AB516F09CE8}</Project>
-      <Name>Unity.Scenes.Hybrid</Name>
+    <ProjectReference Include="Unity.Scenes.csproj">
+      <Project>{72EDDA88-5557-64FF-777D-8F773D80D340}</Project>
+      <Name>Unity.Scenes</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Serialization.csproj">
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
@@ -747,9 +740,9 @@
       <Project>{F173DD83-435F-DD0C-D32D-5E82E4F666A5}</Project>
       <Name>Unity.Build</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Build.Common.csproj">
-      <Project>{B94A0059-DFDC-F25F-9EE8-F7CEA959BA87}</Project>
-      <Name>Unity.Build.Common</Name>
+    <ProjectReference Include="Unity.Build.Internals.csproj">
+      <Project>{680C3EDE-C159-4431-D685-A5B808CB7EC6}</Project>
+      <Name>Unity.Build.Internals</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Build.Classic.csproj">
       <Project>{BF476117-7EEC-5EB4-EF4A-538136E7F606}</Project>
@@ -758,6 +751,10 @@
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
       <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Build.Classic.Private.csproj">
+      <Project>{2E3FF354-215F-E17D-EE4C-BF1E50144999}</Project>
+      <Name>Unity.Build.Classic.Private</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{DC1E038B-DA3A-71E0-3456-C72F36C3830D}</Project>

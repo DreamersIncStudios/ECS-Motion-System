@@ -56,16 +56,19 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicScriptingSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\ClassicBuildPipelineCustomizer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicBuildProfile.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicCodeStrippingOptions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicScriptingSettingsInspector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Components\ClassicBuildOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicBuildProfileInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\ClassicBuildPipelineCustomizer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicBuildProfile.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicCodeStrippingOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicScriptingSettingsInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicBuildOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ConstructExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\ClassicScriptingSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Components\BeePlatformDeprecated.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic\Unity.Build.Classic.asmdef" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic\Unity.Build.Classic.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -302,9 +305,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="bee">
-      <HintPath>Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\bee_as_library\bee.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -659,10 +659,6 @@
     <ProjectReference Include="Unity.Build.csproj">
       <Project>{F173DD83-435F-DD0C-D32D-5E82E4F666A5}</Project>
       <Name>Unity.Build</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Build.Common.csproj">
-      <Project>{B94A0059-DFDC-F25F-9EE8-F7CEA959BA87}</Project>
-      <Name>Unity.Build.Common</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Build.Editor.csproj">
       <Project>{1B9190DF-7A1D-10EC-7CE7-60AA0AC1C8AB}</Project>

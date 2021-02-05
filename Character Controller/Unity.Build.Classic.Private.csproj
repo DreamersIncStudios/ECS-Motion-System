@@ -56,73 +56,27 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\BuildPipelineSelector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\PlatformJsonAdapter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\PramRunTarget.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\BuildContextExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\WebGLClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\AndroidDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WinRTMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\ShellProcessHelper.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\UnitySettingsState.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Pram.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\Steps\SetupCopiesFromSlimPlayerBuild.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\ClassicSharedData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\iOSDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\WSAClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\Steps\SetupAdditionallyProvidedFiles.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WindowsDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\SaveScenesAndAssetsStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\MissingNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\MonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\Steps\GraphSetupIl2Cpp.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WindowsDesktopMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WindowsGamesMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\SwitchClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\SwitchPlatfomStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\LinuxMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\ClassicBuildCustomizer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\LinuxClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\Steps\IncrementalClassicSharedData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\XboxOneClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\IL2CPPBeeSupport.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WinRTDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\OSXDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\CopyAdditionallyProvidedFilesStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\CalculateLocationPathStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\ScriptAssembliesJsonGenerator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\CustomizerInfoImpl.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\ApplyUnitySettingsStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\AndroidMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\UnityEditorCsc.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\ClassicIncrementalPipelineBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\PosixMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\LinuxDebuggerMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\OSXMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\PlatformInspector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\tvOSClassicNonIncrementalPipeline .cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\PostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\UnityMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\iOSClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\EmbeddedScenesValue.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\BuildPlayerStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\KnownPlatforms.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\PramPlatformPlugin.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\PS4ClassicNonIncrementalPipeline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\Steps\GraphSetupCodeGenerationStep.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\NonIncrementalClassicSharedData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\IL2CPP\Mono\WindowsSharedMonoSourceFileList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\BurstCompiler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\ClassicPipelineBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\NonIncremental\ClassicNonIncrementalPipelineBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\TypeResources.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Incremental\SlimBuildPipeline.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\BuildPipelineSelector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\BuildContextExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\UnitySettingsState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\SwitchPlatfomStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\CalculateLocationPathStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\CustomizerInfoImpl.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\EmbeddedScenesValue.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\NonIncrementalClassicSharedData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\ClassicNonIncrementalPipelineBase.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\ClassicSharedData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\SaveScenesAndAssetsStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\MissingPipelines\MissingNonIncrementalPipeline.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\ClassicBuildCustomizer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\CopyAdditionallyProvidedFilesStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\ApplyUnitySettingsStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\NonIncremental\Steps\BuildPlayerStep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\ClassicPipelineBase.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\bee_as_library\bee.dll" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\Unity.Build.Classic.Private.asmdef" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Classic.Private\Unity.Build.Classic.Private.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -359,9 +313,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="bee">
-      <HintPath>Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Classic.Private\bee_as_library\bee.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -717,13 +668,13 @@
       <Project>{F173DD83-435F-DD0C-D32D-5E82E4F666A5}</Project>
       <Name>Unity.Build</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Build.Internals.csproj">
+      <Project>{680C3EDE-C159-4431-D685-A5B808CB7EC6}</Project>
+      <Name>Unity.Build.Internals</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Build.Classic.csproj">
       <Project>{BF476117-7EEC-5EB4-EF4A-538136E7F606}</Project>
       <Name>Unity.Build.Classic</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Build.Common.csproj">
-      <Project>{B94A0059-DFDC-F25F-9EE8-F7CEA959BA87}</Project>
-      <Name>Unity.Build.Common</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Build.Editor.csproj">
       <Project>{1B9190DF-7A1D-10EC-7CE7-60AA0AC1C8AB}</Project>

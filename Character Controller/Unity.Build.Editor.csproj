@@ -56,37 +56,41 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\BuildConfigurationScriptedImporterEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\BuildManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\AssetGuidDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\Filter\AddComponentSearchFilter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\HierarchicalComponentContainerElement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\TypeSearcherItem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\StylesUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\TypeSearcherDatabase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\AddTypeSearcherAdapter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\BuildManagerTreeView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\BuildConfigurationMenuItem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\TypeInspector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Assets.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\Filter\NameFilter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\UIUpdater.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\DirectoryInfoInspector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Searcher\Filter\FilterUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationScriptedImporterEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationDependencyList.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\UIIcon.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\Extensions\VisualElementExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\Extensions\GenericMenuExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\TypeInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildComponentInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationContext.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildComponentInspectorData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\SearchView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\SearchField.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\TreeNode.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\IconSelector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\SearchViewItem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\AssetGuidDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\UITemplate.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationInspectorData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\Resources.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\SearchWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildManagerTreeView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\BuildConfigurationMenuItem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\PlatformInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\DirectoryInfoInspector.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\Unity.Build.Editor.asmdef" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\BuildConfiguration.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\BuildConfiguration_light.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\BuildConfiguration_dark.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\TypeInspector_dark.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer_dark.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer_light.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\TypeInspector.uss" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uxml\TypeInspector.uxml" />
-     <None Include="Library\PackageCache\com.unity.platforms@0.4.0-preview.5\Editor\Unity.Build.Editor\uss\TypeInspector_light.uss" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchFieldStyles.uss" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\Unity.Build.Editor.asmdef" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchViewStyle.uss" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchItem.uxml" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchView.uxml" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchFieldLayout.uxml" />
+     <None Include="Library\PackageCache\com.unity.platforms@0.10.0-preview.10\Editor\Unity.Build.Editor\SearchWindow\Resources\SearchItemStyle.uss" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -324,17 +328,26 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.3.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -690,6 +703,10 @@
       <Project>{F173DD83-435F-DD0C-D32D-5E82E4F666A5}</Project>
       <Name>Unity.Build</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.InternalAPIEngineBridge.012.csproj">
+      <Project>{4CD2F389-50D6-8D5F-738A-F86AFE9670D2}</Project>
+      <Name>Unity.InternalAPIEngineBridge.012</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Properties.csproj">
       <Project>{B061187C-358D-AC5D-EA62-5A7C3EE77104}</Project>
       <Name>Unity.Properties</Name>
@@ -705,10 +722,6 @@
     <ProjectReference Include="Unity.Properties.UI.Editor.csproj">
       <Project>{262A7909-F2D2-685B-D516-D6DAAD5DEDB4}</Project>
       <Name>Unity.Properties.UI.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Searcher.Editor.csproj">
-      <Project>{65DB2D5B-53A5-5672-F6D8-C0629BFD7D25}</Project>
-      <Name>Unity.Searcher.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Serialization.csproj">
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>

@@ -56,56 +56,55 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\ResourceCatalogData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\ConversionDependencies.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\CompanionLink.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\ConvertGameObjectToEntitySystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\DynamicBufferProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\ConversionJournalData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\EntityManagerExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\UnityEngineExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionMappingSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Injection\CompanionGameObject.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\ConversionSystemFilterSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\ReferencedUnityObjects.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\ConvertToEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\FileUtilityHybrid.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\GameObjectEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\MultiList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\SceneSectionComponent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Injection\AutomaticWorldBootstrap.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\AuthoringComponent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\BlobAssetStore.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\EditorRenderData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\LayerFieldAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\ComponentDataProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\SceneSectionProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\UpdateWorldTimeSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Iterators\TransformAccessArrayIterator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GeneratedAuthoringComponentImplementation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\BufferElementDataAuthoringComponent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\JournalDataDebug.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\SharedComponentDataProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\StopConvertToEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\JetBrains.Annotations.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Components\ComponentDataProxyBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\SerializeUtilityHybrid.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\BlobAssetComputationContext.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\SceneBoundingVolume.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\StaticOptimizeEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Injection\DefaultWorldInitializationProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Injection\DefaultWorldInitialization.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\CompanionGameObjectUpdateSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\TypeUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Iterators\ComponentArray.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\GameObjectConversion\JournalingUnityLogger.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Components\CompanionLink.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\ConversionJournalData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\EntityManagerExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\ConvertToEntity.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\MultiList.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\SceneSectionComponent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Injection\AutomaticWorldBootstrap.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\AuthoringComponent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\LayerFieldAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\ConversionLogUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\UpdateWorldTimeSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalHierarchy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GeneratedAuthoringComponentImplementation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\BufferElementDataAuthoringComponent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\JournalDataDebug.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\JetBrains.Annotations.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalChangesSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\BlobAssetComputationContext.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\LiveConversionSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\StaticOptimizeEntity.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\SceneSectionIncrementalConversionSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalConversionContext.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalConversionData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Iterators\ComponentArray.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\JournalingUnityLogger.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\ConversionDependencies.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\GameObjectEnableDisableIncrementalConversionSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\ConvertGameObjectToEntitySystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\UnityEngineExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\GameObjectConversionMappingSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Injection\CompanionGameObject.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\ConversionSystemFilterSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Components\GameObjectEntity.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalConversionChangeTracker.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\BlobAssetStore.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\SceneHierarchy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Iterators\TransformAccessArrayIterator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\StaticOptimizeIncrementalConversionSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\IncrementalConversionJobs.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\StopConvertToEntity.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\GameObjectConversion\Incremental\DependencyTracker.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\CompanionGameObjectUpdateSystem.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@0.11.2-preview.1\Unity.Entities.Hybrid\Unity.Entities.Hybrid.asmdef" />
+     <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid\Unity.Entities.Hybrid.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -343,17 +342,26 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.3.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@0.9.0-preview.6\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -734,13 +742,17 @@
       <Project>{BF476117-7EEC-5EB4-EF4A-538136E7F606}</Project>
       <Name>Unity.Build.Classic</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Build.Common.csproj">
-      <Project>{B94A0059-DFDC-F25F-9EE8-F7CEA959BA87}</Project>
-      <Name>Unity.Build.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Properties.csproj">
       <Project>{B061187C-358D-AC5D-EA62-5A7C3EE77104}</Project>
       <Name>Unity.Properties</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Properties.Editor.csproj">
+      <Project>{41CAD031-60EF-3960-6B0B-6005540F879F}</Project>
+      <Name>Unity.Properties.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Scenes.csproj">
+      <Project>{72EDDA88-5557-64FF-777D-8F773D80D340}</Project>
+      <Name>Unity.Scenes</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
