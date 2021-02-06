@@ -26,6 +26,30 @@ namespace Global.Component
                             break;
                     }
                     break;
+                case Race.Daemon:
+                    switch (GetRace)
+                    {
+                        case Race.Angel:
+                        case Race.Human:
+                            test = false;
+                            break;
+                        case Race.Daemon:
+                            test = true;
+                            break;
+                    }
+                    break;
+                case Race.Human:
+                    switch (GetRace)
+                    {
+                        case Race.Angel:
+                        case Race.Human:
+                            test = true;
+                            break;
+                        case Race.Daemon:
+                            test = false;
+                            break;
+                    }
+                    break;
             }
             
             return test; }
@@ -37,6 +61,8 @@ namespace Global.Component
     {
         None, Character, Location, Vehicle
     }
+
+    //replace with threat score system at later date
 
     public enum Race
     {

@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
@@ -15,6 +15,8 @@ namespace AISenses.VisionSystems
     public class VisionSystem : SystemBase
     {
         private EntityQuery SeerEntityQuery;
+        private EntityQuery SeerEntityQueryWoPlayer;
+
         private EntityQuery TargetEntityQuery;
         EntityCommandBufferSystem entityCommandBufferSystem;
         EndFramePhysicsSystem m_EndFramePhysicsSystem;
@@ -24,6 +26,13 @@ namespace AISenses.VisionSystems
             SeerEntityQuery = GetEntityQuery(new EntityQueryDesc()
             {
                 All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) }
+            });
+
+            SeerEntityQueryWoPlayer = GetEntityQuery(new EntityQueryDesc()
+            {
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) },
+                None = new ComponentType[] {ComponentType.ReadOnly(typeof(PlayerParty)) }
+
             });
 
             TargetEntityQuery = GetEntityQuery(new EntityQueryDesc()
@@ -161,26 +170,28 @@ namespace AISenses.VisionSystems
                 for (int i = 0; i < chunk.Count; i++)
                 {
                     DynamicBuffer<ScanPositionBuffer> buffer = Buffers[i];
+             
 
                     Vision seer = Seers[i];
 
                     if (buffer.Length == 0)
                         continue;
-
-                    ScanPositionBuffer ClosestTarget = buffer[0];
-                        for (int j = 0; j < buffer.Length; j++)
-                        {
-                        AITarget check = AItargetFromEntity[buffer[j].target.entity];
-                            if (ClosestTarget.target.DistanceTo > buffer[j].target.DistanceTo && check.CanBeTargeted)
-                            {
-                                ClosestTarget = buffer[j];
-                            }
-                        }
-                        seer.ClosestTarget = ClosestTarget;
+                    NativeArray<ScanPositionBuffer> scans = buffer.AsNativeArray();
+                    scans.Sort(new TargetDistanceComprar());
+                        seer.ClosestTarget = buffer[0];
  
                     seer.Scantimer = 3.5f;
                         Seers[i] = seer;
                 }
+            }
+
+            public struct TargetDistanceComprar : System.Collections.Generic.IComparer<ScanPositionBuffer>
+            {
+                public int Compare(ScanPositionBuffer LHS, ScanPositionBuffer RHS)
+                {
+                    return LHS.target.DistanceTo.CompareTo(RHS.target.DistanceTo);
+                }
+            
             }
         }
     }

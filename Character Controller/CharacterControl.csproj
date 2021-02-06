@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputQueuer.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Components\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Motion System\GameMasterSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />

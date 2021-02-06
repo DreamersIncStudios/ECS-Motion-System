@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Global\AITarget.cs" />
+    <Compile Include="Assets\Scripts\Global\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Global\Player_Control.cs" />
     <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
     <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
