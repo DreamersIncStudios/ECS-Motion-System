@@ -7,6 +7,7 @@ using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using GameMaster;
+using DreamersStudio.CameraControlSystem;
 
 
 namespace MotionSystem.System {
@@ -25,6 +26,8 @@ namespace MotionSystem.System {
             InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
 
         }
+        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
+
         protected override void OnUpdate()
         {
             if (m_mainCam == null)
@@ -107,6 +110,7 @@ namespace MotionSystem.System {
                         {
                             Control.InputTimer = .2f;
                         }
+                       // add controller toogle
                         Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
                     }
@@ -181,8 +185,8 @@ namespace MotionSystem.System {
                     {
                         Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
                     }
-                }
 
+                        }
                 if (Control.Walk)
                     Control.Move *= 0.5f;
                 if (Control.Move.magnitude > 1.0f)
@@ -195,10 +199,8 @@ namespace MotionSystem.System {
                 if (Control.TimerForEquipReset > 0.0f) {
                     Control.TimerForEquipReset -= Time.DeltaTime;
                 }
-                if (Control.TimerForEquipReset <= 0.0f)
-                {
+                else { 
                     Control.TimerForEquipReset = 0.0f;
-                    Control.EquipWeapon = false;
                 }
 
             });

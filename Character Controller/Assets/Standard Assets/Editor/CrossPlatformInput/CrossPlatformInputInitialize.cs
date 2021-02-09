@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-
+#if UNITY_EDITOR
 namespace UnityStandardAssets.CrossPlatformInput.Inspector
 {
     [InitializeOnLoad]
@@ -135,3 +135,4 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
         }
     }
 }
+#endif

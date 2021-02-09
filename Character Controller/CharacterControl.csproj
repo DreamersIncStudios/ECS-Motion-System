@@ -71,6 +71,9 @@
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Interaction System\Interfaces\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Interaction System\MissionGiver.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Interaction System\StoreFront.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />
@@ -718,6 +721,10 @@
     <ProjectReference Include="AggressionandTargeting.csproj">
       <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>
       <Name>AggressionandTargeting</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
+      <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

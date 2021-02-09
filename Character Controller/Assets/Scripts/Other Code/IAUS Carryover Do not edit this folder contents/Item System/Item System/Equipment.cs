@@ -74,7 +74,8 @@ namespace Stats
         }
         public void EquipWeaponAnim()
         {
-         //   anim.SetBool("CanDoDamage", true);
+            //   anim.SetBool("CanDoDamage", true);
+            anim.SetBool("Weapon In Hand", true);
             Wpn.transform.SetParent( anim.GetBoneTransform(HumanBodyBones.RightHand));
             Wpn.transform.localPosition = Sword.HandPosition;
             Wpn.transform.localRotation = Quaternion.Euler(Sword.HandRotation);
@@ -82,7 +83,8 @@ namespace Stats
 
         public void UnequipWeaponAnim()
         {
-         //   anim.SetBool("CanDoDamage", false);
+            //   anim.SetBool("CanDoDamage", false);
+            anim.SetBool("Weapon In Hand", false);
             Wpn.transform.parent = anim.GetBoneTransform(HumanBodyBones.Spine);
             Wpn.transform.localPosition = Sword.Position;
             Wpn.transform.localRotation = Quaternion.Euler(Sword.Rotation);

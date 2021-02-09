@@ -16,9 +16,8 @@ namespace Stats
         private Stat[] _stats;
         private Abilities[] _ability;
         private Elemental[] _ElementalMods;
-#if UNITY_EDITOR
+
         public bool InvincibleMode;
-#endif
         public bool Alive { get {
                 bool temp = true;
                 if (!InvincibleMode) { 
@@ -63,6 +62,9 @@ namespace Stats
 
             CurHealth = MaxHealth;
             CurMana = MaxMana;
+#if !UNITY_EDITOR
+            InvincibleMode = false;
+#endif
 
 #if UNITY_EDITOR
             if (InvincibleMode)

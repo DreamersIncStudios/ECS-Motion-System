@@ -44,6 +44,8 @@ namespace MotionSystem.System
 
         }
         public ComponentDataFromEntity<CharControllerE> Control;
+        bool HasChararacterToSwitchTo => GMS.Party.Count > 1;
+        bool NotInTargetMode => Input.GetAxis("Target Trigger") <= 0.15f;
         protected override void OnUpdate()
         {
 
@@ -57,7 +59,7 @@ namespace MotionSystem.System
             else
             {
                 
-                if (GMS.PlayerIndex != index)
+                if (GMS.PlayerIndex != index )
                 {
 
 
@@ -100,7 +102,7 @@ namespace MotionSystem.System
                         Agent.gameObject.tag = "Untagged";
                     });
 
-                if (!Input.GetKey(InputSet.ActivateCADMenu) &&  Input.GetAxis("Target Trigger") <= 0.15f)
+                if (!Input.GetKey(InputSet.ActivateCADMenu) &&  NotInTargetMode && HasChararacterToSwitchTo)
                      {
                    
                     if (Input.GetAxis("Quick Acces Horizontal") > .5f)

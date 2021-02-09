@@ -40,7 +40,7 @@ namespace MotionSystem.Components
         public bool AI;
         public LayerMask GroundCheckLayerMask;
 
-        public bool EquipWeapon;
+        public bool EquipWeapon=>TimerForEquipReset != 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset;
 

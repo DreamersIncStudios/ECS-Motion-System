@@ -2,6 +2,7 @@
 using UnityEditor;
 using ScriptableObjectEditor;
 
+#if UNITY_EDITOR
 
 namespace ItemSystem
 {
@@ -61,3 +62,4 @@ namespace ItemSystem
 
 
 }
+#endif

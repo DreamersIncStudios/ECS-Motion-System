@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+
 namespace ScriptableObjectEditor
 {
     static public class ScriptableObjectUtility
     {
-        public static void CreateAsset<T>( out T test) where T : ScriptableObject
+#if UNITY_EDITOR
+        public static void CreateAsset<T>(out T test) where T : ScriptableObject
         {
             T asset = ScriptableObject.CreateInstance<T>();
 
@@ -32,5 +34,7 @@ namespace ScriptableObjectEditor
             Selection.activeObject = asset;
             test = asset;
         }
+#endif
     }
+    
 }

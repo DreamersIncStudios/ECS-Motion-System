@@ -56,9 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Global\AITarget.cs" />
-    <Compile Include="Assets\Scripts\Global\PlayerParty.cs" />
-    <Compile Include="Assets\Scripts\Global\Player_Control.cs" />
+    <Compile Include="Assets\Scripts\Global\Components\AITarget.cs" />
+    <Compile Include="Assets\Scripts\Global\Components\PlayerParty.cs" />
+    <Compile Include="Assets\Scripts\Global\Components\AITargetCreate.cs" />
+    <Compile Include="Assets\Scripts\Global\Components\Player_Control.cs" />
     <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
     <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
   </ItemGroup>
@@ -672,6 +673,10 @@
     <ProjectReference Include="Unity.Entities.csproj">
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
       <Name>Unity.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Entities.Hybrid.csproj">
+      <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
+      <Name>Unity.Entities.Hybrid</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
