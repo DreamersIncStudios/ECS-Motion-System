@@ -7,7 +7,7 @@ using Unity.Collections;
 using Unity.Burst;
 using GameMaster;
 
-//
+//need to rewrite for Unity physics  
 
 namespace MotionSystem.System.AnimatorIK
 {

@@ -44,48 +44,6 @@ namespace MotionSystem.System {
                 }
             }
 
-
-            Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC, ref InSafeZoneTag safe) =>
-            {
-                if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
-                    return;
-                if (!safe.InZone) {
-                    if (!Control.AI && Control.canInput && !Control.block)
-                    {
-                        if (!Input.GetKey(InputSet.ActivateCADMenu))
-                        {
-                            if (Input.GetKeyUp(InputSet.LightAttack))
-                            {
-                                QueueInput.InputQueue.Enqueue("Light Attack");
-                                Control.InputTimer = .2f;
-                            }
-                            if (Input.GetKeyUp(InputSet.HeavyAttack))
-                            {
-                                QueueInput.InputQueue.Enqueue("Heavy Attack");
-                                Control.InputTimer = .2f;
-
-                            }
-
-                        }
-                    }
-
-                    if (!Input.GetKey(InputSet.ActivateCADMenu))
-                    {
-                        if (Input.GetKey(InputSet.Block))
-                            Control.block = true;
-                        if (Input.GetKeyUp(InputSet.Block))
-                            Control.block = false;
-                        if (Control.block && !Input.GetKey(InputSet.Block))
-                            Control.block = false;
-                    }
-
-                    if (!Control.canInput)
-                    {
-                        Control.InputTimer -= Time.DeltaTime;
-                    } 
-                }
-            });
-
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control, ref InSafeZoneTag safe) =>
             {
                 bool m_Crouching = new bool();
@@ -204,16 +162,7 @@ namespace MotionSystem.System {
                 }
 
             });
-
-
-
-
-
-
-
             }
-
-
     }
 }
 

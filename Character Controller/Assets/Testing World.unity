@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2155.6025, g: 2258.9531, b: 3295.209, a: 1}
+  m_IndirectSpecularColor: {r: 2156.7856, g: 2259.8306, b: 3295.8767, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1442,10 +1442,155 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ec2ef08ae5ff46c499a054fbe083288c, type: 2}
+      objectReference: {fileID: 9100000, guid: f087a41dc03fdec45a83510207ce357c, type: 2}
     m_RemovedComponents:
     - {fileID: 831315902242952163, guid: 1dc8817407c3d5c4780cc343866191e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1dc8817407c3d5c4780cc343866191e5, type: 3}
+--- !u!1 &611525763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8038559104674034408, guid: 1dc8817407c3d5c4780cc343866191e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 611525762}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &611525764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611525763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8108d70e717473740a15965f4f72e621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Values:
+  - CurremtStateName: 1
+    NormalizedInputTime:
+      x: 0
+      y: Infinity
+    AnimationEndTime: 0
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 4
+      StartOffset: 0
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
+  - CurremtStateName: 2
+    NormalizedInputTime:
+      x: 0
+      y: Infinity
+    AnimationEndTime: 0
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 4
+      StartOffset: 0
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
+  - CurremtStateName: 3
+    NormalizedInputTime:
+      x: 0
+      y: Infinity
+    AnimationEndTime: 0
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 9
+      StartOffset: 0
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
+  - CurremtStateName: 9
+    NormalizedInputTime:
+      x: 0.2
+      y: 0.5
+    AnimationEndTime: 0.5
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 10
+      StartOffset: 0.09
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
+  - CurremtStateName: 10
+    NormalizedInputTime:
+      x: 0.15
+      y: 0.5
+    AnimationEndTime: 0.5
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 11
+      StartOffset: 0.2
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
+  - CurremtStateName: 11
+    NormalizedInputTime:
+      x: 0.15
+      y: 0.6
+    AnimationEndTime: 0.5
+    Unlocked: 1
+    LightAttack:
+      TriggeredAnimName: 12
+      StartOffset: 0.09
+    HeavyAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargedLightAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    ChargeHeavytAttack:
+      TriggeredAnimName: 0
+      StartOffset: 0
+    Projectile:
+      TriggeredAnimName: 0
+      StartOffset: 0
 --- !u!4 &737080489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3940210311403815095, guid: 0c6a0cec54d9210479403ea1519368f2,
@@ -3519,7 +3664,7 @@ PrefabInstance:
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.23179893
+      value: -0.23179895
       objectReference: {fileID: 0}
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
@@ -3529,7 +3674,7 @@ PrefabInstance:
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.008051618
+      value: -0.008051614
       objectReference: {fileID: 0}
     - target: {fileID: 722340982486372096, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
@@ -3912,12 +4057,12 @@ PrefabInstance:
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.024731817
+      value: -0.024731819
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0012272901
+      value: -0.00122729
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;
+
 using Unity.Entities;
 using MotionSystem.Components;
 using Unity.Collections;
@@ -123,27 +126,8 @@ namespace MotionSystem.System
 
 
             });
-            Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput, Animator Anim) => {
-                if (!Control.CombatCapable)
-                    return;
-                Anim.SetBool("Block", Control.block);
-                if (Control.block)
-                {
-                    Control.TimerForEquipReset = Control.EquipResetTimer;
-                }
-                if (QueueInput.InputQueue.Count > 0) {
-                    string Dequeue = QueueInput.InputQueue.Dequeue() as string;
-                    Control.TimerForEquipReset = Control.EquipResetTimer;
-                    Anim.SetTrigger(Dequeue);
-                    Control.TimerForEquipReset = Control.EquipResetTimer; 
-                }
+       
 
-                if (Anim.GetCurrentAnimatorStateInfo(0).IsTag("EndCombo")) {
-                    Anim.ResetTrigger("Light Attack");
-                    Anim.ResetTrigger("Heavy Attack");
-
-                }
-            });
                 Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
             {
                 capsule.center = Control.CapsuleCenter;

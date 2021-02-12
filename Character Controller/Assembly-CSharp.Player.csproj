@@ -57,8 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TestTargetOrbit.cs" />
-    <Compile Include="Assets\Scripts\CombatSystem\Combo.cs" />
-    <Compile Include="Assets\Scripts\CombatSystem\ComboAnimationGeneration.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
