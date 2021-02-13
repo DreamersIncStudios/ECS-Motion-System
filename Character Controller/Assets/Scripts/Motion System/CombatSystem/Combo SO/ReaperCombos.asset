@@ -26,7 +26,7 @@ MonoBehaviour:
       StartOffset: 0
     HeavyAttack:
       Name: 0
-      TriggeredAnimName: 0
+      TriggeredAnimName: 14
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   - CurremtStateName: 9
     NormalizedInputTime:
       x: 0.2
-      y: 0.5
+      y: 0.6
     AnimationEndTime: 0.5
     LightAttack:
       Name: 0
@@ -156,14 +156,14 @@ MonoBehaviour:
   - CurremtStateName: 10
     NormalizedInputTime:
       x: 0.15
-      y: 0.6
+      y: 0.8
     AnimationEndTime: 0.5
     LightAttack:
       Name: 0
       TriggeredAnimName: 11
       Unlocked: 1
-      TransitionDuration: 0.2
-      StartOffset: 0.2
+      TransitionDuration: 0.25
+      StartOffset: 0
     HeavyAttack:
       Name: 0
       TriggeredAnimName: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   - CurremtStateName: 11
     NormalizedInputTime:
       x: 0.15
-      y: 0.5
+      y: 0.8
     AnimationEndTime: 0.5
     LightAttack:
       Name: 0
@@ -200,10 +200,10 @@ MonoBehaviour:
       TransitionDuration: 0.2
       StartOffset: 0.2
     HeavyAttack:
-      Name: 1
+      Name: 0
       TriggeredAnimName: 14
       Unlocked: 1
-      TransitionDuration: 0
+      TransitionDuration: 0.1
       StartOffset: 0
     ChargedLightAttack:
       Name: 0

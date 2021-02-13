@@ -60,9 +60,12 @@
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputQueuer.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Motion System\GameMasterSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combos.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\MissionGiver.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />
@@ -76,9 +79,7 @@
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combos.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponent.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />

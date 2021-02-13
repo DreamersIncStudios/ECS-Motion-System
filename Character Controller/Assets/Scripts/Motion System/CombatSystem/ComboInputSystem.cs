@@ -41,6 +41,7 @@ public class ComboInputSystem : ComponentSystem
         {
            
             StateInfo = ComboList.animator.GetCurrentAnimatorStateInfo(0);
+            Debug.Log(HeavyAttack + "Heavy Attack Pressed");
             if (!ComboList.animator.IsInTransition(0))
             {
                 foreach (AnimationCombo comboOption in ComboList.combo.ComboList)
@@ -49,7 +50,7 @@ public class ComboInputSystem : ComponentSystem
                     {
                         currentStateExitTime = comboOption.AnimationEndTime;
                         //Light
-                        if (!comboOption.LightAttack.Unlocked)
+                        if (comboOption.LightAttack.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
@@ -60,46 +61,46 @@ public class ComboInputSystem : ComponentSystem
                             }
                         }
                         //Heavy
-                        if (!comboOption.HeavyAttack.Unlocked)
+                        if (comboOption.HeavyAttack.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
                                 if (HeavyAttack && QueueIsEmpty)
                                 {
-                                    InputQueue.Enqueue(comboOption.LightAttack);
+                                    InputQueue.Enqueue(comboOption.HeavyAttack);
                                 }
                             }
                         }
                         //Charge Light
-                        if (!comboOption.ChargedLightAttack.Unlocked)
+                        if (comboOption.ChargedLightAttack.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
                                 if (ChargedLightAttack && QueueIsEmpty)
                                 {
-                                    InputQueue.Enqueue(comboOption.LightAttack);
+                                    InputQueue.Enqueue(comboOption.ChargedLightAttack);
                                 }
                             }
                         }
                         //Charge Heavy
-                        if (!comboOption.ChargeHeavytAttack.Unlocked)
+                        if (comboOption.ChargeHeavytAttack.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
                                 if (ChargedHeavyAttack && QueueIsEmpty)
                                 {
-                                    InputQueue.Enqueue(comboOption.LightAttack);
+                                    InputQueue.Enqueue(comboOption.ChargeHeavytAttack);
                                 }
                             }
                         }
                         //projectile
-                        if (!comboOption.Projectile.Unlocked)
+                        if (comboOption.Projectile.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
                                 if (Projectile && QueueIsEmpty)
                                 {
-                                    InputQueue.Enqueue(comboOption.LightAttack);
+                                    InputQueue.Enqueue(comboOption.Projectile);
                                 }
                             }
                         }
