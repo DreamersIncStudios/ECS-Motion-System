@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputQueuer.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Assets\Scripts\Motion System\Components\SafeZone.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorUpdate.cs" />
     <Compile Include="Assets\Scripts\Motion System\Test files\AIMoveTest.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboAnimationGeneration.cs" />
     <Compile Include="Assets\Scripts\Motion System\AnimatorIK\AnimatorIK.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorSpeedUpdate.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\SwapSystem.cs" />
@@ -76,7 +76,9 @@
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combos.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />

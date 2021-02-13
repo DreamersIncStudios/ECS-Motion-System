@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2156.7856, g: 2259.8306, b: 3295.8767, a: 1}
+  m_IndirectSpecularColor: {r: 2157.065, g: 2260.1758, b: 3296.251, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1461,136 +1461,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 611525763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8108d70e717473740a15965f4f72e621, type: 3}
+  m_Script: {fileID: 11500000, guid: cfb7dc05c48228244a4b7de2c72fca3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Values:
-  - CurremtStateName: 1
-    NormalizedInputTime:
-      x: 0
-      y: Infinity
-    AnimationEndTime: 0
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 4
-      StartOffset: 0
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
-  - CurremtStateName: 2
-    NormalizedInputTime:
-      x: 0
-      y: Infinity
-    AnimationEndTime: 0
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 4
-      StartOffset: 0
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: Infinity
-    AnimationEndTime: 0
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 9
-      StartOffset: 0
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
-  - CurremtStateName: 9
-    NormalizedInputTime:
-      x: 0.2
-      y: 0.5
-    AnimationEndTime: 0.5
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 10
-      StartOffset: 0.09
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
-  - CurremtStateName: 10
-    NormalizedInputTime:
-      x: 0.15
-      y: 0.5
-    AnimationEndTime: 0.5
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 11
-      StartOffset: 0.2
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
-  - CurremtStateName: 11
-    NormalizedInputTime:
-      x: 0.15
-      y: 0.6
-    AnimationEndTime: 0.5
-    Unlocked: 1
-    LightAttack:
-      TriggeredAnimName: 12
-      StartOffset: 0.09
-    HeavyAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    ChargeHeavytAttack:
-      TriggeredAnimName: 0
-      StartOffset: 0
-    Projectile:
-      TriggeredAnimName: 0
-      StartOffset: 0
+  Combo: {fileID: 11400000, guid: da3f2bb0579d12e43b50ef3fad35ad48, type: 2}
 --- !u!4 &737080489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3940210311403815095, guid: 0c6a0cec54d9210479403ea1519368f2,
@@ -4057,12 +3931,12 @@ PrefabInstance:
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.024731819
+      value: -0.02473182
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00122729
+      value: -0.0012272904
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
