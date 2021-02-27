@@ -4,8 +4,8 @@ using UnityEngine.AI;
 using MotionSystem.Components;
 using IAUS.ECS.Component;
 using ECS.Utilities;
-using GameMaster;
-
+using ControllerSwap;
+using Core;
 
 namespace MotionSystem.Archetypes
 {
@@ -41,21 +41,22 @@ namespace MotionSystem.Archetypes
 
         public Entity ObjectEntity;
 
-        GameMasterSystem GMS;
+        PartySwapSystem Swap => PartySwapSystem.GMS;
 
         public void Start()
         {
-            GMS = GameMasterSystem.GMS;
+       
 
             RB = this.GetComponent<Rigidbody>();
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            if(Party && GMS.Party.Count<= GMS.MaxParty )
-            GMS.Party.Add(ObjectEntity);
+
        
         }
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            GMS = GameMasterSystem.GMS;
+            if (Party && Swap.Party.Count <= Swap.MaxParty)
+                Swap.Party.Add(ObjectEntity);
             ObjectEntity = entity;
 
             Agent = this.GetComponent<NavMeshAgent>();

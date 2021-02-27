@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputQueuer : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    public Queue InputQueue;
-    public bool ItemsInQueue => InputQueue.Count > 0;
     // Start is called before the first frame update
     void Start()
     {
-        InputQueue = new Queue();
-  
+        
     }
 
-   
-
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

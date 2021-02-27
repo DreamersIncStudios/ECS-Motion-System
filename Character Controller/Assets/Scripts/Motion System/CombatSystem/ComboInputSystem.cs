@@ -6,12 +6,14 @@ using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using System.Collections.Generic;
-using GameMaster;
 
 
 public class ComboInputSystem : ComponentSystem
 {
-    public ControllerScheme InputSet => GameMasterSystem.GMS.InputSettings.UserScheme;
+    public ControllerScheme InputSet => Core.GameMaster.Instance.InputSettings.UserScheme;
+    public bool Jump => Input.GetKeyUp(InputSet.Jump);
+    public bool DisplayCombos => Input.GetKeyUp(KeyCode.JoystickButton7);
+    public bool Block => Input.GetKeyDown(InputSet.Block);
     public bool LightAttack => Input.GetKeyUp(InputSet.LightAttack);
     public bool HeavyAttack => Input.GetKeyUp(InputSet.HeavyAttack);
     public bool ChargedLightAttack => Input.GetKeyUp(InputSet.ChargedLightAttack); // change to time base later 
@@ -25,24 +27,33 @@ public class ComboInputSystem : ComponentSystem
     {
         base.OnCreate();
         InputQueue = new Queue<AnimationTriggers>();
-
+        movespanel = new GameObject();
     }
 
     public bool QueueIsEmpty => InputQueue.Count == 0;
 
     float currentStateExitTime;
-    DynamicBuffer<AnimationCombo> Combos;
     AnimatorStateInfo StateInfo;
     bool TakeInput =>!QueueIsEmpty && StateInfo.normalizedTime > currentStateExitTime;
     bool TransitionToLocomotion => !StateInfo.IsTag("Locomotion") && StateInfo.normalizedTime > .95f;
+    GameObject movespanel;
     protected override void OnUpdate()
     {
         Entities.ForEach((ref Player_Control PC, ComboComponent ComboList) =>
         {
            
             StateInfo = ComboList.animator.GetCurrentAnimatorStateInfo(0);
-            Debug.Log(HeavyAttack + "Heavy Attack Pressed");
-            if (!ComboList.animator.IsInTransition(0))
+            Debug.Log(DisplayCombos);
+            if (DisplayCombos)
+            {
+                ComboList.combo.ShowMovesPanel = !ComboList.combo.ShowMovesPanel;
+                if (ComboList.combo.ShowMovesPanel)
+                    movespanel = ComboList.combo.DisplayCombo();
+                else
+                    Object.Destroy(movespanel);
+            }
+
+            if (!ComboList.animator.IsInTransition(0) && !ComboList.combo.ShowMovesPanel)
             {
                 foreach (AnimationCombo comboOption in ComboList.combo.ComboList)
                 {
@@ -83,13 +94,13 @@ public class ComboInputSystem : ComponentSystem
                             }
                         }
                         //Charge Heavy
-                        if (comboOption.ChargeHeavytAttack.Unlocked)
+                        if (comboOption.ChargedHeavyAttack.Unlocked)
                         {
                             if (comboOption.InputAllowed(StateInfo.normalizedTime))
                             {
                                 if (ChargedHeavyAttack && QueueIsEmpty)
                                 {
-                                    InputQueue.Enqueue(comboOption.ChargeHeavytAttack);
+                                    InputQueue.Enqueue(comboOption.ChargedHeavyAttack);
                                 }
                             }
                         }

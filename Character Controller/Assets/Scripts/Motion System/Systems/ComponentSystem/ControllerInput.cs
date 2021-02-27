@@ -6,7 +6,6 @@ using MotionSystem.Components;
 using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
-using GameMaster;
 using DreamersStudio.CameraControlSystem;
 
 
@@ -23,7 +22,7 @@ namespace MotionSystem.System {
         protected override void OnStartRunning()
         {
             base.OnStartRunning();
-            InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
+            InputSet = Core.GameMaster.Instance.InputSettings.UserScheme;
 
         }
         bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;

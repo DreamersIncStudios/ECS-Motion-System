@@ -59,16 +59,14 @@
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
-    <Compile Include="Assets\Scripts\Motion System\InputQueuer.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\Interfaces\IInteractable.cs" />
-    <Compile Include="Assets\Scripts\Motion System\GameMasterSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\PartySwapSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combos.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\MissionGiver.cs" />
-    <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />
     <Compile Include="Assets\Scripts\Motion System\Components\SafeZone.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorUpdate.cs" />
     <Compile Include="Assets\Scripts\Motion System\Test files\AIMoveTest.cs" />
@@ -78,8 +76,7 @@
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\GroundCheckSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
-    <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponent.cs" />
+    <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />
@@ -340,6 +337,12 @@
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

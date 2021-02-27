@@ -57,12 +57,6 @@ namespace Stats
            // PC.StatUpdate();
         }
 
-        private void Update()
-        {
-
-        }
-
-
 
         public void SetTrue()
         {

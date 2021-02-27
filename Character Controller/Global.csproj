@@ -60,8 +60,19 @@
     <Compile Include="Assets\Scripts\Global\Components\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Global\Components\AITargetCreate.cs" />
     <Compile Include="Assets\Scripts\Global\Components\Player_Control.cs" />
+    <Compile Include="Assets\Scripts\Global\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\Save\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\InputSettings.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\Save\interfaces\ISave.cs" />
     <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
     <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\ControllerScheme.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\ButtonShift.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\Options Menu.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\SMT\SMTOptions.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Global\Global.asmdef" />
@@ -322,6 +333,12 @@
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -677,6 +694,14 @@
     <ProjectReference Include="Unity.Entities.Hybrid.csproj">
       <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
       <Name>Unity.Entities.Hybrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="DOTween.Modules.csproj">
+      <Project>{4A7F9C5F-9F06-5580-C5EE-20B29D873DA3}</Project>
+      <Name>DOTween.Modules</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using Unity.Entities;
+using UnityEngine;
 public interface ICombos
 {
     List<AnimationCombo> ComboList { get; }
 
-    void Setup(Entity entity);
     void UnlockCombo(ComboNames Name);
+    GameObject DisplayCombo();
+
 }

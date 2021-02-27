@@ -11,7 +11,7 @@ namespace UnityStandardAssets.Utility
 
         private void Awake()
         {
-            Invoke("DestroyNow", m_TimeOut);
+            Invoke(nameof(DestroyNow), m_TimeOut);
         }
 
 
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Utility
             {
                 transform.DetachChildren();
             }
-            DestroyObject(gameObject);
+            Destroy(gameObject);
         }
     }
 }
