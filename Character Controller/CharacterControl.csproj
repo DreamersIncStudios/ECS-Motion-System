@@ -77,6 +77,8 @@
     <Compile Include="Assets\Scripts\Motion System\Components\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Projectiles\ProjectileSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Command.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />
@@ -320,6 +322,9 @@
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
@@ -335,14 +340,11 @@
     <Reference Include="Unity.Burst.Cecil.Rocks">
       <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -722,10 +724,6 @@
     <ProjectReference Include="StandardAssets.csproj">
       <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
       <Name>StandardAssets</Name>
-    </ProjectReference>
-    <ProjectReference Include="Global.csproj">
-      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
-      <Name>Global</Name>
     </ProjectReference>
     <ProjectReference Include="AggressionandTargeting.csproj">
       <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>

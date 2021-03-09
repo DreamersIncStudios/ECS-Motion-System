@@ -6,9 +6,10 @@ namespace Core.SaveSystems
 {
     public interface ISave 
     {
-       SaveData Save();
+       SaveData GetSaveData();
 
         void Load( string jsonData);
+        void Save();
     }
     [System.Serializable]
     public class GameSaveData {
@@ -30,6 +31,8 @@ namespace Core.SaveSystems
         public uint PlayerLevel, CurHealth, MaxHealth, CurMana, MaxMana;
         public string CharacterName;
         public uint CharacterModelSelected; // Change to Enum later
+        public SaveData PlayerCombos;
+
     }
 
     public interface SaveData { }

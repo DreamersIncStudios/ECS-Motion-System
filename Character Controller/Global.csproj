@@ -59,20 +59,20 @@
     <Compile Include="Assets\Scripts\Global\Components\AITarget.cs" />
     <Compile Include="Assets\Scripts\Global\Components\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Global\Components\AITargetCreate.cs" />
-    <Compile Include="Assets\Scripts\Global\Components\Player_Control.cs" />
-    <Compile Include="Assets\Scripts\Global\UIManager.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Save\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\InputSettings.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Save\interfaces\ISave.cs" />
-    <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
-    <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\ControllerScheme.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\GameMaster.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\ButtonShift.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\Options Menu.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\SMT\SMTOptions.cs" />
+    <Compile Include="Assets\Scripts\Global\Components\Player_Control.cs" />
+    <Compile Include="Assets\Scripts\Global\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\Save\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\ButtonShift.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\InputSettings.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\Save\interfaces\ISave.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
+    <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Global\Scripts\ControllerScheme.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Global\Global.asmdef" />
@@ -316,6 +316,9 @@
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
@@ -331,14 +334,11 @@
     <Reference Include="Unity.Burst.Cecil.Rocks">
       <HintPath>Library\PackageCache\com.unity.burst@1.5.0-pre.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

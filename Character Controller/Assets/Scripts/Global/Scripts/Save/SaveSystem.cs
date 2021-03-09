@@ -9,7 +9,7 @@ namespace Core.SaveSystems
 {
     public class SaveSystem : MonoBehaviour
     {
-        GameSaveData gameData = new GameSaveData();
+       public GameSaveData gameData = new GameSaveData();
         [Serializable]
         public class SaveList
         {
@@ -49,17 +49,16 @@ namespace Core.SaveSystems
         public void SaveGame(int GameSave)
         {
             //Add inclusive true when upgrade to 2020 LTS
-            foreach (var persist in FindObjectsOfType<MonoBehaviour>().OfType<ISave>())
+            foreach (var persist in FindObjectsOfType<MonoBehaviour>(true))
             {
-                persist.Save();
+                persist.BroadcastMessage("Save");
             }
 
             GameMaster gm = GameMaster.Instance;
             gameData.GetGameMasterSaveData.PlayerChoice = gm.GetPlayerChoice;
             gameData.GetGameMasterSaveData.DayNumber = gm.DayNumber;
             gameData.LastSaveTime = DateTime.Now.ToString();
-            gm.ActiveSaveNumber = GameSave;
-
+           // gameData.GetCharacterSaveData.PlayerCombos = GameObject.FindGameObjectWithTag("Player").GetComponent<combo>
             using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath + $"/SaveGame{GameSave}.json"))
             {
                 var jsonGameData = JsonUtility.ToJson(gameData);

@@ -17,10 +17,13 @@ public class ComboComponentAuthoring : MonoBehaviour,IConvertGameObjectToEntity,
     {
         throw new System.NotImplementedException();
     }
-
-    public SaveData Save()
+    public void Save() {
+        SaveSystem.Instance.gameData.GetCharacterSaveData.PlayerCombos = GetSaveData();
+    
+    }
+    public SaveData GetSaveData()
     {
-        return Combo.Save();
+        return Combo.GetSaveData();
     }
 }
 public class ComboComponent : IComponentData

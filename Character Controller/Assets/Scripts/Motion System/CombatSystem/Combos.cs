@@ -4,7 +4,7 @@ using UnityEngine;
 using Dreamers.Global;
 using Core.SaveSystems;
 [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem")]
-public class Combos : ScriptableObject, ICombos, ISave
+public class Combos : ScriptableObject, ICombos
 {
     public List<AnimationCombo> _comboList;
     public List<AnimationCombo> ComboList { get { return _comboList; } }
@@ -99,7 +99,7 @@ public class Combos : ScriptableObject, ICombos, ISave
 
     }
     ComboSaveData ComboSave = new ComboSaveData();
-    public SaveData Save()
+    public SaveData GetSaveData()
     {
         ComboSave.SaveData = comboInfos;
         return ComboSave;

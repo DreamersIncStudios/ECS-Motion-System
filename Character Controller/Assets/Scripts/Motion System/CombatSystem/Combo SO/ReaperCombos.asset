@@ -36,7 +36,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
       y: Infinity
     AnimationEndTime: 0
     LightAttack:
-      Name: 1
+      Name: 0
       TriggeredAnimName: 9
       Unlocked: 1
       TransitionDuration: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargeHeavytAttack:
+    ChargedHeavyAttack:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -258,3 +258,4 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
+  ShowMovesPanel: 0
