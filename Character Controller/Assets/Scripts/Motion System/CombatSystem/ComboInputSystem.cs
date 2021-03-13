@@ -7,12 +7,11 @@ using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using System.Collections.Generic;
 
-
-
+using Unity.Transforms;
 
 public class ComboInputSystem : ComponentSystem
 {
-
+    EntityCommandBuffer commandBuffer;
     protected override void OnCreate()
     {
         base.OnCreate();
@@ -23,13 +22,15 @@ public class ComboInputSystem : ComponentSystem
     GameObject movespanel;
     protected override void OnUpdate()
     {
+        commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
+
         Entities.ForEach((ref Player_Control PC, ComboComponentAuthoring ComboList, Animator anim, Command handler) =>
         {
             if(handler.InputQueue == null)
                 handler.InputQueue = new Queue<AnimationTriggers>();
-
-            handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
+            if (PC.InSafeZone)
+                return;
+                       
             if (PC.DisplayCombos)
             {
                 ComboList.Combo.ShowMovesPanel = !ComboList.Combo.ShowMovesPanel;
@@ -90,14 +91,15 @@ public class ComboInputSystem : ComponentSystem
                                 }
                             }
                         }
-                        //projectile
+                     //   projectile
                         if (comboOption.Projectile.Unlocked)
                         {
                             if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
                                 if (PC.Projectile && handler.QueueIsEmpty)
                                 {
-                                    handler.InputQueue.Enqueue(comboOption.Projectile);
+                                      handler.InputQueue.Enqueue(comboOption.Projectile);
+
                                 }
                             }
                         }
@@ -106,22 +108,36 @@ public class ComboInputSystem : ComponentSystem
             }
         });
 
-        Entities.ForEach((Animator anim, Command handler) =>
+
+        Entities.ForEach(( ShooterComponent shoot, Animator anim, Command handler) =>
         {
+            handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
             if (handler.TakeInput)
-                {
-                    AnimationTriggers temp = handler.InputQueue.Dequeue();
-                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+            {
+                AnimationTriggers temp = handler.InputQueue.Dequeue();
 
+                anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+                // this need to move to animation event
+                if (temp.TriggeredAnimName == ComboAnimNames.projectile)
+                {
+                    LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootPointEntity];
+                   GameObject bullet = MonoBehaviour.Instantiate(shoot.ProjectileEntity,localToWorld.Position,localToWorld.Rotation);
+                    bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * shoot.NormalSpeed;
+                    Object.Destroy(bullet, 20);
+                    
                 }
 
-            if (handler.TransitionToLocomotion)
-            {
-                anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, 0.25f);
             }
-            
+            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion)
+            {
+               
+                anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+            }
+        
         });
+
+
 
     }
 }

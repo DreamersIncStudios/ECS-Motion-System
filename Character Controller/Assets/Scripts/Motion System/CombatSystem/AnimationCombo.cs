@@ -31,7 +31,7 @@ public enum ComboAnimNames { None, Grounded, Targeted_Locomation, Locomation_Gro
     Equip_Light, Equip_Heavy, Equip_LightCharged, Equip_HeavyCharged, Equip_Projectile,
     Light_Attack1, Light_Attack2, Light_Attack3, Light_Attack4, Light_Attack5, Light_Attack6,
     Heavy_Attack1, Heavy_Attack2, Heavy_Attack3, Heavy_Attack4, Heavy_Attack5, Heavy_Attack6
-        , Ground_attack02, Light_Attack1_Alt
+        , Ground_attack02, Light_Attack1_Alt, projectile
 }
 
 public enum ComboNames { 

@@ -120,3 +120,43 @@ The following packages were updated:
   com.unity.shadergraph from version 7.3.1 to 10.2.2
   com.unity.test-framework from version 1.1.19 to 1.1.20
   com.unity.textmeshpro from version 2.0.1 to 3.0.1
+
+=== Thu Mar 11 01:01:46 2021
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.7 to 2.0.5
+  com.unity.test-framework from version 1.1.22 to 1.1.20
+  com.unity.textmeshpro from version 3.0.3 to 3.0.1
+  com.unity.timeline from version 1.4.6 to 1.4.5
+The following packages were removed:
+  com.unity.burst@1.5.0-pre.3
+  com.unity.cinemachine@2.6.3
+  com.unity.collections@0.9.0-preview.6
+  com.unity.entities@0.17.0-preview.41
+  com.unity.rendering.hybrid@0.11.0-preview.42
+  com.unity.ext.nunit@1.0.6
+  com.unity.jobs@0.2.10-preview.12
+  com.unity.physics@0.6.0-preview.3
+  com.unity.platforms@0.4.0-preview.5
+  com.unity.probuilder@4.4.0
+  com.unity.progrids@3.0.3-preview.6
+  com.unity.scriptablebuildpipeline@1.14.1
+  com.unity.searcher@4.3.1
+  com.unity.settings-manager@1.0.3
+  com.unity.test-framework.performance@2.6.0-preview
+  com.unity.toolchain.win-x86_64-linux-x86_64@0.1.19-preview
+  nuget.mono-cecil@0.1.6-preview
+
+=== Thu Mar 11 20:02:48 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.5 to 2.0.7
+  com.unity.render-pipelines.high-definition from version 10.2.2 to 10.3.2
+  com.unity.test-framework from version 1.1.20 to 1.1.22
+  com.unity.timeline from version 1.4.5 to 1.4.6

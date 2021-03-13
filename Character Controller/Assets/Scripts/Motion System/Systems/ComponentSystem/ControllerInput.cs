@@ -43,7 +43,7 @@ namespace MotionSystem.System {
                 }
             }
 
-            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control, ref InSafeZoneTag safe) =>
+            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
                 bool m_Crouching = new bool();
                 if (Control.block)
@@ -57,7 +57,7 @@ namespace MotionSystem.System {
                     Control.V = CrossPlatformInputManager.GetAxis("Vertical");
                     m_Crouching = Input.GetKey(KeyCode.C);
 
-                    if (!safe.InZone) {
+                    if (!PCC.InSafeZone) {
                         if (!Control.Jump && Control.canInput && Control.IsGrounded && !Input.GetKey(InputSet.ActivateCADMenu))
                         {
                             Control.Jump = Input.GetKeyDown(InputSet.Jump);

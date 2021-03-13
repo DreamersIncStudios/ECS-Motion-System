@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ItemSystem;
-namespace Stats
+using Stats;
+using Unity.Entities;
+namespace ItemSystem
 {
     public class Equipment : MonoBehaviour
     {
@@ -83,5 +84,6 @@ namespace Stats
             Wpn.transform.localPosition = Sword.Position;
             Wpn.transform.localRotation = Quaternion.Euler(Sword.Rotation);
         }
+
     }
 }

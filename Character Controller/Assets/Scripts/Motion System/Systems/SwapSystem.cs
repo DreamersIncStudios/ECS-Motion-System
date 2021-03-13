@@ -47,7 +47,9 @@ namespace MotionSystem.System
         bool NotInTargetMode => Input.GetAxis("Target Trigger") <= 0.15f;
         protected override void OnUpdate()
         {
- 
+            if (!Swap)
+                return;
+            
                 if (Swap.PlayerIndex != index )
                 {
                     PostUpdateCommands.RemoveComponent<Player_Control>(Swap.Party[index]);

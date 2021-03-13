@@ -20,6 +20,8 @@ namespace MotionSystem.Components
             if (EntityEnter != Entity.Null)
             {
                 World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData<InSafeZoneTag>(EntityEnter, new InSafeZoneTag() { InZone = true });
+                World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(EntityEnter, new Player_Control() { InSafeZone = true });
+
             }
         }
         private void OnTriggerExit(Collider other)
@@ -32,6 +34,8 @@ namespace MotionSystem.Components
             if (EntityExit != Entity.Null)
             {
                 World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData<InSafeZoneTag>(EntityExit, new InSafeZoneTag() { InZone = false });
+                World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(EntityExit, new Player_Control() { InSafeZone = false });
+
             }
         }
     }
