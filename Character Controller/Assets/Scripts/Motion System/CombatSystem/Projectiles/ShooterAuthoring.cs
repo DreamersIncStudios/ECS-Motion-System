@@ -16,7 +16,7 @@ public class ShooterAuthoring : MonoBehaviour,IConvertGameObjectToEntity,IDeclar
     {
         
         ShootingData.ProjectileEntity = ProjectilePrefab.gameObject;
-        ShootingData.LastTimeShot = -1000f;
+        ShootingData.LastTimeShot = 0.0f;
         Entity point = dstManager.CreateEntity();
         dstManager.AddComponentObject(point, ShootPoint.transform); // Add child transform manually
         dstManager.AddComponentData(point, new Translation()); // Have to add all this stuff manually too
@@ -27,7 +27,7 @@ public class ShooterAuthoring : MonoBehaviour,IConvertGameObjectToEntity,IDeclar
         // - Only if you want the parent child relationship
         dstManager.AddComponentData(point, new Parent { Value = entity });
 
-        ShootingData.ShootPointEntity = point;
+        ShootingData.ShootFromHere = point;
 
         dstManager.AddComponentData(entity, ShootingData);
     }
@@ -42,16 +42,19 @@ public class ShooterAuthoring : MonoBehaviour,IConvertGameObjectToEntity,IDeclar
 
 [Serializable]
 public class ShooterComponent : IComponentData {
-    public float FiringRate;
-    public float BulletAmountPerShot;
+    public int RoundsPerMin;
+    public int RoundsPerShot;
+    [HideInInspector] public int RoundsLeftToSpawn;
+    public bool IsShooting => RoundsLeftToSpawn > 0;
+    [HideInInspector] public bool HasShotBeenCharge;
     public float NormalSpeed;
-    public float ChargedSpeed;
  
     public GameObject ProjectileEntity;
 
-    public Entity ShootPointEntity;
-    [NonSerialized]
-    public float LastTimeShot;
+    public Entity ShootFromHere;
+    public float3 Offset;
+   [HideInInspector] public float LastTimeShot;
+    public bool Wait => LastTimeShot > 0.0f;
 }
 
 [Serializable]

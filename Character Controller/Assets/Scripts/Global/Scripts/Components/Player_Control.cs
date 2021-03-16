@@ -10,8 +10,8 @@ public struct Player_Control : IComponentData {
     public bool Block => Input.GetKeyDown(InputSet.Block);
     public bool LightAttack => Input.GetKeyUp(InputSet.LightAttack);
     public bool HeavyAttack => Input.GetKeyUp(InputSet.HeavyAttack);
-    public bool ChargedLightAttack => Input.GetKey(InputSet.ChargedLightAttack); // change to time base later 
-    public bool ChargedHeavyAttack => Input.GetKey(InputSet.ChargedHeavyAttack); // change to time base later 
+    public bool ChargedLightAttack => Input.GetKey(InputSet.LightAttack); 
+    public bool ChargedHeavyAttack => Input.GetKey(InputSet.HeavyAttack); 
     public bool Projectile => Input.GetKeyUp(InputSet.Projectile);
     public bool ChargedProjectile => Input.GetKey(InputSet.Projectile);
 
@@ -30,10 +30,6 @@ public class ChargeSystem : ComponentSystem
         Entities.ForEach((ref Player_Control PC) => {
             if (PC.ChargedHeavyAttack || PC.ChargedLightAttack || PC.ChargedProjectile)
                 PC.ChargedTime += Time.DeltaTime;
-            if (PC.HeavyAttack || PC.LightAttack || PC.Projectile)
-                PC.ChargedTime = 0.0f;
-
-
         });
     }
 }

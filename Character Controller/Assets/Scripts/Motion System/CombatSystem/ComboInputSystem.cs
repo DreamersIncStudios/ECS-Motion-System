@@ -8,6 +8,7 @@ using Unity.Mathematics;
 using System.Collections.Generic;
 
 using Unity.Transforms;
+using System.Collections;
 
 public class ComboInputSystem : ComponentSystem
 {
@@ -26,11 +27,11 @@ public class ComboInputSystem : ComponentSystem
 
         Entities.ForEach((ref Player_Control PC, ComboComponentAuthoring ComboList, Animator anim, Command handler) =>
         {
-            if(handler.InputQueue == null)
+            if (handler.InputQueue == null)
                 handler.InputQueue = new Queue<AnimationTriggers>();
             if (PC.InSafeZone)
                 return;
-                       
+
             if (PC.DisplayCombos)
             {
                 ComboList.Combo.ShowMovesPanel = !ComboList.Combo.ShowMovesPanel;
@@ -55,6 +56,7 @@ public class ComboInputSystem : ComponentSystem
                                 if (PC.LightAttack && handler.QueueIsEmpty)
                                 {
                                     handler.InputQueue.Enqueue(comboOption.LightAttack);
+                                    PC.ChargedTime = 0.0f;
                                 }
                             }
                         }
@@ -66,6 +68,8 @@ public class ComboInputSystem : ComponentSystem
                                 if (PC.HeavyAttack && handler.QueueIsEmpty)
                                 {
                                     handler.InputQueue.Enqueue(comboOption.HeavyAttack);
+                                    PC.ChargedTime = 0.0f;
+
                                 }
                             }
                         }
@@ -77,29 +81,26 @@ public class ComboInputSystem : ComponentSystem
                                 if (PC.ChargedLightAttack && handler.QueueIsEmpty)
                                 {
                                     handler.InputQueue.Enqueue(comboOption.ChargedLightAttack);
+                                    PC.ChargedTime = 0.0f;
+
                                 }
                             }
                         }
-                        //Charge Heavy
-                        if (comboOption.ChargedHeavyAttack.Unlocked)
-                        {
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
-                            {
-                                if (PC.ChargedHeavyAttack && handler.QueueIsEmpty)
-                                {
-                                    handler.InputQueue.Enqueue(comboOption.ChargedHeavyAttack);
-                                }
-                            }
-                        }
-                     //   projectile
+
+                        //   projectile
                         if (comboOption.Projectile.Unlocked)
                         {
                             if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (PC.Projectile && handler.QueueIsEmpty)
+                                if (PC.Projectile && handler.QueueIsEmpty && !PC.Charged)
                                 {
-                                      handler.InputQueue.Enqueue(comboOption.Projectile);
-
+                                    handler.InputQueue.Enqueue(comboOption.Projectile);
+                                    PC.ChargedTime = 0.0f;
+                                }
+                                if (PC.Projectile && handler.QueueIsEmpty && PC.Charged)
+                                {
+                                    handler.InputQueue.Enqueue(comboOption.ChargedProjectile);
+                                    PC.ChargedTime = 0.0f;
                                 }
                             }
                         }
@@ -109,7 +110,7 @@ public class ComboInputSystem : ComponentSystem
         });
 
 
-        Entities.ForEach(( ShooterComponent shoot, Animator anim, Command handler) =>
+        Entities.ForEach((ShooterComponent shoot, Animator anim, Command handler) =>
         {
             handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -119,25 +120,35 @@ public class ComboInputSystem : ComponentSystem
 
                 anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
-                if (temp.TriggeredAnimName == ComboAnimNames.projectile)
+                if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
                 {
-                    LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootPointEntity];
-                   GameObject bullet = MonoBehaviour.Instantiate(shoot.ProjectileEntity,localToWorld.Position,localToWorld.Rotation);
-                    bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * shoot.NormalSpeed;
-                    Object.Destroy(bullet, 20);
-                    
+                    LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
+                    //  SpawnBullets(shoot.ProjectileEntity, localToWorld.Position, localToWorld.Rotation, shoot.NormalSpeed, shoot.FiringRate, shoot.BulletAmountPerShot);
+                  if(!shoot.IsShooting)
+                    shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+
                 }
+                if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
+                {
+                    if (!shoot.IsShooting)
+                    {
+                        shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+                        shoot.HasShotBeenCharge = true;
+                    }
+                }
+
 
             }
             if (!anim.IsInTransition(0) && handler.TransitionToLocomotion)
             {
-               
+
                 anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
             }
-        
+
         });
 
 
 
     }
+
 }

@@ -68,7 +68,7 @@ namespace MotionSystem.Archetypes
                 var playerparty = new PlayerParty() { };
                 dstManager.AddComponentData(entity, playerparty);
             }
-            dstManager.AddComponent<InSafeZoneTag>(entity);
+          //  dstManager.AddComponent<InSafeZoneTag>(entity); 
 
             Col = this.GetComponent<CapsuleCollider>();
             var control = new CharControllerE() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,

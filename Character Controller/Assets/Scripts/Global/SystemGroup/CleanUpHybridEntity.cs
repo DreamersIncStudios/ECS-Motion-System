@@ -12,7 +12,7 @@ namespace Utilities.ECS
         protected override void OnUpdate()
         {
 
-            Entities.ForEach((Entity entity, ref Destroytag tag) =>
+            Entities.ForEach((Entity entity, ref DestroyTag tag) =>
             {
                 PostUpdateCommands.DestroyEntity(entity);
             });
@@ -20,7 +20,4 @@ namespace Utilities.ECS
 
     }
 
-    public struct Destroytag : IComponentData {
-        public float delay;
-    }
 }

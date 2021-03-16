@@ -2,23 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
-public class Spawnable : MonoBehaviour,IConvertGameObjectToEntity
+using Unity.Transforms;
+public class Spawnable : MonoBehaviour, IConvertGameObjectToEntity
 {
     [HideInInspector] public Entity reference;
+ 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
         reference = entity;
+        dstManager.AddComponentData(entity, new CopyTransformFromGameObject()); // Or CopyTransformToGameObject - Only if you need to sync transforms
+        
+    }
+    EntityManager MGR;
+    public void Start() { 
+         MGR = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+    }
+    void Update()
+    {
+        if (!MGR.Exists(reference))
+            Destroy(this.gameObject);
+
+
     }
 
     public void OnDestroy()
     {
-        EntityManager mgr = World.DefaultGameObjectInjectionWorld.EntityManager;
-        mgr.AddComponent<DestroyTag>(reference);
-    }
+       if (MGR.Exists(reference))
+        MGR.AddComponent<DestroyTag>(reference);
 
-    public struct DestroyTag : IComponentData
-    {
-       
     }
+}
+public class Destoy : ComponentSystem
+{
+    protected override void OnUpdate()
+    {
+        Entities.ForEach((Spawnable spawn) =>
+        {
+            if (GetComponentDataFromEntity<DestroyTag>(true).HasComponent(spawn.reference) && spawn.gameObject)
+                Object.Destroy(spawn.gameObject);
+        });
+    }
+}
+
+
+public struct DestroyTag : IComponentData
+{
 
 }
+
+

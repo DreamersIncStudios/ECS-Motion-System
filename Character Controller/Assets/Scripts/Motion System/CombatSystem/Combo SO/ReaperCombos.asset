@@ -48,6 +48,12 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+    ChargedProjectile:
+      Name: 0
+      TriggeredAnimName: 24
+      Unlocked: 1
+      TransitionDuration: 0
+      StartOffset: 0
   - CurremtStateName: 2
     NormalizedInputTime:
       x: 0
@@ -81,6 +87,12 @@ MonoBehaviour:
       Name: 0
       TriggeredAnimName: 23
       Unlocked: 1
+      TransitionDuration: 0
+      StartOffset: 0
+    ChargedProjectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
   - CurremtStateName: 3
@@ -118,6 +130,12 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+    ChargedProjectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
+      TransitionDuration: 0
+      StartOffset: 0
   - CurremtStateName: 9
     NormalizedInputTime:
       x: 0.2
@@ -148,6 +166,12 @@ MonoBehaviour:
       TransitionDuration: 0
       StartOffset: 0
     Projectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
+      TransitionDuration: 0
+      StartOffset: 0
+    ChargedProjectile:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
@@ -188,6 +212,12 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
+    ChargedProjectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
+      TransitionDuration: 0
+      StartOffset: 0
   - CurremtStateName: 11
     NormalizedInputTime:
       x: 0.15
@@ -223,6 +253,12 @@ MonoBehaviour:
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
+    ChargedProjectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
+      TransitionDuration: 0
+      StartOffset: 0
   - CurremtStateName: 15
     NormalizedInputTime:
       x: 0.15
@@ -253,6 +289,12 @@ MonoBehaviour:
       TransitionDuration: 0
       StartOffset: 0
     Projectile:
+      Name: 0
+      TriggeredAnimName: 0
+      Unlocked: 0
+      TransitionDuration: 0
+      StartOffset: 0
+    ChargedProjectile:
       Name: 0
       TriggeredAnimName: 0
       Unlocked: 0
