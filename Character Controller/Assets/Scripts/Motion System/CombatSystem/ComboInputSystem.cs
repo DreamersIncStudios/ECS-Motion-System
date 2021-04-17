@@ -6,7 +6,7 @@ using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using System.Collections.Generic;
-
+using Dreamers.InventorySystem;
 using Unity.Transforms;
 using System.Collections;
 
@@ -123,7 +123,6 @@ public class ComboInputSystem : ComponentSystem
                 if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
                 {
                     LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
-                    //  SpawnBullets(shoot.ProjectileEntity, localToWorld.Position, localToWorld.Rotation, shoot.NormalSpeed, shoot.FiringRate, shoot.BulletAmountPerShot);
                   if(!shoot.IsShooting)
                     shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
 

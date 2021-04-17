@@ -6,7 +6,7 @@ using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
 using ControllerSwap;
-using ItemSystem;
+using Dreamers.InventorySystem;
 //need to rewrite for Unity physics  
 
 namespace MotionSystem.System.AnimatorIK
@@ -41,8 +41,9 @@ namespace MotionSystem.System.AnimatorIK
         Quaternion LeftFootRot { get { return anim.GetBoneTransform(HumanBodyBones.LeftFoot).transform.localRotation; } }
         Quaternion RightFootRot { get { return anim.GetBoneTransform(HumanBodyBones.RightFoot).transform.localRotation; } }
 
-        public Vector3 HandPos { get { return GetComponent<Equipment>().Sword.MatchTargetHand.position; } }// get data from Equipment system
-        public Quaternion HandRot { get {return GetComponent<Equipment>().Sword.MatchTargetHand.rotation; } } // get data from Equipment system
+        //rewrite hand IK
+       // public Vector3 HandPos { get { return GetComponent<CharacterInventory>().Equipment.EquippedWeapons[WeaponSlot.Primary].MatchTargetHand.position; } }// get data from Equipment system
+      //  public Quaternion HandRot { get {return GetComponent<Equipment>().Sword.MatchTargetHand.rotation; } } // get data from Equipment system
         private void Update()
         {
 

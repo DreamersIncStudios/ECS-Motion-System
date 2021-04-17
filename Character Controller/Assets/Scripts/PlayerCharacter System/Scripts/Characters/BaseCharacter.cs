@@ -75,7 +75,7 @@ namespace Stats
         }
 
 
-        public Entity selfEntityRef { get; private set; }
+        public Entity selfEntityRef;
         public DynamicBuffer<EffectStatusBuffer> StatusBuffers;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
@@ -83,7 +83,6 @@ namespace Stats
             var data = new PlayerStatComponent() {  MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana };
             dstManager.AddComponentData(entity, data);
             dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
-            dstManager.AddBuffer<ChangeVitalBuffer>(entity);
             StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
             StatUpdate();
            
@@ -295,80 +294,7 @@ namespace Stats
 
 
 
-        //public void AdjustHealth(int adj)
-        //{
-        //    CurHealth += adj;
-        //    if (CurHealth < 0) { CurHealth = 0; }
-        //    if (CurHealth > MaxHealth) { CurHealth = MaxHealth; }
-
-        //}
-        //public void AdjustMana(int adj)
-        //{
-        //    CurMana += adj;
-        //    if (CurMana < 0) { CurMana = 0; }
-        //    if (CurMana > MaxMana) { CurMana = MaxMana; }
-
-        //}
-        public void IncreaseHealth(int Change, uint Iterations, float Frequency)
-        {
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<ChangeVitalBuffer>(selfEntityRef).Add(new ChangeVitalBuffer()
-            { recover = new VitalChange()
-            { type = VitalType.Health,
-                Increase = true,
-                value = Change,
-                Frequency = Frequency,
-                Iterations = Iterations
-            } }) ;
-        }
-
-        public void IncreaseMana(int Change, uint Iterations, float Frequency)
-        {
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<ChangeVitalBuffer>(selfEntityRef).Add(new ChangeVitalBuffer()
-            {
-                recover = new VitalChange()
-                {
-                    type = VitalType.Mana,
-                    Increase = true,
-                    value = Change,
-                    Frequency = Frequency,
-                    Iterations = Iterations
-                }
-            });
-        }
-        public void DecreaseHealth(int Change, uint Iterations, float Frequency)
-        {
-            if (InvincibleMode)
-                return;
-
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<ChangeVitalBuffer>(selfEntityRef).Add(new ChangeVitalBuffer()
-            {
-
-                recover = new VitalChange()
-                {
-                    type = VitalType.Health,
-                    Increase = false,
-                    value = Change,
-                    Frequency = Frequency,
-                    Iterations = Iterations
-                }
-            });
-        }
-
-        public void DecreaseMana(int Change, uint Iterations, float Frequency)
-        {
-
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<ChangeVitalBuffer>(selfEntityRef).Add(new ChangeVitalBuffer()
-            {
-                recover = new VitalChange()
-                {
-                    type = VitalType.Mana,
-                    Increase = false,
-                    value = Change,
-                    Frequency = Frequency,
-                    Iterations = Iterations
-                }
-            });
-        }
+     
         public void OnDeath(float deathDelay)
         {
             if (!death)

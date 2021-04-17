@@ -56,34 +56,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Test.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\IArmor.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Movement.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\IThrow.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Object Pooliing\ObjPoolingProj.cs" />
     <Compile Include="Assets\Scripts\Other Code\Sample Game Code\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\ItemDatabase.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Equipment.cs" />
     <Compile Include="Assets\Scripts\Other Code\Sample Game Code\EnemySetup.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\ICuratives.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Items SO\Armor.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\weaponTag.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Items SO\Weapon.cs" />
     <Compile Include="Assets\Scripts\Other Code\DissolveSingle.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Inventory.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\IWeapon.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\ScriptableObjectUtility.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Items SO\ConjuredWeapon.cs" />
     <Compile Include="Assets\Scripts\Other Code\Sample Game Code\CharacterSetup.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\IBaseItem.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Interfaces\DamageStatsMods.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Items SO\BaseItem.cs" />
     <Compile Include="Assets\Scripts\Other Code\Sample Game Code\PlayerSetup.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\ECS Components\DirectThrowComponent.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\EntityConversionComponent.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Item Interfaces.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\TransfomSync.cs" />
-    <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\Item System\Item System\Editor\Editor Scripts.cs" />
     <Compile Include="Assets\Scripts\Other Code\Scripts to be designed\StandardScreenUI.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -717,6 +697,10 @@
     <ProjectReference Include="PlayerCharacterSystem.csproj">
       <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
       <Name>PlayerCharacterSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
+      <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
+      <Name>Unity.Transforms.Hybrid</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

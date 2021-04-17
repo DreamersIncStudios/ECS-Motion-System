@@ -10,7 +10,7 @@ Material:
   m_Name: Scythe Dissolve
   m_Shader: {fileID: -6465566751694194690, guid: 87af27c819098f043913ab6222c7d520,
     type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON _DEPTHOFFSET_ON _DISABLE_SSR_TRANSPARENT
+  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON _DEPTHOFFSET_ON _DISABLE_SSR _DISABLE_SSR_TRANSPARENT
     _DOUBLESIDED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -133,12 +133,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Dissolve: 0.045
+    - Dissolve: 0
     - Light: 1000000
     - Vector1_1d0052a403ec4f2b86b90635915b6001: 0.01
     - Vector1_44889225: 100
     - Vector1_51c5338754e74a769cdffb97eecbc35f: 1
-    - Vector1_6693dd922f86473db24875969c453191: 75
+    - Vector1_6693dd922f86473db24875969c453191: 794
     - Vector1_733B8957: 0.0445
     - Vector1_923b5440014c48fe8ec4bf5510f8b605: 100000
     - Vector1_E4B179B6: 0
@@ -223,7 +223,7 @@ Material:
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
     - _RayTracing: 0
-    - _ReceivesSSR: 1
+    - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
     - _RenderQueueType: 1
@@ -237,10 +237,10 @@ Material:
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
     - _StencilRef: 0
-    - _StencilRefDepth: 8
+    - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 4
-    - _StencilRefGBuffer: 10
-    - _StencilRefMV: 40
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskDistortionVec: 4
@@ -264,7 +264,7 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
-    - _UseShadowThreshold: 0
+    - _UseShadowThreshold: 1
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 3
     - _ZTestModeDistortion: 8
@@ -272,7 +272,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_55473AAD: {r: 1.968627, g: 0.44319868, b: 1.4560263, a: 0}
-    - Color_75ddc6f2d99943abbba63a44825c7fce: {r: 0.006026745, g: 0, b: 1, a: 1}
+    - Color_75ddc6f2d99943abbba63a44825c7fce: {r: 1.7176471, g: 0, b: 2, a: 1}
     - Color_ace1d743f71c473690218e7ef8f9983a: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 [GenerateAuthoringComponent]
 public struct Player_Control : IComponentData {
-    public ControllerScheme InputSet => Core.GameMaster.Instance.InputSettings.UserScheme;
+    public ControllerScheme InputSet =>Core.GameMaster.Instance.InputSettings.UserScheme;
     public bool Jump => Input.GetKeyUp(InputSet.Jump);
     public bool DisplayCombos => Input.GetKeyUp(KeyCode.JoystickButton7);
     public bool Block => Input.GetKeyDown(InputSet.Block);

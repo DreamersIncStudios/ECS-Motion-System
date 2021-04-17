@@ -841,6 +841,18 @@
       <Project>{DF5D5D66-FD4E-3A21-749A-9E92DFB7ED9C}</Project>
       <Name>Unity.ScriptableBuildPipeline</Name>
     </ProjectReference>
+    <ProjectReference Include="InventorySystem.csproj">
+      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
+      <Name>InventorySystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="CoreSystems.csproj">
+      <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
+      <Name>CoreSystems</Name>
+    </ProjectReference>
+    <ProjectReference Include="Global.csproj">
+      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

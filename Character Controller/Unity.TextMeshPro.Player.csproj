@@ -76,8 +76,8 @@
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_Sprite.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_TextInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_RichTextTagsCommon.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_ColorGradient.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_PackageResourceImporter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_ColorGradient.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_Settings.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMPro_EventManager.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Runtime\TMP_SubMeshUI.cs" />
