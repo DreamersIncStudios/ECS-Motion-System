@@ -16,7 +16,6 @@ namespace Dreamers.InventorySystem
 
         #region Variable
         public GameObject ProjectilePrefab; //Move to SO later
-        public GameObject ShootPoint; // may have to make this in code?????
 
         [SerializeField] int roundsPerMin;
 

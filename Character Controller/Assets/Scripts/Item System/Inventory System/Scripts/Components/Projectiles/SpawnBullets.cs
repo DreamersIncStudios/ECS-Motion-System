@@ -11,7 +11,7 @@ public class SpawnBullets : ComponentSystem
   
  protected override void OnUpdate()
     {
-        Entities.ForEach(( ShooterComponent shoot) => {
+        Entities.ForEach((  ShooterComponent shoot) => {
             if (shoot.Wait)
             {
                 shoot.LastTimeShot -= Time.DeltaTime;
@@ -20,7 +20,7 @@ public class SpawnBullets : ComponentSystem
             
             if (shoot.RoundsLeftToSpawn > 0 ) {
                 LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
-                GameObject bullet = Object.Instantiate(shoot.ProjectileGameObject, localToWorld.Position+shoot.Offset, localToWorld.Rotation);
+                GameObject bullet = Object.Instantiate(shoot.ProjectileGameObject, localToWorld.Position+ (localToWorld.Forward* shoot.Offset), localToWorld.Rotation);
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * shoot.NormalSpeed;
                 if (shoot.HasShotBeenCharge) {
                     bullet.transform.localScale *= 3;

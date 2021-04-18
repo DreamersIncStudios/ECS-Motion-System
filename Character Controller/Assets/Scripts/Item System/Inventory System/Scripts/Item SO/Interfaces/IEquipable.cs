@@ -11,9 +11,8 @@ namespace Dreamers.InventorySystem.Interfaces
          bool EquipToHuman { get; }
         HumanBodyBones EquipBone { get; }
        List<StatModifier> Modifiers { get; } // consider adding a set for levelUp equippment?
-
-        
     }
+
 
     public enum EquipmentType
     {

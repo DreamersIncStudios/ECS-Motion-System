@@ -154,9 +154,9 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\UnityTestProtocol\UtpDebuglogger.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\EditModePCHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\Callbacks\WindowResultUpdater.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\Api\ExecutionSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestLaunchers\PlaymodeLauncher.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\GUI\Views\EditModeTestListGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\Api\ExecutionSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\UnityTestProtocol\TestPlanMessage.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\EditmodeWorkItemFactory.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\GUI\TestRunnerUIFilter.cs" />
@@ -206,8 +206,8 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\UnityTestProtocol\TestState.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestLaunchers\PlatformSetup\XboxOnePlatformSetup.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\CommandLineTest\TestStarter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\Callbacks\TestRunnerCallback.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\GUI\TestListBuilder\RenderingOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\Callbacks\TestRunnerCallback.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\UnityTestProtocol\IUtpMessageReporter.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\TestRunner\Utils\TestListCacheData.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.22\UnityEditor.TestRunner\CommandLineTest\RunSettings.cs" />

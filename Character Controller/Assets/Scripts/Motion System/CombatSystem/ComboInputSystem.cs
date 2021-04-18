@@ -120,11 +120,13 @@ public class ComboInputSystem : ComponentSystem
 
                 anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
+              
+
                 if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
                 {
                     LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
-                  if(!shoot.IsShooting)
-                    shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+                    if (!shoot.IsShooting)
+                        shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
 
                 }
                 if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
@@ -146,6 +148,28 @@ public class ComboInputSystem : ComponentSystem
 
         });
 
+
+        
+        Entities.WithNone<ShooterComponent>().ForEach((Animator anim, Command handler) =>
+        {
+            handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+            if (handler.TakeInput)
+            {
+                AnimationTriggers temp = handler.InputQueue.Dequeue();
+
+                anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+                // this need to move to animation event
+              
+
+            }
+            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion)
+            {
+
+                anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+            }
+
+        });
 
 
     }

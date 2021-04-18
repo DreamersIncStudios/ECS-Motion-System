@@ -14,11 +14,14 @@ namespace VisualEffect
         private void Awake()
         {
             DissolveInstance = this.GetComponent<Renderer>().material;
-            Anim = GetComponentInParent<Animator>();
             WeaponTrail = this.GetComponentInChildren<TrailRenderer>();
 
         }
+        private void Start()
+        {
+            Anim = GetComponentInParent<Animator>();
 
+        }
         // Update is called once per frame
         void Update()
         {

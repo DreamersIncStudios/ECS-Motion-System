@@ -189,9 +189,9 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\Settings\FrameSettings.Migration.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\GlobalPostProcessingQualitySettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\Reflection\PlanarReflectionProbe.Migration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\Camera\HDCameraFrameHistoryType.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\ShaderLibrary\ShaderVariablesGlobal.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\Shadow\AdditionalShadowData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\Camera\HDCameraFrameHistoryType.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\PostProcessing\Components\LensDistortion.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Material\SphericalCapPivot\PivotData.GGX.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\AtmosphericScattering\ExponentialFog.cs" />
@@ -254,10 +254,10 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\RenderPass\DrawRenderersCustomPass.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\CullingGroupManager.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Material\DiffusionProfile\DiffusionProfileSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\Shadow\ScreenSpaceShadowManager.RenderGraph.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\LightUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\RenderPass\AOV\AOVRequest.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Material\Fabric\IBLFilterCharlie.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\Shadow\ScreenSpaceShadowManager.RenderGraph.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\RenderPipeline\Raytracing\HDDiffuseDenoiser.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Sky\StaticLightingSky.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@10.3.2\Runtime\Lighting\Reflection\Volume\ProxyVolume.cs" />

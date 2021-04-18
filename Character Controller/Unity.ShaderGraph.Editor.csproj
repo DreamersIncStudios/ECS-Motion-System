@@ -122,8 +122,8 @@
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Graphs\Vector4ShaderProperty.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Interfaces\IMayRequireScreenPosition.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Graphs\MinimalGraphData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Input\Scene\FogNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Utility\Logic\IsInfiniteNode.cs" />
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Input\Scene\FogNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Drawing\Inspector\InspectorView.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Graphs\StickyNoteData.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Math\Trigonometry\CosineNode.cs" />
@@ -322,11 +322,11 @@
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Drawing\Manipulators\WindowDraggable.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Drawing\Controls\IControlAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Generation\Processors\ShaderGeneratorNames.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Util\StackPool.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Drawing\MaterialGraphPreviewGenerator.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Attributes\ContextFilterableAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Util\StackPool.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Math\Trigonometry\HyperbolicTangentNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Util\KeywordDependentCollection.cs" />
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Drawing\MaterialGraphPreviewGenerator.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Math\Trigonometry\ArctangentNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Graphs\AbstractMaterialGraphAsset.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.3.2\Editor\Data\Nodes\Channel\CombineNode.cs" />

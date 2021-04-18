@@ -5,6 +5,7 @@ namespace Dreamers.InventorySystem
 {
     public interface IWeapon
     {
+        HumanBodyBones HeldBone { get; }
         WeaponType WeaponType { get; }
         WeaponSlot Slot { get; }
         float MaxDurability { get; }
@@ -14,6 +15,11 @@ namespace Dreamers.InventorySystem
         int SkillPoints { get; set; }
         int Exprience { get; set; }
 
+        Vector3 SheathedPos { get; }
+        Vector3 HeldPos { get; }
+
+        Vector3 SheathedRot { get; }
+        Vector3 HeldRot { get; }
         //List skills SOs
     }
     public enum WeaponType { 
