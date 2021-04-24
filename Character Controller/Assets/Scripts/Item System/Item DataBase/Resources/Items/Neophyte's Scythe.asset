@@ -22,9 +22,9 @@ MonoBehaviour:
   _questItem: 0
   quality: 0
   _model: {fileID: 4086121578898055948, guid: b572c85218b37744b96a187d4602a36a, type: 3}
-  _equipToHuman: 1
-  _heldBone: 18
-  _equipBone: 7
+  _equipToHuman: 0
+  _heldBone: 7
+  _equipBone: 18
   _modifiers:
   - Stat: 1
     BuffValue: 10
@@ -40,7 +40,7 @@ MonoBehaviour:
   maxDurable: 100000
   breakable: 0
   _upgradeable: 1
-  _sheathedPos: {x: -0.3, y: 1, z: -6.1}
-  _sheathedRot: {x: 10, y: -50, z: -30}
+  _sheathedPos: {x: -0.25, y: 0.25, z: 0.2}
   _heldPos: {x: 0, y: 0, z: 0}
+  _sheathedRot: {x: -30, y: -75, z: 150}
   _heldRot: {x: 0, y: 0, z: 0}

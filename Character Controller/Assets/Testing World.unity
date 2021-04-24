@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1659.5967, g: 1843.6672, b: 2580.3433, a: 1}
+  m_IndirectSpecularColor: {r: 1669.2151, g: 1860.5818, b: 2619.6423, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -651,9 +651,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 285353909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f7498729fc69d47932bb59082816e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Base:
+    StoreName: 'Jesticle''s Odds ~N~ Ends '
+    StoreInventory:
+      ItemsInInventory: []
+      MaxInventorySize: 5
+    CharacterInventory: {fileID: 0}
+    Sell: 0
+    Buy: 0
+  player: {fileID: 0}
 --- !u!65 &285353912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -665,8 +674,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 1.6123888, z: 7}
-  m_Center: {x: 0, y: 0.30619442, z: 1.5}
+  m_Size: {x: 10, y: 1.6123888, z: 10}
+  m_Center: {x: 2.75, y: 0.30619442, z: 2.55}
 --- !u!65 &285353913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1847,6 +1856,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
         type: 3}
+      propertyPath: Save.EquippedArmors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
+      propertyPath: Save.EquippedWeapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
+      propertyPath: Save.EquippedArmors.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1570f87a4daa73449b19f524906d9f5f,
+        type: 2}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
+      propertyPath: Save.EquippedArmors.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: defbe74f21f853f46b55eb48e670f46d,
+        type: 2}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
+      propertyPath: Save.EquippedArmors.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6da72a949f5f2b4448689132018a5fd4,
+        type: 2}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
+      propertyPath: Save.EquippedWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 50da1fbcb683d264ea4ebaa5b25ada0a,
+        type: 2}
+    - target: {fileID: 1556969936368274279, guid: 1dc8817407c3d5c4780cc343866191e5,
+        type: 3}
       propertyPath: Inventory.ItemsInInventory.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -2373,9 +2416,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 919032697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f7498729fc69d47932bb59082816e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Base:
+    StoreName: 'Slinky''s Hardware '
+    StoreInventory:
+      ItemsInInventory: []
+      MaxInventorySize: 5
+    CharacterInventory: {fileID: 0}
+    Sell: 0
+    Buy: 0
+  player: {fileID: 0}
 --- !u!65 &919032700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2387,8 +2439,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 1.6123888, z: 7}
-  m_Center: {x: 1, y: 0.30619442, z: 1.5}
+  m_Size: {x: 10, y: 1.6123888, z: 10}
+  m_Center: {x: 2.75, y: 0.30619442, z: 2.55}
 --- !u!65 &919032701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2896,9 +2948,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225065138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f7498729fc69d47932bb59082816e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Base:
+    StoreName: The Item Store
+    StoreInventory:
+      ItemsInInventory: []
+      MaxInventorySize: 5
+    CharacterInventory: {fileID: 0}
+    Sell: 0
+    Buy: 0
+  player: {fileID: 0}
 --- !u!65 &1225065141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2910,8 +2971,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 1.6123888, z: 7}
-  m_Center: {x: 1, y: 0.30619442, z: 1.5}
+  m_Size: {x: 10, y: 1.6123888, z: 10}
+  m_Center: {x: 2.75, y: 0.30619442, z: 2.55}
 --- !u!65 &1225065142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3166,9 +3227,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326314441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f7498729fc69d47932bb59082816e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Base:
+    StoreName: Armor Store
+    StoreInventory:
+      ItemsInInventory: []
+      MaxInventorySize: 5
+    CharacterInventory: {fileID: 0}
+    Sell: 0
+    Buy: 0
+  player: {fileID: 0}
 --- !u!65 &1326314444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3180,8 +3250,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 1.6123888, z: 7}
-  m_Center: {x: 0, y: 0.30619442, z: 1.5}
+  m_Size: {x: 10, y: 1.6123888, z: 10}
+  m_Center: {x: 2.75, y: 0.30619442, z: 2.55}
 --- !u!65 &1326314445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5097,12 +5167,12 @@ PrefabInstance:
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.024731817
+      value: -0.02473183
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0012272901
+      value: -0.0012272906
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}

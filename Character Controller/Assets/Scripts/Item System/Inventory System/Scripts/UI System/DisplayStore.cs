@@ -12,7 +12,7 @@ namespace Dreamers.InventorySystem.UISystem
         public bool Displayed { get { return (bool)MenuPanelParent; } }
         bool Buying=true;
         GameObject MenuPanelParent { get; set; }
-        private InventoryBase PlayerInventory => GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInventory>().Inventory;
+        private InventoryBase PlayerInventory => Store.CharacterInventory.Inventory;
         private StoreBase Store;
         public DisplayStore(StoreBase storeBase) {
             Manager = UIManager.instance;
@@ -41,7 +41,7 @@ namespace Dreamers.InventorySystem.UISystem
             VerticalLayoutGroup VLG = MainPanel.AddComponent<VerticalLayoutGroup>();
             VLG.padding = new RectOffset() { bottom = 20, top = 20, left = 20, right = 20 };
             VLG.childAlignment = TextAnchor.UpperCenter;
-            VLG.childControlHeight = true; VLG.childControlWidth = false;
+            VLG.childControlHeight = true; VLG.childControlWidth = true;
             VLG.childForceExpandHeight = false; VLG.childForceExpandWidth = true;
 
             Text titleGO = Manager.TextBox(MainPanel.transform, new Vector2(400, 50)).GetComponent<Text>();
@@ -93,6 +93,7 @@ namespace Dreamers.InventorySystem.UISystem
             }
             #endregion
 
+            playerGold = DisplayPlayerGold(MainPanel.transform);
             ItemPanel = DisplayItems(ItemType.None, MainPanel.transform);
             return MainPanel;
         }
@@ -202,13 +203,17 @@ namespace Dreamers.InventorySystem.UISystem
                         Buy1.onClick.AddListener(() =>
                         {
                             Store.BuyItemFrom(Slot);
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
+
                             Object.Destroy(PopUp);
 
                         });
                         Buy5.onClick.AddListener(() =>
                         {
                             Store.BuyXItemsFrom(Slot, 5);
-
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
                             Object.Destroy(PopUp);
 
                         });
@@ -219,6 +224,8 @@ namespace Dreamers.InventorySystem.UISystem
                         Button Buy = Manager.UIButton(ButtonPanel.transform, "Buy");
                         Buy.onClick.AddListener(() =>
                         {
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
                             Store.BuyItemFrom(Slot);
                             Object.Destroy(PopUp);
                         });
@@ -239,13 +246,16 @@ namespace Dreamers.InventorySystem.UISystem
                         {
                             Store.SellItemTo(Slot,IndexOf);
                             Object.Destroy(PopUp);
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
 
                         });
                         Sell5.onClick.AddListener(() =>
                         {
                             Store.SellxItemsTo(Slot,IndexOf,5);
                             ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
-
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
                             Object.Destroy(PopUp);
 
                         });
@@ -256,7 +266,10 @@ namespace Dreamers.InventorySystem.UISystem
                         Button Sell= Manager.UIButton(ButtonPanel.transform, "sell");
                        Sell.onClick.AddListener(() =>
                         {
+
                             Store.SellItemTo(Slot,IndexOf);
+                            ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
+                            playerGold = DisplayPlayerGold(MenuPanelParent.transform);
                             ItemPanel = DisplayItems(ItemType.None, MenuPanelParent.transform);
                             Object.Destroy(PopUp);
                         });
@@ -266,6 +279,21 @@ namespace Dreamers.InventorySystem.UISystem
             }
             return PopUp;
         }
+
+        GameObject playerGold;
+        GameObject DisplayPlayerGold( Transform MainPanel) 
+        {
+
+            if (playerGold)
+                Object.Destroy(playerGold);
+        
+            Text goldInWallet = Manager.TextBox(MainPanel, new Vector2(400, 50)).GetComponent<Text>();
+            goldInWallet.alignment = TextAnchor.LowerRight;
+            goldInWallet.text = Store.CharacterInventory.Gold.ToString()+ "G";
+            goldInWallet.fontSize = 16;
+            return playerGold;
+        }
+    
     }
 
 }

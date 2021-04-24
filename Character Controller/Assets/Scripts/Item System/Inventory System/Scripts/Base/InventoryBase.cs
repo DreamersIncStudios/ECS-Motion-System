@@ -7,10 +7,10 @@ namespace Dreamers.InventorySystem.Base {
     {
         public List<ItemSlot> ItemsInInventory;
         public uint MaxInventorySize;
-        public InventoryBase() 
+        public InventoryBase(uint size) 
         {
             ItemsInInventory = new List<ItemSlot>();
-            MaxInventorySize = 5;
+            MaxInventorySize = size;
         }
         // Need to Update for Stackable items;
         public bool OpenSlots(ItemSlot Slot) {
@@ -81,12 +81,21 @@ namespace Dreamers.InventorySystem.Base {
                 return ItemByType;
         }
 
+        public InventorySave GetInventorySave() {
+            InventorySave Save = new InventorySave();
+            Save.MaxInventorySize = MaxInventorySize;
+            Save.ItemsInInventory = ItemsInInventory;
+            return Save;
+        }
+
+        public void LoadInventory(InventorySave inventorySave) {
+            MaxInventorySize = inventorySave.MaxInventorySize;
+            ItemsInInventory = inventorySave.ItemsInInventory;
+        }
 
 
         public bool OpenSlot { get { return ItemsInInventory.Count < MaxInventorySize; } }
-
-
-
+   
     }
 
     [System.Serializable]
@@ -95,5 +104,9 @@ namespace Dreamers.InventorySystem.Base {
         public int Count;
         
     }
-
+    [System.Serializable]
+    public class InventorySave {
+        public List<ItemSlot> ItemsInInventory;
+        public uint MaxInventorySize;
+    }
 }

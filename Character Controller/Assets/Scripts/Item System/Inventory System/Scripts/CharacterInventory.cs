@@ -17,7 +17,10 @@ namespace Dreamers.InventorySystem
         DisplayMenu Menu;
         public Entity self { get; private set; }
         public int Gold;
+#if UNITY_EDITOR
 
+        public EquipmentSave Save;
+#endif
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             self = entity;
@@ -26,6 +29,9 @@ namespace Dreamers.InventorySystem
         public void Start()
         {
             Menu = new DisplayMenu(PC, this);
+#if UNITY_EDITOR
+            Equipment.LoadEquipment(PC,Save);
+#endif
         }
 
         private void Update()
@@ -49,5 +55,19 @@ namespace Dreamers.InventorySystem
             Equipment.EquippedWeapons[WeaponSlot.Primary].StoreWeapon(anim);
 
         }
+
+        void SaveInventory()
+        {
+            EquipmentSave SaveCurrentEquipment = Equipment.GetEquipmentSave();
+            InventorySave SaveInventory = Inventory.GetInventorySave();
+
+        }
+
+        public void LoadInventory(EquipmentSave equipmentSave, InventorySave inventorySave) {
+            Inventory.LoadInventory(inventorySave);
+            Equipment.LoadEquipment(PC,equipmentSave);
+        
+        }
+
     }
 }

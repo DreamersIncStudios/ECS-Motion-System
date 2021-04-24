@@ -16,6 +16,7 @@ namespace Dreamers.InventorySystem
 
         #region Variable
         public GameObject ProjectilePrefab; //Move to SO later
+        public GameObject ShootPoint; // may have to make this in code?????
 
         [SerializeField] int roundsPerMin;
 
@@ -74,6 +75,7 @@ namespace Dreamers.InventorySystem
         public override void Unequip(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
+            World.DefaultGameObjectInjectionWorld.EntityManager.RemoveComponent<ShooterComponent>(characterInventory.self);
             AddToInventory(characterInventory);
             Destroy(weaponModel);
             EquipmentUtility.ModCharacterStats(player, Modifiers, false);

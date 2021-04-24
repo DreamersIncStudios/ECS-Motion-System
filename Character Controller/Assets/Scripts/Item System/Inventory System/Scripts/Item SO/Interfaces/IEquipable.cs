@@ -9,6 +9,7 @@ namespace Dreamers.InventorySystem.Interfaces
         uint LevelRqd { get; }
         GameObject Model { get; }
          bool EquipToHuman { get; }
+        bool Equipped { get; }
         HumanBodyBones EquipBone { get; }
        List<StatModifier> Modifiers { get; } // consider adding a set for levelUp equippment?
     }

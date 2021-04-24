@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Dreamers.InventorySystem
 {
-    public class WeaponSO : ItemBaseSO, IEquipable, IWeapon
+    public class WeaponSO : ItemBaseSO, IEquipable,IWeapon
     {
         #region Variables
         public new ItemType Type { get { return ItemType.Weapon; } }
@@ -22,7 +22,8 @@ namespace Dreamers.InventorySystem
         public bool EquipToHuman { get { return _equipToHuman; } }
         [SerializeField] private HumanBodyBones _heldBone;
         public HumanBodyBones HeldBone { get { return _heldBone; } }
-
+        public bool Equipped { get; private set; }
+       
         [SerializeField] private HumanBodyBones _equipBone;
         public HumanBodyBones EquipBone { get { return _equipBone; } }
         [SerializeField] private List<StatModifier> _modifiers;
@@ -48,67 +49,97 @@ namespace Dreamers.InventorySystem
         [SerializeField] Vector3 _sheathedPos;
         public Vector3 SheathedPos { get { return _sheathedPos; } }
 
-        [SerializeField] Vector3 _sheathedRot;
-        public Vector3 SheathedRot { get { return _sheathedRot; } }
 
         [SerializeField] Vector3 _heldPos;
         public Vector3 HeldPos { get { return _heldPos; } }
+
+        [SerializeField] Vector3 _sheathedRot;
+        public Vector3 SheathedRot { get { return _sheathedRot; } }
+
+
         [SerializeField] Vector3 _heldRot;
         public Vector3 HeldRot { get { return _heldRot; } }
         #endregion
 
 
         public GameObject weaponModel { get; set; }
-        public override void EquipItem(CharacterInventory characterInventory, int IndexOf, BaseCharacter player)
+
+        public void Equip(BaseCharacter player)
         {
+            if (player.Level >= LevelRqd)
             {
-                EquipmentBase Equipment = characterInventory.Equipment;
-                if (Equipment.EquippedWeapons.TryGetValue(this.Slot, out WeaponSO value))
+                if (Model != null)
                 {
-                    Equipment.EquippedWeapons[this.Slot].Unequip(characterInventory, player);
-                }
-                Equipment.EquippedWeapons[this.Slot] = this;
-
-                if (player.Level >= LevelRqd)
-                {
-                    if (Model != null)
+                    weaponModel = Instantiate(Model);
+                    // Consider adding and enum as all character maybe not be human 
+                    if (EquipToHuman)
                     {
-                        weaponModel = Instantiate(Model);
-                        // Consider adding and enum as all character maybe not be human 
-                        if (EquipToHuman)
+                        Transform bone = player.GetComponent<Animator>().GetBoneTransform(EquipBone);
+                        if (bone)
                         {
-                            Transform bone = player.GetComponent<Animator>().GetBoneTransform(EquipBone);
-                            if (bone)
-                            {
-                                weaponModel.transform.SetParent(bone);
-                            }
+                            weaponModel.transform.SetParent(bone);
                         }
-                        else
-                        {
-                            weaponModel.transform.SetParent(player.transform);
+                    }
+                    else
+                    {
+                        weaponModel.transform.SetParent(player.transform);
+                    }
+                    weaponModel.transform.localPosition = SheathedPos;
+                    weaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
 
+                }
+            }
+        }
+
+        public override void EquipItem(CharacterInventory characterInventory, int IndexOf,BaseCharacter player)
+        {
+            EquipmentBase Equipment = characterInventory.Equipment;
+            if (Equipment.EquippedWeapons.TryGetValue(this.Slot, out WeaponSO value))
+            {
+                Equipment.EquippedWeapons[this.Slot].Unequip(characterInventory, player);
+            }
+            Equipment.EquippedWeapons[this.Slot] = this;
+
+            if (player.Level >= LevelRqd)
+            {
+                if (Model != null)
+                {
+                 weaponModel = Instantiate(Model);
+                    // Consider adding and enum as all character maybe not be human 
+                    if (EquipToHuman)
+                    {
+                        Transform bone = player.GetComponent<Animator>().GetBoneTransform(EquipBone);
+                        if (bone)
+                        {
+                            weaponModel.transform.SetParent(bone);
                         }
-                        weaponModel.transform.localPosition = SheathedPos;
-                        weaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
+                    }
+                    else
+                    {
+                     weaponModel.transform.SetParent(player.transform);
 
                     }
-                    EquipmentUtility.ModCharacterStats(player, Modifiers, true);
-
-
-
-                    RemoveFromInventory(characterInventory, IndexOf);
+                    weaponModel.transform.localPosition = SheathedPos;
+                    weaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
 
                 }
-                else { Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level); }
+                EquipmentUtility.ModCharacterStats(player,Modifiers, true);
+                Equipped = true;
+                player.StatUpdate();
+
+
+                RemoveFromInventory(characterInventory, IndexOf);
 
             }
+            else { Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level); }
+
         }
 
         public override void Unequip(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
 
-            EquipmentUtility.ModCharacterStats(player, Modifiers, false);
+            EquipmentUtility.ModCharacterStats(player,Modifiers, false);
             AddToInventory(characterInventory);
             Equipment.EquippedWeapons.Remove(this.Slot);
             Destroy(weaponModel);
@@ -122,15 +153,13 @@ namespace Dreamers.InventorySystem
             throw new System.NotImplementedException();
         }
 
-        public void DrawWeapon(Animator anim)
-        {
+        public void DrawWeapon(Animator anim) {
             weaponModel.transform.SetParent(anim.GetBoneTransform(HeldBone));
             weaponModel.transform.localPosition = HeldPos;
             weaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
 
         }
-        public void StoreWeapon(Animator anim)
-        {
+        public void StoreWeapon(Animator anim) {
             weaponModel.transform.parent = anim.GetBoneTransform(EquipBone);
             weaponModel.transform.localPosition = SheathedPos;
             weaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);

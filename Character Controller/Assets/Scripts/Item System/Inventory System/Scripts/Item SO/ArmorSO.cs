@@ -20,6 +20,7 @@ namespace Dreamers.InventorySystem
         public GameObject Model { get { return _model; } }
         [SerializeField] private bool _equipToHuman;
         public bool EquipToHuman { get { return _equipToHuman; } }
+        public bool Equipped { get; private set; }
 
         [SerializeField] private HumanBodyBones _equipBone;
         public HumanBodyBones EquipBone { get { return _equipBone; } }
@@ -42,11 +43,46 @@ namespace Dreamers.InventorySystem
         public int SkillPoints { get; set; }
         public int Exprience { get; set; }
         GameObject armorModel;
-#endregion
+
+        public void Equip(BaseCharacter player)
+        {
+            if (player.Level >= LevelRqd)
+            {
+                if (Model != null)
+                {
+                    armorModel = _model = Instantiate(Model);
+                    // Consider adding and enum as all character maybe not be human 
+                    if (EquipToHuman)
+                    {
+                        Transform bone = player.GetComponent<Animator>().GetBoneTransform(EquipBone);
+                        if (bone)
+                        {
+                            armorModel.transform.SetParent(bone);
+                        }
+
+                    }
+                    else
+                    {
+                        armorModel.transform.SetParent(player.transform);
+
+                    }
+
+                }
+                EquipmentUtility.ModCharacterStats(player, Modifiers, true);
+
+            }
+        }
+
+        #endregion
         public override void EquipItem(CharacterInventory characterInventory, int IndexOf, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
-            
+            if (Equipment.EquippedArmor.TryGetValue(this.ArmorType, out ArmorSO value))
+            {
+                Equipment.EquippedArmor[this.ArmorType].Unequip(characterInventory, player);
+            }
+            Equipment.EquippedArmor[this.ArmorType] = this;
+
             if (player.Level >= LevelRqd)
             {
                 if (Model != null)
@@ -62,19 +98,16 @@ namespace Dreamers.InventorySystem
                         }
 
                     }
+                    else {
+                        armorModel.transform.SetParent(player.transform);
+                    
+                    }
 
                 }
                EquipmentUtility.ModCharacterStats(player, Modifiers, true);
 
-                if (Equipment.EquippedArmor.TryGetValue(this.ArmorType, out ArmorSO value))
-                {
-                    Equipment.EquippedArmor[this.ArmorType].Unequip(characterInventory, player);
-                }
-                Equipment.EquippedArmor[this.ArmorType] = this;
-
-
                 RemoveFromInventory(characterInventory, IndexOf);
-
+                Equipped = true;
                 player.StatUpdate();
             }
             else { Debug.LogWarning("Level required to Equip is " + LevelRqd +". Character is currently level "+ player.Level); }
