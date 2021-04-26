@@ -57,22 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Global\Scripts\Components\RemoveRenderer.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Components\AITarget.cs" />
     <Compile Include="Assets\Scripts\Global\SystemGroup\IAUSCore.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Components\PlayerParty.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Components\AITargetCreate.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\Options Menu.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\SMT\SMTOptions.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Components\Player_Control.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Save\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\ButtonShift.cs" />
     <Compile Include="Assets\Scripts\Global\FreqPhasing.cs" />
     <Compile Include="Assets\Scripts\Global\SystemGroup\CleanUpHybridEntity.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\InputSettings.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Save\interfaces\ISave.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\GameMenu\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\Global\Scripts\Components\ControllerScheme.cs" />
     <Compile Include="Assets\Scripts\Global\Scripts\GameMaster.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,7 +312,7 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.4.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -698,6 +689,14 @@
     <ProjectReference Include="CoreSystems.csproj">
       <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
       <Name>CoreSystems</Name>
+    </ProjectReference>
+    <ProjectReference Include="CharacterControl.csproj">
+      <Project>{FC81B69D-1F0A-B28F-AC06-AEACC4E33887}</Project>
+      <Name>CharacterControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameMenus.csproj">
+      <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
+      <Name>GameMenus</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

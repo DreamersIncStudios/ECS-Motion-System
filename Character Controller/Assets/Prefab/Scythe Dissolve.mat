@@ -138,7 +138,7 @@ Material:
     - Vector1_1d0052a403ec4f2b86b90635915b6001: 0.01
     - Vector1_44889225: 100
     - Vector1_51c5338754e74a769cdffb97eecbc35f: 1
-    - Vector1_6693dd922f86473db24875969c453191: 794
+    - Vector1_6693dd922f86473db24875969c453191: 410
     - Vector1_733B8957: 0.0445
     - Vector1_923b5440014c48fe8ec4bf5510f8b605: 100000
     - Vector1_E4B179B6: 0
@@ -272,7 +272,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_55473AAD: {r: 1.968627, g: 0.44319868, b: 1.4560263, a: 0}
-    - Color_75ddc6f2d99943abbba63a44825c7fce: {r: 1.7176471, g: 0, b: 2, a: 1}
+    - Color_75ddc6f2d99943abbba63a44825c7fce: {r: 0.1425338, g: 0.12927783, b: 1.6121702,
+        a: 1}
     - Color_ace1d743f71c473690218e7ef8f9983a: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

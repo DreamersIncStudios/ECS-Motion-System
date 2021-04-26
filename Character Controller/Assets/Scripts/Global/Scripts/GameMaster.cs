@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Dreamers.Global;
-using Global.Menus;
 using Cinemachine;
 using Core.SaveSystems;
-using System.IO;
-namespace Core
+using Core;
 
+namespace DreamersIncStudios.MoonShot
 {
     public sealed class GameMaster : MonoBehaviour
     {
@@ -55,7 +53,7 @@ namespace Core
 
         }
 
-        public int DayNumber  = 0;
+        public uint DayNumber  = 0;
         private void Start()
         {
             //       PlayerOptions[0].GetComponent<Animator>().SetInteger("Idle State", 1);
@@ -79,8 +77,8 @@ namespace Core
         public void SetupNewGame()
         {
 
-            GetSaveSystem.SaveGame(GetSaveSystem.Saves.NextSaveCnt);
-            GetSaveSystem.AddNewSave();
+            GetSaveSystem.SaveGame(GetSaveSystem.Saves.NextSaveCnt, GetPlayerChoice, DayNumber); ;
+            GetSaveSystem.AddNewSave(DayNumber);
 
         }
         public void GetSaves() { }
@@ -142,7 +140,6 @@ namespace Core
         InventoryMenu
     }
 
-    public enum PlayerChoice { a, b, c, d }
     public enum Language { English, Spanish }
     [System.Serializable]
     public struct CameraControls {

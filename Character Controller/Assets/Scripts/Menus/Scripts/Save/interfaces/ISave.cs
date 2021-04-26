@@ -21,17 +21,19 @@ namespace Core.SaveSystems
     [System.Serializable]
     public class GameMasterSaveData {
         public uint Money;
-        public int DayNumber;
+        public uint DayNumber;
         public PlayerChoice PlayerChoice;
 
     }
-
+    public enum PlayerChoice { a, b, c, d }
     [System.Serializable]
-    public class CharacterSaveData {
-        public uint PlayerLevel, CurHealth, MaxHealth, CurMana, MaxMana;
+    public partial class CharacterSaveData {
+        public uint PlayerLevel, CurHealth, MaxHealth, CurMana, MaxMana, FreeExp;
         public string CharacterName;
         public uint CharacterModelSelected; // Change to Enum later
         public SaveData PlayerCombos;
+        public int Level;
+        public int[] PrimaryAttributeBase;
 
     }
 

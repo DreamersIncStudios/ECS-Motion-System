@@ -46,7 +46,7 @@ namespace Core.SaveSystems
 
         }
 
-        public void SaveGame(int GameSave)
+        public void SaveGame(int GameSave, PlayerChoice playerChoice, uint DayNumber)
         {
             //Add inclusive true when upgrade to 2020 LTS
             foreach (var persist in FindObjectsOfType<MonoBehaviour>(true))
@@ -54,9 +54,9 @@ namespace Core.SaveSystems
                 persist.BroadcastMessage("Save");
             }
 
-            GameMaster gm = GameMaster.Instance;
-            gameData.GetGameMasterSaveData.PlayerChoice = gm.GetPlayerChoice;
-            gameData.GetGameMasterSaveData.DayNumber = gm.DayNumber;
+          
+            gameData.GetGameMasterSaveData.PlayerChoice = playerChoice;
+            gameData.GetGameMasterSaveData.DayNumber = DayNumber;
             gameData.LastSaveTime = DateTime.Now.ToString();
            // gameData.GetCharacterSaveData.PlayerCombos = GameObject.FindGameObjectWithTag("Player").GetComponent<combo>
             using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath + $"/SaveGame{GameSave}.json"))
@@ -68,7 +68,7 @@ namespace Core.SaveSystems
             }
 
         }
-        public void LoadGame(int GameSave)
+        public GameSaveData LoadGame(int GameSave)
         {
             using (StreamReader streamReader = new StreamReader(Application.persistentDataPath + $"/SaveGame{GameSave}.json"))
             {
@@ -78,24 +78,21 @@ namespace Core.SaveSystems
 
                 gameData = JsonUtility.FromJson<GameSaveData>(json);
             }
-            GameMaster gm = GameMaster.Instance;
-            gm.GetPlayerChoice = gameData.GetGameMasterSaveData.PlayerChoice;
-            gm.DayNumber = gameData.GetGameMasterSaveData.DayNumber;
-            gm.ActiveSaveNumber = GameSave;
+            return gameData;
         }
 
         public void DeleteSave(int GameSave) {
             Saves.MasterSaveList.RemoveAt(GameSave);
         }
-        public void AddNewSave()
+        public void AddNewSave( uint DayNumber )
         {
-            GameMaster gm = GameMaster.Instance;
+       
             Saves.MasterSaveList.Add(new SaveDisplayData()
             {
                 SaveNumber = Saves.NextSaveCnt,
                 CharacterName = "Tester", // Get from Player later 
                 DateOfSave = DateTime.Now.ToString(),
-                DayNumber = gm.DayNumber,
+                DayNumber =DayNumber,
                 Score = 1000 // Add to GM Later
         });
             WriteAllSaves();
@@ -118,7 +115,7 @@ namespace Core.SaveSystems
     public class SaveDisplayData {
         public int SaveNumber;
         public string CharacterName, DateOfSave;
-        public int DayNumber, Score;
+        public uint DayNumber, Score;
     }
 
 }

@@ -17,12 +17,11 @@ namespace MotionSystem.System {
        
         const float k_Half = 0.5f;
         Transform m_mainCam;
-        public ControllerScheme InputSet;
 
         protected override void OnStartRunning()
         {
             base.OnStartRunning();
-            InputSet = Core.GameMaster.Instance.InputSettings.UserScheme;
+
 
         }
         bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
@@ -45,6 +44,8 @@ namespace MotionSystem.System {
 
             Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
+                 ControllerScheme InputSet = PCC.InputSet;
+
                 bool m_Crouching = new bool();
                 if (Control.block)
                 {

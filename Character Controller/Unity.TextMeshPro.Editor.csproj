@@ -56,56 +56,57 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_PackageUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_EditorPanel.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\DropdownOptionListDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_UIStyleManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_StyleAssetMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_ProjectTextSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_BitmapShaderGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SubMeshUI_Editor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SpriteAssetEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_EditorCoroutine.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SpriteCharacterPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_FontAsset_CreationMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_ColorGradientEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SerializedPropertyHolder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_TextAlignmentDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_PostBuildProcessHandler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_SortingLayerHelper.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_StyleSheetEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_GlyphPairAdjustmentRecordPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_InputFieldEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_BaseEditorPanel.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_ColorGradientAssetMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_FontPlugin.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_CreateObjectMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_EditorUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SubMesh_Editor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\GlyphMetricsPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_EditorPanelUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_BaseShaderGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_CharacterPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_EditorShaderUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SpriteAssetImporter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\GlyphInfoDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SettingsEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SpriteGlyphPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_TextContainerEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_TexturePostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_FontAssetCreatorWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_GlyphPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_FontAssetEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_MeshRendererEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SpriteAssetMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMPro_ContextMenus.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_ResourcesLoader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\GlyphRectPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_DropdownEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\TMP_SDFShaderGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_PackageUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_EditorPanel.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\DropdownOptionListDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_UIStyleManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_StyleAssetMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_ProjectTextSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_BitmapShaderGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SubMeshUI_Editor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SpriteAssetEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_EditorCoroutine.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SpriteCharacterPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_FontAsset_CreationMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_ColorGradientEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SerializedPropertyHolder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_TextAlignmentDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_PostBuildProcessHandler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_SortingLayerHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_StyleSheetEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_GlyphPairAdjustmentRecordPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_InputFieldEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_BaseEditorPanel.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_ColorGradientAssetMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_FontPlugin.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_CreateObjectMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_EditorUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SubMesh_Editor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\GlyphMetricsPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_EditorPanelUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_BaseShaderGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_CharacterPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_EditorShaderUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SpriteAssetImporter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\GlyphInfoDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SettingsEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SpriteGlyphPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_TextContainerEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_TexturePostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_FontAssetCreatorWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_GlyphPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_FontAssetEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_MeshRendererEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_PreBuildProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SpriteAssetMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMPro_ContextMenus.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_ResourcesLoader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\GlyphRectPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_DropdownEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\TMP_SDFShaderGUI.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.1\Scripts\Editor\Unity.TextMeshPro.Editor.asmdef" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts\Editor\Unity.TextMeshPro.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -350,7 +351,7 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.4.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>

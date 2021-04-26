@@ -353,7 +353,7 @@
       <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.4.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -837,10 +837,6 @@
       <Project>{48B93C2A-969A-7669-817B-C3A46E109B3B}</Project>
       <Name>Unity.Deformations</Name>
     </ProjectReference>
-    <ProjectReference Include="AggressionandTargeting.csproj">
-      <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>
-      <Name>AggressionandTargeting</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Properties.UI.csproj">
       <Project>{6375494E-E9CB-56DA-AC5A-C2A9445B662D}</Project>
       <Name>Unity.Properties.UI</Name>
@@ -852,6 +848,10 @@
     <ProjectReference Include="Unity.ScriptableBuildPipeline.csproj">
       <Project>{DF5D5D66-FD4E-3A21-749A-9E92DFB7ED9C}</Project>
       <Name>Unity.ScriptableBuildPipeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameMenus.csproj">
+      <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
+      <Name>GameMenus</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

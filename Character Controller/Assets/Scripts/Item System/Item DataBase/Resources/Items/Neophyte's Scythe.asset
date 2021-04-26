@@ -22,9 +22,9 @@ MonoBehaviour:
   _questItem: 0
   quality: 0
   _model: {fileID: 4086121578898055948, guid: b572c85218b37744b96a187d4602a36a, type: 3}
-  _equipToHuman: 0
-  _heldBone: 7
-  _equipBone: 18
+  _equipToHuman: 1
+  _heldBone: 18
+  _equipBone: 7
   _modifiers:
   - Stat: 1
     BuffValue: 10

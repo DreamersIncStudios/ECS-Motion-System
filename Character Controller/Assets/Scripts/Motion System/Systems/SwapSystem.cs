@@ -17,7 +17,7 @@ namespace MotionSystem.System
     {
 
         int index;
-        public ControllerScheme InputSet => Core.GameMaster.Instance.InputSettings.UserScheme;
+        public ControllerScheme InputSet => MotionSystem.Controls.ControlMaster.Instance.controller;
         PartySwapSystem Swap => PartySwapSystem.GMS;
 
         protected override void OnStartRunning()

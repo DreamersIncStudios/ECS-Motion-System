@@ -89,14 +89,15 @@ namespace Core
                 Button main = UIGM.UIButton(panel.transform, "left");
                 main.onClick.AddListener(() =>
                 {
-                    GameMaster.Instance.SelectCharacter(0);
+                    //Make this an event or send message;
+                    //GameMaster.Instance.SelectCharacter(0);
                     Object.Destroy(panel.gameObject);
                 });
                 main.Select();
 
                 UIGM.UIButton(panel.transform, "right").onClick.AddListener(() =>
                 {
-                    GameMaster.Instance.SelectCharacter(1);
+                   // GameMaster.Instance.SelectCharacter(1);
                     Object.Destroy(panel.gameObject);
 
                 });

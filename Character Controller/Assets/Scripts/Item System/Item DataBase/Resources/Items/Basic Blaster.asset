@@ -23,17 +23,25 @@ MonoBehaviour:
   quality: 0
   _model: {fileID: 5524496335016581078, guid: bfdde7eea953bee419c9229e4a987f1f, type: 3}
   _equipToHuman: 0
+  _heldBone: 0
   _equipBone: 0
   _modifiers:
   - Stat: 8
     BuffValue: -5
   _levelRQD: 0
-  _weaponType: 0
+  _weaponType: 6
   slot: 2
   maxDurable: 0
   breakable: 0
   _upgradeable: 0
+  _sheathedPos: {x: 0, y: 2, z: 0}
+  _heldPos: {x: 0, y: 0, z: 0}
+  _sheathedRot: {x: 0, y: 0, z: 0}
+  _heldRot: {x: 0, y: 0, z: 0}
   ProjectilePrefab: {fileID: 6196679455294561461, guid: 857de007b3b11e44a95b97f66f42a73e,
     type: 3}
   ShootPoint: {fileID: 0}
-  offset: {x: 0, y: 1, z: 0}
+  roundsPerMin: 900
+  roundsPerShot: 4
+  normalSpeed: 50
+  offset: 0.5

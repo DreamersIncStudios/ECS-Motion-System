@@ -59,16 +59,29 @@
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Systems\CheckSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Senses\ISenses.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\AITarget.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\ShotTest.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\PlayerParty.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\UpdateSenses.cs" />
     <Compile Include="Assets\Scripts\Motion System\Components\SafeZone.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorUpdate.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Systems\TargetingSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Command.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Motion System\Test files\AIMoveTest.cs" />
     <Compile Include="Assets\Scripts\Motion System\Interaction System\Interfaces\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\AITargetCreate.cs" />
     <Compile Include="Assets\Scripts\Motion System\AnimatorIK\AnimatorIK.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\AlertLevel.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorSpeedUpdate.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Senses\SoundEmitter.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\AISensesAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\SwapSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\LookAtTarget.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Player_Control.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\GroundCheckSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\PartySwapSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
@@ -79,6 +92,16 @@
     <Compile Include="Assets\Scripts\Motion System\Interaction System\MissionGiver.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Scripts\Motion System\InputSettings.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Authoring\FactionAuthoring.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\VisionSystemJobs.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\IFactionBase.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Components\Camera System\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Editor\AISensesAuthoringEditor.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Components\Camera System\FollowPointRef.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\CharacterAlignment.cs" />
+    <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\HearingSystem.cs" />
+    <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
+    <Compile Include="Assets\Scripts\Motion System\ControlMaster.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />
@@ -326,7 +349,7 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.4.6\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -716,10 +739,6 @@
       <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
       <Name>StandardAssets</Name>
     </ProjectReference>
-    <ProjectReference Include="AggressionandTargeting.csproj">
-      <Project>{A6B77C1F-CA90-80E1-BBBE-DC785EEF443C}</Project>
-      <Name>AggressionandTargeting</Name>
-    </ProjectReference>
     <ProjectReference Include="Cinemachine.csproj">
       <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
       <Name>Cinemachine</Name>
@@ -744,9 +763,9 @@
       <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
       <Name>CoreSystems</Name>
     </ProjectReference>
-    <ProjectReference Include="Global.csproj">
-      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
-      <Name>Global</Name>
+    <ProjectReference Include="GameMenus.csproj">
+      <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
+      <Name>GameMenus</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>
