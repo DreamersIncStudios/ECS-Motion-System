@@ -2,10 +2,11 @@ using UnityEngine;
 using System.Collections;
 using System;
 using Unity.Entities;
-
+using System.Threading.Tasks;
 namespace Stats
-{[Serializable]
-    public class BaseCharacter : MonoBehaviour,IConvertGameObjectToEntity
+{
+    [Serializable]
+    public class BaseCharacter : MonoBehaviour, IConvertGameObjectToEntity
     {
 
         private string _name;
@@ -18,13 +19,18 @@ namespace Stats
         private Elemental[] _ElementalMods;
 
         public bool InvincibleMode;
-        public bool Alive { get {
+        public bool Alive
+        {
+            get
+            {
                 bool temp = true;
-                if (!InvincibleMode) { 
+                if (!InvincibleMode)
+                {
                     temp = CurHealth > 0.0f;
                 }
                 return temp;
-            } }
+            }
+        }
         bool death = false;
         [Range(0, 999)]
         public int CurHealth;
@@ -37,10 +43,10 @@ namespace Stats
         public int CurMana;
         [Range(0, 999)]
         [SerializeField] int maxMana;
-        public int MaxMana { get { return maxMana + MaxHealthMod; } set { maxMana = value;  } }
+        public int MaxMana { get { return maxMana + MaxHealthMod; } set { maxMana = value; } }
         public int MaxManaMod { get; set; }
 
-        public float MagicDef { get { return  1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f)); } }
+        public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f)); } }
         public float MeleeAttack { get { return GetStat((int)StatName.Melee_Offence).AdjustBaseValue; } }
         public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defence).AdjustBaseValue / 100.0f)); } }
 
@@ -50,11 +56,11 @@ namespace Stats
             _name = string.Empty;
             _level = 0;
             _freeExp = 0;
-             _primaryAttribute = new Attributes[Enum.GetValues(typeof(AttributeName)).Length];
+            _primaryAttribute = new Attributes[Enum.GetValues(typeof(AttributeName)).Length];
             _vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
             _stats = new Stat[Enum.GetValues(typeof(StatName)).Length];
             _ability = new Abilities[Enum.GetValues(typeof(AbilityName)).Length];
-           // _ElementalMods = new Elemental[Enum.GetValues(typeof(Elements)).Length];
+            // _ElementalMods = new Elemental[Enum.GetValues(typeof(Elements)).Length];
             SetupPrimaryAttributes();
             SetupVitals();
             SetupStats();
@@ -80,12 +86,12 @@ namespace Stats
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             selfEntityRef = entity;
-            var data = new PlayerStatComponent() {  MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana };
+            var data = new PlayerStatComponent() { MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana };
             dstManager.AddComponentData(entity, data);
             dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
             StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
             StatUpdate();
-           
+
         }
 
         public string Name
@@ -93,7 +99,7 @@ namespace Stats
             get { return _name; }
             set { _name = value; }
         }
-        
+
         public int Level
         {
             get { return _level; }
@@ -122,8 +128,9 @@ namespace Stats
         private void SetupPrimaryAttributes()
         {
             for (int cnt = 0; cnt < _primaryAttribute.Length; cnt++)
-            { _primaryAttribute[cnt] = new Attributes();
-                    }
+            {
+                _primaryAttribute[cnt] = new Attributes();
+            }
         }
 
         public Attributes GetPrimaryAttribute(int index)
@@ -138,13 +145,14 @@ namespace Stats
         }
         public void SetupElementalMods()
         {
-            for (int cnt = 0; cnt < _ElementalMods.Length; cnt++) {
+            for (int cnt = 0; cnt < _ElementalMods.Length; cnt++)
+            {
                 _ElementalMods[cnt] = new Elemental();
 
             }
         }
 
-        private void  SetupVitals()
+        private void SetupVitals()
         {
             for (int cnt = 0; cnt < _vital.Length; cnt++)
                 _vital[cnt] = new Vital();
@@ -215,7 +223,7 @@ namespace Stats
                 new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Strength), 1.5f));
             GetStat((int)StatName.Melee_Offence).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Skill), 1.250f));
             GetStat((int)StatName.Melee_Offence).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Level), 3.0f));
-            GetStat((int)StatName.Melee_Defence).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Vitality), 1 ));
+            GetStat((int)StatName.Melee_Defence).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Vitality), 1));
 
 
             GetStat((int)StatName.Magic_Offence).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Concentration), .5f));
@@ -259,7 +267,8 @@ namespace Stats
 
         }
 
-        public void SetAttributeBaseValue(int level, int BaseHealth, int BaseMana, int Str, int vit, int Awr, int Spd, int Skl, int Res, int Con, int Will, int Chars, int Lck) {
+        public async void SetAttributeBaseValue(int level, int BaseHealth, int BaseMana, int Str, int vit, int Awr, int Spd, int Skl, int Res, int Con, int Will, int Chars, int Lck)
+        {
             _level = GetPrimaryAttribute((int)AttributeName.Level).BaseValue = level;
             GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = Str;
             GetPrimaryAttribute((int)AttributeName.Vitality).BaseValue = vit;
@@ -273,12 +282,12 @@ namespace Stats
             GetPrimaryAttribute((int)AttributeName.Luck).BaseValue = Lck;
             GetVital((int)VitalName.Health).BuffValue = BaseHealth;
             GetVital((int)VitalName.Mana).BuffValue = BaseMana;
-
-            Invoke("StatUpdate", 10);
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            StatUpdate();
         }
 
 
-        public  void StatUpdate()
+        public void StatUpdate()
         {
             for (int i = 0; i < _vital.Length; i++)
                 _vital[i].Update();
@@ -289,12 +298,12 @@ namespace Stats
 
             CurHealth = MaxHealth = GetVital((int)VitalName.Health).AdjustBaseValue;
             CurMana = MaxMana = GetVital((int)VitalName.Mana).AdjustBaseValue;
-             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(selfEntityRef, new LevelUpComponent() { MaxHealth = maxHealth, MaxMana = maxMana, CurHealth = CurHealth, CurMana = CurMana, MagicDef = MagicDef, MeleeAttack = MeleeAttack, MeleeDef = MeleeDef });
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(selfEntityRef, new LevelUpComponent() { MaxHealth = maxHealth, MaxMana = maxMana, CurHealth = CurHealth, CurMana = CurMana, MagicDef = MagicDef, MeleeAttack = MeleeAttack, MeleeDef = MeleeDef });
         }
 
 
 
-     
+
         public void OnDeath(float deathDelay)
         {
             if (!death)
@@ -308,6 +317,14 @@ namespace Stats
         public void RemoveStatus(StatusEffect StatusToAdd) { }
         public void RemoveStatus(EffectStatus StatusName) { }
 
-
+        public async void SetAttributes(int[] data)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                _primaryAttribute[i].BaseValue = data[i];
+            }
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            StatUpdate();
+        }
     }
 }

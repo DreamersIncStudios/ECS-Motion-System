@@ -7,6 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using System.Collections.Generic;
 using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Base;
 using Unity.Transforms;
 using System.Collections;
 
@@ -29,9 +30,21 @@ public class ComboInputSystem : ComponentSystem
         {
             if (handler.InputQueue == null)
                 handler.InputQueue = new Queue<AnimationTriggers>();
-            if (PC.InSafeZone)
-                return;
+            EquipmentBase equipmentBase = anim.GetComponent<CharacterInventory>().Equipment;
+            WeaponSO So;
+            if (equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out So) || equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Secondary, out So))
+            {
+                handler.WeaponIsEquipped = true;
+            }
+            else
+                handler.WeaponIsEquipped = false;
 
+            if (PC.InSafeZone)
+            {
+             // add logic for play to store weapon
+                
+                return;
+            }
             if (PC.DisplayCombos)
             {
                 ComboList.Combo.ShowMovesPanel = !ComboList.Combo.ShowMovesPanel;

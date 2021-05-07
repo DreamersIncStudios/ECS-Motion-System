@@ -21,6 +21,7 @@ namespace MotionSystem.Archetypes
         [Header("Party")]
         public bool AI_Control;
         public bool Party;
+        public bool isPlayer;
         public bool CombatCapable;
         NavMeshAgent Agent;
         CapsuleCollider Col;
@@ -91,7 +92,7 @@ namespace MotionSystem.Archetypes
 
             }
             else {
-                if (Party )
+                if (isPlayer )
                 {
                     Agent.enabled = false;
                     var player = new Player_Control() { };

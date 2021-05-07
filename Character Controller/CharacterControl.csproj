@@ -95,13 +95,13 @@
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Authoring\FactionAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\VisionSystemJobs.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\IFactionBase.cs" />
+    <Compile Include="Assets\Scripts\Motion System\ControlMaster.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Components\Camera System\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Editor\AISensesAuthoringEditor.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Components\Camera System\FollowPointRef.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\CharacterAlignment.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\HearingSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\ControllerScheme.cs" />
-    <Compile Include="Assets\Scripts\Motion System\ControlMaster.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Motion System\CharacterControl.asmdef" />

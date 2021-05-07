@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\EntityConversionComponent.cs" />
     <Compile Include="Assets\Scripts\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\TransfomSync.cs" />
     <Compile Include="Assets\Scripts\Other Code\Scripts to be designed\StandardScreenUI.cs" />
+    <Compile Include="Assets\Scripts\Other Code\LightProbesTetrahedralGrid.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Other Code\Code To Be Replace.asmdef" />

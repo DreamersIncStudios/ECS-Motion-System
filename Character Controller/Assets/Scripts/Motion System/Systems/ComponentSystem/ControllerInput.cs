@@ -8,7 +8,6 @@ using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using DreamersStudio.CameraControlSystem;
 
-
 namespace MotionSystem.System {
 
    
@@ -18,12 +17,6 @@ namespace MotionSystem.System {
         const float k_Half = 0.5f;
         Transform m_mainCam;
 
-        protected override void OnStartRunning()
-        {
-            base.OnStartRunning();
-
-
-        }
         bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
 
         protected override void OnUpdate()
