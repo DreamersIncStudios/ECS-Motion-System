@@ -4,8 +4,8 @@ using UnityEngine;
 using Unity.Entities;
 using Dreamers.InventorySystem.Base;
 using Dreamers.InventorySystem.UISystem;
-
 using Stats;
+
 namespace Dreamers.InventorySystem
 {
     public class CharacterInventory : MonoBehaviour,IConvertGameObjectToEntity
@@ -16,6 +16,7 @@ namespace Dreamers.InventorySystem
         public EquipmentBase Equipment;
         DisplayMenu Menu;
         public Entity self { get; private set; }
+        EntityManager Manager;
         public int Gold;
 #if UNITY_EDITOR
 
@@ -32,6 +33,7 @@ namespace Dreamers.InventorySystem
 #if UNITY_EDITOR
             Equipment.LoadEquipment(PC,Save);
 #endif
+            Manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         }
 
         private void Update()
@@ -46,7 +48,7 @@ namespace Dreamers.InventorySystem
         {
             //   anim.SetBool("CanDoDamage", true);
             Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(anim);
-
+            Debug.Log("Called");
         }
 
         public void UnequipWeaponAnim()
