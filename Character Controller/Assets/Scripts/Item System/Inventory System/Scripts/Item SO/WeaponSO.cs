@@ -68,6 +68,9 @@ namespace Dreamers.InventorySystem
         {
             if (player.Level >= LevelRqd)
             {
+                EquipmentBase Equipment = player.GetComponent<CharacterInventory>().Equipment;
+                Equipment.EquippedWeapons[this.Slot] = this;
+
                 if (Model != null)
                 {
                     weaponModel = Instantiate(Model);
