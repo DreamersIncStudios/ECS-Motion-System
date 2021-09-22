@@ -43,10 +43,6 @@ namespace MotionSystem.Components
         public bool EquipWeapon=>TimerForEquipReset != 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset;
-
-
-        public bool canInput { get { return InputTimer < 0.0f; } }
-        public float InputTimer;
     }
 
     public struct AI_Control : IComponentData {

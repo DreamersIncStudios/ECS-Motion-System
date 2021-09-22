@@ -133,7 +133,7 @@ public class ComboInputSystem : ComponentSystem
 
                 anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
-              
+
 
                 if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
                 {
@@ -153,7 +153,7 @@ public class ComboInputSystem : ComponentSystem
 
 
             }
-            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion)
+            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
             {
 
                 anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
@@ -162,7 +162,7 @@ public class ComboInputSystem : ComponentSystem
         });
 
 
-        
+
         Entities.WithNone<ShooterComponent>().ForEach((Animator anim, Command handler) =>
         {
             handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -173,10 +173,10 @@ public class ComboInputSystem : ComponentSystem
 
                 anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
-              
+
 
             }
-            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion)
+            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
             {
 
                 anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);

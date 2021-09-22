@@ -52,15 +52,12 @@ namespace MotionSystem.System {
                     m_Crouching = Input.GetKey(KeyCode.C);
 
                     if (!PCC.InSafeZone) {
-                        if (!Control.Jump && Control.canInput && Control.IsGrounded && !Input.GetKey(InputSet.ActivateCADMenu))
+                        if (!Control.Jump && Control.IsGrounded)
                         {
-                            Control.Jump = Input.GetKeyDown(InputSet.Jump);
+                            Control.Jump = PCC.Jump;
 
                         }
-                        if (Control.Jump)
-                        {
-                            Control.InputTimer = .2f;
-                        }
+       
                        // add controller toogle
                         Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
