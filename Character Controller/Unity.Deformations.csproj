@@ -56,10 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Deformations\DeformationComponents.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Deformations\DeformationComponents.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Deformations\Unity.Deformations.asmdef" />
+    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Deformations\Unity.Deformations.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IBufferElementData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IComponentData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_Shared.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IBufferElementData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_IComponentData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.Hybrid.CodeGen\AuthoringComponent\AuthoringComponentPostProcessor_Shared.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.Hybrid.CodeGen\Unity.Entities.Hybrid.CodeGen.asmdef" />
+    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.Hybrid.CodeGen\Unity.Entities.Hybrid.CodeGen.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

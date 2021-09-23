@@ -56,40 +56,40 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\ILHelper.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\EntitiesILPostProcessorProfileMarker.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\CecilExtensionMethods.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\TypeInfoGeneration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\EntitiesILHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\BlobAssetSafety\BlobAssetSafetyVerifier.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\FoundErrorInUserCodeException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\FieldInfoGeneration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\LambdaJobsDataAccessPatcher.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\TypeHash.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\ISystemBasePostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\CecilHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\StaticTypeRegistryPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\Cloner\Cloner.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\LambdaParamaterValueProviderInformation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\ListExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\LambdaParameterValueInformations.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\TestCaseILPP.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\EntitiesForEachAttributes.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\LambdaJobDescriptionConstruction.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\TypeUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\SystemInfoGeneration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\StaticTypeRegistry\MonoExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\EntitiesForEachJobCreator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\UserError.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\LambdaJobsPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\JobReflectionDataPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\EntitiesILPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\SingletonAccess\SingletonAccessPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\LambdaJobs\InjectAndInitializeEntityQueryField.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\ILHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\EntitiesILPostProcessorProfileMarker.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\CecilExtensionMethods.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\TypeInfoGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\EntitiesILHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\BlobAssetSafety\BlobAssetSafetyVerifier.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\FoundErrorInUserCodeException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\FieldInfoGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\LambdaJobsDataAccessPatcher.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\TypeHash.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\ISystemBasePostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\CecilHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\StaticTypeRegistryPostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\Cloner\Cloner.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\LambdaParamaterValueProviderInformation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\ListExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\LambdaParameterValueInformations.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\TestCaseILPP.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\EntitiesForEachAttributes.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\LambdaJobDescriptionConstruction.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\TypeUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\SystemInfoGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\StaticTypeRegistry\MonoExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\EntitiesForEachJobCreator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\UserError.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\LambdaJobsPostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\JobReflectionDataPostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\EntitiesILPostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\SingletonAccess\SingletonAccessPostProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\LambdaJobs\InjectAndInitializeEntityQueryField.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Entities.CodeGen\Unity.Entities.CodeGen.asmdef" />
+    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Entities.CodeGen\Unity.Entities.CodeGen.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

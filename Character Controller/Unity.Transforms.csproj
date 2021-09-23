@@ -56,28 +56,28 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\TRSToLocalToParentSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Translation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\PostRotationEuler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\RotationEuler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Parent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\CompositeScale.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Rotation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\NonUniformScale.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\LocalToParentSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Scale.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\WorldToLocal.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\LocalToParent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\ParentScaleInverse.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\ParentSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\LocalToWorld.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Frozen.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\CompositeRotation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\TRSToLocalToWorldSystem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\EndFrameTransformSystems.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\TRSToLocalToParentSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Translation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\PostRotationEuler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\RotationEuler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Parent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\CompositeScale.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Rotation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\NonUniformScale.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\LocalToParentSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Scale.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\WorldToLocal.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\LocalToParent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\ParentScaleInverse.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\ParentSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\LocalToWorld.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Frozen.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\CompositeRotation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\TRSToLocalToWorldSystem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\EndFrameTransformSystems.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.41\Unity.Transforms\Unity.Transforms.asmdef" />
+    <None Include="Library\PackageCache\com.unity.entities@0.17.0-preview.42\Unity.Transforms\Unity.Transforms.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
