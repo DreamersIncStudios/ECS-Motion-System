@@ -348,6 +348,9 @@
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Global.Editor">
+      <HintPath>Library\ScriptAssemblies\Global.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -722,14 +725,6 @@
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
       <Name>Unity.Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="CoreSystems.csproj">
-      <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
-      <Name>CoreSystems</Name>
-    </ProjectReference>
-    <ProjectReference Include="Global.csproj">
-      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
-      <Name>Global</Name>
-    </ProjectReference>
     <ProjectReference Include="DOTween.Modules.csproj">
       <Project>{4A7F9C5F-9F06-5580-C5EE-20B29D873DA3}</Project>
       <Name>DOTween.Modules</Name>
@@ -774,10 +769,6 @@
       <Project>{0FE37419-27D6-A800-D020-E1D1E1B08C84}</Project>
       <Name>Unity.Physics</Name>
     </ProjectReference>
-    <ProjectReference Include="CodeToBeReplace.csproj">
-      <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
-      <Name>CodeToBeReplace</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Extensions.Hybrid.csproj">
       <Project>{0B54BB76-5FAE-63D1-B67D-1CEE7406FA58}</Project>
       <Name>Unity.Mathematics.Extensions.Hybrid</Name>
@@ -789,10 +780,6 @@
     <ProjectReference Include="Unity.VisualEffectGraph.Runtime.csproj">
       <Project>{D7C71B87-EEE1-93E3-177D-A981AF01AF40}</Project>
       <Name>Unity.VisualEffectGraph.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="InventorySystem.csproj">
-      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
-      <Name>InventorySystem</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{56368BBD-B2D2-653D-27A1-87B713688A91}</Project>
@@ -817,10 +804,6 @@
     <ProjectReference Include="Unity.Entities.csproj">
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
       <Name>Unity.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayerCharacterSystem.csproj">
-      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
-      <Name>PlayerCharacterSystem</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.Hybrid.csproj">
       <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
@@ -854,9 +837,33 @@
       <Project>{DF5D5D66-FD4E-3A21-749A-9E92DFB7ED9C}</Project>
       <Name>Unity.ScriptableBuildPipeline</Name>
     </ProjectReference>
+    <ProjectReference Include="Global.csproj">
+      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="CoreSystems.csproj">
+      <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
+      <Name>CoreSystems</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayerCharacterSystem.csproj">
+      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
+      <Name>PlayerCharacterSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="GameMenus.csproj">
       <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
       <Name>GameMenus</Name>
+    </ProjectReference>
+    <ProjectReference Include="InventorySystem.csproj">
+      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
+      <Name>InventorySystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="CodeToBeReplace.csproj">
+      <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
+      <Name>CodeToBeReplace</Name>
+    </ProjectReference>
+    <ProjectReference Include="WeaponSystem.csproj">
+      <Project>{7A7A0688-D737-B6B0-5305-A49155483304}</Project>
+      <Name>WeaponSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

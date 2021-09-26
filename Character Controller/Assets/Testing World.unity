@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 32.80256, g: 56.390846, b: 110.91224, a: 1}
+  m_IndirectSpecularColor: {r: 32.800266, g: 56.526165, b: 111.458, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -651,18 +651,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 285353909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1ce6f8f449a0343a90a7650c411834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Base:
-    StoreName: 'Jesticle''s Odds ~N~ Ends '
-    StoreInventory:
-      ItemsInInventory: []
-      MaxInventorySize: 5
-    CharacterInventory: {fileID: 0}
+  StoreType: 0
+  InitialItems: []
+  shop:
     Sell: 0
     Buy: 0
-  player: {fileID: 0}
 --- !u!65 &285353912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2446,18 +2442,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 919032697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1ce6f8f449a0343a90a7650c411834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Base:
-    StoreName: 'Slinky''s Hardware '
-    StoreInventory:
-      ItemsInInventory: []
-      MaxInventorySize: 5
-    CharacterInventory: {fileID: 0}
+  StoreType: 0
+  InitialItems: []
+  shop:
     Sell: 0
     Buy: 0
-  player: {fileID: 0}
 --- !u!65 &919032700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2673,6 +2665,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f7498729fc69d47932bb59082816e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Clerk:
+    name: 
+    CanOpen: 0
 --- !u!114 &1004107438 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6534132329343777567, guid: cf2ad17557988e148bc740a5618281f9,
@@ -2978,18 +2973,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225065138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1ce6f8f449a0343a90a7650c411834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Base:
-    StoreName: The Item Store
-    StoreInventory:
-      ItemsInInventory: []
-      MaxInventorySize: 5
-    CharacterInventory: {fileID: 0}
+  StoreType: 0
+  InitialItems: []
+  shop:
     Sell: 0
     Buy: 0
-  player: {fileID: 0}
 --- !u!65 &1225065141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3257,18 +3248,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326314441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea85ce53b4299c42873348acc48298a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1ce6f8f449a0343a90a7650c411834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Base:
-    StoreName: Armor Store
-    StoreInventory:
-      ItemsInInventory: []
-      MaxInventorySize: 5
-    CharacterInventory: {fileID: 0}
+  StoreType: 0
+  InitialItems: []
+  shop:
     Sell: 0
     Buy: 0
-  player: {fileID: 0}
 --- !u!65 &1326314444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4546,7 +4533,7 @@ PrefabInstance:
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.23179893
+      value: -0.23179895
       objectReference: {fileID: 0}
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
@@ -4556,7 +4543,7 @@ PrefabInstance:
     - target: {fileID: 722340982101152745, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.008051618
+      value: -0.008051614
       objectReference: {fileID: 0}
     - target: {fileID: 722340982486372096, guid: 3576c09d247c51b42ae34a11a749a05c,
         type: 3}
@@ -4846,10 +4833,6 @@ MonoBehaviour:
     Main: {fileID: 0}
     Follow: {fileID: 0}
     Target: {fileID: 0}
-  InputSettings:
-    TargetPlatform: 1
-    UserScheme: {fileID: 11400000, guid: f1685a92743186246bedc3655febd174, type: 2}
-    Controller: 1
   Setting:
     QualityLevel: 0
     VsyncCount: 0
@@ -5211,12 +5194,12 @@ PrefabInstance:
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.024731819
+      value: -0.024731817
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00122729
+      value: -0.0012272901
       objectReference: {fileID: 0}
     - target: {fileID: 6534132329117782240, guid: cf2ad17557988e148bc740a5618281f9,
         type: 3}
@@ -5515,12 +5498,12 @@ PrefabInstance:
     - target: {fileID: 7854123124033588388, guid: 886ad5fbf77be294ca353f058829cdc3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17666852
+      value: 0.1766685
       objectReference: {fileID: 0}
     - target: {fileID: 7854123124033588388, guid: 886ad5fbf77be294ca353f058829cdc3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.010739068
+      value: -0.010739067
       objectReference: {fileID: 0}
     - target: {fileID: 7854123124033588388, guid: 886ad5fbf77be294ca353f058829cdc3,
         type: 3}
