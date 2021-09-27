@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
@@ -66,8 +63,6 @@
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Systems\TargetingSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Command.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Interaction System\StoreFront.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Interaction System\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\AITargetCreate.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Player_Control.cs" />
     <Compile Include="Assets\Scripts\Motion System\PartySwapSystem.cs" />
@@ -75,7 +70,6 @@
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\SpawnBullets.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combos.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
-    <Compile Include="Assets\Scripts\Motion System\Interaction System\MissionGiver.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Authoring\FactionAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\VisionSystemJobs.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\IFactionBase.cs" />
