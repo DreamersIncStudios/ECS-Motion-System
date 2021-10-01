@@ -5,8 +5,12 @@ namespace Dreamers.InventorySystem.MissionSystem.Interfaces
 {
     public interface IDefeat
     {
-        GameObject DefeatWhat { get; }
+        NPC DefeatWhat { get; }
         uint DefeatHowMany { get; }
+        uint HowMany { get; }
+        bool ResetOnDeath { get; }
 
     }
+    //TODO move
+    public enum TaskTypes { Empty, Collect, Defeat, Destroy, Defend}
 }

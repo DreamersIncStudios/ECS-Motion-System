@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72aa084a1fca1fc47899e29728a89b4d, type: 3}
   m_Name: test potion
   m_EditorClassIdentifier: 
+  _itemID: 12
   _itemName: Health Potion
   _desc: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -24,6 +25,7 @@ MonoBehaviour:
   _type: 1
   _stackable: 1
   _questItem: 0
+  maxStackCount: 0
   _recoverAmount: 50
   _iterations: 2
   _freq: 3

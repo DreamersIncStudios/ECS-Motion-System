@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dreamers.InventorySystem.Interfaces;
+using Dreamers.InventorySystem.MissionSystem.Task;
 namespace Dreamers.InventorySystem.MissionSystem.Interfaces
 {
     public interface IBase
@@ -12,9 +13,14 @@ namespace Dreamers.InventorySystem.MissionSystem.Interfaces
         int ReqdLevel { get; }
         int GoldReward { get; }
         IPurchasable ItemReward { get; }
+        public bool IsSideQuest { get; }
+        List<TaskSO> Tasks { get; }
 
-        void AcceptQuest();
+#if UNITY_EDITOR
+        void CreateQuest(string name, string Objective, int level, int GoldReward, IPurchasable items);
+#endif
+        void AcceptQuest(MissionHub hub);
         void CompleteQuest();
-        void QuestRequirementsMet();
+        //void QuestRequirementsMet();
     }
 }

@@ -59,7 +59,6 @@
     <Compile Include="Assets\Scripts\Systems\Other Code\Sample Game Code\CharacterSetup.cs" />
     <Compile Include="Assets\Scripts\Systems\Other Code\Sample Game Code\PlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Systems\Other Code\Sample Game Code\EnemySetup.cs" />
-    <Compile Include="Assets\Scripts\Systems\Other Code\LightProbesTetrahedralGrid.cs" />
     <Compile Include="Assets\Scripts\Systems\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\EntityConversionComponent.cs" />
     <Compile Include="Assets\Scripts\Systems\Other Code\IAUS Carryover Do not edit this folder contents\UtilitySystems\TransfomSync.cs" />
     <Compile Include="Assets\Scripts\Systems\Other Code\Scripts to be designed\StandardScreenUI.cs" />

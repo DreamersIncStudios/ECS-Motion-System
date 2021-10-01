@@ -46,15 +46,16 @@ namespace Dreamers.InventorySystem.Interfaces
 
         [SerializeField]private uint maxStackCount;
         public uint MaxStackCount { get { return maxStackCount; } }
+#if UNITY_EDITOR
 
         public void setItemID(uint ID)
         {
 
-#if UNITY_EDITOR
             _itemID = ID;
-#endif
         }
-        public  void Use(CharacterInventory characterInventory)
+#endif
+
+        public void Use(CharacterInventory characterInventory)
         {
             characterInventory.Inventory.RemoveFromInventory(this);
         }

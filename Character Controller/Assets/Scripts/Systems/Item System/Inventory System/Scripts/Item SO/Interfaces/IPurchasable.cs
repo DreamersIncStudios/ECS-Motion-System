@@ -5,8 +5,10 @@ namespace Dreamers.InventorySystem.Interfaces
 {
     public interface IPurchasable
     {
-        uint Value { get; }
-        uint MaxStackCount { get; }
-        bool Stackable { get; }
+        [SerializeField]uint Value { get; }
+        [SerializeField] uint MaxStackCount { get; }
+        [SerializeField] bool Stackable { get; }
+
+        //TODO COnsider adding can cell?
     }
 }

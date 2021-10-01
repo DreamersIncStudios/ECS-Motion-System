@@ -25,7 +25,7 @@ namespace Dreamers.Global
 
         }
 
-        private static GameObject _uICanvas;
+        private GameObject _uICanvas;
 
         public GameObject UICanvas()
         {

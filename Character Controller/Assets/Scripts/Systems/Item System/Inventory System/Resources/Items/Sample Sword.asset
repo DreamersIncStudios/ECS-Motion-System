@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702dee579f7aee4d83fbdaba56cd92a, type: 3}
   m_Name: Sample Sword
   m_EditorClassIdentifier: 
+  _itemID: 3
   _itemName: Sample Sword
   _desc: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -24,9 +25,11 @@ MonoBehaviour:
   _type: 2
   _stackable: 0
   _questItem: 0
+  maxStackCount: 0
   quality: 0
   _model: {fileID: 0}
   _equipToHuman: 0
+  _heldBone: 0
   _equipBone: 18
   _modifiers:
   - Stat: 1
@@ -39,3 +42,7 @@ MonoBehaviour:
   maxDurable: 0
   breakable: 0
   _upgradeable: 0
+  _sheathedPos: {x: 0, y: 0, z: 0}
+  _heldPos: {x: 0, y: 0, z: 0}
+  _sheathedRot: {x: 0, y: 0, z: 0}
+  _heldRot: {x: 0, y: 0, z: 0}

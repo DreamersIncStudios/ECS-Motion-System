@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Dreamers.Global;
+using Dreamers.InventorySystem.MissionSystem.Task;
+
+#if UNITY_EDITOR
 
 namespace Dreamers.InventorySystem.MissionSystem.SO
 {
 
-#if UNITY_EDITOR
     public static class CreateSO
     {
         [MenuItem("Assets/Create/Missions")]
-        static public void CreateRecoveryItem()
+        static public void CreateQuest()
         {
-            ScriptableObjectUtility.CreateAsset<DefeatEnemyMissionSO>("Defeat Enemy Mission", out DefeatEnemyMissionSO Item);
-            ItemDatabase.LoadDatabaseForce();
-            Item.setItemID((uint)QuestDatabase.Missions.Count + 1);
-            Debug.Log(Item.MissionID);
-            // need to deal with duplicate itemID numbers 
-
+            ScriptableObjectUtility.CreateAsset<MissionQuestSO>("Quest", out MissionQuestSO Item);
+            QuestDatabase.LoadDatabaseForced();
+            Item.setItemID((uint)QuestDatabase.Missions.Count);
         }
+
+        [MenuItem("Assets/Create/TaskDefeat")]
+        static public void CreateTask() {
+            ScriptableObjectUtility.CreateAsset<DefeatEnemyTaskSO>("Quest", out DefeatEnemyTaskSO item);
+            TaskDatabase.LoadDatabaseForced();
+            item.setItemIDandType((uint)TaskDatabase.Tasks.Count, Interfaces.TaskTypes.Defeat);
+        }
+
     }
-#endif
 }
+
+#endif
