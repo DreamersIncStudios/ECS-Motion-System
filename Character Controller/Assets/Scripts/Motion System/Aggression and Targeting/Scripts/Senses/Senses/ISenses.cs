@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
-using Stats;
 using Unity.Mathematics;
 using Unity.Collections;
 
@@ -11,8 +10,8 @@ namespace AISenses
     {
         int DetectionRate { get; } // frame count phasing 
         int AlertRate { get; set; } // once the enemy is detected how fast is the alert raise
-        void InitializeSense(BaseCharacter baseCharacter);
-        void UpdateSense(BaseCharacter baseCharacter);
+        void SetAlertRate(int DetectionStat);
+
 
     }
 
@@ -57,11 +56,11 @@ namespace AISenses
         public int ViewAngle;
         public float EngageRadius;
         public float AlertModifer; // If AI is on high alert they will notice the enemy sooner
-        public void InitializeSense(BaseCharacter baseCharacter)
-        {
-            AlertRate = baseCharacter.GetAbility((int)AbilityName.Detection).AdjustBaseValue;
+        public void SetAlertRate(int DetectionStat) {
+           AlertRate = DetectionStat;
         }
-        public void UpdateSense(BaseCharacter baseCharacter) { }
+
+
 
     }
 
@@ -122,11 +121,12 @@ namespace AISenses
         public bool CanIHearAnAlarm { get { return AlertNoiseLevel > AmbientNoiseLevel; } }
         [Range(0, 5)]
         public int EnemyAwarnessLevel;  // Character alert level
-        public void InitializeSense(BaseCharacter baseCharacter)
+
+       public  void SetAlertRate(int DetectionStat)
         {
-            AlertRate = baseCharacter.GetAbility((int)AbilityName.Detection).AdjustBaseValue;
+            AlertRate = DetectionStat;
         }
-        public void UpdateSense(BaseCharacter baseCharacter) { }
+
 
     }
 }

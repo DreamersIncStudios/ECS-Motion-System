@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 32.749676, g: 56.350044, b: 110.900116, a: 1}
+  m_IndirectSpecularColor: {r: 32.759556, g: 56.358315, b: 110.89801, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 168621748}
   - component: {fileID: 168621744}
   - component: {fileID: 168621749}
+  - component: {fileID: 168621750}
   m_Layer: 11
   m_Name: Evil Cubie  (2)
   m_TagString: Untagged
@@ -577,6 +578,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &168621750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168621742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!1 &182025951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +1929,7 @@ GameObject:
   - component: {fileID: 569781189}
   - component: {fileID: 569781185}
   - component: {fileID: 569781190}
+  - component: {fileID: 569781191}
   m_Layer: 11
   m_Name: Evil Cubie  (5)
   m_TagString: Untagged
@@ -2048,6 +2063,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &569781191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569781183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!1 &594373401
 GameObject:
   m_ObjectHideFlags: 3
@@ -2382,6 +2410,7 @@ GameObject:
   - component: {fileID: 740493408}
   - component: {fileID: 740493404}
   - component: {fileID: 740493409}
+  - component: {fileID: 740493410}
   m_Layer: 11
   m_Name: Evil Cubie  (4)
   m_TagString: Untagged
@@ -2515,6 +2544,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &740493410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740493402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!1 &873691627
 GameObject:
   m_ObjectHideFlags: 3
@@ -3249,6 +3291,7 @@ GameObject:
   - component: {fileID: 1104592831}
   - component: {fileID: 1104592827}
   - component: {fileID: 1104592832}
+  - component: {fileID: 1104592833}
   m_Layer: 11
   m_Name: Evil Cubie  (1)
   m_TagString: Untagged
@@ -3382,6 +3425,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &1104592833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104592825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!1 &1127131449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,6 +3651,7 @@ GameObject:
   - component: {fileID: 1251120311}
   - component: {fileID: 1251120310}
   - component: {fileID: 1251120312}
+  - component: {fileID: 1251120313}
   m_Layer: 11
   m_Name: 'Evil Cubie '
   m_TagString: Untagged
@@ -3728,6 +3785,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &1251120313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251120305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!1 &1326314441
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,7 +5331,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491294419}
-  m_LocalRotation: {x: 0.059716646, y: 0.17666855, z: -0.010739078, w: 0.9823985}
+  m_LocalRotation: {x: 0.059716646, y: 0.17666852, z: -0.010739075, w: 0.9823985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5948,7 +6018,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708896265}
-  m_LocalRotation: {x: 0.059716646, y: 0.17666857, z: -0.010739076, w: 0.9823985}
+  m_LocalRotation: {x: 0.059716646, y: 0.17666854, z: -0.010739077, w: 0.9823985}
   m_LocalPosition: {x: -1.7886019, y: 1.4785, z: -82.909386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6481,6 +6551,7 @@ GameObject:
   - component: {fileID: 2045466174}
   - component: {fileID: 2045466170}
   - component: {fileID: 2045466175}
+  - component: {fileID: 2045466176}
   m_Layer: 11
   m_Name: Evil Cubie  (3)
   m_TagString: Untagged
@@ -6614,6 +6685,19 @@ MonoBehaviour:
   CurMana: 75
   maxMana: 75
   EXPgained: 60
+--- !u!114 &2045466176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045466168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140757c9513253a4c89b6bfe3f13199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNPCType: 0
 --- !u!4 &2076546518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3940210311403815095, guid: 0c6a0cec54d9210479403ea1519368f2,

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
+using Dreamers.Global;
 public class ProjectileHit : MonoBehaviour,IConvertGameObjectToEntity
 {
     EntityManager MGR;

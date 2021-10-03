@@ -47,7 +47,6 @@ namespace DreamersInc.DamageSystem
         public void SetDamageBool(bool value)
         {
             DoDamage = value ;
-            Debug.Log(DoDamage);
         }
 
         public void SetDamageType()
@@ -61,22 +60,22 @@ namespace DreamersInc.DamageSystem
             //TODO Balance 
             MagicMod = Element != Element.None ? Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue/10.0f : 1.0f;
         }
-
+        IDamageable self;
         // Use this for initialization
         void Start()
         {
             TypeOfDamage = TypeOfDamage.Melee;
             GetComponent<BoxCollider>().isTrigger = true;
+            self = GetComponentInParent<IDamageable>();
         }
 
         public void OnTriggerEnter(Collider other)
         {
+            IDamageable hit = other.GetComponent<IDamageable>();
             //Todo add Friend filter.
-            if (DoDamage && !other.CompareTag("Player"))
+            if (DoDamage && hit!=null && hit !=self)
             {
-               
-                other.GetComponent<IDamageable>()?.TakeDamage(DamageAmount(),TypeOfDamage,Element);
-
+                hit.TakeDamage(DamageAmount(),TypeOfDamage,Element);
             }
         }
     }

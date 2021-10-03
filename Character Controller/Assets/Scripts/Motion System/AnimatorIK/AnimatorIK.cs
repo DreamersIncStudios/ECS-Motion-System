@@ -6,7 +6,6 @@ using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
 using ControllerSwap;
-using Dreamers.InventorySystem;
 //need to rewrite for Unity physics  
 
 namespace MotionSystem.System.AnimatorIK

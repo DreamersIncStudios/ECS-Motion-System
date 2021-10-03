@@ -25,7 +25,7 @@ namespace Stats
             };
 
             int damageToProcess = -Mathf.FloorToInt(Amount * defense * Random.Range(.92f, 1.08f));
-            Debug.Log(damageToProcess + " HP of damage to target "+ Name);
+           // Debug.Log(damageToProcess + " HP of damage to target "+ Name);
             AdjustHealth health = new AdjustHealth() { Value = damageToProcess };
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef,health);
         }

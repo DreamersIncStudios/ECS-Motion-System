@@ -763,14 +763,6 @@
       <Project>{0FE37419-27D6-A800-D020-E1D1E1B08C84}</Project>
       <Name>Unity.Physics</Name>
     </ProjectReference>
-    <ProjectReference Include="PlayerCharacterSystem.csproj">
-      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
-      <Name>PlayerCharacterSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="InventorySystem.csproj">
-      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
-      <Name>InventorySystem</Name>
-    </ProjectReference>
     <ProjectReference Include="CoreSystems.csproj">
       <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
       <Name>CoreSystems</Name>
@@ -782,6 +774,10 @@
     <ProjectReference Include="CombatDamage.csproj">
       <Project>{B0F8FCFA-363C-229F-AC06-AF19E02656C8}</Project>
       <Name>CombatDamage</Name>
+    </ProjectReference>
+    <ProjectReference Include="InventorySystem.csproj">
+      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
+      <Name>InventorySystem</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

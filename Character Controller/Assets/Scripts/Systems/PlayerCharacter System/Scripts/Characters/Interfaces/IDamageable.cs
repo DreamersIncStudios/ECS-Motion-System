@@ -86,8 +86,12 @@ namespace DreamersInc.DamageSystem.Interfaces
                 {
                     STAT Health = Healths[i];
                     Health.AdjustHealth(mods[i].Value);
-                    Healths[i] = Health;
+                    if (Health.CurHealth <= 0) {
+                        ECBP.AddComponent<EntityHasDiedTag>(chunkIndex, entity[i]);
+                    }
+                    
                     ECBP.RemoveComponent<AdjustHealth>(chunkIndex, entity[i]);
+                    Healths[i] = Health;
 
                 }
             }

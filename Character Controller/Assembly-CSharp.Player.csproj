@@ -53,10 +53,12 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CombatDamageSystem\WeaponDamage.cs" />
-    <Compile Include="Assets\Scripts\CombatDamageSystem\Interface\IDamageDealer.cs" />
+    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\CharacterSetup.cs" />
+    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\PlayerSetup.cs" />
+    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\EnemySetup.cs" />
     <Compile Include="Assets\TestTargetOrbit.cs" />
-    <Compile Include="Assets\Scripts\CombatDamageSystem\Interface\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\OpenEndStuff\NPCHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
@@ -742,6 +744,10 @@
     <ProjectReference Include="Cinemachine.csproj">
       <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
       <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="CombatDamage.csproj">
+      <Project>{B0F8FCFA-363C-229F-AC06-AF19E02656C8}</Project>
+      <Name>CombatDamage</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Scenes.csproj">
       <Project>{72EDDA88-5557-64FF-777D-8F773D80D340}</Project>
