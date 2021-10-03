@@ -25,9 +25,6 @@ namespace Stats
                 PC.MaxMana = StatUpdate.MaxMana;
                 PC.CurMana = StatUpdate.CurMana;
 
-                PC.MeleeAttack = StatUpdate.MeleeAttack;
-                PC.MeleeDef = StatUpdate.MeleeDef;
-                PC.MagicDef = StatUpdate.MagicDef;
 
                 buffer.RemoveComponent<LevelUpComponent>(entity);
             }).Schedule(systemDeps);
@@ -41,9 +38,5 @@ namespace Stats
         public int MaxMana;
         public int CurMana;
         public int CurHealth;
-        public float MagicDef;
-        public float MeleeAttack;
-        public float MeleeDef;
-
     }
 }

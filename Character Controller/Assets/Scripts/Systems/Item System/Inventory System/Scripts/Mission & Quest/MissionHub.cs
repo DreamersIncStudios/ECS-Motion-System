@@ -40,7 +40,6 @@ namespace Dreamers.InventorySystem.MissionSystem
         {
             if (!SideQuests.ContainsKey(SO.MissionID))
             {
-                Debug.Log("adding");
                 SideQuests.Add(SO.MissionID, SO);
                 Register(SO);
                 return true;
@@ -65,7 +64,6 @@ namespace Dreamers.InventorySystem.MissionSystem
                         DefeatEnemyTaskSO defeatEnemy = (DefeatEnemyTaskSO)item;
                         defeatEnemy.ResetCount();
                         onKillEvent.AddListener(defeatEnemy.IncrementCounter);
-                        Debug.Log("listener registered");
                         if (defeatEnemy.ResetOnDeath)
                             OnDeathEvent.AddListener(defeatEnemy.ResetCount);
 

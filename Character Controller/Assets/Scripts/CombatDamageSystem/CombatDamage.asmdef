@@ -1,0 +1,17 @@
+{
+    "name": "CombatDamage",
+    "rootNamespace": "",
+    "references": [
+        "GUID:27fbc99f6a1cdf944a05c31320c04f5e",
+        "GUID:734d92eba21c94caba915361bd5ac177"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

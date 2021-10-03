@@ -34,7 +34,7 @@ namespace Dreamers.InventorySystem {
             Material CharacterMaterial = player.GetComponent<Renderer>().material;
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         
-            PlayerStatComponent pc   =  entityManager.GetComponentData<PlayerStatComponent>(player.selfEntityRef);
+            PlayerStatComponent pc   =  entityManager.GetComponentData<PlayerStatComponent>(player.SelfEntityRef);
             if (Iterations == 0)
             {
                 switch (RecoverWhat)

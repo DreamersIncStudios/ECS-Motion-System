@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Entities;
 using Dreamers.InventorySystem;
 using MotionSystem.Components;
-
+using DreamersInc.DamageSystem;
 
 namespace MotionSystem.System {
     public class EquipWeaponControl : MonoBehaviour
@@ -13,16 +13,18 @@ namespace MotionSystem.System {
         EntityManager manager;
         Animator anim;
         public float Delay = 10f;
+        WeaponDamage damage;
+        
         private void Start()
         {
             characterEntity = GetComponent<CharacterInventory>().self;
             anim = GetComponent<Animator>();
             manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            damage = GetComponentInChildren<WeaponDamage>();
 
         }
         public void EquipWeaponAnim()
         {
-            //   anim.SetBool("CanDoDamage", true);
             CharControllerE temp = manager.GetComponentData<CharControllerE>(characterEntity);
             temp.TimerForEquipReset = Delay;
             manager.SetComponentData<CharControllerE>(characterEntity, temp);
@@ -31,9 +33,12 @@ namespace MotionSystem.System {
 
         public void UnequipWeaponAnim()
         {
-            //   anim.SetBool("CanDoDamage", false);
             anim.SetBool("Weapon In Hand", false);
 
         }
+        public void DoDamage(int value) {
+            damage.SetDamageBool(value == 1 ? true : false);
+        }
+
     }
 }

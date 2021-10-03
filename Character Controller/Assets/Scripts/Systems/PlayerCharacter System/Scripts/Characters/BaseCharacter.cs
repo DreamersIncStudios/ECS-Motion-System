@@ -3,10 +3,11 @@ using System.Collections;
 using System;
 using Unity.Entities;
 using System.Threading.Tasks;
+using DreamersInc.DamageSystem.Interfaces;
 namespace Stats
 {
     [Serializable]
-    public class BaseCharacter : MonoBehaviour, IConvertGameObjectToEntity
+    public abstract class BaseCharacter : MonoBehaviour, IConvertGameObjectToEntity, IDamageable
     {
 
         private string _name;
@@ -31,7 +32,7 @@ namespace Stats
                 return temp;
             }
         }
-        bool death = false;
+
         [Range(0, 999)]
         public int CurHealth;
 
@@ -47,8 +48,13 @@ namespace Stats
         public int MaxManaMod { get; set; }
 
         public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f)); } }
-        public float MeleeAttack { get { return GetStat((int)StatName.Melee_Offence).AdjustBaseValue; } }
         public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defence).AdjustBaseValue / 100.0f)); } }
+
+
+        public bool Dead { get; private set; }
+
+        public Entity SelfEntityRef { get; private set; }
+
 
 
         public void Awake()
@@ -81,16 +87,13 @@ namespace Stats
         }
 
 
-        public Entity selfEntityRef;
+      
         public DynamicBuffer<EffectStatusBuffer> StatusBuffers;
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            selfEntityRef = entity;
-            var data = new PlayerStatComponent() { MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana };
-            dstManager.AddComponentData(entity, data);
+            SelfEntityRef = entity;
             dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
             StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
-            StatUpdate();
 
         }
 
@@ -112,6 +115,7 @@ namespace Stats
             set { _freeExp = value; }
         }
 
+
         public void AddExp(uint exp)
         {
             _freeExp += exp;
@@ -121,7 +125,7 @@ namespace Stats
         public void CalculateLevel()
         {
 
-            // need to add logic here
+            // TODO need to add logic here
 
         }
 
@@ -298,7 +302,7 @@ namespace Stats
 
             CurHealth = MaxHealth = GetVital((int)VitalName.Health).AdjustBaseValue;
             CurMana = MaxMana = GetVital((int)VitalName.Mana).AdjustBaseValue;
-            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(selfEntityRef, new LevelUpComponent() { MaxHealth = maxHealth, MaxMana = maxMana, CurHealth = CurHealth, CurMana = CurMana, MagicDef = MagicDef, MeleeAttack = MeleeAttack, MeleeDef = MeleeDef });
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, new LevelUpComponent() { MaxHealth = maxHealth, MaxMana = maxMana, CurHealth = CurHealth, CurMana = CurMana});
         }
 
 
@@ -306,10 +310,12 @@ namespace Stats
 
         public void OnDeath(float deathDelay)
         {
-            if (!death)
+            if (!Dead)
             {
-                Destroy(this.gameObject, deathDelay);
-                death = true;
+                gameObject.SetActive(false);
+                Debug.Log(Name + " is dead");
+                //Destroy(this.gameObject, deathDelay);
+                Dead = true;
             }
         }
 
@@ -326,5 +332,10 @@ namespace Stats
             await Task.Delay(TimeSpan.FromSeconds(1));
             StatUpdate();
         }
+
+
+
+        public abstract void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
+       
     }
 }

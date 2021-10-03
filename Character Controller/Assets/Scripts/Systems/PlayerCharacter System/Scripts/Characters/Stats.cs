@@ -28,6 +28,8 @@ namespace Stats
         Range_Target,
         Range_Motion,
         Status_Change,
-        Mana_Recover
+        Mana_Recover,
+        CriticHitRate
+
     }
 }
