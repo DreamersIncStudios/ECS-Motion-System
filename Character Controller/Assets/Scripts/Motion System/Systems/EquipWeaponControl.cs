@@ -37,6 +37,9 @@ namespace MotionSystem.System {
 
         }
         public void DoDamage(int value) {
+            if (!damage) { 
+            damage = GetComponentInChildren<WeaponDamage>();
+            }
             damage.SetDamageBool(value == 1 ? true : false);
         }
 

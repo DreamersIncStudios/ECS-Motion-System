@@ -201,7 +201,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 1
+    supportSSR: 0
     supportSSRTransparent: 1
     supportSSAO: 1
     supportSSGI: 0
@@ -221,13 +221,13 @@ MonoBehaviour:
     lightLayerName6: Light Layer 6
     lightLayerName7: Light Layer 7
     supportDistortion: 1
-    supportTransparentBackface: 1
-    supportTransparentDepthPrepass: 1
-    supportTransparentDepthPostpass: 1
+    supportTransparentBackface: 0
+    supportTransparentDepthPrepass: 0
+    supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
-    supportCustomPass: 1
+    supportCustomPass: 0
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 3
     planarReflectionResolution:
       m_Values: 000100000004000000040000
       m_SchemaId:
@@ -318,7 +318,7 @@ MonoBehaviour:
       lutFormat: 48
       bufferFormat: 74
     dynamicResolutionSettings:
-      enabled: 1
+      enabled: 0
       maxPercentage: 100
       minPercentage: 100
       dynResType: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
       forceResolution: 0
       forcedPercentage: 100
     lowresTransparentSettings:
-      enabled: 1
+      enabled: 0
       checkerboardDepthBuffer: 1
       upsampleType: 1
     xrSettings:

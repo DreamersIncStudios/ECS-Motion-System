@@ -94,9 +94,9 @@ namespace Dreamers.InventorySystem.Generic
 
         #region Manage UI
 
-        GameObject MenuPanelParent = new GameObject();
-        GameObject ItemPanel = new GameObject();
-        GameObject playerGold = new GameObject(); // possible just work with player inventory
+        GameObject MenuPanelParent;
+        GameObject ItemPanel;
+        GameObject playerGold; // possible just work with player inventory
 
         public void OpenStore(CharacterInventory characterInventory)
         {

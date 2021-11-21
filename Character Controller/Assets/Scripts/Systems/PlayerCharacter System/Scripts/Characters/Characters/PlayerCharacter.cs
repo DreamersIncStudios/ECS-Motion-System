@@ -16,7 +16,7 @@ namespace Stats
             StatUpdate();
         }
 
-        public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element) {
+        public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element=0 ) {
             //Todo Figure out element resistances, conditional mods, and possible affinity 
             float defense = typeOf switch
             {
@@ -24,8 +24,9 @@ namespace Stats
                 _ => MeleeDef,
             };
 
-            int damageToProcess = Mathf.FloorToInt(Amount * defense * Random.Range(.92f, 1.08f));
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<PlayerStatComponent>(SelfEntityRef).AdjustHealth(damageToProcess);
+            int damageToProcess = -Mathf.FloorToInt(Amount * defense * Random.Range(.92f, 1.08f));
+            AdjustHealth health = new AdjustHealth() { Value = damageToProcess };
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
 
         }
     }
