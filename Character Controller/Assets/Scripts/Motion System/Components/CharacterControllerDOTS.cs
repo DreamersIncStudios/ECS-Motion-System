@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
-
+using Unity.Physics;
 namespace MotionSystem.Components
 {
     public struct CharControllerE: IComponentData
@@ -20,9 +20,8 @@ namespace MotionSystem.Components
         public float V;
         public bool Jump;
         public bool Crouch;
-
+       
         public bool CombatCapable;
-
         public Vector3 Move;
         public bool Walk;
         public Vector3 GroundNormal;
@@ -39,11 +38,16 @@ namespace MotionSystem.Components
         public float m_OrigGroundCheckDistance;
         public bool AI;
         public LayerMask GroundCheckLayerMask;
-
+        public CollisionFilter mask;
+        public RaycastInput center;
         public bool EquipWeapon=>TimerForEquipReset != 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset;
+
+
+
     }
+
 
     public struct AI_Control : IComponentData {
         public bool IsGrounded;

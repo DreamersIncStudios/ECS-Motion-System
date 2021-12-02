@@ -66,7 +66,7 @@ namespace MotionSystem.System
                             RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
                             control.IsGrounded = false;
                             Anim.applyRootMotion = false;
-                            control.GroundCheckDistance = 0.1f;
+                        //    control.GroundCheckDistance = 0.1f;
                         }
                     }
                 }
@@ -75,7 +75,7 @@ namespace MotionSystem.System
                     Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
                     RB.AddForce(extraGravityForce);
 
-                    control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
+                //    control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
                 }
 
                 //ScaleCapsules Collider
@@ -128,13 +128,13 @@ namespace MotionSystem.System
             });
        
 
-                Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
-            {
-                capsule.center = Control.CapsuleCenter;
-                capsule.height = Control.CapsuleHeight;
+            //    Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+            //{
+            //    capsule.center = Control.CapsuleCenter;
+            //    capsule.height = Control.CapsuleHeight;
 
-            }
-      );
+            //}
+     // );
         }
 
 
