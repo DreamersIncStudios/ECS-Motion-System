@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.22f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Hub UI\Scripts\PlayerStatUI.cs" />
     <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\Spawner.cs" />
     <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\CharacterSetup.cs" />
@@ -63,6 +60,8 @@
     <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\PlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\EnemySetup.cs" />
     <Compile Include="Assets\TestTargetOrbit.cs" />
+    <Compile Include="Assets\Scripts\OpenEndStuff\AI Attack System\NPCAttackSystem.cs" />
+    <Compile Include="Assets\Scripts\OpenEndStuff\AI Attack System\NPCCombo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
@@ -892,6 +891,10 @@
     <ProjectReference Include="WeaponSystem.csproj">
       <Project>{7A7A0688-D737-B6B0-5305-A49155483304}</Project>
       <Name>WeaponSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="IAUS.csproj">
+      <Project>{60238395-D8D3-E501-7CAE-8A6DB07DA410}</Project>
+      <Name>IAUS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

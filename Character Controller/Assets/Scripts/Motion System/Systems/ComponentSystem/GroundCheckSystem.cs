@@ -25,7 +25,7 @@ namespace MotionSystem.System
             {
 
 
-                NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Persistent);
+                NativeList<RaycastCommand> GroundCheck = new NativeList<RaycastCommand>(Allocator.Temp);
 
 
                 GroundCheck.Add(new RaycastCommand()

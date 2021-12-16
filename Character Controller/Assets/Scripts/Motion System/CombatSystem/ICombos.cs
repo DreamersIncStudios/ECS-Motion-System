@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-public interface ICombos
+
+namespace DreamersInc.ComboSystem
 {
-    List<AnimationCombo> ComboList { get; }
+    public interface ICombos
+    {
+        List<AnimationCombo> ComboList { get; }
 
-    void UnlockCombo(ComboNames Name);
-    GameObject DisplayCombo();
+        void UnlockCombo(ComboNames Name);
+        GameObject DisplayCombo();
 
+    }
 }

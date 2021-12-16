@@ -11,180 +11,183 @@ using Dreamers.InventorySystem.Base;
 using Unity.Transforms;
 using System.Collections;
 
-public class ComboInputSystem : ComponentSystem
+namespace DreamersInc.ComboSystem
 {
-    EntityCommandBuffer commandBuffer;
-    protected override void OnCreate()
+    public class ComboInputSystem : ComponentSystem
     {
-        base.OnCreate();
-        movespanel = new GameObject();
-    }
-
-
-    GameObject movespanel;
-    protected override void OnUpdate()
-    {
-        commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
-
-        Entities.ForEach((ref Player_Control PC, ComboComponentAuthoring ComboList, Animator anim, Command handler) =>
+        EntityCommandBuffer commandBuffer;
+        protected override void OnCreate()
         {
-            if (handler.InputQueue == null)
-                handler.InputQueue = new Queue<AnimationTriggers>();
-            EquipmentBase equipmentBase = anim.GetComponent<CharacterInventory>().Equipment;
-            WeaponSO So;
-            if (equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out So) || equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Secondary, out So))
-            {
-                handler.WeaponIsEquipped = true;
-            }
-            else
-                handler.WeaponIsEquipped = false;
+            base.OnCreate();
+            movespanel = new GameObject();
+        }
 
-            if (PC.InSafeZone)
-            {
-             // add logic for play to store weapon
-                
-                return;
-            }
-            if (PC.DisplayCombos)
-            {
-                ComboList.Combo.ShowMovesPanel = !ComboList.Combo.ShowMovesPanel;
-                if (ComboList.Combo.ShowMovesPanel)
-                    movespanel = ComboList.Combo.DisplayCombo();
-                else
-                    Object.Destroy(movespanel);
-            }
 
-            if (!anim.IsInTransition(0) && !ComboList.Combo.ShowMovesPanel)
+        GameObject movespanel;
+        protected override void OnUpdate()
+        {
+            commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
+
+            Entities.ForEach((ref Player_Control PC, ComboComponentAuthoring ComboList, Animator anim, Command handler) =>
             {
-                foreach (AnimationCombo comboOption in ComboList.Combo.ComboList)
+                if (handler.InputQueue == null)
+                    handler.InputQueue = new Queue<AnimationTriggers>();
+                EquipmentBase equipmentBase = anim.GetComponent<CharacterInventory>().Equipment;
+                WeaponSO So;
+                if (equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out So) || equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Secondary, out So))
                 {
-                    if (handler.StateInfo.IsName(comboOption.CurremtStateName.ToString()))
+                    handler.WeaponIsEquipped = true;
+                }
+                else
+                    handler.WeaponIsEquipped = false;
+
+                if (PC.InSafeZone)
+                {
+                // add logic for play to store weapon
+
+                return;
+                }
+                if (PC.DisplayCombos)
+                {
+                    ComboList.Combo.ShowMovesPanel = !ComboList.Combo.ShowMovesPanel;
+                    if (ComboList.Combo.ShowMovesPanel)
+                        movespanel = ComboList.Combo.DisplayCombo();
+                    else
+                        Object.Destroy(movespanel);
+                }
+
+                if (!anim.IsInTransition(0) && !ComboList.Combo.ShowMovesPanel)
+                {
+                    foreach (AnimationCombo comboOption in ComboList.Combo.ComboList)
                     {
-                        handler.currentStateExitTime = comboOption.AnimationEndTime;
+                        if (handler.StateInfo.IsName(comboOption.CurremtStateName.ToString()))
+                        {
+                            handler.currentStateExitTime = comboOption.AnimationEndTime;
                         //Light
                         if (comboOption.LightAttack.Unlocked)
-                        {
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (PC.LightAttack && handler.QueueIsEmpty)
+                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                                 {
-                                    handler.InputQueue.Enqueue(comboOption.LightAttack);
-                                    PC.ChargedTime = 0.0f;
+                                    if (PC.LightAttack && handler.QueueIsEmpty)
+                                    {
+                                        handler.InputQueue.Enqueue(comboOption.LightAttack);
+                                        PC.ChargedTime = 0.0f;
+                                    }
                                 }
                             }
-                        }
                         //Heavy
                         if (comboOption.HeavyAttack.Unlocked)
-                        {
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (PC.HeavyAttack && handler.QueueIsEmpty)
+                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                                 {
-                                    handler.InputQueue.Enqueue(comboOption.HeavyAttack);
-                                    PC.ChargedTime = 0.0f;
+                                    if (PC.HeavyAttack && handler.QueueIsEmpty)
+                                    {
+                                        handler.InputQueue.Enqueue(comboOption.HeavyAttack);
+                                        PC.ChargedTime = 0.0f;
 
+                                    }
                                 }
                             }
-                        }
                         //Charge Light
                         if (comboOption.ChargedLightAttack.Unlocked)
-                        {
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (PC.ChargedLightAttack && handler.QueueIsEmpty)
+                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                                 {
-                                    handler.InputQueue.Enqueue(comboOption.ChargedLightAttack);
-                                    PC.ChargedTime = 0.0f;
+                                    if (PC.ChargedLightAttack && handler.QueueIsEmpty)
+                                    {
+                                        handler.InputQueue.Enqueue(comboOption.ChargedLightAttack);
+                                        PC.ChargedTime = 0.0f;
 
+                                    }
                                 }
                             }
-                        }
 
                         //   projectile
                         if (comboOption.Projectile.Unlocked)
-                        {
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (PC.Projectile && handler.QueueIsEmpty && !PC.Charged)
+                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                                 {
-                                    handler.InputQueue.Enqueue(comboOption.Projectile);
-                                    PC.ChargedTime = 0.0f;
-                                }
-                                if (PC.Projectile && handler.QueueIsEmpty && PC.Charged)
-                                {
-                                    handler.InputQueue.Enqueue(comboOption.ChargedProjectile);
-                                    PC.ChargedTime = 0.0f;
+                                    if (PC.Projectile && handler.QueueIsEmpty && !PC.Charged)
+                                    {
+                                        handler.InputQueue.Enqueue(comboOption.Projectile);
+                                        PC.ChargedTime = 0.0f;
+                                    }
+                                    if (PC.Projectile && handler.QueueIsEmpty && PC.Charged)
+                                    {
+                                        handler.InputQueue.Enqueue(comboOption.ChargedProjectile);
+                                        PC.ChargedTime = 0.0f;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
 
 
-        Entities.ForEach((ShooterComponent shoot, Animator anim, Command handler) =>
-        {
-            handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
-            if (handler.TakeInput)
+            Entities.ForEach((ShooterComponent shoot, Animator anim, Command handler) =>
             {
-                AnimationTriggers temp = handler.InputQueue.Dequeue();
+                handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-                anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+                if (handler.TakeInput)
+                {
+                    AnimationTriggers temp = handler.InputQueue.Dequeue();
+
+                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
 
 
                 if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
-                {
-                    LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
-                    if (!shoot.IsShooting)
-                        shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
-
-                }
-                if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
-                {
-                    if (!shoot.IsShooting)
                     {
-                        shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
-                        shoot.HasShotBeenCharge = true;
+                        LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
+                        if (!shoot.IsShooting)
+                            shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+
                     }
+                    if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
+                    {
+                        if (!shoot.IsShooting)
+                        {
+                            shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+                            shoot.HasShotBeenCharge = true;
+                        }
+                    }
+
+
+                }
+                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
+                {
+
+                    anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
                 }
 
+            });
 
-            }
-            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
+
+
+            Entities.WithNone<ShooterComponent>().ForEach((Animator anim, Command handler) =>
             {
+                handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-                anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
-            }
+                if (handler.TakeInput)
+                {
+                    AnimationTriggers temp = handler.InputQueue.Dequeue();
 
-        });
-
-
-
-        Entities.WithNone<ShooterComponent>().ForEach((Animator anim, Command handler) =>
-        {
-            handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
-            if (handler.TakeInput)
-            {
-                AnimationTriggers temp = handler.InputQueue.Dequeue();
-
-                anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
 
 
             }
-            if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
-            {
+                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
+                {
 
-                anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
-            }
+                    anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+                }
 
-        });
+            });
 
+
+        }
 
     }
-
 }
