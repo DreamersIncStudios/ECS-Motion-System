@@ -5,16 +5,15 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
-using GameMaster;
-
-//
+using ControllerSwap;
+//need to rewrite for Unity physics  
 
 namespace MotionSystem.System.AnimatorIK
 {
     public class AnimatorIK : MonoBehaviour
     {
         Animator anim;
-       public  GameMasterSystem GMS;
+       public  PartySwapSystem GMS;
         public bool _IKStatus { get { return GMS.IKGlobal; } }
         public float offsetY;
         public LayerMask TargetLayers; // check AI System To see how it was used in RayCast Command 
@@ -24,8 +23,7 @@ namespace MotionSystem.System.AnimatorIK
             {
                 anim = this.GetComponent<Animator>();
             }
-            if(GMS == null)
-                GMS = GameMasterSystem.GMS;
+  
         }
 
         float LeftFootWeight { get { return anim.GetFloat("Left Foot"); } }
@@ -42,8 +40,9 @@ namespace MotionSystem.System.AnimatorIK
         Quaternion LeftFootRot { get { return anim.GetBoneTransform(HumanBodyBones.LeftFoot).transform.localRotation; } }
         Quaternion RightFootRot { get { return anim.GetBoneTransform(HumanBodyBones.RightFoot).transform.localRotation; } }
 
-        public Vector3 HandPos { get { return GetComponent<Stats.Equipment>().Sword.MatchTargetHand.position; } }// get data from Equipment system
-        public Quaternion HandRot { get {return GetComponent<Stats.Equipment>().Sword.MatchTargetHand.rotation; } } // get data from Equipment system
+        //rewrite hand IK
+       // public Vector3 HandPos { get { return GetComponent<CharacterInventory>().Equipment.EquippedWeapons[WeaponSlot.Primary].MatchTargetHand.position; } }// get data from Equipment system
+      //  public Quaternion HandRot { get {return GetComponent<Equipment>().Sword.MatchTargetHand.rotation; } } // get data from Equipment system
         private void Update()
         {
 

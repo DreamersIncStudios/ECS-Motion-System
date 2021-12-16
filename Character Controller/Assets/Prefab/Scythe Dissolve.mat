@@ -8,21 +8,31 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Scythe Dissolve
-  m_Shader: {fileID: -6465566751694194690, guid: b29184f9c0254b6408b734b7c3f69dc7,
+  m_Shader: {fileID: -6465566751694194690, guid: 87af27c819098f043913ab6222c7d520,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON _DEPTHOFFSET_ON _DISABLE_SSR _DISABLE_SSR_TRANSPARENT
+    _DOUBLESIDED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2475
   stringTagMap:
     MotionVector: User
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - MOTIONVECTORS
+  - RayTracingPrepass
+  - TransparentBackface
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4DED959C:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8d538df03c7947f6981913539beb6fa0:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -110,30 +120,50 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Dissolve: 0
+    - Light: 1000000
+    - Vector1_1d0052a403ec4f2b86b90635915b6001: 0.01
     - Vector1_44889225: 100
+    - Vector1_51c5338754e74a769cdffb97eecbc35f: 1
+    - Vector1_6693dd922f86473db24875969c453191: 410
     - Vector1_733B8957: 0.0445
+    - Vector1_923b5440014c48fe8ec4bf5510f8b605: 100000
     - Vector1_E4B179B6: 0
+    - Vector1_dbb2fb481f4044129e0532a82d2b1928: 20
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0.5
-    - _AlphaCutoffEnable: 0
+    - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
+    - _AlphaToMask: 1
+    - _AlphaToMaskInspectorValue: 1
     - _Anisotropy: 0
     - _BlendMode: 0
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
-    - _DepthOffsetEnable: 0
+    - _DepthOffsetEnable: 1
     - _DetailAlbedoScale: 1
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 1
@@ -156,8 +186,8 @@ Material:
     - _DistortionSrcBlend: 0
     - _DistortionVectorBias: -1
     - _DistortionVectorScale: 2
-    - _DoubleSidedEnable: 0
-    - _DoubleSidedNormalMode: 1
+    - _DoubleSidedEnable: 1
+    - _DoubleSidedNormalMode: 0
     - _DstBlend: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -186,13 +216,18 @@ Material:
     - _Metallic: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
+    - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
-    - _ReceivesSSR: 1
+    - _RayTracing: 0
+    - _ReceivesSSR: 0
+    - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
     - _SSRefractionProjectionModel: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -201,16 +236,16 @@ Material:
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
-    - _StencilRef: 2
+    - _StencilRef: 0
     - _StencilRefDepth: 0
-    - _StencilRefDistortionVec: 64
+    - _StencilRefDistortionVec: 4
     - _StencilRefGBuffer: 2
-    - _StencilRefMV: 128
-    - _StencilWriteMask: 3
-    - _StencilWriteMaskDepth: 32
-    - _StencilWriteMaskDistortionVec: 64
-    - _StencilWriteMaskGBuffer: 3
-    - _StencilWriteMaskMV: 128
+    - _StencilRefMV: 32
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 14
+    - _StencilWriteMaskMV: 40
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
@@ -220,27 +255,31 @@ Material:
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
-    - _TransparentDepthPostpassEnable: 0
-    - _TransparentDepthPrepassEnable: 0
+    - _TransparentDepthPostpassEnable: 1
+    - _TransparentDepthPrepassEnable: 1
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
+    - _TransparentZWrite: 1
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _ZTestDepthEqualForOpaque: 4
-    - _ZTestGBuffer: 4
+    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 3
     - _ZTestModeDistortion: 8
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
     - Color_55473AAD: {r: 1.968627, g: 0.44319868, b: 1.4560263, a: 0}
+    - Color_75ddc6f2d99943abbba63a44825c7fce: {r: 0.1425338, g: 0.12927783, b: 1.6121702,
+        a: 1}
+    - Color_ace1d743f71c473690218e7ef8f9983a: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
-    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _DoubleSidedConstants: {r: -1, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
@@ -252,6 +291,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!114 &9034072271554541266
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -264,4 +304,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 0
+  version: 11

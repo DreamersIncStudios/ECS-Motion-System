@@ -15,5 +15,8 @@ MonoBehaviour:
   _jump: 330
   _lightAttack: 332
   _heavyAttack: 333
+  _chargedlightAttack: 0
+  _chargedheavyAttack: 0
   _block: 334
   _cadMenu: 335
+  _projectile: 331

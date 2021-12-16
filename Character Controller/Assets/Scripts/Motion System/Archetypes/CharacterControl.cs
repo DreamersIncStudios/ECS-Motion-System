@@ -4,26 +4,28 @@ using UnityEngine.AI;
 using MotionSystem.Components;
 using IAUS.ECS.Component;
 using ECS.Utilities;
-using GameMaster;
-
+using ControllerSwap;
+using Unity.Physics;
 
 namespace MotionSystem.Archetypes
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(CapsuleCollider))]
+   // [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(UnityEngine.CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof (NavMeshAgent))]
+    [RequireComponent(typeof(NavMeshAgent))]
 
 
-    public class CharacterControl : MonoBehaviour,IConvertGameObjectToEntity
+    public class CharacterControl : MonoBehaviour, IConvertGameObjectToEntity
     {
         [Header("Party")]
         public bool AI_Control;
         public bool Party;
+        public bool IsPlayer;
         public bool CombatCapable;
         NavMeshAgent Agent;
-        CapsuleCollider Col;
+        UnityEngine.CapsuleCollider Col;
+        public ControllerScheme Scheme;
         Rigidbody RB;
         [Header("Animation Movement Specs")]
         [SerializeField] float m_MovingTurnSpeed = 360;
@@ -35,27 +37,29 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
         public LayerMask GroundCheckLayer;
-
+        public CollisionFilter test;
         [Header("Weapon Specs")]
         public float EquipResetTimer;
 
         public Entity ObjectEntity;
 
-        GameMasterSystem GMS;
+        PartySwapSystem Swap => PartySwapSystem.GMS;
 
         public void Start()
         {
-            GMS = GameMasterSystem.GMS;
+
 
             RB = this.GetComponent<Rigidbody>();
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            if(Party && GMS.Party.Count<= GMS.MaxParty )
-            GMS.Party.Add(ObjectEntity);
-       
+
+
         }
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            GMS = GameMasterSystem.GMS;
+
+            if (Party && Swap.Party.Count <= Swap.MaxParty)
+                Swap.Party.Add(ObjectEntity);
             ObjectEntity = entity;
 
             Agent = this.GetComponent<NavMeshAgent>();
@@ -67,30 +71,49 @@ namespace MotionSystem.Archetypes
                 var playerparty = new PlayerParty() { };
                 dstManager.AddComponentData(entity, playerparty);
             }
-            dstManager.AddComponent<InSafeZoneTag>(entity);
+            //  dstManager.AddComponent<InSafeZoneTag>(entity); 
 
-            Col = this.GetComponent<CapsuleCollider>();
-            var control = new CharControllerE() { CapsuleRadius = Col.radius, OGCapsuleHeight = Col.height,
-                OGCapsuleCenter = Col.center, CapsuleCenter = Col.center, CapsuleHeight = Col.height,
-                m_AnimSpeedMultiplier = m_AnimSpeedMultiplier, m_GravityMultiplier = m_GravityMultiplier, m_JumpPower = m_JumpPower,
+            Col = this.GetComponent<UnityEngine.CapsuleCollider>();
+            var control = new CharControllerE()
+            {
+                CapsuleRadius = Col.radius,
+                OGCapsuleHeight = Col.height,
+                OGCapsuleCenter = Col.center,
+                CapsuleCenter = Col.center,
+                CapsuleHeight = Col.height,
+                m_AnimSpeedMultiplier = m_AnimSpeedMultiplier,
+                m_GravityMultiplier = m_GravityMultiplier,
+                m_JumpPower = m_JumpPower,
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
-                m_MovingTurnSpeed = m_MovingTurnSpeed, m_RunCycleLegOffset = m_RunCycleLegOffset, m_StationaryTurnSpeed = m_StationaryTurnSpeed,
-                m_OrigGroundCheckDistance = m_GroundCheckDistance, GroundCheckLayerMask = GroundCheckLayer, GroundCheckDistance = m_GroundCheckDistance
-               , IsGrounded = true, AI = AI_Control, CombatCapable = CombatCapable,
+                m_MovingTurnSpeed = m_MovingTurnSpeed,
+                m_RunCycleLegOffset = m_RunCycleLegOffset,
+                m_StationaryTurnSpeed = m_StationaryTurnSpeed,
+                m_OrigGroundCheckDistance = m_GroundCheckDistance,
+                GroundCheckLayerMask = GroundCheckLayer,
+                GroundCheckDistance = m_GroundCheckDistance,
+                mask = new CollisionFilter
+                {
+                    BelongsTo = ~0u,
+                    CollidesWith = ~0u
+                },
+                IsGrounded = true,
+                AI = AI_Control,
+                CombatCapable = CombatCapable,
                 EquipResetTimer = EquipResetTimer
 
             };
             dstManager.AddComponentData(entity, control);
             if (AI_Control)
             {
-                var move = new Movement() { CanMove = true};
+                var move = new Movement() { CanMove = true };
                 var AI = new AI_Control() { };
                 dstManager.AddComponentData(entity, move);
                 dstManager.AddComponentData(entity, AI);
 
             }
-            else {
-                if (Party )
+            else
+            {
+                if (IsPlayer)
                 {
                     Agent.enabled = false;
                     var player = new Player_Control() { };
@@ -99,8 +122,8 @@ namespace MotionSystem.Archetypes
             }
             var transformtransitiion = new TransformComponenet();
             dstManager.AddComponentData(entity, transformtransitiion);
-            
+
         }
-// Need To Determine a New method for disabling gameobject. See performance different for destorying and recreating. 
+        // Need To Determine a New method for disabling gameobject. See performance different for destorying and recreating. 
     }
 }

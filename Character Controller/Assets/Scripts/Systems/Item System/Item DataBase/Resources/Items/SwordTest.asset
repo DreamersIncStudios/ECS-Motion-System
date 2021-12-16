@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d702dee579f7aee4d83fbdaba56cd92a, type: 3}
+  m_Name: SwordTest
+  m_EditorClassIdentifier: 
+  _itemID: 6
+  _itemName: 
+  _desc: 
+  _icon: {fileID: 0}
+  _value: 0
+  _type: 0
+  _stackable: 0
+  _questItem: 0
+  quality: 0
+  _equipment: 0
+  _model: {fileID: 0}
+  _equipToHuman: 0
+  _equipBone: 0
+  _modifiers: []
+  _levelRQD: 0
+  _weaponType: 0
+  slot: 0
+  maxDurable: 0
+  breakable: 0
+  _upgradeable: 0

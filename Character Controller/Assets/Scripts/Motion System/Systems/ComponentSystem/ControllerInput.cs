@@ -6,8 +6,7 @@ using MotionSystem.Components;
 using IAUS.ECS.Component;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
-using GameMaster;
-
+using DreamersStudio.CameraControlSystem;
 
 namespace MotionSystem.System {
 
@@ -17,14 +16,9 @@ namespace MotionSystem.System {
        
         const float k_Half = 0.5f;
         Transform m_mainCam;
-        public ControllerScheme InputSet;
 
-        protected override void OnStartRunning()
-        {
-            base.OnStartRunning();
-            InputSet = GameMasterSystem.GMS.InputSettings.UserScheme;
+        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
 
-        }
         protected override void OnUpdate()
         {
             if (m_mainCam == null)
@@ -41,50 +35,10 @@ namespace MotionSystem.System {
                 }
             }
 
-
-            Entities.ForEach(( InputQueuer QueueInput,ref CharControllerE Control,  ref Player_Control PCC, ref InSafeZoneTag safe) =>
+            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
             {
-                if (!Control.CombatCapable) // remove?? IntputQueuer on combat only??
-                    return;
-                if (!safe.InZone) {
-                    if (!Control.AI && Control.canInput && !Control.block)
-                    {
-                        if (!Input.GetKey(InputSet.ActivateCADMenu))
-                        {
-                            if (Input.GetKeyUp(InputSet.LightAttack))
-                            {
-                                QueueInput.InputQueue.Enqueue("Light Attack");
-                                Control.InputTimer = .2f;
-                            }
-                            if (Input.GetKeyUp(InputSet.HeavyAttack))
-                            {
-                                QueueInput.InputQueue.Enqueue("Heavy Attack");
-                                Control.InputTimer = .2f;
+                 ControllerScheme InputSet = PCC.InputSet;
 
-                            }
-
-                        }
-                    }
-
-                    if (!Input.GetKey(InputSet.ActivateCADMenu))
-                    {
-                        if (Input.GetKey(InputSet.Block))
-                            Control.block = true;
-                        if (Input.GetKeyUp(InputSet.Block))
-                            Control.block = false;
-                        if (Control.block && !Input.GetKey(InputSet.Block))
-                            Control.block = false;
-                    }
-
-                    if (!Control.canInput)
-                    {
-                        Control.InputTimer -= Time.DeltaTime;
-                    } 
-                }
-            });
-
-            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control, ref InSafeZoneTag safe) =>
-            {
                 bool m_Crouching = new bool();
                 if (Control.block)
                 {
@@ -97,16 +51,14 @@ namespace MotionSystem.System {
                     Control.V = CrossPlatformInputManager.GetAxis("Vertical");
                     m_Crouching = Input.GetKey(KeyCode.C);
 
-                    if (!safe.InZone) {
-                        if (!Control.Jump && Control.canInput && Control.IsGrounded && !Input.GetKey(InputSet.ActivateCADMenu))
+                    if (!PCC.InSafeZone) {
+                        if (!Control.Jump && Control.IsGrounded)
                         {
-                            Control.Jump = Input.GetKeyDown(InputSet.Jump);
+                            Control.Jump = PCC.Jump;
 
                         }
-                        if (Control.Jump)
-                        {
-                            Control.InputTimer = .2f;
-                        }
+       
+                       // add controller toogle
                         Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
                     }
@@ -181,8 +133,8 @@ namespace MotionSystem.System {
                     {
                         Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
                     }
-                }
 
+                        }
                 if (Control.Walk)
                     Control.Move *= 0.5f;
                 if (Control.Move.magnitude > 1.0f)
@@ -195,23 +147,12 @@ namespace MotionSystem.System {
                 if (Control.TimerForEquipReset > 0.0f) {
                     Control.TimerForEquipReset -= Time.DeltaTime;
                 }
-                if (Control.TimerForEquipReset <= 0.0f)
-                {
+                else { 
                     Control.TimerForEquipReset = 0.0f;
-                    Control.EquipWeapon = false;
                 }
 
             });
-
-
-
-
-
-
-
             }
-
-
     }
 }
 

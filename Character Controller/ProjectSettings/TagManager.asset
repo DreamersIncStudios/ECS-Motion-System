@@ -17,12 +17,12 @@ TagManager:
   - UI
   - 
   - 
+  - NPC
   - Environment
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Attackable NPC
+  - 'Attackable Structure '
+  - Projectile
   - 
   - 
   - 

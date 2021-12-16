@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;
+
 using Unity.Entities;
 using MotionSystem.Components;
 using Unity.Collections;
 using Unity.Jobs;
-
+using UnityStandardAssets.CrossPlatformInput;
+using DreamersStudio.CameraControlSystem;
 namespace MotionSystem.System
 {
 
@@ -15,6 +19,7 @@ namespace MotionSystem.System
 
 
         const float k_Half = 0.5f;
+        bool IsNotTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") < .3f;
 
         protected override void OnUpdate()
         {
@@ -27,20 +32,34 @@ namespace MotionSystem.System
 
 
                 Anim.applyRootMotion = control.IsGrounded;
-                control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
+                //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
-                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
+              //  m_TurnAmount = control.Move.x;
                 m_ForwardAmount = control.Move.z;
+                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
-                float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+                if (IsNotTargeting)
+                {
+                    float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
+                    transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+                }
+                else {
+                    
+                    m_TurnAmount = control.Move.x;
+                    transform.LookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target);
+                    transform.rotation= Quaternion.Euler(0, transform.rotation.eulerAngles.y,0); ;
+
+                }
+
 
 
                 if (control.IsGrounded)
                 {
                     if (control.Jump && !control.Crouch)
                     {
-                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Reaper locomation Grounded"))
+                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded") 
+                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation Grounded Weapon Drawn ") 
+                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted Locomation"))
                         {
                             // jump!
                            // Debug.Log("Jump");
@@ -71,12 +90,12 @@ namespace MotionSystem.System
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
-
+                Anim.SetBool("IsTargeting", !IsNotTargeting);
                     if (!control.IsGrounded)
                 {
                     Anim.SetFloat("Jump", RB.velocity.y);
                 }
-                Anim.SetBool("Weapon Drawn", control.EquipWeapon);
+               Anim.SetBool("Weapon Drawn", control.EquipWeapon);
 
                 // calculate which leg is behind, so as to leave that leg trailing in the jump animation
                 // (This code is reliant on the specific run cycle offset in our animations,
@@ -107,34 +126,15 @@ namespace MotionSystem.System
 
 
             });
-            Entities.ForEach((ref CharControllerE Control, InputQueuer QueueInput, Animator Anim) => {
-                if (!Control.CombatCapable)
-                    return;
-                Anim.SetBool("Block", Control.block);
-                if (Control.block)
-                {
-                    Control.TimerForEquipReset = Control.EquipResetTimer;
-                }
-                if (QueueInput.InputQueue.Count > 0) {
-                    string Dequeue = QueueInput.InputQueue.Dequeue() as string;
-                    if (!Control.EquipWeapon){
-                        Control.EquipWeapon = true;
-                    }
-                    Anim.SetTrigger(Dequeue);
-                    Control.TimerForEquipReset = Control.EquipResetTimer; 
-                }
 
-                if (Anim.GetCurrentAnimatorStateInfo(0).IsTag("EndCombo")) {
-                    Anim.ResetTrigger("Light Attack");
-                }
-            });
-                Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
-            {
-                capsule.center = Control.CapsuleCenter;
-                capsule.height = Control.CapsuleHeight;
 
-            }
-      );
+            Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+        {
+            capsule.center = Control.CapsuleCenter;
+            capsule.height = Control.CapsuleHeight;
+
+        }
+         );
         }
 
 
