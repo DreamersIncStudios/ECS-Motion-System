@@ -6,12 +6,13 @@ using Core.SaveSystems;
 
 namespace DreamersInc.ComboSystem
 {
-    public class ComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity, ISave
+    [RequireComponent(typeof(Animator))]
+    public class PlayerComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity, ISave
     {
         public PlayerCombos Combo;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            var data = new ComboComponent() { animator = GetComponent<Animator>(), combo = Instantiate(Combo) };
+            var data = new PlayerComboComponent() { animator = GetComponent<Animator>(), combo = Instantiate(Combo) };
             dstManager.AddComponentData(entity, data);
 
         }
@@ -30,7 +31,7 @@ namespace DreamersInc.ComboSystem
             return Combo.GetSaveData();
         }
     }
-    public class ComboComponent : IComponentData
+    public class PlayerComboComponent : IComponentData
     {
         public PlayerCombos combo;
         public Animator animator;

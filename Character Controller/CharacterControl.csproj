@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,23 +53,26 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboInputSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\AnimationCombo.cs" />
     <Compile Include="Assets\Scripts\Motion System\Archetypes\CharacterControl.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Systems\CheckSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\AITarget.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Uncontrollable NPC\NPCComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\PlayerParty.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\UpdateSenses.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\ComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Targeting System\Systems\TargetingSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Command.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\AITargetCreate.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\NPCCombos.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Uncontrollable NPC\NPCCombos.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\Player_Control.cs" />
     <Compile Include="Assets\Scripts\Motion System\PartySwapSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\ICombos.cs" />
     <Compile Include="Assets\Scripts\Motion System\CombatSystem\SpawnBullets.cs" />
-    <Compile Include="Assets\Scripts\Motion System\CombatSystem\PlayerCombos.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\Combo SO\PlayerCombos.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Aggression\Authoring\FactionAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Systems\VisionSystemJobs.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\AlertLevel.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\ComponentSystem\AnimatorSpeedUpdate.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\Senses\SoundEmitter.cs" />
+    <Compile Include="Assets\Scripts\Motion System\CombatSystem\PlayerComboComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\Senses\AISensesAuthoring.cs" />
     <Compile Include="Assets\Scripts\Motion System\Systems\SwapSystem.cs" />
     <Compile Include="Assets\Scripts\Motion System\Aggression and Targeting\Scripts\LookAtTarget.cs" />

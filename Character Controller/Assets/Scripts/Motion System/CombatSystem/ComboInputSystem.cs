@@ -28,10 +28,10 @@ namespace DreamersInc.ComboSystem
         {
             commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
 
-            Entities.ForEach((ref Player_Control PC, ComboComponentAuthoring ComboList, Animator anim, Command handler) =>
+            Entities.ForEach((ref Player_Control PC, PlayerComboComponentAuthoring ComboList, Animator anim, Command handler) =>
             {
                 if (handler.InputQueue == null)
-                    handler.InputQueue = new Queue<AnimationTriggers>();
+                    handler.InputQueue = new Queue<AnimationTrigger>();
                 EquipmentBase equipmentBase = anim.GetComponent<CharacterInventory>().Equipment;
                 WeaponSO So;
                 if (equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out So) || equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Secondary, out So))
@@ -131,7 +131,7 @@ namespace DreamersInc.ComboSystem
 
                 if (handler.TakeInput)
                 {
-                    AnimationTriggers temp = handler.InputQueue.Dequeue();
+                    AnimationTrigger temp = handler.InputQueue.Dequeue();
 
                     anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event
@@ -171,7 +171,7 @@ namespace DreamersInc.ComboSystem
 
                 if (handler.TakeInput)
                 {
-                    AnimationTriggers temp = handler.InputQueue.Dequeue();
+                    AnimationTrigger temp = handler.InputQueue.Dequeue();
 
                     anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
                 // this need to move to animation event

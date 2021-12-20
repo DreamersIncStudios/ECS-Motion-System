@@ -5,7 +5,7 @@ using MotionSystem.Components;
 using IAUS.ECS.Component;
 using ECS.Utilities;
 using ControllerSwap;
-using Unity.Physics;
+
 
 namespace MotionSystem.Archetypes
 {
@@ -37,7 +37,6 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
         public LayerMask GroundCheckLayer;
-        public CollisionFilter test;
         [Header("Weapon Specs")]
         public float EquipResetTimer;
 
@@ -91,11 +90,6 @@ namespace MotionSystem.Archetypes
                 m_OrigGroundCheckDistance = m_GroundCheckDistance,
                 GroundCheckLayerMask = GroundCheckLayer,
                 GroundCheckDistance = m_GroundCheckDistance,
-                mask = new CollisionFilter
-                {
-                    BelongsTo = ~0u,
-                    CollidesWith = ~0u
-                },
                 IsGrounded = true,
                 AI = AI_Control,
                 CombatCapable = CombatCapable,

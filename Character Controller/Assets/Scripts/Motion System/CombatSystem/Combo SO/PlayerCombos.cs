@@ -5,7 +5,7 @@ using Dreamers.Global;
 using Core.SaveSystems;
 namespace DreamersInc.ComboSystem
 {
-    [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem")]
+    [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem/Player")]
 
     public class PlayerCombos : ScriptableObject, ICombos
     {

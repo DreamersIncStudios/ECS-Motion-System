@@ -11,18 +11,18 @@ namespace DreamersInc.ComboSystem
         public float AnimationEndTime;
         public bool InputAllowed(float time) => time > NormalizedInputTime.x && time < NormalizedInputTime.y;
         // consider adding late inputs ??????
-        public AnimationTriggers LightAttack;
-        public AnimationTriggers HeavyAttack;
-        public AnimationTriggers ChargedLightAttack;
-        public AnimationTriggers ChargedHeavyAttack;
-        public AnimationTriggers Projectile;
-        public AnimationTriggers ChargedProjectile;
+        public AnimationTrigger LightAttack;
+        public AnimationTrigger HeavyAttack;
+        public AnimationTrigger ChargedLightAttack;
+        public AnimationTrigger ChargedHeavyAttack;
+        public AnimationTrigger Projectile;
+        public AnimationTrigger ChargedProjectile;
 
 
 
     }
     [System.Serializable]
-    public struct AnimationTriggers
+    public struct AnimationTrigger
     {
         public ComboNames Name; // Change To String ???????????
         public ComboAnimNames TriggeredAnimName; // Change to String ???????????

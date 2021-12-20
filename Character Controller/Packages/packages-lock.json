@@ -222,7 +222,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.19.3",
+      "version": "1.19.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},

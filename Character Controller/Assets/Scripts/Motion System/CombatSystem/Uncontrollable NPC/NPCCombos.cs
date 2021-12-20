@@ -5,12 +5,13 @@ using UnityEngine;
 namespace DreamersInc.ComboSystem.NPC
 
 {
+    [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem/NPC")]
     public class NPCCombos : ScriptableObject, ICombos
     {
         public List<AnimationCombo> _comboList;
         public List<AnimationCombo> ComboList { get { return _comboList; } }
-
-        List<ComboInfo> comboInfos;
+        public float MaxProb;
+       public List<ComboInfo> comboInfos;
         List<ComboNames> comboNames;
 
         public List<ComboInfo> ComboInfoList
@@ -61,6 +62,67 @@ namespace DreamersInc.ComboSystem.NPC
         {
             throw new System.NotImplementedException();
         }
+        public void OnValidate()
+        {
+            UpdateTotalProbability();
+        }
+
+        public void UpdateTotalProbability() {
+            float totalProb = 0f;
+            for (int i = 0; i < comboInfos.Count; i++) {
+                ComboInfo temp = comboInfos[i];
+               temp.probabilityRangeFrom = totalProb;
+                totalProb += comboInfos[i].Chance;
+                comboInfos[i] = temp;
+            }
+            MaxProb = totalProb;
+            for (int i = 0; i < comboInfos.Count; i++)
+            {
+                ComboInfo temp = comboInfos[i];
+                temp.probabilityTotalWeight = totalProb;
+                comboInfos[i] = temp;
+            }
+        }
+        public AnimationTrigger GetAnimationTrigger(AnimatorStateInfo State, ComboInfo info) {
+            foreach (var item in ComboList) {
+                if (State.IsName(item.CurremtStateName.ToString()))
+                {
+                    if (item.LightAttack.Name.Equals(info.name) && item.LightAttack.Unlocked)
+                    {
+                        return item.LightAttack;
+                    }
+                    else
+                    if (item.HeavyAttack.Name.Equals(info.name) && item.HeavyAttack.Unlocked)
+                    {
+                        return item.HeavyAttack;
+                    }
+                    else
+                    if (item.ChargedLightAttack.Name.Equals(info.name) && item.ChargedLightAttack.Unlocked)
+                    {
+                        return item.ChargedLightAttack;
+                    }
+                    else
+                    if (item.ChargedHeavyAttack.Name.Equals(info.name) && item.ChargedHeavyAttack.Unlocked)
+                    {
+                        return item.ChargedHeavyAttack;
+                    }
+                    else
+                    if (item.Projectile.Name.Equals(info.name) && item.Projectile.Unlocked)
+                    {
+                        return item.Projectile;
+                    }
+                    else
+                    if (item.ChargedProjectile.Name.Equals(info.name) && item.ChargedProjectile.Unlocked)
+                    {
+                        return item.ChargedProjectile;
+                    }
+                    else
+                        return default;
+                }
+            }
+            return default;
+
+        }
 
         public void UnlockCombo(ComboNames Name)
         {
@@ -92,7 +154,7 @@ namespace DreamersInc.ComboSystem.NPC
             }
         }
     }
-    
+
     [System.Serializable]
     public struct ComboInfo
     {
@@ -100,5 +162,16 @@ namespace DreamersInc.ComboSystem.NPC
         public bool Unlocked;
         public float Chance;
         public int LevelUnlocked;
+        public float probabilityTotalWeight;
+
+        [SerializeField] public float probabilityPercent => Chance / probabilityTotalWeight * 100;
+        public float probabilityRangeFrom;
+        public float probabilityRangeTo => probabilityRangeFrom + Chance;
+        public void SetRangeFrom(float StartPoint) {
+            probabilityRangeFrom = StartPoint;
+        }
+        public bool Picked(float picked) {
+            return picked > probabilityRangeFrom && picked < probabilityRangeTo;
+        }
     }
 }
