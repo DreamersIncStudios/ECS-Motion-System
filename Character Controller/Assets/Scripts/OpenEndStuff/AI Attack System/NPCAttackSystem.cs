@@ -11,17 +11,25 @@ public class NPCAttackSystem : ComponentSystem
     {
         Entities.ForEach((Entity entity, ref MeleeAttackTag tag, Command handler, NPCComboComponent AttackInfo, Animator anim) => {
 
+
             float picked = Random.Range(0, AttackInfo.combo.MaxProb);
             foreach (var combo in AttackInfo.combo.comboInfos) {
                 if (combo.Picked(picked)) {
-                    // add to input queue 
+                   
+               
                     handler.InputQueue.Enqueue(AttackInfo.combo.GetAnimationTrigger(handler.StateInfo, combo));
-                    PostUpdateCommands.RemoveComponent<MeleeAttackTag>(entity);
+                    if (tag.Complete)
+                    {
+                        PostUpdateCommands.RemoveComponent<MeleeAttackTag>(entity);
+                    }
+                    else
+                        tag.NumOfAttacks--;
                 }
             }
         });
 
         Entities.ForEach((Entity entity, ref MeleeMagicAttackTag tag, Command handler, NPCComboComponent AttackInfo, Animator anim) => {
+            //TODO add magic system 
 
             float picked = Random.Range(0, AttackInfo.combo.MaxProb);
             foreach (var combo in AttackInfo.combo.comboInfos)
@@ -29,6 +37,8 @@ public class NPCAttackSystem : ComponentSystem
                 if (combo.Picked(picked))
                 {
                     // add to input queue 
+                    if (handler.InputQueue == null)
+                        handler.InputQueue = new Queue<AnimationTrigger>();
                     handler.InputQueue.Enqueue(AttackInfo.combo.GetAnimationTrigger(handler.StateInfo, combo));
                     PostUpdateCommands.RemoveComponent<MeleeMagicAttackTag>(entity);
                 }
@@ -43,6 +53,8 @@ public class NPCAttackSystem : ComponentSystem
                 if (combo.Picked(picked))
                 {
                     // add to input queue 
+                    if (handler.InputQueue == null)
+                        handler.InputQueue = new Queue<AnimationTrigger>();
                     handler.InputQueue.Enqueue(AttackInfo.combo.GetAnimationTrigger(handler.StateInfo, combo));
                     PostUpdateCommands.RemoveComponent<RangeAttackTag>(entity);
                 }
@@ -56,11 +68,15 @@ public class NPCAttackSystem : ComponentSystem
                 if (combo.Picked(picked))
                 {
                     // add to input queue 
+                    if (handler.InputQueue == null)
+                        handler.InputQueue = new Queue<AnimationTrigger>();
                     handler.InputQueue.Enqueue(AttackInfo.combo.GetAnimationTrigger(handler.StateInfo, combo));
                     PostUpdateCommands.RemoveComponent<RangeMagicAttackTag>(entity);
                 }
             }
         });
+
+    
 
     }
 }

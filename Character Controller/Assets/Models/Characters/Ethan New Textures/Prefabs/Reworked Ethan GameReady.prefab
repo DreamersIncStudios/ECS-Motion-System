@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 584213100824902100}
   - component: {fileID: 584213100824902101}
   - component: {fileID: 584213100824902102}
-  - component: {fileID: 584213100824902103}
   - component: {fileID: 584213100824902056}
   - component: {fileID: 584213100824902057}
   - component: {fileID: 584213100824902058}
@@ -213,19 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponIsEquipped: 0
   currentStateExitTime: 0
---- !u!114 &584213100824902103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349841964994383564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfb7dc05c48228244a4b7de2c72fca3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Combo: {fileID: 11400000, guid: da3f2bb0579d12e43b50ef3fad35ad48, type: 2}
+  BareHands: 0
 --- !u!114 &584213100824902056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +232,6 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
-    ThreatPosition:
-      x: 0
-      y: 0
-      z: 0
     Scantimer: 0
     viewRadius: 30
     ViewAngle: 128
@@ -257,10 +240,9 @@ MonoBehaviour:
   Hearing: 0
   HearingData:
     AmbientNoiseLevel: 0
-    LocationOfSound:
-      x: 0
-      y: 0
-      z: 0
+    AlertNoiseLevel: 0
+    AlarmNoiseLevel: 0
+    EnemyAwarnessLevel: 0
   Touch: 0
   Editing: 0
 --- !u!114 &584213100824902057

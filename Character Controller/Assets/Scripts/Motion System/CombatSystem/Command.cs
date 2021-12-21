@@ -13,7 +13,8 @@ namespace DreamersInc.ComboSystem
         public bool WeaponIsEquipped;
         public AnimatorStateInfo StateInfo;
         public float currentStateExitTime;
-        public bool TakeInput => WeaponIsEquipped && !QueueIsEmpty && StateInfo.normalizedTime > currentStateExitTime;
+        public bool BareHands;
+        public bool TakeInput => (WeaponIsEquipped || BareHands) && !QueueIsEmpty && StateInfo.normalizedTime > currentStateExitTime;
         public bool TransitionToLocomotion => !StateInfo.IsTag("Locomotion") && StateInfo.normalizedTime > .95f;
     }
 }

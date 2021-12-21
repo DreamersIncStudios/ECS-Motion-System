@@ -24,6 +24,7 @@ namespace DreamersInc.ComboSystem
 
 
         GameObject movespanel;
+        //TODO Decouple this code split into small chu
         protected override void OnUpdate()
         {
             commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
@@ -169,20 +170,26 @@ namespace DreamersInc.ComboSystem
             {
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
+                if (handler.InputQueue == null)
+                {
+                    handler.InputQueue = new Queue<AnimationTrigger>();
+                }
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
 
                     anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
-                // this need to move to animation event
-
-
-            }
+                    // this need to move to animation event
+                }
                 if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
                 {
+                    if (!handler.BareHands)
+                        anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+                    else
+                        anim.CrossFade("Grounded", .25f, 0, .25f);
 
-                    anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
                 }
+
 
             });
 

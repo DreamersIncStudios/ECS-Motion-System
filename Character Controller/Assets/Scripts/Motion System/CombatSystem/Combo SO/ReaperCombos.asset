@@ -19,13 +19,13 @@ MonoBehaviour:
       y: Infinity
     AnimationEndTime: 0
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 4
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
     HeavyAttack:
-      Name: 1
+      Name: 2
       TriggeredAnimName: 5
       Unlocked: 1
       TransitionDuration: 0
@@ -43,13 +43,13 @@ MonoBehaviour:
       TransitionDuration: 0
       StartOffset: 0
     Projectile:
-      Name: 0
+      Name: 10
       TriggeredAnimName: 23
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
     ChargedProjectile:
-      Name: 0
+      Name: 9
       TriggeredAnimName: 24
       Unlocked: 1
       TransitionDuration: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
       y: Infinity
     AnimationEndTime: 0
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 4
       Unlocked: 1
       TransitionDuration: 0
@@ -101,13 +101,13 @@ MonoBehaviour:
       y: Infinity
     AnimationEndTime: 0
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 9
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
     HeavyAttack:
-      Name: 1
+      Name: 2
       TriggeredAnimName: 15
       Unlocked: 1
       TransitionDuration: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
       y: 0.6
     AnimationEndTime: 0.5
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 10
       Unlocked: 1
       TransitionDuration: 0.25
@@ -183,7 +183,7 @@ MonoBehaviour:
       y: 0.8
     AnimationEndTime: 0.5
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 11
       Unlocked: 1
       TransitionDuration: 0.25
@@ -224,13 +224,13 @@ MonoBehaviour:
       y: 0.8
     AnimationEndTime: 0.5
     LightAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 12
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
     HeavyAttack:
-      Name: 0
+      Name: 1
       TriggeredAnimName: 14
       Unlocked: 1
       TransitionDuration: 0.1
@@ -265,13 +265,13 @@ MonoBehaviour:
       y: 0.8
     AnimationEndTime: 0.7
     LightAttack:
-      Name: 2
+      Name: 3
       TriggeredAnimName: 12
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
     HeavyAttack:
-      Name: 1
+      Name: 2
       TriggeredAnimName: 16
       Unlocked: 1
       TransitionDuration: 0.25

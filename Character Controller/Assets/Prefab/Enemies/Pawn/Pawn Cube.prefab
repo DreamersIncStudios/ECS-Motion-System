@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 769263556517921695}
   - component: {fileID: 4026446935065707028}
   - component: {fileID: 7639730275295054737}
-  - component: {fileID: 522217896132698861}
-  - component: {fileID: -5554049622317102157}
   - component: {fileID: 1000563817}
   m_Layer: 0
   m_Name: Pawn Cube
@@ -60,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4026446935065707028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119,49 +119,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &522217896132698861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497680971784983383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b3307e7b91b044a969db9dba5b7d2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Fight: 0
-  CurHealth: 20
-  MaxHealth: 20
-  CurMana: 20
-  MaxMana: 20
-  MagicDef: 0
-  MeleeAttack: 0
-  MeleeDef: 0
---- !u!114 &-5554049622317102157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497680971784983383}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa32b5e035732454eb7f27eea4a5ff51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Helmet: {fileID: 0}
-  Chest: {fileID: 0}
-  Gloves: {fileID: 0}
-  Boots: {fileID: 0}
-  Shield: {fileID: 0}
-  Sword: {fileID: 0}
-  HelmetGO: {fileID: 0}
-  ChestGO: {fileID: 0}
-  GlovesGO: {fileID: 0}
-  BootsGO: {fileID: 0}
-  ShieldGO: {fileID: 0}
 --- !u!114 &1000563817
 MonoBehaviour:
   m_ObjectHideFlags: 0

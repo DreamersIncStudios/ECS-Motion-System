@@ -12,6 +12,7 @@ namespace DreamersInc.ComboSystem.NPC
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var data = new NPCComboComponent() { animator = GetComponent<Animator>(), combo = Instantiate(Combo) };
+            dstManager.AddComponentData(entity, data);
         }
 
     }
