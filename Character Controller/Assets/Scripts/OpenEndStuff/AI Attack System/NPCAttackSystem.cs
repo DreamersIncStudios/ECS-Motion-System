@@ -56,7 +56,12 @@ public class NPCAttackSystem : ComponentSystem
                     if (handler.InputQueue == null)
                         handler.InputQueue = new Queue<AnimationTrigger>();
                     handler.InputQueue.Enqueue(AttackInfo.combo.GetAnimationTrigger(handler.StateInfo, combo));
-                    PostUpdateCommands.RemoveComponent<RangeAttackTag>(entity);
+                    if (tag.Complete)
+                    {
+                        PostUpdateCommands.RemoveComponent<RangeAttackTag>(entity);
+                    }
+                    else
+                        tag.NumOfAttacks--;
                 }
             }
         });

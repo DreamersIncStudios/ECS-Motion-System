@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Unity.Entities;
 using UnityEngine.AI;
 using MotionSystem.Components;
 using IAUS.ECS.Component;
 using ECS.Utilities;
-using ControllerSwap;
 
 
 namespace MotionSystem.Archetypes
@@ -15,18 +14,13 @@ namespace MotionSystem.Archetypes
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
 
-
-    public class CharacterControl : MonoBehaviour, IConvertGameObjectToEntity
+    public class NPCCharacterController : MonoBehaviour, IConvertGameObjectToEntity
     {
-        [Header("Party")]
-        public bool AI_Control;
-        public bool Party;
-        public bool IsPlayer;
         public bool CombatCapable;
-        NavMeshAgent Agent;
-        CapsuleCollider Col;
-        public ControllerScheme Scheme;
-        Rigidbody RB;
+        NavMeshAgent Agent => GetComponent<NavMeshAgent>();
+        CapsuleCollider Col => GetComponent<CapsuleCollider>();
+        Rigidbody RB => GetComponent<Rigidbody>();
+
         [Header("Animation Movement Specs")]
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
@@ -42,37 +36,11 @@ namespace MotionSystem.Archetypes
 
         public Entity ObjectEntity;
 
-        PartySwapSystem Swap => PartySwapSystem.GMS;
-
-        public void Start()
-        {
-
-
-            RB = this.GetComponent<Rigidbody>();
-            RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
-
-        }
-
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-
-            if (Party && Swap.Party.Count <= Swap.MaxParty)
-                Swap.Party.Add(ObjectEntity);
             ObjectEntity = entity;
-
-            Agent = this.GetComponent<NavMeshAgent>();
             var data = new ECS.Utilities.TransformComponenet { };
             dstManager.AddComponentData(entity, data);
-
-            if (Party)
-            {
-                var playerparty = new PlayerParty() { };
-                dstManager.AddComponentData(entity, playerparty);
-            }
-            //  dstManager.AddComponent<InSafeZoneTag>(entity); 
-
-            Col = this.GetComponent<UnityEngine.CapsuleCollider>();
             var control = new CharControllerE()
             {
                 CapsuleRadius = Col.radius,
@@ -91,33 +59,22 @@ namespace MotionSystem.Archetypes
                 GroundCheckLayerMask = GroundCheckLayer,
                 GroundCheckDistance = m_GroundCheckDistance,
                 IsGrounded = true,
-                AI = AI_Control,
+                AI = true,
                 CombatCapable = CombatCapable,
                 EquipResetTimer = EquipResetTimer
 
             };
             dstManager.AddComponentData(entity, control);
-            if (AI_Control)
-            {
-                var move = new Movement() { CanMove = true };
-                var AI = new AI_Control() { };
-                dstManager.AddComponentData(entity, move);
-                dstManager.AddComponentData(entity, AI);
-
-            }
-            else
-            {
-                if (IsPlayer)
-                {
-                    Agent.enabled = false;
-                    var player = new Player_Control() { };
-                    dstManager.AddComponentData(entity, player);
-                }
-            }
             var transformtransitiion = new TransformComponenet();
             dstManager.AddComponentData(entity, transformtransitiion);
-
         }
-        // Need To Determine a New method for disabling gameobject. See performance different for destorying and recreating. 
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
+
+
     }
 }
