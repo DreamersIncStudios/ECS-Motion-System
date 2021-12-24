@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,24 +53,28 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Compile Include="Assets\Systems\Global\Scripts\Spawnable.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\SystemGroup\IAUSCore.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\CleanUpHybridEntity.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\PopUpMouseControl.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\ScriptableObjectUtility.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\UI Scripts\TabGroup.cs" />
+    <Compile Include="Assets\Systems\Global\TimeManager.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\FreqPhasing.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\SMT\SMTOptions.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\Player_Control.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\UI Scripts\UIManager.cs" />
+    <Compile Include="Assets\Systems\Global\Generic Grid System\GridGenericXZ.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\UI Scripts\TabButton.cs" />
+    <Compile Include="Assets\Systems\Global\Generic Grid System\GridGeneric.cs" />
+    <Compile Include="Assets\Systems\Global\GameMasterTest.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\ControlMaster.cs" />
+    <Compile Include="Assets\Systems\Global\Generic Grid System\Utilities.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\GlobalFunctions.cs" />
+    <Compile Include="Assets\Systems\Global\Scripts\ControllerScheme.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\GameMenu\Scripts\Options Menu.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\SMT\SMTOptions.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\Generic Grid System\GlobalFunctions.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\Generic Grid System\GridGeneric.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\SystemGroup\CleanUpHybridEntity.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\GameMaster.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\SystemGroup\IAUSCore.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\Mouse3D.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\Generic Grid System\GridGenericXZ.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\FreqPhasing.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\Generic Grid System\Utilities.cs" />
-    <Compile Include="Assets\Scripts\Systems\Global\Scripts\GameMenu\Scripts\PauseMenu.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Scripts\Systems\Global\Global.asmdef" />
+    <None Include="Assets\Systems\Global\Global.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -326,28 +330,16 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Mdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Pdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.1\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.4\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Rocks">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.7.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.8.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
@@ -706,14 +698,6 @@
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
       <Name>Unity.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
-      <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
-      <Name>Unity.Transforms.Hybrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Transforms.csproj">
-      <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
-      <Name>Unity.Transforms</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Entities.Hybrid.csproj">
       <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
       <Name>Unity.Entities.Hybrid</Name>
@@ -722,13 +706,13 @@
       <Project>{6AAEB663-F6C2-E722-0C15-29D1AD8195EB}</Project>
       <Name>Unity.Mathematics</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
+      <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
+      <Name>Unity.Transforms.Hybrid</Name>
+    </ProjectReference>
     <ProjectReference Include="Cinemachine.csproj">
       <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
       <Name>Cinemachine</Name>
-    </ProjectReference>
-    <ProjectReference Include="GameMenus.csproj">
-      <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
-      <Name>GameMenus</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

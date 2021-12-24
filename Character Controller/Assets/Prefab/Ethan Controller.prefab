@@ -760,16 +760,12 @@ GameObject:
   - component: {fileID: 138171637870420374}
   - component: {fileID: 138171637870420373}
   - component: {fileID: 6763555642381149161}
-  - component: {fileID: 3143155789722044706}
   - component: {fileID: 138171637870420372}
-  - component: {fileID: 9201517454205682406}
-  - component: {fileID: 5051236517756378207}
-  - component: {fileID: 611525764}
   - component: {fileID: 611525765}
   - component: {fileID: 2075337781}
   - component: {fileID: 2524891812427777229}
-  - component: {fileID: 133970739}
   - component: {fileID: 7584382384750991251}
+  - component: {fileID: 6769322412672891820}
   m_Layer: 0
   m_Name: Ethan Controller
   m_TagString: Untagged
@@ -865,18 +861,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3143155789722044706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba43f03280e3b7d4fb7d75bdda16c00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &138171637870420372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +875,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AI_Control: 0
   Party: 1
+  IsPlayer: 0
   CombatCapable: 1
+  Scheme: {fileID: 0}
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
   m_JumpPower: 12
@@ -904,58 +890,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   EquipResetTimer: 45
---- !u!114 &9201517454205682406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 1
---- !u!114 &5051236517756378207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa32b5e035732454eb7f27eea4a5ff51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Helmet: {fileID: 0}
-  Chest: {fileID: 0}
-  Gloves: {fileID: 0}
-  Boots: {fileID: 0}
-  Shield: {fileID: 0}
-  Sword: {fileID: 11400000, guid: 3be03a2eb500576419915283a121e7cf, type: 2}
-  HelmetGO: {fileID: 0}
-  ChestGO: {fileID: 0}
-  GlovesGO: {fileID: 0}
-  BootsGO: {fileID: 0}
-  ShieldGO: {fileID: 0}
---- !u!114 &611525764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a66d8a3be65e64381d3c5d74dbdb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 1
-  NumOfEntityTargetingMe: 0
-  MaxNumberOfTarget: 0
-  CanBeTargetByPlayer: 0
 --- !u!114 &611525765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1018,23 +952,6 @@ MonoBehaviour:
     difficultyMod: 1
     LevelMod: 1
   CharacterName: Tester
---- !u!114 &133970739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7207975482275191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9571e329036044a93f31b13e6d444e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Values:
-  - isFriendly: 0
-    isVisible: 0
-    CameraAngle: 0
-    ID: 0
 --- !u!114 &7584382384750991251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,6 +971,10 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
+    ThreatPosition:
+      x: 0
+      y: 0
+      z: 0
     Scantimer: 0
     viewRadius: 30
     ViewAngle: 90
@@ -1062,11 +983,31 @@ MonoBehaviour:
   Hearing: 0
   HearingData:
     AmbientNoiseLevel: 0
-    AlertNoiseLevel: 0
-    AlarmNoiseLevel: 0
-    EnemyAwarnessLevel: 0
+    LocationOfSound:
+      x: 0
+      y: 0
+      z: 0
   Touch: 0
   Editing: 0
+--- !u!114 &6769322412672891820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207975482275191352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4acb3adfa9a0ed4abce93c0537146c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aITarget:
+    Type: 1
+    GetRace: 3
+    NumOfEntityTargetingMe: 0
+    GetInstanceID: 0
+    MaxNumberOfTarget: 0
+    CanBeTargetByPlayer: 0
 --- !u!1 &7207975482275191354
 GameObject:
   m_ObjectHideFlags: 0

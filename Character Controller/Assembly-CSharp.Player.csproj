@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,43 +53,36 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\Hub UI\Scripts\PlayerStatUI.cs" />
-    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\Spawner.cs" />
-    <Compile Include="Assets\Scripts\OpenEndStuff\AI Attack System\NPCAttackSystem.cs" />
+    <Compile Include="Assets\Systems\Sample Game Code\Spawner.cs" />
+    <Compile Include="Assets\Systems\Sample Game Code\EnemySetup.cs" />
+    <Compile Include="Assets\Models\Animations\NPC Attacks for test\AttackTest.cs" />
     <Compile Include="Assets\Models\Weapons\DissolveSingle.cs" />
-    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\CharacterSetup.cs" />
-    <Compile Include="Assets\Scripts\OpenEndStuff\NPCHandler.cs" />
-    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\PlayerSetup.cs" />
-    <Compile Include="Assets\Scripts\Test Stuff\Sample Game Code\EnemySetup.cs" />
-    <Compile Include="Assets\TestTargetOrbit.cs" />
-    <Compile Include="Assets\Animation\NPC Attacks for test\AttackTest.cs" />
+    <Compile Include="Assets\Systems\Sample Game Code\CharacterSetup.cs" />
+    <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
-    <None Include="Assets\Animation\UnityChan\license.txt" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\license.txt" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\license.txt" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
-    <None Include="Assets\Animation\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -311,17 +304,23 @@
     <Reference Include="Unity.Build.Windows.Classic">
       <HintPath>Library\ScriptAssemblies\Unity.Build.Windows.Classic.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualEffectGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Entities.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Entities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Jobs.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Jobs.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Serialization.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
@@ -331,9 +330,6 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
@@ -362,11 +358,11 @@
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Physics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Physics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
@@ -384,19 +380,7 @@
       <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Mdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Pdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Rocks">
-      <HintPath>Library\PackageCache\com.unity.burst@1.5.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.4.1\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -759,13 +743,9 @@
       <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
       <Name>Unity.Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="CoreSystems.csproj">
-      <Project>{CFF0E37B-E87F-3879-B709-F793520C2874}</Project>
-      <Name>CoreSystems</Name>
-    </ProjectReference>
-    <ProjectReference Include="DOTween.Modules.csproj">
-      <Project>{4A7F9C5F-9F06-5580-C5EE-20B29D873DA3}</Project>
-      <Name>DOTween.Modules</Name>
+    <ProjectReference Include="IAUS.csproj">
+      <Project>{60238395-D8D3-E501-7CAE-8A6DB07DA410}</Project>
+      <Name>IAUS</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
       <Project>{951A881C-A9EB-1804-B8F3-33C8CD5866B0}</Project>
@@ -787,10 +767,6 @@
       <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
       <Name>Unity.Transforms</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj">
-      <Project>{07D9AC78-4B29-50B2-FC41-F544C6731D9C}</Project>
-      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{92152A78-82F3-F813-55D5-0F12A61BD78F}</Project>
       <Name>Unity.Collections</Name>
@@ -802,10 +778,6 @@
     <ProjectReference Include="CodeToBeReplace.csproj">
       <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
       <Name>CodeToBeReplace</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualEffectGraph.Runtime.csproj">
-      <Project>{D7C71B87-EEE1-93E3-177D-A981AF01AF40}</Project>
-      <Name>Unity.VisualEffectGraph.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{5221CCB6-1319-240F-EB70-0F27CD9EDDF4}</Project>
@@ -822,10 +794,6 @@
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
       <Project>{F57E10BA-BE4B-CED4-F9DE-569C90A75260}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="IAUS.csproj">
-      <Project>{60238395-D8D3-E501-7CAE-8A6DB07DA410}</Project>
-      <Name>IAUS</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.csproj">
       <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
@@ -851,6 +819,10 @@
       <Project>{DF5D5D66-FD4E-3A21-749A-9E92DFB7ED9C}</Project>
       <Name>Unity.ScriptableBuildPipeline</Name>
     </ProjectReference>
+    <ProjectReference Include="StandardAssets.csproj">
+      <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
+      <Name>StandardAssets</Name>
+    </ProjectReference>
     <ProjectReference Include="WeaponSystem.csproj">
       <Project>{7A7A0688-D737-B6B0-5305-A49155483304}</Project>
       <Name>WeaponSystem</Name>
@@ -858,6 +830,18 @@
     <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
       <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
       <Name>Unity.Transforms.Hybrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="MovementSystem.csproj">
+      <Project>{6F5B5B9D-DE05-FDA9-F048-8B21206C41CB}</Project>
+      <Name>MovementSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
+      <Project>{0890C94E-544B-754B-25AA-3FCD4CDB1072}</Project>
+      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProBuilder.csproj">
+      <Project>{988E3A39-F25F-FA14-0784-370D69088E2B}</Project>
+      <Name>Unity.ProBuilder</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{DC1E038B-DA3A-71E0-3456-C72F36C3830D}</Project>
@@ -871,13 +855,21 @@
       <Project>{72EDDA88-5557-64FF-777D-8F773D80D340}</Project>
       <Name>Unity.Scenes</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
+      <Project>{228FB7BE-E8B6-BBA6-2061-8BC3A32AF561}</Project>
+      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Global.csproj">
+      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Extensions.Hybrid.csproj">
       <Project>{0B54BB76-5FAE-63D1-B67D-1CEE7406FA58}</Project>
       <Name>Unity.Mathematics.Extensions.Hybrid</Name>
     </ProjectReference>
-    <ProjectReference Include="StandardAssets.csproj">
-      <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
-      <Name>StandardAssets</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
+      <Project>{2F6738B4-C660-FA02-CBE4-A4EEB5630D37}</Project>
+      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="InventorySystem.csproj">
       <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
@@ -887,13 +879,9 @@
       <Project>{56368BBD-B2D2-653D-27A1-87B713688A91}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Runtime.csproj">
-      <Project>{5D22AD04-9886-8457-F011-49BE4D51CBFD}</Project>
-      <Name>Unity.RenderPipelines.HighDefinition.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Global.csproj">
-      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
-      <Name>Global</Name>
+    <ProjectReference Include="DOTween.Modules.csproj">
+      <Project>{4A7F9C5F-9F06-5580-C5EE-20B29D873DA3}</Project>
+      <Name>DOTween.Modules</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
       <Project>{EA55C08D-C3D1-3AF5-1B8F-8270D58AFEE6}</Project>
@@ -906,6 +894,10 @@
     <ProjectReference Include="Unity.Deformations.csproj">
       <Project>{48B93C2A-969A-7669-817B-C3A46E109B3B}</Project>
       <Name>Unity.Deformations</Name>
+    </ProjectReference>
+    <ProjectReference Include="NPCAttack.csproj">
+      <Project>{AF6A9CB0-8D7E-0E32-204A-AA0802DB5D2D}</Project>
+      <Name>NPCAttack</Name>
     </ProjectReference>
     <ProjectReference Include="GameMenus.csproj">
       <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>

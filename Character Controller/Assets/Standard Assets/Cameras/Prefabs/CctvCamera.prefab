@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8100000}
   - component: {fileID: 11400000}
   - component: {fileID: 11400002}
-  - component: {fileID: -7064207588936625496}
+  - component: {fileID: -2732647101317087591}
   m_Layer: 0
   m_Name: CctvCamera
   m_TagString: MainCamera
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_FovAdjustTime: 1
   m_ZoomAmountMultiplier: 2
   m_IncludeEffectsInSize: 0
---- !u!114 &-7064207588936625496
+--- !u!114 &-2732647101317087591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

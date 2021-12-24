@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+#pragma warning disable 649
 namespace UnityStandardAssets.Cameras
 {
     public abstract class AbstractTargetFollower : MonoBehaviour
@@ -99,7 +100,6 @@ namespace UnityStandardAssets.Cameras
         public Transform Target
         {
             get { return m_Target; }
-            set { m_Target = value; }
         }
     }
 }
