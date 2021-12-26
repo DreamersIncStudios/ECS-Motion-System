@@ -17,7 +17,9 @@ namespace Stats
         private Vital[] _vital;
         private Stat[] _stats;
         private Abilities[] _ability;
+#pragma warning disable CS0649 // Field 'BaseCharacter._ElementalMods' is never assigned to, and will always have its default value null
         private Elemental[] _ElementalMods;
+#pragma warning restore CS0649 // Field 'BaseCharacter._ElementalMods' is never assigned to, and will always have its default value null
 
         public bool InvincibleMode;
         public bool Alive

@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Weapon
-  - Enemy
-  - MainFollowCamera
-  - Follow
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - NPC
-  - Environment
-  - Player
-  - Attackable NPC
-  - 'Attackable Structure '
-  - Projectile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

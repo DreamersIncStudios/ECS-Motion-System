@@ -47,7 +47,9 @@ namespace ECS.Utilities
             }
         }
         [BurstCompile]
+#pragma warning disable CS0618 // 'IJobForEachWithEntity<LocalToWorld>' is obsolete: 'Please use Entities.ForEach or IJobChunk to schedule jobs that work on Entities. (RemovedAfter 2020-08-20)'
         struct CopyTransforms : IJobForEachWithEntity<LocalToWorld>
+#pragma warning restore CS0618 // 'IJobForEachWithEntity<LocalToWorld>' is obsolete: 'Please use Entities.ForEach or IJobChunk to schedule jobs that work on Entities. (RemovedAfter 2020-08-20)'
         {
             [DeallocateOnJobCompletion] public NativeArray<TransformStash> transformStashes;
 
