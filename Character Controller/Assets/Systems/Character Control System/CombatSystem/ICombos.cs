@@ -5,7 +5,7 @@ namespace DreamersInc.ComboSystem
 {
     public interface ICombos
     {
-        List<AnimationCombo> ComboList { get; }
+       // List<AnimationCombo> ComboList { get; }
 
         void UnlockCombo(ComboNames Name);
         GameObject DisplayCombo();

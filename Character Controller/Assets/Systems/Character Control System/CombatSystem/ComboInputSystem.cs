@@ -63,62 +63,54 @@ namespace DreamersInc.ComboSystem
                         if (handler.StateInfo.IsName(comboOption.CurremtStateName.ToString()))
                         {
                             handler.currentStateExitTime = comboOption.AnimationEndTime;
-                        //Light
-                        if (comboOption.LightAttack.Unlocked)
+                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
+                                foreach (AnimationTrigger trigger in comboOption.Triggers)
                                 {
-                                    if (PC.LightAttack && handler.QueueIsEmpty)
+                                    if (trigger.Unlocked && handler.QueueIsEmpty)
                                     {
-                                        handler.InputQueue.Enqueue(comboOption.LightAttack);
-                                        PC.ChargedTime = 0.0f;
+                                        switch (trigger.Type)
+                                        {
+                                            case AttackType.LightAttack:
+                                                if (PC.LightAttack)
+                                                {
+                                                    handler.InputQueue.Enqueue(trigger);
+                                                    PC.ChargedTime = 0.0f;
+                                                }
+                                                break;
+                                            case AttackType.HeavyAttack:
+                                                if (PC.HeavyAttack)
+                                                {
+                                                    handler.InputQueue.Enqueue(trigger);
+                                                    PC.ChargedTime = 0.0f;
+                                                }
+                                                break;
+                                                //TODO Review
+                                            case AttackType.ChargedLightAttack:
+                                                if (PC.ChargedLightAttack)
+                                                {
+                                                    handler.InputQueue.Enqueue(trigger);
+                                                    PC.ChargedTime = 0.0f;
+                                                }
+                                                break;
+                                            case AttackType.ChargedHeavyAttack:
+                                                if (PC.ChargedHeavyAttack)
+                                                {
+                                                    handler.InputQueue.Enqueue(trigger);
+                                                    PC.ChargedTime = 0.0f;
+                                                }
+                                                break;
+                                            case AttackType.Projectile:
+                                                if (PC.Projectile)
+                                                {
+                                                    handler.InputQueue.Enqueue(trigger);
+                                                    PC.ChargedTime = 0.0f;
+                                                }
+                                                break;
+                                        }
                                     }
                                 }
-                            }
-                        //Heavy
-                        if (comboOption.HeavyAttack.Unlocked)
-                            {
-                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
-                                {
-                                    if (PC.HeavyAttack && handler.QueueIsEmpty)
-                                    {
-                                        handler.InputQueue.Enqueue(comboOption.HeavyAttack);
-                                        PC.ChargedTime = 0.0f;
-
-                                    }
-                                }
-                            }
-                        //Charge Light
-                        if (comboOption.ChargedLightAttack.Unlocked)
-                            {
-                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
-                                {
-                                    if (PC.ChargedLightAttack && handler.QueueIsEmpty)
-                                    {
-                                        handler.InputQueue.Enqueue(comboOption.ChargedLightAttack);
-                                        PC.ChargedTime = 0.0f;
-
-                                    }
-                                }
-                            }
-
-                        //   projectile
-                        if (comboOption.Projectile.Unlocked)
-                            {
-                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
-                                {
-                                    if (PC.Projectile && handler.QueueIsEmpty && !PC.Charged)
-                                    {
-                                        handler.InputQueue.Enqueue(comboOption.Projectile);
-                                        PC.ChargedTime = 0.0f;
-                                    }
-                                    if (PC.Projectile && handler.QueueIsEmpty && PC.Charged)
-                                    {
-                                        handler.InputQueue.Enqueue(comboOption.ChargedProjectile);
-                                        PC.ChargedTime = 0.0f;
-                                    }
-                                }
-                            }
+                            }       
                         }
                     }
                 }

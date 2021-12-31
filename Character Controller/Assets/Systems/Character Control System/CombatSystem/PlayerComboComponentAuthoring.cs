@@ -9,7 +9,7 @@ namespace DreamersInc.ComboSystem
     [RequireComponent(typeof(Animator))]
     public class PlayerComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity, ISave
     {
-        public PlayerCombos Combo;
+        public ComboSO Combo;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var data = new PlayerComboComponent() { animator = GetComponent<Animator>(), combo = Instantiate(Combo) };
@@ -33,7 +33,7 @@ namespace DreamersInc.ComboSystem
     }
     public class PlayerComboComponent : IComponentData
     {
-        public PlayerCombos combo;
+        public ComboSO combo;
         public Animator animator;
     }
 }

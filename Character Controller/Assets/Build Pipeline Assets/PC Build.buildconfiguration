@@ -12,10 +12,10 @@
         {
             "$type": "Unity.Build.Common.SceneList, Unity.Build",
             "$version": 1,
-            "BuildCurrentScene": false,
+            "BuildCurrentScene": true,
             "SceneInfos": [
                 {
-                    "Scene": "GlobalObjectId_V1-1-d8379a17b833ee246a126c77fed4585d-102900000-0",
+                    "Scene": "GlobalObjectId_V1-1-71d1fbf3c8babb440b1e45938c3d3e4d-102900000-0",
                     "AutoLoad": true
                 }
             ]
