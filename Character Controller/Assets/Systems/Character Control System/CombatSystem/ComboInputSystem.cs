@@ -60,7 +60,7 @@ namespace DreamersInc.ComboSystem
                 {
                     foreach (AnimationCombo comboOption in ComboList.Combo.ComboList)
                     {
-                        if (handler.StateInfo.IsName(comboOption.CurremtStateName.ToString()))
+                        if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
                         {
                             handler.currentStateExitTime = comboOption.AnimationEndTime;
                             if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))

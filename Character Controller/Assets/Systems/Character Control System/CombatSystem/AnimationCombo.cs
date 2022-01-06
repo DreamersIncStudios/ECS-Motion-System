@@ -7,7 +7,7 @@ namespace DreamersInc.ComboSystem
     [System.Serializable]
     public struct AnimationCombo
     {
-        public ComboAnimNames CurremtStateName;
+        public ComboAnimNames CurrentStateName;
         public float2 NormalizedInputTime;
         public float AnimationEndTime;
         public bool InputAllowed(float time) => time > NormalizedInputTime.x && time < NormalizedInputTime.y;
@@ -34,9 +34,11 @@ namespace DreamersInc.ComboSystem
         public float StartOffset;
 
         public float Chance;
-        [Range(0, 100)]
-        [Tooltip("Value Must be between 0 and 100")]
-        public float ChanceForNextAttack;
+        [Range(-1, 100)]
+        [Tooltip("Value Must be between 0 and 100 \n " +
+            "-1 is used for never repeat")]
+
+        public int ChanceForNextAttack;
         public int LevelUnlocked;
         public float probabilityTotalWeight { get; set; }
 
@@ -52,6 +54,10 @@ namespace DreamersInc.ComboSystem
             return picked > probabilityRangeFrom && picked < probabilityRangeTo;
         }
 
+        //TODO add stat modifer increase or decrese likely hood of sequenctial attack based on stats
+        public bool AttackAgain(float selected) {
+            return selected <ChanceForNextAttack &&  ChanceForNextAttack !=-1;
+        }
         public float delay;
         public bool trigger=> delay <= 0.0f;
         public void AdjustTime(float time) {

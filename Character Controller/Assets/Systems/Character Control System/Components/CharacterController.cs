@@ -6,7 +6,7 @@ using Unity.Mathematics;
 
 namespace MotionSystem.Components
 {
-    public struct CharControllerE: IComponentData
+    public struct CharControllerE : IComponentData
     {
 
         public float3 CapsuleCenter;
@@ -22,7 +22,8 @@ namespace MotionSystem.Components
         public bool Crouch;
 
         public bool CombatCapable;
-
+        public bool ApplyRootMotion { get; set; }
+        public bool SkipGroundCheck { get; set; }
         public Vector3 Move;
         public bool Walk;
         public Vector3 GroundNormal;
@@ -40,12 +41,13 @@ namespace MotionSystem.Components
         public bool AI;
         public LayerMask GroundCheckLayerMask;
 
-        public bool EquipWeapon=>TimerForEquipReset != 0.0f;
+        public bool EquipWeapon => TimerForEquipReset != 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset;
     }
 
-    public struct AI_Control : IComponentData {
+    public struct AI_Control : IComponentData
+    {
         public bool IsGrounded;
     }
 

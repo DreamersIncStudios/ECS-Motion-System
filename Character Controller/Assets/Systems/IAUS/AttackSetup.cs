@@ -15,11 +15,11 @@ namespace DreamersInc.ComboSystem.NPC
             BufferFromEntity<NPCAttackBuffer> bufferFromEntity = GetBufferFromEntity<NPCAttackBuffer>();
 
             Entities.ForEach((Entity entity,ref AttackActionTag tag,NPCComboComponent combo, Command handler) => {
-                Debug.Log("run");
                 DynamicBuffer<NPCAttackBuffer> buffer = bufferFromEntity[entity];
                 int index = combo.combo.GetAnimationComboIndex(handler.StateInfo);
+                restart:
+
                 float indexPicked = Random.Range(0, combo.combo.GetMaxProbAtCurrentState(index));
-                Debug.Log(combo.combo.GetMaxProbAtCurrentState(index));
 
                 foreach (var item in combo.combo.ComboList[index].Triggers) {
                     if (item.Picked(indexPicked)) {
@@ -28,11 +28,14 @@ namespace DreamersInc.ComboSystem.NPC
                         {
                             Trigger = item
                         }) ;
-                        
+                        if (item.AttackAgain(Random.Range(2, 100)))
+                        {
+                            index = combo.combo.GetAnimationComboIndex(item.TriggeredAnimName);
+                            goto restart;
+                        }
                     }
                 }
-
-                EntityManager.RemoveComponent<AttackActionTag>(entity);
+                    EntityManager.RemoveComponent<AttackActionTag>(entity);
             });
 
             Entities.ForEach((DynamicBuffer<NPCAttackBuffer> A, Command handler) => {
@@ -40,7 +43,8 @@ namespace DreamersInc.ComboSystem.NPC
                 {
                     if (A[0].Trigger.trigger)
                     {
-                        //handler.InputQueue.Enqueue( A[0].Trigger);
+                        handler.InputQueue.Enqueue( A[0].Trigger);
+                        A.RemoveAt(0);
                     }
                     else
                     {

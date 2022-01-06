@@ -3,7 +3,7 @@ using Unity.Entities;
 using UnityEngine.AI;
 using MotionSystem.Components;
 using ECS.Utilities;
-
+using Unity.Mathematics;
 
 namespace MotionSystem.Archetypes
 {
@@ -29,6 +29,8 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
+
+        [SerializeField] float3 GroundProbeVector;
         public LayerMask GroundCheckLayer;
         [Header("Weapon Specs")]
         public float EquipResetTimer;
@@ -57,6 +59,7 @@ namespace MotionSystem.Archetypes
                 m_OrigGroundCheckDistance = m_GroundCheckDistance,
                 GroundCheckLayerMask = GroundCheckLayer,
                 GroundCheckDistance = m_GroundCheckDistance,
+
                 IsGrounded = true,
                 AI = true,
                 CombatCapable = CombatCapable,

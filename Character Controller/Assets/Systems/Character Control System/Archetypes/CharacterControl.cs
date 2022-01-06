@@ -5,7 +5,7 @@ using MotionSystem.Components;
 using Components.MovementSystem;
 using ECS.Utilities;
 using ControllerSwap;
-
+using Unity.Mathematics;
 
 namespace MotionSystem.Archetypes
 {
@@ -36,6 +36,7 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
+        [SerializeField] float3 GroundProbeVector;
         public LayerMask GroundCheckLayer;
         [Header("Weapon Specs")]
         public float EquipResetTimer;

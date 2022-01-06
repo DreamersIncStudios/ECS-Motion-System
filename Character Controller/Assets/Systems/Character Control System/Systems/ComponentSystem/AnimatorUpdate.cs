@@ -13,7 +13,8 @@ using DreamersStudio.CameraControlSystem;
 namespace MotionSystem.System
 {
 
-   [DisableAutoCreation]
+    [DisableAutoCreation]
+    // [Upda teInGroup(typeof(FixedStepSimulationSystemGroup))]
     public class AnimatorUpdate : ComponentSystem
     {
 
@@ -31,10 +32,10 @@ namespace MotionSystem.System
                 float m_ForwardAmount;
 
 
-                Anim.applyRootMotion = control.IsGrounded;
+                //  Anim.applyRootMotion = control.IsGrounded;
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
-              //  m_TurnAmount = control.Move.x;
+                //  m_TurnAmount = control.Move.x;
                 m_ForwardAmount = control.Move.z;
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
@@ -43,11 +44,12 @@ namespace MotionSystem.System
                     float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
                     transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
                 }
-                else {
-                    
+                else
+                {
+
                     m_TurnAmount = control.Move.x;
                     transform.LookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target);
-                    transform.rotation= Quaternion.Euler(0, transform.rotation.eulerAngles.y,0); ;
+                    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0); ;
 
                 }
 
@@ -57,25 +59,37 @@ namespace MotionSystem.System
                 {
                     if (control.Jump && !control.Crouch)
                     {
-                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded") 
-                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation Grounded Weapon Drawn ") 
+                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
+                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation Grounded Weapon Drawn ")
                         || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted Locomation"))
                         {
                             // jump!
-                           // Debug.Log("Jump");
+                            // Debug.Log("Jump");
                             RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
                             control.IsGrounded = false;
                             Anim.applyRootMotion = false;
                             control.GroundCheckDistance = 0.1f;
+                            control.SkipGroundCheck = true;
                         }
                     }
+
                 }
                 else
                 {
                     Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
                     RB.AddForce(extraGravityForce);
 
+                    control.SkipGroundCheck = RB.velocity.y > 0;
                     control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
+
+                    Anim.applyRootMotion =
+                    control.ApplyRootMotion;
+                }
+
+                if (control.ApplyRootMotion)
+                {
+                    Anim.applyRootMotion = true;
+                    control.ApplyRootMotion = false;
                 }
 
                 //ScaleCapsules Collider
@@ -90,12 +104,15 @@ namespace MotionSystem.System
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetBool("Crouch", control.Crouch);
                 Anim.SetBool("OnGround", control.IsGrounded);
-                Anim.SetBool("IsTargeting", !IsNotTargeting);
-                    if (!control.IsGrounded)
+                if (control.CombatCapable)
+                {
+                    Anim.SetBool("Weapon Drawn", control.EquipWeapon);
+                    Anim.SetBool("IsTargeting", !IsNotTargeting);
+                }
+                if (!control.IsGrounded)
                 {
                     Anim.SetFloat("Jump", RB.velocity.y);
                 }
-                Anim.SetBool("Weapon Drawn", control.EquipWeapon);
 
                 // calculate which leg is behind, so as to leave that leg trailing in the jump animation
                 // (This code is reliant on the specific run cycle offset in our animations,
@@ -126,15 +143,15 @@ namespace MotionSystem.System
 
 
             });
-       
 
-                Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+
+            Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
             {
                 capsule.center = Control.CapsuleCenter;
                 capsule.height = Control.CapsuleHeight;
 
             }
-      );
+  );
         }
 
 

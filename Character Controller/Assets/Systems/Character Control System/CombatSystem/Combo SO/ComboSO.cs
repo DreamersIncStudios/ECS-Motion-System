@@ -110,7 +110,20 @@ namespace DreamersInc.ComboSystem
         public int GetAnimationComboIndex(AnimatorStateInfo state) {
             foreach (AnimationCombo combo in ComboList)
             {
-                if (state.IsName(combo.CurremtStateName.ToString()))
+                if (state.IsName(combo.CurrentStateName.ToString()))
+                {
+                    return ComboList.IndexOf(combo);
+                }
+
+            }
+            throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
+
+        }
+        public int GetAnimationComboIndex(ComboAnimNames state)
+        {
+            foreach (AnimationCombo combo in ComboList)
+            {
+                if (state == combo.CurrentStateName)
                 {
                     return ComboList.IndexOf(combo);
                 }
@@ -118,7 +131,6 @@ namespace DreamersInc.ComboSystem
             }
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
         }
-
         public float GetMaxProbAtCurrentState(AnimatorStateInfo state) {
             return ComboList[GetAnimationComboIndex(state)].MaxProb;
         }
