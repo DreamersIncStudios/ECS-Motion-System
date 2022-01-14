@@ -15,6 +15,14 @@ namespace Stats
                 Object.Destroy(anim.gameObject, 4);
                 EntityManager.DestroyEntity(entity);
             });
+            Entities.ForEach((ref EnemyStats stats, EnemyCharacter StatsGO) => {
+                StatsGO.CurHealth = stats.CurHealth;
+                StatsGO.MaxHealth = stats.MaxHealth;
+                StatsGO.CurMana = stats.CurMana;
+                StatsGO.MaxMana = stats.MaxMana;
+
+            });
+
         }
     }
 

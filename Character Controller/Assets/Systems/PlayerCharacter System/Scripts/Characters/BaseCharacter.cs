@@ -309,18 +309,6 @@ namespace Stats
 
 
 
-
-        public void OnDeath(float deathDelay)
-        {
-            if (!Dead)
-            {
-                gameObject.SetActive(false);
-                Debug.Log(Name + " is dead");
-                //Destroy(this.gameObject, deathDelay);
-                Dead = true;
-            }
-        }
-
         public void AddStatus(StatusEffect StatusToAdd) { }
         public void RemoveStatus(StatusEffect StatusToAdd) { }
         public void RemoveStatus(EffectStatus StatusName) { }
