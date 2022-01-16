@@ -16,15 +16,15 @@ namespace MotionSystem.Components
         public float OGCapsuleHeight;
         public float Forward;
         public float Turn;
-        public float H;
-        public float V;
-        public bool Jump;
+        public float H { get; set; }
+        public float V { get; set; }
+        public bool Jump { get; set; }
         public bool Crouch;
 
         public bool CombatCapable;
         public bool ApplyRootMotion { get; set; }
         public bool SkipGroundCheck { get; set; }
-        public Vector3 Move;
+        public Vector3 Move { get; set; }
         public bool Walk;
         public Vector3 GroundNormal;
         public bool IsGrounded;
@@ -41,9 +41,9 @@ namespace MotionSystem.Components
         public bool AI;
         public LayerMask GroundCheckLayerMask;
 
-        public bool EquipWeapon => TimerForEquipReset != 0.0f;
+        public bool EquipWeapon => TimerForEquipReset > 0.0f;
         public float EquipResetTimer;
-        public float TimerForEquipReset;
+        public float TimerForEquipReset { get; set; }
     }
 
     public struct AI_Control : IComponentData

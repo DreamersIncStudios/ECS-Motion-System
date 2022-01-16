@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 584213100824902061}
   - component: {fileID: 584213100824902062}
   - component: {fileID: 2059017650059369905}
+  - component: {fileID: 969733663}
   m_Layer: 0
   m_Name: Reworked Ethan GameReady
   m_TagString: Player
@@ -118,7 +119,7 @@ Animator:
   m_GameObject: {fileID: 349841964994383564}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b235179bd2a63d1468dd430670338c55, type: 3}
-  m_Controller: {fileID: 9100000, guid: f087a41dc03fdec45a83510207ce357c, type: 2}
+  m_Controller: {fileID: 9100000, guid: c6e94ed99150c7c4694ed85b28dec70a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -232,6 +233,10 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
+    ThreatPosition:
+      x: 0
+      y: 0
+      z: 0
     Scantimer: 0
     viewRadius: 30
     ViewAngle: 128
@@ -240,9 +245,10 @@ MonoBehaviour:
   Hearing: 0
   HearingData:
     AmbientNoiseLevel: 0
-    AlertNoiseLevel: 0
-    AlarmNoiseLevel: 0
-    EnemyAwarnessLevel: 0
+    LocationOfSound:
+      x: 0
+      y: 0
+      z: 0
   Touch: 0
   Editing: 0
 --- !u!114 &584213100824902057
@@ -322,12 +328,16 @@ MonoBehaviour:
   Scheme: {fileID: 11400000, guid: f1685a92743186246bedc3655febd174, type: 2}
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
-  m_JumpPower: 8
+  m_JumpPower: 14
   m_GravityMultiplier: 1.5
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.25
+  m_GroundCheckDistance: 0.5
+  GroundProbeVector:
+    x: 0
+    y: 0
+    z: 0
   GroundCheckLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -373,6 +383,19 @@ MonoBehaviour:
     GetInstanceID: 0
     MaxNumberOfTarget: 0
     CanBeTargetByPlayer: 0
+--- !u!114 &969733663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349841964994383564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b01c10de68358349b18f776bf110d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Combo: {fileID: 11400000, guid: da3f2bb0579d12e43b50ef3fad35ad48, type: 2}
 --- !u!1 &362716773212922990
 GameObject:
   m_ObjectHideFlags: 0

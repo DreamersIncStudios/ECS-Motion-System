@@ -28,7 +28,7 @@ namespace DreamersInc.ComboSystem
         {
             commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
 
-            Entities.ForEach((ref Player_Control PC, PlayerComboComponentAuthoring ComboList, Animator anim, Command handler) =>
+            Entities.ForEach((ref Player_Control PC, PlayerComboComponent ComboList, Animator anim, Command handler) =>
             {
                 if (handler.InputQueue == null)
                     handler.InputQueue = new Queue<AnimationTrigger>();
@@ -169,7 +169,7 @@ namespace DreamersInc.ComboSystem
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
 
-                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset,temp.EndofCurrentAnim);
                     // this need to move to animation event
                 }
                 if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))

@@ -278,3 +278,12 @@ The following packages were removed:
   com.unity.render-pipelines.universal@10.6.0
   com.unity.toolchain.win-x86_64-linux-x86_64@0.1.21-preview
   com.unity.xr.legacyinputhelpers@2.1.8
+
+=== Sat Jan 15 10:22:52 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.15.4 to 1.15.7
+  com.unity.render-pipelines.universal from version 10.7.0 to 10.8.1

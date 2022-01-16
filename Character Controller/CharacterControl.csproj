@@ -72,7 +72,6 @@
     <Compile Include="Assets\Systems\Character Control System\CombatSystem\SpawnBullets.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\CharacterController.cs" />
     <Compile Include="Assets\Systems\Character Control System\CombatSystem\Combo SO\ComboSO.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Systems\ComponentSystem\FixedTimeStepWorkaround.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Systems\Character Control System\InputSettings.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\EquipWeaponControl.cs" />

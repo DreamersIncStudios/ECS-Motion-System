@@ -12,7 +12,7 @@ namespace DreamersInc.ComboSystem
         public ComboSO Combo;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            var data = new PlayerComboComponent() { animator = GetComponent<Animator>(), combo = Instantiate(Combo) };
+            var data = new PlayerComboComponent() { Combo = Instantiate(Combo) };
             dstManager.AddComponentData(entity, data);
 
         }
@@ -33,7 +33,7 @@ namespace DreamersInc.ComboSystem
     }
     public class PlayerComboComponent : IComponentData
     {
-        public ComboSO combo;
-        public Animator animator;
+        public ComboSO Combo;
+       // public Animator animator;
     }
 }

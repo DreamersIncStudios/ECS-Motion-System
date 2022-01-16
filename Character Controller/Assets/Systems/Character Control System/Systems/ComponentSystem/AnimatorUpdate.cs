@@ -13,8 +13,8 @@ using DreamersStudio.CameraControlSystem;
 namespace MotionSystem.System
 {
 
-    [DisableAutoCreation]
-    // [Upda teInGroup(typeof(FixedStepSimulationSystemGroup))]
+    //[DisableAutoCreation]
+     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public class AnimatorUpdate : ComponentSystem
     {
 
@@ -32,7 +32,6 @@ namespace MotionSystem.System
                 float m_ForwardAmount;
 
 
-                //  Anim.applyRootMotion = control.IsGrounded;
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
                 //  m_TurnAmount = control.Move.x;
@@ -57,33 +56,11 @@ namespace MotionSystem.System
 
                 if (control.IsGrounded)
                 {
-                    if (control.Jump && !control.Crouch)
-                    {
-                        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
-                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation Grounded Weapon Drawn ")
-                        || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted Locomation"))
-                        {
-                            // jump!
-                            // Debug.Log("Jump");
-                            RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
-                            control.IsGrounded = false;
-                            Anim.applyRootMotion = false;
-                            control.GroundCheckDistance = 0.1f;
-                            control.SkipGroundCheck = true;
-                        }
-                    }
-
+                    HandleGroundedMovement(control, Anim, RB);
                 }
                 else
                 {
-                    Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
-                    RB.AddForce(extraGravityForce);
-
-                    control.SkipGroundCheck = RB.velocity.y > 0;
-                    control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
-
-                    Anim.applyRootMotion =
-                    control.ApplyRootMotion;
+                    HandleAirborneMovement(control, Anim, RB);
                 }
 
                 if (control.ApplyRootMotion)
@@ -142,6 +119,22 @@ namespace MotionSystem.System
 
 
 
+                control.TimerForEquipReset = Anim.GetBool("Weapon In Hand") && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon")
+                    ? control.EquipResetTimer : Anim.GetCurrentAnimatorStateInfo(0).IsTag("Combo") ? control.EquipResetTimer : control.TimerForEquipReset;
+
+                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon"))
+                {
+                    control.TimerForEquipReset -= 0.02f;
+                    if (control.TimerForEquipReset < 0.0f)
+                    {
+                        control.TimerForEquipReset = 0.0f;
+                        Anim.SetBool("Weapon In Hand",false);
+                    }
+                }
+           
+
+
+
             });
 
 
@@ -150,11 +143,36 @@ namespace MotionSystem.System
                 capsule.center = Control.CapsuleCenter;
                 capsule.height = Control.CapsuleHeight;
 
-            }
-  );
+            });
         }
+        void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB) {
+            if (control.Jump && !control.Crouch)
+            {
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation"))
+                {
+                    // jump!
+                    Anim.applyRootMotion = false;
+                    RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
+                    control.IsGrounded = false;
+                    control.GroundCheckDistance = 0.1f;
+                    control.SkipGroundCheck = true;
+                }
+            }
+        }
+        void HandleAirborneMovement(CharControllerE control, Animator Anim, Rigidbody RB)
+        {
+            Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
+            RB.AddForce(extraGravityForce);
 
+            control.SkipGroundCheck = RB.velocity.y > 0;
+            control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
 
+            Anim.applyRootMotion =
+            control.ApplyRootMotion;
+
+        }
 
     }
 }

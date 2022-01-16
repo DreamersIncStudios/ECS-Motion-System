@@ -143,13 +143,6 @@ namespace MotionSystem.System {
                 // This section of code can be moved to a  job??
              
 
-                if (Control.TimerForEquipReset > 0.0f) {
-                    Control.TimerForEquipReset -= Time.DeltaTime;
-                }
-                else { 
-                    Control.TimerForEquipReset = 0.0f;
-                }
-
             });
             }
     }

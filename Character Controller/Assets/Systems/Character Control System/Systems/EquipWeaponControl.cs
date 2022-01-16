@@ -9,25 +9,19 @@ using DreamersInc.DamageSystem;
 namespace MotionSystem.System {
     public class EquipWeaponControl : MonoBehaviour
     {
-        Entity characterEntity;
-        EntityManager manager;
+
         Animator anim;
-        public float Delay = 10f;
         WeaponDamage damage;
         
         private void Start()
         {
-            characterEntity = GetComponent<CharacterInventory>().self;
             anim = GetComponent<Animator>();
-            manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             damage = GetComponentInChildren<WeaponDamage>();
 
         }
         public void EquipWeaponAnim()
         {
-            CharControllerE temp = manager.GetComponentData<CharControllerE>(characterEntity);
-            temp.TimerForEquipReset = Delay;
-            manager.SetComponentData<CharControllerE>(characterEntity, temp);
+ 
             anim.SetBool("Weapon In Hand", true);
         }
 

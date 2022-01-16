@@ -32,7 +32,8 @@ namespace DreamersInc.ComboSystem
         public bool Unlocked;
         public float TransitionDuration;
         public float StartOffset;
-
+        [Tooltip(" testing Value")]
+        public float EndofCurrentAnim;
         public float Chance;
         [Range(-1, 100)]
         [Tooltip("Value Must be between 0 and 100 \n " +
