@@ -42,7 +42,7 @@ namespace Dreamers.InventorySystem
                 LastTimeShot = 0.0f,
                 Offset = ShootLocationOffset,
                 NormalSpeed = NormalSpeed,
-                RoundsPerMin = RoundsPerMin,
+                RateOfFire = RoundsPerMin,
                 RoundsPerShot = RoundsPerShot
             };
 

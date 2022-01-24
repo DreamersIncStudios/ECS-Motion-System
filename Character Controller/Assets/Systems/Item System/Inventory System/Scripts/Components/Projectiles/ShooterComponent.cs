@@ -9,14 +9,14 @@ namespace Dreamers.InventorySystem{
     [Serializable]
     public class ShooterComponent : IComponentData
     {
-        public int RoundsPerMin;
+        public int RateOfFire;
         public int RoundsPerShot;
         [HideInInspector] public int RoundsLeftToSpawn;
         public bool IsShooting => RoundsLeftToSpawn > 0;
         [HideInInspector] public bool HasShotBeenCharge;
         public float NormalSpeed;
 
-        public GameObject ProjectileGameObject;
+        public GameObject ProjectileGameObject; //TODO Replace this with SO with ID number 
 
         public Entity ShootFromHere;
         public Entity SelfReference;

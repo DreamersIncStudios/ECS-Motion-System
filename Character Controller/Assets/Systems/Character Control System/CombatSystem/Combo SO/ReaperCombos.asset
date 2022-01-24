@@ -25,6 +25,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 20
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -35,6 +36,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 10
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -45,6 +47,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 5
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -55,6 +58,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 2
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -71,6 +75,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -81,6 +86,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -91,6 +97,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -101,6 +108,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -117,6 +125,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -127,6 +136,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -137,6 +147,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -147,6 +158,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -163,6 +175,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.25
       StartOffset: 0.1
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -179,6 +192,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.25
       StartOffset: 0
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -195,6 +209,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -211,11 +226,12 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 16
+  - CurrentStateName: 15
     NormalizedInputTime:
       x: 0.15
       y: 0.8
@@ -227,6 +243,7 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
@@ -237,6 +254,52 @@ MonoBehaviour:
       Unlocked: 1
       TransitionDuration: 0.2
       StartOffset: 0.09
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 16
+    NormalizedInputTime:
+      x: 0
+      y: 0.8
+    AnimationEndTime: 0.65
+    Triggers:
+    - name: 1
+      triggerAnimName: 10
+      Type: 1
+      Unlocked: 1
+      TransitionDuration: 0.1
+      StartOffset: 0.1
+      EndofCurrentAnim: 0.65
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 12
+    NormalizedInputTime:
+      x: 0.15
+      y: 0.6
+    AnimationEndTime: 0.5
+    Triggers:
+    - name: 1
+      triggerAnimName: 9
+      Type: 1
+      Unlocked: 1
+      TransitionDuration: 0.2
+      StartOffset: 0.09
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 2
+      triggerAnimName: 16
+      Type: 2
+      Unlocked: 1
+      TransitionDuration: 0.2
+      StartOffset: 0.09
+      EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0

@@ -34,7 +34,7 @@ namespace Dreamers.ProjectileSystem
 
                     Object.Destroy(bullet, 10);
                     shoot.RoundsLeftToSpawn--;
-                    shoot.LastTimeShot += 60.0f / (float)shoot.RoundsPerMin;
+                    shoot.LastTimeShot += 60.0f / (float)shoot.RateOfFire;
                 }
 
             });
