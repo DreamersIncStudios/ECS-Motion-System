@@ -86,7 +86,7 @@ namespace MotionSystem.System
                         End = tranforms[i].Position - new Unity.Mathematics.float3(0, control.GroundCheckDistance, 0),
                         Filter = new CollisionFilter
                         {
-                            BelongsTo = ~0u,
+                            BelongsTo = ((1 << 6)),
                             CollidesWith = ((1 << 10)),
                             GroupIndex = 0
                         }
@@ -97,7 +97,7 @@ namespace MotionSystem.System
                         End = tranforms[i].Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, .25f),
                         Filter = new CollisionFilter
                         {
-                            BelongsTo = ~0u,
+                            BelongsTo = ((1 << 6)),
                             CollidesWith = ((1 << 10)),
                             GroupIndex = 0
                         }
@@ -108,7 +108,7 @@ namespace MotionSystem.System
                         End = tranforms[i].Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, -.25f),
                         Filter = new CollisionFilter
                         {
-                            BelongsTo = ~0u,
+                            BelongsTo = ((1 << 6)),
                             CollidesWith = ((1 << 10)),
                             GroupIndex = 0
                         }
@@ -119,7 +119,7 @@ namespace MotionSystem.System
                         End = tranforms[i].Position + new Unity.Mathematics.float3(.25f, -control.GroundCheckDistance, 0),
                         Filter = new CollisionFilter
                         {
-                            BelongsTo = ~0u,
+                            BelongsTo = ((1 << 6)),
                             CollidesWith = ((1 << 10)),
                             GroupIndex = 0
                         }
@@ -130,7 +130,7 @@ namespace MotionSystem.System
                         End = tranforms[i].Position + new Unity.Mathematics.float3(-.25f, -control.GroundCheckDistance, 0),
                         Filter = new CollisionFilter
                         {
-                            BelongsTo = ~0u,
+                            BelongsTo = ((1 << 6)),
                             CollidesWith = ((1 << 10)),
                             GroupIndex = 0
                         }

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
+using Dreamers.InventorySystem.ProjectileSystem;
+using Unity.Burst;
 namespace MotionSystem.Components.TowerSystem
 {
+    [GenerateAuthoringComponent]
     public struct TowerController : IComponentData
     {
         public int RateOfFire;
@@ -11,8 +14,9 @@ namespace MotionSystem.Components.TowerSystem
         [HideInInspector] public int RoundsLeftToSpawn;
         public int ProjectileID;
         [Range(0.0f,1.0f)]
-        public float Accuracy;
-
+        public float Accuracy; //Should This be part of the round or weapon???
+        [BurstDiscard]
+        [SerializeField]public ProjectileBase projectile => ProjectileDatabase.GetProjectile(ProjectileID);
     }
 
     public enum RangeWeaponType { 

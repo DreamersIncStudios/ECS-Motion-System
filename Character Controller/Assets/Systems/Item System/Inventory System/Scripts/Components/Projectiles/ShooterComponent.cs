@@ -6,6 +6,7 @@ using System;
 using Unity.Mathematics;
 
 namespace Dreamers.InventorySystem{
+    [GenerateAuthoringComponent]
     [Serializable]
     public class ShooterComponent : IComponentData
     {

@@ -23,7 +23,7 @@ namespace MotionSystem.Components
 
         public bool CombatCapable;
         public bool ApplyRootMotion { get; set; }
-        public bool SkipGroundCheck { get; set; }
+        [SerializeField]public bool SkipGroundCheck { get; set; }
         public Vector3 Move { get; set; }
         public bool Walk;
         public Vector3 GroundNormal;

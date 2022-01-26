@@ -1,0 +1,5 @@
+0,Standard_Bullet,Bullet,Linear,20,0, None,TBD
+1,Incendiary_Round,Bullet,Linear,50,0, None,TBD
+2,50_Cal,Bullet,Linear,120,0, None,TBD
+3,Silver_Bullet,Bullet,Linear,620,0, Holy,TBD
+4,Cannon,Mortar,Curve,820,10, None,TBD

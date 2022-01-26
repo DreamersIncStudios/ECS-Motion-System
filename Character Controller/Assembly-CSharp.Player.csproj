@@ -64,6 +64,7 @@
     <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\ModeManager.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\RoundSettings.cs" />
+    <Compile Include="Assets\ReparentAndLinkEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

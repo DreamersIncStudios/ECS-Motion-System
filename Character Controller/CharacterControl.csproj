@@ -76,6 +76,7 @@
     <Compile Include="Assets\Systems\Character Control System\InputSettings.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\EquipWeaponControl.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\TowerController.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\TowerAuthoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Character Control System\CharacterControl.asmdef" />
