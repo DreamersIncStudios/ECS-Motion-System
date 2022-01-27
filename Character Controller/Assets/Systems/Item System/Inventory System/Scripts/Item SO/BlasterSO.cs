@@ -15,8 +15,6 @@ namespace Dreamers.InventorySystem
 
 
         #region Variable
-        public GameObject ProjectilePrefab; //Move to SO later
-        public GameObject ShootPoint; // may have to make this in code?????
 
         [SerializeField] int roundsPerMin;
 
@@ -38,7 +36,7 @@ namespace Dreamers.InventorySystem
         {
             var ShootingData = new ShooterComponent
             {
-                ProjectileGameObject = ProjectilePrefab,
+                
                 LastTimeShot = 0.0f,
                 Offset = ShootLocationOffset,
                 NormalSpeed = NormalSpeed,
@@ -46,18 +44,7 @@ namespace Dreamers.InventorySystem
                 RoundsPerShot = RoundsPerShot
             };
 
-            Entity point = dstManager.CreateEntity();
-            var shootPoint = WeaponModel;
-            shootPoint.transform.parent = WeaponModel.transform;
-            dstManager.AddComponentObject(point, WeaponModel.transform);
-            dstManager.AddComponentData(point, new Translation()); // Have to add all this stuff manually too
-            dstManager.AddComponentData(point, new Rotation());
-            dstManager.AddComponentData(point, new LocalToWorld());
-            dstManager.AddComponentData(point, new CopyTransformFromGameObject()); // Or CopyTransformToGameObject - Only if you need to sync transforms
 
-            // - Only if you want the parent child relationship
-            dstManager.AddComponentData(point, new Parent { Value = entity });
-            ShootingData.ShootFromHere = point;
             dstManager.AddComponentData(entity, ShootingData);
 
         }

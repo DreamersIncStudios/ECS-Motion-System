@@ -75,8 +75,10 @@
     <Compile Include="Assets\Systems\Character Control System\Systems\ComponentSystem\ControllerInput.cs" />
     <Compile Include="Assets\Systems\Character Control System\InputSettings.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\EquipWeaponControl.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Components\TowerController.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\TowerAuthoring.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\TowerController.cs" />
+    <Compile Include="Assets\Systems\Character Control System\CombatSystem\Tower Actions\MountedWeapon.cs" />
+    <Compile Include="Assets\Systems\Character Control System\CombatSystem\Tower Actions\TrackTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Character Control System\CharacterControl.asmdef" />

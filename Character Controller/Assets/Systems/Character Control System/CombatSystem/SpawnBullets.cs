@@ -13,7 +13,7 @@ namespace Dreamers.ProjectileSystem
 
         protected override void OnUpdate()
         {
-            Entities.ForEach((ShooterComponent shoot) =>
+            Entities.ForEach((ShooterComponent shoot, ref LocalToWorld localToWorld) =>
             {
                 if (shoot.Wait)
                 {
@@ -23,8 +23,7 @@ namespace Dreamers.ProjectileSystem
 
                 if (shoot.RoundsLeftToSpawn > 0)
                 {
-                    LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
-                    GameObject bullet = Object.Instantiate(shoot.ProjectileGameObject, localToWorld.Position + (localToWorld.Forward * shoot.Offset), localToWorld.Rotation);
+                    GameObject bullet = Object.Instantiate(shoot.Projectile.GO, localToWorld.Position + (localToWorld.Forward * shoot.Offset), localToWorld.Rotation);
                     bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * shoot.NormalSpeed;
                     if (shoot.HasShotBeenCharge)
                     {

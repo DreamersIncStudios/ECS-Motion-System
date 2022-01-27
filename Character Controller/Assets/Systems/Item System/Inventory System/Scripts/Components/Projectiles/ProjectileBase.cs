@@ -81,8 +81,8 @@ namespace Dreamers.InventorySystem.ProjectileSystem
                     Trajectory = (Trajectory)Enum.Parse(typeof(Trajectory), parts[3]),
                     BaseDamage = int.Parse(parts[4]),
                     DamageRadius = float.Parse(parts[5]),
-                    element = (Element)Enum.Parse(typeof(Element), parts[6])
-                    //TODO add GO pull;
+                    element = (Element)Enum.Parse(typeof(Element), parts[6]),
+                    GO = Resources.Load(parts[7]) as GameObject
                 };
             }
 

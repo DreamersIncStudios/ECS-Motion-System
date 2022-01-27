@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Entities;
 using System;
 using Unity.Mathematics;
+using Dreamers.InventorySystem.ProjectileSystem;
 
 namespace Dreamers.InventorySystem{
     [GenerateAuthoringComponent]
@@ -17,9 +18,9 @@ namespace Dreamers.InventorySystem{
         [HideInInspector] public bool HasShotBeenCharge;
         public float NormalSpeed;
 
-        public GameObject ProjectileGameObject; //TODO Replace this with SO with ID number 
+        public int ProjectileID;
+      [SerializeField] public ProjectileBase Projectile => ProjectileDatabase.GetProjectile(ProjectileID);
 
-        public Entity ShootFromHere;
         public Entity SelfReference;
         public float Offset;
         [HideInInspector] public float LastTimeShot;

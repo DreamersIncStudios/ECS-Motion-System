@@ -14,7 +14,7 @@ public class ProjectileHit : MonoBehaviour,IConvertGameObjectToEntity
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == 9)
+        if (collision.collider.gameObject.layer == 9|| collision.collider.gameObject.layer == 10)
         {
             if (MGR.Exists(reference))
                 MGR.AddComponent<DestroyTag>(reference);

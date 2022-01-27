@@ -117,7 +117,7 @@ namespace DreamersInc.ComboSystem
             });
 
 
-            Entities.ForEach((ShooterComponent shoot, Animator anim, Command handler) =>
+            Entities.ForEach((ref LocalToWorld localToWorld,ShooterComponent shoot, Animator anim, Command handler) =>
             {
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -131,7 +131,6 @@ namespace DreamersInc.ComboSystem
 
                 if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
                     {
-                        LocalToWorld localToWorld = GetComponentDataFromEntity<LocalToWorld>()[shoot.ShootFromHere];
                         if (!shoot.IsShooting)
                             shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
 
