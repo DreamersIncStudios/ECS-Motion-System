@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
+using ECS.Utilities;
+
 public class ReparentAndLinkEntity : MonoBehaviour,IConvertGameObjectToEntity
 {
     public List<GameObject> ChildrenToLink;
@@ -14,6 +16,11 @@ public class ReparentAndLinkEntity : MonoBehaviour,IConvertGameObjectToEntity
        this.entity = entity;
         dstManager.AddBuffer<LinkedEntityGroup>(entity);
         dstManager.AddBuffer<Child>(entity);
+
+        var data = new TransformComponent { };
+
+        dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
+        dstManager.AddComponentData(entity, data);
     }
 
     // Start is called before the first frame update

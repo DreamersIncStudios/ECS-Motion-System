@@ -12,7 +12,10 @@ namespace DreamersInc.ComboSystem.Mounted
 {
     [GenerateAuthoringComponent]
     public struct MountedWeapon : IComponentData
-    {
+    { 
+        //TODO Add fine Tuning with YZ rot offsets 
+        //TODO Add inverse Z rot for Mortar rounds
+
         public float3 DirectionToTarget;
 
         public int2 RotationLimitAngle;
@@ -71,15 +74,36 @@ namespace DreamersInc.ComboSystem.Mounted
                 {
                     TrackTarget track = trackTargets[i];
                     LocalToWorld localToWorld = transforms[i];
-                    if (!track.HasRotation)
+                    float3 home = localToWorld.Position;
+                    home.y = 0; Vector3 dir = (localToWorld.Position - track.positionToTarget);
+                    dir = dir.normalized;
+                    float angleY = new float();
+                    float angleZ = new float();
+                    if (dir.x >= 0)
                     {
-                        track.DirectionToTarget = Quaternion.LookRotation((track.positionToTarget - localToWorld.Position));
-                        track.HasRotation = true;
-                        track.Speed = 30;
-                    }
+                        if( dir.z > 0)
+                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.back) - 90;
+                        else
+                            angleY = -Vector3.Angle(track.positionToTarget - home, Vector3.forward) + 90;
 
-                    trackTargets[i] = track;
+                    }
                 
+                    else {
+                        if (dir.z > 0)
+                            angleY = -Vector3.Angle(track.positionToTarget - home, Vector3.back)-90;
+                        else
+                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.forward)+90 ;
+                    }
+                    home = localToWorld.Position; ;
+                    
+                    angleZ = Mathf.Clamp((Vector3.Angle( track.positionToTarget - localToWorld.Position, localToWorld.Up)-90)/2.0f, -20, 20);
+                    Quaternion test = Quaternion.Euler(0, angleY,angleZ);
+
+                    track.DirectionToTarget = test;
+                                track.HasRotation = true;
+                            track.Speed = 30;
+
+                        trackTargets[i] = track;
                 }
             }
         }
@@ -92,12 +116,11 @@ namespace DreamersInc.ComboSystem.Mounted
         {
             Entities.ForEach((Entity entity, ref TrackTarget track,  Transform transform) => {
 
+                Debug.DrawLine(transform.position, track.positionToTarget,Color.red);
 
                 if (track.HasRotation) {
-                   transform.rotation = Quaternion.RotateTowards(transform.rotation, track.DirectionToTarget, track.Speed*Time.DeltaTime);
-                
+                   transform.rotation = Quaternion.RotateTowards(transform.rotation,track.DirectionToTarget, track.Speed*Time.DeltaTime);
                 }
-
 
             });
         }

@@ -63,7 +63,7 @@ namespace MotionSystem.Archetypes
             ObjectEntity = entity;
 
             Agent = this.GetComponent<NavMeshAgent>();
-            var data = new ECS.Utilities.TransformComponenet { };
+            var data = new ECS.Utilities.TransformComponent { };
             dstManager.AddComponentData(entity, data);
 
             if (Party)
@@ -115,7 +115,7 @@ namespace MotionSystem.Archetypes
                     dstManager.AddComponentData(entity, player);
                 }
             }
-            var transformtransitiion = new TransformComponenet();
+            var transformtransitiion = new TransformComponent();
             dstManager.AddComponentData(entity, transformtransitiion);
 
         }

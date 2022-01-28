@@ -18,13 +18,13 @@ namespace ECS.Utilities
         }
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            var data = new TransformComponenet { };
+            var data = new TransformComponent { };
             dstManager.AddComponentData(entity, data);
         }
 
     }
 
-    public struct TransformComponenet : IComponentData { }
+    public struct TransformComponent : IComponentData { }
 
 
 

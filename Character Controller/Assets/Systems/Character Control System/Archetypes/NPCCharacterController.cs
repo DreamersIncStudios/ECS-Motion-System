@@ -40,7 +40,7 @@ namespace MotionSystem.Archetypes
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             ObjectEntity = entity;
-            var data = new ECS.Utilities.TransformComponenet { };
+            var data = new ECS.Utilities.TransformComponent { };
             dstManager.AddComponentData(entity, data);
             var control = new CharControllerE()
             {
@@ -67,7 +67,7 @@ namespace MotionSystem.Archetypes
 
             };
             dstManager.AddComponentData(entity, control);
-            var transformtransitiion = new TransformComponenet();
+            var transformtransitiion = new TransformComponent();
             dstManager.AddComponentData(entity, transformtransitiion);
         }
 
