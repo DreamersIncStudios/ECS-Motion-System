@@ -7,6 +7,7 @@ using Unity.Transforms;
 using Unity.Collections;
 using Unity.Burst;
 using Unity.Jobs;
+using Dreamers.InventorySystem;
 
 namespace DreamersInc.ComboSystem.Mounted
 {
@@ -58,6 +59,18 @@ namespace DreamersInc.ComboSystem.Mounted
                 TransformsChunk = GetComponentTypeHandle<LocalToWorld>(true)
             }.ScheduleParallel(mountedWeapon,systemDeps);
             entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+
+            systemDeps = new FireRoundJob()
+            {
+                EntityChunk = GetEntityTypeHandle(),
+                TargetChunk = GetComponentTypeHandle<TrackTarget>(true),
+                ShooterInfo = GetComponentDataFromEntity<ShooterComponent>(false),
+                ChildChunk = GetBufferTypeHandle<Child>(true),
+                ECB = entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
+            }
+            .ScheduleParallel(mountedWeapon, systemDeps);
+            entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+
             Dependency = systemDeps;
 
         }
@@ -78,32 +91,60 @@ namespace DreamersInc.ComboSystem.Mounted
                     home.y = 0; Vector3 dir = (localToWorld.Position - track.positionToTarget);
                     dir = dir.normalized;
                     float angleY = new float();
-                    float angleZ = new float();
+                    float angleX = new float();
                     if (dir.x >= 0)
                     {
                         if( dir.z > 0)
-                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.back) - 90;
+                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.back)+180 ;
                         else
-                            angleY = -Vector3.Angle(track.positionToTarget - home, Vector3.forward) + 90;
+                            angleY = -Vector3.Angle(track.positionToTarget - home, Vector3.forward);
 
                     }
                 
                     else {
                         if (dir.z > 0)
-                            angleY = -Vector3.Angle(track.positionToTarget - home, Vector3.back)-90;
+                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.forward);
                         else
-                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.forward)+90 ;
+                            angleY = Vector3.Angle(track.positionToTarget - home, Vector3.forward);
                     }
                     home = localToWorld.Position; ;
                     
-                    angleZ = Mathf.Clamp((Vector3.Angle( track.positionToTarget - localToWorld.Position, localToWorld.Up)-90)/2.0f, -20, 20);
-                    Quaternion test = Quaternion.Euler(0, angleY,angleZ);
+                    angleX = Mathf.Clamp((Vector3.Angle( track.positionToTarget - localToWorld.Position, localToWorld.Up)-90)/2.0f, -20, 20);
+                    Quaternion test = Quaternion.Euler(angleX, angleY,0);
 
                     track.DirectionToTarget = test;
                                 track.HasRotation = true;
                             track.Speed = 30;
 
                         trackTargets[i] = track;
+                }
+            }
+        }
+
+        struct FireRoundJob : IJobChunk
+        {
+            [ReadOnly] public ComponentTypeHandle<TrackTarget> TargetChunk;
+            [ReadOnly] public EntityTypeHandle EntityChunk;
+            [ReadOnly] public BufferTypeHandle<Child> ChildChunk;
+            public EntityCommandBuffer.ParallelWriter ECB;
+            [NativeDisableParallelForRestriction]public ComponentDataFromEntity<ShooterComponent> ShooterInfo;
+            public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
+            {
+                NativeArray<TrackTarget> trackTargets = chunk.GetNativeArray(TargetChunk);
+               BufferAccessor<Child> childs =  chunk.GetBufferAccessor(ChildChunk);
+                NativeArray<Entity> entities = chunk.GetNativeArray(EntityChunk);
+
+                for (int i = 0; i < chunk.Count; i++)
+                {
+                    DynamicBuffer<Child> child = childs[i];
+                    if (!trackTargets[i].InRange)
+                        continue;
+                    else {
+                        ShooterComponent info = ShooterInfo[child[0].Value];
+                        info.RoundsLeftToSpawn += info.RoundsPerShot;
+                        ShooterInfo[child[0].Value] = info;
+                        ECB.RemoveComponent<TrackTarget>(chunkIndex,entities[i]);
+                    }
                 }
             }
         }
@@ -116,12 +157,11 @@ namespace DreamersInc.ComboSystem.Mounted
         {
             Entities.ForEach((Entity entity, ref TrackTarget track,  Transform transform) => {
 
-                Debug.DrawLine(transform.position, track.positionToTarget,Color.red);
-
+              //  Debug.DrawLine(transform.position, Vector3.zero);
                 if (track.HasRotation) {
                    transform.rotation = Quaternion.RotateTowards(transform.rotation,track.DirectionToTarget, track.Speed*Time.DeltaTime);
                 }
-
+                track.InRange = transform.rotation == track.DirectionToTarget;
             });
         }
     }

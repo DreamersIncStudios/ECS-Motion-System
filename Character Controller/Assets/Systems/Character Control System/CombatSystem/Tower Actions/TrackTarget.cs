@@ -14,6 +14,7 @@ namespace DreamersInc.ComboSystem.Mounted
     public struct TrackTarget : IComponentData
     {
         public bool HasRotation { get; set; }
+        public bool InRange { get; set; }
       [SerializeField]  public float3 positionToTarget { get; set; }
         public quaternion DirectionToTarget { get; set; }
         public uint Speed;

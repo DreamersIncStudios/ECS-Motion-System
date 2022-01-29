@@ -9,7 +9,7 @@ using Dreamers.InventorySystem.ProjectileSystem;
 namespace Dreamers.InventorySystem{
     [GenerateAuthoringComponent]
     [Serializable]
-    public class ShooterComponent : IComponentData
+    public struct ShooterComponent : IComponentData
     {
         public int RateOfFire;
         public int RoundsPerShot;
@@ -17,11 +17,8 @@ namespace Dreamers.InventorySystem{
         public bool IsShooting => RoundsLeftToSpawn > 0;
         [HideInInspector] public bool HasShotBeenCharge;
         public float NormalSpeed;
-
         public int ProjectileID;
-      [SerializeField] public ProjectileBase Projectile => ProjectileDatabase.GetProjectile(ProjectileID);
-
-        public Entity SelfReference;
+        public ProjectileBase Projectile => ProjectileDatabase.GetProjectile(ProjectileID);
         public float Offset;
         [HideInInspector] public float LastTimeShot;
         public bool Wait => LastTimeShot > 0.0f;

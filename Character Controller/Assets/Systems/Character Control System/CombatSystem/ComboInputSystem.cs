@@ -116,43 +116,44 @@ namespace DreamersInc.ComboSystem
                 }
             });
 
+            //TODO Rewrite Shooter update 
 
-            Entities.ForEach((ref LocalToWorld localToWorld,ShooterComponent shoot, Animator anim, Command handler) =>
-            {
-                handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //Entities.ForEach((ref LocalToWorld localToWorld, ref ShooterComponent shoot, Animator anim, Command handler) =>
+            //{
+            //    handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-                if (handler.TakeInput)
-                {
-                    AnimationTrigger temp = handler.InputQueue.Dequeue();
+            //    if (handler.TakeInput)
+            //    {
+            //        AnimationTrigger temp = handler.InputQueue.Dequeue();
 
-                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
-                // this need to move to animation event
-
-
-                if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
-                    {
-                        if (!shoot.IsShooting)
-                            shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
-
-                    }
-                    if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
-                    {
-                        if (!shoot.IsShooting)
-                        {
-                            shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
-                            shoot.HasShotBeenCharge = true;
-                        }
-                    }
+            //        anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset);
+            //    // this need to move to animation event
 
 
-                }
-                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
-                {
+            //    if (temp.TriggeredAnimName == ComboAnimNames.Projectile)
+            //        {
+            //            if (!shoot.IsShooting)
+            //                shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
 
-                    anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
-                }
+            //        }
+            //        if (temp.TriggeredAnimName == ComboAnimNames.ChargedProjectile)
+            //        {
+            //            if (!shoot.IsShooting)
+            //            {
+            //                shoot.RoundsLeftToSpawn += shoot.RoundsPerShot;
+            //                shoot.HasShotBeenCharge = true;
+            //            }
+            //        }
 
-            });
+
+            //    }
+            //    if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
+            //    {
+
+            //        anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+            //    }
+
+            //});
 
 
 
