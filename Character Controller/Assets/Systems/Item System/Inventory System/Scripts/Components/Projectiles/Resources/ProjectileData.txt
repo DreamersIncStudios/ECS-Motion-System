@@ -1,0 +1,5 @@
+0,Standard_Bullet,Bullet,Linear,20,0, None,Testing
+1,Incendiary_Round,Bullet,Linear,50,0, None,Testing
+2,50_Cal,Bullet,Linear,120,0, None,Testing
+3,Silver_Bullet,Bullet,Linear,620,0, Holy,Testing
+4,Cannon,Mortar,Curve,820,10, None,Testing

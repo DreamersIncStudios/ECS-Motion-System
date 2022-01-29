@@ -11,7 +11,7 @@ namespace UnityStandardAssets.Utility
 
         private void Awake()
         {
-            Invoke(nameof(DestroyNow), m_TimeOut);
+            Invoke("DestroyNow", m_TimeOut);
         }
 
 
