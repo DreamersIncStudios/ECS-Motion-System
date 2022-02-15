@@ -6,6 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using System.Collections.Generic;
 using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.SO;
+
 using Dreamers.InventorySystem.Base;
 using Unity.Transforms;
 using System.Collections;

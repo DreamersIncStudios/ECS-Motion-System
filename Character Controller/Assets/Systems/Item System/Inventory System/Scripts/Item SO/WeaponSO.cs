@@ -10,7 +10,7 @@ using DreamersInc.MagicSkill;
 
 
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     public class WeaponSO : ItemBaseSO, IEquipable,IWeapon
     {

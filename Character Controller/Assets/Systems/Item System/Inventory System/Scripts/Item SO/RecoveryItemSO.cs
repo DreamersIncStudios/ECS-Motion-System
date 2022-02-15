@@ -8,7 +8,7 @@ using Unity.Burst;
 using Unity.Jobs;
 using Unity.Collections;
 
-namespace Dreamers.InventorySystem {
+namespace Dreamers.InventorySystem.SO {
     [System.Serializable]
     public class RecoveryItemSO : ItemBaseSO, IRecoverItems,IGeneral
     {

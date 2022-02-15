@@ -6,7 +6,7 @@ using UnityEngine;
 using Unity.Entities;
 using Dreamers.InventorySystem.Interfaces;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     [System.Serializable]
     public class GeneralItemSO : ItemBaseSO, IGeneral

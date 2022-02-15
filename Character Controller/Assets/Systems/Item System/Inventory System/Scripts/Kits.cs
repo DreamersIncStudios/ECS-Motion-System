@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Stats;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     [System.Serializable]
     public class Kits

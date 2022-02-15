@@ -8,7 +8,7 @@ using Unity.Transforms;
 using Dreamers.InventorySystem.Base;
 using Dreamers.InventorySystem.Interfaces;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     public class BlasterSO :WeaponSO, IProjectile
     {

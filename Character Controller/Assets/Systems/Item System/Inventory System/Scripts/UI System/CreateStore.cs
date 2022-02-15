@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Dreamers.InventorySystem.SO;
 using Dreamers.InventorySystem.Generic;
 using Dreamers.InventorySystem.Interfaces;
 using Dreamers.InventorySystem.MissionSystem;

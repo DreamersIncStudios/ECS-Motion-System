@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.12</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.25f1</UnityVersion>
@@ -61,37 +61,40 @@
     <Compile Include="Assets\Systems\Sample Game Code\EnemySetup.cs" />
     <Compile Include="Assets\Models\Animations\NPC Attacks for test\AttackTest.cs" />
     <Compile Include="Assets\Models\Weapons\DissolveSingle.cs" />
+    <Compile Include="Assets\ReparentAndLinkEntity.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\CharacterSetup.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\Tower Scripts\TowerManager.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\TimerCountdown.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\ModeManager.cs" />
     <Compile Include="Assets\Systems\GameModes\Destory The Tower Mode\RoundSettings.cs" />
-    <Compile Include="Assets\ReparentAndLinkEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+    <None Include="Assets\Models\Animations\Characters\dima-base-mesh\README.txt" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\license.txt" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\license.txt" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
     <None Include="Assets\Models\Protected\UnityChan\license.txt" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
+    <None Include="Assets\Systems\GameModes\Destory The Tower Mode\Resources\RoundsData.txt" />
     <None Include="Assets\Models\Protected\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
-    <None Include="Assets\Models\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\Systems\GameModes\Destory The Tower Mode\Resources\TowerData.txt" />
+    <None Include="Assets\Models\Protected\RapierAnimSet\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -762,177 +765,177 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Properties.csproj">
-      <Project>{B061187C-358D-AC5D-EA62-5A7C3EE77104}</Project>
-      <Name>Unity.Properties</Name>
+    <ProjectReference Include="Unity.Properties.Player.csproj">
+      <Project>{10C65DAE-0B7B-100E-FD2C-352F5DD9CA38}</Project>
+      <Name>Unity.Properties.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Serialization.csproj">
-      <Project>{711459D3-70D1-721F-4075-275265748EE7}</Project>
-      <Name>Unity.Serialization</Name>
+    <ProjectReference Include="Unity.Serialization.Player.csproj">
+      <Project>{4F8F8115-D681-554F-0BA5-31E4BBBFC9A1}</Project>
+      <Name>Unity.Serialization.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
-      <Project>{951A881C-A9EB-1804-B8F3-33C8CD5866B0}</Project>
-      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.Player.csproj">
+      <Project>{D1C8F9A4-022C-F5ED-E267-9DD6F8899589}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="CombatDamage.csproj">
-      <Project>{B0F8FCFA-363C-229F-AC06-AF19E02656C8}</Project>
-      <Name>CombatDamage</Name>
+    <ProjectReference Include="CombatDamage.Player.csproj">
+      <Project>{2E0AC1B9-EB98-49CE-352D-E1D2AFCF8EF6}</Project>
+      <Name>CombatDamage.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="CharacterControl.csproj">
-      <Project>{FC81B69D-1F0A-B28F-AC06-AEACC4E33887}</Project>
-      <Name>CharacterControl</Name>
+    <ProjectReference Include="CharacterControl.Player.csproj">
+      <Project>{D04CE9B3-FD48-7EB4-7A45-7CC53FF6E7E1}</Project>
+      <Name>CharacterControl.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Mathematics.Extensions.csproj">
-      <Project>{513B6FBB-8821-02C3-61F3-584668BEEDCA}</Project>
-      <Name>Unity.Mathematics.Extensions</Name>
+    <ProjectReference Include="Unity.Mathematics.Extensions.Player.csproj">
+      <Project>{524DF039-13A2-951B-0048-B6C2A60E6A5F}</Project>
+      <Name>Unity.Mathematics.Extensions.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Transforms.csproj">
-      <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
-      <Name>Unity.Transforms</Name>
+    <ProjectReference Include="Unity.Transforms.Player.csproj">
+      <Project>{38C467C3-73F9-9A24-B382-31626F2A1D70}</Project>
+      <Name>Unity.Transforms.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Collections.csproj">
-      <Project>{92152A78-82F3-F813-55D5-0F12A61BD78F}</Project>
-      <Name>Unity.Collections</Name>
+    <ProjectReference Include="Unity.Collections.Player.csproj">
+      <Project>{FD6F35C9-8EA5-CA14-EF0E-985C5F6BE782}</Project>
+      <Name>Unity.Collections.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Physics.csproj">
-      <Project>{0FE37419-27D6-A800-D020-E1D1E1B08C84}</Project>
-      <Name>Unity.Physics</Name>
+    <ProjectReference Include="Unity.Physics.Player.csproj">
+      <Project>{1D4775A7-9AB6-4167-C2A9-E5F9DF5CB17C}</Project>
+      <Name>Unity.Physics.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="CodeToBeReplace.csproj">
-      <Project>{61D7FF65-24EF-5E9E-4A7E-DC85A2A0C38B}</Project>
-      <Name>CodeToBeReplace</Name>
+    <ProjectReference Include="CodeToBeReplace.Player.csproj">
+      <Project>{835D8873-B19F-C3AE-5E73-B8D3F48D8134}</Project>
+      <Name>CodeToBeReplace.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{5221CCB6-1319-240F-EB70-0F27CD9EDDF4}</Project>
-      <Name>Unity.TextMeshPro</Name>
+    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
+      <Project>{A0ED3D6A-9B2C-98BD-6C6B-FF27CC35B5C3}</Project>
+      <Name>Unity.TextMeshPro.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Physics.Hybrid.csproj">
-      <Project>{1145EA1D-5247-7E7F-A2B5-517BC0B73C84}</Project>
-      <Name>Unity.Physics.Hybrid</Name>
+    <ProjectReference Include="Unity.Physics.Hybrid.Player.csproj">
+      <Project>{3FD01A68-2608-26E9-A0A2-EFBCFD768D49}</Project>
+      <Name>Unity.Physics.Hybrid.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="PlayerCharacterSystem.csproj">
-      <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
-      <Name>PlayerCharacterSystem</Name>
+    <ProjectReference Include="PlayerCharacterSystem.Player.csproj">
+      <Project>{6AF15AF7-837E-5478-9052-32EEF8EF732B}</Project>
+      <Name>PlayerCharacterSystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
-      <Project>{F57E10BA-BE4B-CED4-F9DE-569C90A75260}</Project>
-      <Name>Unity.RenderPipelines.Core.Runtime</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Player.csproj">
+      <Project>{897ECE43-19E5-DBA8-1502-EB24F8099C0E}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Entities.csproj">
-      <Project>{8010A19C-2362-E3FA-4B72-E81872F91DDB}</Project>
-      <Name>Unity.Entities</Name>
+    <ProjectReference Include="Unity.Entities.Player.csproj">
+      <Project>{A5FEEA4F-C926-9AD6-087C-63AAFAE70BDF}</Project>
+      <Name>Unity.Entities.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Entities.Hybrid.csproj">
-      <Project>{C47A756C-2C16-2244-F53A-87BD1DFFB25C}</Project>
-      <Name>Unity.Entities.Hybrid</Name>
+    <ProjectReference Include="Unity.Entities.Hybrid.Player.csproj">
+      <Project>{1293C83F-C72F-3118-F382-72F07927824C}</Project>
+      <Name>Unity.Entities.Hybrid.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{6AAEB663-F6C2-E722-0C15-29D1AD8195EB}</Project>
-      <Name>Unity.Mathematics</Name>
+    <ProjectReference Include="Unity.Mathematics.Player.csproj">
+      <Project>{396DEBB1-7C96-51B7-F71E-F6FFA208396A}</Project>
+      <Name>Unity.Mathematics.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
-      <Project>{5A86E05E-0C37-36A4-9F0D-F103DCF82F96}</Project>
-      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
+    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player.csproj">
+      <Project>{FCE2EC29-B722-AB0D-CA1D-A035F914E4FF}</Project>
+      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Properties.UI.csproj">
-      <Project>{6375494E-E9CB-56DA-AC5A-C2A9445B662D}</Project>
-      <Name>Unity.Properties.UI</Name>
+    <ProjectReference Include="Unity.Properties.UI.Player.csproj">
+      <Project>{2A3DAE07-73F3-FF45-DD0F-F1C5C14AD764}</Project>
+      <Name>Unity.Properties.UI.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ScriptableBuildPipeline.csproj">
-      <Project>{DF5D5D66-FD4E-3A21-749A-9E92DFB7ED9C}</Project>
-      <Name>Unity.ScriptableBuildPipeline</Name>
+    <ProjectReference Include="Unity.ScriptableBuildPipeline.Player.csproj">
+      <Project>{D41A79DD-66FD-C2DC-431C-0E88AA7DABFC}</Project>
+      <Name>Unity.ScriptableBuildPipeline.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="StandardAssets.csproj">
-      <Project>{EFEDBF36-A0C7-5B7E-9FF5-16ED1A75F051}</Project>
-      <Name>StandardAssets</Name>
+    <ProjectReference Include="StandardAssets.Player.csproj">
+      <Project>{CD8672DA-5DD9-5781-D3C1-57BE89E62758}</Project>
+      <Name>StandardAssets.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="WeaponSystem.csproj">
-      <Project>{7A7A0688-D737-B6B0-5305-A49155483304}</Project>
-      <Name>WeaponSystem</Name>
+    <ProjectReference Include="WeaponSystem.Player.csproj">
+      <Project>{BC296977-D419-4DF8-FF44-F1624487BC13}</Project>
+      <Name>WeaponSystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Transforms.Hybrid.csproj">
-      <Project>{AF799525-FD34-31D4-8E8E-0322FEEBBC54}</Project>
-      <Name>Unity.Transforms.Hybrid</Name>
+    <ProjectReference Include="Unity.Transforms.Hybrid.Player.csproj">
+      <Project>{D612BA23-AF4F-323C-AC68-47B6E6DC38C5}</Project>
+      <Name>Unity.Transforms.Hybrid.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="MovementSystem.csproj">
-      <Project>{6F5B5B9D-DE05-FDA9-F048-8B21206C41CB}</Project>
-      <Name>MovementSystem</Name>
+    <ProjectReference Include="MovementSystem.Player.csproj">
+      <Project>{8E8DF77D-C493-B4E1-0CB0-8F1B9BB15414}</Project>
+      <Name>MovementSystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
-      <Project>{0890C94E-544B-754B-25AA-3FCD4CDB1072}</Project>
-      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.Player.csproj">
+      <Project>{EAE71C35-1F07-2B65-85B0-EC55D5514085}</Project>
+      <Name>Unity.RenderPipelines.Universal.Shaders.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Iaus.csproj">
-      <Project>{33D5B363-63B3-C0D9-9677-3D462EBC0709}</Project>
-      <Name>Iaus</Name>
+    <ProjectReference Include="Iaus.Player.csproj">
+      <Project>{3147C0F7-24C0-7373-5C70-E00BA5F3B8AD}</Project>
+      <Name>Iaus.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ProBuilder.csproj">
-      <Project>{988E3A39-F25F-FA14-0784-370D69088E2B}</Project>
-      <Name>Unity.ProBuilder</Name>
+    <ProjectReference Include="Unity.ProBuilder.Player.csproj">
+      <Project>{8A2C3D82-C597-3A07-C910-AA3750B4B2CE}</Project>
+      <Name>Unity.ProBuilder.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{DC1E038B-DA3A-71E0-3456-C72F36C3830D}</Project>
-      <Name>UnityEngine.UI</Name>
+    <ProjectReference Include="UnityEngine.UI.Player.csproj">
+      <Project>{4DB91BEE-4EB1-7E67-8152-EA77CA891C95}</Project>
+      <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Cinemachine.csproj">
-      <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
-      <Name>Cinemachine</Name>
+    <ProjectReference Include="Cinemachine.Player.csproj">
+      <Project>{A3BA0D85-9197-DF91-6349-D7F978C4CBA7}</Project>
+      <Name>Cinemachine.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Scenes.csproj">
-      <Project>{72EDDA88-5557-64FF-777D-8F773D80D340}</Project>
-      <Name>Unity.Scenes</Name>
+    <ProjectReference Include="Unity.Scenes.Player.csproj">
+      <Project>{60E6E0F6-4E1F-DEC5-3D80-D7003D0D742E}</Project>
+      <Name>Unity.Scenes.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
-      <Project>{228FB7BE-E8B6-BBA6-2061-8BC3A32AF561}</Project>
-      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.Player.csproj">
+      <Project>{89DA2CE6-54EB-D4DA-83FC-369DAA95A4D1}</Project>
+      <Name>Unity.RenderPipeline.Universal.ShaderLibrary.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Global.csproj">
-      <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
-      <Name>Global</Name>
+    <ProjectReference Include="Global.Player.csproj">
+      <Project>{1DE1EC10-5DD8-5AFD-3512-E562899BA0A6}</Project>
+      <Name>Global.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ProGrids.csproj">
-      <Project>{58F3E7BE-6FB8-B5D6-1456-12F2202AC362}</Project>
-      <Name>Unity.ProGrids</Name>
+    <ProjectReference Include="Unity.ProGrids.Player.csproj">
+      <Project>{CE311F1E-55A3-612D-FF47-49BA0651885C}</Project>
+      <Name>Unity.ProGrids.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Mathematics.Extensions.Hybrid.csproj">
-      <Project>{0B54BB76-5FAE-63D1-B67D-1CEE7406FA58}</Project>
-      <Name>Unity.Mathematics.Extensions.Hybrid</Name>
+    <ProjectReference Include="Unity.Mathematics.Extensions.Hybrid.Player.csproj">
+      <Project>{7AE8BDF7-44EB-FBA7-98BE-093EA61ADA31}</Project>
+      <Name>Unity.Mathematics.Extensions.Hybrid.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
-      <Project>{2F6738B4-C660-FA02-CBE4-A4EEB5630D37}</Project>
-      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.Player.csproj">
+      <Project>{A986254E-2B01-1003-D1A6-38F172D6AC30}</Project>
+      <Name>Unity.RenderPipelines.Universal.Runtime.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="InventorySystem.csproj">
-      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
-      <Name>InventorySystem</Name>
+    <ProjectReference Include="InventorySystem.Player.csproj">
+      <Project>{B516EC08-D435-376E-B5C3-B0A59D6390DB}</Project>
+      <Name>InventorySystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{56368BBD-B2D2-653D-27A1-87B713688A91}</Project>
-      <Name>Unity.Timeline</Name>
+    <ProjectReference Include="Unity.Timeline.Player.csproj">
+      <Project>{1FF2D23F-8A85-FCFA-BB15-B0C34830E57A}</Project>
+      <Name>Unity.Timeline.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="DOTween.Modules.csproj">
-      <Project>{4A7F9C5F-9F06-5580-C5EE-20B29D873DA3}</Project>
-      <Name>DOTween.Modules</Name>
+    <ProjectReference Include="DOTween.Modules.Player.csproj">
+      <Project>{CC20725F-B181-E0FA-490D-D851D42949FF}</Project>
+      <Name>DOTween.Modules.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Burst.csproj">
-      <Project>{EA55C08D-C3D1-3AF5-1B8F-8270D58AFEE6}</Project>
-      <Name>Unity.Burst</Name>
+    <ProjectReference Include="Unity.Burst.Player.csproj">
+      <Project>{82D5C53D-8630-A4F5-D40F-1B266DF947C1}</Project>
+      <Name>Unity.Burst.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Jobs.csproj">
-      <Project>{0CCB3511-CCBC-D36F-C489-BA0CA384017A}</Project>
-      <Name>Unity.Jobs</Name>
+    <ProjectReference Include="Unity.Jobs.Player.csproj">
+      <Project>{BF626ADF-B27C-686D-4A09-7FFABBADBA06}</Project>
+      <Name>Unity.Jobs.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Deformations.csproj">
-      <Project>{48B93C2A-969A-7669-817B-C3A46E109B3B}</Project>
-      <Name>Unity.Deformations</Name>
+    <ProjectReference Include="Unity.Deformations.Player.csproj">
+      <Project>{27439814-EEA9-C43B-28A7-6F4BE1BE4470}</Project>
+      <Name>Unity.Deformations.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="NPCAttack.csproj">
-      <Project>{AF6A9CB0-8D7E-0E32-204A-AA0802DB5D2D}</Project>
-      <Name>NPCAttack</Name>
+    <ProjectReference Include="NPCAttack.Player.csproj">
+      <Project>{EAC9645E-3902-7651-9860-082D48FEC417}</Project>
+      <Name>NPCAttack.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="GameMenus.csproj">
-      <Project>{83DEEF90-9A4A-7395-94E1-55A8E7EE094B}</Project>
-      <Name>GameMenus</Name>
+    <ProjectReference Include="GameMenus.Player.csproj">
+      <Project>{9968499F-5486-AFD6-811A-FC0713FEEACA}</Project>
+      <Name>GameMenus.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

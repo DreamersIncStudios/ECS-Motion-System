@@ -7,7 +7,7 @@ using Dreamers.InventorySystem.Interfaces;
 using Unity.Entities;
 using System.Linq;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
 
     public class ArmorSO : ItemBaseSO, IEquipable, IArmor

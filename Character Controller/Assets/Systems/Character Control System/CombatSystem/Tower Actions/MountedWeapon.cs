@@ -109,7 +109,7 @@ namespace DreamersInc.ComboSystem.Mounted
                     }
                     home = localToWorld.Position; ;
                     
-                    angleX = Mathf.Clamp((Vector3.Angle( track.positionToTarget - localToWorld.Position, localToWorld.Up)-90)/2.0f, -20, 20);
+                    angleX = Mathf.Clamp((Vector3.Angle( track.positionToTarget - localToWorld.Position, localToWorld.Up)-90), -20, 20);
                     Quaternion test = Quaternion.Euler(angleX, angleY,0);
 
                     track.DirectionToTarget = test;
