@@ -122,6 +122,8 @@ namespace MotionSystem.System {
             Vector3 m_CamForward;             // The current forward direction of the camera
             Entities.ForEach((ref CharControllerE Control, Transform transform) =>
             {
+                if (!transform)
+                    return;
                 if (!Control.AI) {
                     if (m_mainCam != null)
                     {

@@ -13,1404 +13,239 @@ MonoBehaviour:
   m_Name: Rapier Combos
   m_EditorClassIdentifier: 
   _comboList:
-  - CurremtStateName: 1
+  - CurrentStateName: 1
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 4
+    Triggers:
+    - name: 1
+      triggerAnimName: 4
+      Type: 1
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 2
+      triggerAnimName: 5
+      Type: 2
+      Unlocked: 1
+      TransitionDuration: 0
+      StartOffset: 0
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 11
+      triggerAnimName: 7
+      Type: 5
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 11
+      triggerAnimName: 24
+      Type: 6
       Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 2
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 9
+    NormalizedInputTime:
+      x: 0.35
+      y: 0.65
+    AnimationEndTime: 0.5
+    Triggers:
+    - name: 1
+      triggerAnimName: 10
+      Type: 1
+      Unlocked: 1
+      TransitionDuration: 0.1
+      StartOffset: 0.125
+      EndofCurrentAnim: 0.68
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 1
+      triggerAnimName: 15
+      Type: 2
+      Unlocked: 1
+      TransitionDuration: 0.1
+      StartOffset: 0.125
+      EndofCurrentAnim: 0.68
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 3
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 0
+    Triggers:
+    - name: 1
+      triggerAnimName: 9
+      Type: 1
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 4
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 2
+      triggerAnimName: 15
+      Type: 2
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 2
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
+    Triggers:
+    - name: 1
+      triggerAnimName: 9
+      Type: 1
       Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 2
+      triggerAnimName: 5
+      Type: 2
+      Unlocked: 1
       TransitionDuration: 0
       StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 22
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 10
     NormalizedInputTime:
-      x: 0
-      y: 0.5
+      x: 0.2
+      y: 0.45
     AnimationEndTime: 0.5
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 10
+    Triggers:
+    - name: 1
+      triggerAnimName: 11
+      Type: 1
       Unlocked: 1
-      TransitionDuration: 0.15
-      StartOffset: 0.1
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
+      TransitionDuration: 0.18
       StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 9
-    NormalizedInputTime:
-      x: 0
-      y: 0.5
-    AnimationEndTime: 0.5
-    LightAttack:
-      Name: 1
-      TriggeredAnimName: 10
+      EndofCurrentAnim: 0.56
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 2
+      triggerAnimName: 15
+      Type: 2
       Unlocked: 1
-      TransitionDuration: 0.15
-      StartOffset: 0.1
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
       TransitionDuration: 0
       StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 10
+      EndofCurrentAnim: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 11
     NormalizedInputTime:
-      x: 0
-      y: 0.5
-    AnimationEndTime: 0.5
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 11
+      x: 0.2
+      y: 0.45
+    AnimationEndTime: 0.6
+    Triggers:
+    - name: 1
+      triggerAnimName: 17
+      Type: 2
       Unlocked: 1
-      TransitionDuration: 0.15
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 11
-    NormalizedInputTime:
-      x: 0
-      y: 0.5
-    AnimationEndTime: 0.35
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
+      TransitionDuration: 0.275
+      StartOffset: 0.125
+      EndofCurrentAnim: 0.6
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 1
+      triggerAnimName: 12
+      Type: 1
       Unlocked: 1
-      TransitionDuration: 0.15
+      TransitionDuration: 0.25
       StartOffset: 0
-    HeavyAttack:
-      Name: 1
-      TriggeredAnimName: 17
+      EndofCurrentAnim: 0.5
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 11
+    NormalizedInputTime:
+      x: 0.2
+      y: 0.45
+    AnimationEndTime: 0.6
+    Triggers:
+    - name: 1
+      triggerAnimName: 17
+      Type: 2
       Unlocked: 1
-      TransitionDuration: 0.2
-      StartOffset: 0.5
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
+      TransitionDuration: 0.275
+      StartOffset: 0.125
+      EndofCurrentAnim: 0.6
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+    - name: 1
+      triggerAnimName: 12
+      Type: 2
+      Unlocked: 1
+      TransitionDuration: 0.25
       StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
+      EndofCurrentAnim: 0.5
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
+  - CurrentStateName: 15
     NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-  - CurremtStateName: 3
-    NormalizedInputTime:
-      x: 0
-      y: 0
-    AnimationEndTime: 0
-    LightAttack:
-      Name: 0
-      TriggeredAnimName: 9
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    HeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedLightAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    ChargedHeavyAttack:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
-    Projectile:
-      Name: 0
-      TriggeredAnimName: 0
-      Unlocked: 0
-      TransitionDuration: 0
-      StartOffset: 0
+      x: 0.2
+      y: 0.65
+    AnimationEndTime: 0.6
+    Triggers:
+    - name: 1
+      triggerAnimName: 11
+      Type: 1
+      Unlocked: 1
+      TransitionDuration: 0.125
+      StartOffset: 0
+      EndofCurrentAnim: 0.7
+      Chance: 0
+      ChanceForNextAttack: 0
+      LevelUnlocked: 0
+      delay: 0
   ShowMovesPanel: 0

@@ -140,6 +140,7 @@ namespace MotionSystem.System
 
             Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
             {
+
                 capsule.center = Control.CapsuleCenter;
                 capsule.height = Control.CapsuleHeight;
 

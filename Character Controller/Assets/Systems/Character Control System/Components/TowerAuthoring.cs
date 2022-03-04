@@ -20,7 +20,9 @@ public class TowerAuthoring : MonoBehaviour
     }
     void InjectOriginalComponents(Entity entity, Transform transform, EntityManager entityManager)
     {
+#if UNITY_EDITOR
         entityManager.SetName(entity, transform.name);
+#endif
         foreach (var com in transform.GetComponents<Component>())
         {
             if (com is GameObjectEntity || com is ConvertToEntity || com is StopConvertToEntity)
