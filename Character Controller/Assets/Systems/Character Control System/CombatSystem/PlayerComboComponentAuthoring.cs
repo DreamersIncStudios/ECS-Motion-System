@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Core.SaveSystems;
+using System.Threading.Tasks;
+using System;
 
 namespace DreamersInc.ComboSystem
 {
-    [RequireComponent(typeof(Animator))]
     public class PlayerComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity, ISave
     {
         public ComboSO Combo;
+        Entity entity;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+
             var data = new PlayerComboComponent() { Combo = Instantiate(Combo) };
             dstManager.AddComponentData(entity, data);
+            this.entity = entity;
 
         }
 
@@ -21,6 +25,14 @@ namespace DreamersInc.ComboSystem
         {
             throw new System.NotImplementedException();
         }
+        public async void Setup() {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
+            EntityManager dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var data = new PlayerComboComponent() { Combo = Instantiate(Combo) };
+            dstManager.AddComponentData(entity, data);
+        }
+
         public void Save()
         {
             SaveSystem.Instance.gameData.GetCharacterSaveData.PlayerCombos = GetSaveData();
@@ -34,6 +46,5 @@ namespace DreamersInc.ComboSystem
     public class PlayerComboComponent : IComponentData
     {
         public ComboSO Combo;
-       // public Animator animator;
     }
 }

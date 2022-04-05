@@ -49,18 +49,18 @@ namespace DreamersIncStudios.MoonShot
                 Destroy(this.gameObject);
             }
             DontDestroyOnLoad(this.gameObject);
-            
-//#if UNITY_STANDALONE_WIN
+            Application.targetFrameRate = 240;
+            //#if UNITY_STANDALONE_WIN
 
-//            InputSettings.TargetPlatform = PlatformOptions.PC;
+            //            InputSettings.TargetPlatform = PlatformOptions.PC;
 
-//#endif
-//#if UNITY_XBOXONE
-//        InputSettings.TargetPlatform = PlatformOptions.XBOX;
-//#endif
-//#if UNITY_PS4
-//       InputSettings.TargetPlatform = PlatformOptions.PC;
-//#endif
+            //#endif
+            //#if UNITY_XBOXONE
+            //        InputSettings.TargetPlatform = PlatformOptions.XBOX;
+            //#endif
+            //#if UNITY_PS4
+            //       InputSettings.TargetPlatform = PlatformOptions.PC;
+            //#endif
 
             //InputSettings.Controller = true;
             //InputSettings.SetUp();
@@ -74,7 +74,7 @@ namespace DreamersIncStudios.MoonShot
             //PlayerOptions[1].GetComponent<Animator>().SetInteger("Idle State", 2);
             //PlayerOptions[0].GetComponent<Animator>().SetBool("Idle", true);
             //PlayerOptions[1].GetComponent<Animator>().SetBool("Idle", true);
-
+            
         }
         public bool CreateMenuMain => State == GameStates.TitleScreen && Input.GetButtonUp("Submit");
 
