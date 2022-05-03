@@ -80,7 +80,7 @@ MonoBehaviour:
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 1
+    - name: 3
       triggerAnimName: 15
       Type: 2
       Unlocked: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 1
+    - name: 2
       triggerAnimName: 12
       Type: 1
       Unlocked: 1
@@ -237,7 +237,7 @@ MonoBehaviour:
       y: 0.65
     AnimationEndTime: 0.6
     Triggers:
-    - name: 1
+    - name: 2
       triggerAnimName: 11
       Type: 1
       Unlocked: 1
@@ -249,3 +249,12 @@ MonoBehaviour:
       LevelUnlocked: 0
       delay: 0
   ShowMovesPanel: 0
+  ComboNameList:
+  - name: Quick Strike
+    ComboEnumName: 1
+  - name: Quick Strike
+    ComboEnumName: 2
+  - name: Quick Strike
+    ComboEnumName: 3
+  - name: Quick Strike
+    ComboEnumName: 1

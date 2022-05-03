@@ -140,7 +140,38 @@ namespace DreamersInc.ComboSystem
         }
         #endregion
 
+        [System.Serializable]
+        public class ComboDefinition {
+            public string name;
+            public ComboNames ComboEnumName;
+            public bool Unlocked { get;  set; }
+        }
 
+        public bool GetCombo(ComboNames name, out ComboDefinition define) {
+            define = null;
+            foreach(ComboDefinition definition in ComboNameList){ 
+                if(definition.ComboEnumName == name)
+                    define= definition;
+                return true;
+            }
+            return false;
+        }
+        public List<ComboDefinition> ComboNameList;
+        public Dictionary<string, ComboDefinition> ComboInfoToDisplay { get; private set; }
+        public void CreateComboList() {
+            foreach (AnimationCombo animationCombo in ComboList) {
+                foreach (AnimationTrigger trigger in animationCombo.Triggers) {
+                    if (GetCombo(trigger.Name, out ComboDefinition define) && !ComboInfoToDisplay.TryGetValue(define.name, out _))
+                    {
+                        define.Unlocked = trigger.Unlocked;
+                            ComboInfoToDisplay.Add(define.name,define);
+                        
+                    }
+                }
+            
+            }
+        
+        }
 
     }
     [System.Serializable]

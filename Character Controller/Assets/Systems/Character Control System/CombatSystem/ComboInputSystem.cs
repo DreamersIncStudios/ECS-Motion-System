@@ -28,7 +28,6 @@ namespace DreamersInc.ComboSystem
         //TODO Decouple this code split into small chu
         protected override void OnUpdate()
         {
-            commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
 
             Entities.ForEach((ref Player_Control PC, PlayerComboComponent ComboList, Animator anim, Command handler) =>
             {
