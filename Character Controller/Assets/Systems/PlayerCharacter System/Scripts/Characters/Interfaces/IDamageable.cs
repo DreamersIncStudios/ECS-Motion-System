@@ -13,22 +13,20 @@ namespace DreamersInc.DamageSystem.Interfaces
         bool Dead { get; }
         Entity SelfEntityRef { get; }
         void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
-        void ReactToDamage(Vector3 DirOfAttack);
     }
 
 
-    public enum TypeOfDamage { Melee, MagicAoE, Projectile }
-    public enum Element { None, Fire, Water, Earth, Wind, Ice, Holy, Dark }
-    public struct AdjustHealth : IComponentData
-    {
+    public enum TypeOfDamage {Melee, MagicAoE, Projectile}
+    public enum Element { None, Fire, Water, Earth, Wind, Ice, Holy, Dark}
+    public struct AdjustHealth : IComponentData {
         public int Value;
     }
     public struct AdjustMana : IComponentData
     {
-        public int Value;
+        public int Value;   
     }
 
-    public class AdjustVitalsSystem : SystemBase
+    public partial class AdjustVitalsSystem : SystemBase
     {
         private EntityQuery enemyQuery;
         private EntityQuery playerQuery;
@@ -38,10 +36,10 @@ namespace DreamersInc.DamageSystem.Interfaces
         protected override void OnCreate()
         {
             base.OnCreate();
-
+            
             enemyQuery = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(EnemyStats)), ComponentType.ReadOnly(typeof(AdjustHealth)) }
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(EnemyStats)),ComponentType.ReadOnly(typeof(AdjustHealth))}
             });
             playerQuery = GetEntityQuery(new EntityQueryDesc()
             {
@@ -53,8 +51,7 @@ namespace DreamersInc.DamageSystem.Interfaces
         protected override void OnUpdate()
         {
             JobHandle systemDeps = Dependency;
-            systemDeps = new AdjustHealthJob<EnemyStats>()
-            {
+            systemDeps = new AdjustHealthJob<EnemyStats>() {
                 HealthChunk = GetComponentTypeHandle<EnemyStats>(false),
                 ModChunk = GetComponentTypeHandle<AdjustHealth>(true),
                 EntityChunk = GetEntityTypeHandle(),
@@ -80,7 +77,7 @@ namespace DreamersInc.DamageSystem.Interfaces
             where STAT : unmanaged, StatsComponent
         {
             public ComponentTypeHandle<STAT> HealthChunk;
-            [ReadOnly] public ComponentTypeHandle<AdjustHealth> ModChunk;
+           [ReadOnly] public ComponentTypeHandle<AdjustHealth> ModChunk;
             public EntityCommandBuffer.ParallelWriter ECBP;
             [ReadOnly] public EntityTypeHandle EntityChunk;
             public bool player;
@@ -93,8 +90,7 @@ namespace DreamersInc.DamageSystem.Interfaces
                 {
                     STAT Health = Healths[i];
                     Health.AdjustHealth(mods[i].Value);
-                    if (Health.CurHealth <= 0)
-                    {
+                    if (Health.CurHealth <= 0) {
                         ECBP.AddComponent<EntityHasDiedTag>(chunkIndex, entity[i]);
                     }
                     if (player)

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Dreamers.InventorySystem.Interfaces;
 using Stats;
+using System.Threading.Tasks;
+using System;
 
 namespace Dreamers.InventorySystem{ 
 public static  class EquipmentUtility 
 {
-    public static void ModCharacterStats(BaseCharacter character, List<StatModifier> Modifiers, bool Add) {
+    public static async void ModCharacterStats(BaseCharacter character, List<StatModifier> Modifiers, bool Add) {
         int MP = 1;
         if (!Add)
         {
@@ -53,6 +55,7 @@ public static  class EquipmentUtility
                     break;
             }
         }
+            await Task.Delay(TimeSpan.FromSeconds(1)); 
         character.StatUpdate();
 
     }

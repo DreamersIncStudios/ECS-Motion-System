@@ -61,6 +61,13 @@ namespace Dreamers.InventorySystem.Interfaces
         }
 
         public abstract void Use(CharacterInventory characterInventory, BaseCharacter player);
+        public void AddToInventory(CharacterInventory characterInventory) { 
+        
+        }
+        public void RemoveFromInventory(CharacterInventory characterInventory)
+        {
+
+        }
 
         public abstract void Convert(Entity entity, EntityManager dstManager);
 

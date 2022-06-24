@@ -5,6 +5,7 @@ using Stats;
 
 namespace SampleGame.Setup
 {
+ [RequireComponent(typeof(PlayerCharacter))]
     public class PlayerSetup : CharacterSetup
        {
         PlayerCharacter PC;

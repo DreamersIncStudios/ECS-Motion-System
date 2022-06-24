@@ -5,12 +5,14 @@ using Unity.Entities;
 using Stats;
 using System.Threading.Tasks;
 using System;
+using UnityEngine.Events;
 
 namespace GameModes.DestroyTheTower.TowerSystem
 {
     public class TowerStats : EnemyCharacter
     {
         public List<GameObject> Defenders;
+        public UnityEvent Death;
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             float ModValue = 1.1f;
@@ -32,7 +34,6 @@ namespace GameModes.DestroyTheTower.TowerSystem
             GetVital((int)VitalName.Health).BaseValue = 50;
             GetVital((int)VitalName.Mana).BaseValue = 25;
             StatUpdate();
-
         }
 
         public async void UpdateLevel(int level)
@@ -60,6 +61,19 @@ namespace GameModes.DestroyTheTower.TowerSystem
         public void SpawnDefenders(int Level) {
 
         }
+        bool quitting = false;
+        
+        private void OnApplicationQuit()
+        {
+            quitting = true;
+        }
+
+   
+        private void OnDestroy()
+        {
+            if(!quitting)
+                     Death.Invoke();
+        }
 
 
     }
@@ -78,7 +92,17 @@ namespace GameModes.DestroyTheTower.TowerSystem
 
         [SerializeField] public float ResourcesGathered { get; set; }
         [SerializeField] public float EnergyLevel { get; set; }
+        public int MaxEnergy;
+        public float EnergyRatio => EnergyLevel / (float)MaxEnergy;
 
-
+        public void AdjustEnergy(float adj)
+        {
+            EnergyLevel += adj;
+            if (EnergyLevel < 0)
+            {
+                EnergyLevel = 0;
+            }
+            if (EnergyLevel > MaxEnergy) { EnergyLevel = MaxEnergy; }
+        }
     }
 }

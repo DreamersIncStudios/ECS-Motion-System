@@ -8,7 +8,7 @@ using Unity.Burst;
 using Unity.Jobs;
 using Unity.Collections;
 
-namespace Dreamers.InventorySystem.SO {
+namespace Dreamers.InventorySystem {
     [System.Serializable]
     public class RecoveryItemSO : ItemBaseSO, IRecoverItems,IGeneral
     {
@@ -124,7 +124,7 @@ namespace Dreamers.InventorySystem.SO {
         public bool RemoveComponent => Iterations <= 0;
     }
 
-    public class TimedHealSystem : SystemBase {
+    public partial class TimedHealSystem : SystemBase {
 
         EntityQuery TimedHealEntities;
         EntityCommandBufferSystem _entityCommandBufferSystem;

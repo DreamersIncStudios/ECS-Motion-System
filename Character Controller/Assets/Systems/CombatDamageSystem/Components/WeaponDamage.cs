@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace DreamersInc.DamageSystem
 {
- //   [RequireComponent(typeof(MeshCollider))]
+   // [RequireComponent(typeof(MeshCollider))]
     public class WeaponDamage : MonoBehaviour, IDamageDealer
     {
         public int BaseDamage
@@ -72,11 +72,9 @@ namespace DreamersInc.DamageSystem
                 TypeOfDamage = TypeOfDamage.Melee;
                 GetComponent<Collider>().isTrigger = true;
                 self = GetComponentInParent<IDamageable>();
-               
             }
-            else
-            {
-                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
+            else {
+                throw new ArgumentNullException(nameof(gameObject),$"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
             }
         }
 
@@ -87,10 +85,6 @@ namespace DreamersInc.DamageSystem
             if (DoDamage && hit != null && hit != self)
             {
                 hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
-                var pointOfImpact = other.ClosestPoint(this.transform.position);
-                    Vector3 dir = other.transform.position - this.transform.position; 
-                hit.ReactToDamage(dir.normalized);
-
             }
         }
     }

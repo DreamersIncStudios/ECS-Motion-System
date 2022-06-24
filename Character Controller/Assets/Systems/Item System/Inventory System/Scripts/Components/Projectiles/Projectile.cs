@@ -19,7 +19,7 @@ public struct Projectile : IComponentData
 
 
 }
-public class ProjectileSystem : SystemBase
+public partial class ProjectileSystem : SystemBase
 {
     EntityQuery ProjectilesEntityQ;
     EntityCommandBufferSystem entityCommandBufferSystem;
@@ -33,10 +33,18 @@ public class ProjectileSystem : SystemBase
         entityCommandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         m_EndFramePhysicsSystem = World.GetExistingSystem<EndFramePhysicsSystem>();
     }
+
+    protected override void OnStartRunning()
+    {
+        base.OnStartRunning();
+        this.RegisterPhysicsRuntimeSystemReadWrite();
+
+    }
+
+
     protected override void OnUpdate()
     {
 
-        Dependency = JobHandle.CombineDependencies(Dependency, m_EndFramePhysicsSystem.GetOutputDependency());
         JobHandle systemDeps = Dependency;
         systemDeps = new ProjectileHitRayCast() {
             ProjectileChunk = GetComponentTypeHandle<Projectile>(false),
@@ -47,7 +55,6 @@ public class ProjectileSystem : SystemBase
             Stats = GetComponentDataFromEntity<EnemyStats>(false)
         }.ScheduleSingle(ProjectilesEntityQ,systemDeps);
         entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
-        World.DefaultGameObjectInjectionWorld.GetExistingSystem<BuildPhysicsWorld>().AddInputDependency(systemDeps);
         systemDeps.Complete();
     }
 

@@ -94,6 +94,13 @@ namespace Dreamers.InventorySystem.SO
         }
         //TODO Should this be a bool instead of Void
 
+
+        /// <summary>
+        /// Equip Item in Inventory to Another Character
+        /// </summary>
+        /// <param name="characterInventory"></param>
+        /// <param name="player"></param>
+        /// <returns></returns>
         public bool EquipItem(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
@@ -140,6 +147,23 @@ namespace Dreamers.InventorySystem.SO
 
         }
 
+        /// <summary>
+        /// Equip Item to Self
+        /// </summary>
+        /// <param name="characterInventory"></param>
+        /// <returns></returns>
+        public bool EquipItem(CharacterInventory characterInventory)
+        {
+            return EquipItem(characterInventory, characterInventory.GetComponent<BaseCharacter>());
+        }
+
+        /// <summary>
+        /// Unequip item from character and return to target inventory
+        /// </summary>
+        /// <param name="characterInventory"></param>
+        /// <param name="player"></param>
+        /// <returns></returns>
+
         public bool Unequip(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
@@ -151,6 +175,17 @@ namespace Dreamers.InventorySystem.SO
             Equipped = false;
             return true; ;
         }
+
+        /// <summary>
+        /// Unequip item from self and return inventory
+        /// </summary>
+        /// <param name="characterInventory"></param>
+        /// <returns></returns>
+        public bool Unequip(CharacterInventory characterInventory)
+        {
+            return Unequip(characterInventory, characterInventory.GetComponent<BaseCharacter>());
+        }
+
         public override void Convert(Entity entity, EntityManager dstManager)
         { 
             //TODO Implement Convert at top level
@@ -172,6 +207,7 @@ namespace Dreamers.InventorySystem.SO
             WeaponModel.transform.localPosition = SheathedPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
         }
+
 
         public bool Equals(ItemBaseSO obj)
         {

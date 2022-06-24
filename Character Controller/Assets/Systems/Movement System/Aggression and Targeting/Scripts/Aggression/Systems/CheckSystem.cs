@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 
 namespace CharacterAlignmentSystem
 {
-    public class CheckSystem : SystemBase
+    public partial class CheckSystem : SystemBase
     {
         private EntityQuery testingFactions;
         protected override void OnCreate()

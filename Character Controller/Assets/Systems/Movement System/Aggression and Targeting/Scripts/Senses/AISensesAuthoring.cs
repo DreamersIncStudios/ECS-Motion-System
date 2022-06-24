@@ -10,7 +10,7 @@ namespace AISenses.Authoring
         public bool Vision;
         public Vision VisionData;
         public bool Hearing;
-        public Hearing HearingData = new Hearing();
+   //     public Hearing HearingData = new Hearing();
         // hearing component
 
         public bool Touch;
@@ -29,11 +29,11 @@ namespace AISenses.Authoring
             dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
 
             dstManager.AddBuffer<ScanPositionBuffer>(entity);
-            dstManager.AddComponent<AlertLevel>(entity);
+      //      dstManager.AddComponent<AlertLevel>(entity);
             if (Vision) 
                 dstManager.AddComponentData(entity, VisionData);
-            if (Hearing)
-                dstManager.AddComponentData(entity, HearingData);
+          //  if (Hearing)
+          //      dstManager.AddComponentData(entity, HearingData);
 
 
         }
