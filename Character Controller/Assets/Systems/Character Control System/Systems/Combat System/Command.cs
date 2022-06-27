@@ -12,7 +12,7 @@ namespace DreamersInc.ComboSystem
         public Queue<AnimationTrigger> InputQueue;
         public bool QueueIsEmpty => InputQueue.Count == 0;
         public bool WeaponIsEquipped;
-        public AnimatorStateInfo StateInfo;
+        public AnimatorStateInfo StateInfo { get; set; }
         public float currentStateExitTime;
         public bool BareHands;
         public bool TakeInput => (WeaponIsEquipped || BareHands) && !QueueIsEmpty && StateInfo.normalizedTime > currentStateExitTime;

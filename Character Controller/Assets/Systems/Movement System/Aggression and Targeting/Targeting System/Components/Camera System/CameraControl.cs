@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using UnityEngine;
 using Cinemachine;
 
@@ -11,6 +11,15 @@ namespace DreamersStudio.CameraControlSystem
         public CinemachineTargetGroup TargetGroup;
         public bool isTargeting;
         public static CameraControl Instance;
+        public EventHandler<OnTargetingChangedEventArgs> OnTargetingChanged;
+        public class OnTargetingChangedEventArgs : EventArgs { 
+            public bool isTargeting;
+        }
+        public EventHandler<OnTargetChangedEventArgs> OnTargetChanged;
+        public class OnTargetChangedEventArgs : EventArgs
+        {
+            public GameObject Target;
+        }
 
         private void Awake()
         {
@@ -19,22 +28,29 @@ namespace DreamersStudio.CameraControlSystem
             else
                 Destroy(this);
         }
-
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-            if (isTargeting && Target.Priority != 15)
+            OnTargetingChanged += (object sender, OnTargetingChangedEventArgs eventArgs) =>
             {
-                Follow.Priority = 5;
-                Target.Priority = 15;
-            }
+                if (eventArgs.isTargeting && Target.Priority != 15)
+                {
+                    Follow.Priority = 5;
+                    Target.Priority = 15;
+                }
 
-            if (!isTargeting && Target.Priority == 15)
+                if (!eventArgs.isTargeting && Target.Priority == 15)
+                {
+                    Follow.Priority = 15;
+                    Target.Priority = 5;
+                }
+            };
+            OnTargetChanged += (object sender, OnTargetChangedEventArgs eventArgs) =>
             {
-                Follow.Priority = 15;
-                Target.Priority = 5;
-            }
+                if (eventArgs.Target != null)
+                    TargetGroup.m_Targets[0].target = eventArgs.Target.transform;
+            };
         }
+
         public void SwapFocus(Transform CharacterFocus)
         {
             Follow.Follow = CharacterFocus;

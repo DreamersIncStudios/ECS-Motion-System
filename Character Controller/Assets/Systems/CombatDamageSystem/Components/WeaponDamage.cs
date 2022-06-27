@@ -85,6 +85,7 @@ namespace DreamersInc.DamageSystem
             if (DoDamage && hit != null && hit != self)
             {
                 hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
+                hit.ReactToHit(.5f, transform.root.position, transform.root.forward);
             }
         }
     }

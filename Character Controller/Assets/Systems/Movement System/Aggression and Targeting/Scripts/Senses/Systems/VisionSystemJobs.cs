@@ -17,8 +17,7 @@ namespace AISenses.VisionSystems
 
     public class VisionTargetingUpdateGroup : ComponentSystemGroup {
         public VisionTargetingUpdateGroup() {
-            RateManager = new RateUtils.VariableRateManager(750, true);
-
+            RateManager = new RateUtils.VariableRateManager(1000, true);
         }
     
     }
@@ -110,7 +109,7 @@ namespace AISenses.VisionSystems
                             {
                                 RaycastInput raycastInput = new RaycastInput() {
                                     Start = transform.Position + new float3(0, 1, 0),
-                                    End = TargetPosition[j].Position,
+                                    End = TargetPosition[j].Position + TargetArray[j].CenterOffset,
                                     Filter = new CollisionFilter() {
                                         BelongsTo = (1 << 10),
                                         CollidesWith = ((1 << 10) | (1 << 11) | (1 << 12)),

@@ -49,5 +49,11 @@ namespace Stats
             AdjustHealth health = new AdjustHealth() { Value = damageToProcess };
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
         }
+
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward)
+        {
+
+        }
+
     }
 }

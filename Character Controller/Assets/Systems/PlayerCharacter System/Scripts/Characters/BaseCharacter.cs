@@ -354,7 +354,7 @@ namespace Stats
 
 
         public abstract void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
-
+        public abstract void ReactToHit(float impact, Vector3 Test, Vector3 Forward);
     }
 
 

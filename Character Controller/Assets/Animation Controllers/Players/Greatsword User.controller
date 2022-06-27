@@ -35,7 +35,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_heavy_left
+  m_Name: HitLeftStrong
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -315,7 +315,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_heavy_right
+  m_Name: HitRightStrong
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -913,7 +913,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_heavy_back
+  m_Name: HitBackStrong
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2494,32 +2494,26 @@ AnimatorStateMachine:
     m_State: {fileID: -8062433588376891619}
     m_Position: {x: 60, y: 830, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8099448082198240112}
-    m_Position: {x: 1109.1711, y: 1087.0818, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 2525057012220070860}
-    m_Position: {x: 1091.9336, y: 1040.2942, z: 0}
+    m_Position: {x: 590, y: 1100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8100056913494688267}
-    m_Position: {x: 1078.3898, y: 957.80023, z: 0}
+    m_Position: {x: 590, y: 920, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8440560618640131031}
-    m_Position: {x: 789.04517, y: 994.73785, z: 0}
+    m_Position: {x: 590, y: 990, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2275160091481597807}
-    m_Position: {x: 1373.8906, y: 1023.0567, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3272929374905148778}
-    m_Position: {x: 490, y: 1010, z: 0}
+    m_Position: {x: 590, y: 1040, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3984273308786815709}
-    m_Position: {x: 500, y: 940, z: 0}
+    m_Position: {x: 270, y: 990, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8218844342025414763}
-    m_Position: {x: 490, y: 1060, z: 0}
+    m_Position: {x: 260, y: 930, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8934065774417443878}
-    m_Position: {x: 260, y: 960, z: 0}
+    m_Position: {x: 260, y: 1100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7248176827348483768}
     m_Position: {x: 260, y: 1040, z: 0}
@@ -2805,7 +2799,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_light_R_body
+  m_Name: HitRight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2859,7 +2853,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_light_L_body
+  m_Name: HitLeft
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -3150,33 +3144,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &3272929374905148778
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: hit_head_right
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -2756709955208225174, guid: 3dfa6a3c9c984f60a06c1616c6e93835,
-    type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &3480281649670156643
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -4086,32 +4053,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &8099448082198240112
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DAMAGED01
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d9b1c253ecd2b6a499672a39957e2d52, type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &8100056913494688267
 AnimatorState:
   serializedVersion: 6
@@ -4119,7 +4060,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_light_F_body
+  m_Name: HitFront
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -4146,7 +4087,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_heavy_front
+  m_Name: HitFrontStrong
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -4288,7 +4229,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hit_light_B_body
+  m_Name: HitBack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
+using DreamersInc.CombatSystem.Animation;
+
 namespace Stats
 {
     public class NPCChararacter : BaseCharacter,IConvertGameObjectToEntity
@@ -49,6 +51,18 @@ namespace Stats
             int damageToProcess = -Mathf.FloorToInt(Amount * defense * Random.Range(.92f, 1.08f));
             AdjustHealth health = new AdjustHealth() { Value = damageToProcess };
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
+        }
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward)
+        {
+            ReactToContact reactTo = new ReactToContact() { 
+                ForwardVector = Forward,
+                positionVector = this.transform.position,
+                RightVector = transform.right,
+                HitIntensity = impact,
+                HitContactPoint =Test
+            };
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, reactTo);
+
         }
     }
 }

@@ -67,7 +67,7 @@ namespace AISenses
         public void UpdateSense(BaseCharacter baseCharacter) { }
 
     }
-
+    [InternalBufferCapacity(100)]
     public struct ScanPositionBuffer : IBufferElementData
     {
         public Target target;

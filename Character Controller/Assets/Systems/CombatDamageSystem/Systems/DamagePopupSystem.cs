@@ -24,8 +24,7 @@ namespace DreamerInc.CombatSystem
                     spawnedUI.GetComponent<TextMeshPro>().text = Mathf.Abs(mod.Value).ToString(); 
                     spawnedUI.transform.localPosition += Vector3.up;
                     spawnedUI.transform.DOShakePosition(3.5f,.25f,5);
-                    Object.Destroy(spawnedUI.gameObject, 3.5f);
-                    transform.DOShakeScale(1, .25f, 2);
+                    Object.Destroy(spawnedUI.gameObject, 3.6f);
                 });
             });
 
