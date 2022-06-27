@@ -1441,17 +1441,17 @@ PrefabInstance:
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.16481394
+      value: 0.16481392
       objectReference: {fileID: 0}
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.39437142
+      value: 0.3943714
       objectReference: {fileID: 0}
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.07212622
+      value: -0.07212619
       objectReference: {fileID: 0}
     - target: {fileID: 8802926159821762245, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d30974bf68d61043b1572197db94cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SimulationType: 1
+  m_SimulationType: 0
   m_Gravity:
     x: -0
     y: -9.81
