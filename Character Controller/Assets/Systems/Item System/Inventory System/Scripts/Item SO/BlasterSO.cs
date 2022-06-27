@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using Stats;
 using Unity.Entities;
-using Unity.Transforms;
-using Dreamers.InventorySystem.Base;
 using Dreamers.InventorySystem.Interfaces;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     public class BlasterSO :WeaponSO, IProjectile
     {
@@ -54,9 +51,7 @@ namespace Dreamers.InventorySystem
             //throw new System.NotImplementedException();
         }
 
-#pragma warning disable CS0109 // The member 'BlasterSO.EquipItem(CharacterInventory, int, BaseCharacter)' does not hide an accessible member. The new keyword is not required.
-        public new bool EquipItem(CharacterInventory characterInventory, int IndexOf, BaseCharacter player)
-#pragma warning restore CS0109 // The member 'BlasterSO.EquipItem(CharacterInventory, int, BaseCharacter)' does not hide an accessible member. The new keyword is not required.
+        public  bool EquipItem(CharacterInventory characterInventory, int IndexOf, BaseCharacter player)
         {
             bool temp = base.EquipItem(characterInventory,  player);
             if(temp)
@@ -65,9 +60,7 @@ namespace Dreamers.InventorySystem
         }
 
 
-#pragma warning disable CS0108 // 'BlasterSO.Equals(ItemBaseSO)' hides inherited member 'WeaponSO.Equals(ItemBaseSO)'. Use the new keyword if hiding was intended.
-        public bool Equals(ItemBaseSO obj)
-#pragma warning restore CS0108 // 'BlasterSO.Equals(ItemBaseSO)' hides inherited member 'WeaponSO.Equals(ItemBaseSO)'. Use the new keyword if hiding was intended.
+        public new bool Equals(ItemBaseSO obj)
         {
             if (obj == null || GetType() != obj.GetType())
             {
@@ -87,8 +80,4 @@ namespace Dreamers.InventorySystem
 
     }
 
-    public class Projectiles : ScriptableObject
-    {
-        public GameObject GO;
-    }
 }

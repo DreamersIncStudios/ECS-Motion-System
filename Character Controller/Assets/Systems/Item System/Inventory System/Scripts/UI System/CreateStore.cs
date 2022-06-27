@@ -4,7 +4,7 @@ using UnityEngine;
 using Dreamers.InventorySystem.Generic;
 using Dreamers.InventorySystem.Interfaces;
 using Dreamers.InventorySystem.MissionSystem;
-
+using Dreamers.InventorySystem.SO;
 
 namespace Dreamers.InventorySystem
 {

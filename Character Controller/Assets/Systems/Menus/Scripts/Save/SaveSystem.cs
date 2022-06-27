@@ -46,7 +46,7 @@ namespace Core.SaveSystems
 
         }
 
-        public void SaveGame(int GameSave, PlayerChoice playerChoice, uint DayNumber)
+        public void SaveGame(int GameSave, int playerChoice, uint DayNumber)
         {
             //Add inclusive true when upgrade to 2020 LTS
             foreach (var persist in FindObjectsOfType<MonoBehaviour>(true))

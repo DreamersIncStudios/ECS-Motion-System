@@ -1,0 +1,11 @@
+Credits:
+
+Animations By WeMakeTheGame
+Building Models Byu KitBash3d
+
+Code Assets Used:
+PixelCrusher Love/Hate
+VisualWorks NavMesh Cleaner
+Demigiant Dotween 
+
+Supporters:

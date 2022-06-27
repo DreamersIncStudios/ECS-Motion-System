@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Stats;
 using Dreamers.InventorySystem.Base;
-using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.SO;
 
 
 namespace Dreamers.InventorySystem.UISystem

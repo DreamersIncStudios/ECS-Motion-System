@@ -1,5 +1,6 @@
 using Dreamers.Global;
 using System.Collections.Generic;
+using Dreamers.InventorySystem.SO;
 using Dreamers.InventorySystem.Base;
 using Dreamers.InventorySystem.Interfaces;
 using Stats;

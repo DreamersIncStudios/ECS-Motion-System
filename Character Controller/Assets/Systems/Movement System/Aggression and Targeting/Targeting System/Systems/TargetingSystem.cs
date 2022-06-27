@@ -6,28 +6,29 @@ using Unity.Transforms;
 using UnityStandardAssets.CrossPlatformInput;
 using DreamersStudio.CameraControlSystem;
 using Global.Component;
+using Unity.Collections;
 namespace AISenses.VisionSystems
 {
-    [UpdateAfter(typeof(VisionSystemJobs))]
-    public class TargetingSystem : SystemBase
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
+  // [UpdateAfter(typeof(VisionSystemJobs))]
+    public partial class TargetingSystem : SystemBase
     {
         EntityQuery Player;
-        EntityQuery PlayersParty;
+        //        EntityQuery PlayersParty;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             Player = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)),ComponentType.ReadOnly(typeof(Player_Control)) },
-
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)), ComponentType.ReadOnly(typeof(Player_Control)) },
             });
-           PlayersParty = GetEntityQuery(new EntityQueryDesc()
-            {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)), ComponentType.ReadOnly(typeof(PlayerParty))},
-                None = new ComponentType[] { ComponentType.ReadOnly(typeof(Player_Control)) }
+            //           PlayersParty = GetEntityQuery(new EntityQueryDesc()
+            //            {
+            //                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)), ComponentType.ReadOnly(typeof(PlayerParty))},
+            //                None = new ComponentType[] { ComponentType.ReadOnly(typeof(Player_Control)) }
 
-            });
+            //            });
 
         }
         int index = 0;
@@ -44,36 +45,60 @@ namespace AISenses.VisionSystems
             ComponentDataFromEntity<AITarget> Target = GetComponentDataFromEntity<AITarget>(); ;
             Entities.WithoutBurst().ForEach((ref Player_Control PC, ref DynamicBuffer<ScanPositionBuffer> buffer) =>
             {
+                if (CameraControl.Instance.OnTargetingChanged != null)
+                {
+                    CameraControl.Instance.OnTargetingChanged(this, new CameraControl.OnTargetingChangedEventArgs { isTargeting = this.IsTargeting });
+                }
+
                 if (buffer.Length == 0)
+                {
+                    CameraControl.Instance.TargetGroup.m_Targets[0].target = null;
+
+              
                     return;
+                }
+                var bufferArray = buffer.ToNativeArray(Allocator.Temp);
+                bufferArray.Sort(new HitDistanceComparer());
                 if (PausingBetweenChange)
                 {
                     ChangeDelay -= Time.DeltaTime;
                     return;
                 }
 
-               
-                if (CameraControl.Instance.isTargeting = IsTargeting)
+             
+                if (IsTargeting)
                 {
+                    Debug.Log(buffer.Length);
                     GameObject temp = null;
                     if (!looking)
                     {
                         temp = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID);
-                        if (temp != null)
-                            CameraControl.Instance.TargetGroup.m_Targets[0].target = temp.transform;
+                        if (CameraControl.Instance.OnTargetChanged != null)
+                        {
+                            CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
+                            {
+                                Target =
+                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
+                            });
+                        }
                         looking = true;
                     }
 
-                        if (ChangeTargetNeg)
+                    if (ChangeTargetNeg)
                     {
                         index--;
-                        if (index< 0)
+                        if (index < 0)
                             index = buffer.Length - 1;
-                        ChangeDelay = .35f;
-                      
-                       temp = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID);
-                        if (temp != null)
-                            CameraControl.Instance.TargetGroup.m_Targets[0].target = temp.transform;
+                        ChangeDelay = .15f;
+                        if (CameraControl.Instance.OnTargetChanged != null)
+                        {
+                            CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
+                            {
+                                Target =
+                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
+                            });
+                        }
+                           
                     }
 
                     if (ChangeTargetPos)
@@ -82,23 +107,26 @@ namespace AISenses.VisionSystems
                         if (index > buffer.Length - 1)
                             index = 0;
                         ChangeDelay = .35f;
-                       temp = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID);
-                        if (temp != null)
-                            CameraControl.Instance.TargetGroup.m_Targets[0].target = temp.transform;
+                        if (CameraControl.Instance.OnTargetChanged != null)
+                        {
+                            CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
+                            {
+                                Target =
+                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
+                            });
+                        }
                     }
 
-                    
-
-
-
                 }
-                else {
+                else
+                {
                     if (looking)
                     {
                         index = 0;
                         looking = false;
                     }
-                } 
+                }
+             
             }).Run();
         }
 

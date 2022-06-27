@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 namespace Global.Component
 {
@@ -13,6 +14,8 @@ namespace Global.Component
         public bool CanBeTargeted => NumOfEntityTargetingMe < 2;
         [HideInInspector] public int MaxNumberOfTarget; // base off of Threat Level
         public bool CanBeTargetByPlayer;
+        public float3 CenterOffset;
+
         public bool IsFriend(Race race) {
             bool test = new bool();
             switch (race) {

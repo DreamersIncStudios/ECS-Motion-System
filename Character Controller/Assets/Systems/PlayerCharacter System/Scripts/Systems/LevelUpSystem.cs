@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Jobs;
 namespace Stats
 {
-    public class LevelUpSystem : SystemBase
+    public partial class LevelUpSystem : SystemBase
     {
         EntityCommandBufferSystem _entityCommandBufferSystem;
         protected override void OnCreate()
@@ -39,7 +39,16 @@ namespace Stats
                 buffer.RemoveComponent<LevelUpComponent>(entity);
             }).Schedule(systemDeps);
             _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+            systemDeps = Entities.ForEach((Entity entity, ref NPCStats PC, ref LevelUpComponent StatUpdate) =>
+            {
+                PC.MaxHealth = StatUpdate.MaxHealth;
+                PC.CurHealth = StatUpdate.CurHealth;
+                PC.MaxMana = StatUpdate.MaxMana;
+                PC.CurMana = StatUpdate.CurMana;
 
+                buffer.RemoveComponent<LevelUpComponent>(entity);
+            }).Schedule(systemDeps);
+            _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
             Dependency = systemDeps;
         }
     }

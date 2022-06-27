@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
+using System;
+
 namespace Stats
 {
     public class CharacterSetup : MonoBehaviour
@@ -17,7 +20,7 @@ namespace Stats
 
         }
 
-        public void StatsUpdate(BaseCharacter CharacterStats)
+        public async void StatsUpdate(BaseCharacter CharacterStats)
         {
             CharacterStats.Level = CharClass.Level;
             float ModValue = CharClass.difficultyMod * CharClass.LevelMod * CharClass.Level;
@@ -33,6 +36,7 @@ namespace Stats
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Concentration).BaseValue = (int)(CharClass.Concentration * ModValue);
             CharacterStats.GetVital((int)VitalName.Health).BaseValue = 50;
             CharacterStats.GetVital((int)VitalName.Mana).BaseValue = 25;
+            await Task.Delay(TimeSpan.FromSeconds(2));
 
             CharacterStats.StatUpdate();
 

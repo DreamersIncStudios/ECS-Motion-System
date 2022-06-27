@@ -22,10 +22,10 @@ namespace Core.SaveSystems
     public class GameMasterSaveData {
         public uint Money;
         public uint DayNumber;
-        public PlayerChoice PlayerChoice;
+        public int PlayerChoice;
 
     }
-    public enum PlayerChoice { a, b, c, d }
+  
     [System.Serializable]
     public partial class CharacterSaveData {
         public uint PlayerLevel, CurHealth, MaxHealth, CurMana, MaxMana, FreeExp;

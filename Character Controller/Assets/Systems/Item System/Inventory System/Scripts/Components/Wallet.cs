@@ -21,7 +21,7 @@ namespace Dreamers.InventorySystem
     {
         public uint Change;
     }
-    public class WalletManagementSystem : SystemBase
+    public partial class WalletManagementSystem : SystemBase
     {
         private EntityQuery _walletHolderAdd;
         private EntityQuery _walletHolderSubtract;

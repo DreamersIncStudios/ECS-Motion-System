@@ -124,7 +124,7 @@ namespace Dreamers.InventorySystem {
         public bool RemoveComponent => Iterations <= 0;
     }
 
-    public class TimedHealSystem : SystemBase {
+    public partial class TimedHealSystem : SystemBase {
 
         EntityQuery TimedHealEntities;
         EntityCommandBufferSystem _entityCommandBufferSystem;

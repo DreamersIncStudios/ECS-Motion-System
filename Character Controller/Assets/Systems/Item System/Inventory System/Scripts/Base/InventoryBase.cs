@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Dreamers.InventorySystem.Interfaces;
+using Dreamers.InventorySystem.SO;
 namespace Dreamers.InventorySystem.Base {
     [System.Serializable]
     public class InventoryBase

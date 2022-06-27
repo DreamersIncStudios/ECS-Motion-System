@@ -5,7 +5,7 @@ using UnityEditor;
 using Dreamers.Global;
 using Dreamers.InventorySystem.Interfaces;
 
-namespace Dreamers.InventorySystem
+namespace Dreamers.InventorySystem.SO
 {
     public static class ItemDatabase 
     {

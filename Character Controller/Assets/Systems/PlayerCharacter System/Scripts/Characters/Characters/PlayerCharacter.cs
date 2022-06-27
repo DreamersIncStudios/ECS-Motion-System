@@ -2,6 +2,7 @@
 using System.Collections;
 using Unity.Entities;
 using DreamersInc.DamageSystem.Interfaces;
+
 namespace Stats
 {
     [System.Serializable]
@@ -11,8 +12,11 @@ namespace Stats
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             base.Convert(entity, dstManager, conversionSystem);
-            var data = new PlayerStatComponent() { MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana };
+            var data = new PlayerStatComponent() { MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana,
+                selfEntityRef = entity
+            };
             dstManager.AddComponentData(entity, data);
+
             StatUpdate();
         }
 
@@ -30,6 +34,12 @@ namespace Stats
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
 
         }
+
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward)
+        {
+
+        }
+
     }
 
 }

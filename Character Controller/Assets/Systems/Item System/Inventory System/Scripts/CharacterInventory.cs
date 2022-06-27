@@ -16,7 +16,6 @@ namespace Dreamers.InventorySystem
         public InventoryBase Inventory;
         public EquipmentBase Equipment;
         public MissionHub QuestLog;
-        DisplayMenu Menu;
         public Entity self { get; private set; }
         public int Gold { get; private set; }
 //#if UNITY_EDITOR
@@ -30,7 +29,6 @@ namespace Dreamers.InventorySystem
 
         public void Start()
         {
-            Menu = new DisplayMenu(PC);
             QuestLog = new MissionHub(null, null, new List<MissionSystem.SO.MissionQuestSO>());
 
             Instantiate( QuestDatabase.GetQuest((uint)1)).AcceptQuest(QuestLog);
@@ -40,14 +38,7 @@ namespace Dreamers.InventorySystem
             Gold = 2000; //TODO remove in final 
 
         }
-        bool CloseMenu => Input.GetKeyUp(KeyCode.I) && Menu.Displayed;
-        bool OpenMenu => Input.GetKeyUp(KeyCode.I) && !Menu.Displayed;
-        private void Update()
-        {
-            if (CloseMenu) { Menu.CloseCharacterMenu(); }
-            if (OpenMenu)
-            { Menu.OpenCharacterMenu(Inventory); }
-        }
+      
         public void EquipWeaponAnim()
         {
             //   anim.SetBool("CanDoDamage", true);

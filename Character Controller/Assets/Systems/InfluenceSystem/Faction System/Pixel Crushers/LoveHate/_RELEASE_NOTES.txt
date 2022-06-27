@@ -1,0 +1,493 @@
+﻿/*
+Love/Hate
+Copyright © Pixel Crushers
+RELEASE NOTES
+-------------
+
+Version 1.10.21
+[October 31, 2021]
+- Fixed: Input Device Manager can now translate KeyCode.Return when using new Input System package.
+- Fixed: UIPanel no longer deactivates GameObject on start if state is set to Closed but deactivateOnHidden is false.
+- Fixed: Always Face Camera switches to new main camera if cached main camera reference is disabled.
+
+
+Version 1.10.20:
+[October 8, 2021]
+- Improved: Localize UI component can now localize TextMeshPro components in addition to TextMeshProUGUI.
+- Fixed: InputDeviceManager when using Input System now ignores keycodes for mouse buttons.
+- Save System: Added version info to saved games.
+- Save System: DiskSavedGameDataStorer Added dropdown to use persistentDataPath, dataPath, or custom location.
+- Save System: DiskSavedGameDataStorer now saves to intermediate file first in case writing to file fails.
+- Save System: DiskSavedGameDataStorer will now rebuild saveinfo.data (catalog) automatically if missing.
+- Save System: DiskSavedGameDataStorer change -- will now throw exception if fails to write to disk.
+
+
+Version 1.10.19:
+[August 27, 2021]
+- Improved: FactionMember inspector now also shows faction's traits.
+- Improved: Added separately-assignable delegate to compute dominance change caused by deed.
+- Dialogue System: Added LoveHateDialogueActor component to sync character's Love/Hate faction with Dialogue Actor.
+- Improved: Added UILocalizationManager checkbox to set TextTable.useDefaultLanguageForBlankTranslations.
+- Improved: LocalizeUI will use default translation if current language setting is invalid.
+- Save System: Saver components now show warning if GameObject has multiple savers and Key values are blank.
+- Save System: Added SaveSystemMethods.ResetGameState().
+- Save System: No longer adds JsonDataSerializer or PlayerPrefsSavedGameDataStorer if application is quitting.
+- Save System: Fixed bug with AnimatorSaver when using BinaryDataSerializer.
+
+
+Version 1.10.18:
+[June 20, 2021]
+- Added: Best Fit option (now default) to Emotional State.
+- Added: Neutral emotion ([-1,+1] range) to OCC model.
+- Fixed: Input Device Manager could report error using new Input System with disabled domain reloading.
+- Fixed: Assigning a Text Table asset to a string field would unnecessarily add a UILocalizationManager GameObject at design time if the scene didn't already have one.
+
+
+Version 1.10.17:
+[June 6, 2021]
+- Changed: GameObjectUtility.GameObjectHardFind and GameObjectUtility.FindObjectsOfTypeAlsoInactive search all 
+  open scenes by default, not just active scene.
+- Improved: InputDeviceManager New Input System integration handles translation of KeyCode.Alpha# and KeyCode.Keypad#.
+- Improved: UIScrollbarEnabler will now update scroll rect even if no scrollbar is assigned.
+- Fixed: UIButtonKeyTrigger didn't reset pressed state.
+- Fixed: UILocalizationManager didn't apply localization to inactive GameObjects when option to apply to inactive was ticked.
+- Fixed: Removed obsolete warning in Unity 2021 'StandaloneInputModule.forceModuleActive' is obsolete.
+
+
+Version 1.10.16:
+[April 12, 2021]
+- Text Table: No longer counts empty field as having text for a language.
+- Save System: Added MultiEnabledSaver.
+- Save System: AnimatorSaver now also saves trigger parameter values.
+- Save System: Fixed: Doesn't delete non-cross-scene data when loading additively.
+- Save System: Fixed: Calls BeforeSceneChange() on scene objects UnloadAdditiveScene().
+- Adventure Creator: Updated for 1.73.
+
+
+Version 1.10.15:
+[January 25, 2021]
+- Improved: UILocalizationManager now also updates LocalizeUI components on inactive GameObjects.
+- Fixed: Message System bug when removing and re-adding the same message listener in the same frame.
+- Save System: LoadScene() logs message when Debug is ticked.
+- Dialogue System: Added CustomLuaFuncInfo for Love/Hate Lua functions.
+
+
+Version 1.10.14:
+[November 30, 2020]
+- Save System: Added Scene Portal OnUsePortal() UnityEvent.
+- Opsive: Updated savers for Opsive controllers and Ultimate Inventory System.
+
+
+Version 1.10.13:
+[November 9, 2020]
+- Fixed: Always Face Camera component issue with z-axis when Only Y-Axis is ticked.
+- Save System: Added SaveSystem.ResetGameState().
+- Opsive Controllers: Updated integration.
+
+
+Version 1.10.12:
+[October 11, 2020]
+- Fixed: CSV export bug that exported incorrect parent names.
+- Save System: Fixed potential timing issue with AutoSaveLoad and DiskSavedGameDataStorer.
+
+
+Version 1.10.11:
+[September 14, 2020]
+- Improved: InputDeviceManager improved mouse movement tracking to determine when to switch to mouse mode.
+- Rewired: InputDeviceManagerRewired now recognizes negative button input as well as positive.
+- Save System: Added option to automatically unload any additively-loaded scenes when changing scenes.
+- Save System: Fixed AutoSaveLoad save issue when quitting application.
+
+
+Version 1.10.10:
+[August 10, 2020]
+- Improved: InputDeviceManager has option for keyboard input to switch to keyboard mode.
+- Improved: EnableOnStart now has public property for component to enable.
+
+
+Version 1.10.9:
+[July 6, 2020]
+- Adventure Creator: Added Switch Faction & Check Has Personal Relationship actions.
+- PlayMaker: PlayMakerGlobalVariableSaver can now save arrays.
+
+
+Version 1.10.8:
+[June 2, 2020]
+- Fixed: If faction member was destroyed while queued to evaluate a deed, it could throw a NullReferenceException.
+- Fixed: Improved trait alignment formula for accuracy.
+- Fixed: New Input System integration ignores joystick keycodes.
+- Fixed: New Input System could report ArgumentNullException in first frame on WebGL.
+- Improved: Added DeselectPreviousOnPointerEnter component.
+- Improved: Added InputDeviceManager.isInput Allowed.
+- Text Tables: Added ability to import text table into another.
+- Save System: Changed: Savers' Save Across Scene Changes checkbox is now ticked by default.
+- Save System: DestructibleSaver.RecordDestruction is now public.
+- Save System: Added saveDataApplied C# event; added OnDataApplied() event to SaveSystemEvents.
+- Save System: Improved singleton management.
+- Save System: Fixed: LoadEnded event is always called when scene loads ends, not just if events were assigned at design time.
+- Emerald AI: Updated for 2.4.0.1.
+
+
+Version 1.10.7:
+[April 15, 2020]
+- Fixed: PositionSaver on NavMeshAgents didn't restore rotation.
+- Improved: Added UIButtonKeyTrigger.monitorInput property, option to visually simulate pressed state.
+- Save System: Added support for async saving; SaveSystem.SaversRestartGame() is now public.
+- Emerald AI: Updated integration for version 2.4.
+
+
+Version 1.10.6:
+[March 10, 2020]
+- Fixed: When changing a faction's parents in faction database editor, inherited relationships table would still show old parents' relationships.
+- Text Table: Changed: Now  uses default field's value if value for a specific language is blank.
+- Text Table: Fixed right-clicking context menu would select wrong field row.
+- Adventure Creator: Updated integration for 1.70.4.
+
+
+Version 1.10.5:
+[December 25, 2019]
+- Updated to handle Disabled Domain Reloading.
+- Save System: Added SpawnedObjectManager option to call ApplyData on respawned objects' savers.
+- Text Table: Right-click context menu would select wrong field row.
+- Emerald AI: Added affinity-based AI behavior and faction relation options.
+- Opsive Character Controllers: Added support. (Available in Tools > Opsive menu.)
+- ORK: Updated integration for 2.27.0.
+- Super Text Mesh: Added native support.
+
+
+Version 1.10.4:
+[November 23, 2019]
+- Fixed: Edge case in trait alignment function that could cause invalid affinity values.
+- Improved: Exposed UIPanel.deactivateOnHidden property.
+- Save System: Scene Portal now prevents multiple triggerings if interacting GameObject has multiple colliders.
+- Emerald AI: Added affinity-based AI behavior and faction relation options.
+- ORK: Updated for 2.27.0.
+
+
+Version 1.10.3:
+[October 26, 2019]
+- Fixed: Edge case in trait alignment function that could cause invalid affinity values.
+- Emerald AI: Player affinity-based AI behavior options.
+
+
+Version 1.10.2:
+[October 23, 2019]
+- Added: Option to turn off sharing of affinity to player when sharing rumors.
+- Added: [FactionPopup] scripting attribute.
+- Fixed: Setting localized language back to blank string now sets it to the default language.
+- Emerald AI: Added more config options to Love/Hate Emerald AI Faction Member; updated for 2.3.0.2.
+
+
+Version 1.10.1:
+[September 21, 2019]
+- Improved: Trait alignment comparison is more accurate.
+- Fixed: Applies change in affinity, not change in pleasure, to relationship.
+- Fixed: AuraTrigger, StabilizePAD, PlayMaker, Dialogue System, GameCreator now call 
+  FactionMember.ModifyPAD instead of member.pad.Modify to ensure events are invoked.
+- Updated dominance formula in manual.
+
+
+Version 1.10.0:
+[August 21, 2019]
+- CHANGED: Minimum version is now Unity 2017.4.1f1.
+- Improved: DiskSavedGameDataStorer methods are now virtual.
+- Improved: UIPanel.OnHidden method is now virtual.
+- Improved: Menu item to set USE_PHYSICS2D now applies to all build targets, not just current.
+- Fixed: WebGL build error with DiskSavedGameDataStorer.
+- Fixed: Save System bug in Position Saver with Multiscene ticked.
+
+
+Version 1.9.13:
+[July 25, 2019]
+- Improved: Text table editor allows big entry area to appear along with search panel; remembers search panel settings.
+- Save System: In WebGL, Disk Saved Game Data Storer custom editor reports unavailable instead of error.
+
+
+Version 1.9.12:
+[July 23, 2019]
+- Improved: Disappear Event's onDisappeared event is now public.
+- Misc. fixes to common code library.
+
+
+Version 1.9.11:
+[July 1, 2019]
+- Text Tables: Improved performance in very large tables; added PlayMaker actions; GetFieldText() replaces "\n" with newlines.
+- Save System: DiskSavedGameDataStorer inspector now has button to delete saved games; SaveSystemTestMenu is now reskinnable.
+- Game Creator: Added support.
+
+
+Version 1.9.10:
+[June 8, 2019]
+- Fixed: Input Device Manager System.IndexOutOfRangeException when first importing asset if project's Input Manager is not ready.
+- Save System:
+	- Improved: Added SaveSystem methods LoadAdditiveScene, UnloadAdditiveScene.
+	- Improved: Savers can now implement optional ApplyDataImmediate and OnRestartGame methods.
+	- Fixed: Moved DiskSavedGameDataStorer initialization code from Start to Awake so other scripts can check for saved games in their own Start methods.
+	- Dialogue System Saver: Save Across Scene Changes is now ticked by default; SaveSystem.RestartGame() automatically resets dialogue database.
+- Dialogue System:
+	- Name provided to functions such as ReportDeed() can also refer to actor's name in dialogue database or faction name assigned to faction member.
+	- In ReportDeed(), name can now optionally be "faction=FactionName".
+
+
+Version 1.9.9:
+[May 17, 2019]
+- Added: FactionDatabase.personalityTraitChanged event.
+- Text Tables:
+	- Added right-click context menu to insert/delete fields.
+	- CSV import retains in order from file, now handles blank lines gracefully.
+	- Editor window remembers last tab.
+- Save System: Eliminated message on Destructible Saver about missing Save System when exiting playmode.
+
+
+Version 1.9.8:
+[March 31, 2019]
+- Text Tables:
+	- Fixed: Adding new field showed blank line until refresh.
+	- Added: Sort & search features.
+- Save System: Added Restore State On Start checkbox to savers; Added DeleteSavedGameInSlot method to SaveSystemMethods.
+
+
+Version 1.9.7:
+[March 18, 2019]
+- Text Table: Performance improvement when editing large tables.
+- UI: Panels remember last selection instead of reverting to first selectable. Added UIPanel.monitorSelection bool to temporarily disable this functionality.
+- Save System:
+	- Position Saver now updates NavMeshAgent if present.
+	- Assign Unique Keys menu item now also disambiguates existing duplicates.
+	- Fixed error message "Some objects were not cleaned up" when stopping playmode when Save System doesn't have data serializer or data storer.
+- Opsive Character Controllers: Updated support for version 2.2.1; fixed bugs in saving inventory & attributes.
+- Emerald AI: Updated support for version 2.2.
+
+
+Version 1.9.6:
+[February 10, 2019]
+- Changed: Shortened folder names.
+- Added: InputDeviceMethods utility component to access InputDeviceManager in inspector.
+- Improved: If faction member's Eyes transform is unassigned, checks Mecanim avatar.
+- Fixed: MessageSystem no longer throws error if sending message from object that's being destroyed.
+- Fixed: RuntimeTypeUtility API change to address iOS issue.
+
+
+Version 1.9.5:
+[January 29, 2019]
+- Updated assembly definition files to include Wrappers; renamed Common to PixelCrushers.
+- Fixed: MessageSystem bug when removing listeners while sending a message.
+- Fixed: UIPanel timing bug when animations cause outgoing panel to overlap incoming panel.
+- Improved: Editors now handle issues with outdated third party assemblies more gracefully.
+- Save System: Calling LoadGame() w/Save System > Save Current Scene unticked now also updates internal saved game cache.
+- Save System: ScenePortal.UsePortal() is now virtual.
+- TextTable: Large text areas now word wrapped.
+- ORK Framework: Updated for ORK 2.21.0.
+
+
+Version 1.9.4:
+- Added: CSV export/import.
+- Added: JSON export/import.
+- Fixed: String-to-float conversion in .NET4 is now culture invariant.
+
+
+Version 1.9.3
+- IMPORTANT CHANGE: On Unity 2018+, you must define scripting symbol USE_PHYSICS2D to use 2D physics.
+- Fixed: FactionMember.FindRumorInMemory wasn't matching target faction correctly.
+- Fixed: Faction Member inspector was showing 1 + memory count.
+- Fixed: Trigger Event and Collision Event components now handle >32 tags.
+- Improved: Updated for .NET Standard 2.0 compatibility.
+- Improved: FactionManager now delays check for faction database until Start.
+- Improved: Added Assign Unique Key menu item for Saver components.
+- Improved: Added Control Graphic Raycasters checkbox to Input Device Manager.
+- Improved: Timed Event now has option to time by # of frames.
+- Improved: Tag masks in Trigger Event & Collider Event now support >32 tags.
+- Save System: Added Assign Unique Keys menu item.
+- Save System: Animator Saver now saves animator parameters.
+- Save System: If Active Saver activates inactive target, it now also tells target's other savers to apply data.
+- ORK Framework: Fixed GetTemperament. Added GetEmotionalState.
+
+
+Version 1.9.2
+- Added: LoveHate static helper class.
+- Fixed: Removed editor warning in EditorNote.cs.
+- Save System: Added SaveSystem.instance
+- Save System: Added AnimatorSaver.
+- Bolt support: Added.
+- PlayMaker support: Added Get/Apply Saved Game Data actions.
+
+
+Version 1.9.1
+- Input Device Manager: Added Always Auto Focus, Detect Mouse Control checkboxes.
+- Save System: Added Binary Data Serializer.
+- Save System: Added saveStarted, saveEnded, loadStarted, loadEnded events; SaveSystemEvents component.
+- Save System: Fixed index error in DiskSavedGameDataStorer.
+- Added unitypackage containing optional Assembly Definition files.
+
+
+Version 1.9.0
+- Minimum version is now Unity 5.3.6.
+- Improved: Deeds can now specify who can evaluate them.
+- Improved: Faction Manager: Added instance property, Allow Only One Faction Manager checkbox.
+- Improved: Faction Member Debugger: Added Visible checkbox, option to auto-destroy if not debug build.
+- Improved: Save System: Added SaveSystemMethods.LoadOrRestart.
+
+
+Version 1.8.9
+- Changed: Dominance change now better reflects witness's affinity to target.
+- Added: FactionMemberDebugger.
+- Added: FactionMember.ForgetDeed().
+- Added: FactionManagerSaver & FactionMemberSaver integration with Save System.
+- Improved: Save System now uses nonallocating (no GC) methods when loading.
+- Emerald AI: Added support.
+- ICE Creature Control: Fixed bug in demo scene.
+- PlayMaker: [Breaking Change] Actions with GameObject fields now use FsmOwnerDefault & require reassignment.
+
+
+Version 1.8.8
+- Added: DeedReactionEvents component.
+- Added: UFPS support.
+- Added: ICE Creature Control support.
+
+
+Version 1.8.7.1
+- Fixed: Dialogue System integration - ModifyAffinity() Lua command now correctly calls ModifyAffinity()
+  instead of SetAffinity().
+
+
+Version 1.8.7
+***IMPORTANT UPGRADE NOTE:***
+   - This asset has been moved from Assets to Assets/Plugins!
+   - Before upgrading, you MUST delete Assets/Pixel Crushers/Common
+     and Assets/Pixel Crushers/LoveHate!
+   - Remember to make a backup before upgrading this or any asset!
+- Added: Can See Advanced component (sophisticated vision model).
+- Added: FactionMember.GetTraitAlignment delegate.
+- Fixed: Inheriting parent traits now uses parents, not oldest ancestor.
+- All scripts now use wrappers to support easily switching between source and DLL.
+- Updated support packages for: Adventure Creator, Makinom, plyGame, & TradeSys.
+
+
+Version 1.8.6
+- Changed: Save format now includes factions' personality trait values.
+- Added: Impressionability value to FactionMember, which changes personality traits based on deeds witnessed.
+- Added: FactionMember.ShareRumor delegate.
+- Added: Rumor.Expire() method.
+- Improved: Faction Manager editor now shows runtime faction database contents.
+- Improved: Added option to not run memory cleanup.
+- Improved: Methods in triggers & StabilizePAD are now protected virtual, not private.
+- Minor API updates for Unity 5.6.
+
+
+Version 1.8.5
+- Added Rumor.customData field to support associating custom data with rumors.
+- Exposed FactionMember's utility functions so delegates that override default functionality can use them.
+- Removed UNITY_EDITOR conditional compilation for non-editor classes to make it easier to pre-compile DLLs.
+
+
+Version 1.8.4
+- Added: Deed Evaluation Overrides component for optional faction-specific overrides of deed evaluation.
+- Added: Faction Manager checkbox to allow Faction Members to witness their own deeds.
+- Added: Faction Member GetTrustInSource delegate. Default now has 100% confidence in self deeds.
+- Fixed: Judging parents of actor wasn't normalizing percentage properly and was incorrectly applying to judge's parents.
+
+
+Version 1.8.3
+- Improved: Now uses GameTime instead of Unity's Time class.
+- Adventure Creator: Updated for Adventure Creator 1.53+.
+
+
+Version 1.8.2
+- Improved: Additional caching to eliminate garbage collection.
+- Improved: Renamed FactionMember inspector Inherited Relationships checkbox to clarify its purpose.
+- Dialogue System: Added Lua functions Get/SetPersonalityTrait, GetTemperament, GetEmotionalState.
+- PlayMaker: Added Get/SetPersonalityTrait actions.
+
+
+Version 1.8.1
+- Improved: More detailed error messages in Deed Reporter.
+- Zone Controller: Certified integration.
+
+
+Version 1.8.0
+- Changed: Save game serialization format changed to accommodate dynamically-created faction names.
+- Improved: Can now adjust number of witnesses processed per update.
+- Improved: Implemented fast lookup of factions by name and ID.
+- Improved: Added tooltip help to all inspectors.
+- Adventure Creator: Added SetRelationshipInheritable action.
+- Dialogue System: Added SetRelationshipInheritable() Lua function.
+- plyGame: Added support.
+
+
+Version 1.7.1
+- Fixed: Unity 5.2.2 deprecation warning for Physics2D.raycastsStartInColliders.
+
+
+Version 1.7.0
+- Changed: Save game serialization format changed to accommodate relationship inheritability value.
+- Changed: When adding new factions in editor, initializes instead of copying previous item.
+- Added: Customizable emotion model.
+- Added: Relationships can be marked inheritable (default) or non-inheritable.
+- Added: Ability to affect relationship to subject's parents when changing relationship to a subject.
+- Fixed: Possible division by zero in deed evaluation.
+- Fixed: In editor, summing personality & relationship traits now clamp to [-100,+100].
+- PlayMaker: Added GetEmotionalState, SetRelationshipInheritability actions.
+
+
+Version 1.6
+- Changed: FactionManager now turns off debug messages when Debug.isDebugBuild is false.
+- Improved: FactionMembers are now ready on Awake, not Start.
+- Makinom: Added UseFactionManager schematic node.
+- ORK Framework: Added UseFactionManager step.
+- PlayMaker: Added UseFactionManager action. Fixed SwitchFaction action.
+- TradeSys: Updated for TradeSys 2.7.
+
+
+Version 1.5
+- Added: Option to sum or average traits when inheriting from parents.
+- Improved: Faction member inspector shows traits and relationships at design time not just runtime.
+- Makinom: Added support.
+- ORK Framework: Added SwitchFaction, InheritTraitsFromParents Steps.
+- PlayMaker: Added SwitchFaction, InheritTraitsFromParents actions.
+
+
+Version 1.4
+- Added: FactionDatabase.DestroyFaction method.
+- Improved: Can inherit traits from parents in inspector and at runtime.
+- Improved: Faction database and faction member inspectors now show inherited relationships.
+- Changed: Moved multiplayer example into separate package to avoid API warning in Unity 5.1.
+- Adventure Creator: Added support.
+- ORK Framework: Updated for ORK Framework 2.5.1; added CreateNewFaction and DestroyFaction steps.
+- TradeSys: Enhanced support.
+
+
+Version 1.3
+- Added: Multiplayer example & guide.
+- Added: Wolf/rabbit/farmer simulation example.
+- Added: FactionDatabase: CreateNewFaction()
+- Added: FactionMember: SwitchFaction(), IRememberDeedEventHandler, IForgetDeedEventHandler,
+  IModifyPADEventHandler, FactionMemberEvents component.
+- Changed: Serialized FactionMember data now includes faction ID (since members can switch factions).
+- Improved: Exposed FactionMember.DefaultEvaluateRumor().
+- TradeSys: Added support.
+
+
+Version 1.2
+- Changed: Rolled FactionMember.ApplyRumorImpact into DefaultEvaluateRumor.
+- Added: StabilizePAD component to return PAD to target values over time.
+- Improved: FactionMember inspector shows memories, relationships & parents at runtime.
+- Improved: Enhanced rumor evaluation (added TraitAlignmentImportance, PowerDifferenceCurve).
+
+
+Version 1.1
+- Added: Colored scene view gizmos for faction members and traits.
+- Added: Aura triggers.
+- Added: FactionManager and FactionMember string serialization methods.
+- Improved: Improved rumor evalation. Added deed.aggression to better affect dominance.
+- Improved: Faction manager now distributes witness evaluation of deeds across frames.
+- Improved: Better handling of uninitialized fields.
+- Improved: Added cache to interaction triggers to reduce component lookups.
+- Improved: Replaced foreach loops to eliminate garbage collection caused by Mono boxing.
+- Fixed: Deed template library editor bug when adding/removing templates.
+- ORK Framework: Added support.
+- PlayMaker: Added string serialization actions, OnAura and OnEnterAura events.
+
+
+Version 1.0
+- Initial release.
+*/

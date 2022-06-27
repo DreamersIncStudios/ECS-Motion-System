@@ -5,6 +5,7 @@ using Stats;
 
 namespace SampleGame.Setup
 {
+    [RequireComponent(typeof(EnemyCharacter))]
     public class EnemySetup : CharacterSetup
     {
         EnemyCharacter EnemyStats;

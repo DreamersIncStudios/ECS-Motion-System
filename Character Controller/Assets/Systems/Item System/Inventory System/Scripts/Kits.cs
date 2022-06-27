@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Stats;
+using Dreamers.InventorySystem.SO;
 
 namespace Dreamers.InventorySystem
 {
