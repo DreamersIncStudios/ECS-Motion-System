@@ -71,7 +71,7 @@ namespace AISenses
     public struct ScanPositionBuffer : IBufferElementData
     {
         public Target target;
-        [HideInInspector] public float dist;
+       public float dist;
 
         public static implicit operator Target(ScanPositionBuffer e) { return e; }
         public static implicit operator ScanPositionBuffer(Target e) { return new ScanPositionBuffer { target = e }; }

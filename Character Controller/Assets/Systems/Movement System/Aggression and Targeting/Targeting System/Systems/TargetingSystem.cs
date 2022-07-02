@@ -7,6 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using DreamersStudio.CameraControlSystem;
 using Global.Component;
 using Unity.Collections;
+using AISenses.VisionSystems.Combat;
 namespace AISenses.VisionSystems
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
@@ -43,7 +44,7 @@ namespace AISenses.VisionSystems
         protected override void OnUpdate()
         {
             ComponentDataFromEntity<AITarget> Target = GetComponentDataFromEntity<AITarget>(); ;
-            Entities.WithoutBurst().ForEach((ref Player_Control PC, ref DynamicBuffer<ScanPositionBuffer> buffer) =>
+            Entities.WithoutBurst().ForEach((ref Player_Control PC, ref DynamicBuffer<ScanPositionBuffer> buffer, ref AttackTarget attackTarget) =>
             {
                 if (CameraControl.Instance.OnTargetingChanged != null)
                 {
@@ -68,7 +69,6 @@ namespace AISenses.VisionSystems
              
                 if (IsTargeting)
                 {
-                    Debug.Log(buffer.Length);
                     GameObject temp = null;
                     if (!looking)
                     {
@@ -77,8 +77,7 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target =
-                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
+                                Target =(GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
                             });
                         }
                         looking = true;
@@ -111,12 +110,10 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target =
-                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
+                                Target = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
                             });
                         }
                     }
-
                 }
                 else
                 {
@@ -126,7 +123,10 @@ namespace AISenses.VisionSystems
                         looking = false;
                     }
                 }
-             
+                attackTarget.AttackTargetIndex = index;
+                attackTarget.isTargeting = looking;
+
+
             }).Run();
         }
 

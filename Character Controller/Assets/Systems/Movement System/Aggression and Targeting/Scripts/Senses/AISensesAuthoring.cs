@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
+using AISenses.VisionSystems.Combat;
 
 namespace AISenses.Authoring
 {
@@ -32,9 +33,9 @@ namespace AISenses.Authoring
       //      dstManager.AddComponent<AlertLevel>(entity);
             if (Vision) 
                 dstManager.AddComponentData(entity, VisionData);
-          //  if (Hearing)
-          //      dstManager.AddComponentData(entity, HearingData);
-
+            //  if (Hearing)
+            //      dstManager.AddComponentData(entity, HearingData);
+            dstManager.AddComponent<AttackTarget>(entity);
 
         }
 

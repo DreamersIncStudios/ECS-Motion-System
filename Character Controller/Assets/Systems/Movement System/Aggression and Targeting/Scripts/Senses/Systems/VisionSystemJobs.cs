@@ -102,7 +102,7 @@ namespace AISenses.VisionSystems
                     Vision vision = Visions[i];
                     for (int j = 0; j < TargetArray.Length; j++)
                     {
-                        float dist = Vector3.Distance(transform.Position, TargetPosition[i].Position);
+                        float dist = Vector3.Distance(transform.Position, TargetPosition[j].Position);
                         if (dist < vision.viewRadius) {
                             Vector3 dirToTarget = ((Vector3)TargetPosition[j].Position - (Vector3)(transform.Position + new float3(0, 1, 0))).normalized;
                             if (Vector3.Angle(transform.Forward, dirToTarget) < vision.ViewAngle / 2.0f)
@@ -116,7 +116,6 @@ namespace AISenses.VisionSystems
                                         GroupIndex = 0
                                     }
                                 };
-
                                 if (world.CastRay(raycastInput, out Unity.Physics.RaycastHit raycastHit))
                                 {
                                     buffer.Add(new ScanPositionBuffer()
