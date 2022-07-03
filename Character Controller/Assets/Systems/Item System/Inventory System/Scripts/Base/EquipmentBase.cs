@@ -2,10 +2,12 @@
 using Stats;
 using Dreamers.InventorySystem.Interfaces;
 using Dreamers.InventorySystem.SO;
-namespace Dreamers.InventorySystem.Base { 
+using UnityEngine;
+namespace Dreamers.InventorySystem.Base
+{
 
     [System.Serializable]
-public class EquipmentBase
+    public class EquipmentBase
     {
 
 
@@ -20,7 +22,8 @@ public class EquipmentBase
         public bool OpenSlots { get { return QuickAccessItems.Count < NumOfQuickAccessSlots; } }
 
 
-        public EquipmentSave GetEquipmentSave() {
+        public EquipmentSave GetEquipmentSave()
+        {
             EquipmentSave Save = new EquipmentSave();
             foreach (var item in EquippedArmor)
             {
@@ -40,28 +43,32 @@ public class EquipmentBase
             return Save;
         }
 
-        public void LoadEquipment(BaseCharacter PC, EquipmentSave Save) {
-            foreach (ArmorSO SO in Save.EquippedArmors) {
-                SO.Equip(PC);
-                EquippedArmor[SO.ArmorType] = SO;
+        public void LoadEquipment(BaseCharacter PC, EquipmentSave Save)
+        {
+            foreach (ArmorSO SO in Save.EquippedArmors)
+            {
+                var copy = Object.Instantiate(SO);
+                copy.Equip(PC);
+                EquippedArmor[copy.ArmorType] = copy;
             }
             foreach (WeaponSO SO in Save.EquippedWeapons)
             {
-                if (SO)
-                {
-                    SO.Equip(PC);
-                    EquippedWeapons[SO.Slot] = SO;
-                }
+                var copy = Object.Instantiate(SO);
+
+                copy.Equip(PC);
+                    EquippedWeapons[copy.Slot] = copy;
+                
             }
         }
 
     }
     [System.Serializable]
-    public class EquipmentSave {
+    public class EquipmentSave
+    {
 
 
         public List<WeaponSO> EquippedWeapons;
         public List<ArmorSO> EquippedArmors;
-    
+
     }
 }

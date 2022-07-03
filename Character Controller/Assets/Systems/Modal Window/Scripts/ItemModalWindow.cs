@@ -89,7 +89,7 @@ namespace Dreamers.InventorySystem.UISystem
                                 bool equipedItem = false;
 
                                 WeaponSO weapon = (WeaponSO)Slot.Item;
-                                equipedItem = weapon.EquipItem(charInventory);
+                                equipedItem = weapon.Equip(charInventory);
                             });
                             break;
                     }

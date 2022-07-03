@@ -80,7 +80,7 @@ namespace Dreamers.InventorySystem.SO
         /// <param name="characterInventory"></param>
         /// <param name="player"></param>
         /// <returns></returns>
-        public bool EquipItem(CharacterInventory characterInventory, BaseCharacter player)
+        public bool Equip(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
 
@@ -129,7 +129,7 @@ namespace Dreamers.InventorySystem.SO
         /// <returns></returns>
         public bool EquipItem(CharacterInventory characterInventory)
         {
-            return EquipItem(characterInventory, characterInventory.GetComponent<BaseCharacter>());
+            return Equip(characterInventory, characterInventory.GetComponent<BaseCharacter>());
         }
 
         /// <summary>

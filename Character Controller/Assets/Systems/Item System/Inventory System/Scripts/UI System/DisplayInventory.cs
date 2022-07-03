@@ -180,11 +180,11 @@ namespace Dreamers.InventorySystem.UISystem
                             {
                                 case ItemType.Armor:
                                     ArmorSO Armor = (ArmorSO)Slot.Item;
-                                  equipedItem=  Armor.EquipItem(CharacterInventory,  Character);
+                                  equipedItem=  Armor.Equip(CharacterInventory,  Character);
                                     break;
                                 case ItemType.Weapon:
                                     WeaponSO weapon = (WeaponSO)Slot.Item;
-                                    equipedItem = weapon.EquipItem(CharacterInventory, Character);
+                                    equipedItem = weapon.Equip(CharacterInventory, Character);
                                     break;
                             }
                             //TODO Implement Change Event here

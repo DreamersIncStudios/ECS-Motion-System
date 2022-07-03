@@ -31,7 +31,7 @@ MonoBehaviour:
     BuffValue: 100
   - Stat: 4
     BuffValue: 50
-  _levelRQD: 0
+  _levelRQD: 3
   _weaponType: 0
   slot: 0
   maxDurable: 0

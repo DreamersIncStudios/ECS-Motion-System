@@ -50,7 +50,8 @@ namespace MotionSystem.System
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target!= null)
+                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
 

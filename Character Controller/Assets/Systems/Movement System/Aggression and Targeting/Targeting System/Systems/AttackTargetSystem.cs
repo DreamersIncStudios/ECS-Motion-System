@@ -17,7 +17,7 @@ namespace AISenses.VisionSystems.Combat
             
             Entities.ForEach((ref AttackTarget attackTarget, ref DynamicBuffer<ScanPositionBuffer> buffer) =>
             {
-                if (attackTarget.isTargeting)
+                if (attackTarget.isTargeting && buffer.Length >= attackTarget.AttackTargetIndex) 
                 {
                     attackTarget.AttackTargetLocation = buffer[attackTarget.AttackTargetIndex].target.LastKnownPosition;
                 }
@@ -48,7 +48,7 @@ namespace AISenses.VisionSystems.Combat
             float dist = Vector3.Distance(curPos, AttackTargetLocation);
             if (dist < 10)
             {
-                return Vector3.MoveTowards(curPos, AttackTargetLocation, .95f);
+                return Vector3.MoveTowards(curPos, AttackTargetLocation, .85f);
             }
             else { 
              float ratio  = MoveRange / dist;
