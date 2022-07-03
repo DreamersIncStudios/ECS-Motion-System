@@ -12,6 +12,7 @@ namespace DreamersStudio.CameraControlSystem
         public bool isTargeting;
         public static CameraControl Instance;
         public EventHandler<OnTargetingChangedEventArgs> OnTargetingChanged;
+        GameObject playerCharacter;
         public class OnTargetingChangedEventArgs : EventArgs
         {
             public bool isTargeting;
@@ -50,6 +51,19 @@ namespace DreamersStudio.CameraControlSystem
                     TargetGroup.m_Targets[0].target = eventArgs.Target.transform;
             };
 
+        }
+        private void Update()
+        {
+            SetBias();
+        }
+        void SetBias() {
+            if (playerCharacter == null)
+            {
+                playerCharacter = GameObject.FindGameObjectWithTag("Player");
+                return;
+            }
+            Target.m_Heading.m_Bias = playerCharacter.transform.eulerAngles.y;
+            
         }
     }
 }

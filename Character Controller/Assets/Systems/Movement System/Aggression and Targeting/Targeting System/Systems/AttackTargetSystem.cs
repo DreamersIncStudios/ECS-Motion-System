@@ -25,11 +25,17 @@ namespace AISenses.VisionSystems.Combat
                     NativeArray<ScanPositionBuffer> scans = buffer.ToNativeArray(Allocator.Temp);
                     if (buffer.Length > 0) { 
                         //Attack in direction of point target
-                         
+                        var visibleTargetInArea =  buffer.ToNativeArray(Allocator.Temp);
+                        visibleTargetInArea.Sort(new SortScanPositionByDistance());
+                        for (int i = 0; i < visibleTargetInArea.Length; i++)
+                        {
+
+                        }
+                        attackTarget.AttackTargetLocation = visibleTargetInArea[0].target.LastKnownPosition;
                     }
                      else
                     {
-                        attackTarget.AttackTargetLocation = float3.zero;
+                        attackTarget.AttackTargetLocation = new float3(1,1,1);
                     }
                     scans.Dispose();
                 }
@@ -46,6 +52,9 @@ namespace AISenses.VisionSystems.Combat
         public float MoveRange;
         public float3 MoveTo(float3 curPos) {
             float dist = Vector3.Distance(curPos, AttackTargetLocation);
+            if (AttackTargetLocation.Equals(new float3(1, 1, 1)))
+                return new float3(1, 1, 1);
+
             if (dist < 10)
             {
                 return Vector3.MoveTowards(curPos, AttackTargetLocation, .85f);

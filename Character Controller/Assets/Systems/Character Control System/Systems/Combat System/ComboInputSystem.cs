@@ -124,7 +124,10 @@ namespace DreamersInc.ComboSystem
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
 
                     anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset,temp.EndofCurrentAnim);
-                    transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);
+                    if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
+                    {
+                        transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);
+                    }
                     // this need to move to animation event
                 }
                 if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))
