@@ -5,17 +5,24 @@ namespace Stats
     public class ModifiedStat : BaseStat
     {
         private List<ModifyingAttribute> _mods;
+        private List<BaseDefiningAttribute> _atts;
         private int _modValue;
 
         public ModifiedStat()
         {
             _mods = new List<ModifyingAttribute>();
+            _atts = new List<BaseDefiningAttribute>();
+
             _modValue = 0;
         }
 
         public void AddModifier(ModifyingAttribute mod)
         {
             _mods.Add(mod);
+        }
+        public void AddDefiningAttribute(BaseDefiningAttribute att)
+        {
+            _atts.Add(att);
         }
 
         public void CalculateModValue()
@@ -25,7 +32,18 @@ namespace Stats
             {
                 foreach (ModifyingAttribute mod in _mods)
                 {
-                    _modValue += (int)(mod.attribute.AdjustBaseValue * mod.ratio);
+                    _modValue += (int)(mod.attribute.BuffValue * mod.ratio);
+                }
+            }
+        }
+        public void CalculateAttValue()
+        {
+            BaseValue = 0;
+            if (_atts.Count > 0)
+            {
+                foreach (BaseDefiningAttribute att in _atts)
+                {
+                    BaseValue += (int)(att.attribute.BaseValue * att.ratio);
                 }
             }
         }
@@ -37,6 +55,8 @@ namespace Stats
 
         public void Update()
         {
+            CalculateAttValue();
+
             CalculateModValue();
         }
     }
@@ -47,6 +67,19 @@ namespace Stats
         public float ratio;
 
         public ModifyingAttribute(Attributes att, float rat)
+        {
+            attribute = att;
+            ratio = rat;
+        }
+    }
+
+    public struct BaseDefiningAttribute
+    {
+
+        public Attributes attribute;
+        public float ratio;
+
+        public BaseDefiningAttribute(Attributes att, float rat)
         {
             attribute = att;
             ratio = rat;

@@ -111,7 +111,7 @@ namespace DreamersInc.ComboSystem
             });
 
 
-            Entities.WithNone<ShooterComponent>().ForEach((ref AttackTarget attackTarget, Animator anim, Command handler, Transform transform, PlayerComboComponent ComboList) =>
+            Entities.WithNone<ShooterComponent>().ForEach((ref AttackTarget attackTarget, Animator anim, Command handler, Transform transform) =>
             {
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 

@@ -39,7 +39,7 @@ namespace MotionSystem.Archetypes
         [SerializeField] float3 GroundProbeVector;
         public LayerMask GroundCheckLayer;
         [Header("Weapon Specs")]
-        public float EquipResetTimer;
+        public float EquipResetTimer =  5.0f;
 
         public Entity ObjectEntity;
 

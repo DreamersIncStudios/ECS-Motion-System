@@ -20,6 +20,7 @@ namespace DreamersInc.DamageSystem
                 {
                     TypeOfDamage.MagicAoE => Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue,
                     TypeOfDamage.Projectile => Stats.GetStat((int)StatName.Ranged_Offence).AdjustBaseValue,
+                    TypeOfDamage.Melee =>Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                     _ => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                 };
                 return output;

@@ -1,14 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI;
 using Unity.Entities;
-using MotionSystem.Components;
-using Unity.Mathematics;
-using System.Collections.Generic;
-using Dreamers.InventorySystem;
-using Dreamers.InventorySystem.SO;
-using Dreamers.InventorySystem.Base;
-using Unity.Transforms;
-using System.Collections;
 using DreamersInc.CombatSystem.Animation;
 
 namespace DreamersInc.ComboSystem
@@ -20,11 +11,12 @@ namespace DreamersInc.ComboSystem
 
         protected override void OnUpdate()
         {
-            Entities.ForEach((Entity entity, ref ReactToContact contact, Animator anim) => {
+            Entities.ForEach((Entity entity, ref ReactToContact contact, Animator anim, Rigidbody rb) => {
                 //Todo Add check to see if we can interrupt 
+                Direction dir = contact.HitDirection(out Vector3 dirToTarget);
                 if (contact.HitIntensity < 5)
                 {
-                    switch (contact.HitDirection())
+                    switch (dir)
                     {
                         case Direction.Left:
                             anim.Play("HitLeft", 0);
@@ -42,7 +34,7 @@ namespace DreamersInc.ComboSystem
                 }
                 else
                 {
-                    switch (contact.HitDirection())
+                    switch (dir)
                     {
                         case Direction.Left:
                             anim.Play("HitLeftStrong", 0);
@@ -58,6 +50,7 @@ namespace DreamersInc.ComboSystem
                             break;
                     }
                 }
+                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
                 EntityManager.RemoveComponent<ReactToContact>(entity);
             });
         }

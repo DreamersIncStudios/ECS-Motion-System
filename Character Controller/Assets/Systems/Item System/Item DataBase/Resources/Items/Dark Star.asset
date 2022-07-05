@@ -28,9 +28,9 @@ MonoBehaviour:
   _equipBone: 7
   _modifiers:
   - Stat: 1
-    BuffValue: 100
+    BuffValue: 15
   - Stat: 4
-    BuffValue: 50
+    BuffValue: 20
   _levelRQD: 3
   _weaponType: 0
   slot: 0

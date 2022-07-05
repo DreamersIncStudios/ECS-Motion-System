@@ -1,4 +1,6 @@
- namespace Stats
+using System.Collections.Generic;
+
+namespace Stats
 {
     [System.Serializable]
     public class BaseStat
@@ -8,7 +10,7 @@
         private int _buffValue;
         private int _expToLevel;
         private float _levelModifier;
-
+   
         public BaseStat()
         {
             //_name = null;
@@ -17,6 +19,8 @@
             _levelModifier = 1.1f;
             _expToLevel = 100;
         }
+
+
         #region setters and getters
 
         public int BaseValue
@@ -41,10 +45,13 @@
         }
         #endregion
 
+
+
         private int CalculateExpToLevel()
         {
             return (int)(_expToLevel * _levelModifier*_baseValue);
         }
+ 
 
         public void LevelUp()
         {
@@ -56,6 +63,8 @@
         {
             get { return _baseValue + _buffValue; }
         }
+  
     }
+   
 }
 

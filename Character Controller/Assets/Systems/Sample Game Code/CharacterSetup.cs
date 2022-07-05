@@ -23,7 +23,7 @@ namespace Stats
         public async void StatsUpdate(BaseCharacter CharacterStats)
         {
             CharacterStats.Level = CharClass.Level;
-            float ModValue = CharClass.difficultyMod * CharClass.LevelMod * CharClass.Level;
+            float ModValue = CharClass.LevelMod;
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = (int)(CharClass.Strength * ModValue);
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Awareness).BaseValue = (int)(CharClass.Awareness * ModValue);
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Charisma).BaseValue = (int)(CharClass.Charisma * ModValue);
