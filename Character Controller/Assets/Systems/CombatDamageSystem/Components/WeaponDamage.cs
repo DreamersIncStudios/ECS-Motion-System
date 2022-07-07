@@ -4,6 +4,7 @@ using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System;
 using Random = UnityEngine.Random;
+using Dreamers.InventorySystem;
 
 namespace DreamersInc.DamageSystem
 {
@@ -19,6 +20,7 @@ namespace DreamersInc.DamageSystem
                 {
                     TypeOfDamage.MagicAoE => Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue,
                     TypeOfDamage.Projectile => Stats.GetStat((int)StatName.Ranged_Offence).AdjustBaseValue,
+                    TypeOfDamage.Melee =>Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                     _ => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                 };
                 return output;
@@ -64,9 +66,17 @@ namespace DreamersInc.DamageSystem
             MagicMod = Element != Element.None ? Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue / 10.0f : 1.0f;
         }
         IDamageable self;
+        public WeaponSlot weaponType;
+
+        void Awake() {
+
+        }
+
         // Use this for initialization
         void Start()
         {
+      
+            
             if (GetComponent<Collider>())
             {
                 TypeOfDamage = TypeOfDamage.Melee;

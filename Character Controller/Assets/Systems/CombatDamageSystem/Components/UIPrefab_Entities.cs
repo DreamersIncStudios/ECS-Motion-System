@@ -7,7 +7,6 @@ namespace DreamerInc.CombatSystem
     public class UIPrefab_Entities : IComponentData
     {
         public GameObject uiPrefab;
-        public bool test;
     }
 
 }

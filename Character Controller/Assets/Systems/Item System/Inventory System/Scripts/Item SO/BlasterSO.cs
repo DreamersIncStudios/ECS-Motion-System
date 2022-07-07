@@ -53,7 +53,7 @@ namespace Dreamers.InventorySystem.SO
 
         public  bool EquipItem(CharacterInventory characterInventory, int IndexOf, BaseCharacter player)
         {
-            bool temp = base.EquipItem(characterInventory,  player);
+            bool temp = base.Equip(characterInventory,  player);
             if(temp)
                 Convert(characterInventory.self, World.DefaultGameObjectInjectionWorld.EntityManager);
             return temp;

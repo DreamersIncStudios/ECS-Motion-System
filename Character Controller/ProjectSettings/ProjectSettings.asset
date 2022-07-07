@@ -769,7 +769,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     Android: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    Standalone: CROSS_PLATFORM_INPUT;ENABLE_HYBRID_RENDERER_V2;DOTS_ADD_PARTIAL_KEYWORD
+    Standalone: CROSS_PLATFORM_INPUT;ENABLE_HYBRID_RENDERER_V2
     Windows Store Apps: MOBILE_INPUT
     iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   additionalCompilerArguments: {}

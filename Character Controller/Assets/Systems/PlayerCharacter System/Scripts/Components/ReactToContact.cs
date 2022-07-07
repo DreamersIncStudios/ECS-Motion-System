@@ -8,8 +8,8 @@ namespace DreamersInc.CombatSystem.Animation
 {
     public struct ReactToContact : IComponentData
     {
-        public Direction HitDirection() {
-            Vector3 dirToTarget = Vector3.Normalize(positionVector - HitContactPoint);
+        public Direction HitDirection( out Vector3 dirToTarget) {
+            dirToTarget = Vector3.Normalize(positionVector - HitContactPoint);
 
             float2 dot = new float2(Vector3.Dot(ForwardVector, dirToTarget),
                 Vector3.Dot(RightVector, dirToTarget)

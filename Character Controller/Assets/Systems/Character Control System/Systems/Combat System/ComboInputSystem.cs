@@ -10,6 +10,8 @@ using Dreamers.InventorySystem.SO;
 using Dreamers.InventorySystem.Base;
 using Unity.Transforms;
 using System.Collections;
+using AISenses.VisionSystems.Combat;
+using DG.Tweening;
 
 namespace DreamersInc.ComboSystem
 {
@@ -109,7 +111,7 @@ namespace DreamersInc.ComboSystem
             });
 
 
-            Entities.WithNone<ShooterComponent>().ForEach((Animator anim, Command handler) =>
+            Entities.WithNone<ShooterComponent>().ForEach((ref AttackTarget attackTarget, Animator anim, Command handler, Transform transform) =>
             {
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -122,6 +124,10 @@ namespace DreamersInc.ComboSystem
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
 
                     anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset,temp.EndofCurrentAnim);
+                    if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
+                    {
+                        transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);
+                    }
                     // this need to move to animation event
                 }
                 if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne"))

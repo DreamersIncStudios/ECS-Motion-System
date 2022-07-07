@@ -35,7 +35,7 @@ namespace Stats
 
         }
 
-        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward)
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee, Element element = Element.None)
         {
 
         }

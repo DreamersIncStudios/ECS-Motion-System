@@ -13,7 +13,7 @@ namespace DreamersInc.DamageSystem.Interfaces
         bool Dead { get; }
         Entity SelfEntityRef { get; }
         void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
-        void ReactToHit(float impact, Vector3 Test, Vector3 forward);
+        void ReactToHit(float impact, Vector3 Test, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , Element element = Element.None);
     }
 
 

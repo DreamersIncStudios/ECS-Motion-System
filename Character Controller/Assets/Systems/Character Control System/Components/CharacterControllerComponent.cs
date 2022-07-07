@@ -12,10 +12,10 @@ namespace MotionSystem.Components
         public float3 CapsuleCenter;
         public float CapsuleRadius;
         public float CapsuleHeight;
-        public float3 OGCapsuleCenter;
-        public float OGCapsuleHeight;
-        public float Forward;
-        public float Turn;
+        public float3 OGCapsuleCenter { get; set; }
+        public float OGCapsuleHeight { get; set; }
+        public float Forward { get; set; }
+        public float Turn { get; set; }
         public float H { get; set; }
         public float V { get; set; }
         public bool Jump { get; set; }

@@ -71,11 +71,23 @@ namespace AISenses
     public struct ScanPositionBuffer : IBufferElementData
     {
         public Target target;
-        [HideInInspector] public float dist;
+       public float dist;
 
         public static implicit operator Target(ScanPositionBuffer e) { return e; }
         public static implicit operator ScanPositionBuffer(Target e) { return new ScanPositionBuffer { target = e }; }
     }
+
+    public struct SortScanPositionByDistance : IComparer<ScanPositionBuffer>
+    {
+        public int Compare(ScanPositionBuffer x, ScanPositionBuffer y)
+        {
+            if (x.dist > y.dist)
+                return 1;
+            else
+                return -1;
+        }
+    }
+
     public struct HitDistanceComparer : IComparer<ScanPositionBuffer>
     {
         public int Compare(ScanPositionBuffer lhs, ScanPositionBuffer rhs)

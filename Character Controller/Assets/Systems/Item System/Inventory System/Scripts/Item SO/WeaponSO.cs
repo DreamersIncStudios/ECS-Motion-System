@@ -7,6 +7,7 @@ using Dreamers.InventorySystem.Interfaces;
 using Unity.Entities;
 using System.Linq;
 using DreamersInc.MagicSkill;
+using DreamersInc.DamageSystem;
 
 
 
@@ -65,9 +66,9 @@ namespace Dreamers.InventorySystem.SO
         #endregion
 
 
-        public GameObject WeaponModel { get; set; }
+        public GameObject WeaponModel { get; private set; }
 
-        public void Equip(BaseCharacter player)
+        public bool  Equip(BaseCharacter player)
         {
             if (player.Level >= LevelRqd)
             {
@@ -90,6 +91,12 @@ namespace Dreamers.InventorySystem.SO
                     WeaponModel.transform.localPosition = SheathedPos;
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
                 }
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level);
+                return Equipped = false;
             }
         }
         //TODO Should this be a bool instead of Void
@@ -101,7 +108,7 @@ namespace Dreamers.InventorySystem.SO
         /// <param name="characterInventory"></param>
         /// <param name="player"></param>
         /// <returns></returns>
-        public bool EquipItem(CharacterInventory characterInventory, BaseCharacter player)
+        public bool Equip(CharacterInventory characterInventory, BaseCharacter player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
             if (player.Level >= LevelRqd)
@@ -152,9 +159,9 @@ namespace Dreamers.InventorySystem.SO
         /// </summary>
         /// <param name="characterInventory"></param>
         /// <returns></returns>
-        public bool EquipItem(CharacterInventory characterInventory)
+        public bool Equip(CharacterInventory characterInventory)
         {
-            return EquipItem(characterInventory, characterInventory.GetComponent<BaseCharacter>());
+            return Equip(characterInventory, characterInventory.GetComponent<BaseCharacter>());
         }
 
         /// <summary>
@@ -197,12 +204,14 @@ namespace Dreamers.InventorySystem.SO
         }
 
         public void DrawWeapon(Animator anim) {
+
             WeaponModel.transform.SetParent(anim.GetBoneTransform(HeldBone));
             WeaponModel.transform.localPosition = HeldPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
 
         }
         public void StoreWeapon(Animator anim) {
+      
             WeaponModel.transform.parent = anim.GetBoneTransform(EquipBone);
             WeaponModel.transform.localPosition = SheathedPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);

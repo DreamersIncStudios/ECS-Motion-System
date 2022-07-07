@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Animations;
-
+using DG.Tweening;
 using Unity.Entities;
 using MotionSystem.Components;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityStandardAssets.CrossPlatformInput;
 using DreamersStudio.CameraControlSystem;
+using DreamersInc.ComboSystem;
 
 namespace MotionSystem.System
 {
@@ -47,9 +48,11 @@ namespace MotionSystem.System
                 {
 
                     m_TurnAmount = control.Move.x;
-                    transform.LookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target);
-                    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0); ;
-
+                    if (!control.AI)
+                    {
+                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target!= null)
+                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                    }
                 }
 
 

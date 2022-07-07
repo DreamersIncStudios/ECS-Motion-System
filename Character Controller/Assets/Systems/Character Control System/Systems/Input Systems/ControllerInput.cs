@@ -6,6 +6,7 @@ using MotionSystem.Components;
 using Components.MovementSystem;
 using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
+using AISenses.VisionSystems.Combat;
 
 namespace MotionSystem.System {
 
@@ -34,7 +35,7 @@ namespace MotionSystem.System {
                 }
             }
 
-            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control) =>
+            Entities.ForEach(( Rigidbody RB, ref Player_Control PCC, ref CharControllerE Control, ref AttackTarget test) =>
             {
                  ControllerScheme InputSet = PCC.InputSet;
 
@@ -66,7 +67,7 @@ namespace MotionSystem.System {
                     }
 
                 }
-
+                test.AttackDir = new float2(Control.H, Control.V);
 
                 if (Control.IsGrounded && m_Crouching)
                 {
