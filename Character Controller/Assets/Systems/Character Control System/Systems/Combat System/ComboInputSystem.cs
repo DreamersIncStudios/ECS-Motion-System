@@ -52,18 +52,20 @@ namespace DreamersInc.ComboSystem
 
                 if (!anim.IsInTransition(0) && !ComboList.Combo.ShowMovesPanel)
                 {
-                    foreach (AnimationCombo comboOption in ComboList.Combo.ComboList)
+                    foreach (ComboSingle combotest in ComboList.Combo.ComboLists)
                     {
-                        if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
+
+                        foreach (AnimationCombo comboOption in combotest.ComboList)
+                        {
+                            if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
                         {
                             handler.currentStateExitTime = comboOption.AnimationEndTime;
                             if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
-                                foreach (AnimationTrigger trigger in comboOption.Triggers)
-                                {
-                                    if (trigger.Unlocked && handler.QueueIsEmpty)
+                                    AnimationTrigger trigger = comboOption.Trigger;
+                                    if (combotest.Unlocked && handler.QueueIsEmpty)
                                     {
-                                        switch (trigger.Type)
+                                        switch (trigger.attackType)
                                         {
                                             case AttackType.LightAttack:
                                                 if (PC.LightAttack)
@@ -123,7 +125,7 @@ namespace DreamersInc.ComboSystem
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
                     if (!anim.GetBool("Weapon In Hand")) {
-                        switch (temp.Type) {
+                        switch (temp.attackType) {
                             case AttackType.LightAttack:
                                 anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
 

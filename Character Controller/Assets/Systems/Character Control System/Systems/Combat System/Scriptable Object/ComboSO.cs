@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Dreamers.Global;
 using Core.SaveSystems;
+
 namespace DreamersInc.ComboSystem
 {
     [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem/Combo Data")]
 
     public class ComboSO : ScriptableObject, ICombos
     {
-       [SerializeField] List<AnimationCombo> _comboList;
-      [HideInInspector]  public List<AnimationCombo> ComboList { get { return _comboList; } }
+
+        [SerializeField] List<ComboSingle> _comboLists;
+        [HideInInspector] public List<ComboSingle> ComboLists { get { return _comboLists; } }
+
         public TextAsset ComboNamesText;
         public int ComboListIndex; 
         public void UnlockCombo(ComboNames Name)
@@ -50,64 +53,20 @@ namespace DreamersInc.ComboSystem
         }
         public void UpdateTotalProbability()
         {
-            for (int i = 0; i < ComboList.Count; i++)
-            {
-                AnimationCombo tempCombo = _comboList[i];
-                float totalProb = 0f;
-                for (int j = 0; j < tempCombo.Triggers.Count; j++)
-                {
-                    if (tempCombo.Triggers[j].Unlocked)
-                    {
-                        AnimationTrigger temptrigger = tempCombo.Triggers[j];
-                        temptrigger.probabilityRangeFrom = totalProb;
-                        totalProb += temptrigger.Chance;
-                        tempCombo.Triggers[j] = temptrigger;
-                    }
-                }
-                float maxProb = tempCombo.MaxProb = totalProb;
-
-
-                for (int j = 0; j < tempCombo.Triggers.Count; j++)
-                {
-                    AnimationTrigger temptrigger = tempCombo.Triggers[j];
-                    temptrigger.probabilityTotalWeight = maxProb;
-                    tempCombo.Triggers[j] = temptrigger;
-                }
-                _comboList[i] = tempCombo;
-            }
+           
         }
 
         public int GetAnimationComboIndex(AnimatorStateInfo state) {
-            foreach (AnimationCombo combo in ComboList)
-            {
-                if (state.IsName(combo.CurrentStateName.ToString()))
-                {
-                    return ComboList.IndexOf(combo);
-                }
-
-            }
+           
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
 
         }
         public int GetAnimationComboIndex(string state)
         {
-            foreach (AnimationCombo combo in ComboList)
-            {
-                if (state == combo.CurrentStateName)
-                {
-                    return ComboList.IndexOf(combo);
-                }
-
-            }
+     
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
         }
-        public float GetMaxProbAtCurrentState(AnimatorStateInfo state) {
-            return ComboList[GetAnimationComboIndex(state)].MaxProb;
-        }
-        public float GetMaxProbAtCurrentState(int index)
-        {
-            return ComboList[index].MaxProb;
-        }
+ 
         #endregion
 
    
@@ -123,35 +82,8 @@ namespace DreamersInc.ComboSystem
         }
         public List<ComboDefinition> GetComboDefinitions() {
             List<ComboDefinition> temp = new List<ComboDefinition>();
-            List<string> comboNames = GetListOfComboNames();
-
-            for (int i = 0; i < comboNames.Count-1; i++)
-            {
-                int index = i;
-
-                var definationTemp = new ComboDefinition()
-                {
-                    name = comboNames[i],
-                    ComboEnumName = (ComboNames)index + 1,
-                    Unlocked = false,
-                    test = new Queue<AttackType>()
-                    //
-                };
-                foreach (var comboMove in ComboList)
-                {
-                    foreach (var trigger in comboMove.Triggers)
-                    {
-                        if (trigger.Name == (ComboNames)index + 1)
-                        {
-                            definationTemp.test.Enqueue(trigger.Type);
-
-                            if (trigger.Unlocked)
-                                definationTemp.Unlocked = true;
-                        }
-                    }
-                }
-                temp.Add(definationTemp);
-            }
+           
+            
             return temp;
         }
         public void DisplayCombo()
@@ -185,7 +117,15 @@ namespace DreamersInc.ComboSystem
         public bool Unlocked { get; set; }
         [NonReorderable] public Queue<AttackType> test;
     }
+    [System.Serializable]
+    public class ComboSingle {
+        [SerializeField] ComboNames name;
+        public ComboNames Name { get { return name; } set { name = value; } } // Change To String ???????????
+        public bool Unlocked;
+        
 
-
+        [SerializeField] List<AnimationCombo> _comboList;
+        [HideInInspector] public List<AnimationCombo> ComboList { get { return _comboList; } }
+    }
 
 }

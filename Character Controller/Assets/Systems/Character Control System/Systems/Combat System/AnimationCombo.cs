@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace DreamersInc.ComboSystem
 {
+
     [System.Serializable]
     public struct AnimationCombo
+
     {
-        public AttackType Type;
+        public AttackType CurrentAnim;
         [SerializeField] uint triggerAnimIndex;
+        public bool Alternate;
         public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
-        public string CurrentStateName { get { return Type.ToString() + TriggerAnimIndex; } }
+        public string CurrentStateName { get { return CurrentAnim.ToString() + TriggerAnimIndex; } }
         public float2 NormalizedInputTime;
         public float AnimationEndTime;
         public bool InputAllowed(float time) => time > NormalizedInputTime.x && time < NormalizedInputTime.y;
         public float MaxProb { get; set; }
-        public List<AnimationTrigger> Triggers;
+        public AnimationTrigger Trigger;
         // TODO consider adding late inputs ??????
 
     }
@@ -25,19 +28,18 @@ namespace DreamersInc.ComboSystem
         public string TriggerString { get; } 
     }
     [System.Serializable]
-    public struct AnimationTrigger:ITrigger
+    public struct AnimationTrigger : ITrigger
     {
-        [SerializeField] ComboNames name;
-        public ComboNames Name { get { return name; }set { name = value; } } // Change To String ???????????
+        ComboNames name;
+        public ComboNames Name { get { return name; } set { name = value; } } // TODO Remove
         public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
-        public AttackType Type;
+        public AttackType attackType;
         [SerializeField] uint triggerAnimIndex;
-        public string TriggerString { get { return Type.ToString() + TriggerAnimIndex; } }
-        public bool Unlocked;
+        public string TriggerString { get { return attackType.ToString() + TriggerAnimIndex; } }
         public float TransitionDuration;
         public float TransitionOffset;
-        [Tooltip(" testing Value")]
         public float EndofCurrentAnim;
+        [Tooltip(" testing Value")]
         public float Chance;
         [Range(-1, 100)]
         [Tooltip("Value Must be between 0 and 100 \n " +
@@ -60,18 +62,20 @@ namespace DreamersInc.ComboSystem
         }
 
         //TODO add stat modifer increase or decrese likely hood of sequenctial attack based on stats
-        public bool AttackAgain(float selected) {
-            return selected <ChanceForNextAttack &&  ChanceForNextAttack !=-1;
+        public bool AttackAgain(float selected)
+        {
+            return selected < ChanceForNextAttack && ChanceForNextAttack != -1;
         }
         public float delay;
-        public bool trigger=> delay <= 0.0f;
-        public void AdjustTime(float time) {
+        public bool trigger => delay <= 0.0f;
+        public void AdjustTime(float time)
+        {
             delay -= time;
         }
 
-
-
     }
+    
+
     [System.Serializable]
     public struct SetTrigger  {
         [SerializeField] ComboNames name;
