@@ -7,31 +7,35 @@ namespace DreamersInc.ComboSystem
     [System.Serializable]
     public struct AnimationCombo
     {
-        public ComboAnimNames CurrentStateName;
+        public AttackType Type;
+        [SerializeField] uint triggerAnimIndex;
+        public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
+        public string CurrentStateName { get { return Type.ToString() + TriggerAnimIndex; } }
         public float2 NormalizedInputTime;
         public float AnimationEndTime;
         public bool InputAllowed(float time) => time > NormalizedInputTime.x && time < NormalizedInputTime.y;
         public float MaxProb { get; set; }
-        [NonReorderable] public List<AnimationTrigger> Triggers;
+        public List<AnimationTrigger> Triggers;
         // TODO consider adding late inputs ??????
 
     }
 
     public interface ITrigger {
         public ComboNames Name { get; set; } // Change To String ???????????
-        public ComboAnimNames TriggeredAnimName { get; set; } // Change to String ???????????
+        public string TriggerString { get; } 
     }
     [System.Serializable]
     public struct AnimationTrigger:ITrigger
     {
         [SerializeField] ComboNames name;
         public ComboNames Name { get { return name; }set { name = value; } } // Change To String ???????????
-        [SerializeField] ComboAnimNames triggerAnimName;
-        public ComboAnimNames TriggeredAnimName { get { return triggerAnimName; } set { triggerAnimName = value; } } // Change to String ???????????
+        public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
         public AttackType Type;
+        [SerializeField] uint triggerAnimIndex;
+        public string TriggerString { get { return Type.ToString() + TriggerAnimIndex; } }
         public bool Unlocked;
         public float TransitionDuration;
-        public float StartOffset;
+        public float TransitionOffset;
         [Tooltip(" testing Value")]
         public float EndofCurrentAnim;
         public float Chance;
@@ -92,7 +96,7 @@ namespace DreamersInc.ComboSystem
             , Ground_attack02, Light_Attack1_Alt, Projectile, ChargedProjectile
     }
     public enum AttackType { 
-        none, LightAttack, HeavyAttack,ChargedLightAttack, ChargedHeavyAttack, Projectile, ChargedProjectile
+        none, LightAttack, HeavyAttack,ChargedLightAttack, ChargedHeavyAttack, Projectile, ChargedProjectile,Grounded, Targeted_Locomation, Locomation_Grounded_Weapon
     }
     public enum ComboNames
     {

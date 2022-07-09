@@ -122,8 +122,23 @@ namespace DreamersInc.ComboSystem
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
+                    if (!anim.GetBool("Weapon In Hand")) {
+                        switch (temp.Type) {
+                            case AttackType.LightAttack:
+                                anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
 
-                    anim.CrossFade(temp.TriggeredAnimName.ToString(), temp.TransitionDuration, 0, temp.StartOffset,temp.EndofCurrentAnim);
+                                break;
+                            case AttackType.HeavyAttack:
+                        anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+
+                                break;
+                        }
+                    }
+                    else {
+
+                        anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+               
+                    }
                     if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
                     {
                         transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);
@@ -135,12 +150,12 @@ namespace DreamersInc.ComboSystem
                     if (anim.GetBool("Weapon In Hand"))
                     {
                         if (!handler.BareHands)
-                            anim.CrossFade("Locomation_Grounded_Weapon", .25f, 0, .25f);
+                            anim.CrossFade("Locomation_Grounded_Weapon0", .25f, 0, .25f);
                         else
-                            anim.CrossFade("Grounded", .25f, 0, .25f);
+                            anim.CrossFade("Grounded0", .25f, 0, .25f);
                     }
                     else
-                        anim.CrossFade("Grounded", .25f, 0, .25f);
+                        anim.CrossFade("Grounded0", .25f, 0, .25f);
 
                 }
 

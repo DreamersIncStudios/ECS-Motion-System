@@ -10,7 +10,7 @@ namespace DreamersInc.ComboSystem
 
     public class ComboSO : ScriptableObject, ICombos
     {
-        [NonReorderable] [SerializeField] List<AnimationCombo> _comboList;
+       [SerializeField] List<AnimationCombo> _comboList;
       [HideInInspector]  public List<AnimationCombo> ComboList { get { return _comboList; } }
         public TextAsset ComboNamesText;
         public int ComboListIndex; 
@@ -89,7 +89,7 @@ namespace DreamersInc.ComboSystem
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
 
         }
-        public int GetAnimationComboIndex(ComboAnimNames state)
+        public int GetAnimationComboIndex(string state)
         {
             foreach (AnimationCombo combo in ComboList)
             {

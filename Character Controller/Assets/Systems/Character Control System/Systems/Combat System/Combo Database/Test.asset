@@ -13,248 +13,234 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   _comboList:
-  - CurrentStateName: 1
+  - Type: 7
+    triggerAnimIndex: 0
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
     Triggers:
     - name: 1
-      triggerAnimName: 4
       Type: 1
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 80
       ChanceForNextAttack: 59
       LevelUnlocked: 1
       delay: 0
     - name: 2
-      triggerAnimName: 5
       Type: 2
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 60
       ChanceForNextAttack: 42
       LevelUnlocked: 1
       delay: 0
     - name: 11
-      triggerAnimName: 23
       Type: 5
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 60
       ChanceForNextAttack: 18
       LevelUnlocked: 1
       delay: 0
     - name: 11
-      triggerAnimName: 24
       Type: 6
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 60
       ChanceForNextAttack: 42
       LevelUnlocked: 1
       delay: 0
-  - CurrentStateName: 3
+  - Type: 8
+    triggerAnimIndex: 0
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
     Triggers:
     - name: 1
-      triggerAnimName: 9
       Type: 1
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 1
-      triggerAnimName: 15
+    - name: 2
       Type: 2
-      Unlocked: 0
+      triggerAnimIndex: 1
+      Unlocked: 1
       TransitionDuration: 0
-      StartOffset: 0
+      TransitionOffset: 0
       EndofCurrentAnim: 0
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 2
+  - Type: 9
+    triggerAnimIndex: 0
     NormalizedInputTime:
       x: 0
       y: Infinity
     AnimationEndTime: 0
     Triggers:
     - name: 1
-      triggerAnimName: 10
       Type: 1
+      triggerAnimIndex: 1
       Unlocked: 1
       TransitionDuration: 0.1
-      StartOffset: 0.125
+      TransitionOffset: 0
       EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
     - name: 1
-      triggerAnimName: 15
       Type: 2
-      Unlocked: 0
+      triggerAnimIndex: 1
+      Unlocked: 1
       TransitionDuration: 0.1
-      StartOffset: 0.125
+      TransitionOffset: 0
       EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 9
+  - Type: 1
+    triggerAnimIndex: 1
     NormalizedInputTime:
-      x: 0.35
-      y: 0.65
+      x: 0.05
+      y: 0.5
     AnimationEndTime: 0.5
     Triggers:
     - name: 1
-      triggerAnimName: 10
       Type: 1
+      triggerAnimIndex: 2
       Unlocked: 1
       TransitionDuration: 0.1
-      StartOffset: 0.125
+      TransitionOffset: 0.125
       EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 1
-      triggerAnimName: 15
+    - name: 10
       Type: 2
-      Unlocked: 0
+      triggerAnimIndex: 6
+      Unlocked: 1
       TransitionDuration: 0.1
-      StartOffset: 0.125
-      EndofCurrentAnim: 0.68
+      TransitionOffset: 0
+      EndofCurrentAnim: 0.45
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 10
+  - Type: 1
+    triggerAnimIndex: 2
     NormalizedInputTime:
-      x: 0.2
-      y: 0.45
+      x: 0.05
+      y: 0.5
     AnimationEndTime: 0.5
     Triggers:
     - name: 1
-      triggerAnimName: 11
       Type: 1
+      triggerAnimIndex: 3
       Unlocked: 1
-      TransitionDuration: 0.18
-      StartOffset: 0
-      EndofCurrentAnim: 0.56
-      Chance: 0
-      ChanceForNextAttack: 0
-      LevelUnlocked: 0
-      delay: 0
-    - name: 2
-      triggerAnimName: 16
-      Type: 2
-      Unlocked: 0
       TransitionDuration: 0.1
-      StartOffset: 0.125
+      TransitionOffset: 0.125
       EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 11
+  - Type: 1
+    triggerAnimIndex: 3
     NormalizedInputTime:
-      x: 0.2
-      y: 0.45
+      x: 0.05
+      y: 0.5
     AnimationEndTime: 0.5
     Triggers:
     - name: 1
-      triggerAnimName: 17
       Type: 1
+      triggerAnimIndex: 4
       Unlocked: 1
-      TransitionDuration: 0.275
-      StartOffset: 0.125
-      EndofCurrentAnim: 0.6
+      TransitionDuration: 0.1
+      TransitionOffset: 0.125
+      EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 2
-      triggerAnimName: 12
-      Type: 1
-      Unlocked: 0
-      TransitionDuration: 0.25
-      StartOffset: 0
-      EndofCurrentAnim: 0.5
+    - name: 1
+      Type: 2
+      triggerAnimIndex: 3
+      Unlocked: 1
+      TransitionDuration: 0.1
+      TransitionOffset: 0.125
+      EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-  - CurrentStateName: 15
+  - Type: 2
+    triggerAnimIndex: 6
     NormalizedInputTime:
-      x: 0.2
-      y: 0.65
-    AnimationEndTime: 0.6
+      x: 0.05
+      y: 0.5
+    AnimationEndTime: 0.5
     Triggers:
-    - name: 2
-      triggerAnimName: 11
+    - name: 10
       Type: 1
+      triggerAnimIndex: 5
       Unlocked: 1
-      TransitionDuration: 0.125
-      StartOffset: 0
-      EndofCurrentAnim: 0.7
+      TransitionDuration: 0.1
+      TransitionOffset: 0.125
+      EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
-    - name: 2
-      triggerAnimName: 11
-      Type: 1
-      Unlocked: 1
-      TransitionDuration: 0.125
-      StartOffset: 0
-      EndofCurrentAnim: 0.7
-      Chance: 0
-      ChanceForNextAttack: 0
-      LevelUnlocked: 0
-      delay: 0
-  - CurrentStateName: 15
+  - Type: 1
+    triggerAnimIndex: 5
     NormalizedInputTime:
-      x: 0.2
-      y: 0.65
-    AnimationEndTime: 0.6
+      x: 0.05
+      y: 0.5
+    AnimationEndTime: 0.5
     Triggers:
-    - name: 2
-      triggerAnimName: 11
+    - name: 10
       Type: 1
+      triggerAnimIndex: 6
       Unlocked: 1
-      TransitionDuration: 0.125
-      StartOffset: 0
-      EndofCurrentAnim: 0.7
+      TransitionDuration: 0.1
+      TransitionOffset: 0.125
+      EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
       delay: 0
     - name: 2
-      triggerAnimName: 11
-      Type: 1
+      Type: 2
+      triggerAnimIndex: 1
       Unlocked: 1
-      TransitionDuration: 0.125
-      StartOffset: 0
-      EndofCurrentAnim: 0.7
+      TransitionDuration: 0.1
+      TransitionOffset: 0.125
+      EndofCurrentAnim: 0.68
       Chance: 0
       ChanceForNextAttack: 0
       LevelUnlocked: 0
