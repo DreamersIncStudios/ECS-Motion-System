@@ -17,7 +17,7 @@ namespace AISenses.VisionSystems
 
     public class VisionTargetingUpdateGroup : ComponentSystemGroup {
         public VisionTargetingUpdateGroup() {
-            RateManager = new RateUtils.VariableRateManager(1000, true);
+            RateManager = new RateUtils.VariableRateManager(60, true);
         }
     
     }
@@ -118,19 +118,22 @@ namespace AISenses.VisionSystems
                                 };
                                 if (world.CastRay(raycastInput, out Unity.Physics.RaycastHit raycastHit))
                                 {
-                                    buffer.Add(new ScanPositionBuffer()
+                                    if (raycastHit.Entity.Equals(TargetEntity[j]))
                                     {
-                                        target = new Target()
+                                        buffer.Add(new ScanPositionBuffer()
                                         {
-                                            CanSee = true,
-                                            DistanceTo = dist,
-                                            LastKnownPosition = TargetPosition[j].Position,
-                                            TargetInfo = TargetArray[j],
-                                            entity = TargetEntity[j]
-                                        },
-                                        dist = dist
+                                            target = new Target()
+                                            {
+                                                CanSee = true,
+                                                DistanceTo = dist,
+                                                LastKnownPosition = TargetPosition[j].Position,
+                                                TargetInfo = TargetArray[j],
+                                                entity = TargetEntity[j]
+                                            },
+                                            dist = dist
 
-                                    });
+                                        });
+                                    }
                                 }
                             }
                         }

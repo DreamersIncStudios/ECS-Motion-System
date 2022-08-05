@@ -22,8 +22,8 @@ namespace Stats
             GetPrimaryAttribute((int)AttributeName.Speed).BaseValue = (int)(20 * ModValue);
             GetPrimaryAttribute((int)AttributeName.Luck).BaseValue = (int)(20 * ModValue);
             GetPrimaryAttribute((int)AttributeName.Concentration).BaseValue = (int)(20 * ModValue);
-            GetVital((int)VitalName.Health).BaseValue = 50;
-            GetVital((int)VitalName.Mana).BaseValue = 25;
+            GetVital((int)VitalName.Health).StartValue = 500;
+            GetVital((int)VitalName.Mana).StartValue = 250;
 
             base.Convert(entity, dstManager, conversionSystem);
             var data = new NPCStats()

@@ -1,10 +1,12 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using Unity.Entities;
-using System.Threading.Tasks;
 using DreamersInc.DamageSystem.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Unity.Entities;
+using UnityEngine;
+
+[assembly: InternalsVisibleTo("PlayerCharacterSystem.Player")]
 namespace Stats
 {
     [Serializable]
@@ -95,7 +97,6 @@ namespace Stats
             SelfEntityRef = entity;
             dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
             StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
-
         }
 
         public string Name

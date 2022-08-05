@@ -54,7 +54,7 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 *.FBX.meta
-
+*.png.meta
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -64,7 +64,7 @@ sysinfo.txt
 *.unitypackage
 *.fbx
 *.exr
-
+*.meta
 # Crashlytics generated file
 crashlytics-build.properties
 

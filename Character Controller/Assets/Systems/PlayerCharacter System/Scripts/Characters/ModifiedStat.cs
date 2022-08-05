@@ -7,6 +7,12 @@ namespace Stats
         private List<ModifyingAttribute> _mods;
         private List<BaseDefiningAttribute> _atts;
         private int _modValue;
+        private int _start;
+        public int StartValue
+        {
+            get { return _start; }
+            set { _start = value; }
+        }
 
         public ModifiedStat()
         {
@@ -50,7 +56,7 @@ namespace Stats
 
         public new int AdjustBaseValue
         {
-            get { return BaseValue + BuffValue + _modValue; }
+            get { return StartValue + BaseValue + BuffValue + _modValue; }
         }
 
         public void Update()

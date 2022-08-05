@@ -152,9 +152,9 @@ namespace MotionSystem.System
         void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB) {
             if (control.Jump && !control.Crouch)
             {
-                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation"))
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation0"))
                 {
                     // jump!
                     Anim.applyRootMotion = false;
