@@ -8,9 +8,11 @@ using Dreamers.InventorySystem;
 
 namespace DreamersInc.DamageSystem
 {
-   // [RequireComponent(typeof(MeshCollider))]
+    // [RequireComponent(typeof(MeshCollider))]
     public class WeaponDamage : MonoBehaviour, IDamageDealer
     {
+        public Action OnHitAction { get; set; }
+        public Action ChanceCheck { get; set; }
         public int BaseDamage
         {
             get
@@ -20,7 +22,7 @@ namespace DreamersInc.DamageSystem
                 {
                     TypeOfDamage.MagicAoE => Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue,
                     TypeOfDamage.Projectile => Stats.GetStat((int)StatName.Ranged_Offence).AdjustBaseValue,
-                    TypeOfDamage.Melee =>Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
+                    TypeOfDamage.Melee => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                     _ => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                 };
                 return output;
@@ -68,24 +70,31 @@ namespace DreamersInc.DamageSystem
         IDamageable self;
         public WeaponSlot weaponType;
 
-        void Awake() {
+        void Awake()
+        {
 
         }
 
         // Use this for initialization
         void Start()
         {
-      
-            
+
+
             if (GetComponent<Collider>())
             {
                 TypeOfDamage = TypeOfDamage.Melee;
                 GetComponent<Collider>().isTrigger = true;
                 self = GetComponentInParent<IDamageable>();
             }
-            else {
-                throw new ArgumentNullException(nameof(gameObject),$"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
+            else
+            {
+                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
             }
+        }
+      
+        public void CheckChance()
+        {
+            ChanceCheck.Invoke();
         }
 
         public void OnTriggerEnter(Collider other)
@@ -96,6 +105,7 @@ namespace DreamersInc.DamageSystem
             {
                 hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
                 hit.ReactToHit(.5f, transform.root.position, transform.root.forward);
+                OnHitAction.Invoke();
             }
         }
     }

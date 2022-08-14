@@ -1499,12 +1499,12 @@ PrefabInstance:
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002288009
+      value: -0.000000022880096
       objectReference: {fileID: 0}
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000082837355
+      value: 0.000000008283737
       objectReference: {fileID: 0}
     - target: {fileID: 8802926159821762245, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
@@ -1569,12 +1569,12 @@ PrefabInstance:
     - target: {fileID: 9198516457850368910, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016282542
+      value: 0.000000016282542
       objectReference: {fileID: 0}
     - target: {fileID: 9198516457850368910, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000055622356
+      value: -0.0000000055622356
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a727e1fe1d66e4ca919c7a4398d9b7, type: 3}
@@ -2262,7 +2262,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Combo
       value: 
-      objectReference: {fileID: 11400000, guid: ae497b07010317a45a65183d0503962f,
+      objectReference: {fileID: 11400000, guid: 10a4989132429054d990ac03a1a753ec,
         type: 2}
     - target: {fileID: 5910730413220975178, guid: 085cea128835cee49990c59f01cc7e55,
         type: 3}
@@ -2273,11 +2273,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a3bd7cec0926320459cc1321c102f3ef, type: 2}
+      objectReference: {fileID: 9100000, guid: 62037f98244b7b44f948daf23f787475, type: 2}
     - target: {fileID: 5910730413220975222, guid: 085cea128835cee49990c59f01cc7e55,
         type: 3}
       propertyPath: CharClass.Level
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910730413220975222, guid: 085cea128835cee49990c59f01cc7e55,
+        type: 3}
+      propertyPath: CharClass.title
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5910730413220975222, guid: 085cea128835cee49990c59f01cc7e55,
         type: 3}
@@ -2288,7 +2293,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Save.EquippedWeapons.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 1998fe85612659e47815ff81c5b35699,
+      objectReference: {fileID: 11400000, guid: 1010c691ad0d4bd4098aecc85824bb78,
         type: 2}
     - target: {fileID: 5910730413220975230, guid: 085cea128835cee49990c59f01cc7e55,
         type: 3}
