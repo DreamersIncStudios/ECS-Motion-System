@@ -23,5 +23,6 @@ namespace DreamersInc.DamageSystem.Interfaces
         void SetDamageBool(bool value);
         public Action OnHitAction { get; set; }
         public Action ChanceCheck { get; set; }
+        Action CriticalEventCheck { get; set; }
     }
 }

@@ -904,6 +904,10 @@
       <Project>{C125286C-E12B-F994-215D-7472FF4ACF5C}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="LODSystem.Player.csproj">
+      <Project>{256CF026-3E54-9308-2C24-2C771DC3C0EA}</Project>
+      <Name>LODSystem.Player</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

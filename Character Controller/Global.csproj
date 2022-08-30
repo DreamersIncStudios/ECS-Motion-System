@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -83,6 +83,7 @@
     <Compile Include="Assets\Systems\Global\Generic Grid System\Utilities.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Terrain Physics\SetColliderTest.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\ControllerScheme.cs" />
+    <Compile Include="Assets\Systems\Global\Utilities\Scripts\ReactiveSystem\ReactiveSystemBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Global\Global.asmdef" />
@@ -808,6 +809,10 @@
     <ProjectReference Include="Unity.Transforms.csproj">
       <Project>{794335E9-0616-DB93-95C1-E7FD637F7493}</Project>
       <Name>Unity.Transforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.csproj">
+      <Project>{EA55C08D-C3D1-3AF5-1B8F-8270D58AFEE6}</Project>
+      <Name>Unity.Burst</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

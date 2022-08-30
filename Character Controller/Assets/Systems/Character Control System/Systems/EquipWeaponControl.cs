@@ -34,6 +34,14 @@ namespace MotionSystem.System {
             anim.SetBool("Weapon In Hand", false);
 
         }
+        public void CalculateCriticalHit() {
+            if (!damage)
+            {
+                damage = GetComponentInChildren<WeaponDamage>();
+            }
+            damage.CheckChance();
+        }
+
         public void DoDamage(int value) {
             if (!damage) { 
             damage = GetComponentInChildren<WeaponDamage>();

@@ -17,17 +17,6 @@ namespace Dreamers.ModalWindows
         [SerializeField] Transform contentArea;
         public GameObject ComboDisplay;
         public ComboSO test;
-        // Start is called before the first frame update
-        void Start()
-        {
-            DisplayCombo(test);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public void DisplayCombo(ComboSO comboSO) {
             titleField.text = "Attack list for " + comboSO.name;

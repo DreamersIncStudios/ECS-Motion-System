@@ -13,6 +13,8 @@ namespace DreamersInc.DamageSystem
     {
         public Action OnHitAction { get; set; }
         public Action ChanceCheck { get; set; }
+        public Action CriticalEventCheck { get; set; }
+       
         public int BaseDamage
         {
             get
@@ -29,8 +31,9 @@ namespace DreamersInc.DamageSystem
             }
         }
         public float CriticalHitMod => CriticalHit ? Random.Range(1.5f, 2.15f) : 1;
-        private float randomMod => Random.Range(.85f, 1.15f)
-; public bool CriticalHit
+        private float randomMod => Random.Range(.85f, 1.15f);
+        
+        public bool CriticalHit
         {
             get
             {
@@ -48,7 +51,7 @@ namespace DreamersInc.DamageSystem
         public BaseCharacter Stats { get { return GetComponentInParent<BaseCharacter>(); } }
         public int DamageAmount()
         {
-            return Mathf.RoundToInt(BaseDamage * randomMod * CriticalHitMod);
+            return Mathf.RoundToInt(BaseDamage * randomMod * critMod);
         }
 
         public void SetDamageBool(bool value)
@@ -91,9 +94,14 @@ namespace DreamersInc.DamageSystem
                 throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
             }
         }
-      
+
+        float critMod;
         public void CheckChance()
         {
+            critMod = CriticalHitMod;
+            if (critMod != 1) { 
+                CriticalEventCheck();
+            }
             ChanceCheck.Invoke();
         }
 
