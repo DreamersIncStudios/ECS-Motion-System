@@ -15,32 +15,32 @@ namespace LODRenderSystem
         }
     }
 
-    public class RenderSet : ComponentSystem
-    {
-        protected override void OnUpdate()
-        {
-            Entities.ForEach((ref AnimateTag tag, Animator anim) => {
-                if(!anim.enabled)
-                    anim.enabled = true;
+    //public class RenderSet : ComponentSystem
+    //{
+    //    protected override void OnUpdate()
+    //    {
+    //        Entities.ForEach((ref AnimateTag tag, Animator anim) => {
+    //            if(!anim.enabled)
+    //                anim.enabled = true;
             
-            });
-            Entities.ForEach((ref RenderTag tag, Renderer anim) => {
-                if (!anim.enabled)
-                    anim.enabled = true;
+    //        });
+    //        Entities.ForEach((ref RenderTag tag, Renderer anim) => {
+    //            if (!anim.enabled)
+    //                anim.enabled = true;
 
-            });
+    //        });
 
 
-            Entities.WithNone<AnimateTag>().ForEach(( Animator anim) => {
-                if (anim.enabled)
-                    anim.enabled = false;
+    //        Entities.WithNone<AnimateTag>().ForEach(( Animator anim) => {
+    //            if (anim.enabled)
+    //                anim.enabled = false;
 
-            });
-            Entities.WithNone<RenderTag>().ForEach(( Renderer anim) => {
-                if (anim.enabled)
-                    anim.enabled = false;
+    //        });
+    //        Entities.WithNone<RenderTag>().ForEach(( Renderer anim) => {
+    //            if (anim.enabled)
+    //                anim.enabled = false;
 
-            });
-        }
-    }
+    //        });
+    //    }
+    //}
 }

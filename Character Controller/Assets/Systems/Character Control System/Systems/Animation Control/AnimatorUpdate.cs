@@ -14,20 +14,8 @@ using DreamersInc.ComboSystem;
 
 namespace MotionSystem.System
 {
-    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
-    public class AnimatorUpdateGroup : ComponentSystemGroup
-    {
-        public AnimatorUpdateGroup()
-        {
-            RateManager = new RateUtils.VariableRateManager(10
-               , true);
-
-        }
-
-    }
 
 
-    [UpdateInGroup(typeof(AnimatorUpdateGroup))]
     public class AnimatorUpdate : ComponentSystem
     {
 

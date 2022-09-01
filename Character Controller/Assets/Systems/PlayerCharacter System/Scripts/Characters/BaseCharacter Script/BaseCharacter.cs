@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Stats
 {
     [Serializable]
-    public  abstract partial class BaseCharacter : MonoBehaviour, IConvertGameObjectToEntity, IDamageable
+    public  abstract partial class BaseCharacter : MonoBehaviour, IDamageable
     {
 
         private string _name;
@@ -56,7 +56,7 @@ namespace Stats
 
         public bool Dead { get; private set; }
 
-        public Entity SelfEntityRef { get; private set; }
+        public Entity SelfEntityRef { get;  set; }
 
 
 
@@ -91,13 +91,13 @@ namespace Stats
 
 
 
-        public DynamicBuffer<EffectStatusBuffer> StatusBuffers;
-        public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-            SelfEntityRef = entity;
-            dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
-            StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
-        }
+        //TODO Delete 
+        //public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        //{
+        //    SelfEntityRef = entity;
+        //    dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
+        //    StatusBuffers = dstManager.AddBuffer<EffectStatusBuffer>(entity);
+        //}
 
         public string Name
         {

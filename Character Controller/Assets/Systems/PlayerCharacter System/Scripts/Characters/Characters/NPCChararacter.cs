@@ -7,37 +7,9 @@ using DreamersInc.CombatSystem.Animation;
 
 namespace Stats
 {
-    public class NPCChararacter : BaseCharacter,IConvertGameObjectToEntity
+    public class NPCChararacter : BaseCharacter
     {
-        public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-            float ModValue = 1.1f;
-            GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Awareness).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Charisma).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Resistance).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.WillPower).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Vitality).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Skill).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Speed).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Luck).BaseValue = (int)(20 * ModValue);
-            GetPrimaryAttribute((int)AttributeName.Concentration).BaseValue = (int)(20 * ModValue);
-            GetVital((int)VitalName.Health).StartValue = 500;
-            GetVital((int)VitalName.Mana).StartValue = 250;
 
-            base.Convert(entity, dstManager, conversionSystem);
-            var data = new NPCStats()
-            {
-                MaxHealth = MaxHealth,
-                MaxMana = MaxMana,
-                CurHealth = CurHealth,
-                CurMana = CurMana,
-                selfEntityRef = entity
-            };
-            dstManager.AddComponentData(entity, data);
-            Level = 5;
-            StatUpdate();
-        }
 
         public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element)
         {

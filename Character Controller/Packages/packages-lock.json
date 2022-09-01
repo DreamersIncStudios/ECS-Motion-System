@@ -122,14 +122,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.physics": {
-      "version": "0.51.0-preview.32",
+      "version": "0.51.1-preview.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.6.6",
-        "com.unity.collections": "1.3.1",
-        "com.unity.entities": "0.51.0-preview.32",
-        "com.unity.jobs": "0.51.0-preview.32",
+        "com.unity.collections": "1.4.0",
+        "com.unity.entities": "0.51.1-preview.21",
         "com.unity.mathematics": "1.2.6",
         "com.unity.test-framework": "1.1.31",
         "com.unity.test-framework.performance": "2.8.0-preview",

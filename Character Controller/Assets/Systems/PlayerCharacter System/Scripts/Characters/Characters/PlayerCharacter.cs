@@ -9,16 +9,18 @@ namespace Stats
     public class PlayerCharacter : BaseCharacter
 
     {
-        public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-            base.Convert(entity, dstManager, conversionSystem);
-            var data = new PlayerStatComponent() { MaxHealth = MaxHealth, MaxMana = MaxMana, CurHealth = CurHealth, CurMana = CurMana,
-                selfEntityRef = entity
-            };
-            dstManager.AddComponentData(entity, data);
+        public void SetupDataEntity(Entity entity) {
+           
+            SelfEntityRef = entity;
+            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
+           em.AddBuffer<EffectStatusBuffer>(entity);
+            //Todo get level and stat data
 
+            World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(entity, new PlayerStatComponent { selfEntityRef = entity });
             StatUpdate();
+
         }
+
 
         public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element = 0)
         {

@@ -78,6 +78,7 @@
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalMenu.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalSelectionWindow.cs" />
     <Compile Include="Assets\PlayerCharacterRep.cs" />
+    <Compile Include="Assets\Systems\Game Code\Scripts\SpawnPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -900,13 +901,13 @@
       <Project>{9968499F-5486-AFD6-811A-FC0713FEEACA}</Project>
       <Name>GameMenus.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{C125286C-E12B-F994-215D-7472FF4ACF5C}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="LODSystem.Player.csproj">
       <Project>{256CF026-3E54-9308-2C24-2C771DC3C0EA}</Project>
       <Name>LODSystem.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{C125286C-E12B-F994-215D-7472FF4ACF5C}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

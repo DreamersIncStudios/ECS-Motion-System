@@ -67,6 +67,7 @@
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\FreqPhasing.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\SMT\SMTOptions.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Player_Control.cs" />
+    <Compile Include="Assets\Systems\Global\Utilities\Scripts\ReactiveSystem\ReactiveSystemBase.cs" />
     <Compile Include="Assets\Systems\Global\Generic Grid System\GridGeneric.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Terrain Physics\DOTSTerrainCollider.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\ControlMaster.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Systems\Global\Generic Grid System\Utilities.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Terrain Physics\SetColliderTest.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\ControllerScheme.cs" />
-    <Compile Include="Assets\Systems\Global\Utilities\Scripts\ReactiveSystem\ReactiveSystemBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Global\Global.asmdef" />
