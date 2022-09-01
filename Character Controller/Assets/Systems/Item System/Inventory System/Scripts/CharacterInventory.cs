@@ -9,7 +9,7 @@ using Stats;
 
 namespace Dreamers.InventorySystem
 {
-    public class CharacterInventory : MonoBehaviour,IConvertGameObjectToEntity
+    public class CharacterInventory : MonoBehaviour
     {
         private BaseCharacter PC => this.GetComponent<BaseCharacter>();
         private Animator anim => this.GetComponent<Animator>();

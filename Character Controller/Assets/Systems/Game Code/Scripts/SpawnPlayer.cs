@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.Windows;
-using Unity.VisualScripting;
-using UnityEngine.AI;
+using Cinemachine;
 using Unity.Entities;
 using Unity.Transforms;
 using MotionSystem.Components;
@@ -12,6 +10,8 @@ using Stats;
 using DreamersInc.ComboSystem;
 using Global.Component;
 using AISenses;
+using MotionSystem.Archetypes;
+using AISenses.VisionSystems.Combat;
 
 namespace GameCoreCode
 {
@@ -39,22 +39,68 @@ namespace GameCoreCode
                   typeof(CharControllerE),
                   typeof(PlayerStatComponent),
                   typeof(Player_Control),
+                  typeof(Command),
                   typeof(AITarget),
                   typeof(Vision),
                   typeof(PlayerComboComponent),
-                  typeof(CopyTransformFromGameObject)
+                  typeof(CopyTransformFromGameObject),
+                  typeof(AttackTarget),
+                  typeof(ScanPositionBuffer)
                   );
 
             Entity playerDataEntity = em.CreateEntity(playerDataArch);
             GameObject spawnedGO = GameObject.Instantiate(PlayerModels[choice], SpawnPosition, Quaternion.identity);
+            
 
             em.SetName(playerDataEntity, "Player Data");
+            
             em.SetComponentData(playerDataEntity, new Translation { Value = spawnedGO.transform.position });
+
+            em.SetComponentData(playerDataEntity, new AITarget { 
+                Type = TargetType.Character,
+                GetRace = Race.Human,
+                MaxNumberOfTarget = 5,
+                CanBeTargetByPlayer = true,
+                CenterOffset = Vector3.zero
+            });
+            em.SetComponentData(playerDataEntity, new Command()
+            {
+                InputQueue = new Queue<AnimationTrigger>(),
+                BareHands = false,
+                WeaponIsEquipped = true
+            });
+            em.SetComponentData(playerDataEntity, new Vision()
+            {
+                viewRadius = 55,
+                EngageRadius = 40,
+                ViewAngle = 165
+            });
+
+            
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Animator>());
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<CapsuleCollider>());
+            em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Rigidbody>());
             em.AddComponentObject(playerDataEntity, spawnedGO.transform);
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponentInChildren<Renderer>());
             spawnedGO.GetComponent<PlayerCharacter>().SetupDataEntity(playerDataEntity);
+            spawnedGO.tag = "Player";
+            spawnedGO.GetComponent<CharacterControl>().SetupDataEntity(playerDataEntity);
+            spawnedGO.GetComponent<PlayerComboComponentAuthoring>().SetupDataEntity(playerDataEntity);
+            SetupCamera(spawnedGO);
         }
+
+
+
+        public CinemachineFreeLook freeLook;
+        public CinemachineFreeLook Target;
+        public CinemachineTargetGroup group;
+
+        void SetupCamera(GameObject Player) {
+            freeLook.Follow = Player.transform;
+            freeLook.LookAt = Player.GetComponentInChildren<LookHereTarget>().transform;
+            Target.Follow = Player.transform;
+            group.m_Targets[1].target = Player.transform;
+        }
+
     }
 }

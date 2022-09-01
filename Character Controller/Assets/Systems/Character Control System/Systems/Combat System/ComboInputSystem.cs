@@ -22,6 +22,11 @@ namespace DreamersInc.ComboSystem
         {
             base.OnCreate();
             movespanel = new GameObject();
+            Entities.ForEach((ref Player_Control PC, PlayerComboComponent ComboList, Animator anim, Command handler) =>
+            {
+                handler.InputQueue = new Queue<AnimationTrigger>();
+
+            });
         }
 
 

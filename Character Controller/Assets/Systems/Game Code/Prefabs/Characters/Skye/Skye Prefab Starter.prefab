@@ -371,6 +371,50 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000005690381, y: 0.0021877508, z: 0.000074834155}
     m_Extent: {x: 0.0047598155, y: 0.0031455741, z: 0.0017369513}
   m_DirtyAABB: 0
+--- !u!1 &4160839058089215706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815421643565245746}
+  - component: {fileID: 3699743713667471869}
+  m_Layer: 0
+  m_Name: Look Here
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1815421643565245746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160839058089215706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.968, z: 1.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8084035620554136470}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3699743713667471869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160839058089215706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602c4870bc9499c49835c3d6eef1d084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4228800330197363117
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +937,12 @@ GameObject:
   - component: {fileID: 2796857708052349420}
   - component: {fileID: 2070604057484872973}
   - component: {fileID: -8252303200219086430}
+  - component: {fileID: -1157605782375333723}
+  - component: {fileID: -3478063481923172045}
+  - component: {fileID: 2910822617385890803}
+  - component: {fileID: 1321866944560320573}
+  - component: {fileID: -801269941260343731}
+  - component: {fileID: -5268573411153958314}
   m_Layer: 0
   m_Name: Skye Prefab Starter
   m_TagString: Untagged
@@ -923,6 +973,7 @@ Transform:
   - {fileID: 4720087064469757742}
   - {fileID: 7348860813313867435}
   - {fileID: 6814328215182943916}
+  - {fileID: 1815421643565245746}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -964,6 +1015,21 @@ MonoBehaviour:
   maxHealth: 0
   CurMana: 0
   maxMana: 0
+  BaseStats:
+    title: 7
+    Level: 5
+    Strength: 20
+    Vitality: 20
+    Awareness: 20
+    Speed: 20
+    Skill: 20
+    Resistance: 20
+    Concentration: 20
+    WillPower: 20
+    Charisma: 20
+    Luck: 20
+    difficultyMod: 20
+    LevelMod: 5
 --- !u!136 &-8252303200219086430
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -978,3 +1044,122 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!54 &-1157605782375333723
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!195 &-3478063481923172045
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2910822617385890803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be44922b5e195940b9adb67aac8c855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI_Control: 0
+  Party: 0
+  IsPlayer: 1
+  CombatCapable: 1
+  Scheme: {fileID: 11400000, guid: f1685a92743186246bedc3655febd174, type: 2}
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_JumpPower: 12
+  m_GravityMultiplier: 2
+  m_RunCycleLegOffset: 0.2
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1
+  m_GroundCheckDistance: 0.1
+  GroundProbeVector:
+    x: 0
+    y: 0
+    z: 0
+  EquipResetTimer: 5
+--- !u!114 &1321866944560320573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13784d0ad5f618a41af36d55e6724f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory:
+    ItemsInInventory: []
+    MaxInventorySize: 0
+  Equipment:
+    CurrentActivationPoints: 0
+    MaxActivationPoints: 0
+    QuickAccessItems: []
+    NumOfQuickAccessSlots: 0
+  QuestLog:
+    SelectedMission: {fileID: 0}
+  Save:
+    EquippedWeapons:
+    - {fileID: 11400000, guid: 1010c691ad0d4bd4098aecc85824bb78, type: 2}
+    EquippedArmors: []
+--- !u!114 &-801269941260343731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e689d52e3f13224408f371cd7c9b38d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Combo: {fileID: 11400000, guid: 10a4989132429054d990ac03a1a753ec, type: 2}
+--- !u!114 &-5268573411153958314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897867375782363436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80c558749c7c7545a752026e04b16ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

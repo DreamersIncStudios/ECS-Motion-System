@@ -6,32 +6,19 @@ using Core.SaveSystems;
 
 namespace DreamersInc.ComboSystem
 {
-    public class PlayerComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity, ISave
+    public class PlayerComboComponentAuthoring : MonoBehaviour, ISave
     {
         public ComboSO Combo;
-        public Command command;
-        Entity entity;
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-
-            var data = new PlayerComboComponent() { Combo = Instantiate(Combo) };
-            dstManager.AddComponentData(entity, data);
-            dstManager.AddComponentData(entity, command);
-            this.entity = entity;
-   
-           
-        }
-
         public void Load(string jsonData)
         {
             throw new System.NotImplementedException();
         }
-        public void Setup()
+        public void SetupDataEntity(Entity entity)
         {
             EntityManager dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var data = new PlayerComboComponent() { Combo = Instantiate(Combo) };
-            dstManager.AddComponentData(entity, command);
-            dstManager.AddComponentData(entity, data);
+            dstManager.SetComponentData(entity, new PlayerComboComponent() {
+                Combo = Instantiate(Combo)
+            });
         }
 
         public void Save()
