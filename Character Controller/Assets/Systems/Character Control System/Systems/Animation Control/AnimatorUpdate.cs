@@ -15,6 +15,7 @@ using DreamersInc.ComboSystem;
 namespace MotionSystem.System
 {
 
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 
     public class AnimatorUpdate : ComponentSystem
     {
@@ -78,7 +79,7 @@ namespace MotionSystem.System
 
 
                 // Animator Updater
-
+                Debug.Log(m_ForwardAmount);
                 // update the animator parameters
                 Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);

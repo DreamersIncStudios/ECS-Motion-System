@@ -65,6 +65,7 @@
     <Compile Include="Assets\Systems\Closer.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalWindow.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\Spawner.cs" />
+    <Compile Include="Assets\LookHereTarget.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\DisplayComboModal.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ItemModalWindow.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
@@ -72,13 +73,14 @@
     <Compile Include="Assets\Systems\Modal Window\Scripts\DisplayCharacterUI.cs" />
     <Compile Include="Assets\Systems\ReparentAndLinkEntity.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\EnemySetup.cs" />
+    <Compile Include="Assets\Systems\Game Code\Scripts\SpawnPlayer.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\CharacterStatModal.cs" />
     <Compile Include="Assets\Models\Weapons\DissolveSingle.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalMenu.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalSelectionWindow.cs" />
     <Compile Include="Assets\PlayerCharacterRep.cs" />
-    <Compile Include="Assets\Systems\Game Code\Scripts\SpawnPlayer.cs" />
-    <Compile Include="Assets\LookHereTarget.cs" />
+    <Compile Include="Assets\Systems\Game Code\Scripts\SpawnNPCs.cs" />
+    <Compile Include="Assets\Systems\Game Code\Scripts\SpawnEnemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

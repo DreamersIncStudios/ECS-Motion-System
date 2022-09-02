@@ -14,7 +14,7 @@ namespace MotionSystem.Archetypes
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
 
-    public class NPCCharacterController : MonoBehaviour, IConvertGameObjectToEntity
+    public class NPCCharacterController : MonoBehaviour
     {
         public bool CombatCapable;
 
@@ -32,17 +32,14 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_GroundCheckDistance = 0.1f;
 
         [SerializeField] float3 GroundProbeVector;
-        public LayerMask GroundCheckLayer;
         [Header("Weapon Specs")]
         public float EquipResetTimer;
 
-        public Entity ObjectEntity;
 
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public void SetupDataEntity(Entity entity)
         {
-            ObjectEntity = entity;
-
-            var control = new CharControllerE()
+            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            em.SetComponentData(entity, new CharControllerE()
             {
                 CapsuleRadius = Col.radius,
                 OGCapsuleHeight = Col.height,
@@ -58,24 +55,18 @@ namespace MotionSystem.Archetypes
                 m_StationaryTurnSpeed = m_StationaryTurnSpeed,
                 m_OrigGroundCheckDistance = m_GroundCheckDistance,
                 GroundCheckDistance = m_GroundCheckDistance,
-
                 IsGrounded = true,
                 AI = true,
                 CombatCapable = CombatCapable,
                 EquipResetTimer = EquipResetTimer
 
-            };
-            dstManager.AddComponentData(entity, control);
+            });
 
-            var move = new Movement() { CanMove = true };
-            var AI = new AI_Control() { };
-            dstManager.AddComponentData(entity, move);
-            dstManager.AddComponentData(entity, AI);
+       
 
-            var transformtransitiion = new TransformComponent();
-            dstManager.AddComponentData(entity, transformtransitiion);
-            dstManager.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
+            em.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
         }
+
 
         // Start is called before the first frame update
         void Start()
