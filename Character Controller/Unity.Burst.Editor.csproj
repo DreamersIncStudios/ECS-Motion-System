@@ -56,21 +56,24 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstLoader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\LongTextArea.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstAotCompiler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.Core.Wasm.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.Core.LLVMIR.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.Core.ARM64.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstInspectorGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstAotSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstMenu.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.Core.cs" />
-    <Compile Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\BurstDisassembler.Core.x86.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstLoader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\LongTextArea.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstAotCompiler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.Core.Wasm.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.Core.LLVMIR.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.Core.ARM64.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstStringSearch.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstInspectorGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstAotSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.Core.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\LabeledPopup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstMath.cs" />
+    <Compile Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\BurstDisassembler.Core.x86.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.burst@1.7.3\Editor\Unity.Burst.Editor.asmdef" />
+    <None Include="Library\PackageCache\com.unity.burst@1.8.0-pre.2\Editor\Unity.Burst.Editor.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -346,26 +349,23 @@
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
-      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
-      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>

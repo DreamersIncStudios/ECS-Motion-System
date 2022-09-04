@@ -15,31 +15,21 @@ namespace DreamersInc.ComboSystem
             Entities.ForEach((Entity entity, ref ReactToContact contact, Animator anim, Rigidbody rb) => {
                 //Todo Add check to see if we can interrupt 
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);
-                Debug.Log(contact.HitIntensity);
-
                 rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
-
-
                 if (contact.HitIntensity < 5)
                 {
                     switch (dir)
                     {
                         case Direction.Left:
                             anim.Play("HitLeft", 0);
-                            Debug.Log("hit");
-
                             break;
                         case Direction.Right:
                             anim.Play("HitRight", 0);
-                            Debug.Log("hit");
-
                             break;
                         case Direction.Front:
-                Debug.Log("hit");
                             anim.Play("HitFront", 0);
                             break;
                         case Direction.Back:
-                Debug.Log("hit");
                             anim.Play("HitBack", 0);
                             break;
                     }

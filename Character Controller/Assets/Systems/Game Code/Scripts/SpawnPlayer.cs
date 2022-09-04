@@ -12,13 +12,17 @@ using Global.Component;
 using AISenses;
 using MotionSystem.Archetypes;
 using AISenses.VisionSystems.Combat;
+using Unity.Physics;
+using Unity.Mathematics;
+using Unity.Physics.Authoring;
 
 namespace GameCoreCode
 {
     public class SpawnPlayer : MonoBehaviour
     {
         public List<GameObject> PlayerModels; // TODO load this from text data?????
-
+        public PhysicsCategoryTags belongsTo;
+        public PhysicsCategoryTags collideWith;
         // Start is called before the first frame update
         void Start()
         {
@@ -26,7 +30,8 @@ namespace GameCoreCode
 
         }
 
-        public void SpawnPlayerAndCreateEntityData(int choice, Vector3 SpawnPosition) {
+        public void SpawnPlayerAndCreateEntityData(int choice, Vector3 SpawnPosition)
+        {
             if (choice > PlayerModels.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(choice), $"Input outside of bounds of expection input value: {choice}");
@@ -45,18 +50,21 @@ namespace GameCoreCode
                   typeof(PlayerComboComponent),
                   typeof(CopyTransformFromGameObject),
                   typeof(AttackTarget),
-                  typeof(ScanPositionBuffer)
+                  typeof(ScanPositionBuffer)//,
+                //  typeof(PhysicsCollider),
+                //  typeof(PhysicsWorldIndex)
                   );
 
             Entity playerDataEntity = em.CreateEntity(playerDataArch);
             GameObject spawnedGO = GameObject.Instantiate(PlayerModels[choice], SpawnPosition, Quaternion.identity);
-            
+
 
             em.SetName(playerDataEntity, "Player Data");
-            
+
             em.SetComponentData(playerDataEntity, new Translation { Value = spawnedGO.transform.position });
 
-            em.SetComponentData(playerDataEntity, new AITarget { 
+            em.SetComponentData(playerDataEntity, new AITarget
+            {
                 Type = TargetType.Character,
                 GetRace = Race.Human,
                 MaxNumberOfTarget = 5,
@@ -75,10 +83,24 @@ namespace GameCoreCode
                 EngageRadius = 40,
                 ViewAngle = 165
             });
+            //BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
+            //{
+            //    Radius = .4f,
+            //    Vertex0 = new float3(0, 1.8f, 0),
+            //    Vertex1 = new float3(0, 0, 0)
 
-            
+            //}, new CollisionFilter()
+            //{
+            //    BelongsTo = belongsTo.Value,
+            //    CollidesWith = collideWith.Value,
+            //    GroupIndex = 0
+            //});
+            //em.SetComponentData(playerDataEntity, new PhysicsCollider()
+            //{ Value = spCollider });
+
+
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Animator>());
-            em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<CapsuleCollider>());
+            em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Rigidbody>());
             em.AddComponentObject(playerDataEntity, spawnedGO.transform);
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponentInChildren<Renderer>());
@@ -95,7 +117,8 @@ namespace GameCoreCode
         public CinemachineFreeLook Target;
         public CinemachineTargetGroup group;
 
-        void SetupCamera(GameObject Player) {
+        void SetupCamera(GameObject Player)
+        {
             freeLook.Follow = Player.transform;
             freeLook.LookAt = Player.GetComponentInChildren<LookHereTarget>().transform;
             Target.Follow = Player.transform;

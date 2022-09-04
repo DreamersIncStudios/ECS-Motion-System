@@ -26,6 +26,7 @@ namespace AISenses.VisionSystems
     public partial class VisionSystemJobs : SystemBase
     {
         private EntityQuery SeerEntityQuery;
+        private EntityQuery PlayersEntityQuery;
 
         private EntityQuery TargetEntityQuery;
         EntityCommandBufferSystem entityCommandBufferSystem;
@@ -35,9 +36,14 @@ namespace AISenses.VisionSystems
             base.OnCreate();
             SeerEntityQuery = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) }
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) },
+                None = new ComponentType[] { ComponentType.ReadOnly(typeof(PlayerStatComponent))}
             });
-
+            PlayersEntityQuery = GetEntityQuery(new EntityQueryDesc()
+            {
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) },
+                None = new ComponentType[] { ComponentType.ReadOnly(typeof(NPCStats)), ComponentType.ReadOnly(typeof(EnemyStats)) }
+            });
             TargetEntityQuery = GetEntityQuery(new EntityQueryDesc()
             {
                 All = new ComponentType[] { ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(AITarget)) }
@@ -69,10 +75,27 @@ namespace AISenses.VisionSystems
                     TargetArray = TargetEntityQuery.ToComponentDataArray<AITarget>(Allocator.TempJob),
                     TargetPosition = TargetEntityQuery.ToComponentDataArray <LocalToWorld>(Allocator.TempJob),
                     TargetEntity = TargetEntityQuery.ToEntityArray(Allocator.TempJob),
+                    BelongsTo = (1 << 11),
+                    CollidesWith = ((1 << 10) | (1 << 12)),
                 }.ScheduleSingle(SeerEntityQuery, systemDeps);
                 entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
                 systemDeps.Complete();
-                Dependency = systemDeps;
+            systemDeps = new VisionRayCastJob()
+            {
+                ScanBufferChunk = GetBufferTypeHandle<ScanPositionBuffer>(false),
+                TransformChunk = GetComponentTypeHandle<LocalToWorld>(true),
+                VisionChunk = GetComponentTypeHandle<Vision>(true),
+                physicsWorld = World.DefaultGameObjectInjectionWorld.GetExistingSystem<BuildPhysicsWorld>().PhysicsWorld,
+                world = collisionWorld,
+                TargetArray = TargetEntityQuery.ToComponentDataArray<AITarget>(Allocator.TempJob),
+                TargetPosition = TargetEntityQuery.ToComponentDataArray<LocalToWorld>(Allocator.TempJob),
+                TargetEntity = TargetEntityQuery.ToEntityArray(Allocator.TempJob),
+                BelongsTo = (1 << 10),
+                CollidesWith = ((1 << 11) | (1 << 12)),
+            }.ScheduleSingle(PlayersEntityQuery, systemDeps);
+            entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+            systemDeps.Complete();
+            Dependency = systemDeps;
 
         }
 
@@ -85,8 +108,9 @@ namespace AISenses.VisionSystems
           [DeallocateOnJobCompletion]  public NativeArray<AITarget> TargetArray;
             [DeallocateOnJobCompletion] public NativeArray<LocalToWorld> TargetPosition;
             [DeallocateOnJobCompletion] public NativeArray<Entity> TargetEntity;
-
-            [ReadOnly] public CollisionWorld world;
+            public uint CollidesWith;
+            public uint BelongsTo;
+        [ReadOnly] public CollisionWorld world;
             [ReadOnly] public PhysicsWorld physicsWorld;
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
             {
@@ -111,8 +135,8 @@ namespace AISenses.VisionSystems
                                     Start = transform.Position + new float3(0, 1, 0),
                                     End = TargetPosition[j].Position + TargetArray[j].CenterOffset,
                                     Filter = new CollisionFilter() {
-                                        BelongsTo = (1 << 10),
-                                        CollidesWith = ((1 << 10) | (1 << 11) | (1 << 12)),
+                                        BelongsTo =  BelongsTo,
+                                        CollidesWith = CollidesWith,
                                         GroupIndex = 0
                                     }
                                 };
