@@ -39,14 +39,6 @@ namespace DreamersInc.ComboSystem
             {
                 if (handler.InputQueue == null)
                     handler.InputQueue = new Queue<AnimationTrigger>();
-                EquipmentBase equipmentBase = anim.GetComponent<CharacterInventory>().Equipment;
-                WeaponSO So;
-                if (equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out So) || equipmentBase.EquippedWeapons.TryGetValue(WeaponSlot.Secondary, out So))
-                {
-                    handler.WeaponIsEquipped = true;
-                }
-                else
-                    handler.WeaponIsEquipped = false;
 
                 if (PC.InSafeZone)
                 {

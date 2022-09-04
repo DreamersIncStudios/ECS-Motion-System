@@ -1,4 +1,5 @@
 {
+    "Show": true,
     "Dependencies": [
         "GlobalObjectId_V1-1-6ab01ae3442d59147b335977a29a4537-93214019566545601-0"
     ],
@@ -15,7 +16,11 @@
             "BuildCurrentScene": true,
             "SceneInfos": [
                 {
-                    "Scene": "GlobalObjectId_V1-1-71d1fbf3c8babb440b1e45938c3d3e4d-102900000-0",
+                    "Scene": "GlobalObjectId_V1-1-99c9720ab356a0642a771bea13969a05-102900000-0",
+                    "AutoLoad": true
+                },
+                {
+                    "Scene": "GlobalObjectId_V1-1-d7432adbb74bb154481e3f02ebee298d-102900000-0",
                     "AutoLoad": true
                 }
             ]
@@ -23,8 +28,13 @@
         {
             "$type": "Unity.Build.Classic.ClassicBuildProfile, Unity.Build.Classic",
             "$version": 1,
-            "Platform": "win",
+            "Platform": "StandaloneWindows64",
             "Configuration": 1
+        },
+        {
+            "$type": "Unity.Build.Classic.ClassicCodeStrippingOptions, Unity.Build.Classic",
+            "StripEngineCode": true,
+            "ManagedStrippingLevel": 2
         }
     ]
 }

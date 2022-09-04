@@ -37,7 +37,7 @@ MonoBehaviour:
   maxDurable: 0
   breakable: 0
   _upgradeable: 1
-  _sheathedPos: {x: 0, y: 0.175, z: 0.1}
-  _heldPos: {x: 0, y: 0, z: -0.002}
+  _sheathedPos: {x: 0, y: 0, z: -0.002}
+  _heldPos: {x: -0.00448, y: 0.001102, z: 0.00311}
   _sheathedRot: {x: 0, y: 0, z: 0}
-  _heldRot: {x: 88, y: 0, z: 0}
+  _heldRot: {x: 83.15, y: -17.688, z: -139.351}

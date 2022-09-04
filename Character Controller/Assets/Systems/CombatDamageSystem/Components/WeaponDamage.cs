@@ -51,7 +51,7 @@ namespace DreamersInc.DamageSystem
         public BaseCharacter Stats { get { return GetComponentInParent<BaseCharacter>(); } }
         public int DamageAmount()
         {
-            return Mathf.RoundToInt(BaseDamage * randomMod * critMod);
+            return Mathf.RoundToInt(BaseDamage * randomMod );
         }
 
         public void SetDamageBool(bool value)
@@ -113,7 +113,8 @@ namespace DreamersInc.DamageSystem
             {
                 hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
                 hit.ReactToHit(.5f, transform.root.position, transform.root.forward);
-                OnHitAction.Invoke();
+                if(OnHitAction != null)
+                    OnHitAction.Invoke();
             }
         }
     }

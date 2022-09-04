@@ -8,21 +8,21 @@ using System;
 namespace DreamersInc.ComboSystem.NPC
 {
 
-    public class NPCComboComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity
+    public class NPCComboComponentAuthoring : MonoBehaviour
     {
         public ComboSO Combo;
-        public Command command;
+
 
         Entity entity;
-
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public void SetupDataEntity(Entity entity)
         {
-
-            this.entity = entity;
-            dstManager.AddComponentData(entity, command);
-
-
+            EntityManager dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            dstManager.SetComponentData(entity, new NPCComboComponent()
+            {
+                Combo = Instantiate(Combo)
+            });
         }
+
 
         public async void Setup()
         {
@@ -30,9 +30,8 @@ namespace DreamersInc.ComboSystem.NPC
             EntityManager dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             ComboSO temp = Instantiate(Combo);
             temp.UpdateTotalProbability();
-            var data = new NPCComboComponent() { combo = temp };
+            var data = new NPCComboComponent() { Combo = temp };
             dstManager.AddComponentData(entity, data);
-            dstManager.AddComponentData(entity, command);
 
         }
 
@@ -41,6 +40,6 @@ namespace DreamersInc.ComboSystem.NPC
     }
     public class NPCComboComponent : IComponentData
     {
-        public ComboSO combo;
+        public ComboSO Combo;
     }
 }

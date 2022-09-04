@@ -13,7 +13,6 @@ namespace MotionSystem.Archetypes
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(UnityEngine.CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(NavMeshAgent))]
 
 
     public class CharacterControl : MonoBehaviour
@@ -23,7 +22,7 @@ namespace MotionSystem.Archetypes
         public bool Party;
         public bool IsPlayer;
         public bool CombatCapable;
-        NavMeshAgent Agent => GetComponent<NavMeshAgent>();
+       // NavMeshAgent Agent => GetComponent<NavMeshAgent>();
         CapsuleCollider Col => GetComponent<CapsuleCollider>();
         public ControllerScheme Scheme;
         Rigidbody RB => GetComponent<Rigidbody>();
@@ -87,7 +86,7 @@ namespace MotionSystem.Archetypes
             {
                 if (IsPlayer)
                 {
-                    Agent.enabled = false;
+                   // Agent.enabled = false;
                     var player = new Player_Control() { };
                     em.AddComponentData(entity, player);
                 }
