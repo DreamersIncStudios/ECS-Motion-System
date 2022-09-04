@@ -47,8 +47,15 @@ namespace MotionSystem.System {
                 }
                 else
                 {
-                    Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
-                    Control.V = CrossPlatformInputManager.GetAxis("Vertical");
+                    if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")) > .1f)
+                        Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
+                    else
+                        Control.H = 0.0f;
+                    if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Vertical")) > 0.1f)
+                        Control.V = CrossPlatformInputManager.GetAxis("Vertical");
+                    else
+                        Control.V = 0.0f;
+
                     m_Crouching = Input.GetKey(KeyCode.C);
 
                     if (!PCC.InSafeZone) {

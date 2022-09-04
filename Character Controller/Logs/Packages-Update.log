@@ -62,3 +62,28 @@ The following packages were updated:
   com.unity.cinemachine from version 2.6.15 to 2.8.4
   com.unity.render-pipelines.universal from version 10.9.0 to 12.1.7
   com.unity.visualscripting from version 1.7.6 to 1.7.8
+
+=== Sat Jul  9 10:44:17 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.burst from version 1.6.5 to 1.6.6
+  com.unity.ide.rider from version 3.0.14 to 3.0.15
+
+=== Sat Jul 30 14:26:52 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.15.18 to 1.17.1
+
+=== Sat Sep  3 08:07:10 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.17.1 to 1.17.2

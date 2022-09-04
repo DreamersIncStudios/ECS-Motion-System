@@ -8,9 +8,13 @@ using Dreamers.InventorySystem;
 
 namespace DreamersInc.DamageSystem
 {
-   // [RequireComponent(typeof(MeshCollider))]
+    // [RequireComponent(typeof(MeshCollider))]
     public class WeaponDamage : MonoBehaviour, IDamageDealer
     {
+        public Action OnHitAction { get; set; }
+        public Action ChanceCheck { get; set; }
+        public Action CriticalEventCheck { get; set; }
+       
         public int BaseDamage
         {
             get
@@ -20,15 +24,16 @@ namespace DreamersInc.DamageSystem
                 {
                     TypeOfDamage.MagicAoE => Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue,
                     TypeOfDamage.Projectile => Stats.GetStat((int)StatName.Ranged_Offence).AdjustBaseValue,
-                    TypeOfDamage.Melee =>Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
+                    TypeOfDamage.Melee => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                     _ => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
                 };
                 return output;
             }
         }
         public float CriticalHitMod => CriticalHit ? Random.Range(1.5f, 2.15f) : 1;
-        private float randomMod => Random.Range(.85f, 1.15f)
-; public bool CriticalHit
+        private float randomMod => Random.Range(.85f, 1.15f);
+        
+        public bool CriticalHit
         {
             get
             {
@@ -46,7 +51,7 @@ namespace DreamersInc.DamageSystem
         public BaseCharacter Stats { get { return GetComponentInParent<BaseCharacter>(); } }
         public int DamageAmount()
         {
-            return Mathf.RoundToInt(BaseDamage * randomMod * CriticalHitMod);
+            return Mathf.RoundToInt(BaseDamage * randomMod );
         }
 
         public void SetDamageBool(bool value)
@@ -68,24 +73,36 @@ namespace DreamersInc.DamageSystem
         IDamageable self;
         public WeaponSlot weaponType;
 
-        void Awake() {
+        void Awake()
+        {
 
         }
 
         // Use this for initialization
         void Start()
         {
-      
-            
+
+
             if (GetComponent<Collider>())
             {
                 TypeOfDamage = TypeOfDamage.Melee;
                 GetComponent<Collider>().isTrigger = true;
                 self = GetComponentInParent<IDamageable>();
             }
-            else {
-                throw new ArgumentNullException(nameof(gameObject),$"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
+            else
+            {
+                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
             }
+        }
+
+        float critMod;
+        public void CheckChance()
+        {
+            critMod = CriticalHitMod;
+            if (critMod != 1) { 
+                CriticalEventCheck();
+            }
+            ChanceCheck.Invoke();
         }
 
         public void OnTriggerEnter(Collider other)
@@ -96,6 +113,8 @@ namespace DreamersInc.DamageSystem
             {
                 hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
                 hit.ReactToHit(.5f, transform.root.position, transform.root.forward);
+                if(OnHitAction != null)
+                    OnHitAction.Invoke();
             }
         }
     }

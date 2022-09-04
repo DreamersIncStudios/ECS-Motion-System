@@ -36,7 +36,7 @@ namespace MotionSystem.Systems
             this.RegisterPhysicsRuntimeSystemReadWrite();
 
         }
-    
+
         protected override void OnUpdate()
         {
             CollisionWorld collisionWorld = World.DefaultGameObjectInjectionWorld.GetExistingSystem<BuildPhysicsWorld>().PhysicsWorld.CollisionWorld;
@@ -82,7 +82,7 @@ namespace MotionSystem.Systems
                         Filter = new CollisionFilter
                         {
                             BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6)),
+                            CollidesWith = ((1 << 6) | (1 << 9)),
                             GroupIndex = -1
                         }
                     });
@@ -93,7 +93,7 @@ namespace MotionSystem.Systems
                         Filter = new CollisionFilter
                         {
                             BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6)),
+                            CollidesWith = ((1 << 6) | (1 << 9)),
                             GroupIndex = -1
                         }
                     });
@@ -104,7 +104,7 @@ namespace MotionSystem.Systems
                         Filter = new CollisionFilter
                         {
                             BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6)),
+                            CollidesWith = ((1 << 6) | (1 << 9)),
                             GroupIndex = 0
                         }
                     });
@@ -115,7 +115,7 @@ namespace MotionSystem.Systems
                         Filter = new CollisionFilter
                         {
                             BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6)),
+                            CollidesWith = ((1 << 6) | (1 << 9)),
                             GroupIndex = 0,
                         }
                     });
@@ -126,7 +126,7 @@ namespace MotionSystem.Systems
                         Filter = new CollisionFilter
                         {
                             BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6)),
+                            CollidesWith = ((1 << 6) | (1 << 9)),
                             GroupIndex = 0
                         }
                     });

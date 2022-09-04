@@ -4,6 +4,7 @@ using DreamersInc.CombatSystem.Animation;
 
 namespace DreamersInc.ComboSystem
 {
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public class ReactToHitSystem : ComponentSystem
     {
 
@@ -14,6 +15,7 @@ namespace DreamersInc.ComboSystem
             Entities.ForEach((Entity entity, ref ReactToContact contact, Animator anim, Rigidbody rb) => {
                 //Todo Add check to see if we can interrupt 
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);
+                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
                 if (contact.HitIntensity < 5)
                 {
                     switch (dir)
@@ -50,7 +52,7 @@ namespace DreamersInc.ComboSystem
                             break;
                     }
                 }
-                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
+
                 EntityManager.RemoveComponent<ReactToContact>(entity);
             });
         }

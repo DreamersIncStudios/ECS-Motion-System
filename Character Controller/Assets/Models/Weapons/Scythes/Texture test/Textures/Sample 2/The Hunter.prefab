@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.51044273, y: 0.000030040741, z: 0.94548607}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9192657041853178902}
   m_Father: {fileID: 0}
@@ -57,6 +58,7 @@ Transform:
   m_LocalRotation: {x: 0.02491723, y: 0.14131272, z: 0.9746164, w: -0.17185107}
   m_LocalPosition: {x: -0.03, y: 0.075, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6744255180446752403}
   - {fileID: 7321830241975738983}
@@ -94,6 +96,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.30744702, y: 0, z: -0.57345796}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9192657041853178902}
   m_RootOrder: 0
@@ -117,6 +120,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -156,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3010060826189222605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848ac39abe4fc844782e9c925ba18bb2, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbb1d0ed458f0346b5214b20e707515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
@@ -190,6 +194,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.19088945, z: -0, w: 0.98161155}
   m_LocalPosition: {x: 0.077665046, y: 0, z: 0.21576348}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9192657041853178902}
   m_RootOrder: 2
@@ -213,6 +218,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -252,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3989679467706172058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848ac39abe4fc844782e9c925ba18bb2, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbb1d0ed458f0346b5214b20e707515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
@@ -288,6 +294,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.19088945, z: -0, w: 0.98161155}
   m_LocalPosition: {x: -0.50254256, y: 0, z: -0.36222836}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9192657041853178902}
   m_RootOrder: 1
@@ -311,6 +318,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -367,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f578592804bc646b11153598dc3fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
 --- !u!114 &8500107414205190817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +385,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7040805074091826871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848ac39abe4fc844782e9c925ba18bb2, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbb1d0ed458f0346b5214b20e707515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
@@ -410,6 +419,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.19088945, z: -0, w: 0.98161155}
   m_LocalPosition: {x: -0.041470435, y: 0, z: -0.1105687}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9192657041853178902}
   m_RootOrder: 3
@@ -433,6 +443,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -473,7 +484,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8793374787969381131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848ac39abe4fc844782e9c925ba18bb2, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbb1d0ed458f0346b5214b20e707515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}

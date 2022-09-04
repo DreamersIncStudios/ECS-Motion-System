@@ -8,6 +8,8 @@ using DreamersStudio.CameraControlSystem;
 using Global.Component;
 using Unity.Collections;
 using AISenses.VisionSystems.Combat;
+using System.ComponentModel;
+
 namespace AISenses.VisionSystems
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
@@ -72,13 +74,14 @@ namespace AISenses.VisionSystems
                     GameObject temp = null;
                     if (!looking)
                     {
-                        temp = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID);
+                      
+                        temp = EntityManager.GetComponentObject<Transform>(buffer[index].target.entity).gameObject;
                         if (CameraControl.Instance.OnTargetChanged != null)
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target =(GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
-                            });
+                                Target = EntityManager.GetComponentObject<Transform>(buffer[index].target.entity).gameObject
+                    });
                         }
                         looking = true;
                     }
@@ -93,9 +96,8 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target =
-                            (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
-                            });
+                                Target = EntityManager.GetComponentObject<Transform>(buffer[index].target.entity).gameObject
+                    });
                         }
                            
                     }
@@ -110,8 +112,8 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target = (GameObject)FindObjectFromInstanceID(Target[buffer[index].target.entity].GetInstanceID)
-                            });
+                                Target = EntityManager.GetComponentObject<Transform>(buffer[index].target.entity).gameObject
+                    });
                         }
                     }
                 }

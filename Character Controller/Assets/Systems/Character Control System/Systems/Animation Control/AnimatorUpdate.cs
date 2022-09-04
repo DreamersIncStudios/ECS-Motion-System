@@ -15,20 +15,20 @@ using DreamersInc.ComboSystem;
 namespace MotionSystem.System
 {
 
-     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
-    public class AnimatorUpdate : ComponentSystem
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    public partial class AnimatorUpdate : SystemBase
     {
-
-
         const float k_Half = 0.5f;
         bool IsNotTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") < .3f;
+
+        EntityQuery characterQuery;
 
         protected override void OnUpdate()
         {
 
+         
 
-            Entities.ForEach((ref CharControllerE control, Transform transform, Animator Anim, Rigidbody RB) =>
-            {
+            Entities.WithoutBurst().ForEach(( Animator Anim, Transform transform, Rigidbody RB,ref CharControllerE control) => {
                 float m_TurnAmount;
                 float m_ForwardAmount;
 
@@ -50,7 +50,7 @@ namespace MotionSystem.System
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target!= null)
+                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
                             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
@@ -78,7 +78,6 @@ namespace MotionSystem.System
 
 
                 // Animator Updater
-
                 // update the animator parameters
                 Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.fixedDeltaTime);
                 Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
@@ -131,30 +130,30 @@ namespace MotionSystem.System
                     if (control.TimerForEquipReset < 0.0f)
                     {
                         control.TimerForEquipReset = 0.0f;
-                        Anim.SetBool("Weapon In Hand",false);
+                        Anim.SetBool("Weapon In Hand", false);
                     }
                 }
-           
 
 
 
-            });
+            }).Run();
 
-
-            Entities.ForEach((ref CharControllerE Control, CapsuleCollider capsule) =>
+            Entities.WithoutBurst().WithChangeFilter<CharControllerE>().ForEach(( CapsuleCollider capsule, ref CharControllerE Control) =>
             {
 
                 capsule.center = Control.CapsuleCenter;
                 capsule.height = Control.CapsuleHeight;
 
-            });
+            }).Run();
+
         }
-        void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB) {
+        void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB)
+        {
             if (control.Jump && !control.Crouch)
             {
-                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation"))
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation0"))
                 {
                     // jump!
                     Anim.applyRootMotion = false;
@@ -177,6 +176,8 @@ namespace MotionSystem.System
             control.ApplyRootMotion;
 
         }
-
     }
+
+ 
+
 }

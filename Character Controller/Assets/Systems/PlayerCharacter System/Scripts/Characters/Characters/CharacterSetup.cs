@@ -34,8 +34,8 @@ namespace Stats
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Speed).BaseValue = (int)(CharClass.Speed * ModValue);
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Luck).BaseValue = (int)(CharClass.Luck * ModValue);
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Concentration).BaseValue = (int)(CharClass.Concentration * ModValue);
-            CharacterStats.GetVital((int)VitalName.Health).BaseValue = 50;
-            CharacterStats.GetVital((int)VitalName.Mana).BaseValue = 25;
+            CharacterStats.GetVital((int)VitalName.Health).StartValue = 500;
+            CharacterStats.GetVital((int)VitalName.Mana).StartValue = 250;
             await Task.Delay(TimeSpan.FromSeconds(2));
 
             CharacterStats.StatUpdate();

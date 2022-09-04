@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Stats;
+using System;
+
 namespace DreamersInc.DamageSystem.Interfaces
 {
     public interface IDamageDealer 
@@ -19,5 +21,8 @@ namespace DreamersInc.DamageSystem.Interfaces
         int DamageAmount();
         bool DoDamage { get; }
         void SetDamageBool(bool value);
+        public Action OnHitAction { get; set; }
+        public Action ChanceCheck { get; set; }
+        Action CriticalEventCheck { get; set; }
     }
 }
