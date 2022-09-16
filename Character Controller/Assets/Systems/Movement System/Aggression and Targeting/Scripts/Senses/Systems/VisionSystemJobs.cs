@@ -36,13 +36,8 @@ namespace AISenses.VisionSystems
             base.OnCreate();
             SeerEntityQuery = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) },
-                None = new ComponentType[] { ComponentType.ReadOnly(typeof(PlayerStatComponent))}
-            });
-            PlayersEntityQuery = GetEntityQuery(new EntityQueryDesc()
-            {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)) },
-                None = new ComponentType[] { ComponentType.ReadOnly(typeof(NPCStats)), ComponentType.ReadOnly(typeof(EnemyStats)) }
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Vision)), ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(ScanPositionBuffer)),
+                        ComponentType.ReadOnly(typeof(PhysicsInfo))},
             });
             TargetEntityQuery = GetEntityQuery(new EntityQueryDesc()
             {
@@ -75,26 +70,11 @@ namespace AISenses.VisionSystems
                     TargetArray = TargetEntityQuery.ToComponentDataArray<AITarget>(Allocator.TempJob),
                     TargetPosition = TargetEntityQuery.ToComponentDataArray <LocalToWorld>(Allocator.TempJob),
                     TargetEntity = TargetEntityQuery.ToEntityArray(Allocator.TempJob),
-                    BelongsTo = (1 << 11),
-                    CollidesWith = ((1 << 10) | (1 << 12)),
+                    PhysicsInfoChunk = GetComponentTypeHandle<PhysicsInfo>(true),
                 }.ScheduleSingle(SeerEntityQuery, systemDeps);
                 entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
                 systemDeps.Complete();
-            systemDeps = new VisionRayCastJob()
-            {
-                ScanBufferChunk = GetBufferTypeHandle<ScanPositionBuffer>(false),
-                TransformChunk = GetComponentTypeHandle<LocalToWorld>(true),
-                VisionChunk = GetComponentTypeHandle<Vision>(true),
-                physicsWorld = World.DefaultGameObjectInjectionWorld.GetExistingSystem<BuildPhysicsWorld>().PhysicsWorld,
-                world = collisionWorld,
-                TargetArray = TargetEntityQuery.ToComponentDataArray<AITarget>(Allocator.TempJob),
-                TargetPosition = TargetEntityQuery.ToComponentDataArray<LocalToWorld>(Allocator.TempJob),
-                TargetEntity = TargetEntityQuery.ToEntityArray(Allocator.TempJob),
-                BelongsTo = (1 << 10),
-                CollidesWith = ((1 << 11) | (1 << 12)),
-            }.ScheduleSingle(PlayersEntityQuery, systemDeps);
-            entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
-            systemDeps.Complete();
+
             Dependency = systemDeps;
 
         }
@@ -108,14 +88,14 @@ namespace AISenses.VisionSystems
           [DeallocateOnJobCompletion]  public NativeArray<AITarget> TargetArray;
             [DeallocateOnJobCompletion] public NativeArray<LocalToWorld> TargetPosition;
             [DeallocateOnJobCompletion] public NativeArray<Entity> TargetEntity;
-            public uint CollidesWith;
-            public uint BelongsTo;
+            [ReadOnly] public ComponentTypeHandle<PhysicsInfo> PhysicsInfoChunk;
         [ReadOnly] public CollisionWorld world;
             [ReadOnly] public PhysicsWorld physicsWorld;
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
             {
                 NativeArray<LocalToWorld> Transforms = chunk.GetNativeArray(TransformChunk);
                 NativeArray<Vision> Visions = chunk.GetNativeArray(VisionChunk);
+                NativeArray<PhysicsInfo> physicsInfos = chunk.GetNativeArray(PhysicsInfoChunk);
                 BufferAccessor<ScanPositionBuffer> bufferAccessor = chunk.GetBufferAccessor(ScanBufferChunk);
                 for (int i = 0; i < chunk.Count; i++)
                 {
@@ -135,8 +115,8 @@ namespace AISenses.VisionSystems
                                     Start = transform.Position + new float3(0, 1, 0),
                                     End = TargetPosition[j].Position + TargetArray[j].CenterOffset,
                                     Filter = new CollisionFilter() {
-                                        BelongsTo =  BelongsTo,
-                                        CollidesWith = CollidesWith,
+                                        BelongsTo = physicsInfos[i]. BelongsTo.Value,
+                                        CollidesWith = physicsInfos[i].CollidesWith.Value,
                                         GroupIndex = 0
                                     }
                                 };

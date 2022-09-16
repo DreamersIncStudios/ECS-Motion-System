@@ -3,7 +3,6 @@ using Unity.Entities;
 using UnityEngine.AI;
 using MotionSystem.Components;
 using Components.MovementSystem;
-using ECS.Utilities;
 //using ControllerSwap;
 using Unity.Mathematics;
 

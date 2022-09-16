@@ -17,6 +17,8 @@ using UnityEngine.AI;
 using Unity.Physics;
 using Unity.Physics.Authoring;
 using Unity.Mathematics;
+using BestiaryLibrary;
+
 namespace GameCoreCode
 {
     public class SpawnEnemy : MonoBehaviour
@@ -46,8 +48,12 @@ namespace GameCoreCode
             SpawnEnemyAndCreateEntityData(0, new Vector3(4, 0, 25));
             SpawnEnemyAndCreateEntityData(0, new Vector3(6, 0, 25));
             SpawnEnemyAndCreateEntityData(0, new Vector3(8, 0, 25));
+            int towercnt = new int();
+            BestiaryDB.SpawnTowerAndCreateEntityData(new Vector3(0,0,40),
+                new PhysicsInfo { BelongsTo = this.belongsTo, CollidesWith = this.collideWith},
+                $"Tower {towercnt}");
         }
-        public unsafe Entity SpawnEnemyAndCreateEntityData(int choice, Vector3 SpawnPosition)
+        public  Entity SpawnEnemyAndCreateEntityData(int choice, Vector3 SpawnPosition)
         {
             if (choice > EnemyModels.Count)
             {
@@ -70,7 +76,9 @@ namespace GameCoreCode
                   typeof(ScanPositionBuffer),
                   typeof(Movement),
                   typeof(PhysicsCollider),
-                  typeof(PhysicsWorldIndex)
+                  typeof(PhysicsWorldIndex),
+                  typeof(PhysicsInfo)
+
                   );
 
             Entity EnemyDataEntity = em.CreateEntity(playerDataArch);
@@ -117,9 +125,14 @@ namespace GameCoreCode
                 GroupIndex = 0
             }
             );
+            
             em.SetComponentData(EnemyDataEntity, new PhysicsCollider()
             { Value = spCollider });
-
+            em.SetComponentData(EnemyDataEntity, new PhysicsInfo
+            {
+                BelongsTo = belongsTo,
+                CollidesWith = collideWith,
+            });
 
             em.AddComponentObject(EnemyDataEntity, spawnedGO.GetComponent<Animator>());
             em.AddComponentObject(EnemyDataEntity, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
@@ -136,5 +149,8 @@ namespace GameCoreCode
 
             return EnemyDataEntity;
         }
+        
+    
+    
     }
 }

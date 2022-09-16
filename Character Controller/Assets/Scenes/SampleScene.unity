@@ -663,7 +663,7 @@ MonoBehaviour:
     Category07: 0
     Category08: 0
     Category09: 0
-    Category10: 1
+    Category10: 0
     Category11: 1
     Category12: 1
     Category13: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
     Category08: 0
     Category09: 0
     Category10: 1
-    Category11: 1
+    Category11: 0
     Category12: 1
     Category13: 0
     Category14: 0
@@ -1038,12 +1038,12 @@ PrefabInstance:
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -3e-45
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 8451149170304742556, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1e-45
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 8802926159821762245, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
