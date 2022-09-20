@@ -62,23 +62,35 @@
     <Analyzer Include="E:\Main Game Folder\ECS Motion System\Character Controller\Library\PackageCache\com.unity.entities@0.51.1-preview.21\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.AuthoringComponent.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\Hovl_Laser2.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\ParticleCollisionInstance.cs" />
     <Compile Include="Assets\Systems\Closer.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalWindow.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\Spawner.cs" />
     <Compile Include="Assets\LookHereTarget.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\ProjectileMover2D.cs" />
     <Compile Include="Assets\Systems\PhysicSystemLink.cs" />
     <Compile Include="Assets\Systems\Game Code\Scripts\SpawnEnemy.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\DisplayComboModal.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\HittedObject.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ItemModalWindow.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\Rotator.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\EGA_EffectSound.cs" />
     <Compile Include="Assets\TransitionBackToNormal.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\AutoDestroyPS.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\DisplayCharacterUI.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\Hovl_Laser.cs" />
     <Compile Include="Assets\Systems\ReparentAndLinkEntity.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\Hovl_LaserDemo.cs" />
     <Compile Include="Assets\Systems\Game Code\Scripts\SpawnNPCs.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\EnemySetup.cs" />
+    <Compile Include="Assets\Hovl Studio\Sword slash VFX\Demo scene\CameraHolder.cs" />
     <Compile Include="Assets\Systems\Game Code\Scripts\SpawnPlayer.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\CharacterStatModal.cs" />
     <Compile Include="Assets\Models\Weapons\DissolveSingle.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\ProjectileMover.cs" />
+    <Compile Include="Assets\Hovl Studio\Resources\Scripts\Hovl_DemoLasers.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalMenu.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ModalSelectionWindow.cs" />
     <Compile Include="Assets\PlayerCharacterRep.cs" />
@@ -87,35 +99,60 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Demo scene\HDRP and URP.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\Hovl Studio\AAA Projectiles Vol 1\Prefabs\Readme.txt" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Lit_CenterGlow.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\SmoothSmoke.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\DissolveNoise.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\Add_Fresnel.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\Ice.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Distortion.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Blend_TwoSides.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Electricity.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Blend_CenterGlow.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Blend_Normals.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Demo scene\Readme.txt" />
+    <None Include="Assets\Hovl Studio\AOE Magic spells Vol.1\Prefabs\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Resources\VFX\Combo Damage.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\LightGlow.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\Lightning.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Hovl Studio\Magic circles\Prefabs\Loop version\How to use.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\BlendDistort.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\license.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\AddTrail.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\Scroll.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Hovl Studio\Resources\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Hovl Studio\Resources\Scripts\Readme.txt" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\Explosion.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Hovl Studio\Sword slash VFX\Shaders\SwordSlash.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -755,6 +792,10 @@
       <Project>{D04CE9B3-FD48-7EB4-7A45-7CC53FF6E7E1}</Project>
       <Name>CharacterControl.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="BestiaryAssem.Player.csproj">
+      <Project>{971AB215-A0F8-EEEB-5D97-6AB1C61A32C6}</Project>
+      <Name>BestiaryAssem.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
       <Project>{A0ED3D6A-9B2C-98BD-6C6B-FF27CC35B5C3}</Project>
       <Name>Unity.TextMeshPro.Player</Name>
@@ -826,6 +867,10 @@
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.Player.csproj">
       <Project>{EAE71C35-1F07-2B65-85B0-EC55D5514085}</Project>
       <Name>Unity.RenderPipelines.Universal.Shaders.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProBuilder.Player.csproj">
+      <Project>{8A2C3D82-C597-3A07-C910-AA3750B4B2CE}</Project>
+      <Name>Unity.ProBuilder.Player</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
       <Project>{4DB91BEE-4EB1-7E67-8152-EA77CA891C95}</Project>
@@ -902,14 +947,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
       <Project>{C125286C-E12B-F994-215D-7472FF4ACF5C}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="BestiaryAssem.Player.csproj">
-      <Project>{971AB215-A0F8-EEEB-5D97-6AB1C61A32C6}</Project>
-      <Name>BestiaryAssem.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.ProBuilder.Player.csproj">
-      <Project>{8A2C3D82-C597-3A07-C910-AA3750B4B2CE}</Project>
-      <Name>Unity.ProBuilder.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

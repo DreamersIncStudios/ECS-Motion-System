@@ -102,7 +102,7 @@ namespace BestiaryLibrary
             #region Stats
             EnemyCharacter stats = spawnedGO.GetComponent<EnemyCharacter>();
             stats.SetupDataEntity(npcDataEntity);
-            StaticObjectController controller = spawnedGO.GetComponent<StaticObjectController>();
+            StaticObjectControllerAuthoring controller = spawnedGO.GetComponent<StaticObjectControllerAuthoring>();
             controller.SetupControllerEntityData(npcDataEntity);
             #endregion
             #region detection 
