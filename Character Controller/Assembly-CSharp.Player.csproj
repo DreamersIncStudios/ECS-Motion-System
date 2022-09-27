@@ -101,6 +101,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Hovl Studio\Sword slash VFX\Demo scene\HDRP and URP.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Hovl Studio\Render Pipelines support\Shaders\URP_LightGlow.shader" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 1\Prefabs\Readme.txt" />
     <None Include="Assets\Paid Asset\Animations\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />

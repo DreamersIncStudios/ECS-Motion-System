@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
-using MotionSystem.VFX;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DreamerInc.CombatSystem
 {
@@ -60,14 +60,22 @@ namespace DreamerInc.CombatSystem
                 Destroy(item.gameObject);
             }
         }
-        public void PlayVFX(int ID, Vector3 Pos, Vector3 Rot) {
+        public void PlayVFX(int ID, Vector3 Pos, Vector3 Rot, float DelayStart = 0.0f, float lifeTime=0.0f) {
             if (!VFXLoaded) {
                 DestoryVFXPool();
                 loadVFX();
             }
-            GetVFX(ID).Play(Pos, Rot, 5 ,1);
+            GetVFX(ID).Play(Pos, Rot, DelayStart ,lifeTime);
         }
-
+        public void PlayVFX(int ID, Vector3 Pos,  float lifeTime = 0.0f)
+        {
+            if (!VFXLoaded)
+            {
+                DestoryVFXPool();
+                loadVFX();
+            }
+            GetVFX(ID).Play(Pos,  lifeTime);
+        }
         public VFXInfo GetVFX(int id) {
             VFXInfo temp = new VFXInfo();
             foreach (var item in vfxInfos)
@@ -108,30 +116,82 @@ namespace DreamerInc.CombatSystem
         public async void Play(Vector3 pos, Vector3 rot, float DelayStart, float lifeTime) {
 
             bool played = false;
-            Start:
+            //Start:
             for (int i = 0; i < Instances.Count ; i++)
             {
                 if (!Instances[i].activeSelf)
                 {
                     var vfx = Instances[i];
                     vfx.transform.SetPositionAndRotation(pos, Quaternion.Euler(rot));
-                    ParticleSystem.MainModule PS = vfx.GetComponent<ParticleSystem>().main;
-                    PS.startDelay = DelayStart;
+                    ParticleSystem PS = vfx.GetComponent<ParticleSystem>();               
                     vfx.gameObject.SetActive(true);
-                    //TriggerPlay;
+                    await Task.Delay(TimeSpan.FromMilliseconds(DelayStart));
+                    PS.Play(true);
+                  //  TriggerPlay;
                     await Task.Delay(TimeSpan.FromSeconds(lifeTime));
-                    //PS.
+                    PS.Stop(true);
                     vfx.gameObject.SetActive(false);
                     played = true;
+                    break;
+                }
+            }
+            if (!played)
+            {
+              GrowPool();
+                var vfx = Instances.Last();
+                vfx.transform.SetPositionAndRotation(pos, Quaternion.Euler(rot));
+                ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
+                vfx.gameObject.SetActive(true);
+                await Task.Delay(TimeSpan.FromMilliseconds(DelayStart));
+                PS.Play(true);
+                //  TriggerPlay;
+                await Task.Delay(TimeSpan.FromSeconds(lifeTime));
+                PS.Stop(true);
+                vfx.gameObject.SetActive(false);
+                played = true;
+            }
+        }
+        /// <summary>
+        /// Play Instanace of VFX at give position
+        /// </summary>
+        /// <param name="pos"> Position to Play VFX</param>
+        /// <param name="lifeTime">Duration of VFX</param>
+        public async void Play(Vector3 pos, float lifeTime = 5.0f )
+        {
+
+            bool played = false;
+            //Start:
+            for (int i = 0; i < Instances.Count; i++)
+            {
+                if (!Instances[i].activeSelf)
+                {
+                    var vfx = Instances[i];
+                    vfx.transform.position = pos;
+                    ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
+                    vfx.gameObject.SetActive(true);
+                    PS.Play(true);
+                    //  TriggerPlay;
+                    await Task.Delay(TimeSpan.FromSeconds(lifeTime));
+                    PS.Stop(true);
+                    vfx.gameObject.SetActive(false);
+                    played = true;
+                    break;
                 }
             }
             if (!played)
             {
                 GrowPool();
-                goto Start;
+                var vfx = Instances.Last();
+                vfx.transform.position = pos;
+                ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
+                vfx.gameObject.SetActive(true);
+                PS.Play(true);
+                //  TriggerPlay;
+                await Task.Delay(TimeSpan.FromSeconds(lifeTime));
+                PS.Stop(true);
+                vfx.gameObject.SetActive(false);
+                played = true;
             }
-
-            
         }
     }
 }

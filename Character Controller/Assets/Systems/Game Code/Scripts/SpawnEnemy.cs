@@ -49,7 +49,7 @@ namespace GameCoreCode
             SpawnEnemyAndCreateEntityData(0, new Vector3(6, 0, 25));
             SpawnEnemyAndCreateEntityData(0, new Vector3(8, 0, 25));
             int towercnt = new int();
-            BestiaryDB.SpawnTowerAndCreateEntityData(new Vector3(0,0,40),
+            BestiaryDB.SpawnTowerAndCreateEntityDataWithVFX(new Vector3(0,0,40),
                 new PhysicsInfo { BelongsTo = this.belongsTo, CollidesWith = this.collideWith},
                 $"Tower {towercnt}");
         }

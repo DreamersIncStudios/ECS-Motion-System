@@ -17,10 +17,11 @@ namespace MotionSystem.System {
         const float k_Half = 0.5f;
         Transform m_mainCam;
 
-        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
 
         protected override void OnUpdate()
         {
+        
+
             if (m_mainCam == null)
             {
                 if (Camera.main != null)

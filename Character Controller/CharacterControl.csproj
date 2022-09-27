@@ -76,14 +76,13 @@
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\AnimationCombo.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Tower Control\DirectionSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ICombos.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Systems\VFX Systems\VFXManager.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\WeaponController.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\StaticObjectControllerAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\Authoring\CharacterControl.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\PlayerComboComponentAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ReactToHitSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\AnimatorSpeedUpdate.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Systems\VFX Systems\VFXManager.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Systems\VFX Systems\Components\VFXBuffer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Character Control System\Systems\Combat System\Combo Database\Combo List For  Dark Star Sword.txt" />

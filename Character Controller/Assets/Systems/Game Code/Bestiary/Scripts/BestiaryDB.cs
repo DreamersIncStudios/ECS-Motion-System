@@ -16,6 +16,9 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 using System.Linq;
 using Unity.Physics;
+using DreamerInc.CombatSystem;
+using Assets.Systems.Global.Function_Timer;
+using DG.Tweening;
 
 namespace BestiaryLibrary
 {
@@ -31,7 +34,18 @@ namespace BestiaryLibrary
             return modelFromResources;
         }
 
-      public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "") {
+
+        public static Entity SpawnTowerAndCreateEntityDataWithVFX(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "") {
+            VFXManager.Instance.PlayVFX(6,Position, 6);
+            Entity temp = new Entity();
+            FunctionTimer.Create(() => {
+                temp = SpawnTowerAndCreateEntityData(Position+ Vector3.down*5, physicsInfo,  out GameObject spawnGO, entityName);
+                spawnGO.transform.DOMoveY(Position.y+1.2f, 3);
+            }, 2  , "Spawn Tower");
+
+            return temp;
+        }
+      public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, out GameObject spawnedGO, string entityName = "") {
             EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             EntityArchetype npcDataArch = manager.CreateArchetype(
                typeof(Translation),
@@ -62,7 +76,7 @@ namespace BestiaryLibrary
             var Models = LoadModels("NPCs/Combat/Tower");
             int cnt = Random.Range(0, Models.Count);
             #region GameObject Setup
-            GameObject spawnedGO = GameObject.Instantiate(Models[cnt], Position, Quaternion.identity);
+            spawnedGO = GameObject.Instantiate(Models[cnt], Position, Quaternion.identity);
             manager.SetComponentData(npcDataEntity, new Translation { Value = Position });
             manager.AddComponentObject(npcDataEntity, spawnedGO.transform);
             if(spawnedGO.GetComponent<Animator>())

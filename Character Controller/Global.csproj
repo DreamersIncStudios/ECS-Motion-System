@@ -68,6 +68,7 @@
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\SMT\SMTOptions.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Player_Control.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\ReactiveSystem\ReactiveSystemBase.cs" />
+    <Compile Include="Assets\Systems\Global\Utilities\Scripts\Function Timer\FunctionalTimer.cs" />
     <Compile Include="Assets\Systems\Global\Generic Grid System\GridGeneric.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\Terrain Physics\DOTSTerrainCollider.cs" />
     <Compile Include="Assets\Systems\Global\Utilities\Scripts\ControlMaster.cs" />

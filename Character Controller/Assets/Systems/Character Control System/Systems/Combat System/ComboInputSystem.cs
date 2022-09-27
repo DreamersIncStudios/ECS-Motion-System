@@ -132,13 +132,15 @@ namespace DreamersInc.ComboSystem
 
                                 break;
                         }
+                        temp.AttackVFX.SpawnVFX(transform);
+
                     }
                     else {
 
                         anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
-               
-                    }
                     temp.AttackVFX.SpawnVFX(transform);
+
+                    }
                     if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
                     {
                         transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);

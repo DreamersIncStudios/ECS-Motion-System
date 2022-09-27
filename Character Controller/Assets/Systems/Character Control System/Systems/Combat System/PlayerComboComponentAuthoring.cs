@@ -17,7 +17,7 @@ namespace DreamersInc.ComboSystem
         {
             EntityManager dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             dstManager.SetComponentData(entity, new PlayerComboComponent() {
-                Combo = Instantiate(Combo)
+                Combo = Combo// Instantiate(Combo)
             });
         }
 

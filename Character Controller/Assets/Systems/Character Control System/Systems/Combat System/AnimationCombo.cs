@@ -81,7 +81,9 @@ namespace DreamersInc.ComboSystem
     [Serializable]
     public struct VFX {
         public int ID;
-        public Vector3 Pos, Rot;
+        public float Forward, Up;
+        public Vector3 Rot;
+        [Tooltip("Time in Milliseconds")]
         public float Delay;
         public float LifeTime;
         [Range(0,100)]
@@ -89,8 +91,10 @@ namespace DreamersInc.ComboSystem
         public void SpawnVFX(Transform CharacterTranform)
         {
             int prob = Mathf.RoundToInt(Random.Range(0, 99));
-            if(prob<ChanceToPlay)
-                VFXManager.Instance.PlayVFX(ID,CharacterTranform.position+Pos, CharacterTranform.rotation.eulerAngles+ Rot);
+            if (prob < ChanceToPlay) {
+                Vector3 forwardPos =CharacterTranform.forward * Forward + CharacterTranform.up*Up ;
+                VFXManager.Instance.PlayVFX(ID, CharacterTranform.position +forwardPos , CharacterTranform.rotation.eulerAngles + Rot, Delay, LifeTime);
+            } 
         }
     }
     
