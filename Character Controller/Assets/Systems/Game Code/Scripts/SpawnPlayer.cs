@@ -15,6 +15,7 @@ using AISenses.VisionSystems.Combat;
 using Unity.Physics;
 using Unity.Mathematics;
 using Unity.Physics.Authoring;
+using MotionSystem.CAD;
 
 namespace GameCoreCode
 {
@@ -50,6 +51,7 @@ namespace GameCoreCode
                   typeof(PlayerComboComponent),
                   typeof(CopyTransformFromGameObject),
                   typeof(AttackTarget),
+                  typeof(CasterTag),
                   typeof(ScanPositionBuffer),
                   typeof(PhysicsCollider),
                   typeof(PhysicsWorldIndex),

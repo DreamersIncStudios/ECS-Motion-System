@@ -47,7 +47,6 @@ namespace DreamerInc.CombatSystem
                 
                 VFXInfo temp = new VFXInfo();
                 temp.ID = int.Parse(parts[0]);
-                Debug.Log(parts[1].ToString());
                 temp.PoolObject = Resources.Load<GameObject>(parts[1]);
                 temp.CreatePool(this.gameObject);
                 vfxInfos.Add(temp);

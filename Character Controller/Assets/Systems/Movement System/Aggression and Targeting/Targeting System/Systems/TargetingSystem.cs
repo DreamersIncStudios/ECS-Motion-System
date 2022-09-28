@@ -48,7 +48,6 @@ namespace AISenses.VisionSystems
             if (Input.GetKeyUp(KeyCode.JoystickButton9))
             {
                 IsTargeting = !IsTargeting;
-                Debug.Log(IsTargeting);
             }
 
 

@@ -21,7 +21,6 @@ namespace MotionSystem.System
         const float k_Half = 0.5f;
         bool IsNotTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") < .3f;
 
-        EntityQuery characterQuery;
 
         protected override void OnUpdate()
         {
