@@ -40,7 +40,7 @@ namespace DreamersInc.ComboSystem
                 if (handler.InputQueue == null)
                     handler.InputQueue = new Queue<AnimationTrigger>();
 
-                if (PC.InSafeZone)
+                if (PC.InSafeZone || PC.Casting)
                 {
                 // add logic for play to store weapon
 

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Systems\Modal Window\Scripts\DisplayComboModal.cs" />
     <Compile Include="Assets\Hovl Studio\Resources\Scripts\HittedObject.cs" />
     <Compile Include="Assets\Systems\Modal Window\Scripts\ItemModalWindow.cs" />
+    <Compile Include="Assets\Systems\Modal Window\Scripts\QuickAccessMenu.cs" />
     <Compile Include="Assets\Systems\Sample Game Code\PlayerSetup.cs" />
     <Compile Include="Assets\Hovl Studio\Resources\Scripts\Rotator.cs" />
     <Compile Include="Assets\Hovl Studio\Resources\Scripts\EGA_EffectSound.cs" />

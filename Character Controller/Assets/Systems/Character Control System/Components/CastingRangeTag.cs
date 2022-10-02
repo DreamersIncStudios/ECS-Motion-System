@@ -33,6 +33,7 @@ namespace MotionSystem.CAD
         EntityQuery InCastingRange;
         EntityCommandBufferSystem entityCommandBufferSystem;
 
+
         protected override void OnCreate()
         {
             base.OnCreate();

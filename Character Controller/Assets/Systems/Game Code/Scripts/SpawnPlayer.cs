@@ -16,6 +16,7 @@ using Unity.Physics;
 using Unity.Mathematics;
 using Unity.Physics.Authoring;
 using MotionSystem.CAD;
+using Dreamers.Global;
 
 namespace GameCoreCode
 {
@@ -28,6 +29,7 @@ namespace GameCoreCode
         void Start()
         {
             SpawnPlayerAndCreateEntityData(0, Vector3.zero);
+            UIManager.instance.SpawnQuickAccessMenu();
 
         }
 

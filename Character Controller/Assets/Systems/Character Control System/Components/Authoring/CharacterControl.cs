@@ -50,7 +50,7 @@ namespace MotionSystem.Archetypes
         public void SetupDataEntity(Entity entity)
         {
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
-           em.SetComponentData (entity, new CharControllerE()
+            em.SetComponentData(entity, new CharControllerE()
             {
                 CapsuleRadius = Col.radius,
                 OGCapsuleHeight = Col.height,
@@ -69,9 +69,10 @@ namespace MotionSystem.Archetypes
                 IsGrounded = true,
                 AI = AI_Control,
                 CombatCapable = CombatCapable,
-                EquipResetTimer = EquipResetTimer
+                EquipResetTimer = EquipResetTimer,
+                AnimationSpeed = 1.0f
 
-            });
+            }) ;
 
             if (AI_Control)
             {

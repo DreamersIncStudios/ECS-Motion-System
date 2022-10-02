@@ -12,14 +12,13 @@ using UnityStandardAssets.CrossPlatformInput;
 using DreamersStudio.CameraControlSystem;
 using DreamersInc.ComboSystem;
 
-namespace MotionSystem.System
+namespace MotionSystem.Systems
 {
 
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial class AnimatorUpdate : SystemBase
     {
         const float k_Half = 0.5f;
-        bool IsNotTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") < .3f;
 
 
         protected override void OnUpdate()
@@ -28,6 +27,10 @@ namespace MotionSystem.System
          
 
             Entities.WithoutBurst().ForEach(( Animator Anim, Transform transform, Rigidbody RB,ref CharControllerE control) => {
+
+                if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+                    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
+
                 float m_TurnAmount;
                 float m_ForwardAmount;
 
@@ -38,7 +41,7 @@ namespace MotionSystem.System
                 m_ForwardAmount = control.Move.z;
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
-                if (IsNotTargeting)
+                if (control.Targetting)
                 {
                     float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
                     transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
@@ -85,7 +88,7 @@ namespace MotionSystem.System
                 if (control.CombatCapable)
                 {
                     Anim.SetBool("Weapon Drawn", control.EquipWeapon);
-                    Anim.SetBool("IsTargeting", !IsNotTargeting);
+                    Anim.SetBool("IsTargeting", control.Targetting);
                 }
                 if (!control.IsGrounded)
                 {
@@ -120,10 +123,10 @@ namespace MotionSystem.System
 
 
 
-                control.TimerForEquipReset = Anim.GetBool("Weapon In Hand") && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon")
+                control.TimerForEquipReset = Anim.GetBool("Weapon In Hand") && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
                     ? control.EquipResetTimer : Anim.GetCurrentAnimatorStateInfo(0).IsTag("Combo") ? control.EquipResetTimer : control.TimerForEquipReset;
 
-                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon"))
+                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0"))
                 {
                     control.TimerForEquipReset -= 0.02f;
                     if (control.TimerForEquipReset < 0.0f)
