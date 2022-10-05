@@ -6,7 +6,7 @@ using Dreamers.InventorySystem;
 using MotionSystem.Components;
 using DreamersInc.DamageSystem;
 
-namespace MotionSystem.System {
+namespace MotionSystem.Systems{
     public class EquipWeaponControl : MonoBehaviour
     {
 

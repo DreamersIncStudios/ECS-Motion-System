@@ -15,6 +15,8 @@ using AISenses.VisionSystems.Combat;
 using Unity.Physics;
 using Unity.Mathematics;
 using Unity.Physics.Authoring;
+using MotionSystem.CAD;
+using Dreamers.Global;
 
 namespace GameCoreCode
 {
@@ -27,6 +29,7 @@ namespace GameCoreCode
         void Start()
         {
             SpawnPlayerAndCreateEntityData(0, Vector3.zero);
+            UIManager.instance.SpawnQuickAccessMenu();
 
         }
 
@@ -50,9 +53,12 @@ namespace GameCoreCode
                   typeof(PlayerComboComponent),
                   typeof(CopyTransformFromGameObject),
                   typeof(AttackTarget),
-                  typeof(ScanPositionBuffer)//,
-                //  typeof(PhysicsCollider),
-                //  typeof(PhysicsWorldIndex)
+                  typeof(CasterTag),
+                  typeof(ScanPositionBuffer),
+                  typeof(PhysicsCollider),
+                  typeof(PhysicsWorldIndex),
+                  typeof(PhysicsInfo)
+
                   );
 
             Entity playerDataEntity = em.CreateEntity(playerDataArch);
@@ -83,21 +89,25 @@ namespace GameCoreCode
                 EngageRadius = 40,
                 ViewAngle = 165
             });
-            //BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
-            //{
-            //    Radius = .4f,
-            //    Vertex0 = new float3(0, 1.8f, 0),
-            //    Vertex1 = new float3(0, 0, 0)
+            BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
+            {
+                Radius = .4f,
+                Vertex0 = new float3(0, 1.8f, 0),
+                Vertex1 = new float3(0, 0, 0)
 
-            //}, new CollisionFilter()
-            //{
-            //    BelongsTo = belongsTo.Value,
-            //    CollidesWith = collideWith.Value,
-            //    GroupIndex = 0
-            //});
-            //em.SetComponentData(playerDataEntity, new PhysicsCollider()
-            //{ Value = spCollider });
-
+            }, new CollisionFilter()
+            {
+                BelongsTo = belongsTo.Value,
+                CollidesWith = collideWith.Value,
+                GroupIndex = 0
+            });
+            em.SetComponentData(playerDataEntity, new PhysicsCollider()
+            { Value = spCollider });
+            em.SetComponentData(playerDataEntity, new PhysicsInfo
+            {
+                BelongsTo = belongsTo,
+                CollidesWith = collideWith,
+            });
 
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Animator>());
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());

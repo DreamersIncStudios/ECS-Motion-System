@@ -14,6 +14,7 @@ public struct Player_Control : IComponentData {
     public bool ChargedHeavyAttack => Input.GetKey(InputSet.HeavyAttack); 
     public bool Projectile => Input.GetKeyUp(InputSet.Projectile);
     public bool ChargedProjectile => Input.GetKey(InputSet.Projectile);
+    public bool Casting { get; set; }
 
     public bool Charged => ChargedTime > 2.5f;
     [HideInInspector]public float ChargedTime;

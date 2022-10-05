@@ -67,7 +67,13 @@ namespace Dreamers.Global
         public GameObject StatsWindow;
         public GameObject InventoryWindow;
         public GameObject optionsWindow;
+        [SerializeField] GameObject QuickAccessMenu;
+        [SerializeField] GameObject ModalCanvas;
 
+        public GameObject SpawnQuickAccessMenu() { 
+            return Instantiate(QuickAccessMenu,ModalCanvas.transform);
+            
+        }
         #endregion
         // write anchoring system
 
@@ -128,8 +134,6 @@ namespace Dreamers.Global
 
             return temp;
         }
-
-
 
 
         public Text TextBox(Transform Parent, Vector2 Size)

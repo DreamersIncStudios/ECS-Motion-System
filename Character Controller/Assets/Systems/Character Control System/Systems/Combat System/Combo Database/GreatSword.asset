@@ -29,6 +29,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 1
+          Forward: 0.2
+          Up: 0.9
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 700
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -46,6 +54,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -63,7 +79,15 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
-        Chance: 80
+        AttackVFX:
+          ID: 1
+          Forward: 0.2
+          Up: 0.9
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 410
+          LifeTime: 1
+          ChanceToPlay: 100
+        Chance: 600
         ChanceForNextAttack: 60
         LevelUnlocked: 1
         delay: 0
@@ -80,6 +104,14 @@ MonoBehaviour:
         TransitionDuration: 0.1
         TransitionOffset: 0.125
         EndofCurrentAnim: 0.45
+        AttackVFX:
+          ID: 1
+          Forward: 0
+          Up: 0.2
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 100
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -97,6 +129,14 @@ MonoBehaviour:
         TransitionDuration: 0.1833
         TransitionOffset: 0
         EndofCurrentAnim: 0.55
+        AttackVFX:
+          ID: 2
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 120}
+          Delay: 200
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -114,6 +154,14 @@ MonoBehaviour:
         TransitionDuration: 0.25
         TransitionOffset: 0
         EndofCurrentAnim: 0.5
+        AttackVFX:
+          ID: 3
+          Forward: 0.2
+          Up: 0.25
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 300
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -131,6 +179,14 @@ MonoBehaviour:
         TransitionDuration: 0.275
         TransitionOffset: 0.125
         EndofCurrentAnim: 0.5
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -151,6 +207,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 2
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 70}
+          Delay: 1200
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -168,6 +232,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -185,6 +257,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 2
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 70}
+          Delay: 600
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -202,6 +282,14 @@ MonoBehaviour:
         TransitionDuration: 0.2
         TransitionOffset: 0.075
         EndofCurrentAnim: 0.5975
+        AttackVFX:
+          ID: 3
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 600
+          LifeTime: 1
+          ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -219,6 +307,14 @@ MonoBehaviour:
         TransitionDuration: 0.25
         TransitionOffset: 0.06
         EndofCurrentAnim: 0.628
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -236,6 +332,14 @@ MonoBehaviour:
         TransitionDuration: 0.25
         TransitionOffset: 0
         EndofCurrentAnim: 0.575
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -256,6 +360,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -273,6 +385,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -290,6 +410,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -307,6 +435,14 @@ MonoBehaviour:
         TransitionDuration: 0.1
         TransitionOffset: 0
         EndofCurrentAnim: 0.45
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -324,6 +460,14 @@ MonoBehaviour:
         TransitionDuration: 0.1
         TransitionOffset: 0.05
         EndofCurrentAnim: 0.575
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -341,6 +485,14 @@ MonoBehaviour:
         TransitionDuration: 0.125
         TransitionOffset: 0.175
         EndofCurrentAnim: 0.5757
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -358,6 +510,14 @@ MonoBehaviour:
         TransitionDuration: 0.1
         TransitionOffset: 0
         EndofCurrentAnim: 0.5
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 80
         ChanceForNextAttack: 60
         LevelUnlocked: 1
@@ -378,6 +538,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -395,6 +563,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -412,6 +588,14 @@ MonoBehaviour:
         TransitionDuration: 0
         TransitionOffset: 0
         EndofCurrentAnim: 0
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0
@@ -429,6 +613,14 @@ MonoBehaviour:
         TransitionDuration: 0.125
         TransitionOffset: 0.1
         EndofCurrentAnim: 0.66
+        AttackVFX:
+          ID: 0
+          Forward: 0
+          Up: 0
+          Rot: {x: 0, y: 0, z: 0}
+          Delay: 0
+          LifeTime: 0
+          ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
         LevelUnlocked: 0

@@ -41,6 +41,9 @@ namespace MotionSystem.Components
         public bool EquipWeapon => TimerForEquipReset > 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset { get; set; }
+        public float AnimationSpeed { get; set; }
+        public bool Targetting { get; set; }
+        public bool Casting => AnimationSpeed < 1.0f;
     }
 
     public struct AI_Control : IComponentData

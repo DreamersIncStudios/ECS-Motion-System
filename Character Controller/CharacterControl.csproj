@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>MotionSystem</RootNamespace>
     <ProjectGuid>{FC81B69D-1F0A-B28F-AC06-AEACC4E33887}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -74,11 +74,17 @@
     <Compile Include="Assets\Systems\Character Control System\Components\Authoring\NPCCharacterController.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\CharacterControllerComponent.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\AnimationCombo.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Systems\Tower Control\DirectionSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ICombos.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Systems\VFX Systems\VFXManager.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\WeaponController.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\StaticObjectControllerAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\Authoring\CharacterControl.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\PlayerComboComponentAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ReactToHitSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\AnimatorSpeedUpdate.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\CastingRangeTag.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\TargettingSync.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Character Control System\Systems\Combat System\Combo Database\Combo List For  Dark Star Sword.txt" />
@@ -356,23 +362,26 @@
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
-      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
-      <HintPath>Library\PackageCache\com.unity.burst@1.8.0-pre.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>

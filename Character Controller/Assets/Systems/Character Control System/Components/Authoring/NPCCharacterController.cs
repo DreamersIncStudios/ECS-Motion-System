@@ -2,7 +2,6 @@ using UnityEngine;
 using Unity.Entities;
 using UnityEngine.AI;
 using MotionSystem.Components;
-using ECS.Utilities;
 using Unity.Mathematics;
 using Components.MovementSystem;
 

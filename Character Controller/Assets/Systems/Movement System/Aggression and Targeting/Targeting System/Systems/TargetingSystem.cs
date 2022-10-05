@@ -38,13 +38,20 @@ namespace AISenses.VisionSystems
 
         float ChangeDelay;
         bool looking = false;
-        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
+        bool IsTargeting = false;
         bool PausingBetweenChange => ChangeDelay > 0.0f;
         bool ChangeTargetNeg => CrossPlatformInputManager.GetAxis("Change Target") < -.65f;
         bool ChangeTargetPos => CrossPlatformInputManager.GetAxis("Change Target") > .65f;
 
         protected override void OnUpdate()
         {
+            if (Input.GetKeyUp(KeyCode.JoystickButton9))
+            {
+                IsTargeting = !IsTargeting;
+            }
+
+
+
             ComponentDataFromEntity<AITarget> Target = GetComponentDataFromEntity<AITarget>(); ;
             Entities.WithoutBurst().ForEach((ref Player_Control PC, ref DynamicBuffer<ScanPositionBuffer> buffer, ref AttackTarget attackTarget) =>
             {

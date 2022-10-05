@@ -8,7 +8,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using Unity.Mathematics;
 using AISenses.VisionSystems.Combat;
 
-namespace MotionSystem.System {
+namespace MotionSystem.Systems {
 
    
     public class InputSystem : ComponentSystem
@@ -17,10 +17,11 @@ namespace MotionSystem.System {
         const float k_Half = 0.5f;
         Transform m_mainCam;
 
-        bool IsTargeting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
 
         protected override void OnUpdate()
         {
+        
+
             if (m_mainCam == null)
             {
                 if (Camera.main != null)
@@ -40,39 +41,44 @@ namespace MotionSystem.System {
                  ControllerScheme InputSet = PCC.InputSet;
 
                 bool m_Crouching = new bool();
-                if (Control.block)
+                if (!Control.Casting)
                 {
-                    Control.H = 0.0f;
-                    Control.V = 0.0f;
-                }
-                else
-                {
-                    if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")) > .1f)
-                        Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
-                    else
+                    if (Control.block)
+                    {
                         Control.H = 0.0f;
-                    if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Vertical")) > 0.1f)
-                        Control.V = CrossPlatformInputManager.GetAxis("Vertical");
-                    else
                         Control.V = 0.0f;
+                    }
+                    else
+                    {
+                        if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")) > .1f)
+                            Control.H = CrossPlatformInputManager.GetAxis("Horizontal");
+                        else
+                            Control.H = 0.0f;
+                        if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Vertical")) > 0.1f)
+                            Control.V = CrossPlatformInputManager.GetAxis("Vertical");
+                        else
+                            Control.V = 0.0f;
 
-                    m_Crouching = Input.GetKey(KeyCode.C);
+                        m_Crouching = Input.GetKey(KeyCode.C);
 
-                    if (!PCC.InSafeZone) {
-                        if (!Control.Jump && Control.IsGrounded)
+                        if (!PCC.InSafeZone)
                         {
-                            Control.Jump = PCC.Jump;
+                            if (!Control.Jump && Control.IsGrounded)
+                            {
+                                Control.Jump = PCC.Jump;
+
+                            }
+
+                            // add controller toogle
+                            Control.Walk = Input.GetKey(KeyCode.LeftShift);
 
                         }
-       
-                       // add controller toogle
-                        Control.Walk = Input.GetKey(KeyCode.LeftShift);
+                        else
+                        {
+                            Control.Walk = true;
+                        }
 
                     }
-                    else {
-                        Control.Walk = true;
-                    }
-
                 }
                 test.AttackDir = new float2(Control.H, Control.V);
 

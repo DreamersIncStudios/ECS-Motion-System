@@ -9,7 +9,6 @@ namespace DreamersStudio.CameraControlSystem
         public CinemachineFreeLook Follow;
         public CinemachineFreeLook Target;
         public CinemachineTargetGroup TargetGroup;
-        public bool isTargeting;
         public static CameraControl Instance;
         public EventHandler<OnTargetingChangedEventArgs> OnTargetingChanged;
         GameObject playerCharacter;
