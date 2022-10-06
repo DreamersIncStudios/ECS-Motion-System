@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Systems\Character Control System\Systems\Movement Systems\GroundCheckSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\AnimatorUpdate.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\TargettingSync.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\Uncontrollable NPC\NPCComboComponentAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\Command.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Input Systems\ControllerInput.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ReactToHitSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\AnimatorSpeedUpdate.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\CastingRangeTag.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\TargettingSync.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Systems\Character Control System\Systems\Combat System\Combo Database\Combo List For  Dark Star Sword.txt" />

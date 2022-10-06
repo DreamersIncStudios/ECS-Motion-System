@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Collections;
+using System.Linq;
 
 namespace AISenses.VisionSystems.Combat
 {
@@ -17,6 +18,8 @@ namespace AISenses.VisionSystems.Combat
             
             Entities.ForEach((ref AttackTarget attackTarget, ref DynamicBuffer<ScanPositionBuffer> buffer) =>
             {
+               if(buffer.Length ==0)
+                    return;
                 if (attackTarget.isTargeting && buffer.Length >= attackTarget.AttackTargetIndex) 
                 {
                     attackTarget.AttackTargetLocation = buffer[attackTarget.AttackTargetIndex].target.LastKnownPosition;

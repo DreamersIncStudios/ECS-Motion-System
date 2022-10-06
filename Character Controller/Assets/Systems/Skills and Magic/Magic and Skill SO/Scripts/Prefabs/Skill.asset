@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daa4a38932ad704992a80c35560c5cf, type: 3}
+  m_Name: Skill
+  m_EditorClassIdentifier: 
+  _name: Test Skill
+  description: 'Skill for Testing '
+  level: 0
+  reqdLevel: 0
+  Magic: 0
+  Trigger: 0
+  Effects: []
+  abilityTarget: 2
+  manaRqd: 0
+  GridSize:
+    x: 0
+    y: 0
+  GridShape: 0
+  dir: 0

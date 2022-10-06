@@ -17,7 +17,7 @@ namespace DreamersInc.DamageSystem.Interfaces
     }
 
 
-    public enum TypeOfDamage {Melee, MagicAoE, Projectile}
+    public enum TypeOfDamage {Melee, MagicAoE, Projectile, Magic, Recovery}
     public enum Element { None, Fire, Water, Earth, Wind, Ice, Holy, Dark}
     public struct AdjustHealth : IComponentData {
         public int Value;

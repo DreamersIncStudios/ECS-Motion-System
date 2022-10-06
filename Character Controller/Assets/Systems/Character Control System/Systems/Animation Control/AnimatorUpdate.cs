@@ -41,7 +41,7 @@ namespace MotionSystem.Systems
                 m_ForwardAmount = control.Move.z;
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
-                if (control.Targetting)
+                if (!control.Targetting)
                 {
                     float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
                     transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);

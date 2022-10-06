@@ -1,4 +1,4 @@
-using DreamersInc.DamageSystem.Interfaces;
+    using DreamersInc.DamageSystem.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -23,6 +23,9 @@ namespace Stats
         private Elemental[] _ElementalMods;
         public bool InPlay;
         public bool InvincibleMode;
+
+        public AlteredStatus AlteredStatus { get; private set; }
+
         public bool Alive
         {
             get
@@ -257,7 +260,7 @@ namespace Stats
             await Task.Delay(TimeSpan.FromSeconds(1));
             StatUpdate();
         }
-
+        public bool SetAlteredStatus(AlteredStatus statusToChangeTo) { return false; } //Todo make a bool 
 
 
         public abstract void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
