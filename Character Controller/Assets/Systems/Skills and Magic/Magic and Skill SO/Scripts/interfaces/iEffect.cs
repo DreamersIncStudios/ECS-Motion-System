@@ -15,7 +15,10 @@ namespace SkillMagicSystem.AbilityEffects
         public void Activate(BaseCharacter baseCharacter, int amount, int chance);
         public void Deactivate(BaseCharacter Target, int amount);
         public bool ActivateOnChance(int chance);
-      
+        public int VFXID { get; }
+        public float VFXDelay { get; }
+        public float VFXDuration { get; }
+
     }
     public interface IOnHitEffect {
 

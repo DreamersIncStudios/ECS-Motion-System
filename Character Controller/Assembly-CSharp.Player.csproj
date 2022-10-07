@@ -954,6 +954,10 @@
       <Project>{9D10C2F7-BF0D-A9A6-BD32-13B8F5C2F3C3}</Project>
       <Name>SkillMagicSystem.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="VFXSystem.Player.csproj">
+      <Project>{99190690-AF63-842B-C160-2FAEF3367F41}</Project>
+      <Name>VFXSystem.Player</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

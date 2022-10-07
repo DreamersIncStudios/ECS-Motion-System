@@ -77,7 +77,6 @@
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\AnimationCombo.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Tower Control\DirectionSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ICombos.cs" />
-    <Compile Include="Assets\Systems\Character Control System\Systems\VFX Systems\VFXManager.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\WeaponController.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\StaticObjectControllerAuthoring.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\Authoring\CharacterControl.cs" />
@@ -832,6 +831,10 @@
     <ProjectReference Include="PlayerCharacterSystem.csproj">
       <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>
       <Name>PlayerCharacterSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="VFXSystem.csproj">
+      <Project>{8CA36B85-6341-2811-2509-C0DE8A6C90D3}</Project>
+      <Name>VFXSystem</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{D3F4A397-AEAE-A8F0-00E8-3C03F0C58CB6}</Project>

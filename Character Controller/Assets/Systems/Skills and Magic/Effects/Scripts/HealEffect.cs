@@ -1,9 +1,9 @@
 ﻿using Assets.Systems.Global.Function_Timer;
+using DreamerInc.CombatSystem;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace SkillMagicSystem.AbilityEffects
 {
@@ -21,7 +21,6 @@ namespace SkillMagicSystem.AbilityEffects
         public bool DoHitAction { get; private set; }
         public override void Activate(BaseCharacter Targart,int amount = 0, int chance =100) {
             base.Activate(Targart,amount,chance);
-            Debug.Log("Called at SO");
             switch (GetTrigger) {
                 case TriggerTypes.OnCommand:
                     OnCommand(Targart,amount);
@@ -38,10 +37,9 @@ namespace SkillMagicSystem.AbilityEffects
                 case TriggerTypes.OnPlayerDeath:
                     OnPlayerDeath(Targart,amount);
                     break;
-
             }
-        
         }
+
         public void OnChanceCheck()
         {
             DoHitAction = ActivateOnChance(chance);
@@ -102,18 +100,7 @@ namespace SkillMagicSystem.AbilityEffects
                 case Targets.Self:
                 case Targets.Enemy:
                 case Targets.TeamMember:
-
                     Target.TakeDamage(Amount, TypeOfDamage.Recovery, Element.Holy);
-
-                    if (EffectVFX != null)
-                    {
-                        //Todo add position offset for VFX
-                        var spawned = Instantiate(EffectVFX, Target.transform.position, Quaternion.identity).GetComponent<VisualEffect>(); // figure out how to postion 
-                        spawned.transform.SetParent(Target.transform, false);
-                        spawned.Play();
-                        Destroy(spawned.gameObject, Duration);
-                    }
-                 
                     break;
                 case Targets.AOE:
                     var Cols = Physics.OverlapSphere(Target.gameObject.transform.position, range);
@@ -127,7 +114,7 @@ namespace SkillMagicSystem.AbilityEffects
                     }
                     break;
             }
-
+            VFXManager.Instance.PlayVFX(VFXID, Target.gameObject.transform.position, VFXDuration);
         }
 
 

@@ -1391,7 +1391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Base: {fileID: 950351927099188375}
   ContentArea: {fileID: 950351926921116979}
-  ButtonPrefab: {fileID: 0}
+  ButtonPrefab: {fileID: 6021381126045995171, guid: 6081ad8bf166d174685d249d7b58f70b,
+    type: 3}
 --- !u!1 &950351927129000565
 GameObject:
   m_ObjectHideFlags: 0

@@ -3702,6 +3702,14 @@ MonoBehaviour:
     MaxActivationPoints: 0
     QuickAccessItems: []
     NumOfQuickAccessSlots: 0
+  magicSkillSystem:
+    MagicInventory: []
+    SkillInventory: []
+    EquippedMagic:
+    - {fileID: 11400000, guid: d0b37a594de94314dbe1c86ff7350bfe, type: 2}
+    EquippedSkill:
+    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
+    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
   QuestLog:
     SelectedMission: {fileID: 0}
   Save:

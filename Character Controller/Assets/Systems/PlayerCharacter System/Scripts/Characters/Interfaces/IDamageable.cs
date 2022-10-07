@@ -94,11 +94,7 @@ namespace DreamersInc.DamageSystem.Interfaces
                     if (Health.CurHealth <= 0) {
                         ECBP.AddComponent<EntityHasDiedTag>(chunkIndex, entity[i]);
                     }
-                    if (player)
-                    {
-                        Object.FindObjectOfType<StatsUI>().UpdateHealthBar(Health.CurHealth);
-                    }
-
+               
                     ECBP.RemoveComponent<AdjustHealth>(chunkIndex, entity[i]);
                     Healths[i] = Health;
 

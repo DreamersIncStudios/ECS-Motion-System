@@ -13,6 +13,7 @@ namespace SkillMagicSystem
         public Level Level { get; }
         public int ReqdLevel { get; }
         public int ManaRqd { get; }
+
         public Targets AbilityTarget { get; }
         public bool CanAdd(int level); //Todo Add more check besides level 
         public bool CanCast(BaseCharacter User);
@@ -50,6 +51,9 @@ namespace SkillMagicSystem
         public List<BaseEffect> Effects;
         public Targets AbilityTarget { get { return abilityTarget; } private set { abilityTarget = value; } }
         [SerializeField] Targets abilityTarget;
+
+
+
         public bool CanAdd(int characterlevel)
         {
             return ReqdLevel <= characterlevel;

@@ -1073,12 +1073,12 @@ PrefabInstance:
     - target: {fileID: 8802926159821762245, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016380765
+      value: -0.000000016380763
       objectReference: {fileID: 0}
     - target: {fileID: 8802926159821762245, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000005265936
+      value: 0.0000000052659352
       objectReference: {fileID: 0}
     - target: {fileID: 9198516457850368910, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
@@ -1417,6 +1417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1765302203}
   - component: {fileID: 1765302202}
+  - component: {fileID: 1765302204}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1460,6 +1461,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1765302204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765302201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe11e4f5f0481294a937b4296668d15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseUI: {fileID: 1621541866}
+  getCanvas: {fileID: 0}
+  menuItems: []
+  character: {fileID: 0}
 --- !u!1 &1934987823
 GameObject:
   m_ObjectHideFlags: 0
