@@ -8,7 +8,10 @@ using SkillMagicSystem;
 using TMPro;
 using Stats;
 using System;
-using UnityEditor.Experimental.GraphView;
+using DreamersInc.ComboSystem;
+using Unity.Entities;
+using AttackType = DreamersInc.ComboSystem.AttackType;
+using MotionSystem.CAD;
 
 //using UnityStandardAssets.CrossPlatformInput;
 
@@ -25,18 +28,29 @@ namespace Dreamers.ModalWindows
 
         bool casting => Input.GetAxis("Target Trigger") > .3f && !casted; //TODO rename Target Trigger
         bool shown = false;
-
+        float resetTimer;
+        bool reset => resetTimer > 0.0f;
+        CastingTimeSystem timeSystem;
+        private void Start()
+        {
+            timeSystem = CastingTimeSystem.instance;
+        }
 
         private void Update()
         {
-            if (!shown && casting)
+            if (!shown && casting && !reset && !timeSystem.Release)
                 DisplayQuickAccessMenu();
 
             if (shown && !casting)
             {
                 HideQuickAccesMenu();
-                casted = false;
             }
+            
+            if(shown && reset)
+                HideQuickAccesMenu();
+
+            if(reset)
+                resetTimer -= Time.deltaTime;
         }
 
         public void DisplayQuickAccessMenu()
@@ -57,6 +71,7 @@ namespace Dreamers.ModalWindows
             DisplayBase();
 
         }
+
         public void DisplaySpells()
         {
             ClearContentArea();
@@ -72,7 +87,19 @@ namespace Dreamers.ModalWindows
                         switch (spell.AbilityTarget)
                         {
                             case Targets.Self:
+                                Command testing = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<Command>(character.SelfEntityRef);
+                                testing.InputQueue.Enqueue(new AnimationTrigger()
+                                {
+                                    attackType = (AttackType)spell.test.attackType,
+                                    triggerAnimIndex = spell.test.TriggerAnimIndex,
+                                    TransitionDuration = spell.test.TransitionDuration,
+                                    TransitionOffset = spell.test.TransitionOffset,
+                                    EndofCurrentAnim = spell.test.EndofCurrentAnim,
+                                });
+
                                 spell.Activate(character);
+                                timeSystem.resetTimer = resetTimer = 3.0f;
+                                timeSystem.Release = true;
                                 break;
                             case Targets.Enemy:
                                 DisplayTargerts(spell.AbilityTarget, spell);

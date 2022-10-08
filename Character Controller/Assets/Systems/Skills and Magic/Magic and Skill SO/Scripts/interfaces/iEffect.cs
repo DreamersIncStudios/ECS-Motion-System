@@ -9,8 +9,6 @@ namespace SkillMagicSystem.AbilityEffects
     {
         public TriggerTypes GetTrigger { get; }
         public Targets GetTarget { get; }
-
-        public GameObject EffectVFX { get; }
         public float Duration { get; }
         public void Activate(BaseCharacter baseCharacter, int amount, int chance);
         public void Deactivate(BaseCharacter Target, int amount);

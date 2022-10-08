@@ -1,10 +1,10 @@
 using Assets.Systems.Global.Function_Timer;
+using DreamerInc.CombatSystem;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace SkillMagicSystem.AbilityEffects
 {
@@ -94,7 +94,7 @@ namespace SkillMagicSystem.AbilityEffects
         }
 
 
-        void DoElementalDamage(BaseCharacter baseCharacter, int Amount)
+        void DoElementalDamage(BaseCharacter Target, int Amount)
         {
             switch (GetTarget)
             {
@@ -102,20 +102,11 @@ namespace SkillMagicSystem.AbilityEffects
                 case Targets.Enemy:
                 case Targets.TeamMember:
 
-                    baseCharacter.TakeDamage(Amount, TypeOfDamage.Magic, GetElement);
-
-                    if (EffectVFX != null)
-                    {
-                        //Todo add position offset for VFX
-                        var spawned = Instantiate(EffectVFX, baseCharacter.transform.position, Quaternion.identity).GetComponent<VisualEffect>(); // figure out how to postion 
-                        spawned.transform.SetParent(baseCharacter.transform, false);
-                        spawned.Play();
-                        Destroy(spawned.gameObject, Duration);
-                    }
+                    Target.TakeDamage(Amount, TypeOfDamage.Magic, GetElement);
 
                     break;
                 case Targets.AOE:
-                    var Cols = Physics.OverlapSphere(baseCharacter.gameObject.transform.position, range);
+                    var Cols = Physics.OverlapSphere(Target.gameObject.transform.position, range);
                     foreach (Collider coll in Cols)
                     {
                         if (coll.GetComponent<BaseCharacter>())
@@ -126,6 +117,7 @@ namespace SkillMagicSystem.AbilityEffects
                     }
                     break;
             }
+            VFXManager.Instance.PlayVFX(VFXID, Target.gameObject.transform.position, VFXDuration);
 
         }
 

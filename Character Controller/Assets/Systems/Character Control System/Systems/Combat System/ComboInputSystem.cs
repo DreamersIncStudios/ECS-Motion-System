@@ -121,26 +121,32 @@ namespace DreamersInc.ComboSystem
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
-                    if (!anim.GetBool("Weapon In Hand")) {
-                        switch (temp.attackType) {
+                    if (!anim.GetBool("Weapon In Hand"))
+                    {
+                        switch (temp.attackType)
+                        {
                             case AttackType.LightAttack:
                                 anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
 
                                 break;
                             case AttackType.HeavyAttack:
-                        anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                                anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
 
                                 break;
+                            case AttackType.SpecialAttack:
+                                anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                                break;
                         }
-                        temp.AttackVFX.SpawnVFX(transform);
-
+                        if (temp.AttackVFX.Play)
+                            temp.AttackVFX.SpawnVFX(transform);
                     }
-                    else {
-
+                    else
+                    {
                         anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
-                    temp.AttackVFX.SpawnVFX(transform);
-
+                        if (temp.AttackVFX.Play)
+                            temp.AttackVFX.SpawnVFX(transform);
                     }
+                  
                     if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
                     {
                         transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);

@@ -4,3 +4,4 @@
 4,VFX/Sword Slash/Sword Slash 4,
 5,VFX/Sword Slash/Sword Slash 5,
 6,VFX/Spell Circles/Tower Spawn,
+7,VFX/Spell Circles/Heal,

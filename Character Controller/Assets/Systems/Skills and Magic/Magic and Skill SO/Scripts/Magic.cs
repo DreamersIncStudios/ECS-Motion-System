@@ -26,6 +26,7 @@ namespace SkillMagicSystem
         public Color MapColor { get; private set; }
         public bool Rotatable { get; private set; }
         public Dir dir;
+        public AnimTrigger test;
 
 
         public override void Activate(BaseCharacter User, BaseCharacter targetCharacter = null)
@@ -37,7 +38,7 @@ namespace SkillMagicSystem
             {
                 EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
                 em.AddComponentData(User.SelfEntityRef, new AdjustMana() { Value = -ManaRqd });
-                //User.AdjustMana(-ManaRqd);// Todo Need to create Mana Hold
+                //User.AdjustMana(-ManaRqd);// Todo Need to create Mana 
                 foreach (BaseEffect effect in Effects)
                 {
                     effect.Activate(targetCharacter, Amount, chance);

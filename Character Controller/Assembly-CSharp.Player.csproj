@@ -874,6 +874,10 @@
       <Project>{8A2C3D82-C597-3A07-C910-AA3750B4B2CE}</Project>
       <Name>Unity.ProBuilder.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="SkillMagicSystem.Player.csproj">
+      <Project>{9D10C2F7-BF0D-A9A6-BD32-13B8F5C2F3C3}</Project>
+      <Name>SkillMagicSystem.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
       <Project>{4DB91BEE-4EB1-7E67-8152-EA77CA891C95}</Project>
       <Name>UnityEngine.UI.Player</Name>
@@ -949,10 +953,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
       <Project>{C125286C-E12B-F994-215D-7472FF4ACF5C}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="SkillMagicSystem.Player.csproj">
-      <Project>{9D10C2F7-BF0D-A9A6-BD32-13B8F5C2F3C3}</Project>
-      <Name>SkillMagicSystem.Player</Name>
     </ProjectReference>
     <ProjectReference Include="VFXSystem.Player.csproj">
       <Project>{99190690-AF63-842B-C160-2FAEF3367F41}</Project>

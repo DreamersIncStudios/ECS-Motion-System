@@ -32,10 +32,11 @@ namespace MotionSystem.CAD
         EntityQuery MovingObjects;
         EntityQuery InCastingRange;
         EntityCommandBufferSystem entityCommandBufferSystem;
-
+        public static CastingTimeSystem instance;
 
         protected override void OnCreate()
         {
+            instance = this;
             base.OnCreate();
             Caster = GetEntityQuery(new EntityQueryDesc()
             {
@@ -62,11 +63,18 @@ namespace MotionSystem.CAD
             new ComponentType[] { ComponentType.ReadOnly(typeof(LocalToWorld)) }
             );
         }
-        bool casting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f; //TODO rename Target Trigger
+        bool casting => CrossPlatformInputManager.GetAxis("Target Trigger") > .3f;
+       public  float resetTimer;
+        bool reset => resetTimer > 0.0f;
+        public bool Release;
         protected override void OnUpdate()
         {
+            if (reset)
+                resetTimer -= Time.DeltaTime;
+            if (!casting && Release)
+                Release = false;
             JobHandle systemDeps = Dependency;
-            if (casting)
+            if (casting && !reset && !Release) 
             {
                 float3 pos = Caster.ToComponentDataArray<LocalToWorld>(Allocator.TempJob)[0].Position;
                 systemDeps = new AddInRangeTagJob() {

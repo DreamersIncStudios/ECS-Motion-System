@@ -10,8 +10,6 @@ namespace SkillMagicSystem.AbilityEffects
         [SerializeField] Targets target;
         public float Duration { get { return duration; } }
         [SerializeField] float duration = 3;
-        public GameObject EffectVFX { get { return effectVFX; } }
-        [SerializeField] GameObject effectVFX;
         public int VFXID { get { return vfxID; } }
         public float VFXDelay { get { return vfxDelay; } }
         public float VFXDuration { get { return vfxDuration; } }

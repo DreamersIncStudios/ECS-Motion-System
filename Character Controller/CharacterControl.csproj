@@ -804,10 +804,6 @@
       <Project>{214D0349-E86C-55BE-6C00-570821970087}</Project>
       <Name>Global</Name>
     </ProjectReference>
-    <ProjectReference Include="InventorySystem.csproj">
-      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
-      <Name>InventorySystem</Name>
-    </ProjectReference>
     <ProjectReference Include="CombatDamage.csproj">
       <Project>{B0F8FCFA-363C-229F-AC06-AF19E02656C8}</Project>
       <Name>CombatDamage</Name>
@@ -827,6 +823,10 @@
     <ProjectReference Include="Cinemachine.csproj">
       <Project>{C207E3F2-9B5A-0935-9CC2-F6EBF351084A}</Project>
       <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="InventorySystem.csproj">
+      <Project>{1E3B741E-3C7C-D61C-247D-02625E4ABD80}</Project>
+      <Name>InventorySystem</Name>
     </ProjectReference>
     <ProjectReference Include="PlayerCharacterSystem.csproj">
       <Project>{068E9402-B5ED-EA62-4850-CCBF2655BF6B}</Project>

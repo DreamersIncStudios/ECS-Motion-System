@@ -15,7 +15,10 @@ MonoBehaviour:
   trigger: 0
   target: 0
   duration: 4
-  effectVFX: {fileID: 7019298487948308014, guid: f5710051d678cb640995af006375cf12,
-    type: 3}
+  vfxID: 7
+  vfxDelay: 0
+  vfxDuration: 5
   range: 0
   intervalTime: 0
+  delay: 0
+  chance: 0

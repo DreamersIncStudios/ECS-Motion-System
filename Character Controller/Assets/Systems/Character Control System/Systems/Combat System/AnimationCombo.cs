@@ -5,6 +5,8 @@ using UnityEngine;
 using System;
 using DreamerInc.CombatSystem;
 using Random = UnityEngine.Random;
+
+
 namespace DreamersInc.ComboSystem
 {
 
@@ -37,7 +39,7 @@ namespace DreamersInc.ComboSystem
         public ComboNames Name { get { return name; } set { name = value; } } // TODO Remove
         public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
         public AttackType attackType;
-        [SerializeField] uint triggerAnimIndex;
+        public uint triggerAnimIndex;
         public string TriggerString { get { return attackType.ToString() + TriggerAnimIndex; } }
         public float TransitionDuration;
         public float TransitionOffset;
@@ -88,6 +90,7 @@ namespace DreamersInc.ComboSystem
         public float LifeTime;
         [Range(0,100)]
         public int ChanceToPlay;
+        public bool Play;
         public void SpawnVFX(Transform CharacterTranform)
         {
             int prob = Mathf.RoundToInt(Random.Range(0, 99));
