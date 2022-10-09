@@ -86,7 +86,6 @@ namespace DreamersInc.ComboSystem
         public float Forward, Up;
         public Vector3 Rot;
         [Tooltip("Time in Milliseconds")]
-        public float Delay;
         public float LifeTime;
         [Range(0,100)]
         public int ChanceToPlay;
@@ -96,7 +95,7 @@ namespace DreamersInc.ComboSystem
             int prob = Mathf.RoundToInt(Random.Range(0, 99));
             if (prob < ChanceToPlay) {
                 Vector3 forwardPos =CharacterTranform.forward * Forward + CharacterTranform.up*Up ;
-                VFXManager.Instance.PlayVFX(ID, CharacterTranform.position +forwardPos , CharacterTranform.rotation.eulerAngles + Rot, Delay, LifeTime);
+                VFXManager.Instance.PlayVFX(ID, CharacterTranform.position +forwardPos , CharacterTranform.rotation.eulerAngles + Rot,0, LifeTime);
             } 
         }
     }

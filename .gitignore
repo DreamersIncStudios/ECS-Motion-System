@@ -93,3 +93,4 @@ crashlytics-build.properties
 /Character Controller/Builds
 *.sceneWithBuildSettings
 /Character Controller/Assets/Models/Weapons/CSC/Textures
+/Character Controller/Assets/StreamingAssets

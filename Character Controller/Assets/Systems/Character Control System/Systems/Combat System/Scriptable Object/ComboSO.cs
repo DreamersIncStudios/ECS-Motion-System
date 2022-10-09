@@ -55,7 +55,19 @@ namespace DreamersInc.ComboSystem
         {
            
         }
+        public AnimationTrigger GetTrigger(AnimatorStateInfo state) {
+            foreach (ComboSingle combo in ComboLists) {
+                foreach (AnimationCombo test in combo.ComboList) {
+                    if(state.IsName(test.Trigger.TriggerString))
+                        return test.Trigger;
+                }
+            }
 
+            return new AnimationTrigger();
+        }
+        public VFX GetVFX(AnimatorStateInfo state) { 
+            return GetTrigger(state).AttackVFX;
+        }
         public int GetAnimationComboIndex(AnimatorStateInfo state) {
            
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
