@@ -21,15 +21,15 @@ MonoBehaviour:
   Effects:
   - {fileID: 11400000, guid: 88ecef381ac8db44ab6ff3edfff19d82, type: 2}
   abilityTarget: 0
-  manaRqd: 0
+  manaRqd: 35
   GridSize:
     x: 0
     y: 0
   GridShape: 0
   dir: 0
   test:
-    attackType: 1
-    triggerAnimIndex: 2
+    attackType: 10
+    triggerAnimIndex: 1
     TransitionDuration: 0.25
-    TransitionOffset: 0.3
+    TransitionOffset: 0
     EndofCurrentAnim: 0

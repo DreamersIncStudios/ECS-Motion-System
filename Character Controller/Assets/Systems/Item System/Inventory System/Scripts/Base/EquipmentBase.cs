@@ -51,11 +51,13 @@ namespace Dreamers.InventorySystem.Base
                 copy.Equip(PC);
                 EquippedArmor[copy.ArmorType] = copy;
             }
+            EquippedWeapons.Clear();
+
             foreach (WeaponSO SO in Save.EquippedWeapons)
             {
                 var copy = Object.Instantiate(SO);
 
-                copy.Equip(PC);
+                if(copy.Equip(PC))
                     EquippedWeapons[copy.Slot] = copy;
                 
             }
@@ -65,8 +67,6 @@ namespace Dreamers.InventorySystem.Base
     [System.Serializable]
     public class EquipmentSave
     {
-
-
         public List<WeaponSO> EquippedWeapons;
         public List<ArmorSO> EquippedArmors;
 

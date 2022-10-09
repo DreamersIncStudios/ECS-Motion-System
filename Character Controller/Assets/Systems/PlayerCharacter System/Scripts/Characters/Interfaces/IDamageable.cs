@@ -56,20 +56,35 @@ namespace DreamersInc.DamageSystem.Interfaces
                 HealthChunk = GetComponentTypeHandle<EnemyStats>(false),
                 ModChunk = GetComponentTypeHandle<AdjustHealth>(true),
                 EntityChunk = GetEntityTypeHandle(),
-                player = false,
                 ECBP = _entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
             }.ScheduleParallel(enemyQuery, systemDeps);
-            systemDeps.Complete();
             _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+
             systemDeps = new AdjustHealthJob<PlayerStatComponent>()
             {
                 HealthChunk = GetComponentTypeHandle<PlayerStatComponent>(false),
                 ModChunk = GetComponentTypeHandle<AdjustHealth>(true),
                 EntityChunk = GetEntityTypeHandle(),
-                player = true,
                 ECBP = _entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
             }.ScheduleParallel(playerQuery, systemDeps);
-            systemDeps.Complete();
+            _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+
+            systemDeps = new AdjustManaJob<EnemyStats>()
+            {
+                ManaChunk = GetComponentTypeHandle<EnemyStats>(false),
+                ModChunk = GetComponentTypeHandle<AdjustMana>(true),
+                EntityChunk = GetEntityTypeHandle(),
+                ECBP = _entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
+            }.ScheduleParallel(enemyQuery, systemDeps);
+            _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
+            systemDeps = new AdjustManaJob<PlayerStatComponent>()
+            {
+                ManaChunk = GetComponentTypeHandle<PlayerStatComponent>(false),
+                ModChunk = GetComponentTypeHandle<AdjustMana>(true),
+                EntityChunk = GetEntityTypeHandle(),
+                ECBP = _entityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter()
+            }.ScheduleParallel(playerQuery, systemDeps);
+            _entityCommandBufferSystem.AddJobHandleForProducer(systemDeps);
 
             Dependency = systemDeps;
         }
@@ -80,8 +95,7 @@ namespace DreamersInc.DamageSystem.Interfaces
             public ComponentTypeHandle<STAT> HealthChunk;
            [ReadOnly] public ComponentTypeHandle<AdjustHealth> ModChunk;
             public EntityCommandBuffer.ParallelWriter ECBP;
-            [ReadOnly] public EntityTypeHandle EntityChunk;
-            public bool player;
+           [NativeDisableParallelForRestriction] [ReadOnly] public EntityTypeHandle EntityChunk;
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
             {
                 NativeArray<STAT> Healths = chunk.GetNativeArray(HealthChunk);
@@ -94,7 +108,6 @@ namespace DreamersInc.DamageSystem.Interfaces
                     if (Health.CurHealth <= 0) {
                         ECBP.AddComponent<EntityHasDiedTag>(chunkIndex, entity[i]);
                     }
-               
                     ECBP.RemoveComponent<AdjustHealth>(chunkIndex, entity[i]);
                     Healths[i] = Health;
 
@@ -105,10 +118,9 @@ namespace DreamersInc.DamageSystem.Interfaces
                where STAT : unmanaged, StatsComponent
         {
             public ComponentTypeHandle<STAT> ManaChunk;
-            public ComponentTypeHandle<AdjustMana> ModChunk;
+           [ReadOnly] public ComponentTypeHandle<AdjustMana> ModChunk;
             public EntityCommandBuffer.ParallelWriter ECBP;
-            [ReadOnly] public EntityTypeHandle EntityChunk;
-            public ComponentDataFromEntity<PlayerStatComponent> player;
+            [NativeDisableParallelForRestriction] [ReadOnly] public EntityTypeHandle EntityChunk;
 
             public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
             {
@@ -118,11 +130,7 @@ namespace DreamersInc.DamageSystem.Interfaces
                 for (int i = 0; i < chunk.Count; i++)
                 {
                     STAT mana = Manas[i];
-                    mana.AdjustHealth(mods[i].Value);
-                    if (player.HasComponent(entity[i]))
-                    {
-                        Object.FindObjectOfType<StatsUI>().UpdateManaBar(mana.CurMana);
-                    }
+                    mana.AdjustMana(mods[i].Value);     
                     Manas[i] = mana;
                     ECBP.RemoveComponent<AdjustMana>(chunkIndex, entity[i]);
                 }

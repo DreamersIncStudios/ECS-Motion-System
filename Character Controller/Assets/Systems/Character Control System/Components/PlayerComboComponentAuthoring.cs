@@ -34,5 +34,6 @@ namespace DreamersInc.ComboSystem
     public class PlayerComboComponent : IComponentData
     {
         public ComboSO Combo;
+        public bool WeaponEquipped;
     }
 }

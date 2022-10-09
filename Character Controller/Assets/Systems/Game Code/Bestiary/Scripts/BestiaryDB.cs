@@ -108,8 +108,7 @@ namespace BestiaryLibrary
             });
 
 
-            manager.AddComponentObject(npcDataEntity, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
-            manager.AddComponentObject(npcDataEntity, spawnedGO.GetComponent<Rigidbody>());
+            manager.AddComponentObject(npcDataEntity, spawnedGO.GetComponent<UnityEngine.BoxCollider>());
 
             #endregion
 

@@ -95,7 +95,7 @@ namespace Dreamers.InventorySystem.SO
             }
             else
             {
-                Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level);
+                Debug.LogWarning($"Level required to Equip is {LevelRqd} Character is currently level {player.Level}");
                 return Equipped = false;
             }
         }

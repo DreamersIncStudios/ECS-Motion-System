@@ -90,7 +90,7 @@ namespace DreamersInc.ComboSystem
         public float LifeTime;
         [Range(0,100)]
         public int ChanceToPlay;
-        public bool Play;
+        public bool Play => ID != 0;
         public void SpawnVFX(Transform CharacterTranform)
         {
             int prob = Mathf.RoundToInt(Random.Range(0, 99));

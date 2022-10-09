@@ -223,6 +223,50 @@ Transform:
   m_Father: {fileID: 8986525510933719496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945826408682734901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8374313276297659185}
+  - component: {fileID: 1694586237747467967}
+  m_Layer: 11
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8374313276297659185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945826408682734901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.175, z: 1.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1216704128081885012}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1694586237747467967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945826408682734901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602c4870bc9499c49835c3d6eef1d084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962572635175680100
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +804,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1216704128081885012}
   - component: {fileID: 5044793689209023790}
+  - component: {fileID: 7203929198920831724}
+  - component: {fileID: 658898828902370269}
+  - component: {fileID: -8711767487463792845}
+  - component: {fileID: -6116644452953765438}
+  - component: {fileID: -2713475146197894605}
+  - component: {fileID: 2137280693603245727}
+  - component: {fileID: -9068102157310959554}
   m_Layer: 11
   m_Name: Kas
   m_TagString: Enemy NPC
@@ -790,6 +841,7 @@ Transform:
   - {fileID: 2401478843308930028}
   - {fileID: 373446499427013225}
   - {fileID: 4486571550741301870}
+  - {fileID: 8374313276297659185}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -803,7 +855,7 @@ Animator:
   m_GameObject: {fileID: 1993204960407465454}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 98c79cb6684e418439991d132c495011, type: 3}
-  m_Controller: {fileID: 9100000, guid: a3bd7cec0926320459cc1321c102f3ef, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62037f98244b7b44f948daf23f787475, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -813,6 +865,158 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &7203929198920831724
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  serializedVersion: 2
+  m_Mass: 35
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 2
+--- !u!136 &658898828902370269
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Height: 1.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!114 &-8711767487463792845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be44922b5e195940b9adb67aac8c855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI_Control: 0
+  Party: 0
+  IsPlayer: 1
+  CombatCapable: 1
+  Scheme: {fileID: 11400000, guid: f1685a92743186246bedc3655febd174, type: 2}
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_JumpPower: 12
+  m_GravityMultiplier: 2
+  m_RunCycleLegOffset: 0.2
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1
+  m_GroundCheckDistance: 0.2
+  GroundProbeVector:
+    x: 0
+    y: 0
+    z: 0
+  EquipResetTimer: 5
+--- !u!114 &-6116644452953765438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e689d52e3f13224408f371cd7c9b38d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Combo: {fileID: 11400000, guid: 10a4989132429054d990ac03a1a753ec, type: 2}
+--- !u!114 &-2713475146197894605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63c08bd6fc5f514fbd670c988fb6406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InPlay: 0
+  InvincibleMode: 0
+  CurHealth: 0
+  maxHealth: 0
+  CurMana: 0
+  maxMana: 0
+  BaseStats:
+    title: 0
+    Level: 10
+    Strength: 5
+    Vitality: 5
+    Awareness: 5
+    Speed: 5
+    Skill: 5
+    Resistance: 5
+    Concentration: 5
+    WillPower: 5
+    Charisma: 5
+    Luck: 5
+    difficultyMod: 5
+    LevelMod: 3
+--- !u!114 &2137280693603245727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80c558749c7c7545a752026e04b16ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9068102157310959554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993204960407465454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13784d0ad5f618a41af36d55e6724f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory:
+    ItemsInInventory: []
+    MaxInventorySize: 0
+  Equipment:
+    CurrentActivationPoints: 0
+    MaxActivationPoints: 0
+    QuickAccessItems: []
+    NumOfQuickAccessSlots: 0
+  magicSkillSystem:
+    MagicInventory: []
+    SkillInventory: []
+    EquippedMagic:
+    - {fileID: 11400000, guid: d0b37a594de94314dbe1c86ff7350bfe, type: 2}
+    EquippedSkill:
+    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
+    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
+  QuestLog:
+    SelectedMission: {fileID: 0}
+  Save:
+    EquippedWeapons:
+    - {fileID: 11400000, guid: 1010c691ad0d4bd4098aecc85824bb78, type: 2}
+    EquippedArmors: []
 --- !u!1 &2022817443144980035
 GameObject:
   m_ObjectHideFlags: 0

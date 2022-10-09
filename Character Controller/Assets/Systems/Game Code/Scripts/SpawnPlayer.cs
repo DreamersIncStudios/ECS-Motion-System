@@ -17,18 +17,25 @@ using Unity.Mathematics;
 using Unity.Physics.Authoring;
 using MotionSystem.CAD;
 using Dreamers.Global;
+using Dreamers.InventorySystem;
 
 namespace GameCoreCode
 {
     public class SpawnPlayer : MonoBehaviour
     {
         public List<GameObject> PlayerModels; // TODO load this from text data?????
+        public int IndexToSpawn;
         public PhysicsCategoryTags belongsTo;
         public PhysicsCategoryTags collideWith;
         // Start is called before the first frame update
         void Start()
         {
-            SpawnPlayerAndCreateEntityData(0, Vector3.zero);
+            if (IndexToSpawn > PlayerModels.Count - 1) {
+                IndexToSpawn = 0;
+               Debug.LogError($"IndexToSpawn outsider of Range");
+            }
+
+            SpawnPlayerAndCreateEntityData(IndexToSpawn, Vector3.zero);
             UIManager.instance.SpawnQuickAccessMenu();
 
         }
@@ -114,6 +121,8 @@ namespace GameCoreCode
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<Rigidbody>());
             em.AddComponentObject(playerDataEntity, spawnedGO.transform);
             em.AddComponentObject(playerDataEntity, spawnedGO.GetComponentInChildren<Renderer>());
+            em.AddComponentObject(playerDataEntity, spawnedGO.GetComponent<CharacterInventory>());
+
             spawnedGO.GetComponent<PlayerCharacter>().SetupDataEntity(playerDataEntity);
             spawnedGO.tag = "Player";
             spawnedGO.GetComponent<CharacterControl>().SetupDataEntity(playerDataEntity);

@@ -32,30 +32,14 @@
             "Configuration": 1
         },
         {
-            "$type": "Unity.Build.Classic.ClassicCodeStrippingOptions, Unity.Build.Classic",
-            "StripEngineCode": false,
-            "ManagedStrippingLevel": 0
-        },
-        {
             "$type": "Unity.Build.Classic.ClassicScriptingSettings, Unity.Build.Classic",
-            "ScriptingBackend": 1,
+            "ScriptingBackend": 0,
             "Il2CppCompilerConfiguration": 1,
             "UseIncrementalGC": true
         },
         {
             "$type": "Unity.Build.Common.GraphicsSettings, Unity.Build",
             "ColorSpace": 1
-        },
-        {
-            "$type": "Unity.Build.DotsRuntime.IL2CPPSettings, Unity.Build.DotsRuntime",
-            "ScriptDebugging": 2,
-            "WaitForDebugger": false
-        },
-        {
-            "$type": "Unity.Entities.EnableEntityNames, Unity.Entities.Editor"
-        },
-        {
-            "$type": "Unity.Build.Classic.IncludeTestAssemblies, Unity.Build.Classic"
         }
     ]
 }
