@@ -64,133 +64,73 @@ namespace BestiaryLibrary
             return spawnedGO;
         }
 
-        private static void AddPhysics(EntityManager manager, Entity entityLink, GameObject spawnedGO)
+        private static void AddPhysics(EntityManager manager, Entity entityLink, GameObject spawnedGO, PhysicsShape shape, PhysicsInfo physicsInfo)
         {
-            UnityEngine.CapsuleCollider col = spawnedGO.GetComponent<UnityEngine.CapsuleCollider>();
-            BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
+            BlobAssetReference<Unity.Physics.Collider> spCollider = new BlobAssetReference<Unity.Physics.Collider>();
+            switch (shape)
             {
-                Radius = col.radius,
-                Vertex0 = col.center + new Vector3(0, col.height, 0),
-                Vertex1 = new float3(0, 0, 0)
+                case PhysicsShape.Capsule:
+                    UnityEngine.CapsuleCollider col = spawnedGO.GetComponent<UnityEngine.CapsuleCollider>();
+                    spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
+                    {
+                        Radius = col.radius,
+                        Vertex0 = col.center + new Vector3(0, col.height, 0),
+                        Vertex1 = new float3(0, 0, 0)
 
-            }, new CollisionFilter()
-            {
-                BelongsTo = (1 >> 10),
-                CollidesWith = (1 >> 11),
-                GroupIndex = 0
-            });
+                    }, new CollisionFilter()
+                    {
+                        BelongsTo = physicsInfo.BelongsTo.Value,
+                        CollidesWith = physicsInfo.CollidesWith.Value,
+                        GroupIndex = 0
+                    });
 
+                    manager.AddComponentObject(entityLink, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
+                    manager.AddComponentObject(entityLink, spawnedGO.GetComponent<Rigidbody>());
+
+                    break;
+                case PhysicsShape.Box:
+                    UnityEngine.BoxCollider box = spawnedGO.GetComponent<UnityEngine.BoxCollider>();
+                    spCollider = Unity.Physics.BoxCollider.Create(new BoxGeometry()
+                    {
+                        Center = box.center,
+                        Size = box.size,
+                        Orientation = quaternion.identity,
+
+                    }, new CollisionFilter()
+                    {
+                        BelongsTo = physicsInfo.BelongsTo.Value,
+                        CollidesWith = physicsInfo.CollidesWith.Value,
+                        GroupIndex = 0
+                    });
+                    manager.AddComponentData(entityLink, new PhysicsCollider()
+                    { Value = spCollider });
+                    manager.AddComponentObject(entityLink, spawnedGO.GetComponent<UnityEngine.BoxCollider>());
+
+                    break;
+            }
+            manager.AddSharedComponentData(entityLink, new PhysicsWorldIndex());
             manager.AddComponentData(entityLink, new PhysicsCollider()
             { Value = spCollider });
-            manager.AddComponentObject(entityLink, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
-            manager.AddComponentObject(entityLink, spawnedGO.GetComponent<Rigidbody>());
-            manager.AddSharedComponentData(entityLink, new PhysicsWorldIndex());
-
-        }
-
-        private static void AddTargetingAndInfluence(EntityManager manager, Entity entityLink) {
-            manager.AddComponentData(entityLink, new ):
-            manager.AddComponentData(entityLink, new ):
-            manager.AddComponentData(entityLink, new ):
-            
-        }
-
-        public static Entity SpawnTowerAndCreateEntityDataWithVFX(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "") {
-            VFXManager.Instance.PlayVFX(6,Position, 6);
-            Entity temp = new Entity();
-            FunctionTimer.Create(() => {
-                temp = SpawnTowerAndCreateEntityData(Position+ Vector3.down*5, physicsInfo,  out GameObject spawnGO, entityName);
-                spawnGO.transform.DOMoveY(Position.y+1.2f, 3);
-            }, 2  , "Spawn Tower");
-
-            return temp;
-        }
-      public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, out GameObject spawnedGO, string entityName = "") {
-            EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            EntityArchetype npcDataArch = manager.CreateArchetype(
-               typeof(Translation),
-               typeof(Rotation),
-               typeof(LocalToWorld),
-               typeof(EnemyStats),
-               //typeof(IAUSBrain),
-               typeof(AITarget),
-               typeof(InfluenceComponent),
-               //typeof(Wait),
-               //typeof(StateBuffer),
-               typeof(Perceptibility),
-               typeof(Vision),
-               //typeof(RenderComponent),
-               typeof(ScanPositionBuffer),
-               typeof(CopyTransformFromGameObject),
-               typeof(PhysicsCollider),
-               typeof(PhysicsWorldIndex),
-                  typeof(PhysicsInfo)
-
-               );
-
-            Entity npcDataEntity = manager.CreateEntity(npcDataArch);
-            if (entityName != string.Empty)
-                manager.SetName(npcDataEntity, entityName);
-            else
-                manager.SetName(npcDataEntity, "NPC Data");
-            var Models = LoadModels("NPCs/Combat/Tower");
-            int cnt = Random.Range(0, Models.Count);
-            #region GameObject Setup
-            spawnedGO = GameObject.Instantiate(Models[cnt], Position, Quaternion.identity);
-            manager.SetComponentData(npcDataEntity, new Translation { Value = Position });
-            manager.AddComponentObject(npcDataEntity, spawnedGO.transform);
-            if(spawnedGO.GetComponent<Animator>())
-            manager.AddComponentObject(npcDataEntity, spawnedGO.GetComponent<Animator>());
-
-            #endregion
-
-            //Todo Change Later Box Collider????
-            #region Physics
-            UnityEngine.BoxCollider col = spawnedGO.GetComponent<UnityEngine.BoxCollider>();
-            BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.BoxCollider.Create(new BoxGeometry()
-            {
-               Center = col.center,
-               Size = col.size,
-               Orientation = quaternion.identity,
-
-            }, new CollisionFilter()
-            {
-                BelongsTo = physicsInfo.BelongsTo.Value,
-                CollidesWith = physicsInfo.CollidesWith.Value,
-                GroupIndex = 0
-            });
-            manager.SetComponentData(npcDataEntity, new PhysicsCollider()
-            { Value = spCollider });
-            manager.SetComponentData(npcDataEntity, new PhysicsInfo
+            manager.AddComponentData(entityLink, new PhysicsInfo
             {
                 BelongsTo = physicsInfo.BelongsTo,
                 CollidesWith = physicsInfo.CollidesWith
             });
+        }
 
+        private static void AddTargetingAndInfluence(EntityManager manager, Entity entityLink, Vision visionData) {
+            manager.AddComponentData(entityLink, new AITarget() { });
+            manager.AddComponentData(entityLink, new InfluenceComponent() { });
+            manager.AddComponentData(entityLink, visionData);
+            manager.AddComponentData(entityLink, new Perceptibility() { });
+            manager.AddBuffer<ScanPositionBuffer>(entityLink);
 
-            manager.AddComponentObject(npcDataEntity, spawnedGO.GetComponent<UnityEngine.BoxCollider>());
-
-            #endregion
-
-            #region Stats
-            EnemyCharacter stats = spawnedGO.GetComponent<EnemyCharacter>();
-            stats.SetupDataEntity(npcDataEntity);
-            StaticObjectControllerAuthoring controller = spawnedGO.GetComponent<StaticObjectControllerAuthoring>();
-            controller.SetupControllerEntityData(npcDataEntity);
-            #endregion
-            #region detection 
-            manager.SetComponentData(npcDataEntity, new Vision()
-            {
-                viewRadius = 55,
-                EngageRadius = 40,
-                ViewAngle = 360
-            });
-
-
-            #endregion
-
-            return npcDataEntity;
 
         }
+
+
+
+
+        enum PhysicsShape { Box, Capsule, Sphere,  Cyclinder, Custom}
     }
 }

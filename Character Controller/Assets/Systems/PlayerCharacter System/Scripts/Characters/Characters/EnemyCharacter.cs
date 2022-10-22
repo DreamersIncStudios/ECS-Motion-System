@@ -12,11 +12,10 @@ namespace Stats
         public uint EXPgained;
         public CharacterClass BaseStats;
 
-        public void SetupDataEntity(Entity entity)
+        public void SetupDataEntity(EntityManager em, Entity entity)
         {
 
             SelfEntityRef = entity;
-            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             em.AddBuffer<EffectStatusBuffer>(entity);
             //Todo get level and stat data
             this.Level = BaseStats.Level;

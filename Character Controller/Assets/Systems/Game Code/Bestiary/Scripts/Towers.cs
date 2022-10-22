@@ -7,34 +7,72 @@ using AISenses;
 //using IAUS.ECS.Component;
 using DreamersInc.InflunceMapSystem;
 using Unity.Entities;
-using Unity.Transforms;
-using Unity.Mathematics;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
-using System.Linq;
-using Unity.Physics;
-
+using DreamerInc.CombatSystem;
+using Assets.Systems.Global.Function_Timer;
+using DG.Tweening;
 
 namespace BestiaryLibrary
 {
     public static partial class BestiaryDB
     {
-        public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, string entityName = "")
+        public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "")
         {
             EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             Entity entityLink = createEntity(manager, entityName);
-            GameObject spawnedGO = SpawnGO(manager, entityLink, Position);
+            GameObject spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Tower");
            
-            AddPhysics(manager, entityLink, spawnedGO);
+            AddPhysics(manager, entityLink, spawnedGO,PhysicsShape.Box, physicsInfo);
+            AddTargetingAndInfluence(manager, entityLink, new Vision() {
+                viewRadius = 55, EngageRadius = 40, ViewAngle = 360
+            }
+            );
             #region Stats
             EnemyCharacter stats = spawnedGO.GetComponent<EnemyCharacter>();
-            stats.SetupDataEntity(entityLink);
-
+            stats.SetupDataEntity(manager,entityLink);
+            StaticObjectControllerAuthoring controller = spawnedGO.GetComponent<StaticObjectControllerAuthoring>();
+            controller.SetupControllerEntityData(manager, entityLink);
 
             #endregion
             return entityLink;
 
         }
+   
+        public static Entity SpawnTowerAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, out GameObject spawnedGO, string entityName = "")
+        {
+            EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            Entity entityLink = createEntity(manager, entityName);
+            spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Tower");
+
+            AddPhysics(manager, entityLink, spawnedGO, PhysicsShape.Box, physicsInfo);
+            AddTargetingAndInfluence(manager, entityLink, new Vision()
+            {
+                viewRadius = 55,
+                EngageRadius = 40,
+                ViewAngle = 360
+            }
+            );
+            #region Stats
+            EnemyCharacter stats = spawnedGO.GetComponent<EnemyCharacter>();
+            stats.SetupDataEntity(manager, entityLink);
+            StaticObjectControllerAuthoring controller = spawnedGO.GetComponent<StaticObjectControllerAuthoring>();
+            controller.SetupControllerEntityData(manager, entityLink);
+
+            #endregion
+            return entityLink;
+
+        }
+        public static Entity SpawnTowerAndCreateEntityDataWithVFX(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "")
+        {
+            VFXManager.Instance.PlayVFX(6, Position, 6);
+            Entity temp = new Entity();
+            FunctionTimer.Create(() => {
+                temp = SpawnTowerAndCreateEntityData(Position + Vector3.down * 5, physicsInfo, out GameObject spawnGO, entityName);
+                spawnGO.transform.DOMoveY(Position.y + 1.2f, 3);
+            }, 2, "Spawn Tower");
+
+            return temp;
+        }
+
     }
 
 

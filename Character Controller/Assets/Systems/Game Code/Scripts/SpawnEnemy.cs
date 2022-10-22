@@ -142,7 +142,7 @@ namespace GameCoreCode
 
             em.AddComponentObject(EnemyDataEntity, spawnedGO.transform);
             em.AddComponentObject(EnemyDataEntity, spawnedGO.GetComponentInChildren<Renderer>());
-            spawnedGO.GetComponent<EnemyCharacter>().SetupDataEntity(EnemyDataEntity);
+            spawnedGO.GetComponent<EnemyCharacter>().SetupDataEntity(em, EnemyDataEntity);
             spawnedGO.tag = "Enemy NPC";
             spawnedGO.GetComponent<NPCCharacterController>().SetupDataEntity(EnemyDataEntity);
             spawnedGO.GetComponent<NPCComboComponentAuthoring>().SetupDataEntity(EnemyDataEntity);
