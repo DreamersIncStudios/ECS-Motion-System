@@ -32,12 +32,6 @@
             "Configuration": 1
         },
         {
-            "$type": "Unity.Build.Classic.ClassicScriptingSettings, Unity.Build.Classic",
-            "ScriptingBackend": 0,
-            "Il2CppCompilerConfiguration": 1,
-            "UseIncrementalGC": true
-        },
-        {
             "$type": "Unity.Build.Common.GraphicsSettings, Unity.Build",
             "ColorSpace": 1
         }

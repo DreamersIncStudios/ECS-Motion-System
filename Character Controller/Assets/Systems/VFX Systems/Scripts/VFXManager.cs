@@ -126,7 +126,6 @@ namespace DreamerInc.CombatSystem
                     vfx.gameObject.SetActive(true);
                     await Task.Delay(TimeSpan.FromMilliseconds(DelayStart));
                     PS.Play(true);
-                  //  TriggerPlay;
                     await Task.Delay(TimeSpan.FromSeconds(lifeTime));
                     PS.Stop(true);
                     vfx.gameObject.SetActive(false);
@@ -143,7 +142,6 @@ namespace DreamerInc.CombatSystem
                 vfx.gameObject.SetActive(true);
                 await Task.Delay(TimeSpan.FromMilliseconds(DelayStart));
                 PS.Play(true);
-                //  TriggerPlay;
                 await Task.Delay(TimeSpan.FromSeconds(lifeTime));
                 PS.Stop(true);
                 vfx.gameObject.SetActive(false);

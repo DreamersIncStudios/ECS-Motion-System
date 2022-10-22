@@ -22,10 +22,10 @@ using DG.Tweening;
 
 namespace BestiaryLibrary
 {
-    public static class BestiaryDB 
+    public static partial class BestiaryDB
     {
         static List<GameObject> LoadModels(string path) {
-            List < GameObject> modelFromResources = new List<GameObject> ();
+            List<GameObject> modelFromResources = new List<GameObject>();
             GameObject[] goLoaded = Resources.LoadAll(path, typeof(GameObject)).Cast<GameObject>().ToArray();
             foreach (var go in goLoaded)
             {
@@ -34,6 +34,66 @@ namespace BestiaryLibrary
             return modelFromResources;
         }
 
+        private static Entity createEntity(EntityManager manager, string entityName = "")
+        {
+
+            EntityArchetype baseEntityArch = manager.CreateArchetype(
+              typeof(Translation),
+              typeof(Rotation),
+              typeof(LocalToWorld),
+              typeof(CopyTransformFromGameObject)
+              );
+            Entity baseDataEntity = manager.CreateEntity(baseEntityArch);
+            if (entityName != string.Empty)
+                manager.SetName(baseDataEntity, entityName);
+            else
+                manager.SetName(baseDataEntity, "NPC Data");
+
+            return baseDataEntity;
+        }
+        private static GameObject SpawnGO(EntityManager manager, Entity linkEntity, Vector3 Position, string modelPath = "")
+        {
+            var Models = LoadModels(modelPath);
+            int cnt = Random.Range(0, Models.Count);
+            GameObject spawnedGO = GameObject.Instantiate(Models[cnt], Position, Quaternion.identity);
+            manager.SetComponentData(linkEntity, new Translation { Value = Position });
+            manager.AddComponentObject(linkEntity, spawnedGO.transform);
+            if (spawnedGO.GetComponent<Animator>())
+                manager.AddComponentObject(linkEntity, spawnedGO.GetComponent<Animator>());
+
+            return spawnedGO;
+        }
+
+        private static void AddPhysics(EntityManager manager, Entity entityLink, GameObject spawnedGO)
+        {
+            UnityEngine.CapsuleCollider col = spawnedGO.GetComponent<UnityEngine.CapsuleCollider>();
+            BlobAssetReference<Unity.Physics.Collider> spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
+            {
+                Radius = col.radius,
+                Vertex0 = col.center + new Vector3(0, col.height, 0),
+                Vertex1 = new float3(0, 0, 0)
+
+            }, new CollisionFilter()
+            {
+                BelongsTo = (1 >> 10),
+                CollidesWith = (1 >> 11),
+                GroupIndex = 0
+            });
+
+            manager.AddComponentData(entityLink, new PhysicsCollider()
+            { Value = spCollider });
+            manager.AddComponentObject(entityLink, spawnedGO.GetComponent<UnityEngine.CapsuleCollider>());
+            manager.AddComponentObject(entityLink, spawnedGO.GetComponent<Rigidbody>());
+            manager.AddSharedComponentData(entityLink, new PhysicsWorldIndex());
+
+        }
+
+        private static void AddTargetingAndInfluence(EntityManager manager, Entity entityLink) {
+            manager.AddComponentData(entityLink, new ):
+            manager.AddComponentData(entityLink, new ):
+            manager.AddComponentData(entityLink, new ):
+            
+        }
 
         public static Entity SpawnTowerAndCreateEntityDataWithVFX(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "") {
             VFXManager.Instance.PlayVFX(6,Position, 6);

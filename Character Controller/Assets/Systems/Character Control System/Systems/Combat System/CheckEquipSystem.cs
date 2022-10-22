@@ -11,8 +11,9 @@ namespace MotionSystem
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach(( CharacterInventory inventory,  PlayerComboComponent combo) => {
-                    combo.WeaponEquipped = inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out _);
+            Entities.ForEach((CharacterInventory inventory, PlayerComboComponent combo) =>
+            {
+                combo.WeaponEquipped = inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out _);
 
 
             });

@@ -87,13 +87,15 @@ namespace MotionSystem.Reactive
         protected override void OnUpdate()
         {
             EntityCommandBuffer ECB = entityCommandBufferSystem.CreateCommandBuffer();
-            Entities.WithoutBurst().WithAll<RotateTowerTag>().ForEach((Entity entity, Transform transform, ref RotateTowerTag Rot, ref TowerController Tower) => {
+            Entities.WithoutBurst().WithAll<RotateTowerTag>().ForEach((Entity entity, Transform transform, ref RotateTowerTag Rot, ref TowerController Tower) =>
+            {
 
                 transform.rotation =
                 Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, Rot.AngleOfRot, 0), Time.DeltaTime * Tower.RotateSpeed);
-                if (Mathf.Abs(Rot.AngleOfRot - transform.rotation.eulerAngles.y) < 2) {
+                if (Mathf.Abs(Rot.AngleOfRot - transform.rotation.eulerAngles.y) < 2)
+                {
                     ECB.RemoveComponent<RotateTowerTag>(entity);
-                    
+
                 }
 
             }).Run();

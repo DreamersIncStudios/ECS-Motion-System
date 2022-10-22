@@ -34,7 +34,6 @@ namespace DreamersInc.ComboSystem
             var state = anim.GetCurrentAnimatorStateInfo(0);
             var vfx = comboInstance.GetVFX(state);
             vfx.SpawnVFX(this.transform);
-            Debug.Log(vfx.ID);
         }
 
         public void Load(string jsonData)
@@ -54,6 +53,6 @@ namespace DreamersInc.ComboSystem
     public class PlayerComboComponent : IComponentData
     {
         public ComboSO Combo;
-        public bool WeaponEquipped;
+        public bool WeaponEquipped { get; set; }
     }
 }

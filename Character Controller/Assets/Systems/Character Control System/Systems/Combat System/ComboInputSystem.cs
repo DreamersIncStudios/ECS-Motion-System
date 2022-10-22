@@ -40,11 +40,11 @@ namespace DreamersInc.ComboSystem
                 if (handler.InputQueue == null)
                     handler.InputQueue = new Queue<AnimationTrigger>();
 
-                if (PC.InSafeZone || PC.Casting|| !ComboList.WeaponEquipped)
+                if (PC.InSafeZone || PC.Casting || !ComboList.WeaponEquipped)
                 {
-                // add logic for play to store weapon
+                    // add logic for play to store weapon
 
-                return;
+                    return;
                 }
 
                 if (!anim.IsInTransition(0) && !ComboList.Combo.ShowMovesPanel)
@@ -55,10 +55,10 @@ namespace DreamersInc.ComboSystem
                         foreach (AnimationCombo comboOption in combotest.ComboList)
                         {
                             if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
-                        {
-                            handler.currentStateExitTime = comboOption.AnimationEndTime;
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
                             {
+                                handler.currentStateExitTime = comboOption.AnimationEndTime;
+                                if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
+                                {
                                     AnimationTrigger trigger = comboOption.Trigger;
                                     if (combotest.Unlocked && handler.QueueIsEmpty)
                                     {
@@ -78,7 +78,7 @@ namespace DreamersInc.ComboSystem
                                                     PC.ChargedTime = 0.0f;
                                                 }
                                                 break;
-                                                //TODO Review
+                                            //TODO Review
                                             case AttackType.ChargedLightAttack:
                                                 if (PC.ChargedLightAttack)
                                                 {
@@ -103,7 +103,7 @@ namespace DreamersInc.ComboSystem
                                         }
                                     }
                                 }
-                            }       
+                            }
                         }
                     }
                 }
@@ -137,14 +137,14 @@ namespace DreamersInc.ComboSystem
                                 anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
                                 break;
                         }
-          
+
                     }
                     else
                     {
                         anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
-    
-                    } 
-                  
+
+                    }
+
                     if (!attackTarget.AttackTargetLocation.Equals(new float3(1, 1, 1)))
                     {
                         transform.DOMove(attackTarget.MoveTo(transform.position), .5f, false);
