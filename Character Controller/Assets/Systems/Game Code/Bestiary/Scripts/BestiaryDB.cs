@@ -19,6 +19,8 @@ using Unity.Physics;
 using DreamerInc.CombatSystem;
 using Assets.Systems.Global.Function_Timer;
 using DG.Tweening;
+using Components.MovementSystem;
+using DreamersInc.ComboSystem;
 
 namespace BestiaryLibrary
 {
@@ -51,15 +53,16 @@ namespace BestiaryLibrary
 
             return baseDataEntity;
         }
-        private static GameObject SpawnGO(EntityManager manager, Entity linkEntity, Vector3 Position, string modelPath = "")
+        private static GameObject SpawnGO(EntityManager manager, Entity linkEntity, Vector3 Position, string modelPath = "", int cnt =-1)
         {
             var Models = LoadModels(modelPath);
-            int cnt = Random.Range(0, Models.Count);
+            cnt =cnt == -1? Random.Range(0, Models.Count): cnt;
             GameObject spawnedGO = GameObject.Instantiate(Models[cnt], Position, Quaternion.identity);
             manager.SetComponentData(linkEntity, new Translation { Value = Position });
             manager.AddComponentObject(linkEntity, spawnedGO.transform);
             if (spawnedGO.GetComponent<Animator>())
                 manager.AddComponentObject(linkEntity, spawnedGO.GetComponent<Animator>());
+            manager.AddComponentObject(linkEntity, spawnedGO.GetComponentInChildren<Renderer>());
 
             return spawnedGO;
         }
@@ -118,18 +121,30 @@ namespace BestiaryLibrary
             });
         }
 
-        private static void AddTargetingAndInfluence(EntityManager manager, Entity entityLink, Vision visionData) {
-            manager.AddComponentData(entityLink, new AITarget() { });
+        private static void AddTargetingAndInfluence(EntityManager manager, Entity entityLink, AITarget aiTarget, Vision visionData)
+        {
+            manager.AddComponentData(entityLink, aiTarget);
             manager.AddComponentData(entityLink, new InfluenceComponent() { });
             manager.AddComponentData(entityLink, visionData);
             manager.AddComponentData(entityLink, new Perceptibility() { });
             manager.AddBuffer<ScanPositionBuffer>(entityLink);
 
-
+       
         }
 
+        private static void AddMovementSystems(EntityManager em, Entity entityLink, GameObject spawnedGO)
+        {
+            em.SetComponentData(entityLink, new Command()
+            {
+                InputQueue = new Queue<AnimationTrigger>(),
+                BareHands = false,
+                WeaponIsEquipped = true
+            });
 
+            em.SetComponentData(entityLink, new Movement() { CanMove = false });
 
+            em.AddComponentObject(entityLink, spawnedGO.GetComponent<NavMeshAgent>());
+        }
 
         enum PhysicsShape { Box, Capsule, Sphere,  Cyclinder, Custom}
     }

@@ -22,7 +22,7 @@ namespace BestiaryLibrary
             GameObject spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Tower");
            
             AddPhysics(manager, entityLink, spawnedGO,PhysicsShape.Box, physicsInfo);
-            AddTargetingAndInfluence(manager, entityLink, new Vision() {
+            AddTargetingAndInfluence(manager, entityLink, new AITarget(), new Vision() {
                 viewRadius = 55, EngageRadius = 40, ViewAngle = 360
             }
             );
@@ -44,7 +44,7 @@ namespace BestiaryLibrary
             spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Tower");
 
             AddPhysics(manager, entityLink, spawnedGO, PhysicsShape.Box, physicsInfo);
-            AddTargetingAndInfluence(manager, entityLink, new Vision()
+            AddTargetingAndInfluence(manager, entityLink,new AITarget(), new Vision()
             {
                 viewRadius = 55,
                 EngageRadius = 40,

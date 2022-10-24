@@ -1,4 +1,6 @@
-﻿using Unity.Entities;
+﻿using AISenses.VisionSystems;
+using DreamersInc.InflunceMapSystem;
+using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 namespace Global.Component
@@ -15,6 +17,7 @@ namespace Global.Component
         [HideInInspector] public int MaxNumberOfTarget; // base off of Threat Level
         public bool CanBeTargetByPlayer;
         public float3 CenterOffset;
+        public float detectionScore;
 
         public bool IsFriend(Race race) {
             bool test = new bool();
@@ -73,4 +76,17 @@ namespace Global.Component
        None, Angel, Daemon, Human // More Types of be added 
 
     }
+    [UpdateInGroup(typeof(VisionTargetingUpdateGroup))]
+    [UpdateBefore(typeof(VisionSystemJobs))]
+    public partial class UpdateAITarget : ComponentSystem
+    {
+        protected override void OnUpdate()
+        {
+            Entities.ForEach((ref AITarget target, ref Perceptibility perceptibility) =>
+            {
+                target.detectionScore = perceptibility.Score;
+            });
+        }
+    }
+
 }
