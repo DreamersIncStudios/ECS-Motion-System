@@ -49,9 +49,8 @@ namespace GameCoreCode
             BestiaryDB.SpawnBasicAndCreateEntityData(new Vector3(6, 0, 25), new PhysicsInfo() { BelongsTo = belongsTo, CollidesWith = collideWith });
             BestiaryDB.SpawnBasicAndCreateEntityData(new Vector3(8, 0, 25), new PhysicsInfo() { BelongsTo = belongsTo, CollidesWith = collideWith });
             int towercnt = new int();
-            BestiaryDB.SpawnTowerAndCreateEntityDataWithVFX(new Vector3(0,0,40),
-                new PhysicsInfo { BelongsTo = this.belongsTo, CollidesWith = this.collideWith},
-                $"Tower {towercnt}");
+            BestiaryDB.SpawnBaseBeastAndCreateEntityData(new Vector3(0,0,40),
+                new PhysicsInfo { BelongsTo = this.belongsTo, CollidesWith = this.collideWith}, 0 , "Bear");
         }
 
         

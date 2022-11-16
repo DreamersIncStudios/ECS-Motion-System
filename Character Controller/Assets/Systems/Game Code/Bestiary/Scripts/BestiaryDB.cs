@@ -134,14 +134,14 @@ namespace BestiaryLibrary
 
         private static void AddMovementSystems(EntityManager em, Entity entityLink, GameObject spawnedGO)
         {
-            em.SetComponentData(entityLink, new Command()
+            em.AddComponentData(entityLink, new Command()
             {
                 InputQueue = new Queue<AnimationTrigger>(),
                 BareHands = false,
                 WeaponIsEquipped = true
             });
 
-            em.SetComponentData(entityLink, new Movement() { CanMove = false });
+            em.AddComponentData(entityLink, new Movement() { CanMove = false });
 
             em.AddComponentObject(entityLink, spawnedGO.GetComponent<NavMeshAgent>());
         }

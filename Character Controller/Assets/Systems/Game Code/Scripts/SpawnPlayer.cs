@@ -125,7 +125,7 @@ namespace GameCoreCode
 
             spawnedGO.GetComponent<PlayerCharacter>().SetupDataEntity(playerDataEntity);
             spawnedGO.tag = "Player";
-            spawnedGO.GetComponent<CharacterControl>().SetupDataEntity(playerDataEntity);
+            spawnedGO.GetComponent<CharacterControl>().SetupDataEntity(em, playerDataEntity);
             spawnedGO.GetComponent<PlayerComboComponentAuthoring>().SetupDataEntity(playerDataEntity);
             SetupCamera(spawnedGO);
         }

@@ -64,8 +64,10 @@
   <ItemGroup>
     <Compile Include="Assets\Systems\Character Control System\Systems\Movement Systems\GroundCheckSystem.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\AnimatorUpdate.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\BeastControllerComponent.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Animation Control\TargettingSync.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\Authoring\NPCComboComponentAuthoring.cs" />
+    <Compile Include="Assets\Systems\Character Control System\Components\Authoring\BeastCharacterController.cs" />
     <Compile Include="Assets\Systems\Character Control System\Components\Command.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Input Systems\ControllerInput.cs" />
     <Compile Include="Assets\Systems\Character Control System\Systems\Combat System\ComboInputSystem.cs" />

@@ -35,10 +35,10 @@ namespace MotionSystem.Archetypes
         public float EquipResetTimer;
 
 
-        public void SetupDataEntity(Entity entity)
+        public void SetupDataEntity(EntityManager em, Entity entity)
         {
-            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
-            em.SetComponentData(entity, new CharControllerE()
+            
+            em.AddComponentData(entity, new CharControllerE()
             {
                 CapsuleRadius = Col.radius,
                 OGCapsuleHeight = Col.height,
@@ -57,7 +57,8 @@ namespace MotionSystem.Archetypes
                 IsGrounded = true,
                 AI = true,
                 CombatCapable = CombatCapable,
-                EquipResetTimer = EquipResetTimer
+                EquipResetTimer = EquipResetTimer,
+                AnimationSpeed = 1.0f
 
             });
 

@@ -73,7 +73,7 @@ namespace Global.Component
 
     public enum Race
     {
-       None, Angel, Daemon, Human // More Types of be added 
+       None, Angel, Daemon, Human, Beast // More Types of be added 
 
     }
     [UpdateInGroup(typeof(VisionTargetingUpdateGroup))]

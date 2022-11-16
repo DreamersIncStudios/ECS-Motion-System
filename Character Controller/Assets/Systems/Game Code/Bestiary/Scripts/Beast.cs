@@ -14,46 +14,44 @@ using Unity.Transforms;
 using Unity.Mathematics;
 using MotionSystem.Archetypes;
 using DreamersInc.ComboSystem.NPC;
+using MotionSystem;
 
 namespace BestiaryLibrary
 {
-    public static partial class BestiaryDB
+    public static partial class BestiaryDB 
     {
-        public static Entity SpawnBasicAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo, string entityName = "")
-        {
+        public static Entity SpawnBaseBeastAndCreateEntityData(Vector3 Position, PhysicsInfo physicsInfo,int index = 0, string entityName = "") {
             EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             Entity entityLink = createEntity(manager, entityName);
-            GameObject spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Human",0);
-
+            GameObject spawnedGO = SpawnGO(manager, entityLink, Position, "NPCs/Combat/Animal", index);
             AddPhysics(manager, entityLink, spawnedGO, PhysicsShape.Capsule, physicsInfo);
             manager.SetComponentData(entityLink, new Translation { Value = spawnedGO.transform.position });
             manager.SetComponentData(entityLink, new Rotation { Value = spawnedGO.transform.rotation });
-            AddTargetingAndInfluence(manager, entityLink,
-                new AITarget()
-                {
-                    Type = TargetType.Character,
-                    GetRace = Race.Human,
-                    MaxNumberOfTarget = 5,
-                    CanBeTargetByPlayer = true,
-                    CenterOffset = new float3(0, 1, 0)
-                },
-                new Vision()
-            {
-                viewRadius = 55,
-                EngageRadius = 40,
-                ViewAngle = 360
-            }
-   );
-            AddMovementSystems(manager, entityLink, spawnedGO);
-
+            
             spawnedGO.GetComponent<EnemyCharacter>().SetupDataEntity(manager, entityLink);
             spawnedGO.tag = "Enemy NPC";
-            spawnedGO.GetComponent<NPCCharacterController>().SetupDataEntity(manager, entityLink);
+
+            spawnedGO.GetComponent<BeastCharacterController>().SetupDataEntity(manager, entityLink);
             spawnedGO.GetComponent<NPCComboComponentAuthoring>().SetupDataEntity(entityLink);
 
+            AddTargetingAndInfluence(manager, entityLink,
+              new AITarget()
+              {
+                  Type = TargetType.Character,
+                  GetRace = Race.Beast,
+                  MaxNumberOfTarget = 5,
+                  CanBeTargetByPlayer = true,
+                  CenterOffset = new float3(0, 1, 0)
+              },
+              new Vision()
+              {
+                  viewRadius = 55,
+                  EngageRadius = 40,
+                  ViewAngle = 360
+              });
+            AddMovementSystems(manager, entityLink, spawnedGO);
+
             return entityLink;
-
         }
-
     }
 }

@@ -1,30 +1,25 @@
-﻿using UnityEngine;
-using Unity.Entities;
-using UnityEngine.AI;
 using MotionSystem.Components;
-using Components.MovementSystem;
-//using ControllerSwap;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.AI;
 
-namespace MotionSystem.Archetypes
+namespace MotionSystem
 {
+
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(UnityEngine.CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(NavMeshAgent))]
 
-
-    public class CharacterControl : MonoBehaviour
+    public class BeastCharacterController : MonoBehaviour
     {
-        [Header("Party")]
-        public bool AI_Control;
-        public bool Party;
-        public bool IsPlayer;
-        public bool CombatCapable;
-       // NavMeshAgent Agent => GetComponent<NavMeshAgent>();
         CapsuleCollider Col => GetComponent<CapsuleCollider>();
-        public ControllerScheme Scheme;
         Rigidbody RB => GetComponent<Rigidbody>();
+
         [Header("Animation Movement Specs")]
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
@@ -34,22 +29,19 @@ namespace MotionSystem.Archetypes
         [SerializeField] float m_MoveSpeedMultiplier = 1f;
         [SerializeField] float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
+
         [SerializeField] float3 GroundProbeVector;
-        [Header("Weapon Specs")]
-        public float EquipResetTimer = 5.0f;
-
-        public Entity ObjectEntity;
-
-        // PartySwapSystem Swap => PartySwapSystem.GMS;
-
-        public void Start()
+        // Start is called before the first frame update
+        void Start()
         {
             RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
         }
 
         public void SetupDataEntity(EntityManager em, Entity entity)
         {
-            em.AddComponentData(entity, new CharControllerE()
+
+            em.AddComponentData(entity, new BeastControllerComponent()
             {
                 CapsuleRadius = Col.radius,
                 OGCapsuleHeight = Col.height,
@@ -61,35 +53,16 @@ namespace MotionSystem.Archetypes
                 m_JumpPower = m_JumpPower,
                 m_MoveSpeedMultiplier = m_MoveSpeedMultiplier,
                 m_MovingTurnSpeed = m_MovingTurnSpeed,
-                m_RunCycleLegOffset = m_RunCycleLegOffset,
                 m_StationaryTurnSpeed = m_StationaryTurnSpeed,
                 m_OrigGroundCheckDistance = m_GroundCheckDistance,
                 GroundCheckDistance = m_GroundCheckDistance,
                 IsGrounded = true,
-                AI = AI_Control,
-                CombatCapable = CombatCapable,
-                EquipResetTimer = EquipResetTimer,
+                AI = true,
                 AnimationSpeed = 1.0f
 
-            }) ;
+            });
 
-            if (AI_Control)
-            {
-                var move = new Movement() { CanMove = true };
-                var AI = new AI_Control() { };
-                em.AddComponentData(entity, move);
-                em.AddComponentData(entity, AI);
 
-            }
-            else
-            {
-                if (IsPlayer)
-                {
-                   // Agent.enabled = false;
-                    var player = new Player_Control() { };
-                    em.AddComponentData(entity, player);
-                }
-            }
 
             em.AddComponent<Unity.Transforms.CopyTransformFromGameObject>(entity);
         }

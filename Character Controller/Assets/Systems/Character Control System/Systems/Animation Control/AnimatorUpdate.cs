@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.Animations;
+﻿using UnityEngine;
 using DG.Tweening;
 using Unity.Entities;
 using MotionSystem.Components;
@@ -28,12 +24,12 @@ namespace MotionSystem.Systems
 
             Entities.WithoutBurst().ForEach(( Animator Anim, Transform transform, Rigidbody RB,ref CharControllerE control) => {
 
-                if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+             if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                     Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
 
                 float m_TurnAmount;
                 float m_ForwardAmount;
-
+   
 
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
@@ -148,6 +144,8 @@ namespace MotionSystem.Systems
 
             }).Run();
 
+            UpdateBeast();
+
         }
         void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
@@ -176,6 +174,114 @@ namespace MotionSystem.Systems
 
             Anim.applyRootMotion =
             control.ApplyRootMotion;
+
+        }
+
+        void UpdateBeast()
+        {
+
+            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref BeastControllerComponent control) =>
+            {
+                if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+                    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
+
+                float m_TurnAmount;
+                float m_ForwardAmount;
+
+                m_ForwardAmount = control.Move.z;
+                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
+
+                if (!control.Targetting)
+                {
+                    float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
+                    transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+                }
+                else
+                {
+
+                    m_TurnAmount = control.Move.x;
+                    if (!control.AI)
+                    {
+                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
+                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                    }
+                }
+
+                if (control.IsGrounded)
+                {
+                    HandleGroundedMovement(control, Anim, RB);
+                }
+                else
+                {
+                    HandleAirborneMovement(control, Anim, RB);
+                }
+
+                if (control.ApplyRootMotion)
+                {
+                    Anim.applyRootMotion = true;
+                    control.ApplyRootMotion = false;
+                }
+
+                // Animator Updater
+                // update the animator parameters
+                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.fixedDeltaTime);
+                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, Time.fixedDeltaTime);
+                Anim.SetBool("OnGround", control.IsGrounded);
+
+                // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
+                // which affects the movement speed because of the root motion.
+                if (control.IsGrounded && control.Move.magnitude > 0)
+                {
+                    Anim.speed = control.m_AnimSpeedMultiplier;
+                }
+                else
+                {
+                    // don't use that while airborne
+                    Anim.speed = 1;
+                }
+
+                control.Jump = false;
+
+
+
+
+            }).Run();
+
+            Entities.WithoutBurst().WithChangeFilter<BeastControllerComponent>().ForEach((CapsuleCollider capsule, ref BeastControllerComponent Control) =>
+            {
+
+                capsule.center = Control.CapsuleCenter;
+                capsule.height = Control.CapsuleHeight;
+
+            }).Run();
+        }
+
+        void HandleGroundedMovement(BeastControllerComponent control, Animator Anim, Rigidbody RB)
+        {
+            if (control.Jump)
+            {
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation0"))
+                {
+                    // jump!
+                    Anim.applyRootMotion = false;
+                    RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
+                    control.IsGrounded = false;
+                    control.GroundCheckDistance = 0.1f;
+                    control.SkipGroundCheck = true;
+                }
+            }
+        }
+        void HandleAirborneMovement(BeastControllerComponent control, Animator Anim, Rigidbody RB)
+        {
+            Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
+            RB.AddForce(extraGravityForce);
+
+            control.SkipGroundCheck = RB.velocity.y > 0;
+            control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
+
+            Anim.applyRootMotion = control.ApplyRootMotion;
 
         }
     }
