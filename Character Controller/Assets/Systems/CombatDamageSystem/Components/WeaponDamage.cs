@@ -71,7 +71,6 @@ namespace DreamersInc.DamageSystem
             MagicMod = Element != Element.None ? Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue / 10.0f : 1.0f;
         }
         IDamageable self;
-        public WeaponSlot weaponType;
 
         void Awake()
         {
