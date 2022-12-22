@@ -1,8 +1,7 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
-# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+# Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -15,8 +14,8 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+# Recordings can get excessive in size
+/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -37,6 +36,7 @@ ExportedObj/
 *.unityproj
 *.sln
 *.suo
+*.meta
 *.tmp
 *.user
 *.userprefs
@@ -47,16 +47,12 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.log
-*.cache
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-*.FBX.meta
-*.fbx.meta
-*.png.meta
-*.jpg.meta
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -64,12 +60,8 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
-*.fbx
-*.exr
-*.meta
-*.jpg
-*.png
-*.mat
+*.app
+
 # Crashlytics generated file
 crashlytics-build.properties
 
@@ -79,17 +71,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-/[Aa]ssets/[Mm]odels/*
-/[Aa]ssets/[Pp]lugins/*
-/Character Controller/Assets/Baedrick
-/Character Controller/Assets/FurryS2
-/Character Controller/Assets/Hovl Studio
-/Character Controller/Assets//Paid Asset/
-/Character Controller/Assets/Paid Asset/Animations/Gril_GreatSword_AnimSet/Animation/Humanoid/inplace.meta
-/Character Controller/Assets/TextMesh Pro
-/Character Controller/Library
-/Character Controller/Assets/Paid Asset
-/Character Controller/Temp
-/Character Controller/Builds
-*.sceneWithBuildSettings
-/Character Controller/Assets/Models/Weapons/CSC/Textures
+/Assets/Paid Assets/*
+/Assets/Plugins/*
+/Library
+/ProjectSettings
+/Temp
+/UserSettings
+
