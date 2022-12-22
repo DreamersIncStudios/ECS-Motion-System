@@ -1,8 +1,7 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
-# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+# Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -15,8 +14,8 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+# Recordings can get excessive in size
+/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -37,6 +36,7 @@ ExportedObj/
 *.unityproj
 *.sln
 *.suo
+*.meta
 *.tmp
 *.user
 *.userprefs
@@ -47,16 +47,12 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.log
-*.cache
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-*.FBX.meta
-*.fbx.meta
-*.png.meta
-*.jpg.meta
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -64,12 +60,8 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
-*.fbx
-*.exr
-*.meta
-*.jpg
-*.png
-*.mat
+*.app
+
 # Crashlytics generated file
 crashlytics-build.properties
 
@@ -79,17 +71,59 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-/[Aa]ssets/[Mm]odels/*
-/[Aa]ssets/[Pp]lugins/*
-/Character Controller/Assets/Baedrick
-/Character Controller/Assets/FurryS2
-/Character Controller/Assets/Hovl Studio
-/Character Controller/Assets//Paid Asset/
-/Character Controller/Assets/Paid Asset/Animations/Gril_GreatSword_AnimSet/Animation/Humanoid/inplace.meta
-/Character Controller/Assets/TextMesh Pro
+/Assets/Paid Assets/*
+/Assets/Plugins/*
+/Library
+/ProjectSettings
+/Temp
+/UserSettings
+
+/Character Controller/Assets/Paid Assets
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenIcon.png.meta
+/Character Controller/Assets/Plugins/Sirenix
+/Character Controller/Assets/Plugins/Demigiant/DOTween.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/readme.txt.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Modules/DOTween.Modules.asmdef.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/DOTween.XML.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/DOTween.XML
+/Character Controller/Assets/Plugins/Demigiant/DOTween/DOTween.dll.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/DOTween.dll
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Header.jpg.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer_dark.png.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer.png.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenMiniIcon.png.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.XML.meta
+/Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll
+/Character Controller/Assets/Plugins/Demigiant.meta
+/Character Controller/Library/Artifacts
 /Character Controller/Library
-/Character Controller/Assets/Paid Asset
+/Character Controller/Logs/shadercompiler-UnityShaderCompiler.exe2.log
+/Character Controller/Logs/shadercompiler-UnityShaderCompiler.exe1.log
+/Character Controller/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+/Character Controller/Logs/shadercompiler-AssetImportWorker0.log
+/Character Controller/Logs/Packages-Update.log
+/Character Controller/Logs/AssetImportWorker1.log
+/Character Controller/Logs/AssetImportWorker0.log
 /Character Controller/Temp
-/Character Controller/Builds
-*.sceneWithBuildSettings
-/Character Controller/Assets/Models/Weapons/CSC/Textures
+/Character Controller/obj/Release
+/Character Controller/obj/Debug
+/Character Controller/Builds/PC Build/MoonShot_Data/Managed
+/Character Controller/Builds/PC Build/MoonShot_Data
+/Character Controller/Builds/PC Build
