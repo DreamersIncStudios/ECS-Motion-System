@@ -1,5 +1,6 @@
 using Dreamers.InventorySystem;
 using Dreamers.InventorySystem.Interfaces;
+using DreamersInc.ComboSystem;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,13 +16,19 @@ namespace DreamersInc.CombatSystem
 
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory inventory, ref DrawWeapon tag) => {
+            Entities.WithoutBurst().ForEach((CharacterInventory test, Command input)=>{ 
+                if(test.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out _) && !input.WeaponIsEquipped)
+                    input.WeaponIsEquipped= true;
+                if (!test.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out _) && input.WeaponIsEquipped)
+                    input.WeaponIsEquipped = false;
+            }).Run();
+            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory character, ref DrawWeapon tag) => {
                 
-               inventory.Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(animc.anim);
+               character.Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(animc.anim);
                 EntityManager.RemoveComponent<DrawWeapon>(entity);
             }).Run();
-            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory inventory, ref StoreWeapon tag) => { 
-               inventory.Equipment.EquippedWeapons[WeaponSlot.Primary].StoreWeapon(animc.anim);
+            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory character, ref StoreWeapon tag) => {
+                character.Equipment.EquippedWeapons[WeaponSlot.Primary].StoreWeapon(animc.anim);
                 EntityManager.RemoveComponent<StoreWeapon>(entity);
 
             }).Run();

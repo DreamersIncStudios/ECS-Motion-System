@@ -17,7 +17,7 @@ namespace Stats.Entities
         public override void Bake(CharacterAuthoring authoring)
         {
             BaseCharacterComponent character = new();
-            character.SetupDataEntity(authoring.Info, authoring.animator.gameObject);
+            character.SetupDataEntity(authoring.Info);
                 AddComponentObject (character);
             AddComponentObject(new AnimatorComponent() { anim = authoring.animator});
             AddComponent(new PlayerTag());

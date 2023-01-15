@@ -7,5 +7,6 @@ namespace Stats.Entities
         public Animator anim;
         public Rigidbody RB;
         public Transform transform;
+
     }
 }

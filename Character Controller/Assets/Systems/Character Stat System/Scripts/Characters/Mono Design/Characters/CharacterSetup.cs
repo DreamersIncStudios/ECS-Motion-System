@@ -20,7 +20,7 @@ namespace Stats
 
         }
 
-        public async void StatsUpdate(BaseCharacter CharacterStats)
+        public void StatsUpdate(BaseCharacter CharacterStats)
         {
             CharacterStats.Level = CharClass.Level;
             float ModValue = CharClass.LevelMod;
@@ -36,7 +36,7 @@ namespace Stats
             CharacterStats.GetPrimaryAttribute((int)AttributeName.Concentration).BaseValue = (int)(CharClass.Concentration * ModValue);
             CharacterStats.GetVital((int)VitalName.Health).StartValue = 500;
             CharacterStats.GetVital((int)VitalName.Mana).StartValue = 250;
-            await Task.Delay(TimeSpan.FromSeconds(2));
+         
 
             CharacterStats.StatUpdate();
 
@@ -48,6 +48,7 @@ namespace Stats
     public struct CharacterClass
     {
         public ClassTitle title;
+        public string Name;
         public int Level;
         public int Strength;
         public int Vitality;

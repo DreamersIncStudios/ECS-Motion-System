@@ -99,6 +99,9 @@ namespace Dreamers.InventorySystem
                 return Equipped = false;
             }
         }
+ 
+
+
         //TODO Should this be a bool instead of Void
 
         /// <summary>
@@ -179,7 +182,7 @@ namespace Dreamers.InventorySystem
             return true; ;
         }
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
+        public override void Use(CharacterInventory characterInventory, BaseCharacter player)
         {
             throw new System.NotImplementedException();
         }

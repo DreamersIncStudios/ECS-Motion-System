@@ -2,11 +2,12 @@
 using Stats.Entities;
 using Dreamers.InventorySystem.Interfaces;
 using Sirenix.Serialization;
-using System;
+using UnityEngine;
+using Stats;
 
-namespace Dreamers.InventorySystem.Base { 
-
-public class EquipmentBase
+namespace Dreamers.InventorySystem.Base {
+    [System.Serializable]
+    public class EquipmentBase
     {
         public Dictionary<ArmorType, ArmorSO> EquippedArmor = new Dictionary<ArmorType, ArmorSO>();
         public Dictionary<WeaponSlot, WeaponSO> EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>();
@@ -22,13 +23,22 @@ public class EquipmentBase
             QuickAccessItems= new List<ItemSlot>();
             NumOfQuickAccessSlots= 2;
         }
-        public void Init(EquipmentSave save, BaseCharacterComponent player, int size =2) { 
-
+        public void Init(EquipmentSave save, BaseCharacterComponent player, int size =2) {
+            EquippedArmor = new Dictionary<ArmorType, ArmorSO>();
+            EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>(); 
             QuickAccessItems= new List<ItemSlot>();
             NumOfQuickAccessSlots=  size;
            LoadEquipment(player,save);
         }
-
+        public EquipmentSave Save;
+        public void Init(EquipmentSave save, int size = 2)
+        {
+            EquippedArmor = new Dictionary<ArmorType, ArmorSO>();
+            EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>();
+            QuickAccessItems = new List<ItemSlot>();
+            NumOfQuickAccessSlots = size;
+         Save = save;
+        }
         void reloadEquipment(BaseCharacterComponent player) {
             foreach (ArmorSO so in EquippedArmor.Values) {
                 so.Equip(player);
@@ -41,17 +51,28 @@ public class EquipmentBase
 
         void LoadEquipment(BaseCharacterComponent PC, EquipmentSave Save)
         {
-            foreach (ArmorSO SO in Save.EquippedArmors)
+            if (Save.EquippedArmors.Count != 0)
             {
-              if(  SO.Equip(PC))
-                    EquippedArmor[SO.ArmorType] = SO;
-            }
-            foreach (WeaponSO SO in Save.EquippedWeapons)
-            {
-                if (SO)
+                foreach (ArmorSO SO in Save.EquippedArmors)
                 {
-                    if(SO.Equip(PC))
-                    EquippedWeapons[SO.Slot] = SO;
+                    if (SO != null)
+                    {
+                        var copy = Object.Instantiate(SO);
+                        copy.Equip(PC);
+                        EquippedArmor[copy.ArmorType] = copy;
+                    }
+                }
+            }
+            if (Save.EquippedWeapons.Count != 0)
+            {
+                foreach (WeaponSO SO in Save.EquippedWeapons)
+                {
+                    if (SO != null)
+                    {
+                        var copy = Object.Instantiate(SO);
+                        copy.Equip(PC);
+                        EquippedWeapons[copy.Slot] = copy;
+                    }
                 }
             }
         }

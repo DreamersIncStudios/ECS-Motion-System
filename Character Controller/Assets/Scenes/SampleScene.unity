@@ -157,10 +157,10 @@ MonoBehaviour:
   AutoLoadScene: 1
   _SceneGUID:
     Value:
-      x: 2494809490
-      y: 1076531820
-      z: 2275062460
-      w: 2565954960
+      x: 0
+      y: 0
+      z: 0
+      w: 0
 --- !u!4 &240068292
 Transform:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 2235180696940177336, guid: 038a3f33ea2cae341ba477e18e897ed6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2235180696940177336, guid: 038a3f33ea2cae341ba477e18e897ed6,
         type: 3}
@@ -698,7 +698,7 @@ PrefabInstance:
     - target: {fileID: 4704885444191500599, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4704885444191500599, guid: 09a727e1fe1d66e4ca919c7a4398d9b7,
         type: 3}

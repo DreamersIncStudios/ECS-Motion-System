@@ -17,8 +17,6 @@ namespace DreamersInc
                 var data = new ControllerInfo();
                 data.setup(authoring.controller);
                 AddComponent(data);
-                
-               
             }
         }
     }

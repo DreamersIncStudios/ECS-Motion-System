@@ -8,8 +8,7 @@ namespace Stats
     [System.Serializable]
     public class PlayerCharacter : BaseCharacter
     {
-        public CharacterClass BaseStats;
-        public void SetupDataEntity()
+        public void SetupDataEntity(CharacterClass BaseStats)
         {
             //Todo get level and stat data
             Init();

@@ -2,6 +2,7 @@ using DreamersInc.Global;
 using DreamersStudio.CameraControlSystem;
 using MotionSystem;
 using MotionSystem.Components;
+using Stats;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace DreamersInc.ProjectRebirth
                 var anim = go.GetComponent<Animator>();
                 var RB = go.GetComponent<Rigidbody>();
                 BaseCharacterComponent character = new();
-                character.SetupDataEntity(authoring.Info,go);
+                character.SetupDataEntity(authoring.Info);
                 AddComponentObject(character);
                 AddComponentObject(new AnimatorComponent()
                 {

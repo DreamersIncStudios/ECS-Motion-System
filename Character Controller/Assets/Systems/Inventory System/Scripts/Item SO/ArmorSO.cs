@@ -81,9 +81,34 @@ namespace Dreamers.InventorySystem
                 return Equipped = false;
             }
         }
+        public void Equip(BaseCharacterComponent player,GameObject go) {
 
+            var anim = go ? go.GetComponent<Animator>() : GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+
+            //if (Model != null)
+            //{
+            //    armorModel = _model = Instantiate(Model);
+            //    // Consider adding and enum as all character maybe not be human 
+            //    if (EquipToHuman)
+            //    {
+            //        Transform bone = anim.GetBoneTransform(EquipBone);
+            //        if (bone)
+            //        {
+            //            armorModel.transform.SetParent(bone);
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        armorModel.transform.SetParent(anim.transform);
+
+            //    }
+
+            //}
+            // player.ModCharacterStats(Modifiers, true);
+        }
         #endregion
-       
+
         /// <summary>
         /// Equip Item in Inventory to Another Character
         /// </summary>
@@ -162,7 +187,7 @@ namespace Dreamers.InventorySystem
    
 
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
+        public override void Use(CharacterInventory characterInventory, BaseCharacter player)
         {
             throw new System.NotImplementedException();
         }

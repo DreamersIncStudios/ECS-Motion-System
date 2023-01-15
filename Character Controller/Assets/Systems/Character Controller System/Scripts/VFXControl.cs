@@ -17,7 +17,7 @@ public class VFXControl : MonoBehaviour
     public void TriggerVFX()
     {
         var state = anim.GetCurrentAnimatorStateInfo(0);
-        //var vfx = comboInstance.GetVFX(state);
-        //vfx.SpawnVFX(this.transform);
+        var vfx = comboInstance.GetVFX(state);
+        vfx.SpawnVFX(this.transform);
     }
 }

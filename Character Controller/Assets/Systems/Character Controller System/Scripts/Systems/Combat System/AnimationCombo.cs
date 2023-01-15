@@ -5,7 +5,7 @@ using UnityEngine;
 using System;
 //using DreamerInc.CombatSystem;
 using Random = UnityEngine.Random;
-
+using DreamersInc.CharacterControllerSys.VFX;
 
 namespace DreamersInc.ComboSystem
 {
@@ -53,18 +53,18 @@ namespace DreamersInc.ComboSystem
 
         public int ChanceForNextAttack;
         public int LevelUnlocked;
-        public float probabilityTotalWeight { get; set; }
+        public float ProbabilityTotalWeight { get; set; }
 
-        float probabilityPercent => Chance / probabilityTotalWeight * 100;
-        public float probabilityRangeFrom { get; set; }
-        float probabilityRangeTo => probabilityRangeFrom + Chance;
+     //   float probabilityPercent => Chance / ProbabilityTotalWeight * 100;
+        public float ProbabilityRangeFrom { get; set; }
+        float probabilityRangeTo => ProbabilityRangeFrom + Chance;
         public void SetRangeFrom(float StartPoint)
         {
-            probabilityRangeFrom = StartPoint;
+            ProbabilityRangeFrom = StartPoint;
         }
         public bool Picked(float picked)
         {
-            return picked > probabilityRangeFrom && picked < probabilityRangeTo;
+            return picked > ProbabilityRangeFrom && picked < probabilityRangeTo;
         }
 
         //TODO add stat modifer increase or decrese likely hood of sequenctial attack based on stats
@@ -73,7 +73,7 @@ namespace DreamersInc.ComboSystem
             return selected < ChanceForNextAttack && ChanceForNextAttack != -1;
         }
         public float delay;
-        public bool trigger => delay <= 0.0f;
+        public bool Trigger => delay <= 0.0f;
         public void AdjustTime(float time)
         {
             delay -= time;
@@ -95,7 +95,7 @@ namespace DreamersInc.ComboSystem
             int prob = Mathf.RoundToInt(Random.Range(0, 99));
             if (prob < ChanceToPlay) {
                 Vector3 forwardPos =CharacterTranform.forward * Forward + CharacterTranform.up*Up ;
-             //   VFXManager.Instance.PlayVFX(ID, CharacterTranform.position +forwardPos , CharacterTranform.rotation.eulerAngles + Rot,0, LifeTime);
+                VFXDatabase.Instance.PlayVFX(ID, CharacterTranform.position +forwardPos , CharacterTranform.rotation.eulerAngles + Rot,0, LifeTime);
             } 
         }
     }

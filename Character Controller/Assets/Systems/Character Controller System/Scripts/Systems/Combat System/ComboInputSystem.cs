@@ -12,7 +12,6 @@ namespace DreamersInc.ComboSystem
 {
     public partial class ComboInputSystem : SystemBase
     {
-        EntityCommandBuffer commandBuffer;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -27,16 +26,16 @@ namespace DreamersInc.ComboSystem
         //TODO Decouple this code split into small chu
         protected override void OnUpdate()
         {
-            var PC  = new ControllerInfo();
-            Entities.ForEach((ref ControllerInfo PCref) => {
-                PC = PCref;
-            }).Run();
+
+            if (!SystemAPI.TryGetSingleton<ControllerInfo>(out var PC))
+                return;
+
+        
 
             Entities.WithoutBurst().ForEach(( PlayerComboComponent ComboList, AnimatorComponent animC, Command handler, ref Player_Control tag) =>
             {
 
-                if (handler.InputQueue == null)
-                    handler.InputQueue = new Queue<AnimationTrigger>();
+                handler.InputQueue ??= new Queue<AnimationTrigger>();
 
                 if (PC.InSafeZone || PC.Casting || !ComboList.WeaponEquipped)
                 {
@@ -114,10 +113,7 @@ namespace DreamersInc.ComboSystem
                 var transform = anim.transform;
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-                if (handler.InputQueue == null)
-                {
-                    handler.InputQueue = new Queue<AnimationTrigger>();
-                }
+                handler.InputQueue ??= new Queue<AnimationTrigger>();
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();

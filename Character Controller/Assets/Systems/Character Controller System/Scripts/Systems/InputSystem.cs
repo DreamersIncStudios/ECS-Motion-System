@@ -13,6 +13,11 @@ namespace DreamersInc.Global
         protected override void OnCreate()
         {
             base.OnCreate();
+         
+        }
+
+        protected override void OnUpdate()
+        {
             if (m_mainCam == null)
             {
                 if (Camera.main != null)
@@ -26,13 +31,10 @@ namespace DreamersInc.Global
                     // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
                 }
             }
-        }
+            if (!SystemAPI.TryGetSingleton<ControllerInfo>(out var config))
+                return;
+    
 
-        protected override void OnUpdate()
-        {
-            var config = SystemAPI.GetSingleton<ControllerInfo>();
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(World.Unmanaged);
 
             Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
             {
@@ -80,7 +82,9 @@ namespace DreamersInc.Global
 
 
             }).Run();
+
             Vector3 m_CamForward = new Vector3();
+
             Entities.WithoutBurst().ForEach((AnimatorComponent Anim, ref CharControllerE Control) =>
             {
                 if (!Control.AI)

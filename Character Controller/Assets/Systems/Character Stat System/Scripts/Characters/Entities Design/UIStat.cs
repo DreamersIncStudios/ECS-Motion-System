@@ -1,3 +1,4 @@
+using DreamersInc;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
@@ -45,19 +46,23 @@ namespace Stats.Entities
     {
         protected override void OnUpdate()
         {
-            BaseCharacterComponent player = new BaseCharacterComponent();
-            Entities.WithoutBurst().ForEach((BaseCharacterComponent Player, in PlayerTag tag) => { 
-                player = Player;
-            }).Run();
+            if (SystemAPI.TryGetSingleton<Player_Control>(out _))
+            {
+                BaseCharacterComponent player = new BaseCharacterComponent();
+                Entities.WithoutBurst().ForEach((BaseCharacterComponent Player, in PlayerTag tag) =>
+                {
+                    player = Player;
+                }).Run();
 
 
-            Entities.WithoutBurst().ForEach((PlayerCharacterUI UI) => {
-                UI.HealthBar.fillAmount = player.HealthRatio;
-                UI.ManaBar.fillAmount = player.ManaRatio;
+                Entities.WithoutBurst().ForEach((PlayerCharacterUI UI) =>
+                {
+                    UI.HealthBar.fillAmount = player.HealthRatio;
+                    UI.ManaBar.fillAmount = player.ManaRatio;
 
 
-            }).Run();
-
+                }).Run();
+            }
         }
     }
 }

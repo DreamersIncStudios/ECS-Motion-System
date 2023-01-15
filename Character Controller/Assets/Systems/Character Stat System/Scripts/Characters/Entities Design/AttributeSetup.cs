@@ -12,13 +12,11 @@ namespace Stats.Entities
     public partial class BaseCharacterComponent : IComponentData
     {
 
-        public void SetupDataEntity( CharacterClass BaseStats, GameObject go)
+        public void SetupDataEntity( CharacterClass BaseStats)
         {
             //Todo get level and stat data
             Init();
             Name = BaseStats.Name;
-            GOrepresentative = go;
-
             this.Level = BaseStats.Level;
             float ModValue = BaseStats.LevelMod;
             this.GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = (int)(BaseStats.Strength * ModValue);

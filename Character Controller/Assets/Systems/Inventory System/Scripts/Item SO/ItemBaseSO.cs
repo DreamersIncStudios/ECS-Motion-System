@@ -45,7 +45,7 @@ namespace Dreamers.InventorySystem.Interfaces
             characterInventory.Inventory.RemoveFromInventory(this);
         }
 
-        public abstract void Use(CharacterInventory characterInventory, BaseCharacterComponent player);
+        public abstract void Use(CharacterInventory characterInventory, BaseCharacter player);
 
 
     }

@@ -64,9 +64,10 @@ namespace DreamersInc.ComboSystem
 
             return new AnimationTrigger();
         }
-        //public VFX GetVFX(AnimatorStateInfo state) { 
-        //    return GetTrigger(state).AttackVFX;
-        //}
+        public VFX GetVFX(AnimatorStateInfo state)
+        {
+            return GetTrigger(state).AttackVFX;
+        }
         public int GetAnimationComboIndex(AnimatorStateInfo state) {
            
             throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
@@ -83,7 +84,7 @@ namespace DreamersInc.ComboSystem
    
 
     public List<string> GetListOfComboNames() { 
-            List<string> list = new List<string>();
+            List<string> list = new();
             var lines = ComboNamesText.text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             var parts =  lines[ComboListIndex].Split(';');
             foreach (var part in parts) { 
@@ -92,7 +93,7 @@ namespace DreamersInc.ComboSystem
             return list;
         }
         public List<ComboDefinition> GetComboDefinitions() {
-            List<ComboDefinition> temp = new List<ComboDefinition>();
+            List<ComboDefinition> temp = new ();
            
             
             return temp;
@@ -135,8 +136,8 @@ namespace DreamersInc.ComboSystem
         public bool Unlocked;
         
 
-        [SerializeField] List<AnimationCombo> _comboList;
-        [HideInInspector] public List<AnimationCombo> ComboList { get { return _comboList; } }
+        [SerializeField] List<AnimationCombo> comboList;
+        [HideInInspector] public List<AnimationCombo> ComboList { get { return comboList; } }
     }
 
 }

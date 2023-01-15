@@ -19,7 +19,8 @@ namespace Stats.Entities
         private Elemental[] _ElementalMods;
         public bool InPlay;
         public bool InvincibleMode;
-        public GameObject GOrepresentative { get; private set; }
+
+       [HideInInspector] public GameObject GOrepresentative;
         [Range(0, 9999)]
         [SerializeField] int _curHealth;
         public int CurHealth

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Dreamers.InventorySystem.Interfaces;
+
+#if UNITY_EDITOR
 using Dreamers.Global;
+#endif
 
 namespace Dreamers.InventorySystem
 {

@@ -26,6 +26,7 @@ namespace MotionSystem.Systems
 
             Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, ref CharControllerE control) =>
             {
+
                 Animator Anim = AnimC.anim;
                 Rigidbody RB = AnimC.RB;
                 Transform transform = Anim.transform;

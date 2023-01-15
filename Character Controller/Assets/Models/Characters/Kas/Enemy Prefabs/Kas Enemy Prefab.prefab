@@ -2431,9 +2431,6 @@ GameObject:
   - component: {fileID: 2192563933844249402}
   - component: {fileID: 2192563933844249381}
   - component: {fileID: 2192563933844249380}
-  - component: {fileID: 2192563933844249383}
-  - component: {fileID: 2192563933844249382}
-  - component: {fileID: 2192563933844249377}
   - component: {fileID: 2192563933844249376}
   m_Layer: 0
   m_Name: Kas Enemy Prefab
@@ -2470,7 +2467,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2192563933844249379
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2487,7 +2484,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!54 &2192563933844249402
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2495,10 +2492,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4883715365216132067}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 35
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2512,8 +2520,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4883715365216132067}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.3
   m_Height: 1.8
   m_Direction: 1
@@ -2540,70 +2557,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2192563933844249383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883715365216132067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b399ecf59a4bb7458ba383d06ea24a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CombatCapable: 0
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
-  GroundProbeVector:
-    x: 0
-    y: 0
-    z: 0
-  EquipResetTimer: 0
---- !u!114 &2192563933844249382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883715365216132067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37f25d4b8565e644be5d24d6585d331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Combo: {fileID: 11400000, guid: ae497b07010317a45a65183d0503962f, type: 2}
---- !u!114 &2192563933844249377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883715365216132067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13784d0ad5f618a41af36d55e6724f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Inventory:
-    ItemsInInventory: []
-    MaxInventorySize: 0
-  Equipment:
-    CurrentActivationPoints: 0
-    MaxActivationPoints: 0
-    QuickAccessItems: []
-    NumOfQuickAccessSlots: 0
-  QuestLog:
-    SelectedMission: {fileID: 0}
-  Save:
-    EquippedWeapons: []
-    EquippedArmors: []
 --- !u!114 &2192563933844249376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2625,6 +2578,7 @@ MonoBehaviour:
   EXPgained: 0
   BaseStats:
     title: 0
+    Name: 
     Level: 2
     Strength: 5
     Vitality: 5
