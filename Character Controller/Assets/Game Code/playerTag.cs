@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerTag : MonoBehaviour
+public class PlayerTag : MonoBehaviour
 {
-
+ 
 }

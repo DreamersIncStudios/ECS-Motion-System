@@ -77,8 +77,7 @@ public class CreateNPC : MonoBehaviour
             CharControllerE controllerData = new CharControllerE()
             {
                 CapsuleRadius = Capsule.radius,
-                OGCapsuleHeight = Capsule.height,
-                OGCapsuleCenter = Capsule.center,
+
                 CapsuleCenter = Capsule.center,
                 CapsuleHeight = Capsule.height,
                 IsGrounded = true,

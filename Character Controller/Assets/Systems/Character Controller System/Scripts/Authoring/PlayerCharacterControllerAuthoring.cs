@@ -37,8 +37,6 @@ namespace MotionSystem
                CharControllerE data= new CharControllerE()
                {
                    CapsuleRadius = authoring.Capsule.radius,
-                   OGCapsuleHeight = authoring.Capsule.height,
-                   OGCapsuleCenter = authoring.Capsule.center,
                    CapsuleCenter = authoring.Capsule.center,
                    CapsuleHeight = authoring.Capsule.height,
                    IsGrounded = true,

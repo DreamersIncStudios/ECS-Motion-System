@@ -8,8 +8,9 @@ namespace DreamersInc
     [CreateAssetMenu(fileName = "InputData", menuName = "GameParts/InputField", order = 100)]
 
     // consider preset variations
-    public class ControllerScheme : ScriptableObject, ButtonConfigs
+    public class ControllerScheme : ScriptableObject, IButtonConfigs
     {
+#pragma warning disable IDE1006 // Naming Styles
         [SerializeField] KeyCode _jump;
         [SerializeField] KeyCode _lightAttack;
         [SerializeField] KeyCode _heavyAttack;
@@ -17,6 +18,7 @@ namespace DreamersInc
         [SerializeField] KeyCode _block;
         [SerializeField] KeyCode _cadMenu;
         [SerializeField] KeyCode _projectile;
+#pragma warning restore IDE1006 // Naming Styles
 
         public KeyCode Jump { get { return _jump; } set { _jump = value; } }
         public KeyCode LightAttack { get { return _lightAttack; } set { _lightAttack = value; } }
@@ -68,7 +70,7 @@ namespace DreamersInc
     {
         PC, XBOX, PS4, Switch
     }
-    public interface ButtonConfigs
+    public interface IButtonConfigs
     {
         KeyCode Jump { get; set; }
         KeyCode LightAttack { get; set; }

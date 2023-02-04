@@ -123,96 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &588420557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 588420559}
-  - component: {fileID: 588420560}
-  m_Layer: 0
-  m_Name: Player Entities
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &588420559
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588420557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &588420560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588420557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b97fc84c0c1f3d4f934cc7621bd5de2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerOption: {fileID: 6082700357839050000, guid: acc19ce06e982ca49881cff39cee43f4,
-    type: 3}
-  Info:
-    title: 0
-    Name: Kas testing
-    Level: 30
-    Strength: 30
-    Vitality: 30
-    Awareness: 30
-    Speed: 30
-    Skill: 30
-    Resistance: 30
-    Concentration: 30
-    WillPower: 30
-    Charisma: 30
-    Luck: 30
-    difficultyMod: 3
-    LevelMod: 3
-  Party: 0
-  IsPlayer: 1
-  CombatCapable: 1
-  EquipResetTimer: 5
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
-  GroundProbeVector:
-    x: 0
-    y: 0
-    z: 0
-  combo: {fileID: 11400000, guid: 860af9b4b60057f40bde79cc7371575e, type: 2}
-  inventory:
-    ItemsInInventory: []
-    MaxInventorySize: 20
-  equipment:
-    EquippedWeapons:
-    - {fileID: 11400000, guid: 0d0acd3bd1c799444be09c9ecdfd4218, type: 2}
-    EquippedArmors:
-    - {fileID: 11400000, guid: 66ea3d90606fcc743bf50a3ab423910a, type: 2}
-  factionID: 0
-  Threat: 10
-  Protection: 10
 --- !u!1 &626994512
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +539,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &692114634
 TerrainCollider:
@@ -948,7 +858,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086582211
 GameObject:
@@ -1247,7 +1157,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610997246
 GameObject:
@@ -1536,7 +1446,7 @@ Transform:
   - {fileID: 1610997247}
   - {fileID: 626994513}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1924731105
 GameObject:
@@ -1897,7 +1807,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1949559757
 MonoBehaviour:

@@ -214,6 +214,8 @@ namespace Dreamers.InventorySystem.Base {
     }
     [System.Serializable]
     public class InventorySave {
+
+        //Todo Add funtionality to load
         public List<ItemSlot> ItemsInInventory;
         public uint MaxInventorySize;
     }
