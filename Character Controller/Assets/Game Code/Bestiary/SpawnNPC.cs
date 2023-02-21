@@ -5,7 +5,6 @@ using Dreamers.InventorySystem.Base;
 using DreamersInc.CombatSystem;
 using DreamersInc.ComboSystem;
 using DreamersInc.InflunceMapSystem;
-using DreamersStudio.CameraControlSystem;
 using Global.Component;
 using MotionSystem;
 using MotionSystem.Components;
@@ -16,20 +15,22 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
+
 namespace DreamersInc.BestiarySystem
 {
     public sealed partial class BestiaryDB : MonoBehaviour
     {
-        public static bool SpawnPlayer(uint ID, out GameObject go, out Entity entity)
+        public static bool SpawnNPC(uint ID, out GameObject go, out Entity entity)
         {
-            var info = GetPlayer(ID);
+            var info = GetCreature(ID);
             if (info != null)
             {
                 go = Instantiate(info.Prefab);
-                go.tag = "Player";
+                go.tag = "Enemy NPC";
+                go.layer= 9;
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                entity = CreateEntity(manager, info.Name);
-                AddPhysics(manager, entity, go, PhysicsShape.Capsule, info.PhysicsInfo);
+                entity = CreateEntity(manager, info.Name+" NPC");
+                  AddPhysics(manager, entity, go, PhysicsShape.Capsule, info.PhysicsInfo);
                 BaseCharacterComponent character = new();
                 character.GOrepresentative = go;
                 character.SetupDataEntity(info.stats);
@@ -49,24 +50,28 @@ namespace DreamersInc.BestiarySystem
                 var anim = go.GetComponent<Animator>();
                 var RB = go.GetComponent<Rigidbody>();
                 manager.AddComponentObject(entity, RB);
-
-                manager.AddComponentData(entity, new AITarget()
-                {
-                    FactionID = info.factionID,
-                    NumOfEntityTargetingMe = 3,
-                    CanBeTargetByPlayer = false,
-                    Type = TargetType.Character,
-                    CenterOffset = new float3(0, 1, 0) //todo add value to SO
-
-                });
                 manager.AddComponentData(entity, new AnimatorComponent()
                 {
                     anim = anim,
                     RB = RB,
                     transform = anim.transform,
                 });
-                manager.AddComponent<StoreWeapon>(entity);
-
+              //  manager.AddComponent<StoreWeapon>(entity);
+                manager.AddComponentData(entity, new InfluenceComponent
+                {
+                    factionID = info.factionID,
+                    Protection = info.BaseProtection,
+                    Threat = info.BaseThreat
+                });
+                manager.AddComponentData(entity, new AITarget()
+                {
+                    FactionID = info.factionID,
+                    NumOfEntityTargetingMe = 3,
+                    CanBeTargetByPlayer= true,
+                    Type = TargetType.Character,
+                    CenterOffset = new float3(0,1,0) //todo add value to SO
+                }) ;
+               
             }
             else
             {
@@ -74,19 +79,16 @@ namespace DreamersInc.BestiarySystem
                 entity = Entity.Null;
             }
             return info != null;
+
         }
 
 
-        public static bool SpawnPlayer(uint ID, EquipmentSave equipment = null)
+        public static bool SpawnNPC(uint ID, EquipmentSave equipment = null)
         {
-
-
-            if (SpawnPlayer(ID, out GameObject go, out Entity entity))
+            if (SpawnNPC(ID, out GameObject go, out Entity entity))
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                var info = GetPlayer(ID);
-                manager.AddComponent<playerTag>(entity);
-                manager.AddComponent<Player_Control>(entity);
+                var info = GetCreature(ID);
 
                 manager.AddComponent<AttackTarget>(entity);
                 manager.AddComponentObject(entity, new Command());
@@ -109,13 +111,8 @@ namespace DreamersInc.BestiarySystem
                 });
                 manager.AddBuffer<ScanPositionBuffer>(entity);
 
-                go.GetComponent<VFXControl>().Init(info.Combo);
+             //   go.GetComponent<VFXControl>().Init(info.Combo);
 
-                CameraControl.Instance.Follow.LookAt = go.GetComponentInChildren<LookHereTarget>().transform;
-                CameraControl.Instance.Follow.Follow = go.transform;
-                CameraControl.Instance.Target.Follow = go.transform;
-
-                CameraControl.Instance.TargetGroup.m_Targets[1].target = go.transform;
 
                 return true;
             }
@@ -123,24 +120,19 @@ namespace DreamersInc.BestiarySystem
                 return false;
         }
 
-        public static bool SpawnPlayer(uint ID, out GameObject go, EquipmentSave equipment = null)
+        public static bool SpawnNPC(uint ID, out GameObject go, EquipmentSave equipment = null)
         {
-
-
-            if (SpawnPlayer(ID, out go, out Entity entity))
+            if (SpawnNPC(ID, out go, out Entity entity))
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                var info = GetPlayer(ID);
-                manager.AddComponent<playerTag>(entity);
-                manager.AddComponent<Player_Control>(entity);
-
+                var info = GetCreature(ID);
                 manager.AddComponent<AttackTarget>(entity);
                 manager.AddComponentObject(entity, new Command());
                 var controllerData = new CharControllerE();
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);
-                var comboInfo = Object.Instantiate(info.Combo);
-                manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+             //   var comboInfo = Object.Instantiate(info.Combo);
+             //   manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
                 manager.AddComponentData(entity, new InfluenceComponent
                 {
                     factionID = info.factionID,
@@ -155,13 +147,7 @@ namespace DreamersInc.BestiarySystem
                 });
                 manager.AddBuffer<ScanPositionBuffer>(entity);
 
-                go.GetComponent<VFXControl>().Init(info.Combo);
-
-                CameraControl.Instance.Follow.LookAt = go.GetComponentInChildren<LookHereTarget>().transform;
-                CameraControl.Instance.Follow.Follow = go.transform;
-                CameraControl.Instance.Target.Follow = go.transform;
-
-                CameraControl.Instance.TargetGroup.m_Targets[1].target = go.transform;
+              //  go.GetComponent<VFXControl>().Init(info.Combo);
 
                 return true;
             }
@@ -170,9 +156,9 @@ namespace DreamersInc.BestiarySystem
         }
 
 
-        public static bool SpawnPlayer(uint ID, Vector3 Position, EquipmentSave equipment = null)
+        public static bool SpawnNPC(uint ID, Vector3 Position, EquipmentSave equipment = null)
         {
-            if (SpawnPlayer(ID, out GameObject go, equipment))
+            if (SpawnNPC(ID, out GameObject go, equipment))
             {
                 go.transform.position = Position;
                 return true;
@@ -181,6 +167,4 @@ namespace DreamersInc.BestiarySystem
         }
 
     }
-
-
 }

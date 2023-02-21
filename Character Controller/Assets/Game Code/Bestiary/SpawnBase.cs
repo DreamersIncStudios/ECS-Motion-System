@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.Aspects;
+using Unity.Physics.Authoring;
+using Unity.Physics.Systems;
+using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,6 +34,8 @@ namespace DreamersInc.BestiarySystem
                 manager.SetName(baseDataEntity, entityName);
             else
                 manager.SetName(baseDataEntity, "NPC Data");
+            manager.SetComponentData(baseDataEntity,new WorldTransform() {Scale = 1 });
+            manager.SetComponentData(baseDataEntity, new LocalTransform() { Scale = 1 });
 
 
             return baseDataEntity;
@@ -45,16 +51,17 @@ namespace DreamersInc.BestiarySystem
                     spCollider = Unity.Physics.CapsuleCollider.Create(new CapsuleGeometry()
                     {
                         Radius = col.radius,
-                        Vertex0 = col.center + new Vector3(0, col.height, 0),
-                        Vertex1 = new float3(0, 0, 0)
+                        Vertex0 = col.center + new Vector3(0, .5f * col.height-col.radius, 0),
+                        Vertex1 = col.center - new Vector3(0, .5f * col.height - col.radius, 0),
 
                     }, new CollisionFilter()
                     {
                         BelongsTo = physicsInfo.BelongsTo.Value,
                         CollidesWith = physicsInfo.CollidesWith.Value,
                         GroupIndex = 0
-                    });
-
+                    }
+                    
+                    );
 
                     break;
                 case PhysicsShape.Box:
@@ -71,13 +78,13 @@ namespace DreamersInc.BestiarySystem
                         CollidesWith = physicsInfo.CollidesWith.Value,
                         GroupIndex = 0
                     });
-                    manager.AddComponentData(entityLink, new PhysicsCollider()
-                    { Value = spCollider });
                     break;
             }
-            manager.AddSharedComponent(entityLink, new PhysicsWorldIndex());
             manager.AddComponentData(entityLink, new PhysicsCollider()
             { Value = spCollider });
+             manager.AddComponent<PhysicsVelocity>(entityLink);
+            manager.AddBuffer<PhysicsColliderKeyEntityPair>(entityLink);
+            manager.AddSharedComponent(entityLink, new PhysicsWorldIndex() { Value = 0});
             manager.AddComponentData(entityLink, new PhysicsInfo
             {
                 BelongsTo = physicsInfo.BelongsTo,

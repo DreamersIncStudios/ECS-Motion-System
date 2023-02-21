@@ -28,14 +28,12 @@ namespace MotionSystem
             var world = physicsWorldSingleton.CollisionWorld;
             state.Dependency = new GroundCheckJob
             {
-                physicsWorld = physicsWorldSingleton,
                 world = world
             }.ScheduleParallel(state.Dependency);
         }
 
 
         public partial struct GroundCheckJob : IJobEntity {
-            [ReadOnly] public PhysicsWorldSingleton physicsWorld;
             [ReadOnly] public CollisionWorld world;
             void Execute(ref WorldTransform transform, ref CharControllerE control) {
                 if (control.SkipGroundCheck)

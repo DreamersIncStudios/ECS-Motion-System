@@ -4,8 +4,10 @@ using UnityEngine;
 using Stats;
 using IAUS.ECS;
 using UnityEditor;
-using Dreamers.Global;
 using Global.Component;
+using DreamersInc.ComboSystem;
+using Dreamers.InventorySystem.Base;
+using MotionSystem.Components;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -17,7 +19,13 @@ namespace DreamersInc.BestiarySystem
         public CharacterClass stats;
         public GameObject Prefab;
         public PhysicsInfo PhysicsInfo;
-
+        public MovementData Move;
+        [Header("influence ")]
+        public int factionID;
+        public int BaseThreat;
+        public int BaseProtection;
+        public ComboSO Combo;
+        public EquipmentSave Equipment;
 #if UNITY_EDITOR
 
         public void setItemID(uint ID)
@@ -32,7 +40,7 @@ namespace DreamersInc.BestiarySystem
     public static partial class Creator {
         [MenuItem("Assets/Create/Bestiary/Creature Info")]
         static public void CreateCreatureInfo() {
-            ScriptableObjectUtility.CreateAsset<CreatureInfo>("Creature", out CreatureInfo info);
+            Dreamers.Global.ScriptableObjectUtility.CreateAsset<CreatureInfo>("Creature", out CreatureInfo info);
             BestiaryDB.LoadDatabase(true);
             info.setItemID((uint)BestiaryDB.Creatures.Count + 1);
         }

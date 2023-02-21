@@ -1,6 +1,7 @@
-using Dreamers.Global;
+using AISenses;
 using Dreamers.InventorySystem.Base;
 using DreamersInc.ComboSystem;
+using DreamersInc.InflunceMapSystem;
 using Global.Component;
 using MotionSystem.Components;
 using Stats;
@@ -48,7 +49,7 @@ namespace DreamersInc.BestiarySystem
         [MenuItem("Assets/Create/Bestiary/Player Info")]
         static public void CreatePlayerInfo()
         {
-            ScriptableObjectUtility.CreateAsset<PlayerInfo>("Creature", out PlayerInfo info);
+           Dreamers.Global.ScriptableObjectUtility.CreateAsset<PlayerInfo>("Creature", out PlayerInfo info);
             BestiaryDB.LoadDatabase(true);
             info.setItemID((uint)BestiaryDB.Players.Count + 1);
         }

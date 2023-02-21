@@ -7,16 +7,14 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.E8DA15E5" = "playerco"
+	"OpenInspectorPreview.E8DA15E5" = "0"
+	"currentGroup.E8DA15E5" = "asset"
 }
 providers = {
-	adb = {
+	log = {
 		active = false
-		priority = 2500
-		defaultAction = null
-	}
-	asset = {
-		active = true
-		priority = 25
+		priority = 210
 		defaultAction = null
 	}
 	store = {
@@ -24,24 +22,9 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
-	find = {
+	asset = {
 		active = true
 		priority = 25
-		defaultAction = null
-	}
-	log = {
-		active = false
-		priority = 210
-		defaultAction = null
-	}
-	packages = {
-		active = true
-		priority = 90
-		defaultAction = null
-	}
-	performance = {
-		active = false
-		priority = 100
 		defaultAction = null
 	}
 	scene = {
@@ -49,10 +32,31 @@ providers = {
 		priority = 50
 		defaultAction = null
 	}
+	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	packages = {
+		active = true
+		priority = 90
+		defaultAction = null
+	}
+	adb = {
+		active = false
+		priority = 2500
+		defaultAction = null
+	}
+	find = {
+		active = true
+		priority = 25
+		defaultAction = null
+	}
 }
 objectSelectors = {
 }
 recentSearches = [
+	"playerco"
 ]
 searchItemFavorites = [
 ]

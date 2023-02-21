@@ -74,9 +74,9 @@ crashlytics-build.properties
 /Assets/Paid Assets/*
 /Assets/Plugins/*
 /Library
-/ProjectSettings
+/Character Controller/ProjectSettings/
 /Temp
-/UserSettings
+/UserSettings/
 /Character Controller/Logs/
 /Character Controller/Assets/Paid Assets
 /Character Controller/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll.meta
@@ -127,4 +127,5 @@ crashlytics-build.properties
 /Character Controller/obj/Debug
 /Character Controller/Builds/PC Build/MoonShot_Data/Managed
 /Character Controller/Builds/PC Build/MoonShot_Data
-/Character Controller/Builds/PC Build
+/Character Controller/[Bb]uild/
+
