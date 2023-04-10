@@ -8,13 +8,14 @@ using DreamersInc.InflunceMapSystem;
 using Global.Component;
 using MotionSystem;
 using MotionSystem.Components;
+using Stats;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -30,7 +31,7 @@ namespace DreamersInc.BestiarySystem
                 go.layer= 9;
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 entity = CreateEntity(manager, info.Name+" NPC");
-                  AddPhysics(manager, entity, go, PhysicsShape.Capsule, info.PhysicsInfo);
+                  AddPhysics(manager, entity, go, info.PhysicsInfo);
                 BaseCharacterComponent character = new();
                 character.GOrepresentative = go;
                 character.SetupDataEntity(info.stats);
@@ -38,6 +39,8 @@ namespace DreamersInc.BestiarySystem
                 {
                     transform = go.transform
                 };
+                go.GetComponent<Damageable>().SetData(entity, character);
+
                 var vision = new Vision();
                 vision.InitializeSense(character);
                 manager.AddComponentData(entity, vision);
@@ -47,16 +50,16 @@ namespace DreamersInc.BestiarySystem
                 CharacterInventory inventory = new();
                 inventory.Setup(info.Equipment, character);
                 manager.AddComponentData(entity, inventory);
-                var anim = go.GetComponent<Animator>();
-                var RB = go.GetComponent<Rigidbody>();
-                manager.AddComponentObject(entity, RB);
+                if (go.TryGetComponent<Rigidbody>(out var RB))
+                    manager.AddComponentObject(entity, RB);
                 manager.AddComponentData(entity, new AnimatorComponent()
                 {
-                    anim = anim,
+                    anim = go.TryGetComponent<Animator>(out var anim) ? anim : null,
                     RB = RB,
-                    transform = anim.transform,
-                });
-              //  manager.AddComponent<StoreWeapon>(entity);
+                    transform = go.GetComponent<Transform>()
+                }); 
+
+                //  manager.AddComponent<StoreWeapon>(entity);
                 manager.AddComponentData(entity, new InfluenceComponent
                 {
                     factionID = info.factionID,
@@ -90,13 +93,20 @@ namespace DreamersInc.BestiarySystem
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var info = GetCreature(ID);
 
-                manager.AddComponent<AttackTarget>(entity);
-                manager.AddComponentObject(entity, new Command());
-                var controllerData = new CharControllerE();
-                controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
-                manager.AddComponentData(entity, controllerData);
-                var comboInfo = Object.Instantiate(info.Combo);
-                manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+                if (go.TryGetComponent<NavMeshAgent>(out _))
+                {
+                    var controllerData = new CharControllerE();
+                    controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                    controllerData.AI = true;
+                    controllerData.Walk = true;
+
+                    manager.AddComponentData(entity, controllerData);
+                    manager.AddComponent<AttackTarget>(entity);
+                    manager.AddComponentObject(entity, new Command());
+                    var comboInfo = Object.Instantiate(info.Combo);
+                    manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+                }
+
                 manager.AddComponentData(entity, new InfluenceComponent
                 {
                     factionID = info.factionID,
@@ -128,11 +138,17 @@ namespace DreamersInc.BestiarySystem
                 var info = GetCreature(ID);
                 manager.AddComponent<AttackTarget>(entity);
                 manager.AddComponentObject(entity, new Command());
-                var controllerData = new CharControllerE();
-                controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
-                manager.AddComponentData(entity, controllerData);
-             //   var comboInfo = Object.Instantiate(info.Combo);
-             //   manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+                if (go.TryGetComponent<NavMeshAgent>(out _))
+                {
+                    var controllerData = new CharControllerE();
+                    controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                    controllerData.AI = true;
+                    controllerData.Walk = true;
+
+                    manager.AddComponentData(entity, controllerData);
+                }
+                //   var comboInfo = Object.Instantiate(info.Combo);
+                //   manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
                 manager.AddComponentData(entity, new InfluenceComponent
                 {
                     factionID = info.factionID,

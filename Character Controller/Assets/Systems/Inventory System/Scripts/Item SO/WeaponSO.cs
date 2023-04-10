@@ -7,6 +7,7 @@ using Dreamers.InventorySystem.Interfaces;
 using Unity.Entities;
 using System.Linq;
 using Stats.Entities;
+using DreamersInc.DamageSystem.Interfaces;
 
 namespace Dreamers.InventorySystem
 {
@@ -34,6 +35,7 @@ namespace Dreamers.InventorySystem
         public uint LevelRqd { get { return _levelRQD; } }
 
         [SerializeField] private WeaponType _weaponType;
+        [SerializeField] TypeOfDamage typeOfDamage;
         public WeaponType WeaponType { get { return _weaponType; } }
         [SerializeField] private WeaponSlot slot;
         public WeaponSlot Slot { get { return slot; } }
@@ -74,6 +76,7 @@ namespace Dreamers.InventorySystem
                 if (Model != null)
                 {
                     WeaponModel = Instantiate(Model);
+                    WeaponModel.GetComponent<IDamageDealer>().SetStatData(player, typeOfDamage);
                     // Consider adding and enum as all character maybe not be human 
                     if (EquipToHuman)
                     {

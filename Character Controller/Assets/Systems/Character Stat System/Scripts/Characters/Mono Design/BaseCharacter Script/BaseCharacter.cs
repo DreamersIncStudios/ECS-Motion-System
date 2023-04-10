@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Stats
 {
     [Serializable]
-    public  abstract partial class BaseCharacter : MonoBehaviour, IDamageable
+    public  abstract partial class BaseCharacter : MonoBehaviour
     {
 
         private string _name;
@@ -53,8 +53,8 @@ namespace Stats
         public int MaxMana { get { return maxMana + MaxHealthMod; } set { maxMana = value; } }
         public int MaxManaMod { get; set; }
 
-        public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defence).AdjustBaseValue / 100.0f)); } }
-        public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defence).AdjustBaseValue / 100.0f)); } }
+        public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defense).AdjustBaseValue / 100.0f)); } }
+        public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defense).AdjustBaseValue / 100.0f)); } }
 
 
         public bool Dead { get; private set; }

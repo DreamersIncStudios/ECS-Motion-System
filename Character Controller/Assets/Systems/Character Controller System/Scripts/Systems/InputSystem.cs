@@ -3,18 +3,14 @@ using Unity.Entities;
 using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
-using Unity.Transforms;
 using Stats.Entities;
+
 namespace DreamersInc.Global
 {
     public partial class InputSystem : SystemBase
     {
         Transform m_mainCam;
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-         
-        }
+    
 
         protected override void OnUpdate()
         {
@@ -39,7 +35,7 @@ namespace DreamersInc.Global
             Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
             {
 
-                bool m_Crouching = new bool();
+                bool m_Crouching = new();
                 if (!Control.Casting)
                 {
                     if (Control.block)
@@ -83,7 +79,7 @@ namespace DreamersInc.Global
 
             }).Run();
 
-            Vector3 m_CamForward = new Vector3();
+
 
             Entities.WithoutBurst().ForEach((AnimatorComponent Anim, ref CharControllerE Control) =>
             {
@@ -91,7 +87,7 @@ namespace DreamersInc.Global
                 {
                     if (m_mainCam != null)
                     {
-                        m_CamForward = Vector3.Scale(m_mainCam.forward, new Vector3(1, 0, 1)).normalized;
+                        Vector3 m_CamForward = Vector3.Scale(m_mainCam.forward, new Vector3(1, 0, 1)).normalized;
                         Control.Move = Control.V * m_CamForward + Control.H * m_mainCam.right;
                     }
                     else

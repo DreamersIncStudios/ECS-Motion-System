@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Jobs;
-using Unity.Collections;
-using Stats;
 using Unity.Entities;
-using Unity.Burst.Intrinsics;
+using Stats.Entities;
 
 namespace DreamersInc.DamageSystem.Interfaces
 {
     public interface IDamageable
     {
-        bool Dead { get; }
         Entity SelfEntityRef { get; }
         void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
         void ReactToHit(float impact, Vector3 Test, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , Element element = Element.None);
+
+        void SetData(Entity entity, BaseCharacterComponent character);
     }
 
 

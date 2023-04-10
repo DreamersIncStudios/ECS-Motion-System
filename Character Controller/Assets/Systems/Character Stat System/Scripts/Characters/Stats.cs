@@ -20,11 +20,11 @@ namespace Stats
     public enum StatName
     {
         Melee_Offence,
-        Melee_Defence,
+        Melee_Defense,
         Ranged_Offence,
         Ranged_Defence,
         Magic_Offence,
-        Magic_Defence,
+        Magic_Defense,
         Range_Target,
         Range_Motion,
         Status_Change,

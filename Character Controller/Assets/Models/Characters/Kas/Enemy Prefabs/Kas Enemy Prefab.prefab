@@ -2431,7 +2431,7 @@ GameObject:
   - component: {fileID: 2192563933844249402}
   - component: {fileID: 2192563933844249381}
   - component: {fileID: 2192563933844249380}
-  - component: {fileID: 2192563933844249376}
+  - component: {fileID: -2199045697024499022}
   m_Layer: 0
   m_Name: Kas Enemy Prefab
   m_TagString: Enemy NPC
@@ -2485,6 +2485,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &2192563933844249402
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2557,7 +2558,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2192563933844249376
+--- !u!114 &-2199045697024499022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2566,32 +2567,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4883715365216132067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd3f23370e86434cbdd3d6f72a91f25, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af5b7e15536d0b4996896a0a03281f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InPlay: 0
-  InvincibleMode: 0
-  CurHealth: 0
-  maxHealth: 0
-  CurMana: 0
-  maxMana: 0
-  EXPgained: 0
-  BaseStats:
-    title: 0
-    Name: 
-    Level: 2
-    Strength: 5
-    Vitality: 5
-    Awareness: 5
-    Speed: 5
-    Skill: 5
-    Resistance: 5
-    Concentration: 5
-    WillPower: 5
-    Charisma: 5
-    Luck: 5
-    difficultyMod: 5
-    LevelMod: 2
 --- !u!1 &4935177566898085966
 GameObject:
   m_ObjectHideFlags: 0

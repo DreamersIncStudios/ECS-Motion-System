@@ -2868,7 +2868,7 @@ GameObject:
   - component: {fileID: 703102258521232849}
   - component: {fileID: 1945208150637424510}
   - component: {fileID: 6594553537872528510}
-  - component: {fileID: 939124533917358940}
+  - component: {fileID: 6830515560771145970}
   m_Layer: 0
   m_Name: Kas
   m_TagString: Untagged
@@ -2923,6 +2923,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &703102258521232850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2997,7 +2998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e35c54e160b03349af0932c7f5bd7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &939124533917358940
+--- !u!114 &6830515560771145970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3006,15 +3007,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6082700357839050000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63c08bd6fc5f514fbd670c988fb6406, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af5b7e15536d0b4996896a0a03281f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InPlay: 0
-  InvincibleMode: 0
-  CurHealth: 0
-  maxHealth: 0
-  CurMana: 0
-  maxMana: 0
 --- !u!1 &6214646598634842055
 GameObject:
   m_ObjectHideFlags: 0

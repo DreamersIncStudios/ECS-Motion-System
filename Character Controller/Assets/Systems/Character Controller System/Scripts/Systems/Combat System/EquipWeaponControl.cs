@@ -10,12 +10,12 @@ namespace MotionSystem.Systems{
     public class EquipWeaponControl : MonoBehaviour
     {
         Animator anim;
-      //  WeaponDamage damage;
+        WeaponDamage damage;
         AnimatorStateInfo stateInfo;
         private void Start()
         {
             anim = GetComponent<Animator>();
-            //      damage = GetComponentInChildren<WeaponDamage>();
+                  damage = GetComponentInChildren<WeaponDamage>();
         }
         public void EquipWeaponAnim()
         {
@@ -35,18 +35,19 @@ namespace MotionSystem.Systems{
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>().Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
         }
         public void CalculateCriticalHit() {
-            //if (!damage)
-            //{
-            //    damage = GetComponentInChildren<WeaponDamage>();
-            //}
-            //damage.CheckChance();
+            if (!damage)
+            {
+                damage = GetComponentInChildren<WeaponDamage>();
+            }
+            damage.CheckChance();
         }
 
         public void DoDamage(int value) {
-            //if (!damage) { 
-            //damage = GetComponentInChildren<WeaponDamage>();
-            //}
-            //damage.SetDamageBool(value >= 1 ? true : false);
+            if (!damage)
+            {
+                damage = GetComponentInChildren<WeaponDamage>();
+            }
+            damage.SetDamageBool(value >= 1 ? true : false);
         }
 
     }

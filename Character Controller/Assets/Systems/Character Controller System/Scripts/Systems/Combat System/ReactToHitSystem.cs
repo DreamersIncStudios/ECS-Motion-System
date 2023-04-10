@@ -13,14 +13,20 @@ namespace DreamersInc.ComboSystem
 
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((Entity entity, AnimatorComponent Animcomp,ref ReactToContact contact ) => {
-                //Todo Add check to see if we can interrupt 
+            Entities.WithoutBurst().ForEach((Entity entity, AnimatorComponent Animcomp, ref ReactToContact contact) =>
+            {
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);
                 var rb = Animcomp.RB;
+                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
+
+
+                if (Animcomp.anim == null)
+                    return;
+
+                //Todo Add check to see if we can interrupt 
                 var anim = Animcomp.anim;
 
-                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
-                if (contact.HitIntensity < 5)
+                if (contact.HitIntensity < 5 && anim != null)
                 {
                     switch (dir)
                     {

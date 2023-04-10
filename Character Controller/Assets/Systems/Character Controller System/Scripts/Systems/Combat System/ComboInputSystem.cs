@@ -109,6 +109,9 @@ namespace DreamersInc.ComboSystem
 
             Entities.WithStructuralChanges().WithoutBurst().ForEach((Entity entity,AnimatorComponent animC, Command handler, ref AttackTarget attackTarget) =>
             {
+
+                if (animC.anim == null)
+                    return;
                 var anim = animC.anim;
                 var transform = anim.transform;
                 handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
