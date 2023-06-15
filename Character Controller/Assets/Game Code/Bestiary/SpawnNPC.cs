@@ -48,14 +48,13 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponentObject(entity, character);
 
                 CharacterInventory inventory = new();
-                inventory.Setup(info.Equipment, character);
+                inventory.Setup(entity, info.Equipment, character);
                 manager.AddComponentData(entity, inventory);
                 if (go.TryGetComponent<Rigidbody>(out var RB))
                     manager.AddComponentObject(entity, RB);
                 manager.AddComponentData(entity, new AnimatorComponent()
                 {
                     anim = go.TryGetComponent<Animator>(out var anim) ? anim : null,
-                    RB = RB,
                     transform = go.GetComponent<Transform>()
                 }); 
 
@@ -72,9 +71,10 @@ namespace DreamersInc.BestiarySystem
                     NumOfEntityTargetingMe = 3,
                     CanBeTargetByPlayer= true,
                     Type = TargetType.Character,
-                    CenterOffset = new float3(0,1,0) //todo add value to SO
+                    CenterOffset = info.CenterOffset
                 }) ;
-               
+                if (go.TryGetComponent<OnDestoryEvents>(out var death))
+                    death.SetExp(info.ExpGiven);
             }
             else
             {

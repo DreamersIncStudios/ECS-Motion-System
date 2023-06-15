@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Dreamers.InventorySystem.Interfaces;
+using Dreamers.InventorySystem.AbilitySystem;
+
 namespace Dreamers.InventorySystem.Base {
     [System.Serializable]
     public class InventoryBase
     {
         public List<ItemSlot> ItemsInInventory;
+        public List<AbilitySO> AbilitiesInInventory;
         public uint MaxInventorySize;
         public bool OverBurdened => ItemsInInventory.Count >= MaxInventorySize;
         public InventoryBase() 
         {
             ItemsInInventory = new List<ItemSlot>();
+            AbilitiesInInventory = new List<AbilitySO>();
         }
 
         public void Init(uint size) {

@@ -8,7 +8,6 @@ using Unity.Jobs;
 using DreamersStudio.CameraControlSystem;
 //using DreamersInc.ComboSystem;
 using Stats.Entities;
-using Unity.Transforms;
 
 namespace MotionSystem.Systems
 {
@@ -24,11 +23,10 @@ namespace MotionSystem.Systems
 
 
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, ref CharControllerE control) =>
+            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref CharControllerE control) =>
             {
 
                 Animator Anim = AnimC.anim;
-                Rigidbody RB = AnimC.RB;
                 Transform transform = Anim.transform;
                 //if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                 //    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
@@ -73,7 +71,7 @@ namespace MotionSystem.Systems
                 if (control.ApplyRootMotion)
                 {
                     Anim.applyRootMotion = true;
-                    control.ApplyRootMotion = false;
+
                 }
 
                 //ScaleCapsules Collider
@@ -89,7 +87,14 @@ namespace MotionSystem.Systems
                 Anim.SetBool("OnGround", control.IsGrounded);
                 if (control.CombatCapable)
                 {
-                    Anim.SetBool("Weapon Drawn", control.EquipWeapon);
+                    if (!control.EquipOverride)
+                    {
+                        Anim.SetBool("Weapon Drawn", control.EquipWeapon);
+                    }
+                    //else if(!Anim.GetBool("Weapon Drawn") )
+                    //{
+                    //    Anim.SetBool("Weapon Drawn", true) ;
+                    //}
                     Anim.SetBool("IsTargeting", control.Targetting);
                 }
                 if (!control.IsGrounded)

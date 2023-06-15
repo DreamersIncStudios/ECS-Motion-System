@@ -21,14 +21,9 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            if (GlobalFunctions.RandomPoint(Vector3.zero, 200, out Vector3 pos))
-            {
-               BestiaryDB.SpawnNPC(3, pos);
-            }
-            else
-            {
-                i--;
-            }
+         var pos = new Vector3(100,0,0+15*i);
+            BestiaryDB.SpawnNPC(3, pos);
+         
         }
     }
 

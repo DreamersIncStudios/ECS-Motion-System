@@ -109,6 +109,10 @@ MonoBehaviour:
     AnimSpeedMultiplier: 1
     GroundCheckDistance: 0.2
     CombatCapable: 1
+  CenterOffset:
+    x: 0
+    y: 1
+    z: 0
   factionID: 2
   BaseThreat: 5
   BaseProtection: 5
@@ -116,3 +120,4 @@ MonoBehaviour:
   Equipment:
     EquippedWeapons: []
     EquippedArmors: []
+  ExpGiven: 0

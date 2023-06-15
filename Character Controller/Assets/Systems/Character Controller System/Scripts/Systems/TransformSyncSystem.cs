@@ -10,9 +10,9 @@ namespace MotionSystem
     {
         protected override void OnUpdate()
         {
-           Entities.WithoutBurst().ForEach((TransformGO go, ref WorldTransform ToWorld, ref LocalTransform local) => {
-               local.Position=ToWorld.Position = go.transform.position;
-               local.Rotation = ToWorld.Rotation= go.transform.rotation;
+           Entities.WithoutBurst().ForEach((TransformGO go, ref LocalTransform local) => {
+               local.Position = go.transform.position;
+               local.Rotation = go.transform.rotation;
            }).Run();
         }
     }

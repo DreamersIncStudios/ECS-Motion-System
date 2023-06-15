@@ -29,10 +29,12 @@ MonoBehaviour:
   _modifiers: []
   _levelRQD: 6
   _weaponType: 0
+  typeOfDamage: 0
   slot: 0
   maxDurable: 0
   breakable: 0
   _upgradeable: 1
+  alwaysDrawn: 1
   _sheathedPos: {x: 0, y: 0, z: -0.002}
   _heldPos: {x: -0.00448, y: 0.001102, z: 0.00311}
   _sheathedRot: {x: 0, y: 0, z: 0}

@@ -16,17 +16,18 @@ namespace DreamerInc.CombatSystem
     {
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((UIPrefab_Entities UI) =>
+            foreach (var UI in SystemAPI.Query<UIPrefab_Entities>()) //TODO: UIPrefab_Entities should be a single entity
             {
-                Entities.WithoutBurst().ForEach(  ( Transform transform, ref AdjustHealth mod) =>
+                var temp = UI;
+                Entities.WithoutBurst().ForEach((Transform transform, ref AdjustHealth mod) =>
                 {
-                    var spawnedUI = GameObject.Instantiate(UI.uiPrefab, transform);
-                    spawnedUI.GetComponent<TextMeshPro>().text = Mathf.Abs(mod.Value).ToString(); 
+                    var spawnedUI = GameObject.Instantiate(temp.uiPrefab, transform);
+                    spawnedUI.GetComponent<TextMeshPro>().text = Mathf.Abs(mod.Value).ToString();
                     spawnedUI.transform.localPosition += Vector3.up;
-                    spawnedUI.transform.DOShakePosition(3.5f,.25f,5);
+                    spawnedUI.transform.DOShakePosition(3.5f, .25f, 5);
                     Object.Destroy(spawnedUI.gameObject, 3.6f);
                 }).Run();
-            }).Run();
+            }
 
             Entities.WithoutBurst().ForEach((TextMeshPro textMesh, Transform transform) => {
                 transform.rotation = Camera.main.transform.rotation;

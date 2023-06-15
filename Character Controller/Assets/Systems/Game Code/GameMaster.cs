@@ -122,8 +122,9 @@ namespace DreamersIncStudios.MoonShot
             if (!GMEntityCreated)
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-                Entity gm = manager.CreateSingleton<ControllerInfo>();
+                var data = new ControllerInfo();
+                data.setup(controller);
+                Entity gm = manager.CreateSingleton(data);
 #if UNITY_EDITOR
                 manager.SetName(gm, "Game Master");
 #endif

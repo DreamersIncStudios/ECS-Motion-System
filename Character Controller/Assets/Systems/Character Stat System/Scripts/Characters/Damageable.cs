@@ -1,8 +1,6 @@
 using DreamersInc.CombatSystem.Animation;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -45,11 +43,12 @@ namespace Stats
             float defense = typeOf switch
             {
                 TypeOfDamage.MagicAoE => MagicDef,
+                TypeOfDamage.Magic=> MagicDef,
                 _ => MeleeDef,
             };
 
             int damageToProcess = -Mathf.FloorToInt(Amount * defense * Random.Range(.92f, 1.08f));
-            // Debug.Log(damageToProcess + " HP of damage to target "+ Name);
+            Debug.Log(damageToProcess + " HP of damage to target "+ this.name);
             AdjustHealth health = new() { Value = damageToProcess };
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
         }

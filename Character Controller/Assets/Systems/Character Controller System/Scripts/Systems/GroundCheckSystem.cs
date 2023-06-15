@@ -1,4 +1,5 @@
 using MotionSystem.Components;
+using MotionSystem.Systems;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -10,6 +11,8 @@ using UnityEngine;
 
 namespace MotionSystem
 {
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    [UpdateBefore(typeof(AnimatorUpdate))]
     public partial struct GroundCheckSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -35,7 +38,7 @@ namespace MotionSystem
 
         public partial struct GroundCheckJob : IJobEntity {
             [ReadOnly] public CollisionWorld world;
-            void Execute(ref WorldTransform transform, ref CharControllerE control) {
+            void Execute(ref LocalTransform transform, ref CharControllerE control) {
                 if (control.SkipGroundCheck)
                 {
                     return;
@@ -44,12 +47,12 @@ namespace MotionSystem
                 groundRays.Add(new RaycastInput()
                 {
                     Start = transform.Position + new Unity.Mathematics.float3(0, .2f, 0),
-                    End = transform.Position - new Unity.Mathematics.float3(0, -control.GroundCheckDistance, 0),
+                    End = transform.Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, 0),
                     Filter = new CollisionFilter
                     {
                         BelongsTo = ((1 << 10)),
                         CollidesWith = ((1 << 6) | (1 << 9)),
-                        GroupIndex = -1
+                        GroupIndex = 0
                     }
                 });
                 groundRays.Add(new RaycastInput()
@@ -60,7 +63,7 @@ namespace MotionSystem
                     {
                         BelongsTo = ((1 << 10)),
                         CollidesWith = ((1 << 6) | (1 << 9)),
-                        GroupIndex = -1
+                        GroupIndex = 0
                     }
                 });
                 groundRays.Add(new RaycastInput()
@@ -96,7 +99,6 @@ namespace MotionSystem
                         GroupIndex = 0
                     }
                 });
-                control.ApplyRootMotion = false;
 
                 foreach (var ray in groundRays)
                 {
@@ -105,7 +107,6 @@ namespace MotionSystem
 
                     if (control.IsGrounded = world.CastRay(ray, ref raycastArray))
                     {
-                        control.ApplyRootMotion = true;
                         groundRays.Dispose();
                         break;
                     }

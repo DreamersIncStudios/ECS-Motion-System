@@ -17,8 +17,13 @@ namespace MotionSystem.Systems{
             anim = GetComponent<Animator>();
                   damage = GetComponentInChildren<WeaponDamage>();
         }
+        
         public void EquipWeaponAnim()
         {
+
+            if(!anim)
+                anim = GetComponent<Animator>();
+
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
             if (!anim.GetBool("Weapon In Hand"))

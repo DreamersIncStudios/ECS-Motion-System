@@ -34,9 +34,9 @@ namespace DreamersInc.Global
 
             Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
             {
-
+                Control.CastingInput = config.OpenCadInput;
                 bool m_Crouching = new();
-                if (!Control.Casting)
+                if (!Control.CastingInput)
                 {
                     if (Control.block)
                     {

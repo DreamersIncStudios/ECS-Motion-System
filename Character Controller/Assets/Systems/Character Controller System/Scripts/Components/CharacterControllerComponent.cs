@@ -22,7 +22,7 @@ namespace MotionSystem.Components
         public bool Crouch;
 
         public bool CombatCapable;
-        public bool ApplyRootMotion;
+        public bool ApplyRootMotion { get { return IsGrounded; } }
         [SerializeField]public bool SkipGroundCheck { get; set; }
         public Vector3 Move;
         public bool Walk;
@@ -43,9 +43,10 @@ namespace MotionSystem.Components
         public bool EquipWeapon => TimerForEquipReset > 0.0f;
         public float EquipResetTimer;
         public float TimerForEquipReset { get; set; }
+        public bool EquipOverride;
         public float AnimationSpeed { get; set; }
         public bool Targetting;
-        public bool Casting;
+        public bool CastingInput;
         //Todo Add back
         // => AnimationSpeed < 1.0f;
 
@@ -57,6 +58,7 @@ namespace MotionSystem.Components
             m_GravityMultiplier = data.GravityMultiplier;
             m_RunCycleLegOffset= data.RunCycleLegOffset;
             m_AnimSpeedMultiplier= data.AnimSpeedMultiplier;
+            m_MoveSpeedMultiplier= data.MoveSpeedMultiplier;
             GroundCheckDistance= data.GroundCheckDistance;
             OGCapsuleCenter= CapsuleCenter = col.center;
            OGCapsuleHeight = CapsuleHeight= col.height;

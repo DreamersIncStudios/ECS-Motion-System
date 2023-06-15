@@ -8,10 +8,11 @@ using Unity.Entities;
 using System.Linq;
 using Stats.Entities;
 using DreamersInc.DamageSystem.Interfaces;
+using VisualEffect;
 
 namespace Dreamers.InventorySystem
 {
-    public class WeaponSO : ItemBaseSO, IEquipable,IWeapon
+    public class WeaponSO : ItemBaseSO, IEquipable, IWeapon
     {
         #region Variables
         public new ItemType Type { get { return ItemType.Weapon; } }
@@ -25,7 +26,7 @@ namespace Dreamers.InventorySystem
         [SerializeField] private HumanBodyBones _heldBone;
         public HumanBodyBones HeldBone { get { return _heldBone; } }
         public bool Equipped { get; private set; }
-       
+
         [SerializeField] private HumanBodyBones _equipBone;
         public HumanBodyBones EquipBone { get { return _equipBone; } }
         [SerializeField] private List<StatModifier> _modifiers;
@@ -47,6 +48,9 @@ namespace Dreamers.InventorySystem
         [SerializeField] private bool _upgradeable;
         public bool Upgradeable { get { return _upgradeable; } }
 
+        public bool AlwaysDrawn { get { return alwaysDrawn; } }
+        [SerializeField] bool alwaysDrawn;
+
         public int SkillPoints { get; set; }
         public int Exprience { get; set; }
         [SerializeField] Vector3 _sheathedPos;
@@ -66,7 +70,7 @@ namespace Dreamers.InventorySystem
 
 
         public GameObject WeaponModel { get; set; }
-
+        
 
         public bool Equip(BaseCharacterComponent player)
         {
@@ -80,7 +84,7 @@ namespace Dreamers.InventorySystem
                     // Consider adding and enum as all character maybe not be human 
                     if (EquipToHuman)
                     {
-                        Transform bone =anim.GetBoneTransform(EquipBone);
+                        Transform bone = anim.GetBoneTransform(EquipBone);
                         if (bone)
                         {
                             WeaponModel.transform.SetParent(bone);
@@ -94,6 +98,13 @@ namespace Dreamers.InventorySystem
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
                 }
                 player.ModCharacterStats(Modifiers, true);
+                if(alwaysDrawn)
+                {
+                    anim.SendMessage("EquipWeaponAnim");
+                    DrawWeapon(anim);
+                    WeaponModel.AddComponent<DissolveSingle>();
+
+                }
                 return Equipped = true; ;
             }
             else
@@ -102,7 +113,7 @@ namespace Dreamers.InventorySystem
                 return Equipped = false;
             }
         }
- 
+
 
 
         //TODO Should this be a bool instead of Void
@@ -116,7 +127,7 @@ namespace Dreamers.InventorySystem
         public bool EquipItem(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
             EquipmentBase Equipment = characterInventory.Equipment;
-            var Anim = player.GOrepresentative.GetComponent<Animator>();
+            var anim = player.GOrepresentative.GetComponent<Animator>();
 
             if (player.Level >= LevelRqd)
             {
@@ -133,7 +144,7 @@ namespace Dreamers.InventorySystem
                     // Consider adding and enum as all character maybe not be human 
                     if (EquipToHuman)
                     {
-                        Transform bone = Anim.GetBoneTransform(EquipBone);
+                        Transform bone = anim.GetBoneTransform(EquipBone);
                         if (bone)
                         {
                             WeaponModel.transform.SetParent(bone);
@@ -141,7 +152,7 @@ namespace Dreamers.InventorySystem
                     }
                     else
                     {
-                        WeaponModel.transform.SetParent(Anim.transform);
+                        WeaponModel.transform.SetParent(anim.transform);
 
                     }
                     WeaponModel.transform.localPosition = SheathedPos;
@@ -150,12 +161,19 @@ namespace Dreamers.InventorySystem
                 }
                 player.ModCharacterStats(Modifiers, true);
                 characterInventory.Inventory.RemoveFromInventory(this);
+                if (alwaysDrawn)
+                {
+                    anim.SendMessage("EquipWeaponAnim");
+                    DrawWeapon(anim);
+                    WeaponModel.AddComponent<DissolveSingle>();
+                }
 
-                
                 player.StatUpdate();
                 return Equipped = true; ;
             }
-            else { Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level); 
+            else
+            {
+                Debug.LogWarning("Level required to Equip is " + LevelRqd + ". Character is currently level " + player.Level);
                 return Equipped = false;
             }
 
@@ -190,13 +208,15 @@ namespace Dreamers.InventorySystem
             throw new System.NotImplementedException();
         }
 
-        public void DrawWeapon(Animator anim) {
+        public void DrawWeapon(Animator anim)
+        {
             WeaponModel.transform.SetParent(anim.GetBoneTransform(HeldBone));
             WeaponModel.transform.localPosition = HeldPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
 
         }
-        public void StoreWeapon(Animator anim) {
+        public void StoreWeapon(Animator anim)
+        {
             WeaponModel.transform.parent = anim.GetBoneTransform(EquipBone);
             WeaponModel.transform.localPosition = SheathedPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);

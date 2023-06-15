@@ -13,11 +13,11 @@ namespace DreamersInc.ComboSystem
 
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((Entity entity, AnimatorComponent Animcomp, ref ReactToContact contact) =>
+            Entities.WithoutBurst().ForEach((Entity entity, AnimatorComponent Animcomp, Rigidbody RB, ref ReactToContact contact) =>
             {
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);
-                var rb = Animcomp.RB;
-                rb.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
+               
+                RB.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
 
 
                 if (Animcomp.anim == null)

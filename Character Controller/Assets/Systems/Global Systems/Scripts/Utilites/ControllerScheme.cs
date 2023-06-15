@@ -19,6 +19,7 @@ namespace DreamersInc
         [SerializeField] KeyCode _cadMenu;
         [SerializeField] KeyCode _projectile;
 #pragma warning restore IDE1006 // Naming Styles
+        public bool AutoSwapTarget;
 
         public KeyCode Jump { get { return _jump; } set { _jump = value; } }
         public KeyCode LightAttack { get { return _lightAttack; } set { _lightAttack = value; } }
@@ -40,14 +41,16 @@ namespace DreamersInc
         public KeyCode Projectile { get; private set; }
         public bool Jumpb => Input.GetKeyUp(Jump);
         public bool DisplayMenu => Input.GetKeyUp(KeyCode.JoystickButton7);
-        public bool Blockb => Input.GetKeyDown(Block);
+        public bool Blockb => Input.GetKey(Block);
+        public bool CadButtonPressed => Input.GetKey(ActivateCADMenu);
+        public bool OpenCadInput => CadButtonPressed && !Casting;
         public bool LightAttackb => Input.GetKeyUp(LightAttack);
         public bool HeavyAttackb => Input.GetKeyUp(HeavyAttack);
         public bool ChargedLightAttackb => Input.GetKey(LightAttack);
         public bool ChargedHeavyAttackb => Input.GetKey(HeavyAttack);
         public bool Projectileb => Input.GetKeyUp(Projectile);
         public bool ChargedProjectileb => Input.GetKey(Projectile);
-        public bool Casting;
+        public bool Casting { get; set; }
 
         public bool Charged => ChargedTime > 2.5f;
         [HideInInspector] public float ChargedTime;

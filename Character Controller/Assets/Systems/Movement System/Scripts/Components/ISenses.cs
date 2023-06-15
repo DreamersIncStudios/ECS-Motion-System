@@ -92,10 +92,7 @@ namespace AISenses
     {
         public int Compare(ScanPositionBuffer x, ScanPositionBuffer y)
         {
-            if (x.dist > y.dist)
-                return 1;
-            else
-                return -1;
+          return x.dist.CompareTo(y.dist);
         }
     }
 

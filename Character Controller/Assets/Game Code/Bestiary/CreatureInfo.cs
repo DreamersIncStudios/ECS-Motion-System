@@ -8,6 +8,7 @@ using Global.Component;
 using DreamersInc.ComboSystem;
 using Dreamers.InventorySystem.Base;
 using MotionSystem.Components;
+using Unity.Mathematics;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -20,12 +21,15 @@ namespace DreamersInc.BestiarySystem
         public GameObject Prefab;
         public PhysicsInfo PhysicsInfo;
         public MovementData Move;
+        public float3 CenterOffset;
+
         [Header("influence ")]
         public int factionID;
         public int BaseThreat;
         public int BaseProtection;
         public ComboSO Combo;
         public EquipmentSave Equipment;
+        public uint ExpGiven;
 #if UNITY_EDITOR
 
         public void setItemID(uint ID)

@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8440475850858575801}
-  - component: {fileID: 3315231672961561433}
+  - component: {fileID: 6886284987650003492}
   m_Layer: 10
   m_Name: here
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Transform:
   m_Father: {fileID: 7708328479589455288}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3315231672961561433
+--- !u!114 &6886284987650003492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 551881640775618553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602c4870bc9499c49835c3d6eef1d084, type: 3}
+  m_Script: {fileID: 11500000, guid: db5e07c23ef86ab4d9d3f2c19ef6e151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &605033841614440587
@@ -3505,11 +3505,10 @@ GameObject:
   - component: {fileID: 4330588439965142978}
   - component: {fileID: 630188153763588059}
   - component: {fileID: 6181946419320678201}
-  - component: {fileID: 3925382582230338032}
-  - component: {fileID: 8188324450363460513}
-  - component: {fileID: 4691531123534818473}
-  - component: {fileID: -8715741906179351191}
-  - component: {fileID: -3418367994908702014}
+  - component: {fileID: 621621391298410542}
+  - component: {fileID: 2759599146790124}
+  - component: {fileID: 3890073215258197795}
+  - component: {fileID: -8210321365939434956}
   m_Layer: 10
   m_Name: Stella 1
   m_TagString: Untagged
@@ -3546,7 +3545,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4330588439965142978
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3554,7 +3553,7 @@ Animator:
   m_GameObject: {fileID: 7039877484657282818}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0162dcfd866076744a4ffdbe499d83f6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 62037f98244b7b44f948daf23f787475, type: 2}
+  m_Controller: {fileID: 9100000, guid: ebc59077af4fd7f40808aaf5a2fdc6c1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3563,7 +3562,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &630188153763588059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3571,10 +3571,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7039877484657282818}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -3588,13 +3599,22 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7039877484657282818}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.35
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3925382582230338032
+--- !u!114 &621621391298410542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3603,28 +3623,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039877484657282818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be44922b5e195940b9adb67aac8c855, type: 3}
+  m_Script: {fileID: 11500000, guid: 9080c9c0e3cc5574da792b69b89d71e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI_Control: 0
-  Party: 0
-  IsPlayer: 1
-  CombatCapable: 1
-  Scheme: {fileID: 11400000, guid: f1685a92743186246bedc3655febd174, type: 2}
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
-  GroundProbeVector:
-    x: 0
-    y: 0
-    z: 0
-  EquipResetTimer: 5
---- !u!114 &8188324450363460513
+--- !u!114 &2759599146790124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3633,11 +3635,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039877484657282818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e689d52e3f13224408f371cd7c9b38d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e35c54e160b03349af0932c7f5bd7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Combo: {fileID: 11400000, guid: 10a4989132429054d990ac03a1a753ec, type: 2}
---- !u!114 &4691531123534818473
+--- !u!114 &3890073215258197795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3646,31 +3647,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039877484657282818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63c08bd6fc5f514fbd670c988fb6406, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af5b7e15536d0b4996896a0a03281f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InPlay: 0
-  InvincibleMode: 0
-  CurHealth: 0
-  maxHealth: 0
-  CurMana: 0
-  maxMana: 0
-  BaseStats:
-    title: 7
-    Level: 5
-    Strength: 20
-    Vitality: 20
-    Awareness: 20
-    Speed: 20
-    Skill: 20
-    Resistance: 20
-    Concentration: 20
-    WillPower: 20
-    Charisma: 20
-    Luck: 20
-    difficultyMod: 20
-    LevelMod: 5
---- !u!114 &-8715741906179351191
+--- !u!114 &-8210321365939434956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3679,43 +3659,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039877484657282818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c558749c7c7545a752026e04b16ef, type: 3}
+  m_Script: {fileID: 11500000, guid: ae8149adc6abd53409ae6da06f6a0543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3418367994908702014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7039877484657282818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13784d0ad5f618a41af36d55e6724f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Inventory:
-    ItemsInInventory: []
-    MaxInventorySize: 0
-  Equipment:
-    CurrentActivationPoints: 0
-    MaxActivationPoints: 0
-    QuickAccessItems: []
-    NumOfQuickAccessSlots: 0
-  magicSkillSystem:
-    MagicInventory: []
-    SkillInventory: []
-    EquippedMagic:
-    - {fileID: 11400000, guid: d0b37a594de94314dbe1c86ff7350bfe, type: 2}
-    EquippedSkill:
-    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
-    - {fileID: 11400000, guid: 557f11fc5976b45458ba4652c544da1d, type: 2}
-  QuestLog:
-    SelectedMission: {fileID: 0}
-  Save:
-    EquippedWeapons:
-    - {fileID: 11400000, guid: 1010c691ad0d4bd4098aecc85824bb78, type: 2}
-    EquippedArmors: []
 --- !u!1 &7124930321667929458
 GameObject:
   m_ObjectHideFlags: 0

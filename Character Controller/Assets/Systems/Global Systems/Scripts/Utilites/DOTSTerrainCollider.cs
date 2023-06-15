@@ -19,6 +19,8 @@ namespace DreamersInc
             public override void Bake(DOTSTerrainCollider authoring) {
                 if (authoring.terrainCollider == null || authoring.terrainCollider.terrainData == null)
                 { authoring.terrainCollider = GameObject.FindObjectOfType<TerrainCollider>(); }
+                
+                DependsOn(authoring.terrainCollider);
 
                 var data = authoring.terrainCollider.terrainData;
                 var size = new int2(data.heightmapResolution, data.heightmapResolution);

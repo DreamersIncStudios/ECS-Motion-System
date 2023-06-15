@@ -19,8 +19,9 @@ namespace Stats.Entities
         private Elemental[] _ElementalMods;
         public bool InPlay;
         public bool InvincibleMode;
+        public uint SpawnID { get; private set; }
+        [HideInInspector] public GameObject GOrepresentative;
 
-       [HideInInspector] public GameObject GOrepresentative;
         [Range(0, 9999)]
         [SerializeField] int _curHealth;
         public int CurHealth
@@ -89,12 +90,23 @@ namespace Stats.Entities
             _freeExp += exp;
             CalculateLevel();
         }
+        //Todo consider adding growth rate levels
 
+        public int ExpToNextLevel
+        {
+            get
+            {
+                return Mathf.FloorToInt(6 / 5 * Mathf.Pow(Level, 3) - 15 * Mathf.Pow(Level, 2) + 100 * Level - 140);
+            }
+        }
         public void CalculateLevel()
         {
-
-            // TODO need to add logic here
-
+            if (_freeExp > ExpToNextLevel)
+            {
+                Debug.Log("trigger Level Up need stat info");
+                Level++;
+                StatUpdate();
+            }
         }
 
         public void Init()

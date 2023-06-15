@@ -4,6 +4,8 @@ using Dreamers.InventorySystem.Interfaces;
 using Sirenix.Serialization;
 using UnityEngine;
 using Stats;
+using Dreamers.InventorySystem.AbilitySystem;
+using Unity.Entities;
 
 namespace Dreamers.InventorySystem.Base {
     [System.Serializable]
@@ -11,7 +13,7 @@ namespace Dreamers.InventorySystem.Base {
     {
         public Dictionary<ArmorType, ArmorSO> EquippedArmor = new Dictionary<ArmorType, ArmorSO>();
         public Dictionary<WeaponSlot, WeaponSO> EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>();
-
+        public List<AbilitySO>EquippedAbility = new List<AbilitySO>();
 
         public int CurrentActivationPoints;
         public int MaxActivationPoints;
@@ -22,13 +24,17 @@ namespace Dreamers.InventorySystem.Base {
         public void Init() { 
             QuickAccessItems= new List<ItemSlot>();
             NumOfQuickAccessSlots= 2;
+            EquippedAbility = new List<AbilitySO>();
         }
-        public void Init(EquipmentSave save, BaseCharacterComponent player, int size =2) {
+        public void Init(EquipmentSave save, BaseCharacterComponent player, Entity entity, int size =2) {
             EquippedArmor = new Dictionary<ArmorType, ArmorSO>();
-            EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>(); 
-            QuickAccessItems= new List<ItemSlot>();
+            EquippedWeapons = new Dictionary<WeaponSlot, WeaponSO>();
+            EquippedAbility = new List<AbilitySO>();
+            QuickAccessItems = new List<ItemSlot>();
             NumOfQuickAccessSlots=  size;
-           LoadEquipment(player,save);
+           LoadEquipment(player, entity, save);
+            
+
         }
         public EquipmentSave Save;
         public void Init(EquipmentSave save, int size = 2)
@@ -38,6 +44,8 @@ namespace Dreamers.InventorySystem.Base {
             QuickAccessItems = new List<ItemSlot>();
             NumOfQuickAccessSlots = size;
          Save = save;
+            EquippedAbility = new List<AbilitySO>();
+
         }
         void reloadEquipment(BaseCharacterComponent player) {
             foreach (ArmorSO so in EquippedArmor.Values) {
@@ -49,7 +57,7 @@ namespace Dreamers.InventorySystem.Base {
             }
         }
 
-        void LoadEquipment(BaseCharacterComponent PC, EquipmentSave Save)
+        void LoadEquipment(BaseCharacterComponent PC, Entity entity, EquipmentSave Save)
         {
             if (Save.EquippedArmors.Count != 0)
             {
@@ -75,6 +83,12 @@ namespace Dreamers.InventorySystem.Base {
                     }
                 }
             }
+
+            if (Save.EquippedAbilites.Count != 0) {
+                foreach (AbilitySO ability in Save.EquippedAbilites) {
+                    ability.EquipAbility(entity);
+                }
+            }
         }
 
     }
@@ -83,6 +97,7 @@ namespace Dreamers.InventorySystem.Base {
     {
         public List<WeaponSO> EquippedWeapons;
         public List<ArmorSO> EquippedArmors;
+        public List<AbilitySO> EquippedAbilites;
     }
 
 }

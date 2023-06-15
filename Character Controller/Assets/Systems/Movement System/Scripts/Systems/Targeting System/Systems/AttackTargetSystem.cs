@@ -16,7 +16,7 @@ namespace AISenses.VisionSystems.Combat
         protected override void OnUpdate()
         {
             
-            Entities.ForEach((ref AttackTarget attackTarget, ref DynamicBuffer<ScanPositionBuffer> buffer) =>
+            Entities.ForEach((ref AttackTarget attackTarget, ref DynamicBuffer<ScanPositionBuffer> buffer, ref Vision vision) =>
             {
                if(buffer.Length ==0)
                     return;
@@ -26,19 +26,20 @@ namespace AISenses.VisionSystems.Combat
                 }
                 else {
                     NativeArray<ScanPositionBuffer> scans = buffer.ToNativeArray(Allocator.Temp);
-                    if (buffer.Length > 0) { 
-                        //Attack in direction of point target
-                        var visibleTargetInArea =  buffer.ToNativeArray(Allocator.Temp);
-                        visibleTargetInArea.Sort(new SortScanPositionByDistance());
-                        for (int i = 0; i < visibleTargetInArea.Length; i++)
-                        {
-
-                        }
-                        attackTarget.AttackTargetLocation = visibleTargetInArea[0].target.LastKnownPosition;
-                    }
-                     else
+                    if (buffer.Length > 0)
                     {
-                        attackTarget.AttackTargetLocation = new float3(1,1,1);
+                        //Attack in direction of point target
+                        var visibleTargetInArea = buffer.ToNativeArray(Allocator.Temp);
+                        visibleTargetInArea.Sort(new SortScanPositionByDistance());
+                        if (vision.EngageRadius < visibleTargetInArea[0].dist)
+                        {
+                            attackTarget.AttackTargetLocation = visibleTargetInArea[0].target.LastKnownPosition;
+                            attackTarget.TargetInRange = true;
+                        }
+                    }
+                    else
+                    {
+                        attackTarget.TargetInRange = false;
                     }
                     scans.Dispose();
                 }

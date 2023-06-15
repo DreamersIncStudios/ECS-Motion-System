@@ -1,21 +1,9 @@
-using Components.MovementSystem;
 using Global.Component;
-using MotionSystem;
-using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Physics.Aspects;
-using Unity.Physics.Authoring;
-using Unity.Physics.Systems;
-using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.AI;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -25,7 +13,6 @@ namespace DreamersInc.BestiarySystem
         {
 
             EntityArchetype baseEntityArch = manager.CreateArchetype(
-              typeof(WorldTransform),
               typeof(LocalTransform),
               typeof(LocalToWorld)
               );
@@ -34,7 +21,6 @@ namespace DreamersInc.BestiarySystem
                 manager.SetName(baseDataEntity, entityName);
             else
                 manager.SetName(baseDataEntity, "NPC Data");
-            manager.SetComponentData(baseDataEntity,new WorldTransform() {Scale = 1 });
             manager.SetComponentData(baseDataEntity, new LocalTransform() { Scale = 1 });
 
 

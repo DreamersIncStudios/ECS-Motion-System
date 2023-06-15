@@ -45,14 +45,13 @@ namespace GameCode.Spawn
                 character.GOrepresentative = go;
                 character.SetupDataEntity(pgo.Info);
                 CharacterInventory inventory = new ();
-                inventory.Setup(pgo.equipment, character);
+                inventory.Setup(entity, pgo.equipment, character);
                 ecb.AddComponent(entity, inventory);
           
                 ecb.AddComponent(entity, new TransformGO() { transform = go.transform });
                 ecb.AddComponent(entity, new AnimatorComponent()
                 {
                     anim = anim,
-                    RB = RB,
                     transform = anim.transform,
                 });
                 go.GetComponent<VFXControl>().Init(combo.Combo);

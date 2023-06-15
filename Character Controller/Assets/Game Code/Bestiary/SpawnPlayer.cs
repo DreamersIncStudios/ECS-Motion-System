@@ -9,6 +9,7 @@ using DreamersStudio.CameraControlSystem;
 using Global.Component;
 using MotionSystem;
 using MotionSystem.Components;
+using MotionSystem.Systems;
 using Stats;
 using Stats.Entities;
 using System.Collections;
@@ -47,8 +48,9 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponentObject(entity, character);
 
                 CharacterInventory inventory = new();
-                inventory.Setup(info.Equipment, character);
+          
                 manager.AddComponentData(entity, inventory);
+                manager.GetComponentData<CharacterInventory>(entity).Setup(entity, info.Equipment, character);
                 var anim = go.GetComponent<Animator>();
                 var RB = go.GetComponent<Rigidbody>();
                 manager.AddComponentObject(entity, RB);
@@ -62,14 +64,18 @@ namespace DreamersInc.BestiarySystem
                     CenterOffset = new float3(0, 1, 0) //todo add value to SO
 
                 });
+
                 manager.AddComponentData(entity, new AnimatorComponent()
                 {
                     anim = anim,
-                    RB = RB,
                     transform = anim.transform,
                 });
                 manager.AddComponent<StoreWeapon>(entity);
-
+                AnimationSpeedLink link = new AnimationSpeedLink()
+                {
+                    link = go.GetComponent<AnimationSpeed>()
+                };
+                manager.AddComponentObject(entity, link);
             }
             else
             {
@@ -96,7 +102,9 @@ namespace DreamersInc.BestiarySystem
                     manager.AddComponent<AI_Control>(entity);
                 }
                 manager.AddComponent<AttackTarget>(entity);
-                manager.AddComponentObject(entity, new Command());
+                manager.AddComponentObject(entity, new Command() { EquippedAbilities= new Dreamers.InventorySystem.AbilitySystem.AbilityList() {
+                    EquippedAbilities = new List<Dreamers.InventorySystem.AbilitySystem.AbilitySO>() { Object.Instantiate(info.test) }
+                } });
                 var controllerData = new CharControllerE();
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);
@@ -141,7 +149,13 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponent<Player_Control>(entity);
 
                 manager.AddComponent<AttackTarget>(entity);
-                manager.AddComponentObject(entity, new Command());
+                manager.AddComponentObject(entity, new Command()
+                {
+                    EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList()
+                    {
+                        EquippedAbilities = new List<Dreamers.InventorySystem.AbilitySystem.AbilitySO>() { Object.Instantiate(info.test) }
+                    }
+                });
                 var controllerData = new CharControllerE();
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);

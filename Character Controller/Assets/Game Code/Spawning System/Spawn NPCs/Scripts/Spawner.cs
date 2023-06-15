@@ -11,9 +11,11 @@ public class Spawner : MonoBehaviour
     {
         public override void Bake(Spawner authoring)
         {
-            AddComponent(new SpawnerComponent()
+            var entity = GetEntity(TransformUsageFlags.Dynamic);
+
+            AddComponent(entity, new SpawnerComponent()
             {
-                npcPrefab = GetEntity(authoring.npcPrefab)
+                npcPrefab = GetEntity(authoring.npcPrefab, TransformUsageFlags.Dynamic)
             });
         }
     }

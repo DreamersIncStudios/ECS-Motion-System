@@ -34,7 +34,9 @@ namespace MotionSystem
         {
             public override void Bake(PlayerCharacterControllerAuthoring authoring)
             {
-               CharControllerE data= new CharControllerE()
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
+
+                CharControllerE data = new CharControllerE()
                {
                    CapsuleRadius = authoring.Capsule.radius,
                    CapsuleCenter = authoring.Capsule.center,
@@ -56,10 +58,10 @@ namespace MotionSystem
                     
                     ; 
 
-                AddComponent(data);
-                AddComponentObject(new TransformGO() { transform = authoring.Capsule.transform });
+                AddComponent(entity,data);
+                AddComponentObject(entity, new TransformGO() { transform = authoring.Capsule.transform });
                 if(authoring.IsPlayer)
-                    AddComponent(new Player_Control() { });
+                    AddComponent(entity, new Player_Control() { });
             }
         }
     }

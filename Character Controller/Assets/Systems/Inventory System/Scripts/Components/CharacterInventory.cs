@@ -32,20 +32,20 @@ namespace Dreamers.InventorySystem
             Equipment.Init();
 
         }
-        public void Setup(EquipmentSave equipment, BaseCharacterComponent player)
+        public void Setup(Entity entity, EquipmentSave equipment, BaseCharacterComponent player)
         {
             Inventory = new();
             Inventory.Init(10);
             Equipment = new();
-            Equipment.Init(equipment, player);
+            Equipment.Init(equipment, player, entity);
 
         }
-        public void Setup(InventoryBase inventory, EquipmentSave equipment, BaseCharacterComponent player)
+        public void Setup(Entity entity, InventoryBase inventory, EquipmentSave equipment, BaseCharacterComponent player)
         {
             Inventory = new();
             Inventory.Init(inventory);
             Equipment = new();
-            Equipment.Init(equipment,player);
+            Equipment.Init(equipment,player,entity);
         }
 
         public void RemoveGold(uint amount) {
@@ -59,10 +59,6 @@ namespace Dreamers.InventorySystem
         {
                 Gold = (int)Mathf.Clamp(Gold + amount, 0, Mathf.Infinity);
         }
-    }
-    public class CharacterInvenetoryComp : IComponentData {
-        public EquipmentBase equipment;
-        public InventoryBase inventory;
     }
 
 }

@@ -4,36 +4,24 @@ using UnityEngine.AI;
 using Unity.Entities;
 using Components.MovementSystem;
 using Unity.Transforms;
-using Unity.Mathematics;
-using Unity.Collections;
 using Unity.Jobs;
 using Unity.Burst;
+using MotionSystem;
 
 namespace IAUS.ECS.Systems
 {
-
+    [UpdateAfter(typeof(TransformSyncSystem))]
     public partial class MovementSystem : SystemBase
     {
-        private EntityQuery Mover;
-
-
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            Mover = GetEntityQuery(new EntityQueryDesc()
-            {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Movement)), ComponentType.ReadOnly(typeof(LocalToWorld))}
-
-            });
-
-        }
         protected override void OnUpdate()
         {
             JobHandle systemDeps = Dependency;
-           systemDeps = Entities.ForEach(( ref Movement movement, in TransformAspect CurPos) => 
-           {
-                movement.DistanceRemaining = Vector3.Distance(movement.TargetLocation, CurPos.WorldPosition);
-           }).ScheduleParallel(systemDeps);
+            systemDeps = Entities.ForEach((ref Movement movement, in LocalTransform CurPos) =>
+            {
+                movement.DistanceRemaining = Vector3.Distance(movement.TargetLocation, CurPos.Position);
+            }).ScheduleParallel(systemDeps);
+            World.GetOrCreateSystemManaged<EndSimulationEntityCommandBufferSystem>().AddJobHandleForProducer(systemDeps);
+            Dependency = systemDeps;
 
             Entities.WithoutBurst().ForEach((NavMeshAgent Agent, ref Movement move) =>
             {
@@ -65,8 +53,7 @@ namespace IAUS.ECS.Systems
 
 
             }).Run();
-            
-            Dependency= systemDeps;
+
 
         }
 

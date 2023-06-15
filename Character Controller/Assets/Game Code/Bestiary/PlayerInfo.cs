@@ -1,4 +1,5 @@
 using AISenses;
+using Dreamers.InventorySystem.AbilitySystem;
 using Dreamers.InventorySystem.Base;
 using DreamersInc.ComboSystem;
 using DreamersInc.InflunceMapSystem;
@@ -32,6 +33,7 @@ namespace DreamersInc.BestiarySystem
         public int BaseProtection;
         public ComboSO Combo;
         public EquipmentSave Equipment;
+        public AbilitySO test; //Todo make Save toolkit system
 
 #if UNITY_EDITOR
 

@@ -47,13 +47,21 @@ namespace DreamersStudio.CameraControlSystem
             };
             OnTargetChanged += (object sender, OnTargetChangedEventArgs eventArgs) =>
             {
+                if (eventArgs.Target.transform != null)
+                {
                     TargetGroup.m_Targets[0].target = eventArgs.Target.transform;
+                }
+
+                
             };
 
         }
         private void Update()
         {
             SetBias();
+            if(!TargetGroup.m_Targets[0].target)
+                OnTargetingChanged(this, new CameraControl.OnTargetingChangedEventArgs { isTargeting = false });
+
         }
         void SetBias() {
             if (playerCharacter == null)
