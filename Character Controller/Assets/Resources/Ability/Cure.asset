@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbadae84b653c594ea6d7f46cda5a7b4, type: 3}
+  m_Name: Cure
+  m_EditorClassIdentifier: 
+  nameSO: 'Cure '
+  description: 'Heal Self '
+  inputCode: XXX
+  animInfo:
+    AnimIndex: 1
+    TransitionDuration: 0.25
+    TransitionOffset: 0
+    EndofCurrentAnim: 0
+  amount: 50
+  manaCost: 20
+  vFX: {fileID: 1592372973558972, guid: 721cfe8018b2cd04abd0748143d2a312, type: 3}

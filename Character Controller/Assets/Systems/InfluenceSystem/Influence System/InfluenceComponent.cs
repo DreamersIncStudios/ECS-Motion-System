@@ -11,7 +11,6 @@ namespace DreamersInc.InflunceMapSystem
 {
 
     [System.Serializable]
-    [GenerateAuthoringComponent]
     public struct InfluenceComponent : IComponentData
     {
         public int Threat;
@@ -41,70 +40,44 @@ namespace DreamersInc.InflunceMapSystem
 
 
 
-    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
-    public sealed partial class UpdateInfluenceGridSystem : SystemBase
-    {
-        EntityQuery Influencers;
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            Influencers = GetEntityQuery(new EntityQueryDesc()
-            {
-                All = new ComponentType[] { ComponentType.ReadOnly(typeof(LocalToWorld)), ComponentType.ReadWrite(typeof(InfluenceComponent))
-                        , ComponentType.ReadOnly(typeof(Perceptibility))
+    //[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    //public  partial struct UpdateInfluenceGridSystem : ISystem
+    //{
+    //    public void OnCreate(ref SystemState state)
+    //    {
+    //    }
 
-            }
-            });
-            Influencers.SetChangedVersionFilter(new ComponentType[] {
-            ComponentType.ReadWrite(typeof(LocalToWorld))
-        });
-        }
+    //    public void OnDestroy(ref SystemState state)
+    //    {
+    //    }
 
-        protected override void OnUpdate()
-        {
-            JobHandle systemDeps = Dependency;
-            systemDeps = new UpdateGridJob()
-            {
-                TestChunk = GetComponentTypeHandle<InfluenceComponent>(false),
-                TransformChunk = GetComponentTypeHandle<LocalToWorld>(true),
-                PerceptionChunk = GetComponentTypeHandle<Perceptibility>(true)
-            }.ScheduleSingle(Influencers, systemDeps);
-            Dependency = systemDeps;
-        }
-        public struct UpdateGridJob : IJobChunk
-        {
-            public ComponentTypeHandle<InfluenceComponent> TestChunk;
-            [ReadOnly] public ComponentTypeHandle<LocalToWorld> TransformChunk;
-            [ReadOnly] public ComponentTypeHandle<Perceptibility> PerceptionChunk;
+    //    public void OnUpdate(ref SystemState state)
+    //    {
+    //        state.Dependency = new UpdateGridJob().Schedule(state.Dependency);
+    //    }
+        
+    //    public partial struct UpdateGridJob : IJobEntity
+    //    {
 
-            public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
-            {
+    //        public void Execute(ref InfluenceComponent influence, in LocalTransform toWorlds, in Perceptibility perceptibility)
+    //        {
+    //            if (influence.GridChanged(toWorlds.Position, out InfluenceGridObject gridpoint) && !influence.NPCOffGrid(toWorlds.Position))
+    //            {
 
-                NativeArray<InfluenceComponent> testInfluences = chunk.GetNativeArray(TestChunk);
-                NativeArray<LocalToWorld> toWorlds = chunk.GetNativeArray(TransformChunk);
-                NativeArray<Perceptibility> perceptibilities = chunk.GetNativeArray(PerceptionChunk);
-                for (int i = 0; i < chunk.Count; i++)
-                {
-                    InfluenceComponent influence = testInfluences[i];
-                    Perceptibility perceptibility = perceptibilities[i];
-                    if (influence.GridChanged(toWorlds[i].Position, out InfluenceGridObject gridpoint) && !influence.NPCOffGrid(toWorlds[i].Position))
-                    {
-                       
-                        InfluenceGridMaster.Instance.grid.GetGridObject(influence.previousPos)?.AddValue(-influence.GetInfluenceValueMod(perceptibility.Score) ,10,25, LoveHate.factionDatabase.GetFaction( influence.factionID));
-                        gridpoint.AddValue(influence.GetInfluenceValueMod(perceptibility.Score), 10, 25, LoveHate.factionDatabase.GetFaction(influence.factionID));
-                        influence.previousPos = toWorlds[i].Position;
+    //                InfluenceGridMaster.Instance.grid.GetGridObject(influence.previousPos)?.AddValue(-influence.GetInfluenceValueMod(perceptibility.Score), 10, 25, LoveHate.factionDatabase.GetFaction(influence.factionID));
+    //                gridpoint.AddValue(influence.GetInfluenceValueMod(perceptibility.Score), 10, 25, LoveHate.factionDatabase.GetFaction(influence.factionID));
+    //                influence.previousPos = toWorlds.Position;
 
-                    }
-                    else if (influence.NPCOffGrid(toWorlds[i].Position))
-                    {
-                        InfluenceGridMaster.Instance.grid.GetGridObject(influence.previousPos)?.AddValue(-influence.GetInfluenceValueMod(perceptibility.Score), 10, 25, LoveHate.factionDatabase.GetFaction(influence.factionID));
-                        influence.previousPos = toWorlds[i].Position;
+    //            }
+    //            else if (influence.NPCOffGrid(toWorlds.Position))
+    //            {
+    //                InfluenceGridMaster.Instance.grid.GetGridObject(influence.previousPos)?.AddValue(-influence.GetInfluenceValueMod(perceptibility.Score), 10, 25, LoveHate.factionDatabase.GetFaction(influence.factionID));
+    //                influence.previousPos = toWorlds.Position;
 
-                    }
-                    testInfluences[i] = influence;
-                }
+    //            }
+    //        }
 
-            }
-        }
-    }
+            
+    //    }
+    //}
 }

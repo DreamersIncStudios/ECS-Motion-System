@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313c31c4c741c944099cf6bc37d0afa0, type: 3}
+  m_Name: Dragon's Breath
+  m_EditorClassIdentifier: 
+  nameSO: Dragon's Breath
+  description: 
+  inputCode: XYY
+  animInfo:
+    AnimIndex: 3
+    TransitionDuration: 0
+    TransitionOffset: 0
+    EndofCurrentAnim: 0
+  damageAmount: 13500
+  manaCost: 15
+  vFX: {fileID: 6932652848965524609, guid: 7fc3fba5863f8f34e8eb383d474ec9c0, type: 3}
+  offset: {x: 0, y: 1, z: 2.5}
+  Size: {x: 0, y: 0, z: 0}

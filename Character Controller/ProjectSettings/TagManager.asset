@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerEyes
-  - Follow
   - Enemy NPC
+  - Follow
+  - PlayerEyes
   layers:
   - Default
   - TransparentFX
@@ -14,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 'Environment '
+  - Environment
   - 
   - 
-  - 
+  - NPC
   - Player
   - Enemy NPC
   - 

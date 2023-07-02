@@ -5,6 +5,7 @@ using Stats;
 using System;
 using Random = UnityEngine.Random;
 using Dreamers.InventorySystem;
+using Stats.Entities;
 
 namespace DreamersInc.DamageSystem
 {
@@ -14,18 +15,23 @@ namespace DreamersInc.DamageSystem
         public Action OnHitAction { get; set; }
         public Action ChanceCheck { get; set; }
         public Action CriticalEventCheck { get; set; }
-       
+        public Stat Magic_Offense { get; private set; }
+        public Stat Range_Offense { get; private set; }
+        public Stat Melee_Offense { get; private set; }
+        public Attributes Skill { get; private set; }
+        public Attributes Speed { get; private set; }
+
         public int BaseDamage
         {
             get
             {
-                //Todo Add mod value for Magic infused/Ennchanted weapon 
+              // Todo Add mod value for Magic infused/ Ennchanted weapon
                 int output = TypeOfDamage switch
                 {
-                    TypeOfDamage.MagicAoE => Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue,
-                    TypeOfDamage.Projectile => Stats.GetStat((int)StatName.Ranged_Offence).AdjustBaseValue,
-                    TypeOfDamage.Melee => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
-                    _ => Stats.GetStat((int)StatName.Melee_Offence).AdjustBaseValue,
+                    TypeOfDamage.MagicAoE => Magic_Offense.AdjustBaseValue,
+                    TypeOfDamage.Projectile =>  Range_Offense.AdjustBaseValue,
+                    TypeOfDamage.Melee => Melee_Offense.AdjustBaseValue,
+                    _ => Melee_Offense.AdjustBaseValue,
                 };
                 return output;
             }
@@ -38,7 +44,7 @@ namespace DreamersInc.DamageSystem
             get
             {
                 int prob = Mathf.RoundToInt(Random.Range(0, 255));
-                int thresold = (Stats.GetStat((int)AttributeName.Skill).AdjustBaseValue + Stats.GetStat((int)AttributeName.Speed).AdjustBaseValue) / 2;
+                int thresold =  (Skill.AdjustBaseValue + Speed.AdjustBaseValue) / 2;
                 return prob < thresold;
             }
         }
@@ -48,7 +54,7 @@ namespace DreamersInc.DamageSystem
         public TypeOfDamage TypeOfDamage { get; private set; }
 
         public bool DoDamage { get; private set; }
-        public BaseCharacter Stats { get { return GetComponentInParent<BaseCharacter>(); } }
+
         public int DamageAmount()
         {
             return Mathf.RoundToInt(BaseDamage * randomMod );
@@ -68,15 +74,9 @@ namespace DreamersInc.DamageSystem
         {
             Element = value;
             //TODO Balance 
-            MagicMod = Element != Element.None ? Stats.GetStat((int)StatName.Magic_Offence).AdjustBaseValue / 10.0f : 1.0f;
+            MagicMod =  Element != Element.None ? Magic_Offense.AdjustBaseValue / 10.0f : 1.0f;
         }
         IDamageable self;
-        public WeaponSlot weaponType;
-
-        void Awake()
-        {
-
-        }
 
         // Use this for initialization
         void Start()
@@ -116,6 +116,16 @@ namespace DreamersInc.DamageSystem
                 if(OnHitAction != null)
                     OnHitAction.Invoke();
             }
+        }
+
+        public void SetStatData(BaseCharacterComponent stats, TypeOfDamage damageType)
+        {
+            Magic_Offense = stats.GetStat((int)StatName.Magic_Offence);
+            Range_Offense = stats.GetStat((int)StatName.Ranged_Offence);
+            Melee_Offense = stats.GetStat((int)StatName.Melee_Offence);
+            Speed = stats.GetPrimaryAttribute((int)AttributeName.Speed);
+            Skill = stats.GetPrimaryAttribute((int)AttributeName.Skill);
+            TypeOfDamage = damageType;
         }
     }
 }
