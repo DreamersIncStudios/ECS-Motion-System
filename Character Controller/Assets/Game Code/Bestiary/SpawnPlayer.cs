@@ -28,8 +28,8 @@ namespace DreamersInc.BestiarySystem
             if (info != null)
             {
                 go = Instantiate(info.Prefab);
-                if(IsPlayer)
-                go.tag = "Player";
+                if (IsPlayer)
+                    go.tag = "Player";
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 entity = CreateEntity(manager, info.Name);
                 AddPhysics(manager, entity, go, info.PhysicsInfo);
@@ -48,7 +48,7 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponentObject(entity, character);
 
                 CharacterInventory inventory = new();
-          
+
                 manager.AddComponentData(entity, inventory);
                 manager.GetComponentData<CharacterInventory>(entity).Setup(entity, info.Equipment, character);
                 var anim = go.GetComponent<Animator>();
@@ -98,13 +98,17 @@ namespace DreamersInc.BestiarySystem
                 {
                     manager.AddComponent<Player_Control>(entity);
                 }
-                else {
+                else
+                {
                     manager.AddComponent<AI_Control>(entity);
                 }
                 manager.AddComponent<AttackTarget>(entity);
-                manager.AddComponentObject(entity, new Command() { EquippedAbilities= new Dreamers.InventorySystem.AbilitySystem.AbilityList() {
-                    EquippedAbilities = new List<Dreamers.InventorySystem.AbilitySystem.AbilitySO>() { Object.Instantiate(info.test) }
-                } });
+                manager.AddComponentObject(entity, new Command()
+                {
+                    EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList(),
+                    InputTimeReset = 500.0f,
+                    InputTimer = 500.0f
+                });
                 var controllerData = new CharControllerE();
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);
@@ -142,7 +146,7 @@ namespace DreamersInc.BestiarySystem
         {
 
 
-            if (SpawnPlayer(ID, out go, out Entity entity, IsPlayer ))
+            if (SpawnPlayer(ID, out go, out Entity entity, IsPlayer))
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var info = GetPlayer(ID);
@@ -151,10 +155,9 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponent<AttackTarget>(entity);
                 manager.AddComponentObject(entity, new Command()
                 {
-                    EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList()
-                    {
-                        EquippedAbilities = new List<Dreamers.InventorySystem.AbilitySystem.AbilitySO>() { Object.Instantiate(info.test) }
-                    }
+                    EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList(),
+                    InputTimeReset = 500.0f,
+                    InputTimer = 500.0f
                 });
                 var controllerData = new CharControllerE();
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
@@ -200,7 +203,7 @@ namespace DreamersInc.BestiarySystem
             else { return false; }
         }
 
-        public static bool SpawnPlayer(uint ID,  bool IsPlayer)
+        public static bool SpawnPlayer(uint ID, bool IsPlayer)
         {
             if (SpawnPlayer(ID, out GameObject go, null, IsPlayer))
             {

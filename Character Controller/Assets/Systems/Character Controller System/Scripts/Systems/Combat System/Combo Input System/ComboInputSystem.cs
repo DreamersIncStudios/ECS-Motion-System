@@ -27,6 +27,13 @@ namespace DreamersInc.ComboSystem
                 return;
 
 
+            Entities.WithoutBurst().ForEach((Command handler, ref CharControllerE controller, in Player_Control Tag) =>
+            {
+                if (!PC.InSafeZone)
+                    controller.CastingTimer = handler.CanInputAbilities;
+            }).Run();
+            
+            
             Entities.WithoutBurst().WithChangeFilter<CharacterInventory>().ForEach((Command Handler, CharacterInventory inventory, ref CharControllerE control) =>
             {
                 if (inventory.Equipment.EquippedWeapons.TryGetValue(Dreamers.InventorySystem.Interfaces.WeaponSlot.Primary, out WeaponSO weaponSO))
@@ -36,8 +43,7 @@ namespace DreamersInc.ComboSystem
                 }
             }).Run();
 
-
-
+      
             Entities.WithoutBurst().ForEach((Entity entity, PlayerComboComponent ComboList, AnimatorComponent animC, Command handler, ref Player_Control tag) =>
             {
 
@@ -56,12 +62,14 @@ namespace DreamersInc.ComboSystem
                 animC.anim.SetBool("Block", PC.Blockb);
 
 
+
                 if (!PC.OpenCadInput)
                 {
                     ComboInputHandling(ComboList, handler, PC, anim);
                 }
-                else
+                else if (handler.CanInputAbilities)
                 {
+
                     if (PC.LightAttackb)
                         handler.MagicInputQueue.Enqueue("X");
                     else if (PC.HeavyAttackb)
@@ -70,15 +78,38 @@ namespace DreamersInc.ComboSystem
                         handler.MagicInputQueue.Enqueue("A");
                     else if (PC.Projectileb)
                         handler.MagicInputQueue.Enqueue("Y");
+                    handler.InputTimer -= SystemAPI.Time.DeltaTime;
+                }
+                else {
+                    MagicInputHandling(entity, handler, PC);
 
                 }
+
+
+                if (handler.InputTimer != handler.InputTimeReset)
+                {
+                    if (!PC.CadButtonPressed)
+                        handler.InputTimer += 2.5f * SystemAPI.Time.DeltaTime;
+                }
+                else
+                {
+                    PC.Casting = true;
+                }
+                if (handler.InputTimer > handler.InputTimeReset)
+                    handler.InputTimer = handler.InputTimeReset;
                 MagicInputHandling(entity, handler, PC);
             }).Run();
 
-            AnimationTriggering ();
+            AnimationTriggering();
+            if (!PC.OpenCadInput)
+            {
+                DisableSlowMoMode();
+            }
+            else {
+                EnableSlowMoMode();
+            }
 
         }
-
       
     }
 }

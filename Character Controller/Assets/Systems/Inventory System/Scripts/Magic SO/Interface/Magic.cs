@@ -20,7 +20,7 @@ namespace Dreamers.InventorySystem.AbilitySystem.Interfaces {
     public interface IAttackAbility:IAbility { 
         public uint DamageAmount { get; }
         public uint ManaCost { get; }
-        public float PositionOffset { get; }
+        public Vector3 Offset { get; }
         public GameObject VFX { get; }
     }
 

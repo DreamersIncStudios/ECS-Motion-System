@@ -6,6 +6,7 @@ using UnityEngine;
 using Stats;
 using Dreamers.InventorySystem.AbilitySystem;
 using Unity.Entities;
+using Unity.Collections;
 
 namespace Dreamers.InventorySystem.Base {
     [System.Serializable]

@@ -51,7 +51,7 @@ namespace DreamersInc
         public bool Projectileb => Input.GetKeyUp(Projectile);
         public bool ChargedProjectileb => Input.GetKey(Projectile);
         public bool Casting { get; set; }
-
+   
         public bool Charged => ChargedTime > 2.5f;
         [HideInInspector] public float ChargedTime;
         public float ChargeTime;
@@ -66,6 +66,8 @@ namespace DreamersInc
             Jump = controller.Jump;
             Projectile = controller.Projectile;
         }
+
+      
     }
 
 

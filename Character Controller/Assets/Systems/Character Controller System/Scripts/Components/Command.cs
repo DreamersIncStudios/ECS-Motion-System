@@ -21,5 +21,8 @@ namespace DreamersInc.ComboSystem
         public bool TakeInput => (WeaponIsEquipped || BareHands) && !QueueIsEmpty && StateInfo.normalizedTime > currentStateExitTime;
         public bool TransitionToLocomotion => !StateInfo.IsTag("Locomotion") && StateInfo.normalizedTime > .95f;
         public AbilityList EquippedAbilities;
+        public float InputTimer;
+        public float InputTimeReset;
+      [SerializeField]  public bool CanInputAbilities => InputTimer >= 0.0f;
     }
 }

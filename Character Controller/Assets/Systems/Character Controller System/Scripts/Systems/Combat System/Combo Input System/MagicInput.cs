@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Entities;
+using Stats.Entities;
+
 
 namespace DreamersInc.ComboSystem
 {
@@ -7,7 +9,7 @@ namespace DreamersInc.ComboSystem
     {
         private static void MagicInputHandling(Entity entity, Command handler, ControllerInfo PC)
         {
-            if (!PC.OpenCadInput && handler.HasMagicSpell)
+            if (!handler.CanInputAbilities || !PC.OpenCadInput && handler.HasMagicSpell)
             {
                 string output = "";
                 while (handler.HasMagicSpell)
@@ -33,5 +35,35 @@ namespace DreamersInc.ComboSystem
             }
         }
 
+
+        public void EnableSlowMoMode()
+        {
+            Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, AnimatorComponent animC ) => {
+                //Todo add range limit;
+                EntityManager.AddComponentData(entity, new AnimationSpeedMod() {
+                        SpeedValue = .15f
+                });
+
+
+            }).Run();
+
+        }
+
+        public void DisableSlowMoMode()
+        {
+            Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, AnimatorComponent animC) => {
+                EntityManager.RemoveComponent<AnimationSpeedMod>(entity);
+
+            }).Run();
+
+        }
     }
+
+
+        public struct AnimationSpeedMod : IComponentData
+        {
+            public float SpeedValue;
+            public float MaxDuration;
+        }
+    
 }

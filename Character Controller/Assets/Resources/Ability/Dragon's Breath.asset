@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313c31c4c741c944099cf6bc37d0afa0, type: 3}
-  m_Name: Quake
+  m_Name: Dragon's Breath
   m_EditorClassIdentifier: 
-  nameSO: Quake
+  nameSO: Dragon's Breath
   description: 
-  inputCode: YYY
+  inputCode: XYY
   animInfo:
-    AnimIndex: 2
+    AnimIndex: 3
     TransitionDuration: 0
     TransitionOffset: 0
     EndofCurrentAnim: 0
   damageAmount: 13500
-  manaCost: 25
-  vFX: {fileID: 8509459165469993994, guid: c71d7b10a7751b345a2d66a513cb9d97, type: 3}
-  offset: {x: 0, y: 0, z: 4}
+  manaCost: 15
+  vFX: {fileID: 6932652848965524609, guid: 7fc3fba5863f8f34e8eb383d474ec9c0, type: 3}
+  offset: {x: 0, y: 1, z: 2.5}
   Size: {x: 0, y: 0, z: 0}

@@ -47,6 +47,7 @@ namespace MotionSystem.Components
         public float AnimationSpeed { get; set; }
         public bool Targetting;
         public bool CastingInput;
+        public bool CastingTimer;
         //Todo Add back
         // => AnimationSpeed < 1.0f;
 

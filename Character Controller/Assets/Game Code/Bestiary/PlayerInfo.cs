@@ -33,7 +33,6 @@ namespace DreamersInc.BestiarySystem
         public int BaseProtection;
         public ComboSO Combo;
         public EquipmentSave Equipment;
-        public AbilitySO test; //Todo make Save toolkit system
 
 #if UNITY_EDITOR
 
@@ -51,7 +50,7 @@ namespace DreamersInc.BestiarySystem
         [MenuItem("Assets/Create/Bestiary/Player Info")]
         static public void CreatePlayerInfo()
         {
-           Dreamers.Global.ScriptableObjectUtility.CreateAsset<PlayerInfo>("Creature", out PlayerInfo info);
+            Dreamers.Global.ScriptableObjectUtility.CreateAsset<PlayerInfo>("Creature", out PlayerInfo info);
             BestiaryDB.LoadDatabase(true);
             info.setItemID((uint)BestiaryDB.Players.Count + 1);
         }
