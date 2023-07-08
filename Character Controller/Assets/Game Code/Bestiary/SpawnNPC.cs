@@ -1,5 +1,6 @@
 using AISenses;
 using AISenses.VisionSystems.Combat;
+using Components.MovementSystem;
 using Dreamers.InventorySystem;
 using Dreamers.InventorySystem.Base;
 using DreamersInc.CombatSystem;
@@ -28,10 +29,10 @@ namespace DreamersInc.BestiarySystem
             {
                 go = Instantiate(info.Prefab);
                 go.tag = "Enemy NPC";
-                go.layer= 9;
+                go.layer = 9;
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                entity = CreateEntity(manager, info.Name+" NPC");
-                  AddPhysics(manager, entity, go, info.PhysicsInfo);
+                entity = CreateEntity(manager, info.Name + " NPC");
+                AddPhysics(manager, entity, go, info.PhysicsInfo);
                 BaseCharacterComponent character = new();
                 character.GOrepresentative = go;
                 character.SetupDataEntity(info.stats);
@@ -56,7 +57,7 @@ namespace DreamersInc.BestiarySystem
                 {
                     anim = go.TryGetComponent<Animator>(out var anim) ? anim : null,
                     transform = go.GetComponent<Transform>()
-                }); 
+                });
 
                 //  manager.AddComponent<StoreWeapon>(entity);
                 manager.AddComponentData(entity, new InfluenceComponent
@@ -69,10 +70,10 @@ namespace DreamersInc.BestiarySystem
                 {
                     FactionID = info.factionID,
                     NumOfEntityTargetingMe = 3,
-                    CanBeTargetByPlayer= true,
+                    CanBeTargetByPlayer = true,
                     Type = TargetType.Character,
                     CenterOffset = info.CenterOffset
-                }) ;
+                });
                 if (go.TryGetComponent<OnDestoryEvents>(out var death))
                     death.SetExp(info.ExpGiven);
             }
@@ -92,19 +93,42 @@ namespace DreamersInc.BestiarySystem
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var info = GetCreature(ID);
-
-                if (go.TryGetComponent<NavMeshAgent>(out _))
+                //
+                if (info.GetNPCType == NPCType.Combatant)
                 {
-                    var controllerData = new CharControllerE();
-                    controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
-                    controllerData.AI = true;
-                    controllerData.Walk = true;
-
-                    manager.AddComponentData(entity, controllerData);
-                    manager.AddComponent<AttackTarget>(entity);
-                    manager.AddComponentObject(entity, new Command());
                     var comboInfo = Object.Instantiate(info.Combo);
                     manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+                }
+
+                switch (info.creatureType)
+                {
+                    case CreatureType.biped:
+                        var controllerData = new CharControllerE();
+                        controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                        controllerData.AI = true;
+                        controllerData.Walk = true;
+                        manager.AddComponentData(entity, controllerData);
+
+                        manager.AddComponent<AttackTarget>(entity);
+                        manager.AddComponentObject(entity, new Command());
+                        break;
+                    case CreatureType.quadruped:
+                        var beastControllerData = new BeastControllerComponent();
+                        beastControllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                        break;
+                }
+                if (info.creatureType != CreatureType.stationary)
+                {
+                    var agent = go.GetComponent<NavMeshAgent>();
+                    manager.AddComponentObject(entity, agent);
+                    var move = new Movement()
+                    {
+                        Acceleration = agent.acceleration,
+                        MovementSpeed = agent.speed,
+                        StoppingDistance = agent.stoppingDistance,
+                        Offset = agent.baseOffset,
+                    };
+                    manager.AddComponentData(entity, move);
                 }
 
                 manager.AddComponentData(entity, new InfluenceComponent
@@ -121,7 +145,7 @@ namespace DreamersInc.BestiarySystem
                 });
                 manager.AddBuffer<ScanPositionBuffer>(entity);
 
-             //   go.GetComponent<VFXControl>().Init(info.Combo);
+                //   go.GetComponent<VFXControl>().Init(info.Combo);
 
 
                 return true;
@@ -136,19 +160,46 @@ namespace DreamersInc.BestiarySystem
             {
                 EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var info = GetCreature(ID);
-                manager.AddComponent<AttackTarget>(entity);
-                manager.AddComponentObject(entity, new Command());
-                if (go.TryGetComponent<NavMeshAgent>(out _))
+                switch (info.creatureType)
                 {
-                    var controllerData = new CharControllerE();
-                    controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
-                    controllerData.AI = true;
-                    controllerData.Walk = true;
+                    case CreatureType.biped:
+                        var controllerData = new CharControllerE();
+                        controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                        controllerData.AI = true;
+                        controllerData.Walk = true;
+                        manager.AddComponentData(entity, controllerData);
 
-                    manager.AddComponentData(entity, controllerData);
+                        manager.AddComponent<AttackTarget>(entity);
+                        manager.AddComponentObject(entity, new Command());
+                        break;
+                    case CreatureType.quadruped:
+                        var beastControllerData = new BeastControllerComponent();
+                        beastControllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
+                        beastControllerData.AI = true;
+                        beastControllerData.Walk = true;
+
+                        manager.AddComponentData(entity, beastControllerData);
+                        manager.AddComponent<AttackTarget>(entity);
+                        manager.AddComponentObject(entity, new Command());
+
+                        break;
                 }
-                //   var comboInfo = Object.Instantiate(info.Combo);
-                //   manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
+                if (info.creatureType != CreatureType.stationary) {
+                    if (go.TryGetComponent<NavMeshAgent>(out var agent))
+                    {
+                        manager.AddComponentObject(entity, agent);
+                        var move = new Movement()
+                        {
+                            Acceleration = agent.acceleration,
+                            MovementSpeed = agent.speed,
+                            StoppingDistance = agent.stoppingDistance,
+                            Offset = agent.baseOffset,
+                        };
+                        manager.AddComponentData(entity, move);
+                    }
+                }
+
+
                 manager.AddComponentData(entity, new InfluenceComponent
                 {
                     factionID = info.factionID,
@@ -163,7 +214,7 @@ namespace DreamersInc.BestiarySystem
                 });
                 manager.AddBuffer<ScanPositionBuffer>(entity);
 
-              //  go.GetComponent<VFXControl>().Init(info.Combo);
+                //  go.GetComponent<VFXControl>().Init(info.Combo);
 
                 return true;
             }

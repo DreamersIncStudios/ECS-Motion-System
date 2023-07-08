@@ -37,6 +37,25 @@ namespace DreamersInc.MovementSys
                 }
 
             }).Run();
+            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, AnimatorComponent Anim, ref BeastControllerComponent Control, ref Movement Mover) =>
+            {
+                if (Mover.CanMove)
+                {
+
+                    Control.Move = Agent.desiredVelocity;
+                    Control.Jump = false;
+                }
+                else
+                {
+                    if (!Agent.isStopped)
+                    {
+                        Agent.isStopped = true;
+                    }
+                    Control.Move = float3.zero;
+                    Control.Jump = false;
+                }
+
+            }).Run();
         }
     }
 }

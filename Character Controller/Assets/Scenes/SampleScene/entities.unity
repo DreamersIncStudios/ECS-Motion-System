@@ -2929,6 +2929,7 @@ GameObject:
   - component: {fileID: 4600385391452517311}
   - component: {fileID: 4544831730938117072}
   - component: {fileID: 8596675358490368801}
+  - component: {fileID: 8596675358490368802}
   m_Layer: 6
   m_Name: KB3D_HTS_Road_B_Main
   m_TagString: Untagged
@@ -3079,6 +3080,25 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &8596675358490368802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596675358490368800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: f2652fae
 --- !u!64 &8618693844579527789
 MeshCollider:
   m_ObjectHideFlags: 0

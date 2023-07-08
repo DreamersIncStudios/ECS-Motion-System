@@ -9,6 +9,7 @@ using DreamersInc.ComboSystem;
 using Dreamers.InventorySystem.Base;
 using MotionSystem.Components;
 using Unity.Mathematics;
+using Sirenix.OdinInspector;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -17,6 +18,9 @@ namespace DreamersInc.BestiarySystem
         [SerializeField] private uint creatureID;
         public uint ID { get { return creatureID; } }
         public string Name;
+        [EnumToggleButtons] public CreatureType creatureType;
+        [EnumToggleButtons] public NPCType GetNPCType;
+
         public CharacterClass stats;
         public GameObject Prefab;
         public PhysicsInfo PhysicsInfo;
@@ -40,10 +44,16 @@ namespace DreamersInc.BestiarySystem
 #endif
     }
 
+    public enum CreatureType { biped, quadruped, mecha, spirit, stationary, flying }
+
+    public enum NPCType { vendor, Noncombatant, Combatant, Feral, Trained }
+
 #if UNITY_EDITOR
-    public static partial class Creator {
+    public static partial class Creator
+    {
         [MenuItem("Assets/Create/Bestiary/Creature Info")]
-        static public void CreateCreatureInfo() {
+        static public void CreateCreatureInfo()
+        {
             Dreamers.Global.ScriptableObjectUtility.CreateAsset<CreatureInfo>("Creature", out CreatureInfo info);
             BestiaryDB.LoadDatabase(true);
             info.setItemID((uint)BestiaryDB.Creatures.Count + 1);

@@ -25,6 +25,13 @@ public class LevelManager : MonoBehaviour
             BestiaryDB.SpawnNPC(3, pos);
          
         }
+
+        for (int i = 0; i < 5; i++)
+        {
+            var pos = new Vector3(80, 0.1f, 0 + 15 * i);
+            BestiaryDB.SpawnNPC(4, pos);
+
+        }
     }
 
    public virtual void LoadLevel() {

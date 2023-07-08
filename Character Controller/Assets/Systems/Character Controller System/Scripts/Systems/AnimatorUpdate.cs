@@ -23,7 +23,7 @@ namespace MotionSystem.Systems
 
 
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref CharControllerE control) =>
+            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
             {
 
                 Animator Anim = AnimC.anim;
@@ -147,7 +147,7 @@ namespace MotionSystem.Systems
 
             }).Run();
 
-            Entities.WithoutBurst().WithChangeFilter<CharControllerE>().ForEach((CapsuleCollider capsule, ref CharControllerE Control) =>
+            Entities.WithoutBurst().WithChangeFilter<CharControllerE>().ForEach((CapsuleCollider capsule, ref CharControllerE Control, ref animateTag tag) =>
             {
 
                 capsule.center = Control.CapsuleCenter;
@@ -191,11 +191,12 @@ namespace MotionSystem.Systems
         void UpdateBeast()
         {
 
-            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref BeastControllerComponent control) =>
+            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref BeastControllerComponent control) =>
             {
-                if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
-                    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
-
+                var anim = AnimC.anim;
+                if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+                    anim.SetFloat("AnimSpeed", control.AnimationSpeed);
+                Transform transform = RB.transform;
                 float m_TurnAmount;
                 float m_ForwardAmount;
 
@@ -220,35 +221,35 @@ namespace MotionSystem.Systems
 
                 if (control.IsGrounded)
                 {
-                    HandleGroundedMovement(control, Anim, RB);
+                    HandleGroundedMovement(control, anim, RB);
                 }
                 else
                 {
-                    HandleAirborneMovement(control, Anim, RB);
+                    HandleAirborneMovement(control, anim, RB);
                 }
 
                 if (control.ApplyRootMotion)
                 {
-                    Anim.applyRootMotion = true;
+                    anim.applyRootMotion = true;
                     control.ApplyRootMotion = false;
                 }
 
                 // Animator Updater
                 // update the animator parameters
-                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetBool("OnGround", control.IsGrounded);
+                anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                    anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetBool("OnGround", control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
                 // which affects the movement speed because of the root motion.
                 if (control.IsGrounded && control.Move.magnitude > 0)
                 {
-                    Anim.speed = control.m_AnimSpeedMultiplier;
+                    anim.speed = control.m_AnimSpeedMultiplier;
                 }
                 else
                 {
                     // don't use that while airborne
-                    Anim.speed = 1;
+                    anim.speed = 1;
                 }
 
                 control.Jump = false;
