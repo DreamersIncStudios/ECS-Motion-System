@@ -23,17 +23,16 @@ namespace MotionSystem.Systems
 
 
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
+            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
             {
-
-                Animator Anim = AnimC.anim;
-                Transform transform = Anim.transform;
                 //if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                 //    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
 
                 float m_TurnAmount;
                 float m_ForwardAmount;
-
+                if (control.Move.magnitude > 1f && control.AI)
+                    control.Move.Normalize();
+                control.Move = transform.InverseTransformDirection(control.Move);
 
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
@@ -191,22 +190,22 @@ namespace MotionSystem.Systems
         void UpdateBeast()
         {
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref BeastControllerComponent control) =>
+            Entities.WithoutBurst().ForEach((Animator anim, Rigidbody RB, Transform transform, ref BeastControllerComponent control) =>
             {
-                var anim = AnimC.anim;
-                if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
-                    anim.SetFloat("AnimSpeed", control.AnimationSpeed);
-                Transform transform = RB.transform;
+                //if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+                //    anim.SetFloat("AnimSpeed", control.AnimationSpeed);
                 float m_TurnAmount;
                 float m_ForwardAmount;
-
+                if (control.Move.magnitude > 1f)
+                    control.Move.Normalize();
+                control.Move = transform.InverseTransformDirection(control.Move);
                 m_ForwardAmount = control.Move.z;
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
                 if (!control.Targetting)
                 {
                     float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                    transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
+                    //  transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
                 }
                 else
                 {
@@ -214,8 +213,8 @@ namespace MotionSystem.Systems
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
-                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        // if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
+                        //      transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
 
@@ -237,7 +236,7 @@ namespace MotionSystem.Systems
                 // Animator Updater
                 // update the animator parameters
                 anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                    anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
                 anim.SetBool("OnGround", control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,

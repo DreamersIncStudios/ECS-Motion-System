@@ -9,7 +9,7 @@ using Stats.Entities;
 using Unity.Mathematics;
 using Unity.Collections;
 using DreamersInc;
-
+using Unity.Burst;
 
 namespace MotionSystem.Systems
 {
@@ -22,23 +22,25 @@ namespace MotionSystem.Systems
             base.OnCreate();
             query = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(CharControllerE)),
-            ComponentType.ReadWrite(typeof(AnimatorComponent))}
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)),
+            ComponentType.ReadWrite(typeof(Animator))},
+                Any = new ComponentType[] { ComponentType.ReadWrite(typeof(CharControllerE)), ComponentType.ReadWrite(typeof(BeastControllerComponent)) }
             });
             withTag = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(CharControllerE)),
-            ComponentType.ReadWrite(typeof(AnimatorComponent)), ComponentType.ReadOnly(typeof(animateTag))},
-                None = new ComponentType[] { ComponentType.ReadOnly(typeof(Player_Control)) }
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(Animator)), ComponentType.ReadOnly(typeof(animateTag)) },
+                None = new ComponentType[] { ComponentType.ReadOnly(typeof(Player_Control)) },
+                Any = new ComponentType[] { ComponentType.ReadWrite(typeof(CharControllerE)), ComponentType.ReadWrite(typeof(BeastControllerComponent)) }
 
-            }); 
-            
+            });
+
             withoutTag = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(CharControllerE)),
-            ComponentType.ReadWrite(typeof(AnimatorComponent))},
-                None = new ComponentType[] { ComponentType.ReadOnly(typeof(animateTag)) }
-            
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(Animator)) },
+                None = new ComponentType[] { ComponentType.ReadOnly(typeof(animateTag)) },
+                Any = new ComponentType[] { ComponentType.ReadWrite(typeof(CharControllerE)), ComponentType.ReadWrite(typeof(BeastControllerComponent)) }
+
+
             });
 
         }
@@ -71,6 +73,7 @@ namespace MotionSystem.Systems
             }
         }
 
+        [BurstCompile]
         partial struct AnimatorAddJob : IJobEntity
         {
 
@@ -84,6 +87,8 @@ namespace MotionSystem.Systems
                 }
             }
         }
+
+        [BurstCompile]
         partial struct AnimatorRemoveJob : IJobEntity
         {
 

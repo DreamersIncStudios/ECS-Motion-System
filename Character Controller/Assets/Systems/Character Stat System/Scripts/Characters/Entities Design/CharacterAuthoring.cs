@@ -19,7 +19,7 @@ namespace Stats.Entities
             BaseCharacterComponent character = new();
             character.SetupDataEntity(authoring.Info);
                 AddComponentObject (character);
-            AddComponentObject(new AnimatorComponent() { anim = authoring.animator});
+            AddComponentObject(authoring.animator);
             AddComponent(new PlayerTag());
         }
     }

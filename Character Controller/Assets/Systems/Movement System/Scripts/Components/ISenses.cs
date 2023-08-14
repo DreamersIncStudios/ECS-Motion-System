@@ -78,7 +78,7 @@ namespace AISenses
         }
 
     }
-    [InternalBufferCapacity(100)]
+    [InternalBufferCapacity(16)]
     public struct ScanPositionBuffer : IBufferElementData
     {
         public Target target;

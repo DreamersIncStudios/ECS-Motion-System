@@ -16,6 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DreamersInc.BestiarySystem
@@ -64,12 +65,10 @@ namespace DreamersInc.BestiarySystem
                     CenterOffset = new float3(0, 1, 0) //todo add value to SO
 
                 });
+                manager.AddComponentObject(entity, anim);
+                manager.AddComponentObject(entity, go.transform);
 
-                manager.AddComponentData(entity, new AnimatorComponent()
-                {
-                    anim = anim,
-                    transform = anim.transform,
-                });
+             
                 manager.AddComponent<StoreWeapon>(entity);
                 AnimationSpeedLink link = new AnimationSpeedLink()
                 {
@@ -113,6 +112,7 @@ namespace DreamersInc.BestiarySystem
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);
                 var comboInfo = Object.Instantiate(info.Combo);
+                manager.AddComponentObject(entity, go.GetComponentInChildren<SkinnedMeshRenderer>());
                 manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
                 manager.AddComponentData(entity, new InfluenceComponent
                 {

@@ -24,7 +24,7 @@ namespace MotionSystem.Components
         public bool CombatCapable;
         public bool ApplyRootMotion { get { return IsGrounded; } }
         [SerializeField]public bool SkipGroundCheck { get; set; }
-        public Vector3 Move;
+        public Vector3 Move { get; set; }
         public bool Walk;
         public Vector3 GroundNormal;
         public bool IsGrounded;

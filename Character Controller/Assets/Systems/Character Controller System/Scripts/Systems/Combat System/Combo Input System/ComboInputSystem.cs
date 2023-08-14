@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Stats.Entities;
 using Dreamers.InventorySystem;
 using MotionSystem.Components;
+using UnityEngine;
 
 namespace DreamersInc.ComboSystem
 {
@@ -11,7 +12,7 @@ namespace DreamersInc.ComboSystem
         protected override void OnCreate()
         {
             base.OnCreate();
-            Entities.WithoutBurst().ForEach((PlayerComboComponent ComboList, AnimatorComponent anim, Command handler, ref Player_Control PC) =>
+            Entities.WithoutBurst().ForEach((PlayerComboComponent ComboList, Animator anim, Command handler, ref Player_Control PC) =>
             {
                 handler.InputQueue = new Queue<AnimationTrigger>();
 
@@ -44,7 +45,7 @@ namespace DreamersInc.ComboSystem
             }).Run();
 
       
-            Entities.WithoutBurst().ForEach((Entity entity, PlayerComboComponent ComboList, AnimatorComponent animC, Command handler, ref Player_Control tag) =>
+            Entities.WithoutBurst().ForEach((Entity entity, PlayerComboComponent ComboList, Animator Anim, Command handler, ref Player_Control tag) =>
             {
 
                 handler.InputQueue ??= new Queue<AnimationTrigger>();
@@ -56,16 +57,15 @@ namespace DreamersInc.ComboSystem
                     return;
                 }
 
-                var anim = animC.anim;
-                if (!anim.GetBool("Weapon In Hand") && handler.AlwaysDrawnWeapon)
-                    anim.SetBool("Weapon In Hand", true);
-                animC.anim.SetBool("Block", PC.Blockb);
+                if (!Anim.GetBool("Weapon In Hand") && handler.AlwaysDrawnWeapon)
+                    Anim.SetBool("Weapon In Hand", true);
+                Anim.SetBool("Block", PC.Blockb);
 
 
 
                 if (!PC.OpenCadInput)
                 {
-                    ComboInputHandling(ComboList, handler, PC, anim);
+                    ComboInputHandling(ComboList, handler, PC, Anim);
                 }
                 else if (handler.CanInputAbilities)
                 {

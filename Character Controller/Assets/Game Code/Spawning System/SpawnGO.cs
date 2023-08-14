@@ -49,11 +49,8 @@ namespace GameCode.Spawn
                 ecb.AddComponent(entity, inventory);
           
                 ecb.AddComponent(entity, new TransformGO() { transform = go.transform });
-                ecb.AddComponent(entity, new AnimatorComponent()
-                {
-                    anim = anim,
-                    transform = anim.transform,
-                });
+
+           
                 go.GetComponent<VFXControl>().Init(combo.Combo);
                 ecb.SetComponent(entity, new InfluenceComponent
                 {

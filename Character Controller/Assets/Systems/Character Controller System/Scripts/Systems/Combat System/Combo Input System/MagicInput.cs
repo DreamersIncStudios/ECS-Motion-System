@@ -38,7 +38,7 @@ namespace DreamersInc.ComboSystem
 
         public void EnableSlowMoMode()
         {
-            Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, AnimatorComponent animC ) => {
+            Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, Animator animC ) => {
                 //Todo add range limit;
                 EntityManager.AddComponentData(entity, new AnimationSpeedMod() {
                         SpeedValue = .15f
@@ -51,7 +51,7 @@ namespace DreamersInc.ComboSystem
 
         public void DisableSlowMoMode()
         {
-            Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, AnimatorComponent animC) => {
+            Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, Animator animC) => {
                 EntityManager.RemoveComponent<AnimationSpeedMod>(entity);
 
             }).Run();

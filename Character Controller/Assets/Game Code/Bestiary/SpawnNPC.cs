@@ -53,12 +53,10 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponentData(entity, inventory);
                 if (go.TryGetComponent<Rigidbody>(out var RB))
                     manager.AddComponentObject(entity, RB);
-                manager.AddComponentData(entity, new AnimatorComponent()
-                {
-                    anim = go.TryGetComponent<Animator>(out var anim) ? anim : null,
-                    transform = go.GetComponent<Transform>()
-                });
-
+                if (go.TryGetComponent<Animator>(out var anim))
+                    manager.AddComponentObject(entity, anim);
+                manager.AddComponentObject(entity, go.transform);
+           
                 //  manager.AddComponent<StoreWeapon>(entity);
                 manager.AddComponentData(entity, new InfluenceComponent
                 {

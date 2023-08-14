@@ -16,7 +16,7 @@ namespace DreamersInc.MovementSys
     {
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, AnimatorComponent Anim, ref CharControllerE Control, ref Movement Mover) => 
+            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, Animator Anim, ref CharControllerE Control, ref Movement Mover) => 
             {
                 if (Mover.CanMove)
                 {
@@ -37,7 +37,7 @@ namespace DreamersInc.MovementSys
                 }
 
             }).Run();
-            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, AnimatorComponent Anim, ref BeastControllerComponent Control, ref Movement Mover) =>
+            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, Animator Anim, ref BeastControllerComponent Control, ref Movement Mover) =>
             {
                 if (Mover.CanMove)
                 {

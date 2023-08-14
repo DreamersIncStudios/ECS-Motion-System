@@ -53,7 +53,7 @@ namespace MotionSystem
             query = state.GetEntityQuery(new EntityQueryDesc()
             {
                 All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(CharControllerE)),
-            ComponentType.ReadWrite(typeof(AnimatorComponent))}
+            ComponentType.ReadWrite(typeof(Animator))}
             });
         }
 

@@ -78,12 +78,12 @@ namespace AISenses.VisionSystems
                         if (!looking)
                         {
 
-                            temp = EntityManager.GetComponentObject<AnimatorComponent>(sortedBuffer[index].target.entity).transform.gameObject;
+                            temp = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject;
                             if (CameraControl.Instance.OnTargetChanged != null)
                             {
                                 CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                                 {
-                                    Target = EntityManager.GetComponentObject<AnimatorComponent>(sortedBuffer[index].target.entity).transform.gameObject
+                                    Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
                                 });
                              
                             }
@@ -131,7 +131,7 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target = EntityManager.GetComponentObject<AnimatorComponent>(sortedBuffer[index].target.entity).transform.gameObject
+                                Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
                             });
                         }
 
@@ -147,7 +147,7 @@ namespace AISenses.VisionSystems
                         {
                             CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
                             {
-                                Target = EntityManager.GetComponentObject<AnimatorComponent>(sortedBuffer[index].target.entity).transform.gameObject
+                                Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
                             });
                         }
                     }

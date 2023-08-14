@@ -16,7 +16,7 @@ namespace DreamersInc.CombatSystem
 
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((CharacterInventory test, Command input)=>{
+            Entities.WithoutBurst().ForEach((CharacterInventory test, Command input) => {
                 if (input.StateInfo.IsName("Grounded0"))
                 {
                     if (test.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out _) && !input.WeaponIsEquipped)
@@ -25,16 +25,20 @@ namespace DreamersInc.CombatSystem
                         input.WeaponIsEquipped = false;
                 }
             }).Run();
-            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory character, ref DrawWeapon tag) => {
-                
-               character.Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(animc.anim);
+            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, Animator Anim, CharacterInventory character, ref DrawWeapon tag) => {
+
+                character.Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(Anim);
                 EntityManager.RemoveComponent<DrawWeapon>(entity);
             }).Run();
-            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, AnimatorComponent animc, CharacterInventory character, ref StoreWeapon tag) =>
+            Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, Animator Anim, CharacterInventory character, ref StoreWeapon tag) =>
             {
-                if (!character.Equipment.EquippedWeapons[WeaponSlot.Primary].AlwaysDrawn)
-                    character.Equipment.EquippedWeapons[WeaponSlot.Primary].StoreWeapon(animc.anim);
-                EntityManager.RemoveComponent<StoreWeapon>(entity);
+                if (character.Equipment.EquippedWeapons.Count > 0)
+                {
+                    if (character.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary, out WeaponSO primaryEquipped) &&
+                    !primaryEquipped.AlwaysDrawn)
+                        character.Equipment.EquippedWeapons[WeaponSlot.Primary].StoreWeapon(Anim);
+                    EntityManager.RemoveComponent<StoreWeapon>(entity);
+                }
             }).Run();
 
         }

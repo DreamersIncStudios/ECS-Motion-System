@@ -81,7 +81,7 @@ namespace DreamersInc.Global
 
 
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent Anim, ref CharControllerE Control) =>
+            Entities.WithoutBurst().ForEach((Animator Anim, ref CharControllerE Control) =>
             {
                 if (!Control.AI)
                 {
