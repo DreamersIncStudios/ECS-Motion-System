@@ -31,9 +31,10 @@ namespace MotionSystem.Systems
                 float m_TurnAmount;
                 float m_ForwardAmount;
                 if (control.Move.magnitude > 1f && control.AI)
+                {
                     control.Move.Normalize();
-                control.Move = transform.InverseTransformDirection(control.Move);
-
+                    control.Move = transform.InverseTransformDirection(control.Move);
+                }
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
                 //  m_TurnAmount = control.Move.x;
@@ -190,7 +191,7 @@ namespace MotionSystem.Systems
         void UpdateBeast()
         {
 
-            Entities.WithoutBurst().ForEach((Animator anim, Rigidbody RB, Transform transform, ref BeastControllerComponent control) =>
+            Entities.WithAll<animateTag>().WithoutBurst().ForEach((Animator anim, Rigidbody RB, Transform transform, ref BeastControllerComponent control) =>
             {
                 //if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                 //    anim.SetFloat("AnimSpeed", control.AnimationSpeed);

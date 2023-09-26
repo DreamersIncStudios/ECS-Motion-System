@@ -16,6 +16,8 @@ namespace DreamersInc
         [SerializeField] KeyCode _heavyAttack;
 
         [SerializeField] KeyCode _block;
+        [SerializeField] KeyCode _dodge;
+
         [SerializeField] KeyCode _cadMenu;
         [SerializeField] KeyCode _projectile;
 #pragma warning restore IDE1006 // Naming Styles
@@ -26,6 +28,7 @@ namespace DreamersInc
         public KeyCode HeavyAttack { get { return _heavyAttack; } set { _heavyAttack = value; } }
 
         public KeyCode Block { get { return _block; } set { _block = value; } }
+        public KeyCode Dodge { get { return _dodge; } set { _dodge = value; } }
         public KeyCode ActivateCADMenu { get { return _cadMenu; } set { _cadMenu = value; } }
         public KeyCode Projectile { get { return _projectile; } set { _projectile = value; } }
 
@@ -39,9 +42,11 @@ namespace DreamersInc
         public KeyCode Block { get; private set; }
         public KeyCode ActivateCADMenu { get; private set; }
         public KeyCode Projectile { get; private set; }
+        public KeyCode Dodge { get; private set; }
         public bool Jumpb => Input.GetKeyUp(Jump);
         public bool DisplayMenu => Input.GetKeyUp(KeyCode.JoystickButton7);
         public bool Blockb => Input.GetKey(Block);
+        public bool DodgeB => Input.GetKeyUp(Dodge);
         public bool CadButtonPressed => Input.GetKey(ActivateCADMenu);
         public bool OpenCadInput => CadButtonPressed && !Casting;
         public bool LightAttackb => Input.GetKeyUp(LightAttack);
@@ -65,6 +70,7 @@ namespace DreamersInc
             HeavyAttack = controller.HeavyAttack;
             Jump = controller.Jump;
             Projectile = controller.Projectile;
+            Dodge = controller.Dodge;
         }
 
       

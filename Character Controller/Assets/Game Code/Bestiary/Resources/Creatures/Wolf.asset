@@ -118,7 +118,7 @@ MonoBehaviour:
   factionID: 2
   BaseThreat: 10
   BaseProtection: 2
-  Combo: {fileID: 0}
+  Combo: {fileID: 11400000, guid: 8142c341fb85e1f4fbbe26321aad264d, type: 2}
   Equipment:
     EquippedWeapons: []
     EquippedArmors: []

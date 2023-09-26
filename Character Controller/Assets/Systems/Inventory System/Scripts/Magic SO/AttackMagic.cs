@@ -19,7 +19,7 @@ namespace Dreamers.InventorySystem.AbilitySystem
         [SerializeField] GameObject vFX;
         public Vector3 Offset { get { return offset; } }
 
-        [SerializeField] Vector3 offset;
+        [SerializeField] Vector2 offset;
 
         [SerializeField] Vector3 Size;
 
@@ -42,7 +42,7 @@ namespace Dreamers.InventorySystem.AbilitySystem
                 statData.AdjustMana(-(int)ManaCost);
                 if (VFX)
                 {
-                    var vfxGO = Instantiate(VFX, transform.Position + transform.Forward() * Offset+ transform.Up()*Offset,
+                    var vfxGO = Instantiate(VFX, transform.Position + transform.Forward() * Offset.x+ transform.Up()*Offset.y,
                         transform.Rotation);
                     if(vfxGO.GetComponentInChildren<ParticleDamage>())
                     vfxGO.GetComponentInChildren<ParticleDamage>().SetDamage(500);

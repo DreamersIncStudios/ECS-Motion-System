@@ -24513,7 +24513,7 @@ GameObject:
   - component: {fileID: 198741542255655676}
   - component: {fileID: 199720500564923422}
   m_Layer: 0
-  m_Name: Sword Slash 1
+  m_Name: Sword Slash 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24527,7 +24527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872147318604286}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24537,7 +24537,7 @@ Transform:
   - {fileID: 4937896431025896}
   - {fileID: 4948516383853630}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!198 &198741542255655676
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -41,21 +41,35 @@ namespace DreamersInc.ComboSystem
                                 Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
                                 EntityManager.AddComponent<DrawWeapon>(entity);
                                 break;
-
                         }
 
                     }
                     else
                     {
-                        if (temp.attackType != AttackType.Defend)
+                        if (temp.attackType != AttackType.Defend && temp.attackType != AttackType.Dodge)
                         {
                             Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+
+                        }
+                        else if (temp.attackType == AttackType.Dodge) {
+                            if (temp.triggerAnimIndex == 0)
+                            {
+                                Anim.CrossFade("Dodge0", temp.TransitionDuration,0,0,0);
+                            }
+                            else {
+
+                                Anim.CrossFade("Dodge1", temp.TransitionDuration,0,0,0);
+                            }
                         }
                         else
                         {
-                            if (!handler.StateInfo.IsTag("Defend"))
+                            if (!handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Dodge") && !handler.StateInfo.IsTag("Exit"))
                             {
                                 Anim.CrossFade("Enter Defence", .15f);
+                            } else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
+                            { 
+                                Anim.CrossFade("Enter Defence", .15f);
+
                             }
                         }
 

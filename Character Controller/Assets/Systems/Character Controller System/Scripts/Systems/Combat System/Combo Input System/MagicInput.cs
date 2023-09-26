@@ -9,34 +9,33 @@ namespace DreamersInc.ComboSystem
     {
         private static void MagicInputHandling(Entity entity, Command handler, ControllerInfo PC)
         {
-            if (!handler.CanInputAbilities || !PC.OpenCadInput && handler.HasMagicSpell)
+            if (handler.CanInputAbilities && (PC.OpenCadInput || !handler.HasMagicSpell)) return;
+            var output = "";
+            while (handler.HasMagicSpell)
             {
-                string output = "";
-                while (handler.HasMagicSpell)
-                {
-                    output += handler.MagicInputQueue.Dequeue();
-                }
-                var skill = handler.EquippedAbilities.GetAbility(output);
-                if (skill)
-                {
-                    skill.Activate(entity);
-                    handler.InputQueue.Enqueue(new AnimationTrigger()
-                    {
-                        attackType = AttackType.SpecialAttack,
-                        triggerAnimIndex = skill.AnimInfo.AnimIndex,
-                        TransitionDuration = skill.AnimInfo.TransitionDuration,
-                        TransitionOffset = skill.AnimInfo.TransitionOffset,
-                        EndofCurrentAnim = skill.AnimInfo.EndofCurrentAnim
-
-                    });
-                }
-                else
-                    Debug.Log($"{output} not recognize or ability not equipped");
+                output += handler.MagicInputQueue.Dequeue();
             }
+            var skill = handler.EquippedAbilities.GetAbility(output);
+            // ReSharper disable once Unity.BurstLoadingManagedType
+            if (skill != null)
+            {
+                skill.Activate(entity);
+                handler.InputQueue.Enqueue(new AnimationTrigger()
+                {
+                    attackType = AttackType.SpecialAttack,
+                    triggerAnimIndex = skill.AnimInfo.AnimIndex,
+                    TransitionDuration = skill.AnimInfo.TransitionDuration,
+                    TransitionOffset = skill.AnimInfo.TransitionOffset,
+                    EndofCurrentAnim = skill.AnimInfo.EndofCurrentAnim
+
+                });
+            }
+            else
+                Debug.Log($"{output} not recognize or ability not equipped");
         }
 
 
-        public void EnableSlowMoMode()
+        private void EnableSlowMoMode()
         {
             Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, Animator animC ) => {
                 //Todo add range limit;
@@ -49,7 +48,7 @@ namespace DreamersInc.ComboSystem
 
         }
 
-        public void DisableSlowMoMode()
+        private void DisableSlowMoMode()
         {
             Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, Animator animC) => {
                 EntityManager.RemoveComponent<AnimationSpeedMod>(entity);

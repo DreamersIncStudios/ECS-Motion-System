@@ -12,23 +12,23 @@ namespace DreamersInc.CharacterControllerSys.VFX
     {
         public int ID;
         public GameObject PoolObject;
-        List<GameObject> Instances;
-        GameObject parent;
-        public int Count => Instances.Count;
+        List<GameObject> instances;
+        private GameObject parent;
+        public int Count => instances.Count;
         public bool PoolCanGrow;
 
         public void CreatePool(GameObject parent)
         {
-            Instances = new List<GameObject>();
+            instances = new List<GameObject>();
             this.parent = parent;
             GameObject go = GameObject.Instantiate(PoolObject, parent.transform);
             go.SetActive(false);
-            Instances.Add(go);
+            instances.Add(go);
         }
         public void GrowPool()
         {
             var go = GameObject.Instantiate(PoolObject, parent.transform);
-            Instances.Add(go);
+            instances.Add(go);
 
         }
         public async void Play(Vector3 pos, Vector3 rot, float DelayStart, float lifeTime)
@@ -36,11 +36,11 @@ namespace DreamersInc.CharacterControllerSys.VFX
 
             bool played = false;
             //Start:
-            for (int i = 0; i < Instances.Count; i++)
+            for (int i = 0; i < instances.Count; i++)
             {
-                if (!Instances[i].activeSelf)
+                if (!instances[i].activeSelf)
                 {
-                    var vfx = Instances[i];
+                    var vfx = instances[i];
                     vfx.transform.SetPositionAndRotation(pos, Quaternion.Euler(rot));
                     ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
                     vfx.SetActive(true);
@@ -57,7 +57,7 @@ namespace DreamersInc.CharacterControllerSys.VFX
             if (!played)
             {
                 GrowPool();
-                var vfx = Instances.Last();
+                var vfx = instances.Last();
                 vfx.transform.SetPositionAndRotation(pos, Quaternion.Euler(rot));
                 ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
                 vfx.SetActive(true);
@@ -80,11 +80,11 @@ namespace DreamersInc.CharacterControllerSys.VFX
 
             bool played = false;
             //Start:
-            for (int i = 0; i < Instances.Count; i++)
+            for (int i = 0; i < instances.Count; i++)
             {
-                if (!Instances[i].activeSelf)
+                if (!instances[i].activeSelf)
                 {
-                    var vfx = Instances[i];
+                    var vfx = instances[i];
                     vfx.transform.position = pos;
                     ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
                     vfx.SetActive(true);
@@ -100,7 +100,7 @@ namespace DreamersInc.CharacterControllerSys.VFX
             if (!played)
             {
                 GrowPool();
-                var vfx = Instances.Last();
+                var vfx = instances.Last();
                 vfx.transform.position = pos;
                 ParticleSystem PS = vfx.GetComponent<ParticleSystem>();
                 vfx.SetActive(true);

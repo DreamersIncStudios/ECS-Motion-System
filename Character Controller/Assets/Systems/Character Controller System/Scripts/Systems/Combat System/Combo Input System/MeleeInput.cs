@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using Unity.Entities;
 
@@ -5,74 +8,115 @@ namespace DreamersInc.ComboSystem
 {
     public partial class ComboInputSystem : SystemBase
     {
-        private static void ComboInputHandling(PlayerComboComponent ComboList, Command handler, ControllerInfo PC, Animator anim)
+        private static void ComboInputHandling([NotNull] PlayerComboComponent comboList, [NotNull] Command handler, ControllerInfo pc, [NotNull] Animator anim)
         {
-            if (!anim.IsInTransition(0) && !ComboList.Combo.ShowMovesPanel)
+            // ReSharper disable once Unity.BurstLoadingManagedType
+            if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
+            foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
             {
-                foreach (ComboSingle combotest in ComboList.Combo.ComboLists)
+                foreach (var comboOption in comboTest.ComboList.Where(comboOption => handler.StateInfo.IsName(comboOption.CurrentStateName.ToString())))
                 {
-                    foreach (AnimationCombo comboOption in combotest.ComboList)
+                    handler.currentStateExitTime = comboOption.AnimationEndTime;
+                    if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
+                    var trigger = comboOption.Trigger;
+                    if (comboTest.Unlocked && handler.QueueIsEmpty && !pc.Blockb && !pc.DodgeB)
                     {
-                        if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
+                        switch (trigger.attackType)
                         {
-                            handler.currentStateExitTime = comboOption.AnimationEndTime;
-                            if (comboOption.InputAllowed(handler.StateInfo.normalizedTime))
+                            case AttackType.LightAttack:
+                                if (pc.LightAttackb)
+                                {
+                                    handler.InputQueue.Enqueue(trigger);
+                                    pc.ChargedTime = 0.0f;
+                                }
+                                break;
+                            case AttackType.HeavyAttack:
+                                if (pc.HeavyAttackb)
+                                {
+                                    handler.InputQueue.Enqueue(trigger);
+                                    pc.ChargedTime = 0.0f;
+                                }
+                                break;
+                            //TODO Review
+                            case AttackType.ChargedLightAttack:
+                                if (pc.ChargedLightAttackb)
+                                {
+                                    handler.InputQueue.Enqueue(trigger);
+                                    pc.ChargedTime = 0.0f;
+                                }
+                                break;
+                            case AttackType.ChargedHeavyAttack:
+                                if (pc.ChargedHeavyAttackb)
+                                {
+                                    handler.InputQueue.Enqueue(trigger);
+                                    pc.ChargedTime = 0.0f;
+                                }
+                                break;
+                            case AttackType.Projectile:
+                                if (pc.Projectileb)
+                                {
+                                    handler.InputQueue.Enqueue(trigger);
+                                    pc.ChargedTime = 0.0f;
+                                }
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+                    else if (pc.DodgeB) {
+                        if (Input.GetAxis("Vertical") > .1)
+                        {
+                            handler.InputQueue.Enqueue(new AnimationTrigger()
                             {
-                                AnimationTrigger trigger = comboOption.Trigger;
-                                if (combotest.Unlocked && handler.QueueIsEmpty && !PC.Blockb)
+                                triggerAnimIndex = 0,
+                                attackType = AttackType.Dodge,
+                                TransitionDuration = .25f,
+                            });
+                        }
+                        else
+                        {
+                            handler.InputQueue.Enqueue(new AnimationTrigger()
+                            {
+                                triggerAnimIndex = 1,
+                                attackType = AttackType.Dodge,
+                                TransitionDuration = 0.25f,
+
+                            });
+                        }
+
+                    }
+                    else if (pc.Blockb)
+                    {
+                                  
+                        if (pc.DodgeB)
+                        {
+                            Debug.Log("Dodge");
+                            if (Input.GetAxis("Horizontal") > .1)
+                            {
+                                handler.InputQueue.Enqueue(new AnimationTrigger()
                                 {
-                                    switch (trigger.attackType)
-                                    {
-                                        case AttackType.LightAttack:
-                                            if (PC.LightAttackb)
-                                            {
-                                                handler.InputQueue.Enqueue(trigger);
-                                                PC.ChargedTime = 0.0f;
-                                            }
-                                            break;
-                                        case AttackType.HeavyAttack:
-                                            if (PC.HeavyAttackb)
-                                            {
-                                                handler.InputQueue.Enqueue(trigger);
-                                                PC.ChargedTime = 0.0f;
-                                            }
-                                            break;
-                                        //TODO Review
-                                        case AttackType.ChargedLightAttack:
-                                            if (PC.ChargedLightAttackb)
-                                            {
-                                                handler.InputQueue.Enqueue(trigger);
-                                                PC.ChargedTime = 0.0f;
-                                            }
-                                            break;
-                                        case AttackType.ChargedHeavyAttack:
-                                            if (PC.ChargedHeavyAttackb)
-                                            {
-                                                handler.InputQueue.Enqueue(trigger);
-                                                PC.ChargedTime = 0.0f;
-                                            }
-                                            break;
-                                        case AttackType.Projectile:
-                                            if (PC.Projectileb)
-                                            {
-                                                handler.InputQueue.Enqueue(trigger);
-                                                PC.ChargedTime = 0.0f;
-                                            }
-                                            break;
-                                    }
-                                }
-                                else if (PC.Blockb)
+                                    triggerAnimIndex = 0,
+                                    attackType = AttackType.Dodge,
+                                    TransitionDuration = .25f,
+                                });
+                            }
+                            else
+                            {
+                                handler.InputQueue.Enqueue(new AnimationTrigger()
                                 {
-                                    handler.InputQueue.Enqueue(new AnimationTrigger()
-                                    {
-                                        attackType = AttackType.Defend,
+                                    triggerAnimIndex = 1,
+                                    attackType = AttackType.Dodge,
+                                    TransitionDuration = 0.25f,
 
-                                    });
-
-                                }
-
+                                });
                             }
                         }
+                        handler.InputQueue.Enqueue(new AnimationTrigger()
+                        {
+                            attackType = AttackType.Defend,
+
+                        });
+                                   
                     }
                 }
             }

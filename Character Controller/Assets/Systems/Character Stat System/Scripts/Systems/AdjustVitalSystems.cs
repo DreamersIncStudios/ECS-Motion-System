@@ -10,7 +10,6 @@ using DreamersInc.DamageSystem.Interfaces;
 using Unity.Burst.Intrinsics;
 using Unity.Assertions;
 using Stats.Entities;
-
 namespace DreamersInc.DamageSystem
 {
     public partial class AdjustVitalSystems : SystemBase
@@ -24,6 +23,7 @@ namespace DreamersInc.DamageSystem
 
             Entities.WithoutBurst().ForEach((Entity entity,BaseCharacterComponent character, in AdjustHealth mod) => {
                 character.AdjustHealth(mod.Value);
+                
                 if (character.CurHealth <= 0)
                 {
                     ECB.AddComponent<EntityHasDiedTag>(entity);
