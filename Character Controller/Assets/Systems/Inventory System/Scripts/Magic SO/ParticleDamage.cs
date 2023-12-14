@@ -25,8 +25,7 @@ public class ParticleDamage : MonoBehaviour
     private void MoveDamageCollider()
     {
         startDamage = true;
-
-        transform.DOLocalMove(transform.localPosition + transform.forward * moveDistance, moveTime, false);
+        transform.DOMove(transform.position + transform.root.forward * moveDistance, moveTime, false);
         transform.DOScaleX(growScale, moveTime);
     }
 

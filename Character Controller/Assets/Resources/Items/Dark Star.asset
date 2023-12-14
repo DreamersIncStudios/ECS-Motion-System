@@ -36,6 +36,6 @@ MonoBehaviour:
   _upgradeable: 1
   alwaysDrawn: 1
   _sheathedPos: {x: 0, y: 0, z: -0.002}
-  _heldPos: {x: -0.00448, y: 0.001102, z: 0.00311}
+  _heldPos: {x: -0.00499, y: 0.00094, z: 0.00153}
   _sheathedRot: {x: 0, y: 0, z: 0}
-  _heldRot: {x: 83.15, y: -17.688, z: -139.351}
+  _heldRot: {x: 83.15, y: -17.688, z: -123.5}

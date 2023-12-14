@@ -8,6 +8,7 @@ using Unity.Jobs;
 using DreamersStudio.CameraControlSystem;
 //using DreamersInc.ComboSystem;
 using Stats.Entities;
+// ReSharper disable InconsistentNaming
 
 namespace MotionSystem.Systems
 {
@@ -20,26 +21,22 @@ namespace MotionSystem.Systems
 
         protected override void OnUpdate()
         {
-
-
-
-            Entities.WithoutBurst().ForEach((AnimatorComponent AnimC, Rigidbody RB, ref CharControllerE control) =>
+    
+            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
             {
-
-                Animator Anim = AnimC.anim;
-                Transform transform = Anim.transform;
                 //if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                 //    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
 
-                float m_TurnAmount;
-                float m_ForwardAmount;
-
+                if (control.Move.magnitude > 1f && control.AI)
+                {
+                    control.Move.Normalize();
+                    control.Move = transform.InverseTransformDirection(control.Move);
+                }
 
                 //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
-
                 //  m_TurnAmount = control.Move.x;
-                m_ForwardAmount = control.Move.z;
-                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
+                var m_ForwardAmount = control.Move.z;
+                var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
                 if (!control.Targetting)
                 {
@@ -56,8 +53,6 @@ namespace MotionSystem.Systems
                             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
-
-
 
                 if (control.IsGrounded)
                 {
@@ -143,11 +138,11 @@ namespace MotionSystem.Systems
                     }
                 }
 
-
+                control.Speed = RB.velocity.magnitude;
 
             }).Run();
 
-            Entities.WithoutBurst().WithChangeFilter<CharControllerE>().ForEach((CapsuleCollider capsule, ref CharControllerE Control) =>
+            Entities.WithoutBurst().WithChangeFilter<CharControllerE>().ForEach((CapsuleCollider capsule, ref CharControllerE Control, ref animateTag tag) =>
             {
 
                 capsule.center = Control.CapsuleCenter;
@@ -191,21 +186,22 @@ namespace MotionSystem.Systems
         void UpdateBeast()
         {
 
-            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref BeastControllerComponent control) =>
+            Entities.WithAll<animateTag>().WithoutBurst().ForEach((Animator anim, Rigidbody RB, Transform transform, ref BeastControllerComponent control) =>
             {
-                if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
-                    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
-
+                //if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
+                //    anim.SetFloat("AnimSpeed", control.AnimationSpeed);
                 float m_TurnAmount;
                 float m_ForwardAmount;
-
+                if (control.Move.magnitude > 1f)
+                    control.Move.Normalize();
+                control.Move = transform.InverseTransformDirection(control.Move);
                 m_ForwardAmount = control.Move.z;
                 m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
                 if (!control.Targetting)
                 {
                     float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                    transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
+                    //  transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
                 }
                 else
                 {
@@ -213,42 +209,42 @@ namespace MotionSystem.Systems
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
-                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        // if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
+                        //      transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
 
                 if (control.IsGrounded)
                 {
-                    HandleGroundedMovement(control, Anim, RB);
+                    HandleGroundedMovement(control, anim, RB);
                 }
                 else
                 {
-                    HandleAirborneMovement(control, Anim, RB);
+                    HandleAirborneMovement(control, anim, RB);
                 }
 
                 if (control.ApplyRootMotion)
                 {
-                    Anim.applyRootMotion = true;
+                    anim.applyRootMotion = true;
                     control.ApplyRootMotion = false;
                 }
 
                 // Animator Updater
                 // update the animator parameters
-                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetBool("OnGround", control.IsGrounded);
+                anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetBool("OnGround", control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
                 // which affects the movement speed because of the root motion.
                 if (control.IsGrounded && control.Move.magnitude > 0)
                 {
-                    Anim.speed = control.m_AnimSpeedMultiplier;
+                    anim.speed = control.m_AnimSpeedMultiplier;
                 }
                 else
                 {
                     // don't use that while airborne
-                    Anim.speed = 1;
+                    anim.speed = 1;
                 }
 
                 control.Jump = false;

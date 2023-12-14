@@ -1,27 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 //using Core.SaveSystems;
 
 namespace DreamersInc.ComboSystem
 {
     [CreateAssetMenu(fileName = "Combo", menuName = "ComboSystem/Combo Data")]
 
+    // ReSharper disable once InconsistentNaming
     public class ComboSO : ScriptableObject, ICombos
     {
 
-        [SerializeField] List<ComboSingle> _comboLists;
-        [HideInInspector] public List<ComboSingle> ComboLists { get { return _comboLists; } }
+        [FormerlySerializedAs("_comboLists")] [SerializeField] List<ComboSingle> comboLists;
+        [HideInInspector] public List<ComboSingle> ComboLists => comboLists;
 
         public TextAsset ComboNamesText;
         public int ComboListIndex; 
-        public void UnlockCombo(ComboNames Name)
+        public void UnlockCombo(ComboNames name)
         {
             //TODO Implement Unlocking System
         }
 
-        public bool GetAnimationTrigger(AnimatorStateInfo State, ComboInfo info, out AnimationTrigger trigger, out float endtime)
+        public bool GetAnimationTrigger(AnimatorStateInfo state, ComboInfo info, out AnimationTrigger trigger, out float endtime)
         {
             endtime = 0.0f;
             trigger = new AnimationTrigger();
@@ -70,27 +74,23 @@ namespace DreamersInc.ComboSystem
         }
         public int GetAnimationComboIndex(AnimatorStateInfo state) {
            
-            throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
+            throw new ArgumentOutOfRangeException(nameof(state));
 
         }
         public int GetAnimationComboIndex(string state)
         {
      
-            throw new ArgumentOutOfRangeException("Animation not registered in Combo SO System");
+            throw new ArgumentOutOfRangeException(nameof(state));
         }
  
         #endregion
 
    
 
-    public List<string> GetListOfComboNames() { 
-            List<string> list = new();
-            var lines = ComboNamesText.text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+    public List<string> GetListOfComboNames() {
+        var lines = ComboNamesText.text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             var parts =  lines[ComboListIndex].Split(';');
-            foreach (var part in parts) { 
-                list.Add(part);
-            }
-            return list;
+            return parts.ToList();
         }
         public List<ComboDefinition> GetComboDefinitions() {
             List<ComboDefinition> temp = new ();
@@ -112,7 +112,7 @@ namespace DreamersInc.ComboSystem
     [System.Serializable]
     public struct ComboInfo
     {
-        public ComboNames name;
+        [FormerlySerializedAs("name")] public ComboNames Name;
         public bool Unlocked;
     }
     //[System.Serializable]
@@ -124,10 +124,10 @@ namespace DreamersInc.ComboSystem
     [System.Serializable]
     public class ComboDefinition
     {
-        public string name;
+        [FormerlySerializedAs("name")] public string Name;
         public ComboNames ComboEnumName;
         public bool Unlocked { get; set; }
-        [NonReorderable] public Queue<AttackType> test;
+        [NonReorderable] public Queue<AttackType> Test;
     }
     [System.Serializable]
     public class ComboSingle {

@@ -1,4 +1,6 @@
+#if ENABLE_UNITYEVENTS
 using Dreamers.Global;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;

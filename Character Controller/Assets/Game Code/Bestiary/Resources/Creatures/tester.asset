@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureID: 3
   Name: 'Tester '
+  creatureType: 4
+  GetNPCType: 2
   stats:
     title: 0
     Name: Dummy
@@ -109,6 +111,10 @@ MonoBehaviour:
     AnimSpeedMultiplier: 0
     GroundCheckDistance: 0
     CombatCapable: 0
+  CenterOffset:
+    x: 0
+    y: 0
+    z: 0
   factionID: 2
   BaseThreat: 5
   BaseProtection: 5
@@ -116,4 +122,5 @@ MonoBehaviour:
   Equipment:
     EquippedWeapons: []
     EquippedArmors: []
+    EquippedAbilites: []
   ExpGiven: 0

@@ -25,8 +25,8 @@ namespace DreamersInc.DamageSystem
         {
             get
             {
-              // Todo Add mod value for Magic infused/ Ennchanted weapon
-                int output = TypeOfDamage switch
+              // Todo Add mod value for Magic infused/ Enchanted weapon
+                var output = TypeOfDamage switch
                 {
                     TypeOfDamage.MagicAoE => Magic_Offense.AdjustBaseValue,
                     TypeOfDamage.Projectile =>  Range_Offense.AdjustBaseValue,
@@ -76,10 +76,11 @@ namespace DreamersInc.DamageSystem
             //TODO Balance 
             MagicMod =  Element != Element.None ? Magic_Offense.AdjustBaseValue / 10.0f : 1.0f;
         }
-        IDamageable self;
+
+        private IDamageable self;
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
 
 
@@ -95,7 +96,7 @@ namespace DreamersInc.DamageSystem
             }
         }
 
-        float critMod;
+        private float critMod;
         public void CheckChance()
         {
             critMod = CriticalHitMod;
@@ -107,15 +108,13 @@ namespace DreamersInc.DamageSystem
 
         public void OnTriggerEnter(Collider other)
         {
-            IDamageable hit = other.GetComponent<IDamageable>();
+            var hit = other.GetComponent<IDamageable>();
             //Todo add Friend filter.
-            if (DoDamage && hit != null && hit != self)
-            {
-                hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
-                hit.ReactToHit(.5f, transform.root.position, transform.root.forward);
-                if(OnHitAction != null)
-                    OnHitAction.Invoke();
-            }
+            if (!DoDamage || hit == null || hit == self) return;
+            hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
+            var root = transform.root;
+            hit.ReactToHit(.5f, root.position, root.forward);
+            OnHitAction?.Invoke();
         }
 
         public void SetStatData(BaseCharacterComponent stats, TypeOfDamage damageType)

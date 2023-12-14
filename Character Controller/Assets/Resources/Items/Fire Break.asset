@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a0ee8eca644834e89372b01366a8ec, type: 3}
+  m_Name: Fire Break
+  m_EditorClassIdentifier: 
+  _itemID: 0
+  _itemName: Firebreak
+  _desc: In the heart of an ancient, hidden forge, where the fires of creation meet
+    the essence of magic, the legendary FireBreak was born. This magnificent axe
+    is a fusion of craftsmanship and enchantment, a testament to the awe-inspiring
+    power of both the mortal and mystical realms.
+  _icon: {fileID: 0}
+  _value: 0
+  _type: 2
+  _stackable: 0
+  _questItem: 0
+  maxStackCount: 0
+  quality: 4
+  _model: {fileID: 5328939425296516777, guid: 454a619194837fb40ad10148e78902cb, type: 3}
+  _equipToHuman: 0
+  _heldBone: 18
+  _equipBone: 7
+  _modifiers:
+  - Stat: 1
+    BuffValue: 35
+  _levelRQD: 0
+  _weaponType: 8
+  typeOfDamage: 0
+  slot: 0
+  maxDurable: 0
+  breakable: 0
+  _upgradeable: 1
+  alwaysDrawn: 0
+  _sheathedPos: {x: -0.00091, y: -0.00591, z: -0.00233}
+  _heldPos: {x: 0.00187, y: -0.00022, z: 0.00078}
+  _sheathedRot: {x: 0, y: 0, z: 0}
+  _heldRot: {x: 15.026, y: -18.639, z: 67.033}

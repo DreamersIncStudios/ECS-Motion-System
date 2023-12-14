@@ -16,6 +16,7 @@ MonoBehaviour:
   _lightAttack: 332
   _heavyAttack: 333
   _block: 335
+  _dodge: 331
   _cadMenu: 334
-  _projectile: 331
+  _projectile: 0
   AutoSwapTarget: 0

@@ -12,8 +12,6 @@ using MotionSystem.Components;
 using MotionSystem.Systems;
 using Stats;
 using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -44,6 +42,9 @@ namespace DreamersInc.BestiarySystem
                 var vision = new Vision();
                 vision.InitializeSense(character);
                 manager.AddComponentData(entity, vision);
+                manager.AddComponentData(entity, new SurroundCharacter());
+                manager.AddComponentData(entity, new createTag());
+
                 manager.AddComponentData(entity, transformLink);
                 manager.AddComponentObject(entity, character);
 
@@ -64,12 +65,10 @@ namespace DreamersInc.BestiarySystem
                     CenterOffset = new float3(0, 1, 0) //todo add value to SO
 
                 });
+                manager.AddComponentObject(entity, anim);
+                manager.AddComponentObject(entity, go.transform);
 
-                manager.AddComponentData(entity, new AnimatorComponent()
-                {
-                    anim = anim,
-                    transform = anim.transform,
-                });
+             
                 manager.AddComponent<StoreWeapon>(entity);
                 AnimationSpeedLink link = new AnimationSpeedLink()
                 {
@@ -113,6 +112,7 @@ namespace DreamersInc.BestiarySystem
                 controllerData.Setup(info.Move, go.GetComponent<UnityEngine.CapsuleCollider>());
                 manager.AddComponentData(entity, controllerData);
                 var comboInfo = Object.Instantiate(info.Combo);
+                manager.AddComponentObject(entity, go.GetComponentInChildren<SkinnedMeshRenderer>());
                 manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });
                 manager.AddComponentData(entity, new InfluenceComponent
                 {

@@ -12,6 +12,8 @@ namespace MotionSystem.Systems{
         Animator anim;
         WeaponDamage damage;
         AnimatorStateInfo stateInfo;
+        private static readonly int Property = Animator.StringToHash("Weapon In Hand");
+
         private void Start()
         {
             anim = GetComponent<Animator>();
@@ -26,8 +28,8 @@ namespace MotionSystem.Systems{
 
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (!anim.GetBool("Weapon In Hand"))
-                anim.SetBool("Weapon In Hand", true);
+            if (!anim.GetBool(Property))
+                anim.SetBool(Property, true);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>().Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
         }
 
@@ -35,8 +37,8 @@ namespace MotionSystem.Systems{
         {
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (anim.GetBool("Weapon In Hand") && stateInfo.IsTag("Unequip"))
-            anim.SetBool("Weapon In Hand", false);
+            if (anim.GetBool(Property) && stateInfo.IsTag("Unequip"))
+            anim.SetBool(Property, false);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>().Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
         }
         public void CalculateCriticalHit() {

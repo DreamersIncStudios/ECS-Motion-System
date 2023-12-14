@@ -13,34 +13,29 @@ namespace DreamersInc.ComboSystem
 
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((Entity entity, AnimatorComponent Animcomp, Rigidbody RB, ref ReactToContact contact) =>
+            Entities.WithoutBurst().ForEach((Entity entity, Animator Anim, Rigidbody RB, ref ReactToContact contact) =>
             {
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);
                
                 RB.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
 
-
-                if (Animcomp.anim == null)
-                    return;
-
                 //Todo Add check to see if we can interrupt 
-                var anim = Animcomp.anim;
 
-                if (contact.HitIntensity < 5 && anim != null)
+                if (contact.HitIntensity < 5 && Anim != null)
                 {
                     switch (dir)
                     {
                         case Direction.Left:
-                            anim.Play("HitLeft", 0);
+                            Anim.Play("HitLeft", 0);
                             break;
                         case Direction.Right:
-                            anim.Play("HitRight", 0);
+                            Anim.Play("HitRight", 0);
                             break;
                         case Direction.Front:
-                            anim.Play("HitFront", 0);
+                            Anim.Play("HitFront", 0);
                             break;
                         case Direction.Back:
-                            anim.Play("HitBack", 0);
+                            Anim.Play("HitBack", 0);
                             break;
                     }
                 }
@@ -49,16 +44,16 @@ namespace DreamersInc.ComboSystem
                     switch (dir)
                     {
                         case Direction.Left:
-                            anim.Play("HitLeftStrong", 0);
+                            Anim.Play("HitLeftStrong", 0);
                             break;
                         case Direction.Right:
-                            anim.Play("HitRightStrong", 0);
+                            Anim.Play("HitRightStrong", 0);
                             break;
                         case Direction.Front:
-                            anim.Play("HitFrontStrong", 0);
+                            Anim.Play("HitFrontStrong", 0);
                             break;
                         case Direction.Back:
-                            anim.Play("HitBackStrong", 0);
+                            Anim.Play("HitBackStrong", 0);
                             break;
                     }
                 }

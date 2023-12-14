@@ -92,7 +92,7 @@ namespace DreamersInc.Utils
             if (x >= 0 && y >= 0 && x < width && y < height)
             {
                 gridArray[x, y] = value;
-                if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y }); 
+                OnGridValueChanged?.Invoke(this, new OnGridValueChangedEventArgs { x = x, y = y });
             }
         }
         public void SetGridObject(Vector3 worldPosition, TGridObject Value) {
@@ -100,8 +100,9 @@ namespace DreamersInc.Utils
             GetXY(worldPosition, out int x, out int y);
             SetGridObject(x, y, Value);
         }
-        public void TriggerGridObjectChanged(int x, int y) {
-            if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
+        public void TriggerGridObjectChanged(int x, int y)
+        {
+            OnGridValueChanged?.Invoke(this, new OnGridValueChangedEventArgs { x = x, y = y });
 
         }
         public TGridObject GetGridObject(int x, int y) {

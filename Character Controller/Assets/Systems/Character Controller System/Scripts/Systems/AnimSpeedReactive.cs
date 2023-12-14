@@ -50,12 +50,12 @@ namespace DreamersInc.CharacterControllerSys
            
             _componentAddedQuery = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(AnimationSpeedMod)), ComponentType.ReadWrite(typeof(CharControllerE)), ComponentType.ReadWrite(typeof(AnimatorComponent)) },
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(AnimationSpeedMod)), ComponentType.ReadWrite(typeof(CharControllerE)), ComponentType.ReadWrite(typeof(Animator)) },
                 None = new ComponentType[] { ComponentType.ReadOnly(typeof(AIReactiveSystemBase<AnimationSpeedMod, CharControllerE, DreamersInc.CharacterControllerSys.AnimSpeedReactor>.StateComponent)) }
             });
             _componentRemovedQuery = GetEntityQuery(new EntityQueryDesc()
             {
-                All = new ComponentType[] { ComponentType.ReadWrite(typeof(AnimatorComponent)), ComponentType.ReadWrite(typeof(AIReactiveSystemBase<AnimationSpeedMod, CharControllerE, DreamersInc.CharacterControllerSys.AnimSpeedReactor>.StateComponent)), ComponentType.ReadWrite(typeof(CharControllerE)) },
+                All = new ComponentType[] { ComponentType.ReadWrite(typeof(Animator)), ComponentType.ReadWrite(typeof(AIReactiveSystemBase<AnimationSpeedMod, CharControllerE, DreamersInc.CharacterControllerSys.AnimSpeedReactor>.StateComponent)), ComponentType.ReadWrite(typeof(CharControllerE)) },
                 None = new ComponentType[] { ComponentType.ReadOnly(typeof(AnimationSpeedMod)) }
             });
         }
@@ -63,28 +63,22 @@ namespace DreamersInc.CharacterControllerSys
         protected override void OnUpdate()
         {
 
-            Entities.WithoutBurst().ForEach((AnimatorComponent anim, ref AnimationSpeedMod tag) =>
+            Entities.WithoutBurst().ForEach((Animator anim, ref AnimationSpeedMod tag) =>
             {
-                if (anim.anim)
-                {
-                    if (anim.anim.GetFloat("AnimSpeed") == 1.0)
+                    if (anim.GetFloat("AnimSpeed") == 1.0)
                     {
-                        anim.anim.SetFloat("AnimSpeed", .15f);
+                        anim.SetFloat("AnimSpeed", .15f);
                     }
-                }
-            })
-              .Run();
+                
+            }).Run();
             
 
-            Entities.WithoutBurst().WithNone<AnimationSpeedMod>().ForEach((AnimatorComponent anim) =>
+            Entities.WithoutBurst().WithNone<AnimationSpeedMod>().ForEach((Animator anim) =>
             {
-                if (anim.anim)
-                {
-                    if (anim.anim.GetFloat("AnimSpeed") == .15f)
+                    if (anim.GetFloat("AnimSpeed") == .15f)
                     {
-                        anim.anim.SetFloat("AnimSpeed", 1.0f    );
+                        anim.SetFloat("AnimSpeed", 1.0f    );
                     }
-                }
             }).Run();
         }
     }
