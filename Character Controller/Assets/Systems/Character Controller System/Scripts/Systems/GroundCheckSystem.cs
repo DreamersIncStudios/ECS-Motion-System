@@ -4,6 +4,7 @@ using MotionSystem.Systems;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
+using DreamersInc.CharacterControllerSys.SurfaceContact;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -85,96 +86,87 @@ namespace MotionSystem
             }
         }
 
-        [BurstCompile]
+        //[BurstCompile]
 
         public partial struct GroundCheckJob : IJobEntity {
             [ReadOnly] public CollisionWorld world;
             [ReadOnly] public int hashKey;
-            void Execute(ref LocalTransform transform, ref CharControllerE control)
+            void Execute(ref LocalTransform transform, ref CharControllerE control, ref SurfaceContactComponent surface)
             {
                 if (control.SkipGroundCheck)
                 {
                     return;
                 }
-                control.IsGrounded = GroundCheck(transform, control, hashKey) ||
-                 GroundCheck(transform, control, hashKey + 1) ||
-                 GroundCheck(transform, control, hashKey - 1) ||
-                 GroundCheck(transform, control, hashKey + quadrantYMultiplier) ||
-                 GroundCheck(transform, control, hashKey - quadrantYMultiplier);
-
+               control.IsGrounded = GroundCheck(transform, control, hashKey,ref surface) ||
+                 GroundCheck(transform, control, hashKey + 1,ref surface) ||
+                 GroundCheck(transform, control, hashKey - 1,ref surface) ||
+                 GroundCheck(transform, control, hashKey + quadrantYMultiplier,ref surface) ||
+                 GroundCheck(transform, control, hashKey - quadrantYMultiplier,ref surface);
             }
 
-            private bool GroundCheck(LocalTransform transform, CharControllerE control, int hashKey)
+            private bool GroundCheck(LocalTransform transform, CharControllerE control, int hashKey, ref SurfaceContactComponent surface)
             {
                 if (hashKey == GetPositionHashMapKey((int3)transform.Position))
                 {
                     NativeList<RaycastInput> groundRays = new NativeList<RaycastInput>(Allocator.Temp);
+                    var filter = new CollisionFilter
+                    {
+                        BelongsTo = ((1 << 10)),
+                        CollidesWith = ((1 << 6) | (1 << 9)),
+                        GroupIndex = 0
+                    };
                     groundRays.Add(new RaycastInput()
                     {
                         Start = transform.Position + new Unity.Mathematics.float3(0, .2f, 0),
                         End = transform.Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, 0),
-                        Filter = new CollisionFilter
-                        {
-                            BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6) | (1 << 9)),
-                            GroupIndex = 0
-                        }
+                        Filter = filter
                     });
                     groundRays.Add(new RaycastInput()
                     {
                         Start = transform.Position + new Unity.Mathematics.float3(0, .2f, .25f),
                         End = transform.Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, .25f),
-                        Filter = new CollisionFilter
-                        {
-                            BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6) | (1 << 9)),
-                            GroupIndex = 0
-                        }
+                        Filter = filter
                     });
                     groundRays.Add(new RaycastInput()
                     {
                         Start = transform.Position + new Unity.Mathematics.float3(0, .1f, -.25f),
                         End = transform.Position + new Unity.Mathematics.float3(0, -control.GroundCheckDistance, -.25f),
-                        Filter = new CollisionFilter
-                        {
-                            BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6) | (1 << 9)),
-                            GroupIndex = 0
-                        }
+                        Filter =filter
                     });
                     groundRays.Add(new RaycastInput()
                     {
                         Start = transform.Position + new Unity.Mathematics.float3(.25f, .1f, 0),
                         End = transform.Position + new Unity.Mathematics.float3(.25f, -control.GroundCheckDistance, 0),
-                        Filter = new CollisionFilter
-                        {
-                            BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6) | (1 << 9)),
-                            GroupIndex = 0,
-                        }
+                        Filter = filter
                     });
                     groundRays.Add(new RaycastInput()
                     {
                         Start = transform.Position + new Unity.Mathematics.float3(-.25f, .1f, 0),
                         End = transform.Position + new Unity.Mathematics.float3(-.25f, -control.GroundCheckDistance, 0),
-                        Filter = new CollisionFilter
-                        {
-                            BelongsTo = ((1 << 10)),
-                            CollidesWith = ((1 << 6) | (1 << 9)),
-                            GroupIndex = 0
-                        }
+                        Filter = filter
                     });
 
                     foreach (var ray in groundRays)
                     {
-
-                        NativeList<Unity.Physics.RaycastHit> raycastArray = new NativeList<Unity.Physics.RaycastHit>(Allocator.Temp);
-
-                        if (world.CastRay(ray, ref raycastArray))
-                        {
-                            groundRays.Dispose();
-                            return true;
+                        if (!world.CastRay(ray, out var hit)) continue;
+                        surface.groundNormal = hit.SurfaceNormal;
+                        // Find the line from the gun to the point that was clicked.
+                        Vector3 surfaceNormal = hit.SurfaceNormal;
+                        float angle = math.degrees(math.acos(math.dot(surfaceNormal, new float3(0, 1, 0))));
+                        if (angle<20) {
+                          surface. groundContactCount += 1;
+                            surface.ContactNormal = hit.SurfaceNormal;
+                            surface.steepContactCount = 0;
                         }
+                        else  {
+                            surface.steepContactCount += 1;
+                            surface.SteepNormal = hit.SurfaceNormal;
+                            surface.groundContactCount = 0;
+                        }
+
+
+                        
+                        return true;
                     }
                     return false;
                 }else 

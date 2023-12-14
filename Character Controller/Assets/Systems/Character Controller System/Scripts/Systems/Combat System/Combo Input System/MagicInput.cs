@@ -35,27 +35,7 @@ namespace DreamersInc.ComboSystem
         }
 
 
-        private void EnableSlowMoMode()
-        {
-            Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, Animator animC ) => {
-                //Todo add range limit;
-                EntityManager.AddComponentData(entity, new AnimationSpeedMod() {
-                        SpeedValue = .15f
-                });
-
-
-            }).Run();
-
-        }
-
-        private void DisableSlowMoMode()
-        {
-            Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, Animator animC) => {
-                EntityManager.RemoveComponent<AnimationSpeedMod>(entity);
-
-            }).Run();
-
-        }
+    
     }
 
 

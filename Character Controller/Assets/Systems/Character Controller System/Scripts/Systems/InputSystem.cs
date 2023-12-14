@@ -4,13 +4,38 @@ using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
 using Stats.Entities;
+using UnityEngine.InputSystem;
 
 namespace DreamersInc.Global
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
     public partial class InputSystem : SystemBase
     {
         Transform m_mainCam;
-    
+        private PlayerControls playerControls;
+        protected override void OnCreate()
+        {
+            RequireForUpdate<Player_Control>();
+            RequireForUpdate<ControllerInfo>();
+            playerControls = new PlayerControls();
+        }
+
+        protected override void OnStartRunning()
+        {
+            playerControls.Enable();
+            playerControls.PlayerController.PauseGame.performed += OnTogglePause;
+            playerControls.PauseMenu.Disable();
+            playerControls.PauseMenu.PauseGame.performed += OnTogglePause;
+
+        }
+
+        protected override void OnStopRunning()
+        {
+            playerControls.Disable();
+            playerControls.PlayerController.PauseGame.performed -= OnTogglePause;
+            playerControls.PauseMenu.PauseGame.performed -= OnTogglePause;
+
+        }
 
         protected override void OnUpdate()
         {
@@ -29,9 +54,8 @@ namespace DreamersInc.Global
             }
             if (!SystemAPI.TryGetSingleton<ControllerInfo>(out var config))
                 return;
-    
-
-
+            var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
+      
             Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
             {
                 Control.CastingInput = config.OpenCadInput;
@@ -45,14 +69,8 @@ namespace DreamersInc.Global
                     }
                     else
                     {
-                        if (Mathf.Abs(Input.GetAxis("Horizontal")) > .1f)
-                            Control.H = Input.GetAxis("Horizontal");
-                        else
-                            Control.H = 0.0f;
-                        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f)
-                            Control.V = Input.GetAxis("Vertical");
-                        else
-                            Control.V = 0.0f;
+                        Control.H = dir.x;
+                        Control.V = dir.y;
 
                         m_Crouching = Input.GetKey(KeyCode.C);
 
@@ -80,7 +98,6 @@ namespace DreamersInc.Global
             }).Run();
 
 
-
             Entities.WithoutBurst().ForEach((Animator Anim, ref CharControllerE Control) =>
             {
                 if (!Control.AI)
@@ -106,6 +123,25 @@ namespace DreamersInc.Global
 
             }).Run();
 
+        }
+
+        private bool paused = false;
+        private void OnTogglePause(InputAction.CallbackContext obj)
+        {
+            if(!paused)
+            {
+                Debug.Log("Pause Game open menu");
+                playerControls.PauseMenu.Enable();
+                playerControls.PlayerController.Disable();
+                paused = true;
+            }
+            else
+            {
+                Debug.Log("Start Game close menu");
+                playerControls.PauseMenu.Disable();
+                playerControls.PlayerController.Enable();
+                paused = false;
+            }
         }
     }
 

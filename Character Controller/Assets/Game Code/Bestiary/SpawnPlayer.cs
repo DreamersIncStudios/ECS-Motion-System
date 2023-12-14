@@ -12,11 +12,8 @@ using MotionSystem.Components;
 using MotionSystem.Systems;
 using Stats;
 using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DreamersInc.BestiarySystem
@@ -45,6 +42,9 @@ namespace DreamersInc.BestiarySystem
                 var vision = new Vision();
                 vision.InitializeSense(character);
                 manager.AddComponentData(entity, vision);
+                manager.AddComponentData(entity, new SurroundCharacter());
+                manager.AddComponentData(entity, new createTag());
+
                 manager.AddComponentData(entity, transformLink);
                 manager.AddComponentObject(entity, character);
 

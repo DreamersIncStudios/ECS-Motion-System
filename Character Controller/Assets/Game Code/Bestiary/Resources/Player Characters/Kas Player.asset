@@ -107,12 +107,12 @@ MonoBehaviour:
     RunCycleLegOffset: 0.2
     MoveSpeedMultiplier: 2
     AnimSpeedMultiplier: 1
-    GroundCheckDistance: 0.2
+    GroundCheckDistance: 0.4
     CombatCapable: 1
   factionID: 0
   BaseThreat: 10
   BaseProtection: 10
-  Combo: {fileID: 11400000, guid: 78bc12d66e2c6d44e9474545435cb293, type: 2}
+  Combo: {fileID: 11400000, guid: db8568765a57e164c9bfdc710c83ab36, type: 2}
   Equipment:
     EquippedWeapons:
     - {fileID: 11400000, guid: 0d0acd3bd1c799444be09c9ecdfd4218, type: 2}

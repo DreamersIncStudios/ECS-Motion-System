@@ -104,8 +104,8 @@ MonoBehaviour:
     StationaryTurnSpeed: 180
     JumpPower: 12
     GravityMultiplier: 2
-    RunCycleLegOffset: 0.2
-    MoveSpeedMultiplier: 1
+    RunCycleLegOffset: 0.4
+    MoveSpeedMultiplier: 2
     AnimSpeedMultiplier: 1
     GroundCheckDistance: 0.2
     CombatCapable: 1
@@ -118,3 +118,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 30221ae827a8c3e4fb342bfb4557b9c1, type: 2}
     EquippedArmors:
     - {fileID: 11400000, guid: 66ea3d90606fcc743bf50a3ab423910a, type: 2}
+    EquippedAbilites: []

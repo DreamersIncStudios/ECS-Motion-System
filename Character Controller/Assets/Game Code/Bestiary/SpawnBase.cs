@@ -1,3 +1,4 @@
+using DreamersInc.CharacterControllerSys.SurfaceContact;
 using Global.Component;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -89,6 +90,7 @@ namespace DreamersInc.BestiarySystem
                 BelongsTo = physicsInfo.BelongsTo,
                 CollidesWith = physicsInfo.CollidesWith
             });
+            manager.AddComponentData(entityLink, new SurfaceContactComponent());
         }
 
     }

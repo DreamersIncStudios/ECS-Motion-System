@@ -9,6 +9,7 @@ using Stats.Entities;
 using DreamersInc.CombatSystem;
 using Dreamers.InventorySystem;
 using MotionSystem.Components;
+// ReSharper disable Unity.BurstLoadingManagedType
 
 namespace DreamersInc.ComboSystem
 {
@@ -25,7 +26,7 @@ namespace DreamersInc.ComboSystem
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
-                    if (!Anim.GetBool("Weapon In Hand") && !handler.AlwaysDrawnWeapon)
+                    if (!Anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
                     {
                         switch (temp.attackType)
                         {
@@ -41,6 +42,11 @@ namespace DreamersInc.ComboSystem
                                 Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
                                 EntityManager.AddComponent<DrawWeapon>(entity);
                                 break;
+                            case AttackType.Dodge:
+                                Anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1",
+                                    temp.TransitionDuration, 0, 0, 0);
+
+                                break;
                         }
 
                     }
@@ -51,24 +57,21 @@ namespace DreamersInc.ComboSystem
                             Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
 
                         }
-                        else if (temp.attackType == AttackType.Dodge) {
-                            if (temp.triggerAnimIndex == 0)
-                            {
-                                Anim.CrossFade("Dodge0", temp.TransitionDuration,0,0,0);
-                            }
-                            else {
-
-                                Anim.CrossFade("Dodge1", temp.TransitionDuration,0,0,0);
-                            }
+                        else if (temp.attackType == AttackType.Dodge)
+                        {
+                            Anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1", temp.TransitionDuration, 0,
+                                0, 0);
                         }
                         else
                         {
                             if (!handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Dodge") && !handler.StateInfo.IsTag("Exit"))
                             {
                                 Anim.CrossFade("Enter Defence", .15f);
+                                Anim.SetBool(Block,true);
                             } else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
                             { 
                                 Anim.CrossFade("Enter Defence", .15f);
+                                Anim.SetBool(Block,true);
 
                             }
                         }

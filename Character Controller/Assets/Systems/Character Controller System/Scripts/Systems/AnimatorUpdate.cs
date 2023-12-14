@@ -8,6 +8,7 @@ using Unity.Jobs;
 using DreamersStudio.CameraControlSystem;
 //using DreamersInc.ComboSystem;
 using Stats.Entities;
+// ReSharper disable InconsistentNaming
 
 namespace MotionSystem.Systems
 {
@@ -20,26 +21,22 @@ namespace MotionSystem.Systems
 
         protected override void OnUpdate()
         {
-
-
-
+    
             Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
             {
                 //if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
                 //    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
 
-                float m_TurnAmount;
-                float m_ForwardAmount;
                 if (control.Move.magnitude > 1f && control.AI)
                 {
                     control.Move.Normalize();
                     control.Move = transform.InverseTransformDirection(control.Move);
                 }
-                //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
 
+                //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
                 //  m_TurnAmount = control.Move.x;
-                m_ForwardAmount = control.Move.z;
-                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
+                var m_ForwardAmount = control.Move.z;
+                var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
                 if (!control.Targetting)
                 {
@@ -56,8 +53,6 @@ namespace MotionSystem.Systems
                             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
                     }
                 }
-
-
 
                 if (control.IsGrounded)
                 {
@@ -143,7 +138,7 @@ namespace MotionSystem.Systems
                     }
                 }
 
-
+                control.Speed = RB.velocity.magnitude;
 
             }).Run();
 
