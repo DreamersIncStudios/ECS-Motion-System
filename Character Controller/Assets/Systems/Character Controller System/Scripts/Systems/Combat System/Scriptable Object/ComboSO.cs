@@ -19,9 +19,22 @@ namespace DreamersInc.ComboSystem
         [FormerlySerializedAs("_comboLists")] [SerializeField]
         List<ComboSingle> comboLists;
 
-        [HideInInspector] public List<ComboSingle> ComboLists => comboLists;
+        [SerializeField] List<ComboSingle> heavyComboLists;
 
-        public TextAsset ComboNamesText;
+
+        [HideInInspector]
+        public List<ComboSingle> ComboLists(bool index)
+        {
+            return index switch
+            {
+                false => comboLists,
+                true => heavyComboLists,
+            };
+        }
+    
+
+
+    public TextAsset ComboNamesText;
         public int ComboListIndex;
 
         public void UnlockCombo(ComboNames name)
@@ -66,9 +79,9 @@ namespace DreamersInc.ComboSystem
 
         }
 
-        public AnimationTrigger GetTrigger(AnimatorStateInfo state)
+        public AnimationTrigger GetTrigger(AnimatorStateInfo state, bool style = false)
         {
-            foreach (ComboSingle combo in ComboLists)
+            foreach (ComboSingle combo in ComboLists(style))
             {
                 foreach (AnimationCombo test in combo.ComboList)
                 {
@@ -80,9 +93,9 @@ namespace DreamersInc.ComboSystem
             return new AnimationTrigger();
         }
 
-        public VFX GetVFX(AnimatorStateInfo state)
+        public VFX GetVFX(AnimatorStateInfo state, bool style = false)
         {
-            return GetTrigger(state).AttackVFX;
+            return GetTrigger(state, style).AttackVFX;
         }
 
         public int GetAnimationComboIndex(AnimatorStateInfo state)
@@ -124,10 +137,10 @@ namespace DreamersInc.ComboSystem
         }
 
 
-        public AnimationTrigger GetAttack()
+        public AnimationTrigger GetAttack(bool style = false)
         {
             var options = new List<AnimationTrigger>();
-            foreach (var combo in ComboLists)
+            foreach (var combo in ComboLists(style))
             {
                 if(combo.Unlocked)
                     options.Add(combo.ComboList[0].Trigger);

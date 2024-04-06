@@ -59,25 +59,25 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Light Attack"",
                     ""type"": ""Button"",
                     ""id"": ""11f9a12b-e9c7-4980-95b2-07b60b69afea"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Heavy Attack"",
                     ""type"": ""Button"",
                     ""id"": ""99442cfc-a54a-454a-85c9-bc5c5cf92544"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Block"",
                     ""type"": ""Button"",
                     ""id"": ""141759a0-dd17-4190-8b5a-6d96a78e738f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
@@ -86,16 +86,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""8bdcea19-91bb-4502-bcbd-7a97b678144b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""MultiTap"",
+                    ""interactions"": ""MultiTap(tapTime=0.4,pressPoint=0.5)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Open Cad Menu"",
                     ""type"": ""Button"",
                     ""id"": ""18e60335-3643-46f4-86c9-c057bbf7ed1c"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": true
@@ -113,7 +113,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Projectile"",
                     ""type"": ""Button"",
                     ""id"": ""e069cb81-7484-4878-b138-eb7c0465b06b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -123,6 +123,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""618cec8c-60fc-4d03-8fd9-604673ff5f35"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StyleMod Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5e5abe1-ee9c-4674-9631-64297041ed50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""StyleMod Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6fabb2a-7d03-4b3a-b3f9-ef6a584a21c3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AttackButtonHeld"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc0ae9a8-42d6-43bc-8f9c-74bc9508d47f"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -263,17 +290,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dcada064-1769-4b76-9c9d-a43fff530576"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Light Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""32019488-d518-4713-aa94-3592fd6a9b55"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -337,6 +353,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Close Cad Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b856984-7fe1-4a7f-85cf-c5d29af035aa"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StyleMod Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5fcf237-1ea3-4e3d-8952-a6b4cf0f8758"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StyleMod Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a6a7a9a-70cf-4849-8a2e-302e6aab981e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Dual Sense;Xbox"",
+                    ""action"": ""AttackButtonHeld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75f31215-d3df-44f8-af62-32148bd3c493"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Xbox;Dual Sense"",
+                    ""action"": ""AttackButtonHeld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -376,7 +436,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""New action"",
                     ""type"": ""Button"",
                     ""id"": ""4efad67d-ae4e-417c-b282-94b483030d5f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -385,7 +445,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Open Cad Menu"",
                     ""type"": ""Button"",
                     ""id"": ""9766ee41-c6b1-4497-ad7f-0e0fb39f94f3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": true
@@ -559,6 +619,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerController_CloseCadMenu = m_PlayerController.FindAction("Close Cad Menu", throwIfNotFound: true);
         m_PlayerController_Projectile = m_PlayerController.FindAction("Projectile", throwIfNotFound: true);
         m_PlayerController_PauseGame = m_PlayerController.FindAction("Pause Game ", throwIfNotFound: true);
+        m_PlayerController_StyleModPress = m_PlayerController.FindAction("StyleMod Press", throwIfNotFound: true);
+        m_PlayerController_StyleModRelease = m_PlayerController.FindAction("StyleMod Release", throwIfNotFound: true);
+        m_PlayerController_AttackButtonHeld = m_PlayerController.FindAction("AttackButtonHeld", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_PauseGame = m_PauseMenu.FindAction("Pause Game", throwIfNotFound: true);
@@ -650,6 +713,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerController_CloseCadMenu;
     private readonly InputAction m_PlayerController_Projectile;
     private readonly InputAction m_PlayerController_PauseGame;
+    private readonly InputAction m_PlayerController_StyleModPress;
+    private readonly InputAction m_PlayerController_StyleModRelease;
+    private readonly InputAction m_PlayerController_AttackButtonHeld;
     public struct PlayerControllerActions
     {
         private @PlayerControls m_Wrapper;
@@ -665,6 +731,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @CloseCadMenu => m_Wrapper.m_PlayerController_CloseCadMenu;
         public InputAction @Projectile => m_Wrapper.m_PlayerController_Projectile;
         public InputAction @PauseGame => m_Wrapper.m_PlayerController_PauseGame;
+        public InputAction @StyleModPress => m_Wrapper.m_PlayerController_StyleModPress;
+        public InputAction @StyleModRelease => m_Wrapper.m_PlayerController_StyleModRelease;
+        public InputAction @AttackButtonHeld => m_Wrapper.m_PlayerController_AttackButtonHeld;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -707,6 +776,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
+            @StyleModPress.started += instance.OnStyleModPress;
+            @StyleModPress.performed += instance.OnStyleModPress;
+            @StyleModPress.canceled += instance.OnStyleModPress;
+            @StyleModRelease.started += instance.OnStyleModRelease;
+            @StyleModRelease.performed += instance.OnStyleModRelease;
+            @StyleModRelease.canceled += instance.OnStyleModRelease;
+            @AttackButtonHeld.started += instance.OnAttackButtonHeld;
+            @AttackButtonHeld.performed += instance.OnAttackButtonHeld;
+            @AttackButtonHeld.canceled += instance.OnAttackButtonHeld;
         }
 
         private void UnregisterCallbacks(IPlayerControllerActions instance)
@@ -744,6 +822,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
+            @StyleModPress.started -= instance.OnStyleModPress;
+            @StyleModPress.performed -= instance.OnStyleModPress;
+            @StyleModPress.canceled -= instance.OnStyleModPress;
+            @StyleModRelease.started -= instance.OnStyleModRelease;
+            @StyleModRelease.performed -= instance.OnStyleModRelease;
+            @StyleModRelease.canceled -= instance.OnStyleModRelease;
+            @AttackButtonHeld.started -= instance.OnAttackButtonHeld;
+            @AttackButtonHeld.performed -= instance.OnAttackButtonHeld;
+            @AttackButtonHeld.canceled -= instance.OnAttackButtonHeld;
         }
 
         public void RemoveCallbacks(IPlayerControllerActions instance)
@@ -941,6 +1028,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnCloseCadMenu(InputAction.CallbackContext context);
         void OnProjectile(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnStyleModPress(InputAction.CallbackContext context);
+        void OnStyleModRelease(InputAction.CallbackContext context);
+        void OnAttackButtonHeld(InputAction.CallbackContext context);
     }
     public interface IPauseMenuActions
     {

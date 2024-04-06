@@ -1,10 +1,8 @@
+using DreamersInc.ComboSystem;
 using DreamersInc.InputSystems;
 using MotionSystem.Components;
 using Unity.Entities;
 using UnityEngine;
-using Unity.Collections;
-using Unity.Jobs;
-using Stats.Entities;
 using UnityEngine.InputSystem;
 
 namespace DreamersInc.Global
@@ -40,6 +38,9 @@ namespace DreamersInc.Global
             playerControls.PauseMenu.Disable();
             playerControls.PauseMenu.PauseGame.performed += OnTogglePause;
             playerControls.PlayerController.Jump.performed += OnPlayerJump;
+            playerControls.PlayerController.StyleModPress.performed += OnStyleModPress;
+            playerControls.PlayerController.StyleModRelease.performed += OnStyleModRelease;
+            playerControls.PlayerController.AttackButtonHeld.performed += ButtonHelded;
 
         }
 
@@ -49,6 +50,9 @@ namespace DreamersInc.Global
             playerControls.PlayerController.PauseGame.performed -= OnTogglePause;
             playerControls.PauseMenu.PauseGame.performed -= OnTogglePause;
             playerControls.PlayerController.Jump.performed -= OnPlayerJump;
+            playerControls.PlayerController.StyleModPress.performed -= OnStyleModPress;
+            playerControls.PlayerController.StyleModRelease.performed -= OnStyleModRelease;
+            playerControls.PlayerController.AttackButtonHeld.performed -= ButtonHelded;
 
         }
 
@@ -70,26 +74,26 @@ namespace DreamersInc.Global
      
             var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
             var casting = playerControls.MagicController.enabled;
-            Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
+            Entities.WithoutBurst().ForEach((ref CharControllerE control, in Player_Control PC) =>
             {
-                Control.CastingInput = casting;
+                control.CastingInput = casting;
                 bool m_Crouching = new();
 
-                if (Control.block)
+                if (control.block)
                 {
-                    Control.H = 0.0f;
-                    Control.V = 0.0f;
+                    control.H = 0.0f;
+                    control.V = 0.0f;
                 }
                 else
                 {
-                    Control.H = dir.x;
-                    Control.V = dir.y;
+                    control.H = dir.x;
+                    control.V = dir.y;
 
                     m_Crouching = Input.GetKey(KeyCode.C);
 
                     if (PC.InSafeZone)
                     {
-                        Control.Walk = true;
+                        control.Walk = true;
                     }
                 }
             }).Run();
@@ -145,7 +149,7 @@ namespace DreamersInc.Global
         {
             Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
             {
-                if (!PC.InSafeZone && !Control.Jump && Control.IsGrounded)
+                if (!PC.InSafeZone && Control is { Jump: false, IsGrounded: true })
                 {
                     Control.Jump = true;
                 }
@@ -153,6 +157,32 @@ namespace DreamersInc.Global
             }).Run();
         }
 
+        private void OnStyleModPress(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+                command.StyleMod = true;
+
+            }).Run();
+        }
+
+        private void OnStyleModRelease(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+                command.StyleMod = false;
+
+            }).Run();
+        }
+        void ButtonHelded(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+                command.HeldButton = true;
+
+            }).Run();
+                
+        }
         void OnPlayerToggleWalkSprint(InputAction.CallbackContext obj)
         {
             //Todo add button press change speed 

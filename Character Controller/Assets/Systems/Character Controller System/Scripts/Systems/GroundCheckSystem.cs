@@ -1,5 +1,4 @@
 using DreamersInc;
-using DreamersInc.CharacterControllerSys.SurfaceContact;
 using MotionSystem.Components;
 using MotionSystem.Systems;
 using Unity.Burst;
@@ -91,20 +90,20 @@ namespace MotionSystem
             [ReadOnly] public CollisionWorld World;
             [ReadOnly] public int HashKey;
 
-            private void Execute(ref LocalTransform transform, ref CharControllerE control, ref SurfaceContactComponent surface)
+            private void Execute(ref LocalTransform transform, ref CharControllerE control)
             {
                 if (control.SkipGroundCheck)
                 {
                     return;
                 }
-                control.IsGrounded = GroundCheck(transform, control, HashKey,ref surface) ||
-                                     GroundCheck(transform, control, HashKey + 1,ref surface) ||
-                                     GroundCheck(transform, control, HashKey - 1,ref surface) ||
-                                     GroundCheck(transform, control, HashKey + QuadrantYMultiplier,ref surface) ||
-                                     GroundCheck(transform, control, HashKey - QuadrantYMultiplier,ref surface);
+                control.IsGrounded = GroundCheck(transform, control, HashKey) ||
+                                     GroundCheck(transform, control, HashKey + 1) ||
+                                     GroundCheck(transform, control, HashKey - 1) ||
+                                     GroundCheck(transform, control, HashKey + QuadrantYMultiplier) ||
+                                     GroundCheck(transform, control, HashKey - QuadrantYMultiplier);
             }
 
-            private bool GroundCheck(LocalTransform transform, CharControllerE control, int hashKeyIndex, ref SurfaceContactComponent surface)
+            private bool GroundCheck(LocalTransform transform, CharControllerE control, int hashKeyIndex)
             {
                 if (hashKeyIndex != GetPositionHashMapKey((int3)transform.Position)) return false;
                 var groundRays = new NativeList<RaycastInput>(Allocator.Temp);

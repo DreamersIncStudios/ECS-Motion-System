@@ -47,12 +47,12 @@ namespace DreamerInc.PhysicsSpawnSystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            CreateMeshCollider(state);
-            CreateCapsuleCollider(state);
-            CreateBoxCollider(state);
+            CreateMeshCollider(ref state);
+            CreateCapsuleCollider(ref state);
+            CreateBoxCollider(ref state);
         }
 
-        private void CreateMeshCollider(SystemState state)
+        private void CreateMeshCollider(ref SystemState state)
         {
             foreach (var entity in SystemAPI.QueryBuilder().WithAll<Child>().WithAll<MeshColliderTag>()
                          .WithNone<ColliderCleanup>()
@@ -76,7 +76,7 @@ namespace DreamerInc.PhysicsSpawnSystem
             }
         }
 
-        private void CreateBoxCollider(SystemState state)
+        private void CreateBoxCollider(ref SystemState state)
         {
             foreach (var entity in SystemAPI.QueryBuilder().WithAll<BoxColliderData>()
                          .WithNone<ColliderCleanup>()
@@ -101,7 +101,7 @@ namespace DreamerInc.PhysicsSpawnSystem
 
             }
         }
-        private void CreateCapsuleCollider(SystemState state)
+        private void CreateCapsuleCollider(ref SystemState state)
         {
             foreach (var entity in SystemAPI.QueryBuilder().WithAll<CapsuleColliderData>()
                          .WithNone<ColliderCleanup>()

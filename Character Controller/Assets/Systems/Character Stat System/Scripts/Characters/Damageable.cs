@@ -6,12 +6,14 @@ using UnityEngine;
 
 namespace Stats
 {
+    [RequireComponent(typeof(Collider))]
     public class Damageable : MonoBehaviour, IDamageable
     {
 
         public Entity SelfEntityRef { get; private set; }
         Stat Melee_Defense;
         Stat Magic_Defense;
+        public Collider GetCollider => GetComponent<Collider>();
         public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)Magic_Defense.AdjustBaseValue / 100.0f)); } }
         public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)Melee_Defense.AdjustBaseValue / 100.0f)); } }
 

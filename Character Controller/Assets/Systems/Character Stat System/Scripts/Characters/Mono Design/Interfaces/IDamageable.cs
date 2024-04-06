@@ -9,6 +9,7 @@ namespace DreamersInc.DamageSystem.Interfaces
     public interface IDamageable
     {
         Entity SelfEntityRef { get; }
+        public Collider GetCollider { get; }
         void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
         void ReactToHit(float impact, Vector3 Test, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , Element element = Element.None);
 

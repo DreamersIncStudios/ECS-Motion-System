@@ -14,6 +14,8 @@ namespace DreamersInc.ComboSystem
         public bool HasMagicSpell => MagicInputQueue.Count > 0;
         public bool QueueIsEmpty => InputQueue.Count == 0;
         public bool WeaponIsEquipped;
+        public bool StyleMod;
+        public bool HeldButton;
         public AnimatorStateInfo StateInfo { get; set; }
         public float currentStateExitTime;
         public bool BareHands;
