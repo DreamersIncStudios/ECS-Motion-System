@@ -8,7 +8,4 @@ namespace MotionSystem
         public Transform transform;
     }
 
-
-   
-
 }

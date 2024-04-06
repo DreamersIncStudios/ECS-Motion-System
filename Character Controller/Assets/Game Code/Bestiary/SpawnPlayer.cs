@@ -72,7 +72,7 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponent<StoreWeapon>(entity);
                 AnimationSpeedLink link = new AnimationSpeedLink()
                 {
-                    link = go.GetComponent<AnimationSpeed>()
+                    Link = go.GetComponent<AnimationSpeed>()
                 };
                 manager.AddComponentObject(entity, link);
             }

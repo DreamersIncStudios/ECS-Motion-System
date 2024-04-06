@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         GM= GameMaster.Instance;
-        GM.CreateGMEntity();
         BestiaryDB.SpawnPlayer(2,true);
         BestiaryDB.SpawnNPC(0, new Vector3(0,1,25));
 

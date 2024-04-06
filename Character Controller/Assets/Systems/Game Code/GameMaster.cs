@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;  
-using UnityEngine.Events;
 using Core;
 using Unity.Entities;
-using Unity.Transforms;
-using DreamersInc;
 
 
 namespace DreamersIncStudios.MoonShot
@@ -32,8 +29,7 @@ namespace DreamersIncStudios.MoonShot
 
         Language GetLanguage;
         [SerializeField]
-        public ControllerScheme controller;
-        public ControllerScheme Controller { get; private set; }
+
         private void Awake()
         {
             if (!Instance)
@@ -53,13 +49,11 @@ namespace DreamersIncStudios.MoonShot
 #if !UNITY_EDITOR
             Application.targetFrameRate = 360;
 #endif
-            Controller = controller; // TODO contextual Change value ;
         }
 
         public uint DayNumber  = 0;
         private void Start()
         {
-
         }
         public bool CreateMenuMain => State == GameStates.TitleScreen && Input.GetButtonUp("Submit");
 
@@ -112,25 +106,8 @@ namespace DreamersIncStudios.MoonShot
             QualitySettings.vSyncCount = Setting.VsyncCount;
 
         }
-        public bool GMEntityCreated { get {
-                EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                return manager.CreateEntityQuery((typeof(ControllerInfo))).TryGetSingletonEntity<ControllerInfo>(out _);
-            } }
-        public void CreateGMEntity()
-        {
 
-            if (!GMEntityCreated)
-            {
-                EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                var data = new ControllerInfo();
-                data.setup(controller);
-                Entity gm = manager.CreateSingleton(data);
-#if UNITY_EDITOR
-                manager.SetName(gm, "Game Master");
-#endif
-                manager.CreateEntityQuery((typeof(ControllerInfo))).GetSingleton<ControllerInfo>().setup(controller);
-            }
-        }
+        
 
     }
     public enum GameStates {

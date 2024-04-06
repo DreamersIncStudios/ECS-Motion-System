@@ -1,14 +1,12 @@
+using System;
 using UnityEngine;
 using Unity.Entities;
-using Unity.Mathematics;
 using System.Collections.Generic;
-using Unity.Transforms;
-using DG.Tweening;
 using AISenses.VisionSystems.Combat;
-using Stats.Entities;
 using DreamersInc.CombatSystem;
-using Dreamers.InventorySystem;
-using MotionSystem.Components;
+using DreamersInc.InputSystems;
+using UnityEngine.InputSystem;
+
 // ReSharper disable Unity.BurstLoadingManagedType
 
 namespace DreamersInc.ComboSystem
@@ -17,61 +15,81 @@ namespace DreamersInc.ComboSystem
     {
         private void AnimationTriggering()
         {
-            Entities.WithStructuralChanges().WithoutBurst().ForEach((Entity entity, Animator Anim, Rigidbody RB, Command handler, ref AttackTarget attackTarget) =>
+            Entities.WithStructuralChanges().WithoutBurst().ForEach((Entity entity, Animator anim, Rigidbody rb, Command handler, ref AttackTarget attackTarget) =>
             {
-                var transform = Anim.transform;
-                handler.StateInfo = Anim.GetCurrentAnimatorStateInfo(0);
+                var transform = anim.transform;
+                handler.StateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
                 handler.InputQueue ??= new Queue<AnimationTrigger>();
                 if (handler.TakeInput)
                 {
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
-                    if (!Anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
+                    if (!anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
                     {
-                        switch (temp.attackType)
+                        switch (temp.AttackType)
                         {
                             case AttackType.LightAttack:
-                                Anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                                anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
                                 EntityManager.AddComponent<DrawWeapon>(entity);
                                 break;
                             case AttackType.HeavyAttack:
-                                Anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                                anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
                                 EntityManager.AddComponent<DrawWeapon>(entity);
                                 break;
                             case AttackType.SpecialAttack:
-                                Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                                anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
                                 EntityManager.AddComponent<DrawWeapon>(entity);
                                 break;
                             case AttackType.Dodge:
-                                Anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1",
+                                anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1",
                                     temp.TransitionDuration, 0, 0, 0);
 
                                 break;
+                            case AttackType.none:
+                                break;
+                            case AttackType.ChargedLightAttack:
+                                break;
+                            case AttackType.ChargedHeavyAttack:
+                                break;
+                            case AttackType.Projectile:
+                                break;
+                            case AttackType.ChargedProjectile:
+                                break;
+                            case AttackType.Grounded:
+                                break;
+                            case AttackType.Targeted_Locomation:
+                                break;
+                            case AttackType.Locomation_Grounded_Weapon:
+                                break;
+                            case AttackType.Defend:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
                         }
 
                     }
                     else
                     {
-                        if (temp.attackType != AttackType.Defend && temp.attackType != AttackType.Dodge)
+                        if (temp.AttackType != AttackType.Defend && temp.AttackType != AttackType.Dodge)
                         {
-                            Anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndofCurrentAnim);
+                            anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
 
                         }
-                        else if (temp.attackType == AttackType.Dodge)
+                        else if (temp.AttackType == AttackType.Dodge)
                         {
-                            Anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1", temp.TransitionDuration, 0,
+                            anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1", temp.TransitionDuration, 0,
                                 0, 0);
                         }
                         else
                         {
-                            if (!handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Dodge") && !handler.StateInfo.IsTag("Exit"))
+                            if (!anim.IsInTransition(0)&&!handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Dodge") && !handler.StateInfo.IsTag("Exit"))
                             {
-                                Anim.CrossFade("Enter Defence", .15f);
-                                Anim.SetBool(Block,true);
+                                anim.CrossFade("Enter Defence", .15f);
+                                anim.SetBool(Block,true);
                             } else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
                             { 
-                                Anim.CrossFade("Enter Defence", .15f);
-                                Anim.SetBool(Block,true);
+                                anim.CrossFade("Enter Defence", .15f);
+                                anim.SetBool(Block,true);
 
                             }
                         }
@@ -80,22 +98,24 @@ namespace DreamersInc.ComboSystem
 
                     if (!attackTarget.TargetInRange)
                     {
-                        Vector3 dir = ((Vector3)attackTarget.AttackTargetLocation - Anim.transform.position).normalized;
-                        RB.velocity = new Vector3(dir.x * RB.velocity.x, dir.y * RB.velocity.y, dir.z * RB.velocity.z);
+                        Vector3 dir = ((Vector3)attackTarget.AttackTargetLocation - anim.transform.position).normalized;
+                        var linearVelocity = rb.linearVelocity;
+                        linearVelocity = new Vector3(dir.x * linearVelocity.x, dir.y * linearVelocity.y, dir.z * linearVelocity.z);
+                        rb.linearVelocity = linearVelocity;
                     }
                     // this need to move to animation event
                 }
-                if (!Anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne") && !handler.StateInfo.IsTag("Defend"))
+                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne") && !handler.StateInfo.IsTag("Defend"))
                 {
-                    if (Anim.GetBool("Weapon In Hand") && !handler.AlwaysDrawnWeapon)
+                    if (anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
                     {
                         if (!handler.BareHands)
-                            Anim.CrossFade("Locomation_Grounded_Weapon0", .25f, 0, .25f);
+                            anim.CrossFade("Locomotion_Grounded_Weapon0", .25f, 0, .25f);
                         else
-                            Anim.CrossFade("Grounded0", .25f, 0, .25f);
+                            anim.CrossFade("Grounded0", .25f, 0, .25f);
                     }
                     else
-                        Anim.CrossFade("Grounded0", .25f, 0, .25f);
+                        anim.CrossFade("Grounded0", .25f, 0, .25f);
 
                 }
                 if (handler.StateInfo.IsName("Unequip"))

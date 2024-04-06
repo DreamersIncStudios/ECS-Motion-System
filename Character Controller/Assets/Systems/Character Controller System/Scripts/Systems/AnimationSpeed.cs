@@ -1,49 +1,47 @@
 using MotionSystem.Components;
-using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+// ReSharper disable Unity.BurstLoadingManagedType
 
 namespace MotionSystem.Systems
 {
     public class AnimationSpeed : MonoBehaviour
     {
         public bool IsGrounded { get; set; }
-        Animator m_Animator;
-        Rigidbody m_Rigidbody;
-        public float m_MoveSpeedMultiplier { get; set; }
+        private Animator animator;
+        private Rigidbody rb;
+        public float moveSpeedMultiplier { get; set; }
 
         public void Start()
         {
-            m_Animator = GetComponent<Animator>();
-            m_Rigidbody = GetComponent<Rigidbody>();
+            animator = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody>();
         }
         public void OnAnimatorMove()
         {
             // we implement this function to override the default root motion.
             // this allows us to modify the positional speed before it's applied.
             if (!IsGrounded || !(Time.deltaTime > 0)) return;
-            var v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
+            var v = (animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
 
             // we preserve the existing y part of the current velocity.
-            v.y = m_Rigidbody.velocity.y;
-            m_Rigidbody.velocity = v;
+            v.y = rb.linearVelocity.y;
+            rb.linearVelocity = v;
         }
 
 
     }
     public class AnimationSpeedLink : IComponentData {
-        public AnimationSpeed link;
+        public AnimationSpeed Link;
     }
 
     public partial class AnimationSync : SystemBase
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach((AnimationSpeedLink Anim, ref CharControllerE control) => {
-               Anim.link.IsGrounded = control.IsGrounded;
-                Anim.link.m_MoveSpeedMultiplier = control.m_MoveSpeedMultiplier;
+            Entities.ForEach((AnimationSpeedLink animLink, ref CharControllerE control) => {
+                animLink.Link.IsGrounded = control.IsGrounded;
+                animLink.Link.moveSpeedMultiplier = control.m_MoveSpeedMultiplier;
             
             }).WithoutBurst().Run();
         }

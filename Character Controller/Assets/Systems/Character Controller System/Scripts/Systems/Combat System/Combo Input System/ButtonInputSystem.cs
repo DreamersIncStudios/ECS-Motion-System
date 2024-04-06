@@ -1,272 +1,308 @@
-
-using DreamersInc;
 using DreamersInc.ComboSystem;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+// ReSharper disable Unity.BurstLoadingManagedType
 
-[UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
-public partial class ButtonInputSystem : SystemBase
+namespace DreamersInc.InputSystems
 {
-    private PlayerControls playerControls;
-
-    protected override void OnCreate()
+    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+    public partial class ButtonInputSystem : SystemBase
     {
-        RequireForUpdate<Player_Control>();
-        RequireForUpdate<ControllerInfo>();
-        playerControls = new PlayerControls();
-    }
-    
-    protected override void OnStartRunning()
-    {
-        block = false;
-        playerControls.Enable();
-        playerControls.PlayerController.LightAttack.performed += OnPlayerLightAttack;
-        playerControls.PlayerController.HeavyAttack.performed += OnPlayerHeavyAttack;
-        playerControls.PlayerController.Projectile.performed += OnPlayerShoot;
-        playerControls.PlayerController.Dodge.performed += OnPlayerDodge;
-        playerControls.PlayerController.Block.performed+= OnPlayerBlock;
-        playerControls.PlayerController.OpenCadMenu.performed += ToggleMagicInput;
-        playerControls.MagicController.OpenCadMenu.performed += ToggleMagicInput;
-        playerControls.MagicController.LightAttack.performed += OnXMagicAttack;
-        playerControls.MagicController.HeavyAttack.performed += OnYMagicAttack;
-        playerControls.MagicController.Jump.performed += OnAMagicAttack;
-        playerControls.MagicController.Dodge.performed += OnBMagicAttack;
-
-
-    }
-
-    protected override void OnStopRunning()
-    {
-        playerControls.Disable();
-        playerControls.PlayerController.LightAttack.performed -= OnPlayerLightAttack;
-        playerControls.PlayerController.HeavyAttack.performed -= OnPlayerHeavyAttack;
-        playerControls.PlayerController.Projectile.performed -= OnPlayerShoot;
-        playerControls.PlayerController.Dodge.performed -= OnPlayerDodge;
-        playerControls.PlayerController.Block.performed-= OnPlayerBlock;
-        playerControls.PlayerController.OpenCadMenu.performed -= ToggleMagicInput;
-        playerControls.MagicController.OpenCadMenu.performed -= ToggleMagicInput;
-        playerControls.MagicController.LightAttack.performed -= OnXMagicAttack;
-        playerControls.MagicController.HeavyAttack.performed -= OnYMagicAttack;
-        playerControls.MagicController.Jump.performed -= OnAMagicAttack;
-        playerControls.MagicController.Dodge.performed -= OnBMagicAttack;
-
-
-    }
-
-    private void OnPlayerLightAttack(InputAction.CallbackContext obj)
-    {
-
-        Entities.WithoutBurst().ForEach(
-            (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control playerControls) =>
+        private PlayerControls playerControls;
+        
+        private void CreateInput()
+        {
+            playerControls = new PlayerControls();
+            EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var data = new InputSingleton()
             {
-                if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
-                foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
+                ControllerInput= playerControls
+            };
+
+            Entity gm = manager.CreateSingleton(data);
+#if UNITY_EDITOR
+            manager.SetName(gm, "Input");
+#endif
+             
+        }
+        
+        protected override void OnCreate()
+        {
+            RequireForUpdate<Player_Control>();
+           CreateInput();
+        }
+
+        protected override void OnStartRunning()
+        {
+            block = false;
+            playerControls.Enable();
+            playerControls.PlayerController.LightAttack.performed += OnPlayerLightAttack;
+            playerControls.PlayerController.HeavyAttack.performed += OnPlayerHeavyAttack;
+            playerControls.PlayerController.Projectile.performed += OnPlayerShoot;
+            playerControls.PlayerController.Dodge.performed += OnPlayerDodge;
+            playerControls.PlayerController.Block.performed += OnPlayerBlock;
+            playerControls.PlayerController.OpenCadMenu.performed += ToggleMagicInput;
+            playerControls.MagicController.OpenCadMenu.performed += ToggleMagicInput;
+            playerControls.MagicController.LightAttack.performed += OnXMagicAttack;
+            playerControls.MagicController.HeavyAttack.performed += OnYMagicAttack;
+            playerControls.MagicController.Jump.performed += OnAMagicAttack;
+            playerControls.MagicController.Dodge.performed += OnBMagicAttack;
+
+            playerControls.PlayerController.Enable();
+            playerControls.MagicController.Disable();
+        }
+
+        protected override void OnStopRunning()
+        {
+            playerControls.Disable();
+            playerControls.PlayerController.LightAttack.performed -= OnPlayerLightAttack;
+            playerControls.PlayerController.HeavyAttack.performed -= OnPlayerHeavyAttack;
+            playerControls.PlayerController.Projectile.performed -= OnPlayerShoot;
+            playerControls.PlayerController.Dodge.performed -= OnPlayerDodge;
+            playerControls.PlayerController.Block.performed -= OnPlayerBlock;
+            playerControls.PlayerController.OpenCadMenu.performed -= ToggleMagicInput;
+            playerControls.MagicController.OpenCadMenu.performed -= ToggleMagicInput;
+            playerControls.MagicController.LightAttack.performed -= OnXMagicAttack;
+            playerControls.MagicController.HeavyAttack.performed -= OnYMagicAttack;
+            playerControls.MagicController.Jump.performed -= OnAMagicAttack;
+            playerControls.MagicController.Dodge.performed -= OnBMagicAttack;
+
+
+        }
+
+        private void OnPlayerLightAttack(InputAction.CallbackContext obj)
+        {
+
+            Entities.WithoutBurst().ForEach(
+                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control controls) =>
                 {
-                    foreach (var comboOption in comboTest.ComboList)
+                    if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
+                    foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
                     {
-                        if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
+                        foreach (var comboOption in comboTest.ComboList)
                         {
-                            handler.currentStateExitTime = comboOption.AnimationEndTime;
-                            if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
-                            var trigger = comboOption.Trigger;
-                            if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
-                            if (trigger.attackType == AttackType.LightAttack) handler.InputQueue.Enqueue(trigger);
+                            if (handler.StateInfo.IsName(comboOption.CurrentStateName))
+                            {
+                                handler.currentStateExitTime = comboOption.AnimationEndTime;
+                                if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
+                                var trigger = comboOption.Trigger;
+                                if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
+                                if (trigger.AttackType == AttackType.LightAttack) handler.InputQueue.Enqueue(trigger);
+                            }
                         }
                     }
-                }
-            }).Run();
+                }).Run();
 
-    }
+        }
 
-    private void OnPlayerHeavyAttack(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Animator anim, PlayerComboComponent comboList, Command handler,in Player_Control playerControls) =>
+        private void OnPlayerHeavyAttack(InputAction.CallbackContext obj)
         {
-            if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
-            foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
-            {
-                foreach (var comboOption in comboTest.ComboList)
+            Entities.WithoutBurst().ForEach(
+                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control controls) =>
                 {
-                    if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
+                    if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
+                    foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
                     {
-                        handler.currentStateExitTime = comboOption.AnimationEndTime;
-                        if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
-                        var trigger = comboOption.Trigger;
-                        if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
-                        if (trigger.attackType == AttackType.HeavyAttack) handler.InputQueue.Enqueue(trigger);
+                        foreach (var comboOption in comboTest.ComboList)
+                        {
+                            if (handler.StateInfo.IsName(comboOption.CurrentStateName))
+                            {
+                                handler.currentStateExitTime = comboOption.AnimationEndTime;
+                                if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
+                                var trigger = comboOption.Trigger;
+                                if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
+                                if (trigger.AttackType == AttackType.HeavyAttack) handler.InputQueue.Enqueue(trigger);
+                            }
+                        }
                     }
-                }
-            }
-        }).Run();
-    }
-    private void OnPlayerShoot(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Animator anim, PlayerComboComponent comboList, Command handler,in Player_Control playerControls) =>
-        {
-            if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
-            foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
-            {
-                foreach (var comboOption in comboTest.ComboList)
-                {
-                    if (handler.StateInfo.IsName(comboOption.CurrentStateName.ToString()))
-                    {
-                        handler.currentStateExitTime = comboOption.AnimationEndTime;
-                        if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
-                        var trigger = comboOption.Trigger;
-                        if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
-                        if (trigger.attackType == AttackType.Projectile) handler.InputQueue.Enqueue(trigger);
-                    }
-                }
-            }
-        }).Run();
-    }
-    private void OnPlayerDodge(InputAction.CallbackContext obj)
-    {
-        var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
+                }).Run();
+        }
 
-        Entities.WithoutBurst().ForEach((Animator anim, PlayerComboComponent comboList, Command handler,in Player_Control playerControls) =>
+        private void OnPlayerShoot(InputAction.CallbackContext obj)
         {
-            if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
-            if (dir.y > .1)
-            {
-                handler.InputQueue.Enqueue(new AnimationTrigger()
+            Entities.WithoutBurst().ForEach(
+                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control controls) =>
                 {
-                    triggerAnimIndex = 0,
-                    attackType = AttackType.Dodge,
-                    TransitionDuration = .25f,
-                });
+                    if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
+                    foreach (ComboSingle comboTest in comboList.Combo.ComboLists)
+                    {
+                        foreach (var comboOption in comboTest.ComboList)
+                        {
+                            if (handler.StateInfo.IsName(comboOption.CurrentStateName))
+                            {
+                                handler.currentStateExitTime = comboOption.AnimationEndTime;
+                                if (!comboOption.InputAllowed(handler.StateInfo.normalizedTime)) continue;
+                                var trigger = comboOption.Trigger;
+                                if (!comboTest.Unlocked || !handler.QueueIsEmpty) continue;
+                                if (trigger.AttackType == AttackType.Projectile) handler.InputQueue.Enqueue(trigger);
+                            }
+                        }
+                    }
+                }).Run();
+        }
+
+        private void OnPlayerDodge(InputAction.CallbackContext obj)
+        {
+            var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
+
+            Entities.WithoutBurst().ForEach(
+                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control controls) =>
+                {
+                    if (anim.IsInTransition(0) || comboList.Combo.ShowMovesPanel) return;
+                    if (dir.y > .1)
+                    {
+                        handler.InputQueue.Enqueue(new AnimationTrigger()
+                        {
+                            triggerAnimIndex = 0,
+                            AttackType = AttackType.Dodge,
+                            TransitionDuration = .25f,
+                        });
+                    }
+                    else
+                    {
+                        handler.InputQueue.Enqueue(new AnimationTrigger()
+                        {
+                            triggerAnimIndex = 1,
+                            AttackType = AttackType.Dodge,
+                            TransitionDuration = 0.25f,
+
+                        });
+                    }
+                }).Run();
+        }
+
+        private bool block;
+
+        private void OnPlayerBlock(InputAction.CallbackContext obj)
+        {
+            block = !block;
+            switchBlock = true;
+
+        }
+
+        private bool casting;
+        private static readonly int Block = Animator.StringToHash("Block");
+
+        void ToggleMagicInput(InputAction.CallbackContext obj)
+        {
+            Debug.Log("I casted light magic");
+            if (casting)
+            {
+                casting = false;
+                playerControls.PlayerController.Enable();
+                Entities.WithoutBurst()
+                    .ForEach(( Command handler, ref Player_Control tag) =>
+                    {
+                        handler.InputTimer = 0.0f;
+                    }).Run();
+                DisableSlowMoMode();
             }
             else
             {
-                handler.InputQueue.Enqueue(new AnimationTrigger()
-                {
-                    triggerAnimIndex = 1,
-                    attackType = AttackType.Dodge,
-                    TransitionDuration = 0.25f,
-
-                });
-            }
-        }).Run();
-    }
-
-    private bool block;
-    private void OnPlayerBlock(InputAction.CallbackContext obj)
-    {
-        block = !block;
-
-
-    }
-
-    private bool casting;
-    private static readonly int Block = Animator.StringToHash("Block");
-
-    void ToggleMagicInput(InputAction.CallbackContext obj)
-    {
-        Debug.Log("I casted light magic");
-        if (casting)
-        {
-            casting = false;
-            playerControls.PlayerController.Enable();
-            playerControls.MagicController.Disable();
-            Entities.WithoutBurst().ForEach((PlayerComboComponent comboList, Command handler, ref Player_Control tag) =>
-            {
-                handler.InputTimer = 0.0f;
-            }).Run();
-            DisableSlowMoMode();
-        }
-        else
-        {
-            casting = true;
-            playerControls.PlayerController.Disable();
-            playerControls.MagicController.Enable();
-            EnableSlowMoMode();
-            Entities.WithoutBurst().ForEach((PlayerComboComponent comboList, Command handler, ref Player_Control tag) =>
-            {
-                handler.InputTimer = 5.5f ; //Todo make this value based on Stats
-            }).Run();
-        }
-    }
-
-    void OnXMagicAttack(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Command handler,
-            ref Player_Control tag) =>
-        {
-            handler.MagicInputQueue.Enqueue("X");
-        }).Run();
-    }
-    
-    void OnYMagicAttack(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Command handler,
-            ref Player_Control tag) =>
-        {
-            handler.MagicInputQueue.Enqueue("Y");
-        }).Run();
-    }
-    
-    void OnBMagicAttack(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Command handler,
-            ref Player_Control tag) =>
-        {
-            handler.MagicInputQueue.Enqueue("B");
-        }).Run();
-    }
-    
-    void OnAMagicAttack(InputAction.CallbackContext obj)
-    {
-        Entities.WithoutBurst().ForEach((Command handler,
-            ref Player_Control tag) =>
-        {
-            handler.MagicInputQueue.Enqueue("A");
-        }).Run();
-    }
-
-    protected override void OnUpdate()
-    {
-        if (block)
-        {
-            Entities.WithoutBurst().ForEach(
-                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control playerControls) =>
-                {
-                    handler.InputQueue.Enqueue(new AnimationTrigger()
+                casting = true;
+                playerControls.PlayerController.Disable();
+                playerControls.MagicController.Enable();
+                EnableSlowMoMode();
+                Entities.WithoutBurst().ForEach(
+                    (Command handler, ref Player_Control tag) =>
                     {
-                        attackType = AttackType.Defend,
-
-                    });
-                }).Run();
+                        handler.InputTimer = 5.5f; //Todo make this value based on Stats
+                    }).Run();
+            }
         }
-        else
+
+        void OnXMagicAttack(InputAction.CallbackContext obj)
         {
-            Entities.WithoutBurst().ForEach(
-                (Animator anim, PlayerComboComponent comboList, Command handler, in Player_Control playerControls) =>
-                {
-                    anim.SetBool(Block,false);
-                    handler.InputQueue.Clear();
-                }).Run(); 
+            Entities.WithoutBurst().ForEach((Command handler,
+                ref Player_Control tag) =>
+            {
+                handler.MagicInputQueue.Enqueue("X");
+            }).Run();
         }
-    }
-    private void EnableSlowMoMode()
-    {
-        Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach((Entity entity, Animator animC ) => {
-            //Todo add range limit;
-            EntityManager.AddComponentData(entity, new AnimationSpeedMod() {
-                SpeedValue = .15f
-            });
+
+        void OnYMagicAttack(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().ForEach((Command handler,
+                ref Player_Control tag) =>
+            {
+                handler.MagicInputQueue.Enqueue("Y");
+            }).Run();
+        }
+
+        void OnBMagicAttack(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().ForEach((Command handler,
+                ref Player_Control tag) =>
+            {
+                handler.MagicInputQueue.Enqueue("B");
+            }).Run();
+        }
+
+        void OnAMagicAttack(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().ForEach((Command handler,
+                ref Player_Control tag) =>
+            {
+                handler.MagicInputQueue.Enqueue("A");
+            }).Run();
+        }
+
+        private bool switchBlock;
+
+        protected override void OnUpdate()
+        {
+            if (block)
+            {
+                Entities.WithoutBurst().ForEach(
+                    (Animator anim, Command handler,
+                        in Player_Control controls) =>
+                    {
+                        anim.SetBool(Block, true);
+
+                        handler.InputQueue.Enqueue(new AnimationTrigger()
+                        {
+                            AttackType = AttackType.Defend,
+
+                        });
+                    }).Run();
+            }
+            else if (switchBlock)
+            {
+                Entities.WithoutBurst().ForEach(
+                    (Animator anim, Command handler,
+                        in Player_Control controls) =>
+                    {
+                        anim.SetBool(Block, false);
+                        handler.InputQueue.Clear();
+                    }).Run();
+                switchBlock = false;
+
+            }
+        }
 
 
-        }).Run();
+        private void EnableSlowMoMode()
+        {
+            Entities.WithoutBurst().WithStructuralChanges().WithNone<AnimationSpeedMod>().ForEach(
+                (Entity entity, in Animator animC) =>
+                {
+                    //Todo add range limit;
+                    EntityManager.AddComponentData(entity, new AnimationSpeedMod()
+                    {
+                        SpeedValue = .15f
+                    });
 
-    }
 
-    private void DisableSlowMoMode()
-    {
-        Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach((Entity entity, Animator animC) => {
-            EntityManager.RemoveComponent<AnimationSpeedMod>(entity);
+                }).Run();
 
-        }).Run();
+        }
 
+        private void DisableSlowMoMode()
+        {
+            Entities.WithoutBurst().WithStructuralChanges().WithAll<AnimationSpeedMod>().ForEach(
+                (Entity entity, in Animator animC) => { EntityManager.RemoveComponent<AnimationSpeedMod>(entity); }).Run();
+
+        }
     }
 }

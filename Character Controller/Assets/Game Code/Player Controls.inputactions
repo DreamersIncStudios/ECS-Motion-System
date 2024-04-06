@@ -65,7 +65,7 @@
                     "id": "8bdcea19-91bb-4502-bcbd-7a97b678144b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -75,6 +75,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Close Cad Menu",
+                    "type": "Button",
+                    "id": "d56ce35c-57fd-424d-8493-69b1126feece",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": true
                 },
                 {
@@ -277,7 +286,7 @@
                     "name": "",
                     "id": "320ef8c6-b240-49c8-9fd1-ff2a1483d0da",
                     "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Open Cad Menu",
@@ -292,6 +301,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause Game ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5174cbe-0fe0-46b3-89d7-bb03d1dc923c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Cad Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -344,7 +364,7 @@
                     "id": "9766ee41-c6b1-4497-ad7f-0e0fb39f94f3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": true
                 },
                 {
@@ -382,6 +402,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Close Cad Menu",
+                    "type": "Button",
+                    "id": "17fa57ba-e2d5-420a-85b4-df611e05cfc0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -459,6 +488,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Open Cad Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "225d5f2d-e6ad-4085-b41d-54dccd3f9f1a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Cad Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
