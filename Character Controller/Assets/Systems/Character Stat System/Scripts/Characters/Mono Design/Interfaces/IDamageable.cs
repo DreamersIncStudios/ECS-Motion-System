@@ -10,8 +10,8 @@ namespace DreamersInc.DamageSystem.Interfaces
     {
         Entity SelfEntityRef { get; }
         public Collider GetCollider { get; }
-        void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
-        void ReactToHit(float impact, Vector3 Test, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , Element element = Element.None);
+        void TakeDamage(int amount, TypeOfDamage typeOf, Element element);
+        void ReactToHit(float impact, Vector3 hitPosition, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , Element element = Element.None);
 
         void SetData(Entity entity, BaseCharacterComponent character);
     }

@@ -1,27 +1,21 @@
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
 
 namespace DreamerInc.PhysicsSpawnSystem
 {
 
-    public class ColliderSpawn : MonoBehaviour
+    public class SimpleColliderSpawn : MonoBehaviour
     {
         [SerializeField] private Collider col;
 
-        class ColliderAuthorBaker : Baker<ColliderSpawn>
+        class ColliderAuthorBaker : Baker<SimpleColliderSpawn>
         {
-            public override void Bake(ColliderSpawn authoring)
+            public override void Bake(SimpleColliderSpawn authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 switch (authoring.col)
                 {
-                    case MeshCollider:
-                        AddComponent<MeshColliderTag>(entity);
-                        break;
                     case BoxCollider box:
                         AddComponent(entity, new BoxColliderData(box));
                         break;
@@ -33,48 +27,17 @@ namespace DreamerInc.PhysicsSpawnSystem
             }
         }
     }
+    
 
-    public interface IAddMonoBehaviourToEntityOnAnimatorInstantiation
-    {
-    }
-
-    class ColliderInstantiationData : IComponentData
-    {
-        public GameObject ColliderGameObject;
-    }
-
-    partial struct ColliderSystem : ISystem
+    partial struct BasicColliderSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            CreateMeshCollider(ref state);
             CreateCapsuleCollider(ref state);
             CreateBoxCollider(ref state);
         }
 
-        private void CreateMeshCollider(ref SystemState state)
-        {
-            foreach (var entity in SystemAPI.QueryBuilder().WithAll<Child>().WithAll<MeshColliderTag>()
-                         .WithNone<ColliderCleanup>()
-                         .Build().ToEntityArray(state.WorldUpdateAllocator))
-            {
-                var childEntity = SystemAPI.GetBuffer<Child>(entity)[1].Value;
-                var materialMeshInfo = SystemAPI.GetComponent<MaterialMeshInfo>(childEntity);
-                var render = World.DefaultGameObjectInjectionWorld.EntityManager
-                    .GetSharedComponentManaged<RenderMeshArray>(childEntity);
-
-                var entityTransform = SystemAPI.GetComponent<LocalToWorld>(entity);
-                var spawnedCollider = new GameObject().AddComponent<MeshCollider>();
-                spawnedCollider.sharedMesh = render.GetMesh(materialMeshInfo);
-                SetColliderTransform(spawnedCollider.transform, entityTransform);
-                state.EntityManager.AddComponentObject(entity, spawnedCollider);
-
-                state.EntityManager.AddComponentData(entity, new ColliderCleanup()
-                {
-                    DestroyThisCollider = spawnedCollider.GetComponent<Collider>()
-                });
-            }
-        }
+        
 
         private void CreateBoxCollider(ref SystemState state)
         {

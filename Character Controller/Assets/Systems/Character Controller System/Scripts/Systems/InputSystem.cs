@@ -157,11 +157,17 @@ namespace DreamersInc.Global
             }).Run();
         }
 
+        public ControllerOptions options;
         private void OnStyleModPress(InputAction.CallbackContext obj)
         {
             Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
             {
+              if(command.StyleModPressHold)
                 command.StyleMod = true;
+              else
+              {
+                  command.StyleMod = !command.StyleMod;
+              }
 
             }).Run();
         }
@@ -170,7 +176,8 @@ namespace DreamersInc.Global
         {
             Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
             {
-                command.StyleMod = false;
+                if(command.StyleModPressHold)
+                    command.StyleMod = false;
 
             }).Run();
         }

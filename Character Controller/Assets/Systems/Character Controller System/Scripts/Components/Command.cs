@@ -15,6 +15,7 @@ namespace DreamersInc.ComboSystem
         public bool QueueIsEmpty => InputQueue.Count == 0;
         public bool WeaponIsEquipped;
         public bool StyleMod;
+        public bool StyleModPressHold;
         public bool HeldButton;
         public AnimatorStateInfo StateInfo { get; set; }
         public float currentStateExitTime;

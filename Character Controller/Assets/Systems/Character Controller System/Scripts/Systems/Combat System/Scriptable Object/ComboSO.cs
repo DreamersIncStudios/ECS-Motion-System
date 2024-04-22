@@ -19,7 +19,7 @@ namespace DreamersInc.ComboSystem
         [FormerlySerializedAs("_comboLists")] [SerializeField]
         List<ComboSingle> comboLists;
 
-        [SerializeField] List<ComboSingle> heavyComboLists;
+        [FormerlySerializedAs("heavyComboLists")] [SerializeField] List<ComboSingle> AltAttackStyleComboList;
 
 
         [HideInInspector]
@@ -28,7 +28,7 @@ namespace DreamersInc.ComboSystem
             return index switch
             {
                 false => comboLists,
-                true => heavyComboLists,
+                true => AltAttackStyleComboList,
             };
         }
     

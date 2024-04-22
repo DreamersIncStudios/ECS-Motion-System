@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 using Unity.Entities;
 using MotionSystem.Components;
 using DreamersStudio.CameraControlSystem;
+using static PrimeTween.Tween;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable Unity.BurstLoadingManagedType
 
@@ -51,8 +52,10 @@ namespace MotionSystem.Systems
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
-                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        if (CameraControl.Instance.TargetGroup.Targets[0].Object  != null)
+                            Rotation(transform, CameraControl.Instance.TargetGroup.Targets[0].Object.position, .35f);
+                        //             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f); 
+
                     }
                 }
 

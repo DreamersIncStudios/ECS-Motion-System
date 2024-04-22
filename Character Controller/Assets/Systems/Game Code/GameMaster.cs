@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;  
+using Unity.Cinemachine;  
 using Core;
+using DreamersInc.InputSystems;
 using Unity.Entities;
 
 
@@ -11,6 +12,7 @@ namespace DreamersIncStudios.MoonShot
     public sealed partial class GameMaster : MonoBehaviour
     { 
         public static GameMaster Instance;
+        public ControllerOptions ControllerOptions;
         public GameStates State { get { return state; } set {
                 if (value != state) {
                     state = value;
@@ -54,6 +56,7 @@ namespace DreamersIncStudios.MoonShot
         public uint DayNumber  = 0;
         private void Start()
         {
+           //ControllerOptions.ChangeControllerSettings(); // move to game play load trigger
         }
         public bool CreateMenuMain => State == GameStates.TitleScreen && Input.GetButtonUp("Submit");
 
@@ -124,7 +127,7 @@ namespace DreamersIncStudios.MoonShot
     public enum Language { English, Spanish }
     [System.Serializable]
     public struct CameraControls {
-        public CinemachineVirtualCameraBase Main, Follow, Target;
+        public CinemachineCamera Main, Follow, Target;
 
     }
     [System.Serializable]

@@ -13,7 +13,6 @@ namespace DreamersInc.ComboSystem
         private static readonly int WeaponHand = Animator.StringToHash("Weapon In Hand");
         private static readonly int Block = Animator.StringToHash("Block");
         private PlayerControls playerControls;
-
         protected override void OnCreate()
         {
             RequireForUpdate<Player_Control>();
