@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 namespace DreamersStudio.CameraControlSystem
 {
     public class CameraControl : MonoBehaviour
     {
-        public CinemachineFreeLook Follow;
-        public CinemachineFreeLook Target;
+        public CinemachineCamera Follow;
+        public CinemachineCamera Target;
         public CinemachineTargetGroup TargetGroup;
         public static CameraControl Instance;
         public EventHandler<OnTargetingChangedEventArgs> OnTargetingChanged;
@@ -20,6 +20,15 @@ namespace DreamersStudio.CameraControlSystem
         public class OnTargetChangedEventArgs : EventArgs
         {
             public GameObject Target;
+
+            public OnTargetChangedEventArgs()
+            {
+            }
+
+            public OnTargetChangedEventArgs(GameObject target)
+            {
+                Target = target;
+            }
         }
 
         private void Awake()
@@ -49,7 +58,7 @@ namespace DreamersStudio.CameraControlSystem
             {
                 if (eventArgs.Target.transform != null)
                 {
-                    TargetGroup.m_Targets[0].target = eventArgs.Target.transform;
+                    TargetGroup.Targets[0].Object = eventArgs.Target.transform;
                 }
 
                 
@@ -59,7 +68,7 @@ namespace DreamersStudio.CameraControlSystem
         private void Update()
         {
             SetBias();
-            if(!TargetGroup.m_Targets[0].target)
+            if(!TargetGroup.Targets[0].Object )
                 OnTargetingChanged(this, new CameraControl.OnTargetingChangedEventArgs { isTargeting = false });
 
         }
@@ -69,7 +78,7 @@ namespace DreamersStudio.CameraControlSystem
                 playerCharacter = GameObject.FindGameObjectWithTag("Player");
                 return;
             }
-            Target.m_Heading.m_Bias = playerCharacter.transform.eulerAngles.y;
+          // Target.m_Heading.m_Bias = playerCharacter.transform.eulerAngles.y;
             
         }
     }

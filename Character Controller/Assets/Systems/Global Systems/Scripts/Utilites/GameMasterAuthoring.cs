@@ -7,17 +7,12 @@ namespace DreamersInc
 {
     public class GameMasterAuthoring : MonoBehaviour
     {
-        public ControllerScheme controller;
-
 
         public class Baking : Baker<GameMasterAuthoring>
         {
             public override void Bake(GameMasterAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                var data = new ControllerInfo();
-                data.setup(authoring.controller);
-                AddComponent(entity, data);
             }
         }
     }

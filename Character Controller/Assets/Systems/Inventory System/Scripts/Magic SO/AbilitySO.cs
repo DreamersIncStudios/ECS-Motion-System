@@ -1,4 +1,4 @@
-#if ENABLE_UNITYEVENTS
+#if UNITY_EDITOR
 using Dreamers.Global;
 #endif
 using System.Collections;

@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;  
-using UnityEngine.Events;
+using Unity.Cinemachine;  
 using Core;
+using DreamersInc.InputSystems;
 using Unity.Entities;
-using Unity.Transforms;
-using DreamersInc;
 
 
 namespace DreamersIncStudios.MoonShot
@@ -14,6 +12,7 @@ namespace DreamersIncStudios.MoonShot
     public sealed partial class GameMaster : MonoBehaviour
     { 
         public static GameMaster Instance;
+        public ControllerOptions ControllerOptions;
         public GameStates State { get { return state; } set {
                 if (value != state) {
                     state = value;
@@ -32,8 +31,7 @@ namespace DreamersIncStudios.MoonShot
 
         Language GetLanguage;
         [SerializeField]
-        public ControllerScheme controller;
-        public ControllerScheme Controller { get; private set; }
+
         private void Awake()
         {
             if (!Instance)
@@ -53,13 +51,12 @@ namespace DreamersIncStudios.MoonShot
 #if !UNITY_EDITOR
             Application.targetFrameRate = 360;
 #endif
-            Controller = controller; // TODO contextual Change value ;
         }
 
         public uint DayNumber  = 0;
         private void Start()
         {
-
+           //ControllerOptions.ChangeControllerSettings(); // move to game play load trigger
         }
         public bool CreateMenuMain => State == GameStates.TitleScreen && Input.GetButtonUp("Submit");
 
@@ -112,25 +109,8 @@ namespace DreamersIncStudios.MoonShot
             QualitySettings.vSyncCount = Setting.VsyncCount;
 
         }
-        public bool GMEntityCreated { get {
-                EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                return manager.CreateEntityQuery((typeof(ControllerInfo))).TryGetSingletonEntity<ControllerInfo>(out _);
-            } }
-        public void CreateGMEntity()
-        {
 
-            if (!GMEntityCreated)
-            {
-                EntityManager manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                var data = new ControllerInfo();
-                data.setup(controller);
-                Entity gm = manager.CreateSingleton(data);
-#if UNITY_EDITOR
-                manager.SetName(gm, "Game Master");
-#endif
-                manager.CreateEntityQuery((typeof(ControllerInfo))).GetSingleton<ControllerInfo>().setup(controller);
-            }
-        }
+        
 
     }
     public enum GameStates {
@@ -147,7 +127,7 @@ namespace DreamersIncStudios.MoonShot
     public enum Language { English, Spanish }
     [System.Serializable]
     public struct CameraControls {
-        public CinemachineVirtualCameraBase Main, Follow, Target;
+        public CinemachineCamera Main, Follow, Target;
 
     }
     [System.Serializable]

@@ -41,10 +41,10 @@ namespace UnityStandardAssets.Cameras
                 // in follow velocity mode, the camera's rotation is aligned towards the object's velocity direction
                 // but only if the object is traveling faster than a given threshold.
 
-                if (targetRigidbody.velocity.magnitude > m_TargetVelocityLowerLimit)
+                if (targetRigidbody.linearVelocity.magnitude > m_TargetVelocityLowerLimit)
                 {
                     // velocity is high enough, so we'll use the target's velocty
-                    targetForward = targetRigidbody.velocity.normalized;
+                    targetForward = targetRigidbody.linearVelocity.normalized;
                     targetUp = Vector3.up;
                 }
                 else

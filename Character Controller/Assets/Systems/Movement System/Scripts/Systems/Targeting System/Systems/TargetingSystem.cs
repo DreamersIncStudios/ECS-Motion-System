@@ -81,10 +81,9 @@ namespace AISenses.VisionSystems
                             temp = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject;
                             if (CameraControl.Instance.OnTargetChanged != null)
                             {
-                                CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
-                                {
-                                    Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
-                                });
+                                CameraControl.Instance.OnTargetChanged?.Invoke(this,
+                                    new CameraControl.OnTargetChangedEventArgs(target: EntityManager
+                                        .GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject));
                              
                             }
                             looking = true;
@@ -129,10 +128,9 @@ namespace AISenses.VisionSystems
                         ChangeDelay = .25f;
                         if (CameraControl.Instance.OnTargetChanged != null)
                         {
-                            CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
-                            {
-                                Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
-                            });
+                            CameraControl.Instance.OnTargetChanged?.Invoke(this,
+                                new CameraControl.OnTargetChangedEventArgs(target: EntityManager
+                                    .GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject));
                         }
 
                     }
@@ -145,10 +143,10 @@ namespace AISenses.VisionSystems
                         ChangeDelay = .25f;
                         if (CameraControl.Instance.OnTargetChanged != null)
                         {
-                            CameraControl.Instance.OnTargetChanged(this, new CameraControl.OnTargetChangedEventArgs
-                            {
-                                Target = EntityManager.GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject
-                            });
+                            CameraControl.Instance.OnTargetChanged?.Invoke(this,
+                                new CameraControl.OnTargetChangedEventArgs(target: EntityManager
+                                    .GetComponentObject<Animator>(sortedBuffer[index].target.entity).gameObject));
+                            
                         }
                     }
                     attackTarget.AttackTargetIndex = index;
@@ -162,7 +160,7 @@ namespace AISenses.VisionSystems
         {
             return (Object)typeof(Object)
                     .GetMethod("FindObjectFromInstanceID", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
-                    .Invoke(null, new object[] { iid });
+                    ?.Invoke(null, new object[] { iid });
 
         }
     }

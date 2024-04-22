@@ -92,7 +92,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public Vector3 Velocity
         {
-            get { return m_RigidBody.velocity; }
+            get { return m_RigidBody.linearVelocity; }
         }
 
         public bool Grounded
@@ -151,7 +151,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 desiredMove.x = desiredMove.x*movementSettings.CurrentTargetSpeed;
                 desiredMove.z = desiredMove.z*movementSettings.CurrentTargetSpeed;
                 desiredMove.y = desiredMove.y*movementSettings.CurrentTargetSpeed;
-                if (m_RigidBody.velocity.sqrMagnitude <
+                if (m_RigidBody.linearVelocity.sqrMagnitude <
                     (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
                 {
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
@@ -160,24 +160,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (m_IsGrounded)
             {
-                m_RigidBody.drag = 5f;
+                m_RigidBody.linearDamping = 5f;
 
                 if (m_Jump)
                 {
-                    m_RigidBody.drag = 0f;
-                    m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0f, m_RigidBody.velocity.z);
+                    m_RigidBody.linearDamping = 0f;
+                    m_RigidBody.linearVelocity = new Vector3(m_RigidBody.linearVelocity.x, 0f, m_RigidBody.linearVelocity.z);
                     m_RigidBody.AddForce(new Vector3(0f, movementSettings.JumpForce, 0f), ForceMode.Impulse);
                     m_Jumping = true;
                 }
 
-                if (!m_Jumping && Mathf.Abs(input.x) < float.Epsilon && Mathf.Abs(input.y) < float.Epsilon && m_RigidBody.velocity.magnitude < 1f)
+                if (!m_Jumping && Mathf.Abs(input.x) < float.Epsilon && Mathf.Abs(input.y) < float.Epsilon && m_RigidBody.linearVelocity.magnitude < 1f)
                 {
                     m_RigidBody.Sleep();
                 }
             }
             else
             {
-                m_RigidBody.drag = 0f;
+                m_RigidBody.linearDamping = 0f;
                 if (m_PreviouslyGrounded && !m_Jumping)
                 {
                     StickToGroundHelper();
@@ -203,7 +203,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 if (Mathf.Abs(Vector3.Angle(hitInfo.normal, Vector3.up)) < 85f)
                 {
-                    m_RigidBody.velocity = Vector3.ProjectOnPlane(m_RigidBody.velocity, hitInfo.normal);
+                    m_RigidBody.linearVelocity = Vector3.ProjectOnPlane(m_RigidBody.linearVelocity, hitInfo.normal);
                 }
             }
         }
@@ -236,7 +236,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 // Rotate the rigidbody velocity to match the new direction that the character is looking
                 Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
-                m_RigidBody.velocity = velRotation*m_RigidBody.velocity;
+                m_RigidBody.linearVelocity = velRotation*m_RigidBody.linearVelocity;
             }
         }
 

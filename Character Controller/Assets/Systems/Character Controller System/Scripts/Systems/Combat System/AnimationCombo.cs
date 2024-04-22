@@ -1,11 +1,11 @@
 using Unity.Mathematics;
-using Unity.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 //using DreamerInc.CombatSystem;
 using Random = UnityEngine.Random;
 using DreamersInc.CharacterControllerSys.VFX;
+using UnityEngine.Serialization;
 
 namespace DreamersInc.ComboSystem
 {
@@ -15,10 +15,12 @@ namespace DreamersInc.ComboSystem
 
     {
         public AttackType CurrentAnim;
-        [SerializeField] uint triggerAnimIndex;
+        [SerializeField] private uint triggerAnimIndex;
         public bool Alternate;
-        public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
-        public string CurrentStateName { get { return CurrentAnim.ToString() + TriggerAnimIndex; } }
+        public uint TriggerAnimIndex { get => triggerAnimIndex;
+            set => triggerAnimIndex = value;
+        }
+        public string CurrentStateName => CurrentAnim.ToString() + TriggerAnimIndex;
         public float2 NormalizedInputTime;
         public float AnimationEndTime;
         public bool InputAllowed(float time) => time > NormalizedInputTime.x && time < NormalizedInputTime.y;
@@ -38,13 +40,15 @@ namespace DreamersInc.ComboSystem
     {
         ComboNames name;
         public ComboNames Name { get { return name; } } // TODO Remove
-        public uint TriggerAnimIndex { get { return triggerAnimIndex; } set { triggerAnimIndex = value; } }
-        public AttackType attackType;
+        public uint TriggerAnimIndex { get => triggerAnimIndex;
+            set => triggerAnimIndex = value;
+        }
+        public AttackType AttackType;
         public uint triggerAnimIndex;
-        public string TriggerString { get { return attackType.ToString() + TriggerAnimIndex; } }
+        public string TriggerString => AttackType.ToString() + TriggerAnimIndex;
         public float TransitionDuration;
         public float TransitionOffset;
-        public float EndofCurrentAnim;
+        [FormerlySerializedAs("EndofCurrentAnim")] public float EndOfCurrentAnim;
         public VFX AttackVFX;
         [Tooltip(" testing Value")]
         public float Chance;
@@ -57,26 +61,26 @@ namespace DreamersInc.ComboSystem
 
         //   float probabilityPercent => Chance / ProbabilityTotalWeight * 100;
         public float ProbabilityRangeFrom { get; set; }
-        float probabilityRangeTo => ProbabilityRangeFrom + Chance;
-        public void SetRangeFrom(float StartPoint)
+        float ProbabilityRangeTo => ProbabilityRangeFrom + Chance;
+        public void SetRangeFrom(float startPoint)
         {
-            ProbabilityRangeFrom = StartPoint;
+            ProbabilityRangeFrom = startPoint;
         }
         public bool Picked(float picked)
         {
-            return picked > ProbabilityRangeFrom && picked < probabilityRangeTo;
+            return picked > ProbabilityRangeFrom && picked < ProbabilityRangeTo;
         }
 
-        //TODO add stat modifer increase or decrese likely hood of sequenctial attack based on stats
+        //TODO add stat modifer increase or decrease likely hood of sequential attack based on stats
         public bool AttackAgain(float selected)
         {
             return selected < ChanceForNextAttack && ChanceForNextAttack != -1;
         }
-        public float delay;
-        public bool Trigger => delay <= 0.0f;
+        [FormerlySerializedAs("delay")] public float Delay;
+        public bool Trigger => Delay <= 0.0f;
         public void AdjustTime(float time)
         {
-            delay -= time;
+            Delay -= time;
         }
 
     }
@@ -91,13 +95,13 @@ namespace DreamersInc.ComboSystem
         [Range(0, 100)]
         public int ChanceToPlay;
         public bool Play => ID != 0;
-        public void SpawnVFX(Transform CharacterTranform)
+        public void SpawnVFX(Transform characterTransform)
         {
             int prob = Mathf.RoundToInt(Random.Range(0, 99));
             if (prob < ChanceToPlay)
             {
-                Vector3 forwardPos = CharacterTranform.forward * Forward + CharacterTranform.up * Up;
-                VFXDatabase.Instance.PlayVFX(ID, CharacterTranform.position + forwardPos, CharacterTranform.rotation.eulerAngles + Rot, 0, LifeTime);
+                Vector3 forwardPos = characterTransform.forward * Forward + characterTransform.up * Up;
+                VFXDatabase.Instance.PlayVFX(ID, characterTransform.position + forwardPos, characterTransform.rotation.eulerAngles + Rot, 0, LifeTime);
             }
         }
     }
@@ -106,17 +110,17 @@ namespace DreamersInc.ComboSystem
     [System.Serializable]
     public struct SetTrigger
     {
-        [SerializeField] ComboNames name;
-        [SerializeField] ComboAnimNames triggerAnimName;
+        [SerializeField] private ComboNames name;
+        [SerializeField] private ComboAnimNames triggerAnimName;
 
-        public ComboNames Name { get { return name; } } // Change To String ???????????
-        public ComboAnimNames TriggeredAnimName { get { return triggerAnimName; } } // Change to String ???????????
+        public ComboNames Name => name; // Change To String ???????????
+        public ComboAnimNames TriggeredAnimName => triggerAnimName; // Change to String ???????????
 
     }
     [System.Serializable]
     public struct ComboPattern
     {
-        public ComboNames name;
+        [FormerlySerializedAs("name")] public ComboNames Name;
         public List<SetTrigger> Attacks;
     }
     public enum ComboAnimNames

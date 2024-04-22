@@ -8,7 +8,6 @@ namespace MotionSystem.Controls
     public class ControlMaster : MonoBehaviour
     {
 
-        public ControllerScheme controller;
         public static ControlMaster Instance;
 
         private void Awake()

@@ -1,14 +1,14 @@
+using DreamersInc.ComboSystem;
+using DreamersInc.InputSystems;
 using MotionSystem.Components;
 using Unity.Entities;
 using UnityEngine;
-using Unity.Collections;
-using Unity.Jobs;
-using Stats.Entities;
 using UnityEngine.InputSystem;
 
 namespace DreamersInc.Global
 {
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+    [UpdateAfter(typeof(ButtonInputSystem))]
     public partial class InputSystem : SystemBase
     {
         Transform m_mainCam;
@@ -16,16 +16,31 @@ namespace DreamersInc.Global
         protected override void OnCreate()
         {
             RequireForUpdate<Player_Control>();
-            RequireForUpdate<ControllerInfo>();
-            playerControls = new PlayerControls();
+            RequireForUpdate<InputSingleton>();
+            if (SystemAPI.ManagedAPI.TryGetSingleton<InputSingleton>(out var inputSingle))
+            {
+                playerControls = inputSingle.ControllerInput;
+            }
+
         }
 
         protected override void OnStartRunning()
         {
-            playerControls.Enable();
+            if (playerControls == null)
+            {
+                if (SystemAPI.ManagedAPI.TryGetSingleton<InputSingleton>(out var inputSingle))
+                {
+                    playerControls = inputSingle.ControllerInput;
+                }
+            }
+
             playerControls.PlayerController.PauseGame.performed += OnTogglePause;
             playerControls.PauseMenu.Disable();
             playerControls.PauseMenu.PauseGame.performed += OnTogglePause;
+            playerControls.PlayerController.Jump.performed += OnPlayerJump;
+            playerControls.PlayerController.StyleModPress.performed += OnStyleModPress;
+            playerControls.PlayerController.StyleModRelease.performed += OnStyleModRelease;
+            playerControls.PlayerController.AttackButtonHeld.performed += ButtonHelded;
 
         }
 
@@ -34,6 +49,10 @@ namespace DreamersInc.Global
             playerControls.Disable();
             playerControls.PlayerController.PauseGame.performed -= OnTogglePause;
             playerControls.PauseMenu.PauseGame.performed -= OnTogglePause;
+            playerControls.PlayerController.Jump.performed -= OnPlayerJump;
+            playerControls.PlayerController.StyleModPress.performed -= OnStyleModPress;
+            playerControls.PlayerController.StyleModRelease.performed -= OnStyleModRelease;
+            playerControls.PlayerController.AttackButtonHeld.performed -= ButtonHelded;
 
         }
 
@@ -52,49 +71,31 @@ namespace DreamersInc.Global
                     // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
                 }
             }
-            if (!SystemAPI.TryGetSingleton<ControllerInfo>(out var config))
-                return;
+     
             var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
-      
-            Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
+            var casting = playerControls.MagicController.enabled;
+            Entities.WithoutBurst().ForEach((ref CharControllerE control, in Player_Control PC) =>
             {
-                Control.CastingInput = config.OpenCadInput;
+                control.CastingInput = casting;
                 bool m_Crouching = new();
-                if (!Control.CastingInput)
+
+                if (control.block)
                 {
-                    if (Control.block)
+                    control.H = 0.0f;
+                    control.V = 0.0f;
+                }
+                else
+                {
+                    control.H = dir.x;
+                    control.V = dir.y;
+
+                    m_Crouching = Input.GetKey(KeyCode.C);
+
+                    if (PC.InSafeZone)
                     {
-                        Control.H = 0.0f;
-                        Control.V = 0.0f;
-                    }
-                    else
-                    {
-                        Control.H = dir.x;
-                        Control.V = dir.y;
-
-                        m_Crouching = Input.GetKey(KeyCode.C);
-
-                        if (!PC.InSafeZone)
-                        {
-                            if (!Control.Jump && Control.IsGrounded)
-                            {
-                                Control.Jump = config.Jumpb;
-
-                            }
-
-                            // add controller toogle
-                            Control.Walk = Input.GetKey(KeyCode.LeftShift);
-
-                        }
-                        else
-                        {
-                            Control.Walk = true;
-                        }
-
+                        control.Walk = true;
                     }
                 }
-
-
             }).Run();
 
 
@@ -142,6 +143,57 @@ namespace DreamersInc.Global
                 playerControls.PlayerController.Enable();
                 paused = false;
             }
+        }
+
+        void OnPlayerJump(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
+            {
+                if (!PC.InSafeZone && Control is { Jump: false, IsGrounded: true })
+                {
+                    Control.Jump = true;
+                }
+                
+            }).Run();
+        }
+
+        public ControllerOptions options;
+        private void OnStyleModPress(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+              if(command.StyleModPressHold)
+                command.StyleMod = true;
+              else
+              {
+                  command.StyleMod = !command.StyleMod;
+              }
+
+            }).Run();
+        }
+
+        private void OnStyleModRelease(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+                if(command.StyleModPressHold)
+                    command.StyleMod = false;
+
+            }).Run();
+        }
+        void ButtonHelded(InputAction.CallbackContext obj)
+        {
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            {
+                command.HeldButton = true;
+
+            }).Run();
+                
+        }
+        void OnPlayerToggleWalkSprint(InputAction.CallbackContext obj)
+        {
+            //Todo add button press change speed 
+            
         }
     }
 

@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 using Unity.Entities;
 using MotionSystem.Components;
-using Unity.Collections;
-using Unity.Jobs;
-//using UnityStandardAssets.CrossPlatformInput;
 using DreamersStudio.CameraControlSystem;
-//using DreamersInc.ComboSystem;
-using Stats.Entities;
+using static PrimeTween.Tween;
+
 // ReSharper disable InconsistentNaming
+// ReSharper disable Unity.BurstLoadingManagedType
 
 namespace MotionSystem.Systems
 {
@@ -16,16 +13,22 @@ namespace MotionSystem.Systems
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial class AnimatorUpdate : SystemBase
     {
+        private static readonly int Forward = Animator.StringToHash("Forward");
+        private static readonly int Turn = Animator.StringToHash("Turn");
+        private static readonly int Crouch = Animator.StringToHash("Crouch");
+        private static readonly int OnGround = Animator.StringToHash("OnGround");
+        private static readonly int WeaponDrawn = Animator.StringToHash("Weapon Drawn");
+        private static readonly int IsTargeting = Animator.StringToHash("IsTargeting");
+        private static readonly int Jump = Animator.StringToHash("Jump");
+        private static readonly int JumpLeg = Animator.StringToHash("JumpLeg");
         const float k_Half = 0.5f;
 
 
         protected override void OnUpdate()
         {
     
-            Entities.WithoutBurst().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref CharControllerE control, ref animateTag tag) =>
+            Entities.WithoutBurst().WithAll<animateTag>().ForEach((Animator Anim, Transform transform, Rigidbody RB, ref CharControllerE control) =>
             {
-                //if (Anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
-                //    Anim.SetFloat("AnimSpeed", control.AnimationSpeed);
 
                 if (control.Move.magnitude > 1f && control.AI)
                 {
@@ -49,8 +52,10 @@ namespace MotionSystem.Systems
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
-                            transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        if (CameraControl.Instance.TargetGroup.Targets[0].Object  != null)
+                            Rotation(transform, CameraControl.Instance.TargetGroup.Targets[0].Object.position, .35f);
+                        //             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f); 
+
                     }
                 }
 
@@ -76,25 +81,25 @@ namespace MotionSystem.Systems
 
                 // Animator Updater
                 // update the animator parameters
-                Anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                Anim.SetBool("Crouch", control.Crouch);
-                Anim.SetBool("OnGround", control.IsGrounded);
+                Anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                Anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                Anim.SetBool(Crouch, control.Crouch);
+                Anim.SetBool(OnGround, control.IsGrounded);
                 if (control.CombatCapable)
                 {
                     if (!control.EquipOverride)
                     {
-                        Anim.SetBool("Weapon Drawn", control.EquipWeapon);
+                        Anim.SetBool(WeaponDrawn, control.EquipWeapon);
                     }
                     //else if(!Anim.GetBool("Weapon Drawn") )
                     //{
                     //    Anim.SetBool("Weapon Drawn", true) ;
                     //}
-                    Anim.SetBool("IsTargeting", control.Targetting);
+                    Anim.SetBool(IsTargeting, control.Targetting);
                 }
                 if (!control.IsGrounded)
                 {
-                    Anim.SetFloat("Jump", RB.velocity.y);
+                    Anim.SetFloat(Jump, RB.linearVelocity.y);
                 }
 
                 // calculate which leg is behind, so as to leave that leg trailing in the jump animation
@@ -106,12 +111,12 @@ namespace MotionSystem.Systems
                 float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
                 if (control.IsGrounded)
                 {
-                    Anim.SetFloat("JumpLeg", jumpLeg);
+                    Anim.SetFloat(JumpLeg, jumpLeg);
                 }
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
                 // which affects the movement speed because of the root motion.
-                if (control.IsGrounded && control.Move.magnitude > 0)
+                if (control is { IsGrounded: true, Move: { magnitude: > 0 } })
                 {
                     Anim.speed = control.m_AnimSpeedMultiplier;
                 }
@@ -125,20 +130,20 @@ namespace MotionSystem.Systems
 
 
 
-                control.TimerForEquipReset = Anim.GetBool("Weapon In Hand") && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
+                control.TimerForEquipReset = Anim.GetBool(WeaponDrawn) && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
                     ? control.EquipResetTimer : Anim.GetCurrentAnimatorStateInfo(0).IsTag("Combo") ? control.EquipResetTimer : control.TimerForEquipReset;
 
-                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0"))
+                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0"))
                 {
                     control.TimerForEquipReset -= 0.02f;
                     if (control.TimerForEquipReset < 0.0f)
                     {
                         control.TimerForEquipReset = 0.0f;
-                        Anim.SetBool("Weapon In Hand", false);
+                        Anim.SetBool(WeaponDrawn, false);
                     }
                 }
 
-                control.Speed = RB.velocity.magnitude;
+                control.Speed = RB.linearVelocity.magnitude;
 
             }).Run();
 
@@ -155,28 +160,25 @@ namespace MotionSystem.Systems
         }
         void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
-            if (control.Jump && !control.Crouch)
-            {
-                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation0"))
-                {
-                    // jump!
-                    Anim.applyRootMotion = false;
-                    RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
-                    control.IsGrounded = false;
-                    control.GroundCheckDistance = 0.1f;
-                    control.SkipGroundCheck = true;
-                }
-            }
+            if (!control.Jump) return;
+            if (!Anim.GetCurrentAnimatorStateInfo(0).IsTag("Locomotion")) return;
+            // jump!
+            Anim.applyRootMotion = false;
+            var linearVelocity = RB.linearVelocity;
+            linearVelocity = new Vector3(linearVelocity.x, control.m_JumpPower, linearVelocity.z);
+            RB.linearVelocity = linearVelocity;
+            control.IsGrounded = false;
+            control.GroundCheckDistance = 0.1f;
+            control.SkipGroundCheck = true;
         }
         void HandleAirborneMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
             Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
             RB.AddForce(extraGravityForce);
 
-            control.SkipGroundCheck = RB.velocity.y > 0;
-            control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
+            var linearVelocity = RB.linearVelocity;
+            control.SkipGroundCheck = linearVelocity.y > 0;
+            control.GroundCheckDistance = linearVelocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
 
             Anim.applyRootMotion =
             control.ApplyRootMotion;
@@ -188,19 +190,16 @@ namespace MotionSystem.Systems
 
             Entities.WithAll<animateTag>().WithoutBurst().ForEach((Animator anim, Rigidbody RB, Transform transform, ref BeastControllerComponent control) =>
             {
-                //if (anim.GetFloat("AnimSpeed") != control.AnimationSpeed)
-                //    anim.SetFloat("AnimSpeed", control.AnimationSpeed);
-                float m_TurnAmount;
-                float m_ForwardAmount;
+     
                 if (control.Move.magnitude > 1f)
                     control.Move.Normalize();
                 control.Move = transform.InverseTransformDirection(control.Move);
-                m_ForwardAmount = control.Move.z;
-                m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
+                var m_ForwardAmount = control.Move.z;
+                var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
                 if (!control.Targetting)
                 {
-                    float turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
+                    var turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
                     //  transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
                 }
                 else
@@ -231,13 +230,13 @@ namespace MotionSystem.Systems
 
                 // Animator Updater
                 // update the animator parameters
-                anim.SetFloat("Forward", m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                anim.SetFloat("Turn", m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                anim.SetBool("OnGround", control.IsGrounded);
+                anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetBool(OnGround, control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
                 // which affects the movement speed because of the root motion.
-                if (control.IsGrounded && control.Move.magnitude > 0)
+                if (control is { IsGrounded: true, Move: { magnitude: > 0 } })
                 {
                     anim.speed = control.m_AnimSpeedMultiplier;
                 }
@@ -268,12 +267,14 @@ namespace MotionSystem.Systems
             if (control.Jump)
             {
                 if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomation_Grounded_Weapon0")
-                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomation0"))
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
+                || Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomotion0"))
                 {
                     // jump!
                     Anim.applyRootMotion = false;
-                    RB.velocity = new Vector3(RB.velocity.x, control.m_JumpPower, RB.velocity.z);
+                    var velocity = RB.linearVelocity;
+                    velocity = new Vector3(velocity.x, control.m_JumpPower, velocity.z);
+                    RB.linearVelocity = velocity;
                     control.IsGrounded = false;
                     control.GroundCheckDistance = 0.1f;
                     control.SkipGroundCheck = true;
@@ -285,8 +286,8 @@ namespace MotionSystem.Systems
             Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;
             RB.AddForce(extraGravityForce);
 
-            control.SkipGroundCheck = RB.velocity.y > 0;
-            control.GroundCheckDistance = RB.velocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
+            control.SkipGroundCheck = RB.linearVelocity.y > 0;
+            control.GroundCheckDistance = RB.linearVelocity.y < 0 ? control.m_OrigGroundCheckDistance : 0.1f;
 
             Anim.applyRootMotion = control.ApplyRootMotion;
 

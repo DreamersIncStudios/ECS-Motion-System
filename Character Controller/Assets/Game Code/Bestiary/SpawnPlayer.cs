@@ -72,7 +72,7 @@ namespace DreamersInc.BestiarySystem
                 manager.AddComponent<StoreWeapon>(entity);
                 AnimationSpeedLink link = new AnimationSpeedLink()
                 {
-                    link = go.GetComponent<AnimationSpeed>()
+                    Link = go.GetComponent<AnimationSpeed>()
                 };
                 manager.AddComponentObject(entity, link);
             }
@@ -134,7 +134,7 @@ namespace DreamersInc.BestiarySystem
                 CameraControl.Instance.Follow.Follow = go.transform;
                 CameraControl.Instance.Target.Follow = go.transform;
 
-                CameraControl.Instance.TargetGroup.m_Targets[1].target = go.transform;
+                CameraControl.Instance.TargetGroup.Targets[1].Object  = go.transform;
 
                 return true;
             }
@@ -184,7 +184,7 @@ namespace DreamersInc.BestiarySystem
                 CameraControl.Instance.Follow.Follow = go.transform;
                 CameraControl.Instance.Target.Follow = go.transform;
 
-                CameraControl.Instance.TargetGroup.m_Targets[1].target = go.transform;
+                CameraControl.Instance.TargetGroup.Targets[1].Object  = go.transform;
 
                 return true;
             }

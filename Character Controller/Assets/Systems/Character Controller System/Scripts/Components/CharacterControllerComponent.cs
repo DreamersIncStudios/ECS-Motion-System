@@ -4,8 +4,6 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using System;
-using UnityEngine.Assertions.Must;
-
 namespace MotionSystem.Components
 {
     public struct CharControllerE : IComponentData
@@ -52,6 +50,7 @@ namespace MotionSystem.Components
         // => AnimationSpeed < 1.0f;
         public float Speed;
         public float SnapSpeed => 10;
+        public bool Slowed { get; set; }
 
         public void Setup(MovementData data, CapsuleCollider col) { 
             EquipResetTimer = data.EquipResetTimer;
