@@ -123,4 +123,10 @@ MonoBehaviour:
     EquippedWeapons: []
     EquippedArmors: []
     EquippedAbilites: []
+  Inventory:
+    ItemsInInventory:
+    - Item: {fileID: 11400000, guid: 9b68d17ccd4fb784b8ffcf6c38c3014a, type: 2}
+      Count: 2
+    MaxInventorySize: 100
   ExpGiven: 0
+  hasAttack: 0

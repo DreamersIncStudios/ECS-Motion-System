@@ -65,21 +65,6 @@ namespace DreamersStudio.CameraControlSystem
             };
 
         }
-        private void Update()
-        {
-            SetBias();
-            if(!TargetGroup.Targets[0].Object )
-                OnTargetingChanged(this, new CameraControl.OnTargetingChangedEventArgs { isTargeting = false });
 
-        }
-        void SetBias() {
-            if (playerCharacter == null)
-            {
-                playerCharacter = GameObject.FindGameObjectWithTag("Player");
-                return;
-            }
-          // Target.m_Heading.m_Bias = playerCharacter.transform.eulerAngles.y;
-            
-        }
     }
 }

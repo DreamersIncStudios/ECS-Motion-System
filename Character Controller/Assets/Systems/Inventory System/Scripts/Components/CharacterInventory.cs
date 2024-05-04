@@ -24,7 +24,7 @@ namespace Dreamers.InventorySystem
             Equipment.Init();
 
         }
-        public void Setup(InventoryBase inventory)
+        public void Setup(InventorySave inventory)
         {
             Inventory = new();
             Inventory.Init(inventory);
@@ -40,7 +40,7 @@ namespace Dreamers.InventorySystem
             Equipment.Init(equipment, player, entity);
 
         }
-        public void Setup(Entity entity, InventoryBase inventory, EquipmentSave equipment, BaseCharacterComponent player)
+        public void Setup(Entity entity, InventorySave inventory, EquipmentSave equipment, BaseCharacterComponent player)
         {
             Inventory = new();
             Inventory.Init(inventory);

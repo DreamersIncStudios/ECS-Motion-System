@@ -4,6 +4,7 @@ using MotionSystem.Components;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectDawn.Navigation;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -16,20 +17,20 @@ namespace DreamersInc.MovementSys
     {
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, Animator Anim, ref CharControllerE Control, ref Movement Mover) => 
+            Entities.WithoutBurst().ForEach(( Animator Anim, ref AgentBody Agent, ref CharControllerE Control, ref Movement Mover) => 
             {
                 if (Mover.CanMove)
                 {
 
-                    Control.Move = Agent.desiredVelocity;
+                    Control.Move = Agent.Velocity;
                     Control.Crouch = false;
                     Control.Jump = false;
                 }
                 else
                 {
-                    if (!Agent.isStopped)
+                    if (!Agent.IsStopped)
                     {
-                        Agent.isStopped = true;
+                        Agent.IsStopped = true;
                     }
                     Control.Move = float3.zero;
                     Control.Crouch = false;
@@ -37,19 +38,19 @@ namespace DreamersInc.MovementSys
                 }
 
             }).Run();
-            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, Animator Anim, ref BeastControllerComponent Control, ref Movement Mover) =>
+            Entities.WithoutBurst().ForEach(( Animator Anim,ref AgentBody Agent, ref BeastControllerComponent Control, ref Movement Mover) =>
             {
                 if (Mover.CanMove)
                 {
 
-                    Control.Move = Agent.desiredVelocity;
+                    Control.Move = Agent.Velocity;
                     Control.Jump = false;
                 }
                 else
                 {
-                    if (!Agent.isStopped)
+                    if (!Agent.IsStopped)
                     {
-                        Agent.isStopped = true;
+                        Agent.IsStopped = true;
                     }
                     Control.Move = float3.zero;
                     Control.Jump = false;

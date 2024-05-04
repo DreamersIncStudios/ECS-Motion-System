@@ -17,6 +17,9 @@ namespace DreamersInc.BestiarySystem
     {
         [SerializeField] private uint creatureID;
         public uint ID { get { return creatureID; } }
+       
+        public int FactionID { get; set; }
+
         public string Name;
         [EnumToggleButtons] public CreatureType creatureType;
         [EnumToggleButtons] public NPCType GetNPCType;
@@ -33,7 +36,9 @@ namespace DreamersInc.BestiarySystem
         public int BaseProtection;
         public ComboSO Combo;
         public EquipmentSave Equipment;
+        public InventorySave Inventory;
         public uint ExpGiven;
+        public bool hasAttack;
 #if UNITY_EDITOR
 
         public void setItemID(uint ID)

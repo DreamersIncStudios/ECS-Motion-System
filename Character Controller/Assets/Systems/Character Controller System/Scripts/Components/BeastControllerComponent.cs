@@ -38,19 +38,19 @@ namespace MotionSystem.Components
         public bool Casting => AnimationSpeed < 1.0f;
 
 
-        public void Setup(MovementData data, CapsuleCollider col)
-        {
+        public void Setup(MovementData data, CapsuleCollider col, bool aiControl) { 
             m_MovingTurnSpeed = data.MovingTurnSpeed;
-            m_StationaryTurnSpeed = data.StationaryTurnSpeed;
+            m_StationaryTurnSpeed= data.StationaryTurnSpeed;
             m_JumpPower = data.JumpPower;
             m_GravityMultiplier = data.GravityMultiplier;
-            m_RunCycleLegOffset = data.RunCycleLegOffset;
-            m_AnimSpeedMultiplier = data.AnimSpeedMultiplier;
-            m_MoveSpeedMultiplier = data.MoveSpeedMultiplier;
-            GroundCheckDistance = data.GroundCheckDistance;
-            OGCapsuleCenter = CapsuleCenter = col.center;
-            OGCapsuleHeight = CapsuleHeight = col.height;
-            CombatCapable = data.CombatCapable;
+            m_RunCycleLegOffset= data.RunCycleLegOffset;
+            m_AnimSpeedMultiplier= data.AnimSpeedMultiplier;
+            m_MoveSpeedMultiplier= data.MoveSpeedMultiplier;
+            GroundCheckDistance= data.GroundCheckDistance;
+            OGCapsuleCenter= CapsuleCenter = col.center;
+            OGCapsuleHeight = CapsuleHeight= col.height;
+            CombatCapable= data.CombatCapable;
+            AI = aiControl;
         }
     }
 }
