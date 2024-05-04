@@ -22,6 +22,7 @@ namespace DreamersInc.BestiarySystem
 
         [SerializeField] private uint creatureID;
         public uint ID { get { return creatureID; } }
+
         public string Name;
         public CharacterClass stats;
         public GameObject Prefab;
@@ -33,7 +34,7 @@ namespace DreamersInc.BestiarySystem
         public int BaseProtection;
         public ComboSO Combo;
         public EquipmentSave Equipment;
-
+        public InventorySave Inventory;
 #if UNITY_EDITOR
 
         public void setItemID(uint ID)

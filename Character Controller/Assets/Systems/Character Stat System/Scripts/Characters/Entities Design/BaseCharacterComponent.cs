@@ -19,11 +19,14 @@ namespace Stats.Entities
         private Elemental[] _ElementalMods;
         public bool InPlay;
         public bool InvincibleMode;
-        public uint SpawnID { get; private set; }
+        public uint SpawnID;// { get; private set; }
         [HideInInspector] public GameObject GOrepresentative;
-
+        [HideInInspector] public uint CharacterID;
         [Range(0, 9999)]
         [SerializeField] int _curHealth;
+
+        public bool HealthCantDropBelow;
+        public uint HealthLimit;
         public int CurHealth
         {
             get { return _curHealth; }
@@ -68,6 +71,9 @@ namespace Stats.Entities
         public float ManaRatio => (float)CurMana / (float)MaxMana;
 
         public bool Dead => !InvincibleMode && CurHealth <= 0;
+
+        public uint ExpGiven { get; set; }
+
         public string Name
         {
             get { return _name; }
@@ -99,14 +105,15 @@ namespace Stats.Entities
                 return Mathf.FloorToInt(6 / 5 * Mathf.Pow(Level, 3) - 15 * Mathf.Pow(Level, 2) + 100 * Level - 140);
             }
         }
-        public void CalculateLevel()
+
+        public int ExpTilNextLevel => ExpToNextLevel - (int)FreeExp;
+
+        private void CalculateLevel()
         {
-            if (_freeExp > ExpToNextLevel)
-            {
-                Debug.Log("trigger Level Up need stat info");
-                Level++;
-                StatUpdate();
-            }
+            if (FreeExp <= ExpToNextLevel) return;
+            FreeExp = 0;
+            Level++;
+            StatUpdate();
         }
 
         public void Init()
@@ -199,6 +206,7 @@ namespace Stats.Entities
 
         public void AdjustHealth(int adj)
         {
+            if (HealthCantDropBelow && CurHealth < HealthLimit) {Debug.Log("Hit Limit");return;}
             CurHealth += adj;
             if (CurHealth < 0)
             {

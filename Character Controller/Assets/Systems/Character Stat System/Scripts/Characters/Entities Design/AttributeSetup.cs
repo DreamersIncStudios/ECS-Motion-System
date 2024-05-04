@@ -12,13 +12,15 @@ namespace Stats.Entities
     public partial class BaseCharacterComponent : IComponentData
     {
 
-        public void SetupDataEntity( CharacterClass BaseStats)
+        public void SetupDataEntity(CharacterClass BaseStats, uint Exp=0,uint spawnID = 0)
         {
             //Todo get level and stat data
             Init();
             Name = BaseStats.Name;
             this.Level = BaseStats.Level;
             float ModValue = BaseStats.LevelMod;
+            this.SpawnID = spawnID;
+            this.ExpGiven = ExpGiven;
             this.GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = (int)(BaseStats.Strength * ModValue);
             this.GetPrimaryAttribute((int)AttributeName.Awareness).BaseValue = (int)(BaseStats.Awareness * ModValue);
             this.GetPrimaryAttribute((int)AttributeName.Charisma).BaseValue = (int)(BaseStats.Charisma * ModValue);

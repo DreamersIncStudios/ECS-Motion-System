@@ -1,12 +1,9 @@
-
-using UnityEngine;
 using UnityEngine.AI;
 using Unity.Entities;
 using Components.MovementSystem;
-using Unity.Transforms;
 using Unity.Jobs;
-using Unity.Burst;
 using MotionSystem;
+using ProjectDawn.Navigation;
 
 namespace IAUS.ECS.Systems
 {
@@ -16,38 +13,30 @@ namespace IAUS.ECS.Systems
         protected override void OnUpdate()
         {
             JobHandle systemDeps = Dependency;
-            systemDeps = Entities.ForEach((ref Movement movement, in LocalTransform CurPos) =>
-            {
-                movement.DistanceRemaining = Vector3.Distance(movement.TargetLocation, CurPos.Position);
-            }).ScheduleParallel(systemDeps);
             World.GetOrCreateSystemManaged<EndSimulationEntityCommandBufferSystem>().AddJobHandleForProducer(systemDeps);
             Dependency = systemDeps;
 
-            Entities.WithoutBurst().ForEach((NavMeshAgent Agent, ref Movement move) =>
+            Entities.ForEach((ref AgentBody agent, ref Movement move) =>
             {
                 if (move.CanMove)
                 {
                     //rewrite with a set position bool;
-                    if (move.SetTargetLocation)
-                    {
-                        Agent.SetDestination(move.TargetLocation);
-                        Agent.isStopped = false;
-                        move.SetTargetLocation = false;
-                    }
+                    if (!move.SetTargetLocation) return;
+                    if (!NavMesh.SamplePosition(move.TargetLocation, out var hit, 5, NavMesh.AllAreas)) return;
+                    move.TargetLocation = hit.position;
+                    agent.SetDestination(hit.position);
+                    agent.IsStopped = false;
+                    move.SetTargetLocation = false;
 
-
-
-                    if (Agent.hasPath)
-                    {
-                        if (move.WithinRangeOfTargetLocation)
-                        {
-                            move.CanMove = false;
-                        }
-                    }
+                    //if (!agent.) return;
+                    //if (move.WithinRangeOfTargetLocation)
+                    // {
+                    //   move.CanMove = false;
+                    //}
                 }
                 else
                 {
-                    Agent.isStopped = true;
+                    agent.IsStopped = true;
 
                 }
 

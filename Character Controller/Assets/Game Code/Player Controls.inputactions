@@ -130,6 +130,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LockOn",
+                    "type": "Button",
+                    "id": "36faa901-bd0d-463c-b8a5-51ad71c424c5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeTargetPos",
+                    "type": "Button",
+                    "id": "440175d2-198f-449e-ba2a-3bd8743086db",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeTargetNeg",
+                    "type": "Button",
+                    "id": "c71150a4-76cc-4b07-8bcf-d094dd878616",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -372,6 +399,50 @@
                     "processors": "",
                     "groups": "Xbox;Dual Sense",
                     "action": "AttackButtonHeld",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70c291fa-37a5-4b96-b6a1-e836aa712058",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f8711ac-afad-4ff1-9dc8-2e8283fd1198",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTargetNeg",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f285951f-a7ed-478b-887a-5d98954fbc0b",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "ChangeTargetNeg",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5145f24-3b6e-4682-85e4-59f7befe4641",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "ChangeTargetPos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

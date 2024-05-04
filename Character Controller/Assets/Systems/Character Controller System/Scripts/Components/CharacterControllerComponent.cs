@@ -52,7 +52,7 @@ namespace MotionSystem.Components
         public float SnapSpeed => 10;
         public bool Slowed { get; set; }
 
-        public void Setup(MovementData data, CapsuleCollider col) { 
+        public void Setup(MovementData data, CapsuleCollider col, bool aiControl) { 
             EquipResetTimer = data.EquipResetTimer;
             m_MovingTurnSpeed = data.MovingTurnSpeed;
             m_StationaryTurnSpeed= data.StationaryTurnSpeed;
@@ -63,8 +63,9 @@ namespace MotionSystem.Components
             m_MoveSpeedMultiplier= data.MoveSpeedMultiplier;
             GroundCheckDistance= data.GroundCheckDistance;
             OGCapsuleCenter= CapsuleCenter = col.center;
-           OGCapsuleHeight = CapsuleHeight= col.height;
+            OGCapsuleHeight = CapsuleHeight= col.height;
             CombatCapable= data.CombatCapable;
+            AI = aiControl;
         }
     }
 

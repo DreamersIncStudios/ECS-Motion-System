@@ -20,7 +20,7 @@ namespace Dreamers.InventorySystem.Base {
         public void Init(uint size) {
             MaxInventorySize = size;
         }
-        public void Init(InventoryBase save) { 
+        public void Init(InventorySave save) { 
             MaxInventorySize= save.MaxInventorySize;
             ItemsInInventory= save.ItemsInInventory;
         }

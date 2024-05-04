@@ -9,7 +9,7 @@ namespace AISenses.VisionSystems.Combat
     {
         public float3 AttackTargetLocation;
         public int AttackTargetIndex;
-        public bool isTargeting;
+        public bool IsTargeting;
         public float2 AttackDir;
         public float MoveRange;
         public bool TargetInRange { get; set; }

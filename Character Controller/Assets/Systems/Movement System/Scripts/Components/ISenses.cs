@@ -106,7 +106,7 @@ namespace AISenses
 
     public struct Target
     {
-        public Entity entity;
+        public Entity Entity;
         public AITarget TargetInfo;
         public float DistanceTo;
         public float3 LastKnownPosition;

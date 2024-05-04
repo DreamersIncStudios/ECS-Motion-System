@@ -153,6 +153,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""36faa901-bd0d-463c-b8a5-51ad71c424c5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeTargetPos"",
+                    ""type"": ""Button"",
+                    ""id"": ""440175d2-198f-449e-ba2a-3bd8743086db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeTargetNeg"",
+                    ""type"": ""Button"",
+                    ""id"": ""c71150a4-76cc-4b07-8bcf-d094dd878616"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -397,6 +424,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""AttackButtonHeld"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70c291fa-37a5-4b96-b6a1-e836aa712058"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox;Dual Sense"",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f8711ac-afad-4ff1-9dc8-2e8283fd1198"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTargetNeg"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f285951f-a7ed-478b-887a-5d98954fbc0b"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox;Dual Sense"",
+                    ""action"": ""ChangeTargetNeg"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5145f24-3b6e-4682-85e4-59f7befe4641"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Xbox;Dual Sense"",
+                    ""action"": ""ChangeTargetPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -622,6 +693,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerController_StyleModPress = m_PlayerController.FindAction("StyleMod Press", throwIfNotFound: true);
         m_PlayerController_StyleModRelease = m_PlayerController.FindAction("StyleMod Release", throwIfNotFound: true);
         m_PlayerController_AttackButtonHeld = m_PlayerController.FindAction("AttackButtonHeld", throwIfNotFound: true);
+        m_PlayerController_LockOn = m_PlayerController.FindAction("LockOn", throwIfNotFound: true);
+        m_PlayerController_ChangeTargetPos = m_PlayerController.FindAction("ChangeTargetPos", throwIfNotFound: true);
+        m_PlayerController_ChangeTargetNeg = m_PlayerController.FindAction("ChangeTargetNeg", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_PauseGame = m_PauseMenu.FindAction("Pause Game", throwIfNotFound: true);
@@ -716,6 +790,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerController_StyleModPress;
     private readonly InputAction m_PlayerController_StyleModRelease;
     private readonly InputAction m_PlayerController_AttackButtonHeld;
+    private readonly InputAction m_PlayerController_LockOn;
+    private readonly InputAction m_PlayerController_ChangeTargetPos;
+    private readonly InputAction m_PlayerController_ChangeTargetNeg;
     public struct PlayerControllerActions
     {
         private @PlayerControls m_Wrapper;
@@ -734,6 +811,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @StyleModPress => m_Wrapper.m_PlayerController_StyleModPress;
         public InputAction @StyleModRelease => m_Wrapper.m_PlayerController_StyleModRelease;
         public InputAction @AttackButtonHeld => m_Wrapper.m_PlayerController_AttackButtonHeld;
+        public InputAction @LockOn => m_Wrapper.m_PlayerController_LockOn;
+        public InputAction @ChangeTargetPos => m_Wrapper.m_PlayerController_ChangeTargetPos;
+        public InputAction @ChangeTargetNeg => m_Wrapper.m_PlayerController_ChangeTargetNeg;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -785,6 +865,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackButtonHeld.started += instance.OnAttackButtonHeld;
             @AttackButtonHeld.performed += instance.OnAttackButtonHeld;
             @AttackButtonHeld.canceled += instance.OnAttackButtonHeld;
+            @LockOn.started += instance.OnLockOn;
+            @LockOn.performed += instance.OnLockOn;
+            @LockOn.canceled += instance.OnLockOn;
+            @ChangeTargetPos.started += instance.OnChangeTargetPos;
+            @ChangeTargetPos.performed += instance.OnChangeTargetPos;
+            @ChangeTargetPos.canceled += instance.OnChangeTargetPos;
+            @ChangeTargetNeg.started += instance.OnChangeTargetNeg;
+            @ChangeTargetNeg.performed += instance.OnChangeTargetNeg;
+            @ChangeTargetNeg.canceled += instance.OnChangeTargetNeg;
         }
 
         private void UnregisterCallbacks(IPlayerControllerActions instance)
@@ -831,6 +920,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackButtonHeld.started -= instance.OnAttackButtonHeld;
             @AttackButtonHeld.performed -= instance.OnAttackButtonHeld;
             @AttackButtonHeld.canceled -= instance.OnAttackButtonHeld;
+            @LockOn.started -= instance.OnLockOn;
+            @LockOn.performed -= instance.OnLockOn;
+            @LockOn.canceled -= instance.OnLockOn;
+            @ChangeTargetPos.started -= instance.OnChangeTargetPos;
+            @ChangeTargetPos.performed -= instance.OnChangeTargetPos;
+            @ChangeTargetPos.canceled -= instance.OnChangeTargetPos;
+            @ChangeTargetNeg.started -= instance.OnChangeTargetNeg;
+            @ChangeTargetNeg.performed -= instance.OnChangeTargetNeg;
+            @ChangeTargetNeg.canceled -= instance.OnChangeTargetNeg;
         }
 
         public void RemoveCallbacks(IPlayerControllerActions instance)
@@ -1031,6 +1129,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnStyleModPress(InputAction.CallbackContext context);
         void OnStyleModRelease(InputAction.CallbackContext context);
         void OnAttackButtonHeld(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
+        void OnChangeTargetPos(InputAction.CallbackContext context);
+        void OnChangeTargetNeg(InputAction.CallbackContext context);
     }
     public interface IPauseMenuActions
     {

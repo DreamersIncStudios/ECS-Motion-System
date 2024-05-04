@@ -20,7 +20,7 @@ namespace AISenses.VisionSystems.Combat
             {
                if(buffer.Length ==0)
                     return;
-                if (attackTarget.isTargeting && buffer.Length >= attackTarget.AttackTargetIndex) 
+                if (attackTarget.IsTargeting && buffer.Length >= attackTarget.AttackTargetIndex) 
                 {
                     attackTarget.AttackTargetLocation = buffer[attackTarget.AttackTargetIndex].target.LastKnownPosition;
                 }

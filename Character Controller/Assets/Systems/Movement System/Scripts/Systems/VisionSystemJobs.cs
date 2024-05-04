@@ -98,7 +98,7 @@ namespace AISenses.VisionSystems
                                             DistanceTo = dist,
                                             LastKnownPosition = TargetPosition[j].Position,
                                             TargetInfo = TargetArray[j],
-                                            entity = TargetEntity[j]
+                                            Entity = TargetEntity[j]
                                         },
                                         dist = dist
 
