@@ -2,8 +2,8 @@ using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System.Collections;
 using System.Collections.Generic;
+using PrimeTween;
 using UnityEngine;
-using DG.Tweening;
 public class ParticleDamage : MonoBehaviour
 {
     int damage;
@@ -25,7 +25,7 @@ public class ParticleDamage : MonoBehaviour
     private void MoveDamageCollider()
     {
         startDamage = true;
-        transform.DOMove(transform.position + transform.root.forward * moveDistance, moveTime, false);
+        transform.DOMove(transform.position + transform.root.forward * moveDistance, moveTime);
         transform.DOScaleX(growScale, moveTime);
     }
 

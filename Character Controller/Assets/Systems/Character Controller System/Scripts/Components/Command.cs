@@ -26,6 +26,7 @@ namespace DreamersInc.ComboSystem
         public AbilityList EquippedAbilities;
         public float InputTimer;
         public float InputTimeReset;
+        public float WeaponReset;
       [SerializeField]  public bool CanInputAbilities => InputTimer >= 0.0f;
     }
 }

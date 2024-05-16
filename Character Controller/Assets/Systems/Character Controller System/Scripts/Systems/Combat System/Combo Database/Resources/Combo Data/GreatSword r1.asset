@@ -1110,8 +1110,8 @@ MonoBehaviour:
         AttackType: 1
         triggerAnimIndex: 23
         TransitionDuration: 0.25
-        TransitionOffset: 0.1565
-        EndOfCurrentAnim: 0.5
+        TransitionOffset: 0.15
+        EndOfCurrentAnim: 0.55
         AttackVFX:
           ID: 8
           Forward: 0.2

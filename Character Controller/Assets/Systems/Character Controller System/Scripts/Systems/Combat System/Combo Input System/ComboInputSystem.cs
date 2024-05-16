@@ -128,6 +128,10 @@ namespace DreamersInc.ComboSystem
                     }
                     if (!Anim.GetBool(WeaponHand) && handler.AlwaysDrawnWeapon)
                         Anim.SetBool(WeaponHand, true);
+                    if (!handler.AlwaysDrawnWeapon && handler.WeaponReset > 0 && Anim.GetBool(WeaponHand))
+                        handler.WeaponReset -= SystemAPI.Time.DeltaTime;
+                    if(handler.WeaponReset < 0 && Anim.GetBool(WeaponHand))
+                        Anim.SetBool(WeaponHand,false);
                     if (handler.CanInputAbilities)
                     {
                         handler.InputTimer -= SystemAPI.Time.DeltaTime;

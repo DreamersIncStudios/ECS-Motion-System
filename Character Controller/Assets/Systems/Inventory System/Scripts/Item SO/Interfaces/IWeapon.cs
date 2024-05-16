@@ -9,21 +9,24 @@ namespace Dreamers.InventorySystem.Interfaces
         WeaponType WeaponType { get; }
         WeaponSlot Slot { get; }
         float MaxDurability { get; }
-        float CurrentDurablity { get; set; }
+        float CurrentDurability { get; set; }
         bool Breakable { get; }
         bool Upgradeable { get; }
         int SkillPoints { get; set; }
-        int Exprience { get; set; }
+        int Experience { get; set; }
 
         Vector3 SheathedPos { get; }
         Vector3 HeldPos { get; }
 
         Vector3 SheathedRot { get; }
         Vector3 HeldRot { get; }
+
+        Vector3 StyleHeldPost { get; }
+        Vector3 StyleHeldRot { get; }
         //List skills SOs
     }
     public enum WeaponType { 
-        Sword, H2BoardSword, Katana, Bo_Staff, Mage_Staff, Club, Pistol, Bow, Axe, Gloves, Enchanter_Stone
+        Sword, H2BoardSword, Katana, Bo_Staff, Mage_Staff, Club, Pistol, Bow, Axe, Gloves, SpellBook
     }
     public enum WeaponSlot { Primary, Secondary, Projectile}
 }

@@ -1,4 +1,3 @@
-using DG.Tweening;
 using DreamersInc.DamageSystem;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats.Entities;
@@ -6,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using PrimeTween;
 using TMPro;
 using Unity.Entities;
 using Unity.Mathematics;

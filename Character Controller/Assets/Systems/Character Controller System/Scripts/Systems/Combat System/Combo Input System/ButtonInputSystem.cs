@@ -98,6 +98,8 @@ namespace DreamersInc.InputSystems
                                     if (trigger.AttackType == AttackType.LightAttack)
                                         handler.InputQueue.Enqueue(trigger);
                                 }
+
+                                handler.WeaponReset = 5.0f;
                             }
                         }
                     }
@@ -132,6 +134,8 @@ namespace DreamersInc.InputSystems
                                     if (trigger.AttackType == AttackType.HeavyAttack)
                                         handler.InputQueue.Enqueue(trigger);
                                 }
+                                handler.WeaponReset = 5.0f;
+
                             }
                         }
                     }
@@ -166,6 +170,8 @@ namespace DreamersInc.InputSystems
                                     if (trigger.AttackType == AttackType.Projectile)
                                         handler.InputQueue.Enqueue(trigger);
                                 }
+                                handler.WeaponReset = 5.0f;
+
                             }
                         }
                     }
@@ -201,6 +207,8 @@ namespace DreamersInc.InputSystems
 
                         });
                     }
+                    handler.WeaponReset = 5.0f;
+
                     handler.HeldButton = false;
 
                 }).Run();

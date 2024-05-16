@@ -1,4 +1,8 @@
+using System.Linq;
+using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using DreamersInc.ComboSystem;
+using DreamersInc.DamageSystem;
 using DreamersInc.InputSystems;
 using MotionSystem.Components;
 using Unity.Entities;
@@ -41,6 +45,7 @@ namespace DreamersInc.Global
             playerControls.PlayerController.StyleModPress.performed += OnStyleModPress;
             playerControls.PlayerController.StyleModRelease.performed += OnStyleModRelease;
             playerControls.PlayerController.AttackButtonHeld.performed += ButtonHelded;
+            playerControls.PlayerController.SpellChange.performed += OpenSpellChangeMenu;
 
         }
 
@@ -53,6 +58,7 @@ namespace DreamersInc.Global
             playerControls.PlayerController.StyleModPress.performed -= OnStyleModPress;
             playerControls.PlayerController.StyleModRelease.performed -= OnStyleModRelease;
             playerControls.PlayerController.AttackButtonHeld.performed -= ButtonHelded;
+            playerControls.PlayerController.SpellChange.performed -= OpenSpellChangeMenu;
 
         }
 
@@ -67,14 +73,14 @@ namespace DreamersInc.Global
                 else
                 {
                     Debug.LogWarning(
-        "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
+                        "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
                     // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
                 }
             }
-     
+
             var dir = playerControls.PlayerController.Locomotion.ReadValue<Vector2>();
             var casting = playerControls.MagicController.enabled;
-            Entities.WithoutBurst().ForEach((ref CharControllerE control, in Player_Control PC) =>
+            Entities.ForEach((ref CharControllerE control, in Player_Control PC) =>
             {
                 control.CastingInput = casting;
                 bool m_Crouching = new();
@@ -88,21 +94,19 @@ namespace DreamersInc.Global
                 {
                     control.H = dir.x;
                     control.V = dir.y;
-
-                    m_Crouching = Input.GetKey(KeyCode.C);
-
                     if (PC.InSafeZone)
                     {
                         control.Walk = true;
                     }
+                    //todo add crouching input??? Is this needed
                 }
-            }).Run();
+            }).Schedule();
 
 
-            Entities.WithoutBurst().ForEach((Animator Anim, ref CharControllerE Control) =>
-            {
-                if (!Control.AI)
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach(
+                (Transform transform, ref CharControllerE Control) =>
                 {
+
                     if (m_mainCam != null)
                     {
                         Vector3 m_CamForward = Vector3.Scale(m_mainCam.forward, new Vector3(1, 0, 1)).normalized;
@@ -112,17 +116,17 @@ namespace DreamersInc.Global
                     {
                         Control.Move = Control.V * Vector3.forward + Control.H * Vector3.right;
                     }
-                }
-                if (Control.Walk)
-                    Control.Move *= 0.5f;
-                if (Control.Move.magnitude > 1.0f)
-                    Control.Move.Normalize();
-                Control.Move = Anim.transform.InverseTransformDirection(Control.Move);
 
-                // This section of code can be moved to a  job??
+                    if (Control.Walk)
+                        Control.Move *= 0.5f;
+                    if (Control.Move.magnitude > 1.0f)
+                        Control.Move.Normalize();
+                    Control.Move = transform.InverseTransformDirection(Control.Move);
+
+                    // This section of code can be moved to a  job??
 
 
-            }).Run();
+                }).Run();
 
         }
 
@@ -147,11 +151,11 @@ namespace DreamersInc.Global
 
         void OnPlayerJump(InputAction.CallbackContext obj)
         {
-            Entities.WithoutBurst().ForEach((ref CharControllerE Control, in Player_Control PC) =>
+            Entities.WithoutBurst().ForEach((ref CharControllerE control, in Player_Control pc) =>
             {
-                if (!PC.InSafeZone && Control is { Jump: false, IsGrounded: true })
+                if (!pc.InSafeZone && control is { Jump: false, IsGrounded: true })
                 {
-                    Control.Jump = true;
+                    control.Jump = true;
                 }
                 
             }).Run();
@@ -160,27 +164,58 @@ namespace DreamersInc.Global
         public ControllerOptions options;
         private void OnStyleModPress(InputAction.CallbackContext obj)
         {
-            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command, CharacterInventory inventory) =>
             {
-              if(command.StyleModPressHold)
-                command.StyleMod = true;
-              else
-              {
-                  command.StyleMod = !command.StyleMod;
-              }
-
+                var weapon = inventory.Equipment.EquippedWeapons[WeaponSlot.Primary];
+                switch (weapon.WeaponType)
+                {
+                    case WeaponType.Katana:
+                    case WeaponType.Sword:
+                    case WeaponType.H2BoardSword:
+                        if(command.StyleModPressHold)
+                            command.StyleMod = true;
+                        else
+                        {
+                            command.StyleMod = !command.StyleMod;
+                        } 
+                        weapon.StyleChange(command.StyleMod);
+                        break;
+          
+                }
             }).Run();
+       
         }
 
         private void OnStyleModRelease(InputAction.CallbackContext obj)
         {
-            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Entity entity, Command command, 
+                CharacterInventory inventory, PlayerComboComponent combo) =>
             {
-                if(command.StyleModPressHold)
-                    command.StyleMod = false;
+                var weapon = inventory.Equipment.EquippedWeapons[WeaponSlot.Primary];
 
+                switch (weapon.WeaponType)
+                {
+                    case WeaponType.Katana:
+                        case WeaponType.H2BoardSword:
+                    case WeaponType.Sword:
+                        if (command.StyleModPressHold)
+                            command.StyleMod = false;
+                        inventory.Equipment.EquippedWeapons[WeaponSlot.Primary].StyleChange(command.StyleMod);
+                        break;
+                    case WeaponType.SpellBook:
+                        var spell = (SpellBookSO)weapon;
+                        spell.SwapSpell(spell.CurIndex+1, entity);
+                        combo.Combo = GetCombo(spell.CurComboID);
+                        break;
+                }
             }).Run();
         }
+
+        public void OpenSpellChangeMenu(InputAction.CallbackContext obj)
+        {
+            Debug.Log("Open UI Menu");
+        }
+
         void ButtonHelded(InputAction.CallbackContext obj)
         {
             Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Command command) =>
@@ -194,6 +229,12 @@ namespace DreamersInc.Global
         {
             //Todo add button press change speed 
             
+        }
+
+        public ComboSO GetCombo(int index)
+        {
+            var combos = Resources.LoadAll<ComboSO>(@"Combo Data");
+            return combos.FirstOrDefault(item => item.ID == index);
         }
     }
 

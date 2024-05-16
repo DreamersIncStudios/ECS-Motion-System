@@ -4,22 +4,25 @@ using Unity.Entities;
 using DreamersInc.DamageSystem;
 using DreamersInc.CombatSystem;
 using System.Linq;
-using DG.Tweening;
 using DreamersInc.DamageSystem.Interfaces;
-
+using PrimeTween;
+using UnityEngine.VFX;
 namespace MotionSystem.Systems
 {
     public class EquipWeaponControl : MonoBehaviour
     {
         Animator anim;
         WeaponDamage damage;
+        private UnityEngine.VFX.VisualEffect graph;
         AnimatorStateInfo stateInfo;
-        private static readonly int Property = Animator.StringToHash("Weapon In Hand");
+        private static readonly int WeaponInHand = Animator.StringToHash("Weapon In Hand");
 
         private void Start()
         {
             anim = GetComponent<Animator>();
             damage = GetComponentInChildren<WeaponDamage>();
+            if (damage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>())
+                graph = damage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>();
         }
 
         public void EquipWeaponAnim()
@@ -30,8 +33,8 @@ namespace MotionSystem.Systems
 
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (!anim.GetBool(Property))
-                anim.SetBool(Property, true);
+            if (!anim.GetBool(WeaponInHand))
+                anim.SetBool(WeaponInHand, true);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
         }
@@ -40,8 +43,8 @@ namespace MotionSystem.Systems
         {
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (anim.GetBool(Property) && stateInfo.IsTag("Unequip"))
-                anim.SetBool(Property, false);
+            if (anim.GetBool(WeaponInHand) && stateInfo.IsTag("Unequip"))
+                anim.SetBool(WeaponInHand, false);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
         }
@@ -70,6 +73,10 @@ namespace MotionSystem.Systems
             damage.SetDamageBool(value >= 1 ? true : false);
         }
 
+        public void PlayVFX()
+        {
+            graph?.Play();
+        }
 
         /// <summary>
         /// Warps the player to the location of the nearest visible enemy within the specified warp range.

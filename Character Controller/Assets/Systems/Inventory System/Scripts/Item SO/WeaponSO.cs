@@ -19,12 +19,12 @@ namespace Dreamers.InventorySystem
         [SerializeField] Quality quality;
         public Quality Quality { get { return quality; } }
 
-        [SerializeField] GameObject _model;
-        public GameObject Model { get { return _model; } }
+        [SerializeField] GameObject model;
+        public GameObject Model => model;
         [SerializeField] private bool _equipToHuman;
-        public bool EquipToHuman { get { return _equipToHuman; } }
+        public bool EquipToHuman => _equipToHuman;
         [SerializeField] private HumanBodyBones _heldBone;
-        public HumanBodyBones HeldBone { get { return _heldBone; } }
+        public HumanBodyBones HeldBone => _heldBone;
         public bool Equipped { get; private set; }
 
         [SerializeField] private HumanBodyBones _equipBone;
@@ -42,7 +42,7 @@ namespace Dreamers.InventorySystem
         public WeaponSlot Slot { get { return slot; } }
         [SerializeField] private float maxDurable;
         public float MaxDurability { get { return maxDurable; } }
-        public float CurrentDurablity { get; set; }
+        public float CurrentDurability { get; set; }
         [SerializeField] private bool breakable;
         public bool Breakable { get { return breakable; } }
         [SerializeField] private bool _upgradeable;
@@ -52,20 +52,20 @@ namespace Dreamers.InventorySystem
         [SerializeField] bool alwaysDrawn;
 
         public int SkillPoints { get; set; }
-        public int Exprience { get; set; }
-        [SerializeField] Vector3 _sheathedPos;
-        public Vector3 SheathedPos { get { return _sheathedPos; } }
+        public int Experience { get; set; }
+        [SerializeField] private Vector3 sheathedPos;
+        public Vector3 SheathedPos => sheathedPos;
+        [SerializeField] private Vector3 heldPos;
+        public Vector3 HeldPos => heldPos;
+        [SerializeField] private Vector3 sheathedRot;
+        public Vector3 SheathedRot => sheathedRot;
+        [SerializeField] private Vector3 heldRot;
+        public Vector3 HeldRot => heldRot;
+        [SerializeField] private Vector3 styleHeldPost;
+        public Vector3 StyleHeldPost => styleHeldPost;
+        [SerializeField] Vector3 styleHeldRot;
+        public Vector3 StyleHeldRot => styleHeldRot;
 
-
-        [SerializeField] Vector3 _heldPos;
-        public Vector3 HeldPos { get { return _heldPos; } }
-
-        [SerializeField] Vector3 _sheathedRot;
-        public Vector3 SheathedRot { get { return _sheathedRot; } }
-
-
-        [SerializeField] Vector3 _heldRot;
-        public Vector3 HeldRot { get { return _heldRot; } }
         #endregion
 
 
@@ -222,6 +222,20 @@ namespace Dreamers.InventorySystem
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
         }
 
+        public virtual void StyleChange(bool check)
+        {
+            if (check)
+            {
+                WeaponModel.transform.localPosition = styleHeldPost;
+                WeaponModel.transform.localRotation = Quaternion.Euler(styleHeldRot);
+            }
+            else
+            {
+                WeaponModel.transform.localPosition = HeldPos;
+                WeaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
+            }
+        }
+
         public bool Equals(ItemBaseSO obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -233,10 +247,10 @@ namespace Dreamers.InventorySystem
 
             // TODO: write your implementation of Equals() here
 
-            WeaponSO Armor = (WeaponSO)obj;
+            WeaponSO weapon = (WeaponSO)obj;
 
-            return ItemID == Armor.ItemID && ItemName == Armor.ItemName && Value == Armor.Value && Modifiers.SequenceEqual(Armor.Modifiers) &&
-                Exprience == Armor.Exprience && LevelRqd == Armor.LevelRqd;
+            return ItemID == weapon.ItemID && ItemName == weapon.ItemName && Value == weapon.Value && Modifiers.SequenceEqual(weapon.Modifiers) &&
+                Experience == weapon.Experience && LevelRqd == weapon.LevelRqd;
         }
 
 

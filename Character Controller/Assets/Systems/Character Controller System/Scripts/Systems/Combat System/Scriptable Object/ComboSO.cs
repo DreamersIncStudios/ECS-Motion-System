@@ -15,7 +15,7 @@ namespace DreamersInc.ComboSystem
     // ReSharper disable once InconsistentNaming
     public class ComboSO : ScriptableObject, ICombos
     {
-
+        public int ID;
         [FormerlySerializedAs("_comboLists")] [SerializeField]
         List<ComboSingle> comboLists;
 

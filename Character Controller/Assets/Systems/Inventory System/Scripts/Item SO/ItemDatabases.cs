@@ -74,7 +74,7 @@ namespace Dreamers.InventorySystem
 
             //}
             [MenuItem("Assets/Create/RPG/Armor Item")]
-            static public void CreateArmorItem()
+            public static void CreateArmorItem()
             {
                 ScriptableObjectUtility.CreateAsset<ArmorSO>("Item", out ArmorSO Item);
                 ItemDatabase.LoadDatabaseForce();
@@ -84,7 +84,7 @@ namespace Dreamers.InventorySystem
 
             }
             [MenuItem("Assets/Create/RPG/Weapon Item")]
-            static public void CreateWeaponItem()
+            public static void CreateWeaponItem()
             {
                 ScriptableObjectUtility.CreateAsset<WeaponSO>("Item", out WeaponSO Item);
                 ItemDatabase.LoadDatabaseForce();
@@ -93,7 +93,26 @@ namespace Dreamers.InventorySystem
                 // need to deal with duplicate itemID numbers 
 
             }
+            [MenuItem("Assets/Create/RPG/SpellBook Item")]
+            public static void CreateSpellBookItem()
+            {
+                ScriptableObjectUtility.CreateAsset<SpellBookSO>("Item", out SpellBookSO Item);
+                ItemDatabase.LoadDatabaseForce();
+                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Debug.Log(Item.ItemID);
+                // need to deal with duplicate itemID numbers 
 
+            }
+            [MenuItem("Assets/Create/RPG/Weapon Spell Item")]
+            public static void CreateWeaponSpellItem()
+            {
+                ScriptableObjectUtility.CreateAsset<WeaponSpellSO>("Item", out WeaponSpellSO Item);
+                ItemDatabase.LoadDatabaseForce();
+                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Debug.Log(Item.ItemID);
+                // need to deal with duplicate itemID numbers 
+
+            }
             //[MenuItem("Assets/Create/RPG/Projectile Item")]
             //     static public void CreateBlasterItem()
             //{

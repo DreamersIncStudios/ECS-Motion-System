@@ -1715,37 +1715,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &-2297145215442695429
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: Forward
-    m_EventTreshold: 0.15
-  - m_ConditionMode: 1
-    m_ConditionEvent: Weapon In Hand
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Weapon Drawn
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 2046377935125670480}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.7525381
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &-2289976786770632849
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -4955,7 +4924,6 @@ AnimatorState:
   - {fileID: -5200904838334749104}
   - {fileID: -8860744275216916900}
   - {fileID: 9110441509159099956}
-  - {fileID: -2297145215442695429}
   - {fileID: 6714535683358973981}
   - {fileID: -162291248320455976}
   m_StateMachineBehaviours: []

@@ -57,9 +57,9 @@ namespace DreamersInc.ComboSystem
                                 break;
                             case AttackType.Grounded:
                                 break;
-                            case AttackType.Targeted_Locomation:
+                            case AttackType.Targeted_Locomotion:
                                 break;
-                            case AttackType.Locomation_Grounded_Weapon:
+                            case AttackType.Locomotion_Grounded_Weapon:
                                 break;
                             case AttackType.Defend:
                                 break;

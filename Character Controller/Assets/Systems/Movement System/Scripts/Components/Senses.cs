@@ -4,28 +4,67 @@ using Unity.Entities;
 using UnityEngine;
 using Stats;
 using Unity.Mathematics;
-using Unity.Collections;
 using Global.Component;
+using PixelCrushers.LoveHate;
 using Stats.Entities;
+using Unity.Burst;
 
 namespace AISenses
 {
-    public interface ISenses : IComponentData
-    {
-        void InitializeSense(BaseCharacterComponent baseCharacter);
-        void UpdateSense(BaseCharacterComponent baseCharacter);
-
-    }
 
     [System.Serializable]
-    public struct Vision : ISenses
+    public struct Vision : ISensor
     {
+        public float DetectionRange { get; set; }
+        public float Timer { get; set; } // consider using Variable Rate Manager;
+        public bool IsInRange(TargetAlignmentType alignmentType) => !TargetPosition(alignmentType).Equals( float3.zero);
+
+        public bool UpdateTargetPosition(TargetAlignmentType alignmentType) =>
+            !LastKnownPosition(alignmentType).Equals(TargetPosition(alignmentType)) || !LastKnownPosition(alignmentType).Equals(float3.zero);
+
+        public Entity TargetEntity(TargetAlignmentType alignmentType)
+        {
+            return alignmentType switch
+            {
+                TargetAlignmentType.Enemy => TargetEnemyEntity,
+                TargetAlignmentType.Friendly => TargetFriendlyEntity,
+                _ => Entity.Null
+            };
+        }
+
+        public float3 TargetPosition(TargetAlignmentType alignmentType)
+        {
+            return alignmentType switch
+            {
+                TargetAlignmentType.Enemy => TargetEnemyPosition,
+                TargetAlignmentType.Friendly => TargetFriendlyPosition,
+                _ => float3.zero
+            };
+        }
+
+        public float3 LastKnownPosition(TargetAlignmentType alignmentType)
+        {
+            return alignmentType switch
+            {
+                TargetAlignmentType.Enemy => LastKnownPositionEnemy,
+                TargetAlignmentType.Friendly => LastKnownPositionFriendly,
+                _ => float3.zero
+            };
+        }
+
+        public Entity TargetEnemyEntity { get; set; }
+        public Entity TargetFriendlyEntity { get; set; }
+ 
+        [SerializeField] public float3 TargetEnemyPosition { get; set; }
+        public float3 LastKnownPositionEnemy { get; set; }
+        public float3 TargetFriendlyPosition { get; set; }
+        public float3 LastKnownPositionFriendly { get; set; }
         public int DetectionRate
         {
             get
             {
                 int returnValue = new int();
-                switch (EnemyAwarnessLevel)
+                switch (EnemyAwarenessLevel)
                 {
                     case 0:
                         returnValue = 180;
@@ -52,7 +91,7 @@ namespace AISenses
         public int AlertRate { get; set; }
 
         [Range(0, 5)]
-        public int EnemyAwarnessLevel;  // Character alert level
+        public int EnemyAwarenessLevel;  // Character alert level
         public float3 HeadPositionOffset;
         public float3 ThreatPosition;
 
@@ -64,16 +103,17 @@ namespace AISenses
         public void InitializeSense(BaseCharacterComponent baseCharacter)
         {
             AlertRate = baseCharacter.GetAbility((int)AbilityName.Detection).AdjustBaseValue;
-            ViewRadius = 100;
+            ViewRadius = 250;
             ViewAngle = 120;
             EngageRadius = 50;
             AlertModifer = 1;
         }
-        public void UpdateSense(BaseCharacterComponent baseCharacter) {
+        public void UpdateSense(BaseCharacterComponent baseCharacter)
+        {
             AlertRate = baseCharacter.GetAbility((int)AbilityName.Detection).AdjustBaseValue;
-            ViewRadius = 10;
+            ViewRadius = 250;
             ViewAngle = 120;
-            EngageRadius = 10;
+            EngageRadius = 50;
             AlertModifer = 1;
         }
 
@@ -89,12 +129,12 @@ namespace AISenses
     }
 
     public struct SortScanPositionByDistance : IComparer<ScanPositionBuffer>
+{
+    public int Compare(ScanPositionBuffer x, ScanPositionBuffer y)
     {
-        public int Compare(ScanPositionBuffer x, ScanPositionBuffer y)
-        {
-          return x.dist.CompareTo(y.dist);
-        }
+        return x.dist.CompareTo(y.dist);
     }
+}
 
     public struct HitDistanceComparer : IComparer<ScanPositionBuffer>
     {
@@ -107,6 +147,15 @@ namespace AISenses
     public struct Target
     {
         public Entity Entity;
+        public bool IsFriendly;
+        [BurstDiscard]
+        public void CheckIsFriendly(int factionID)
+        {
+            IsFriendly = factionID == TargetInfo.FactionID ||
+                         LoveHate.factionDatabase.GetFaction(factionID).GetPersonalAffinity(TargetInfo.FactionID) > 51;
+         
+        }
+
         public AITarget TargetInfo;
         public float DistanceTo;
         public float3 LastKnownPosition;
@@ -116,4 +165,8 @@ namespace AISenses
         public float PerceptilabilityScore;
     }
 
+    public enum TargetAlignmentType
+    {
+        All,Enemy, Friendly
+    }
 }
