@@ -12,19 +12,19 @@ namespace Dreamers.InventorySystem
 {
     public static class ItemDatabase 
     {
-        static public List<ItemBaseSO> Items;
-        static public bool isLoaded { get; private set; }
+        private static List<ItemBaseSO> items;
+        private static bool isLoaded { get; set; }
 
         private static void ValidateDatabase() {
-            if (Items == null||!isLoaded )
+            if (items == null||!isLoaded )
             {
-                Items = new List<ItemBaseSO>();
+                items = new List<ItemBaseSO>();
                 isLoaded = false;
             }
             else { isLoaded = true; }
         }
 
-        public static void LoadDatabase()
+        private static void LoadDatabase()
         {
             if (isLoaded)
                 return;
@@ -33,28 +33,28 @@ namespace Dreamers.InventorySystem
 
         public static void LoadDatabaseForce()
         {
-            Items = new List<ItemBaseSO>();
+            items = new List<ItemBaseSO>();
             isLoaded = true;
             ItemBaseSO[] itemsToLoad = Resources.LoadAll<ItemBaseSO>(@"Items");
             foreach (var item in itemsToLoad)
             {
-                if (!Items.Contains(item))
-                    Items.Add(item);
+                if (!items.Contains(item))
+                    items.Add(item);
             }
         }
         public static void ClearDatabase() {
             isLoaded = false;
-            Items.Clear();
+            items.Clear();
 
         }
         public static ItemBaseSO GetItem(int SpawnID) {
             ValidateDatabase();
             LoadDatabase();
-            foreach (ItemBaseSO item in Items)
+            foreach (ItemBaseSO item in items)
             {
                 if (item.ItemID == SpawnID)
                     return ScriptableObject.Instantiate(item) as ItemBaseSO;
-                // Consider add switch to return Item as it proper type ?????
+                // Consider add switch to return Item as it derived type ?????
 
             }
             return null;
@@ -70,6 +70,7 @@ namespace Dreamers.InventorySystem
             //    ItemDatabase.LoadDatabaseForce();
             //    Item.setItemID((uint)ItemDatabase.Items.Count + 1);
             //    Debug.Log( Item.ItemID );
+            //AssetDatabase.SetLabels(Item, new [] {"Item","Curative"});
             //    // need to deal with duplicate itemID numbers 
 
             //}
@@ -78,8 +79,9 @@ namespace Dreamers.InventorySystem
             {
                 ScriptableObjectUtility.CreateAsset<ArmorSO>("Item", out ArmorSO Item);
                 ItemDatabase.LoadDatabaseForce();
-                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
                 Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Armor"});
                 // need to deal with duplicate itemID numbers 
 
             }
@@ -88,8 +90,9 @@ namespace Dreamers.InventorySystem
             {
                 ScriptableObjectUtility.CreateAsset<WeaponSO>("Item", out WeaponSO Item);
                 ItemDatabase.LoadDatabaseForce();
-                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
                 Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon"});
                 // need to deal with duplicate itemID numbers 
 
             }
@@ -98,18 +101,32 @@ namespace Dreamers.InventorySystem
             {
                 ScriptableObjectUtility.CreateAsset<SpellBookSO>("Item", out SpellBookSO Item);
                 ItemDatabase.LoadDatabaseForce();
-                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
                 Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon"});
                 // need to deal with duplicate itemID numbers 
 
             }
             [MenuItem("Assets/Create/RPG/Weapon Spell Item")]
             public static void CreateWeaponSpellItem()
             {
-                ScriptableObjectUtility.CreateAsset<WeaponSpellSO>("Item", out WeaponSpellSO Item);
+                ScriptableObjectUtility.CreateAsset<SpawnedWeaponSpellSO>("Item", out SpawnedWeaponSpellSO Item);
                 ItemDatabase.LoadDatabaseForce();
-                Item.setItemID((uint)ItemDatabase.Items.Count + 1);
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
                 Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon","Spawn Spell"});
+                // need to deal with duplicate itemID numbers 
+
+            }
+            
+            [MenuItem("Assets/Create/RPG/Modifier Spell Item")]
+            public static void CreateModSpellItem()
+            {
+                ScriptableObjectUtility.CreateAsset<ModifierSpellSO>("Item", out ModifierSpellSO Item);
+                ItemDatabase.LoadDatabaseForce();
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
+                Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon","Mod Spell", });
                 // need to deal with duplicate itemID numbers 
 
             }

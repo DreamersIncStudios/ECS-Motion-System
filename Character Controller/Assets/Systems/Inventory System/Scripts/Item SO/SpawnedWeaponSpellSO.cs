@@ -4,12 +4,13 @@ using Dreamers.InventorySystem.Interfaces;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using Stats.Entities;
+using Unity.Entities;
 using UnityEngine;
 
 namespace Dreamers.InventorySystem
 {
     [Serializable]
-    public class WeaponSpellSO : SpellSO, IWeapon
+    public class SpawnedWeaponSpellSO : SpellSO, IWeapon
     {
         #region Variables
 
@@ -21,8 +22,8 @@ namespace Dreamers.InventorySystem
         private HumanBodyBones equipBone;
 
         public HumanBodyBones EquipBone => equipBone;
-        [SerializeField] private List<StatModifier> modifiers;
-        public List<StatModifier> Modifiers => modifiers;
+        [SerializeField] private List<AttributeModifier> modifiers;
+        public List<AttributeModifier> Modifiers => modifiers;
 
         [SerializeField] private WeaponType weaponType;
         [SerializeField] TypeOfDamage typeOfDamage;
@@ -63,13 +64,12 @@ namespace Dreamers.InventorySystem
 
         #endregion
 
-        public override void Activate(SpellBookSO spellBookSo, BaseCharacterComponent player)
+        public override void Activate(SpellBookSO spellBookSo, BaseCharacterComponent player, Entity entity)
         {
             spellBookSo.CurHeldPos = HeldPos;
             spellBookSo.CurHeldRot = HeldRot;
             spellBookSo.CurSheathedPos = SheathedPos;
             spellBookSo.CurSheathedRot = SheathedRot;
-            spellBookSo.CurComboID = comboDataIndex;
             spellBookSo.WeaponModel= WeaponModel = Instantiate(Model);
             var anim = player.GOrepresentative.GetComponent<Animator>();
             if (EquipToHuman)
@@ -88,9 +88,19 @@ namespace Dreamers.InventorySystem
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
         }
 
+        public override void Activate(WeaponSO weaponSO, BaseCharacterComponent player,  Entity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Deactivate(SpellBookSO spellBookSo, BaseCharacterComponent player,  Entity entity)
+        {
+            Destroy(spellBookSo.WeaponModel);
+        }
+
         public bool EquipToHuman;
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacter player)
+        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
             throw new System.NotImplementedException();
         }

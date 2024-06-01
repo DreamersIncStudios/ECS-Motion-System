@@ -74,7 +74,6 @@ namespace DreamersInc.ComboSystem
                 {
                     if (!inventory.Equipment.EquippedWeapons.TryGetValue(Dreamers.InventorySystem.Interfaces.WeaponSlot.Primary, out var weaponSO)) return;
                     handler.AlwaysDrawnWeapon = weaponSO.AlwaysDrawn;
-                    control.EquipOverride = weaponSO.AlwaysDrawn;
                 }).Run();
         }
 

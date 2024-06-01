@@ -196,13 +196,14 @@ namespace DreamersInc.Global
                 switch (weapon.WeaponType)
                 {
                     case WeaponType.Katana:
-                        case WeaponType.H2BoardSword:
+                    case WeaponType.H2BoardSword:
                     case WeaponType.Sword:
                         if (command.StyleModPressHold)
                             command.StyleMod = false;
                         inventory.Equipment.EquippedWeapons[WeaponSlot.Primary].StyleChange(command.StyleMod);
                         break;
                     case WeaponType.SpellBook:
+                    case WeaponType.SpellBlade:
                         var spell = (SpellBookSO)weapon;
                         spell.SwapSpell(spell.CurIndex+1, entity);
                         combo.Combo = GetCombo(spell.CurComboID);
@@ -213,7 +214,19 @@ namespace DreamersInc.Global
 
         public void OpenSpellChangeMenu(InputAction.CallbackContext obj)
         {
-            Debug.Log("Open UI Menu");
+            Entities.WithoutBurst().WithAll<Player_Control>().ForEach((Entity entity, Command command,
+                CharacterInventory inventory, PlayerComboComponent combo) =>
+            {
+                var weapon = inventory.Equipment.EquippedWeapons[WeaponSlot.Primary];
+
+                switch (weapon.WeaponType)
+                {
+                    case WeaponType.SpellBook:
+                    case WeaponType.SpellBlade:
+                        Debug.Log("Open UI Menu");
+                        break;
+                }
+            }).Run();
         }
 
         void ButtonHelded(InputAction.CallbackContext obj)
@@ -233,8 +246,11 @@ namespace DreamersInc.Global
 
         public ComboSO GetCombo(int index)
         {
-            var combos = Resources.LoadAll<ComboSO>(@"Combo Data");
-            return combos.FirstOrDefault(item => item.ID == index);
+            var combos = Resources.LoadAll<ComboSO>("Combo Data");
+            Debug.Log(combos.Length);
+
+            var test = combos.FirstOrDefault(item => item.ID == index);
+            return test;
         }
     }
 

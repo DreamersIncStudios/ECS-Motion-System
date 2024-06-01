@@ -12,7 +12,7 @@ public class ParticleDamage : MonoBehaviour
     [SerializeField] float moveTime;
     [SerializeField] bool delay;
     [SerializeField] float delayTime;
-    public Element element;
+    public ElementName ElementName;
     private void Start()
     {
         startDamage = false;
@@ -41,7 +41,7 @@ public class ParticleDamage : MonoBehaviour
             var damageable = other.GetComponent<IDamageable>();
             if (damageable != null && other.tag != "Player")
             {
-                damageable.TakeDamage(1000, TypeOfDamage.MagicAoE, element);
+                damageable.TakeDamage(1000, TypeOfDamage.MagicAoE, ElementName);
                 Debug.Log($"hit {other.name}");
             }
         }

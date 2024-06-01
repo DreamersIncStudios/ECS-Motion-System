@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daff587002186714eb8707288b306011, type: 3}
+  m_Name: Base State Dark Edge
+  m_EditorClassIdentifier: 
+  _itemID: 11
+  _itemName: Based
+  _desc: "Seal state of weapon \n"
+  _icon: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
+  _value: 0
+  _type: 2
+  _stackable: 1
+  _questItem: 0
+  maxStackCount: 10
+  size: 20
+  manaCost: 5
+  comboID: 2
+  modifiers:
+  - Stat: 0
+    BuffValue: 10
+  effects:
+    VFX: {fileID: 0}
+    ElementName: 0
+    StatusEffects: 0
+    Chance: 0
+    Damage: 0
+    Duration: 0
+    Repetition: 0

@@ -16,7 +16,7 @@ namespace Stats.Entities
         private Vital[] _vital;
         private Stat[] _stats;
         private Abilities[] _ability;
-        private Elemental[] _ElementalMods;
+        private ElementDamageModStat[] elementalDamageMods;
         public bool InPlay;
         public bool InvincibleMode;
         public uint SpawnID;// { get; private set; }
@@ -125,7 +125,8 @@ namespace Stats.Entities
             _vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
             _stats = new Stat[Enum.GetValues(typeof(StatName)).Length];
             _ability = new Abilities[Enum.GetValues(typeof(AbilityName)).Length];
-            // _ElementalMods = new Elemental[Enum.GetValues(typeof(Elements)).Length];
+            elementalDamageMods = new ElementDamageModStat[Enum.GetValues(typeof(ElementName)).Length];
+            
             SetupPrimaryAttributes();
             SetupVitals();
             SetupStats();
@@ -175,6 +176,17 @@ namespace Stats.Entities
         public Abilities GetAbility(int index)
         {
             return _ability[index];
+        }
+
+        public ElementDamageModStat GetElementMod(int index)
+        {
+            return elementalDamageMods[index];
+        }
+
+        public ElementDamageModStat GetElementMod( ElementName elementName)
+        {
+            
+            return elementalDamageMods[(int)elementName];
         }
         private void SetupStats()
         {

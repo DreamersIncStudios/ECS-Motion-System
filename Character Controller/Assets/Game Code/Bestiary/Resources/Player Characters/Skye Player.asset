@@ -115,7 +115,10 @@ MonoBehaviour:
   Combo: {fileID: 11400000, guid: 8c0d6a3cc67ec3744a954236bbcc25fd, type: 2}
   Equipment:
     EquippedWeapons:
-    - {fileID: 11400000, guid: 30221ae827a8c3e4fb342bfb4557b9c1, type: 2}
+    - {fileID: 11400000, guid: 5e54dfe64fdb05040b08947a928fcff8, type: 2}
     EquippedArmors:
-    - {fileID: 11400000, guid: 66ea3d90606fcc743bf50a3ab423910a, type: 2}
+    - {fileID: 0}
     EquippedAbilites: []
+  Inventory:
+    ItemsInInventory: []
+    MaxInventorySize: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33edf1fa5fbc3746945edee092f9710, type: 3}
   m_Name: Edge blade
   m_EditorClassIdentifier: 
+  ID: 2
   comboLists:
   - name: 1
     Unlocked: 1
@@ -24,7 +25,7 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 1
         TransitionDuration: 0
         TransitionOffset: 0
@@ -32,9 +33,32 @@ MonoBehaviour:
         AttackVFX:
           ID: 1
           Forward: 0.2
-          Up: 0.9
+          Up: 1.1
           Rot: {x: 0, y: 0, z: 0}
           LifeTime: 1
+          ChanceToPlay: 100
+        Chance: 80
+        ChanceForNextAttack: 60
+        Delay: 0
+    - CurrentAnim: 2
+      triggerAnimIndex: 4
+      Alternate: 0
+      NormalizedInputTime:
+        x: 0
+        y: 0.45
+      AnimationEndTime: 0.4
+      Trigger:
+        AttackType: 1
+        triggerAnimIndex: 2
+        TransitionDuration: 0.15
+        TransitionOffset: 0
+        EndOfCurrentAnim: 0.7
+        AttackVFX:
+          ID: 1
+          Forward: 0
+          Up: 0.2
+          Rot: {x: 0, y: 0, z: 0}
+          LifeTime: 0
           ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60
@@ -47,9 +71,9 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 1
-        TransitionDuration: 0
+        TransitionDuration: 0.1
         TransitionOffset: 0
         EndOfCurrentAnim: 0
         AttackVFX:
@@ -70,9 +94,9 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 1
-        TransitionDuration: 0
+        TransitionDuration: 0.1
         TransitionOffset: 0
         EndOfCurrentAnim: 0
         AttackVFX:
@@ -93,7 +117,7 @@ MonoBehaviour:
         y: 0.68
       AnimationEndTime: 0.45
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 2
         TransitionDuration: 0.1
         TransitionOffset: 0.125
@@ -116,7 +140,7 @@ MonoBehaviour:
         y: 0.65
       AnimationEndTime: 0.55
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 3
         TransitionDuration: 0.1833
         TransitionOffset: 0
@@ -139,16 +163,16 @@ MonoBehaviour:
         y: 0.65
       AnimationEndTime: 0.5
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 4
         TransitionDuration: 0.25
         TransitionOffset: 0
         EndOfCurrentAnim: 0.5
         AttackVFX:
           ID: 3
-          Forward: 0.2
-          Up: 0.25
-          Rot: {x: 0, y: 0, z: 0}
+          Forward: 3
+          Up: 0.75
+          Rot: {x: 0, y: 45, z: 0}
           LifeTime: 1
           ChanceToPlay: 100
         Chance: 80
@@ -162,7 +186,7 @@ MonoBehaviour:
         y: 0.65
       AnimationEndTime: 0.5
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 3
         TransitionDuration: 0.275
         TransitionOffset: 0.125
@@ -188,7 +212,7 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 1
         TransitionDuration: 0
         TransitionOffset: 0
@@ -211,7 +235,7 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 1
         TransitionDuration: 0
         TransitionOffset: 0
@@ -234,7 +258,7 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 1
         TransitionDuration: 0
         TransitionOffset: 0
@@ -257,14 +281,14 @@ MonoBehaviour:
         y: 0.5
       AnimationEndTime: 0.5975
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 2
         TransitionDuration: 0.2
         TransitionOffset: 0.075
         EndOfCurrentAnim: 0.5975
         AttackVFX:
-          ID: 3
-          Forward: 0
+          ID: 13
+          Forward: 1
           Up: 0
           Rot: {x: 0, y: 0, z: 0}
           LifeTime: 1
@@ -280,19 +304,19 @@ MonoBehaviour:
         y: 0.5
       AnimationEndTime: 0.625
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 4
         TransitionDuration: 0.25
         TransitionOffset: 0.06
         EndOfCurrentAnim: 0.625
         AttackVFX:
-          ID: 0
-          Forward: 0
-          Up: 0
+          ID: 4
+          Forward: 2
+          Up: 1.25
           Rot: {x: 0, y: 0, z: 0}
-          LifeTime: 0
-          ChanceToPlay: 0
-        Chance: 0
+          LifeTime: 2
+          ChanceToPlay: 100
+        Chance: 80
         ChanceForNextAttack: 0
         Delay: 0
   - name: 3
@@ -306,17 +330,17 @@ MonoBehaviour:
         y: 0.7
       AnimationEndTime: 0.415
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 7
         TransitionDuration: 0.25
         TransitionOffset: 0
         EndOfCurrentAnim: 0.415
         AttackVFX:
-          ID: 0
-          Forward: 0
+          ID: 4
+          Forward: 2
           Up: 0
-          Rot: {x: 0, y: 0, z: 0}
-          LifeTime: 0
+          Rot: {x: 330, y: 0, z: 75}
+          LifeTime: 1
           ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
@@ -325,21 +349,21 @@ MonoBehaviour:
       triggerAnimIndex: 7
       Alternate: 0
       NormalizedInputTime:
-        x: 0.056
+        x: 0.15
         y: 0.6
-      AnimationEndTime: 0.4
+      AnimationEndTime: 0.37
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 8
         TransitionDuration: 0.25
         TransitionOffset: 0.22
-        EndOfCurrentAnim: 0.4
+        EndOfCurrentAnim: 0.37
         AttackVFX:
-          ID: 0
-          Forward: 0
-          Up: 0
+          ID: 1
+          Forward: 0.2
+          Up: 1.1
           Rot: {x: 0, y: 0, z: 0}
-          LifeTime: 0
+          LifeTime: 1
           ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
@@ -348,21 +372,21 @@ MonoBehaviour:
       triggerAnimIndex: 8
       Alternate: 0
       NormalizedInputTime:
-        x: 0.05
+        x: 0.15
         y: 0.6
       AnimationEndTime: 0.46
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 9
         TransitionDuration: 0.25
         TransitionOffset: 0.0675
         EndOfCurrentAnim: 0.415
         AttackVFX:
-          ID: 0
-          Forward: 0
-          Up: 0
+          ID: 1
+          Forward: 0.2
+          Up: 1.1
           Rot: {x: 0, y: 0, z: 0}
-          LifeTime: 0
+          LifeTime: 1
           ChanceToPlay: 100
         Chance: 0
         ChanceForNextAttack: 0
@@ -378,7 +402,7 @@ MonoBehaviour:
         y: 0.7
       AnimationEndTime: 0.45
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 6
         TransitionDuration: 0.1
         TransitionOffset: 0
@@ -401,7 +425,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.575
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 5
         TransitionDuration: 0.1
         TransitionOffset: 0.05
@@ -424,7 +448,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.575
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 6
         TransitionDuration: 0.125
         TransitionOffset: 0.175
@@ -447,7 +471,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.575
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 7
         TransitionDuration: 0.05
         TransitionOffset: 0.1
@@ -470,7 +494,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.45
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 6
         TransitionDuration: 0.1
         TransitionOffset: 0.1
@@ -496,7 +520,7 @@ MonoBehaviour:
         y: 0.7
       AnimationEndTime: 0.6
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 3
         TransitionDuration: 0.275
         TransitionOffset: 0.125
@@ -519,7 +543,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.4
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 8
         TransitionDuration: 0.25
         TransitionOffset: 0
@@ -542,7 +566,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.5
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 9
         TransitionDuration: 0.125
         TransitionOffset: 0
@@ -565,7 +589,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.575
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 10
         TransitionDuration: 0.1
         TransitionOffset: 0.125
@@ -588,7 +612,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.45
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 11
         TransitionDuration: 0.15
         TransitionOffset: 0
@@ -614,7 +638,7 @@ MonoBehaviour:
         y: 0.7
       AnimationEndTime: 0.75
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 12
         TransitionDuration: 0.25
         TransitionOffset: 0
@@ -637,7 +661,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.4
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 10
         TransitionDuration: 0.25
         TransitionOffset: 0.0812
@@ -660,7 +684,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.5
       Trigger:
-        AttackType: 0
+        AttackType: 1
         triggerAnimIndex: 13
         TransitionDuration: 0.25
         TransitionOffset: 0
@@ -683,7 +707,7 @@ MonoBehaviour:
         y: 0.6
       AnimationEndTime: 0.575
       Trigger:
-        AttackType: 0
+        AttackType: 2
         triggerAnimIndex: 11
         TransitionDuration: 0.25
         TransitionOffset: 0.22

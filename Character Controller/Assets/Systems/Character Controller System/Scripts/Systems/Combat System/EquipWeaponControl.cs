@@ -4,8 +4,12 @@ using Unity.Entities;
 using DreamersInc.DamageSystem;
 using DreamersInc.CombatSystem;
 using System.Linq;
+using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using DreamersInc.DamageSystem.Interfaces;
 using PrimeTween;
+using Stats;
+using Stats.Entities;
 using UnityEngine.VFX;
 namespace MotionSystem.Systems
 {
@@ -15,6 +19,7 @@ namespace MotionSystem.Systems
         WeaponDamage damage;
         private UnityEngine.VFX.VisualEffect graph;
         AnimatorStateInfo stateInfo;
+        public WeaponSO CurEquipWeapon { get; private set; }
         private static readonly int WeaponInHand = Animator.StringToHash("Weapon In Hand");
 
         private void Start()
@@ -27,9 +32,19 @@ namespace MotionSystem.Systems
 
         public void EquipWeaponAnim()
         {
+            var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var entity =damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
 
             if (!anim)
                 anim = GetComponent<Animator>();
+            if (!CurEquipWeapon)
+            {
+                var inventory = entityManager.GetComponentData<CharacterInventory>(entity);
+                 if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out var temp)) 
+                     return;
+                 CurEquipWeapon = temp;
+                 
+            }
 
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -37,16 +52,34 @@ namespace MotionSystem.Systems
                 anim.SetBool(WeaponInHand, true);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+
+            var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
+            CurEquipWeapon.activeSpell.Activate(CurEquipWeapon,stats,entity);
         }
 
         public void UnequipWeaponAnim()
         {
+            var entity =damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
+            var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            if (!CurEquipWeapon)
+            {
+                var inventory = entityManager.GetComponentData<CharacterInventory>(entity);
+                if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out var temp)) 
+                    return;
+                CurEquipWeapon = temp;
+                 
+            }
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
             if (anim.GetBool(WeaponInHand) && stateInfo.IsTag("Unequip"))
                 anim.SetBool(WeaponInHand, false);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+            
+            var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
+            CurEquipWeapon.activeSpell.Deactivate(CurEquipWeapon,stats,entity);
+
         }
 
         public void CalculateCriticalHit()

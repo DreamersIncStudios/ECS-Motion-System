@@ -14,10 +14,10 @@ namespace DreamersInc.DamageSystem.Interfaces
         float CriticalHitMod { get; }
         float MagicMod { get; }
         bool CriticalHit { get; }
-        Element Element { get; }
+        ElementName ElementName { get; }
         TypeOfDamage TypeOfDamage { get; }
 
-        void SetElement(Element value);
+        void SetElement(ElementName value);
         void SetDamageType();
         int DamageAmount();
         bool DoDamage { get; }

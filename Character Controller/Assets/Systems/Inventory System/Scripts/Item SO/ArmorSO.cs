@@ -31,8 +31,8 @@ namespace Dreamers.InventorySystem
         [SerializeField] private uint _levelRqd;
         public uint LevelRqd { get { return _levelRqd; } }
 
-        [SerializeField] private List<StatModifier> _modifiers;
-        public List<StatModifier> Modifiers { get { return _modifiers; } }
+        [SerializeField] private List<AttributeModifier> _modifiers;
+        public List<AttributeModifier> Modifiers { get { return _modifiers; } }
 
         [SerializeField] private float maxDurable;
         public float MaxDurability { get { return maxDurable; } }
@@ -72,7 +72,7 @@ namespace Dreamers.InventorySystem
                     }
 
                 }
-                player.ModCharacterStats(Modifiers, true);
+                player.ModCharacterAttributes(Modifiers, true);
                 return Equipped = true;
             }
             else
@@ -148,7 +148,7 @@ namespace Dreamers.InventorySystem
                     }
 
                 }
-                player.ModCharacterStats( Modifiers, true);
+                player.ModCharacterAttributes( Modifiers, true);
 
                 characterInventory.Inventory.RemoveFromInventory(this);
                 player.StatUpdate();
@@ -171,7 +171,7 @@ namespace Dreamers.InventorySystem
             EquipmentBase Equipment = characterInventory.Equipment;
             characterInventory.Inventory.AddToInventory(this);
             Destroy(armorModel);
-           player.ModCharacterStats( Modifiers, false);
+           player.ModCharacterAttributes( Modifiers, false);
             Equipment.EquippedArmor.Remove(this.ArmorType);
             Equipped = false;
             return true;
@@ -187,7 +187,7 @@ namespace Dreamers.InventorySystem
    
 
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacter player)
+        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
             throw new System.NotImplementedException();
         }

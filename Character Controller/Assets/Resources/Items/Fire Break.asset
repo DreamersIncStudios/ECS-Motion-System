@@ -18,21 +18,19 @@ MonoBehaviour:
     the essence of magic, the legendary FireBreak was born. This magnificent axe
     is a fusion of craftsmanship and enchantment, a testament to the awe-inspiring
     power of both the mortal and mystical realms.
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
   _value: 0
   _type: 2
   _stackable: 0
   _questItem: 0
   maxStackCount: 0
   quality: 4
-  _model: {fileID: 5328939425296516777, guid: 454a619194837fb40ad10148e78902cb, type: 3}
-  _equipToHuman: 0
+  model: {fileID: 2657625865324565839, guid: 5fcce8e572b2df94780dce77d196d458, type: 3}
+  equipToHuman: 0
   _heldBone: 18
-  _equipBone: 7
-  _modifiers:
-  - Stat: 1
-    BuffValue: 35
-  _levelRQD: 0
+  equipBone: 0
+  modifiers: []
+  levelRqd: 0
   _weaponType: 8
   typeOfDamage: 0
   slot: 0
@@ -40,7 +38,11 @@ MonoBehaviour:
   breakable: 0
   _upgradeable: 1
   alwaysDrawn: 0
-  _sheathedPos: {x: -0.00091, y: -0.00591, z: -0.00233}
-  _heldPos: {x: 0.00187, y: -0.00022, z: 0.00078}
-  _sheathedRot: {x: 0, y: 0, z: 0}
-  _heldRot: {x: 15.026, y: -18.639, z: 67.033}
+  sheathedPos: {x: 0, y: 0, z: 0}
+  heldPos: {x: 0, y: 0, z: 0}
+  sheathedRot: {x: 0, y: 0, z: 0}
+  heldRot: {x: 0, y: 0, z: 0}
+  styleHeldPost: {x: 0, y: 0, z: 0}
+  styleHeldRot: {x: 0, y: 0, z: 0}
+  permWeaponEffects: []
+  MaxNumberOfEffects: 0

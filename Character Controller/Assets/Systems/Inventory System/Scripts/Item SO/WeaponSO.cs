@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Stats;
 using Dreamers.InventorySystem.Base;
 using Dreamers.InventorySystem.Interfaces;
-using Unity.Entities;
 using System.Linq;
+using DreamersInc.DamageSystem;
 using Stats.Entities;
 using DreamersInc.DamageSystem.Interfaces;
+using Newtonsoft.Json;
 using VisualEffect;
 
 namespace Dreamers.InventorySystem
@@ -15,40 +16,40 @@ namespace Dreamers.InventorySystem
     public class WeaponSO : ItemBaseSO, IEquipable, IWeapon
     {
         #region Variables
-        public new ItemType Type { get { return ItemType.Weapon; } }
+        public new ItemType Type => ItemType.Weapon;
         [SerializeField] Quality quality;
-        public Quality Quality { get { return quality; } }
+        public Quality Quality => quality;
 
         [SerializeField] GameObject model;
         public GameObject Model => model;
-        [SerializeField] private bool _equipToHuman;
-        public bool EquipToHuman => _equipToHuman;
+        [SerializeField] private bool equipToHuman;
+        public bool EquipToHuman => equipToHuman;
         [SerializeField] private HumanBodyBones _heldBone;
         public HumanBodyBones HeldBone => _heldBone;
         public bool Equipped { get; private set; }
 
-        [SerializeField] private HumanBodyBones _equipBone;
-        public HumanBodyBones EquipBone { get { return _equipBone; } }
-        [SerializeField] private List<StatModifier> _modifiers;
-        public List<StatModifier> Modifiers { get { return _modifiers; } }
+        [SerializeField] private HumanBodyBones equipBone;
+        public HumanBodyBones EquipBone => equipBone;
+        [SerializeField] private List<AttributeModifier> modifiers;
+        public List<AttributeModifier> Modifiers => modifiers;
 
-        [SerializeField] private uint _levelRQD;
-        public uint LevelRqd { get { return _levelRQD; } }
+        [SerializeField] private uint levelRqd;
+        public uint LevelRqd => levelRqd;
 
         [SerializeField] private WeaponType _weaponType;
         [SerializeField] TypeOfDamage typeOfDamage;
-        public WeaponType WeaponType { get { return _weaponType; } }
+        public WeaponType WeaponType => _weaponType;
         [SerializeField] private WeaponSlot slot;
-        public WeaponSlot Slot { get { return slot; } }
+        public WeaponSlot Slot => slot;
         [SerializeField] private float maxDurable;
-        public float MaxDurability { get { return maxDurable; } }
+        public float MaxDurability => maxDurable;
         public float CurrentDurability { get; set; }
         [SerializeField] private bool breakable;
-        public bool Breakable { get { return breakable; } }
+        public bool Breakable => breakable;
         [SerializeField] private bool _upgradeable;
-        public bool Upgradeable { get { return _upgradeable; } }
+        public bool Upgradeable => _upgradeable;
 
-        public bool AlwaysDrawn { get { return alwaysDrawn; } }
+        public bool AlwaysDrawn => alwaysDrawn;
         [SerializeField] bool alwaysDrawn;
 
         public int SkillPoints { get; set; }
@@ -66,17 +67,51 @@ namespace Dreamers.InventorySystem
         [SerializeField] Vector3 styleHeldRot;
         public Vector3 StyleHeldRot => styleHeldRot;
 
+        public List<Effects> PermWeaponEffects => permWeaponEffects;
+        [SerializeField]
+        private List<Effects> permWeaponEffects;
+        
+        public List<Effects> AdderWeaponEffect { get; private set; }
+        [Range(0, 10)] public int MaxNumberOfEffects;
+        [SerializeField] public ModifierSpellSO BaseModelState;
+
+        public SpellSO activeSpell { get; private protected set; }
+
         #endregion
 
 
         public GameObject WeaponModel { get; set; }
-        
 
-        public bool Equip(BaseCharacterComponent player)
+        public class OnStatusEffectChangeArgs : EventArgs
         {
+            public bool Add;
+            public Effects EffectChange;
+
+            public OnStatusEffectChangeArgs(Effects effectChange, bool add = true)
+            {
+                EffectChange = effectChange;
+                Add = add;
+            }
+        }
+
+        public event EventHandler<OnStatusEffectChangeArgs> OnStatusEffectChange;
+
+        public virtual bool Equip(BaseCharacterComponent player)
+        {
+            OnStatusEffectChange += (object sender, OnStatusEffectChangeArgs eventArgs) =>
+            {
+                if (eventArgs.Add)
+                {
+                    WeaponModel.GetComponent<WeaponDamage>().UpdateEffect(eventArgs.EffectChange);
+                }else
+                    WeaponModel.GetComponent<WeaponDamage>().UpdateEffect(eventArgs.EffectChange,true);
+                    
+            };
+            
             var anim = player.GOrepresentative.GetComponent<Animator>();
             if (player.Level >= LevelRqd)
             {
+                AdderWeaponEffect = new List<Effects>();
                 if (Model != null)
                 {
                     WeaponModel = Instantiate(Model);
@@ -97,14 +132,20 @@ namespace Dreamers.InventorySystem
                     WeaponModel.transform.localPosition = SheathedPos;
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
                 }
-                player.ModCharacterStats(Modifiers, true);
-                if(alwaysDrawn)
+                player.ModCharacterAttributes(Modifiers, true);
+                if(alwaysDrawn )
                 {
                     anim.SendMessage("EquipWeaponAnim");
                     DrawWeapon(anim);
-                    WeaponModel.AddComponent<DissolveSingle>();
-
+                    if(EquipToHuman)
+                        WeaponModel.AddComponent<DissolveSingle>();
                 }
+
+                foreach (var permEffect in PermWeaponEffects)
+                {
+                    OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(permEffect,true));
+                }
+
                 return Equipped = true; ;
             }
             else
@@ -159,7 +200,9 @@ namespace Dreamers.InventorySystem
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
 
                 }
-                player.ModCharacterStats(Modifiers, true);
+                AdderWeaponEffect = new List<Effects>();
+
+                player.ModCharacterAttributes(Modifiers, true);
                 characterInventory.Inventory.RemoveFromInventory(this);
                 if (alwaysDrawn)
                 {
@@ -169,7 +212,7 @@ namespace Dreamers.InventorySystem
                 }
 
                 player.StatUpdate();
-                return Equipped = true; ;
+                return Equipped = true; 
             }
             else
             {
@@ -178,12 +221,6 @@ namespace Dreamers.InventorySystem
             }
 
         }
-        /// <summary>
-        /// Equip Item to Self
-        /// </summary>
-        /// <param name="characterInventory"></param>
-        /// <returns></returns>
-
 
         /// <summary>
         /// Unequip item from character and return to target inventory
@@ -197,19 +234,20 @@ namespace Dreamers.InventorySystem
             characterInventory.Inventory.AddToInventory(this);
             Destroy(WeaponModel);
 
-            player.ModCharacterStats(Modifiers, false);
+            player.ModCharacterAttributes(Modifiers, false);
             Equipment.EquippedWeapons.Remove(this.Slot);
             Equipped = false;
-            return true; ;
+            return true; 
         }
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacter player)
+        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void DrawWeapon(Animator anim)
         {
+            if (!equipToHuman) return;
             WeaponModel.transform.SetParent(anim.GetBoneTransform(HeldBone));
             WeaponModel.transform.localPosition = HeldPos;
             WeaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
@@ -236,6 +274,36 @@ namespace Dreamers.InventorySystem
             }
         }
 
+        public bool SetEffect(Effects effect, bool overrideEffect = false)
+        {
+            if (overrideEffect)
+            {
+                foreach (var existingEffect in AdderWeaponEffect)
+                {
+                    OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(existingEffect,false));
+                }
+                AdderWeaponEffect = new List<Effects> { effect };
+                OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect,true));
+
+                return true;
+            }
+
+            if (AdderWeaponEffect.Count >= MaxNumberOfEffects)
+            {
+                return false;
+            }
+
+            AdderWeaponEffect.Add(effect);
+            OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect,true));
+
+            return true;
+        }
+
+        public bool SetEffect(List<Effects> effectsList, bool overrideEffect = false)
+        {
+            return effectsList.All(effect => SetEffect(effect));
+        }
+
         public bool Equals(ItemBaseSO obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -252,8 +320,38 @@ namespace Dreamers.InventorySystem
             return ItemID == weapon.ItemID && ItemName == weapon.ItemName && Value == weapon.Value && Modifiers.SequenceEqual(weapon.Modifiers) &&
                 Experience == weapon.Experience && LevelRqd == weapon.LevelRqd;
         }
+        public override string Serialize()
+        {
+            var serializeData = new SerializedWeaponData(itemID: ItemID, itemName: ItemName, description: Description,
+                value: Value, type: Type, stackable: Stackable, questItem: QuestItem);
+            string output = JsonConvert.SerializeObject(serializeData);
 
 
+            return output;
+        }
+
+        public override void Deserialize()
+        {
+            base.Deserialize();
+        }
+
+        class SerializedWeaponData : SerializedItemSO
+        {     
+            public SerializedWeaponData()
+            {
+            }
+
+            public SerializedWeaponData(uint itemID, string itemName, string description, uint value, ItemType type, bool stackable, bool questItem)
+            {
+                ItemID = itemID;
+                ItemName = itemName;
+                Description = description;
+                Value = value;
+                Type = type;
+                Stackable = stackable;
+                QuestItem = questItem;
+            }
+        }
     }
 
 

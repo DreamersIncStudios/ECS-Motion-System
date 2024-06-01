@@ -29,7 +29,7 @@ namespace Dreamers.InventorySystem.AbilitySystem
             base.EquipAbility(CasterEntity);
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             BaseCharacterComponent stat = em.GetComponentData<BaseCharacterComponent>(CasterEntity);
-            damageAmount = (uint)stat.GetStat((int)StatName.Magic_Offence).AdjustBaseValue * 10;
+            damageAmount = (uint)stat.GetStat((int)StatName.MagicOffence).AdjustBaseValue * 10;
         }
         public override void Activate(Entity CasterEntity)
         {

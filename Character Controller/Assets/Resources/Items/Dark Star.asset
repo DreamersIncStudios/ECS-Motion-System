@@ -15,19 +15,19 @@ MonoBehaviour:
   _itemID: 11
   _itemName: DarkStar
   _desc: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
   _value: 9999999
   _type: 2
   _stackable: 0
   _questItem: 0
   maxStackCount: 0
   quality: 4
-  _model: {fileID: 8340900014861943573, guid: 4faf82a2e83ff834f8265665742b6c6c, type: 3}
-  _equipToHuman: 1
+  model: {fileID: 7472913683598411593, guid: 15059a2106fab4c448eaec489d020f6d, type: 3}
+  equipToHuman: 0
   _heldBone: 18
-  _equipBone: 7
-  _modifiers: []
-  _levelRQD: 6
+  equipBone: 0
+  modifiers: []
+  levelRqd: 0
   _weaponType: 0
   typeOfDamage: 0
   slot: 0
@@ -35,7 +35,11 @@ MonoBehaviour:
   breakable: 0
   _upgradeable: 1
   alwaysDrawn: 1
-  _sheathedPos: {x: 0, y: 0, z: -0.002}
-  _heldPos: {x: -0.00499, y: 0.00094, z: 0.00153}
-  _sheathedRot: {x: 0, y: 0, z: 0}
-  _heldRot: {x: 83.15, y: -17.688, z: -123.5}
+  sheathedPos: {x: 0.00029, y: 0.00067, z: 0.00015}
+  heldPos: {x: 0.000029, y: 0.00067, z: 0.00015}
+  sheathedRot: {x: 140, y: 50, z: 308}
+  heldRot: {x: 140, y: 50, z: 308}
+  styleHeldPost: {x: -0.005, y: 0.001, z: 0}
+  styleHeldRot: {x: 83.15, y: -22.5, z: -108.5}
+  permWeaponEffects: []
+  MaxNumberOfEffects: 0

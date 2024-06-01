@@ -91,11 +91,6 @@ namespace MotionSystem.Systems
                 Anim.SetBool(OnGround, control.IsGrounded);
                 if (control.CombatCapable)
                 {
-                    if (!control.EquipOverride)
-                    {
-                        Anim.SetBool(WeaponDrawn, control.EquipWeapon);
-                    }
-                    
                     Anim.SetBool(IsTargeting, control.Targetting);
                 }
                 if (!control.IsGrounded)
@@ -129,20 +124,6 @@ namespace MotionSystem.Systems
 
                 control.Jump = false;
 
-
-
-                control.TimerForEquipReset = Anim.GetBool(WeaponDrawn) && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
-                    ? control.EquipResetTimer : Anim.GetCurrentAnimatorStateInfo(0).IsTag("Combo") ? control.EquipResetTimer : control.TimerForEquipReset;
-
-                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0"))
-                {
-                    control.TimerForEquipReset -= 0.02f;
-                    if (control.TimerForEquipReset < 0.0f)
-                    {
-                        control.TimerForEquipReset = 0.0f;
-                        Anim.SetBool(WeaponDrawn, false);
-                    }
-                }
 
                 control.Speed = RB.linearVelocity.magnitude;
 

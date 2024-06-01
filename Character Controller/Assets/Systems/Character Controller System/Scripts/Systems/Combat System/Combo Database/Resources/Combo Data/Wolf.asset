@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33edf1fa5fbc3746945edee092f9710, type: 3}
   m_Name: Wolf
   m_EditorClassIdentifier: 
-  _comboLists:
+  ID: 5
+  comboLists:
   - name: 1
     Unlocked: 0
     comboList:
@@ -24,11 +25,11 @@ MonoBehaviour:
         y: Infinity
       AnimationEndTime: 0
       Trigger:
-        attackType: 1
+        AttackType: 0
         triggerAnimIndex: 0
         TransitionDuration: 0
         TransitionOffset: 0
-        EndofCurrentAnim: 0
+        EndOfCurrentAnim: 0
         AttackVFX:
           ID: 0
           Forward: 0
@@ -38,8 +39,7 @@ MonoBehaviour:
           ChanceToPlay: 0
         Chance: 70
         ChanceForNextAttack: 55
-        LevelUnlocked: 0
-        delay: 0
+        Delay: 0
     - CurrentAnim: 1
       triggerAnimIndex: 1
       Alternate: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
         y: 0.79
       AnimationEndTime: 0.75
       Trigger:
-        attackType: 1
+        AttackType: 0
         triggerAnimIndex: 2
         TransitionDuration: 0.25
         TransitionOffset: 0
-        EndofCurrentAnim: 0.75
+        EndOfCurrentAnim: 0.75
         AttackVFX:
           ID: 0
           Forward: 0
@@ -62,8 +62,8 @@ MonoBehaviour:
           ChanceToPlay: 0
         Chance: 0
         ChanceForNextAttack: 0
-        LevelUnlocked: 0
-        delay: 0
+        Delay: 0
+  AltAttackStyleComboList: []
   ComboNamesText: {fileID: 4900000, guid: f5fd32bfb37af8e42890ad76e52e91f1, type: 3}
   ComboListIndex: 0
   ShowMovesPanel: 0

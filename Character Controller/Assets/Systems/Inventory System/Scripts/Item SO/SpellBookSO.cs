@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Dreamers.InventorySystem.Interfaces;
 using Stats.Entities;
@@ -10,7 +11,8 @@ namespace Dreamers.InventorySystem
 {
     public class SpellBookSO : WeaponSO
     {
-        public List<SpellSO> Spells;
+        [SerializeField] List<SpellSO> spells;
+        public List<SpellSO> Spells { get; private set; }
         public uint Storage => storage;
         [SerializeField] private  uint storage;
         private uint storageUsed;
@@ -22,9 +24,29 @@ namespace Dreamers.InventorySystem
         public Vector3 CurSheathedRot { get; set; }
         public Vector3 CurHeldRot { get; set; }
 
-        public int CurComboID { get;  set; }
+        public int CurComboID => curComboID;
+        [SerializeField] private int curComboID;
         [SerializeField] private int defaultComboID;
         private bool delayInputCheck;
+
+        public override bool Equip(BaseCharacterComponent player)
+        {
+            if (!base.Equip(player)) return false;
+            Spells = new List<SpellSO> { BaseModelState };
+            curComboID = BaseModelState.ComboID;
+            
+            activeSpell = Spells[0];
+            
+            foreach (var spell in spells.Where(spell => !SpellBookFilled && spell.Size < storage - storageUsed))
+            {
+                //Todo Add level Check 
+                Spells.Add(spell);
+                storageUsed += spell.Size;
+            }
+
+            return true;
+        }
+
         public bool AddSpell(SpellSO spell)
         {
             if (!SpellBookFilled && spell.Size < storage - storageUsed)
@@ -53,29 +75,33 @@ namespace Dreamers.InventorySystem
             RemoveSpell(spell);
         }
 
+        
         public void SwapSpell(int Index, Entity entity)
         {
             if(delayInputCheck) return;
           
             Debug.Log("swap spell");
-            if (Index > CurIndex)
+            if (Index > spells.Count)
             {
                 Index = 0;
                 Revert();
-                
             }
  
            
-            var spell = Spells[Index];
+           
             var stats =
                 World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<BaseCharacterComponent>(entity);
 
-            if (spell.ManaCost > stats.CurMana) return;
-           
-            stats.AdjustMana(-(int)Spells[Index].ManaCost);
-            Destroy(WeaponModel);
-            spell.Activate(this, stats);
+            if (Spells[Index].ManaCost > stats.CurMana) return;
             
+            activeSpell.Deactivate(this, stats, entity);
+
+            stats.AdjustMana(-(int)Spells[Index].ManaCost);
+          //  Destroy(WeaponModel);
+          Spells[Index].Activate(this, stats, entity);
+            activeSpell = Spells[Index];
+
+            curComboID = activeSpell.ComboID;
             CurIndex = Index;
            DelayInput();
         }
@@ -94,7 +120,6 @@ namespace Dreamers.InventorySystem
             CurHeldPos = HeldPos;
             CurSheathedRot = SheathedRot;
             CurHeldRot = HeldRot;
-            CurComboID = defaultComboID;
         }
 
         public void OnValidate()

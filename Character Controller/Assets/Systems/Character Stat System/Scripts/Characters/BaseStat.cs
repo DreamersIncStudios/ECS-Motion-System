@@ -26,7 +26,7 @@ namespace Stats
         public int BaseValue
         {
             get { return _baseValue; }
-            set { _baseValue = value; }
+            set => _baseValue = value;
         }
         public int BuffValue
         {

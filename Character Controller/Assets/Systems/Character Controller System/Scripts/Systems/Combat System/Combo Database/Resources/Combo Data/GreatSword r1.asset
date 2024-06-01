@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33edf1fa5fbc3746945edee092f9710, type: 3}
   m_Name: GreatSword r1
   m_EditorClassIdentifier: 
+  ID: 3
   comboLists:
   - name: 1
     Unlocked: 1

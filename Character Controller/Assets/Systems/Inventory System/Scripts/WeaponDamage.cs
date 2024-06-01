@@ -3,6 +3,7 @@ using UnityEngine;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System;
+using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using Dreamers.InventorySystem;
 using Stats.Entities;
@@ -20,6 +21,8 @@ namespace DreamersInc.DamageSystem
         public Stat Melee_Offense { get; private set; }
         public Attributes Skill { get; private set; }
         public Attributes Speed { get; private set; }
+
+        public List<Effects> effects { get; private set; }
 
         public int BaseDamage
         {
@@ -49,7 +52,7 @@ namespace DreamersInc.DamageSystem
             }
         }
         public float MagicMod { get; private set; }
-        public Element Element { get; private set; }
+        public ElementName ElementName { get; private set; }
 
         public TypeOfDamage TypeOfDamage { get; private set; }
 
@@ -70,11 +73,21 @@ namespace DreamersInc.DamageSystem
             throw new System.NotImplementedException();
         }
 
-        public void SetElement(Element value)
+        public void SetElement(ElementName value)
         {
-            Element = value;
+            ElementName = value;
             //TODO Balance 
-            MagicMod =  Element != Element.None ? Magic_Offense.AdjustBaseValue / 10.0f : 1.0f;
+            MagicMod =  ElementName != ElementName.None ? Magic_Offense.AdjustBaseValue / 10.0f : 1.0f;
+        }
+
+        public void UpdateEffect(Effects effect, bool remove = false)
+        {
+            if (!remove)
+            {
+                effects.Add(effect);
+            }
+            else
+                effects.Remove(effect);
         }
 
         private IDamageable self;
@@ -82,8 +95,7 @@ namespace DreamersInc.DamageSystem
         // Use this for initialization
         private void Start()
         {
-
-
+            effects = new List<Effects>();
             if (GetComponent<Collider>())
             {
                 TypeOfDamage = TypeOfDamage.Melee;
@@ -111,17 +123,47 @@ namespace DreamersInc.DamageSystem
             var hit = other.GetComponent<IDamageable>();
             //Todo add Friend filter.
             if (!DoDamage || hit == null || hit == self) return;
-            hit.TakeDamage(DamageAmount(), TypeOfDamage, Element);
+            hit.TakeDamage(DamageAmount(), TypeOfDamage, ElementName);
+            CheckForEffectStatusChange();
             var root = transform.root;
             hit.ReactToHit(.5f, root.position, root.forward);
             OnHitAction?.Invoke();
         }
 
+        void CheckForEffectStatusChange()
+        {
+            foreach (var effect in effects)
+            {
+                if (Random.Range(0, 1) < effect.Chance)
+                {
+                    switch (effect.ElementName)
+                    {
+                        case ElementName.Fire:
+                            break;
+                        case ElementName.Water:
+                            break;
+                        case ElementName.Earth:
+                            break;
+                        case ElementName.Wind:
+                            break;
+                        case ElementName.Ice:
+                            break;
+                        case ElementName.Holy:
+                            break;
+                        case ElementName.Dark:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+        }
+
         public void SetStatData(BaseCharacterComponent stats, TypeOfDamage damageType)
         {
-            Magic_Offense = stats.GetStat((int)StatName.Magic_Offence);
-            Range_Offense = stats.GetStat((int)StatName.Ranged_Offence);
-            Melee_Offense = stats.GetStat((int)StatName.Melee_Offence);
+            Magic_Offense = stats.GetStat((int)StatName.MagicOffence);
+            Range_Offense = stats.GetStat((int)StatName.RangedOffence);
+            Melee_Offense = stats.GetStat((int)StatName.MeleeOffence);
             Speed = stats.GetPrimaryAttribute((int)AttributeName.Speed);
             Skill = stats.GetPrimaryAttribute((int)AttributeName.Skill);
             TypeOfDamage = damageType;

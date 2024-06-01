@@ -44,7 +44,6 @@ namespace MotionSystem
                    IsGrounded = true,
                    AI = authoring.AI_Control,
                    CombatCapable = authoring.CombatCapable,
-                   EquipResetTimer = authoring.EquipResetTimer,
                    m_AnimSpeedMultiplier = authoring.m_AnimSpeedMultiplier,
                    m_GravityMultiplier = authoring.m_GravityMultiplier,
                    m_JumpPower = authoring.m_JumpPower,

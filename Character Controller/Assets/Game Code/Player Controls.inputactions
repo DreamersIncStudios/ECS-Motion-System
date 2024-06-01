@@ -65,7 +65,7 @@
                     "id": "8bdcea19-91bb-4502-bcbd-7a97b678144b",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "MultiTap(tapTime=0.4,pressPoint=0.5)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -110,7 +110,16 @@
                     "id": "b5e5abe1-ee9c-4674-9631-64297041ed50",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Spell Change",
+                    "type": "Button",
+                    "id": "2e9a8eec-176a-4c76-8574-19da01e88ee9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 },
                 {
@@ -119,7 +128,7 @@
                     "id": "e6fabb2a-7d03-4b3a-b3f9-ef6a584a21c3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": true
                 },
                 {
@@ -128,7 +137,7 @@
                     "id": "cc0ae9a8-42d6-43bc-8f9c-74bc9508d47f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -163,21 +172,10 @@
                 {
                     "name": "",
                     "id": "c3689af0-1b88-4e79-86a5-e27737683e91",
-                    "path": "<XInputController>/leftStick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox",
-                    "action": "Locomotion",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dec4e6ec-f22f-483f-9bb2-719e4495a29f",
-                    "path": "<DualShockGamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Xbox;Dual Sense",
                     "action": "Locomotion",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -218,7 +216,7 @@
                 {
                     "name": "left",
                     "id": "404abb31-26c7-494c-9668-177191681b16",
-                    "path": "<XboxOneGamepadAndroid>/buttonSouth",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -362,10 +360,21 @@
                     "name": "",
                     "id": "7b856984-7fe1-4a7f-85cf-c5d29af035aa",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "StyleMod Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee41826f-30bc-468f-a4d9-20b9929a6aed",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spell Change",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -384,7 +393,7 @@
                     "name": "",
                     "id": "5a6a7a9a-70cf-4849-8a2e-302e6aab981e",
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Dual Sense;Xbox",
                     "action": "AttackButtonHeld",
@@ -395,7 +404,7 @@
                     "name": "",
                     "id": "75f31215-d3df-44f8-af62-32148bd3c493",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Xbox;Dual Sense",
                     "action": "AttackButtonHeld",
@@ -410,17 +419,6 @@
                     "processors": "",
                     "groups": ";Xbox;Dual Sense",
                     "action": "LockOn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8f8711ac-afad-4ff1-9dc8-2e8283fd1198",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeTargetNeg",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -30,7 +30,7 @@ namespace Stats
         }
 
 
-        public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element = 0)
+        public override void TakeDamage(int Amount, TypeOfDamage typeOf, ElementName elementName = 0)
         {
             //Todo Figure out element resistances, conditional mods, and possible affinity 
             float defense = typeOf switch
@@ -45,7 +45,7 @@ namespace Stats
 
         }
 
-        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee, Element element = Element.None)
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee, ElementName elementName = ElementName.None)
         {
 
         }

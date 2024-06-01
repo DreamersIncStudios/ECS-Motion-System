@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Stats
 {
-    public enum AlteredStatus
+    public enum StatusEffects
     {
         None, 
         Burnt,
@@ -12,8 +12,11 @@ namespace Stats
         Frozen, 
         Confused, 
         Frenzy,
+        Cursed,
+        Blessed,
         Blinded, 
         Electrocuted,
+        Drain,
 
     }
 }
