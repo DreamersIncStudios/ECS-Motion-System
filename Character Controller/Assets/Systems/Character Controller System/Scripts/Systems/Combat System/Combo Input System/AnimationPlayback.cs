@@ -26,54 +26,46 @@ namespace DreamersInc.ComboSystem
                     AnimationTrigger temp = handler.InputQueue.Dequeue();
                     if (!anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
                     {
+                        EntityManager.AddComponent<DrawWeapon>(entity);
                         switch (temp.AttackType)
                         {
                             case AttackType.LightAttack:
-                                anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
-                                EntityManager.AddComponent<DrawWeapon>(entity);
+                                anim.CrossFade("Equip_Light", temp.TransitionDuration, 0, temp.TransitionOffset,
+                                    temp.EndOfCurrentAnim);
                                 break;
                             case AttackType.HeavyAttack:
-                                anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
-                                EntityManager.AddComponent<DrawWeapon>(entity);
+                                anim.CrossFade("Equip_Heavy", temp.TransitionDuration, 0, temp.TransitionOffset,
+                                    temp.EndOfCurrentAnim);
                                 break;
                             case AttackType.SpecialAttack:
-                                anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
-                                EntityManager.AddComponent<DrawWeapon>(entity);
+                                anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset,
+                                    temp.EndOfCurrentAnim);
                                 break;
                             case AttackType.Dodge:
                                 anim.CrossFade(temp.triggerAnimIndex == 0 ? "Dodge0" : "Dodge1",
                                     temp.TransitionDuration, 0, 0, 0);
+                                break;
+                            case AttackType.Defend:   
+                                if (!anim.IsInTransition(0)&&!handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Dodge") && !handler.StateInfo.IsTag("Exit"))
+                                {
+                                    anim.CrossFade("Enter Defence", .15f);
+                                    anim.SetBool(Block,true);
+                                } 
+                                else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
+                                { 
+                                    anim.CrossFade("Enter Defence", .15f);
+                                    anim.SetBool(Block,true);
 
+                                }
                                 break;
-                            case AttackType.none:
-                                break;
-                            case AttackType.ChargedLightAttack:
-                                break;
-                            case AttackType.ChargedHeavyAttack:
-                                break;
-                            case AttackType.Projectile:
-                                break;
-                            case AttackType.ChargedProjectile:
-                                break;
-                            case AttackType.Grounded:
-                                break;
-                            case AttackType.Targeted_Locomation:
-                                break;
-                            case AttackType.Locomation_Grounded_Weapon:
-                                break;
-                            case AttackType.Defend:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
                         }
-
+                        
                     }
                     else
                     {
                         if (temp.AttackType != AttackType.Defend && temp.AttackType != AttackType.Dodge)
                         {
                             anim.CrossFade(temp.TriggerString, temp.TransitionDuration, 0, temp.TransitionOffset, temp.EndOfCurrentAnim);
-
                         }
                         else if (temp.AttackType == AttackType.Dodge)
                         {
@@ -86,7 +78,8 @@ namespace DreamersInc.ComboSystem
                             {
                                 anim.CrossFade("Enter Defence", .15f);
                                 anim.SetBool(Block,true);
-                            } else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
+                            } 
+                            else if (handler.StateInfo.IsTag("Dodge") && handler.StateInfo.normalizedTime> .85f)
                             { 
                                 anim.CrossFade("Enter Defence", .15f);
                                 anim.SetBool(Block,true);
@@ -105,7 +98,7 @@ namespace DreamersInc.ComboSystem
                     }
                     // this need to move to animation event
                 }
-                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne") && !handler.StateInfo.IsTag("Defend"))
+                if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne") && !handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Equip"))
                 {
                     if (anim.GetBool(WeaponHand) && !handler.AlwaysDrawnWeapon)
                     {
@@ -118,10 +111,10 @@ namespace DreamersInc.ComboSystem
                         anim.CrossFade("Grounded0", .25f, 0, .25f);
 
                 }
-                if (handler.StateInfo.IsName("Unequip"))
-                {
-                    EntityManager.AddComponent<StoreWeapon>(entity);
-                }
+
+                if (!handler.StateInfo.IsName("Unequip")) return;
+                EntityManager.AddComponent<StoreWeapon>(entity);
+             
             }).Run();
         }
     }

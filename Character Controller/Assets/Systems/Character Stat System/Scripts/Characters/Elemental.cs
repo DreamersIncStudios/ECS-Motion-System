@@ -6,6 +6,7 @@ namespace Stats
 {   [System.Serializable]
     public class Elemental : BaseStat
     {
+        public ElementName ElementNameType;
         public Elemental()
         {
             BaseValue = 100;
@@ -14,4 +15,6 @@ namespace Stats
         }
 
     }
+    public enum ElementName { None, Fire, Water, Earth, Wind, Ice, Holy, Dark}
+
 }

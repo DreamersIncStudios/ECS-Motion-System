@@ -25,11 +25,13 @@ namespace DreamersInc.CombatSystem
                         input.WeaponIsEquipped = false;
                 }
             }).Run();
+            
             Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, Animator Anim, CharacterInventory character, ref DrawWeapon tag) => {
 
                 character.Equipment.EquippedWeapons[WeaponSlot.Primary].DrawWeapon(Anim);
                 EntityManager.RemoveComponent<DrawWeapon>(entity);
             }).Run();
+            
             Entities.WithoutBurst().WithStructuralChanges().ForEach((Entity entity, Animator Anim, CharacterInventory character, ref StoreWeapon tag) =>
             {
                 if (character.Equipment.EquippedWeapons.Count > 0)

@@ -37,11 +37,7 @@ namespace MotionSystem.Components
         public float m_AnimSpeedMultiplier;
         public float m_OrigGroundCheckDistance;
         public bool AI;
-
-        public bool EquipWeapon => TimerForEquipReset > 0.0f;
-        public float EquipResetTimer;
-        public float TimerForEquipReset { get; set; }
-        public bool EquipOverride;
+        
         public float AnimationSpeed { get; set; }
         public bool Targetting;
         public bool CastingInput;
@@ -53,7 +49,6 @@ namespace MotionSystem.Components
         public bool Slowed { get; set; }
 
         public void Setup(MovementData data, CapsuleCollider col, bool aiControl) { 
-            EquipResetTimer = data.EquipResetTimer;
             m_MovingTurnSpeed = data.MovingTurnSpeed;
             m_StationaryTurnSpeed= data.StationaryTurnSpeed;
             m_JumpPower = data.JumpPower;

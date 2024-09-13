@@ -115,6 +115,12 @@ namespace AISenses.VisionSystems
         {
             if (cameraControl.OnTargetChanged != null)
             {
+                if (sortedBuffer.Length == 0)
+                {
+                    cameraControl.OnTargetChanged(this,
+                        new CameraControl.OnTargetChangedEventArgs(null));
+                }
+                else
                 cameraControl.OnTargetChanged(this,
                     new CameraControl.OnTargetChangedEventArgs(EntityManager
                         .GetComponentObject<Animator>(sortedBuffer[index].target.Entity)

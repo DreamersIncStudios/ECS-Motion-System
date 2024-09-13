@@ -12,7 +12,7 @@ namespace Dreamers.InventorySystem.Interfaces
          bool EquipToHuman { get; }
         bool Equipped { get; }
         HumanBodyBones EquipBone { get; }
-       List<StatModifier> Modifiers { get; } // consider adding a set for levelUp equippment?
+       List<AttributeModifier> Modifiers { get; } // consider adding a set for levelUp equippment?
         bool EquipItem(CharacterInventory characterInventory, BaseCharacterComponent player);
         bool Unequip(CharacterInventory characterInventory, BaseCharacterComponent player);
 

@@ -74,7 +74,6 @@ namespace DreamersInc.ComboSystem
                 {
                     if (!inventory.Equipment.EquippedWeapons.TryGetValue(Dreamers.InventorySystem.Interfaces.WeaponSlot.Primary, out var weaponSO)) return;
                     handler.AlwaysDrawnWeapon = weaponSO.AlwaysDrawn;
-                    control.EquipOverride = weaponSO.AlwaysDrawn;
                 }).Run();
         }
 
@@ -128,6 +127,10 @@ namespace DreamersInc.ComboSystem
                     }
                     if (!Anim.GetBool(WeaponHand) && handler.AlwaysDrawnWeapon)
                         Anim.SetBool(WeaponHand, true);
+                    if (!handler.AlwaysDrawnWeapon && handler.WeaponReset > 0 && Anim.GetBool(WeaponHand))
+                        handler.WeaponReset -= SystemAPI.Time.DeltaTime;
+                    if(handler.WeaponReset < 0 && Anim.GetBool(WeaponHand))
+                        Anim.SetBool(WeaponHand,false);
                     if (handler.CanInputAbilities)
                     {
                         handler.InputTimer -= SystemAPI.Time.DeltaTime;

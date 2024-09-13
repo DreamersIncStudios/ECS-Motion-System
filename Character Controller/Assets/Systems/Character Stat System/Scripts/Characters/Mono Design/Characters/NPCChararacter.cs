@@ -11,7 +11,7 @@ namespace Stats
     {
 
 
-        public override void TakeDamage(int Amount, TypeOfDamage typeOf, Element element)
+        public override void TakeDamage(int Amount, TypeOfDamage typeOf, ElementName elementName)
         {
             //Todo Figure out element resistances, conditional mods, and possible affinity 
             float defense = typeOf switch
@@ -25,7 +25,7 @@ namespace Stats
             AdjustHealth health = new AdjustHealth() { Value = damageToProcess };
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, health);
         }
-        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee , Element element= Element.None)
+        public override void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee , ElementName elementName= ElementName.None)
         {
             //Todo Figure out element resistances, conditional mods, and possible affinity 
             float defense = typeOf switch

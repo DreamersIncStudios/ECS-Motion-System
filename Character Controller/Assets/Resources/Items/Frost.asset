@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daff587002186714eb8707288b306011, type: 3}
+  m_Name: Frost
+  m_EditorClassIdentifier: 
+  _itemID: 12
+  _itemName: Frost
+  _desc: Chills your emeny to the core
+  _icon: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
+  _value: 0
+  _type: 0
+  _stackable: 0
+  _questItem: 0
+  maxStackCount: 10
+  size: 15
+  manaCost: 4
+  comboID: 2
+  modifiers:
+  - Stat: 5
+    BuffValue: 15
+  effects:
+    VFX: {fileID: 949306346163337846, guid: a2bdc10e0938e5e459997aa0886dcb29, type: 3}
+    ElementName: 5
+    StatusEffects: 2
+    Chance: 0.202
+    Damage: 0
+    Duration: 0
+    Repetition: 0

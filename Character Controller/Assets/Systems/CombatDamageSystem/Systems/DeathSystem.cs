@@ -15,7 +15,7 @@ namespace DreamersInc.DamageSystem
             foreach (var (test, entity) in SystemAPI.Query<BaseCharacterComponent >().WithEntityAccess()) { 
                 if(test.HealthRatio <= 0)
                 {
-                    var go = test.GOrepresentative;
+                    var go = test.GORepresentative;
                     Object.Destroy(go);
                     ecbSystem.CreateCommandBuffer().DestroyEntity(entity);
                     Debug.Log("This is dead");

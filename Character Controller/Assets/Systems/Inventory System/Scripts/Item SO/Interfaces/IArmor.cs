@@ -9,11 +9,11 @@ namespace Dreamers.InventorySystem.Interfaces {
 
 
         float MaxDurability { get; }
-        float CurrentDurablity { get; set; }
+        float CurrentDurability { get; set; }
         bool Breakable { get; }
         bool Upgradeable { get; }
         int SkillPoints { get; set; }
-        int Exprience { get; set; }
+        int Experience { get; set; }
 
     }
 

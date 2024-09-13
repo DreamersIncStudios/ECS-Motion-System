@@ -34,10 +34,9 @@ namespace MotionSystem.Systems
                 {
                     control.Move.Normalize();
                     control.Move = transform.InverseTransformDirection(control.Move);
+                    control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
                 }
 
-                //control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
-                //  m_TurnAmount = control.Move.x;
                 var m_ForwardAmount = control.Move.z;
                 var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
@@ -52,10 +51,16 @@ namespace MotionSystem.Systems
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        if (CameraControl.Instance.TargetGroup.Targets[0].Object  != null)
-                            Rotation(transform, CameraControl.Instance.TargetGroup.Targets[0].Object.position, .35f);
-                        //             transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f); 
+                        if (CameraControl.Instance.Target.LookAt != null)
+                        {
 
+                            var forwardDirection = CameraControl.Instance.Target.LookAt.transform.position -
+                                                   transform.position;
+                            var rot = Quaternion.LookRotation(forwardDirection);
+                            if (transform.rotation != rot)
+                                Rotation(transform, rot, 0.5f);
+
+                        }
                     }
                 }
 
@@ -87,14 +92,6 @@ namespace MotionSystem.Systems
                 Anim.SetBool(OnGround, control.IsGrounded);
                 if (control.CombatCapable)
                 {
-                    if (!control.EquipOverride)
-                    {
-                        Anim.SetBool(WeaponDrawn, control.EquipWeapon);
-                    }
-                    //else if(!Anim.GetBool("Weapon Drawn") )
-                    //{
-                    //    Anim.SetBool("Weapon Drawn", true) ;
-                    //}
                     Anim.SetBool(IsTargeting, control.Targetting);
                 }
                 if (!control.IsGrounded)
@@ -129,20 +126,6 @@ namespace MotionSystem.Systems
                 control.Jump = false;
 
 
-
-                control.TimerForEquipReset = Anim.GetBool(WeaponDrawn) && control.TimerForEquipReset <= 0.0f && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
-                    ? control.EquipResetTimer : Anim.GetCurrentAnimatorStateInfo(0).IsTag("Combo") ? control.EquipResetTimer : control.TimerForEquipReset;
-
-                if (control.TimerForEquipReset > 0.0f && Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0"))
-                {
-                    control.TimerForEquipReset -= 0.02f;
-                    if (control.TimerForEquipReset < 0.0f)
-                    {
-                        control.TimerForEquipReset = 0.0f;
-                        Anim.SetBool(WeaponDrawn, false);
-                    }
-                }
-
                 control.Speed = RB.linearVelocity.magnitude;
 
             }).Run();
@@ -161,7 +144,9 @@ namespace MotionSystem.Systems
         void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
             if (!control.Jump) return;
-            if (!Anim.GetCurrentAnimatorStateInfo(0).IsTag("Locomotion")) return;
+            if (!Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
+                && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
+                && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomotion0")) return;
             // jump!
             Anim.applyRootMotion = false;
             var linearVelocity = RB.linearVelocity;
@@ -193,25 +178,36 @@ namespace MotionSystem.Systems
      
                 if (control.Move.magnitude > 1f)
                     control.Move.Normalize();
+                
                 control.Move = transform.InverseTransformDirection(control.Move);
+                control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
+                
                 var m_ForwardAmount = control.Move.z;
                 var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
-                if (!control.Targetting)
-                {
-                    var turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                    //  transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
-                }
-                else
-                {
+                // if (!control.Targetting)
+                // {
+                //     var turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
+                //       transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
+                // }
+                // else
+                // {
 
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
                     {
-                        // if (CameraControl.Instance.TargetGroup.m_Targets[0].target != null)
-                        //      transform.DOLookAt(CameraControl.Instance.TargetGroup.m_Targets[0].target.position, .35f);
+                        if (CameraControl.Instance.Target.LookAt != null)
+                        {
+
+                            var forwardDirection = CameraControl.Instance.Target.LookAt.transform.position -
+                                                   transform.position;
+                            var rot = Quaternion.LookRotation(forwardDirection);
+                            if (transform.rotation != rot)
+                                Rotation(transform, rot, 0.5f);
+
+                        }
                     }
-                }
+               // }
 
                 if (control.IsGrounded)
                 {
@@ -230,8 +226,8 @@ namespace MotionSystem.Systems
 
                 // Animator Updater
                 // update the animator parameters
-                anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.DeltaTime);
+                anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.DeltaTime);
                 anim.SetBool(OnGround, control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,

@@ -24,8 +24,6 @@ namespace Stats
         public bool InPlay;
         public bool InvincibleMode;
 
-        public AlteredStatus AlteredStatus { get; private set; }
-
         public bool Alive
         {
             get
@@ -53,8 +51,8 @@ namespace Stats
         public int MaxMana { get { return maxMana + MaxHealthMod; } set { maxMana = value; } }
         public int MaxManaMod { get; set; }
 
-        public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Magic_Defense).AdjustBaseValue / 100.0f)); } }
-        public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.Melee_Defense).AdjustBaseValue / 100.0f)); } }
+        public float MagicDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.MagicDefense).AdjustBaseValue / 100.0f)); } }
+        public float MeleeDef { get { return 1.0f / (float)(1.0f + ((float)GetStat((int)StatName.MeleeDefense).AdjustBaseValue / 100.0f)); } }
 
 
         public bool Dead { get; private set; }
@@ -257,11 +255,10 @@ namespace Stats
             await Task.Delay(TimeSpan.FromSeconds(1));
             StatUpdate();
         }
-        public bool SetAlteredStatus(AlteredStatus statusToChangeTo) { return false; } //Todo make a bool 
 
 
-        public abstract void TakeDamage(int Amount, TypeOfDamage typeOf, Element element);
-        public abstract void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee, Element element = Element.None);
+        public abstract void TakeDamage(int Amount, TypeOfDamage typeOf, ElementName elementName);
+        public abstract void ReactToHit(float impact, Vector3 Test, Vector3 Forward, TypeOfDamage typeOf = TypeOfDamage.Melee, ElementName elementName = ElementName.None);
     }
 
 

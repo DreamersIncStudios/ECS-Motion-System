@@ -10,3 +10,4 @@
 10,VFX/Sword Slash/Sword Slash 6,
 11,VFX/Sword Slash/Sword Slash 7,
 12,VFX/Sword Slash/Sword Slash 10,
+13,VFX/Sword Slash/Spikes Attack,

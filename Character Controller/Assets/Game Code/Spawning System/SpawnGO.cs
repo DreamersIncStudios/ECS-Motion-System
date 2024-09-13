@@ -37,12 +37,11 @@ namespace GameCode.Spawn
                 CameraControl.Instance.Follow.Follow = go.transform;
                 CameraControl.Instance.Target.Follow = go.transform;
 
-                CameraControl.Instance.TargetGroup.Targets[1].Object  = go.transform;
                // var Capsule = go.GetComponent<CapsuleCollider>();
                 var anim = go.GetComponent<Animator>();
                 var RB = go.GetComponent<Rigidbody>();
                 go.tag = "Player";
-                character.GOrepresentative = go;
+                character.GORepresentative = go;
                 character.SetupDataEntity(pgo.Info);
                 CharacterInventory inventory = new ();
                 inventory.Setup(entity, pgo.equipment, character);

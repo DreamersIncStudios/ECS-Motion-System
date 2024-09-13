@@ -133,7 +133,7 @@ namespace DreamersInc.ComboSystem
     }
     public enum AttackType
     {
-        none, LightAttack, HeavyAttack, ChargedLightAttack, ChargedHeavyAttack, Projectile, ChargedProjectile, Grounded, Targeted_Locomation, Locomation_Grounded_Weapon,
+        none, LightAttack, HeavyAttack, ChargedLightAttack, ChargedHeavyAttack, Projectile, ChargedProjectile, Grounded, Targeted_Locomotion, Locomotion_Grounded_Weapon,
         SpecialAttack, Defend, Dodge
 
     }

@@ -1,6 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 using Stats;
+using Stats.Entities;
 
 namespace Dreamers.InventorySystem.Interfaces
 {
@@ -13,10 +14,13 @@ namespace Dreamers.InventorySystem.Interfaces
         Sprite Icon { get; }
         ItemType Type { get; }
         bool Stackable { get; }
-        bool Disposible { get; }
+        bool Disposable { get; }
         bool QuestItem { get; }
 
-        void Use(CharacterInventory characterInventory);
+        void Use(CharacterInventory characterInventory, BaseCharacterComponent player);
+
+        string Serialize();
+        void Deserialize();
 
     }
     public enum ItemType

@@ -39,20 +39,6 @@ namespace DreamersInc.BestiarySystem
         private EntityManager manager;
 
 
-        public CharacterBuilder(string entityName, out Entity spawnedEntity)
-        {
-            manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var baseEntityArch = manager.CreateArchetype(
-                typeof(LocalTransform),
-                typeof(LocalToWorld)
-            );
-            var baseDataEntity = manager.CreateEntity(baseEntityArch);
-            manager.SetName(baseDataEntity, entityName != string.Empty ? entityName : "NPC Data");
-            manager.SetComponentData(baseDataEntity, new LocalTransform() { Scale = 1 });
-            spawnedEntity = entity = baseDataEntity;
-
-        }
-
         public CharacterBuilder(string entityName)
         {
             manager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -128,6 +114,7 @@ namespace DreamersInc.BestiarySystem
             manager.AddComponentData(entity, AgentSeparation.Default);
             manager.AddComponentData(entity, new GiveUpStopTimer());
 
+            manager.GetComponentData<AgentBody>(entity).SetDestination(float3.zero);
             var move = new Movement()
             {
 
@@ -223,10 +210,11 @@ namespace DreamersInc.BestiarySystem
             if (model == null) return this;
             BaseCharacterComponent data = new()
             {
-                GOrepresentative = model,
+                GORepresentative = model,
             };
             data.SetupDataEntity(stats, exp, spawnid);
             manager.AddComponentObject(entity, data);
+            manager.AddBuffer<IncrementalVitalChange>(entity);
             model.GetComponent<Damageable>().SetData(entity, data);
             this.character = data;
             return this;
@@ -269,14 +257,13 @@ namespace DreamersInc.BestiarySystem
             manager.AddComponentObject(entity, new Command()
             {
                 EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList(),
-                InputTimeReset = 500.0f,
-                InputTimer = 500.0f
+                InputTimeReset = 5.0f,
+                InputTimer = 5.0f
             });
             CameraControl.Instance.Follow.LookAt = model.GetComponentInChildren<LookHereTarget>().transform;
             CameraControl.Instance.Follow.Follow = model.transform;
             CameraControl.Instance.Target.Follow = model.transform;
 
-            CameraControl.Instance.TargetGroup.Targets[1].Object = model.transform;
             return this;
         }
         public CharacterBuilder WithFactionInfluence(int factionID, int baseProtection, int baseThreat, uint classLevel,

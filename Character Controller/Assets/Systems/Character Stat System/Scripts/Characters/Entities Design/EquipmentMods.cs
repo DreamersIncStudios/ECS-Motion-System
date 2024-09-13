@@ -1,3 +1,4 @@
+using System;
 using Stats;
 using Stats.Entities;
 using System.Collections;
@@ -8,20 +9,63 @@ namespace Stats.Entities
 {
     public partial class BaseCharacterComponent : IComponentData
     {
-        public void ModCharacterStats(List<StatModifier> Modifiers, bool Add)
+        public void ModCharacterStats(List<StatModifier> modifiers, bool add = true)
         {
-            int MP = 1;
-            if (!Add)
+            var mp = add ? 1 : -1;
+            foreach (var statMod in modifiers)
             {
-                MP = -1;
+                switch (statMod.Stat)
+                {
+                    case StatName.MeleeOffence:
+                        GetStat((int)StatName.MeleeDefense).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.MeleeDefense:
+                        GetStat((int)StatName.MeleeDefense).BuffValue += statMod.BuffValue * mp;
+                        
+                        break;
+                    case StatName.RangedOffence:
+                        GetStat((int)StatName.RangedOffence).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.RangedDefence:
+                        GetStat((int)StatName.RangedDefence).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.MagicOffence:
+                        GetStat((int)StatName.MagicOffence).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.MagicDefense:
+                        GetStat((int)StatName.MagicDefense).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.RangeTarget:
+                        GetStat((int)StatName.RangeTarget).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.RangeMotion:
+                        GetStat((int)StatName.RangeMotion).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.StatusChange:
+                        GetStat((int)StatName.StatusChange).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    case StatName.ManaRecover:
+                        GetStat((int)StatName.ManaRecover).BuffValue += statMod.BuffValue * mp;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
             }
-            foreach (StatModifier mod in Modifiers)
+        }
+
+        public void ModCharacterAttributes(List<AttributeModifier> Modifiers, bool Add = true)
+        {
+            var MP = Add ? 1 : -1;
+
+            foreach (AttributeModifier mod in Modifiers)
             {
 
-                switch (mod.Stat)
+                switch (mod.Attribute)
                 {
                     case AttributeName.Level:
-                        Debug.LogWarning("Level Modding is not allowed at this time. Please contact Programming is needed");
+                        Debug.LogWarning(
+                            "Level Modding is not allowed at this time. Please contact Programming is needed");
                         break;
                     case AttributeName.Strength:
                         GetPrimaryAttribute((int)AttributeName.Strength).BuffValue += mod.BuffValue * MP;
@@ -55,6 +99,7 @@ namespace Stats.Entities
                         break;
                 }
             }
+
             StatUpdate();
 
         }

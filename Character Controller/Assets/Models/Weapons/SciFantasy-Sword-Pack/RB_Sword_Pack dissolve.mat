@@ -105,17 +105,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Dissolve: 1
-    - Vector1_7d94c15f79914381bef13a533fa56d7c: 146.8
+    - Dissolve: 0
+    - Vector1_7d94c15f79914381bef13a533fa56d7c: 120.7
     - _AlphaClip: 1
     - _AlphaToMask: 1
-    - _Blend: 0
+    - _Blend: 1
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -144,7 +144,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - Color_890129d2ce9442efba97b4c430fb33c9: {r: 0.735849, g: 0, b: 0, a: 0}
+    - Color_890129d2ce9442efba97b4c430fb33c9: {r: 0.735849, g: 0, b: 0, a: 0.46666667}
     - _BaseColor: {r: 0.9266704, g: 0.94500273, b: 1, a: 1}
     - _Color: {r: 0.9266704, g: 0.94500273, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}

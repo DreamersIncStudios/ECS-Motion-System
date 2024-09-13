@@ -1,3 +1,5 @@
+using UnityEngine.Serialization;
+
 namespace Stats
 {
     [System.Serializable]
@@ -26,9 +28,9 @@ namespace Stats
         Luck
     }
     [System.Serializable]
-    public struct StatModifier
+    public struct AttributeModifier
     {
-        public AttributeName Stat;
+        [FormerlySerializedAs("Stat")] public AttributeName Attribute;
         public int BuffValue;
 
     }

@@ -12,8 +12,6 @@ namespace MotionSystem.Components
         public float CapsuleHeight;
         public float3 OGCapsuleCenter { get; set; }
         public float OGCapsuleHeight { get; set; }
-        public float H { get; set; }
-        public float V { get; set; }
         public bool Jump { get; set; }
 
         public bool CombatCapable;

@@ -2,32 +2,39 @@ namespace Stats
 {[System.Serializable]
     public class Stat : ModifiedStat
     {
-        private bool _known;
+        private bool known;
 
         public Stat()
         {
-            _known = false;
+            known = false;
             ExpToLevel = 25;
             LevelModifier = 1.1f;
         }
         public bool Known
         {
-            get { return _known; }
-            set { _known = value; }
+            get => known;
+            set => known = value;
         }
     }
 
     public enum StatName
     {
-        Melee_Offence,
-        Melee_Defense,
-        Ranged_Offence,
-        Ranged_Defence,
-        Magic_Offence,
-        Magic_Defense,
-        Range_Target,
-        Range_Motion,
-        Status_Change,
-        Mana_Recover
+        MeleeOffence,
+        MeleeDefense,
+        RangedOffence,
+        RangedDefence,
+        MagicOffence,
+        MagicDefense,
+        RangeTarget,
+        RangeMotion,
+        StatusChange,
+        ManaRecover
+    }
+    [System.Serializable]
+    public struct StatModifier
+    {
+        public StatName Stat;
+        public int BuffValue;
+
     }
 }

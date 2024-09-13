@@ -8,7 +8,6 @@ namespace DreamersStudio.CameraControlSystem
     {
         public CinemachineCamera Follow;
         public CinemachineCamera Target;
-        public CinemachineTargetGroup TargetGroup;
         public static CameraControl Instance;
         public EventHandler<OnTargetingChangedEventArgs> OnTargetingChanged;
         GameObject playerCharacter;
@@ -20,11 +19,7 @@ namespace DreamersStudio.CameraControlSystem
         public class OnTargetChangedEventArgs : EventArgs
         {
             public GameObject Target;
-
-            public OnTargetChangedEventArgs()
-            {
-            }
-
+            
             public OnTargetChangedEventArgs(GameObject target)
             {
                 Target = target;
@@ -56,12 +51,7 @@ namespace DreamersStudio.CameraControlSystem
             };
             OnTargetChanged += (object sender, OnTargetChangedEventArgs eventArgs) =>
             {
-                if (eventArgs.Target.transform != null)
-                {
-                    TargetGroup.Targets[0].Object = eventArgs.Target.transform;
-                }
-
-                
+                Target.LookAt = eventArgs.Target != null ? eventArgs.Target.transform : null;
             };
 
         }

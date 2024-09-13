@@ -4,46 +4,85 @@ using Unity.Entities;
 using DreamersInc.DamageSystem;
 using DreamersInc.CombatSystem;
 using System.Linq;
-using DG.Tweening;
+using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using DreamersInc.DamageSystem.Interfaces;
-
+using PrimeTween;
+using Stats;
+using Stats.Entities;
+using UnityEngine.VFX;
 namespace MotionSystem.Systems
 {
     public class EquipWeaponControl : MonoBehaviour
     {
         Animator anim;
         WeaponDamage damage;
+        private UnityEngine.VFX.VisualEffect graph;
         AnimatorStateInfo stateInfo;
-        private static readonly int Property = Animator.StringToHash("Weapon In Hand");
+        public WeaponSO CurEquipWeapon { get; private set; }
+        private static readonly int WeaponInHand = Animator.StringToHash("Weapon In Hand");
 
         private void Start()
         {
             anim = GetComponent<Animator>();
             damage = GetComponentInChildren<WeaponDamage>();
+            if (damage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>())
+                graph = damage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>();
         }
 
         public void EquipWeaponAnim()
         {
+            var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            if(!damage)
+                damage = GetComponentInChildren<WeaponDamage>();
+            var entity = damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
 
             if (!anim)
                 anim = GetComponent<Animator>();
+            
+            if (!CurEquipWeapon)
+            {
+                var inventory = entityManager.GetComponentData<CharacterInventory>(entity);
+                 if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out var temp)) 
+                     return;
+                 CurEquipWeapon = temp;
+                 
+            }
 
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (!anim.GetBool(Property))
-                anim.SetBool(Property, true);
+            if (!anim.GetBool(WeaponInHand))
+                anim.SetBool(WeaponInHand, true);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+
+            var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
+            CurEquipWeapon.ActiveSpell?.Activate(CurEquipWeapon,stats,entity);
         }
 
         public void UnequipWeaponAnim()
         {
+            var entity =damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
+            var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            if (!CurEquipWeapon)
+            {
+                var inventory = entityManager.GetComponentData<CharacterInventory>(entity);
+                if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out var temp)) 
+                    return;
+                CurEquipWeapon = temp;
+                 
+            }
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-            if (anim.GetBool(Property) && stateInfo.IsTag("Unequip"))
-                anim.SetBool(Property, false);
+            if (anim.GetBool(WeaponInHand) && stateInfo.IsTag("Unequip"))
+                anim.SetBool(WeaponInHand, false);
             World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+            
+            var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
+            CurEquipWeapon.ActiveSpell.Deactivate(CurEquipWeapon,stats,entity);
+
         }
 
         public void CalculateCriticalHit()
@@ -70,6 +109,10 @@ namespace MotionSystem.Systems
             damage.SetDamageBool(value >= 1 ? true : false);
         }
 
+        public void PlayVFX()
+        {
+            graph?.Play();
+        }
 
         /// <summary>
         /// Warps the player to the location of the nearest visible enemy within the specified warp range.
@@ -77,7 +120,6 @@ namespace MotionSystem.Systems
         /// <remarks>
         /// This method finds the nearest visible enemies within the specified warp range and warps the player to the position of the nearest enemy.
         /// </remarks>
-        /// <param name="warpRange">The maximum distance at which an enemy can be considered visible for warping.</param>
         public void Warp()
         {
             var visibleEnemies = GetVisibleEnemies();

@@ -6,17 +6,17 @@ namespace Stats
 {
     public partial class BaseCharacter : MonoBehaviour
     {
-        public void ModCharacterStats(List<StatModifier> Modifiers, bool Add)
+        public void ModCharacterStats(List<AttributeModifier> Modifiers, bool Add)
         {
             int MP = 1;
             if (!Add)
             {
                 MP = -1;
             }
-            foreach (StatModifier mod in Modifiers)
+            foreach (AttributeModifier mod in Modifiers)
             {
 
-                switch (mod.Stat)
+                switch (mod.Attribute)
                 {
                     case AttributeName.Level:
                         Debug.LogWarning("Level Modding is not allowed at this time. Please contact Programming is needed");
