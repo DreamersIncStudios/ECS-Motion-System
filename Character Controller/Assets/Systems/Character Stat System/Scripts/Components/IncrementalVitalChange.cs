@@ -47,7 +47,7 @@ namespace Stats
                         switch (vitalChange.Vital)
                         {
                             case VitalName.Health:
-                                EntityManager.AddComponentData(entity, new AdjustHealth(value: vitalChange.ChangeRate));
+                                EntityManager.AddComponentData(entity, new AdjustHealth(value: vitalChange.ChangeRate,Entity.Null));//Todo add entity ref
                                 break;
                             case VitalName.Mana:
                                 EntityManager.AddComponentData(entity, new AdjustMana(value: vitalChange.ChangeRate));

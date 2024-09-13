@@ -33,10 +33,13 @@ namespace MotionSystem.Systems
         public void EquipWeaponAnim()
         {
             var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var entity =damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
+            if(!damage)
+                damage = GetComponentInChildren<WeaponDamage>();
+            var entity = damage.transform.root.GetComponent<Damageable>().SelfEntityRef;
 
             if (!anim)
                 anim = GetComponent<Animator>();
+            
             if (!CurEquipWeapon)
             {
                 var inventory = entityManager.GetComponentData<CharacterInventory>(entity);
@@ -54,7 +57,7 @@ namespace MotionSystem.Systems
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
 
             var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
-            CurEquipWeapon.activeSpell.Activate(CurEquipWeapon,stats,entity);
+            CurEquipWeapon.ActiveSpell?.Activate(CurEquipWeapon,stats,entity);
         }
 
         public void UnequipWeaponAnim()
@@ -78,7 +81,7 @@ namespace MotionSystem.Systems
                 .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
             
             var stats = entityManager.GetComponentData<BaseCharacterComponent>(entity);
-            CurEquipWeapon.activeSpell.Deactivate(CurEquipWeapon,stats,entity);
+            CurEquipWeapon.ActiveSpell.Deactivate(CurEquipWeapon,stats,entity);
 
         }
 
@@ -117,7 +120,6 @@ namespace MotionSystem.Systems
         /// <remarks>
         /// This method finds the nearest visible enemies within the specified warp range and warps the player to the position of the nearest enemy.
         /// </remarks>
-        /// <param name="warpRange">The maximum distance at which an enemy can be considered visible for warping.</param>
         public void Warp()
         {
             var visibleEnemies = GetVisibleEnemies();

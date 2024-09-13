@@ -35,7 +35,7 @@ namespace Dreamers.InventorySystem
             Spells = new List<SpellSO> { BaseModelState };
             curComboID = BaseModelState.ComboID;
             
-            activeSpell = Spells[0];
+            ActiveSpell = Spells[0];
             
             foreach (var spell in spells.Where(spell => !SpellBookFilled && spell.Size < storage - storageUsed))
             {
@@ -94,14 +94,14 @@ namespace Dreamers.InventorySystem
 
             if (Spells[Index].ManaCost > stats.CurMana) return;
             
-            activeSpell.Deactivate(this, stats, entity);
+            ActiveSpell.Deactivate(this, stats, entity);
 
             stats.AdjustMana(-(int)Spells[Index].ManaCost);
           //  Destroy(WeaponModel);
           Spells[Index].Activate(this, stats, entity);
-            activeSpell = Spells[Index];
+            ActiveSpell = Spells[Index];
 
-            curComboID = activeSpell.ComboID;
+            curComboID = ActiveSpell.ComboID;
             CurIndex = Index;
            DelayInput();
         }
@@ -125,7 +125,7 @@ namespace Dreamers.InventorySystem
         public void OnValidate()
         {
             storageUsed = 0;
-            foreach (var spell in Spells)
+            foreach (var spell in spells)
             {
                 storageUsed += spell.Size;
             }

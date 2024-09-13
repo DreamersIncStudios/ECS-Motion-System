@@ -478,10 +478,10 @@ MonoBehaviour:
         EndOfCurrentAnim: 0.62
         AttackVFX:
           ID: 1
-          Forward: 0
-          Up: 0.2
-          Rot: {x: 0, y: 0, z: 0}
-          LifeTime: 0
+          Forward: 0.2
+          Up: 0.75
+          Rot: {x: -30, y: -10, z: 90}
+          LifeTime: 1
           ChanceToPlay: 100
         Chance: 80
         ChanceForNextAttack: 60

@@ -22,7 +22,7 @@ namespace Dreamers.InventorySystem
         {
             player.ModCharacterStats(modifiers);
             spellBookSo.SetEffect(effects, false);
-            var weaponInHand = player.GOrepresentative.GetComponent<Animator>().GetBool("Weapon In Hand");
+            var weaponInHand = player.GORepresentative.GetComponent<Animator>().GetBool("Weapon In Hand");
             if (!weaponInHand) return;
 
             if (effects.VFX != null)

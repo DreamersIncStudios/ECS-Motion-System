@@ -24,8 +24,8 @@ namespace Dreamers.InventorySystem
         public GameObject Model => model;
         [SerializeField] private bool equipToHuman;
         public bool EquipToHuman => equipToHuman;
-        [SerializeField] private HumanBodyBones _heldBone;
-        public HumanBodyBones HeldBone => _heldBone;
+        [SerializeField] private HumanBodyBones heldBone;
+        public HumanBodyBones HeldBone => heldBone;
         public bool Equipped { get; private set; }
 
         [SerializeField] private HumanBodyBones equipBone;
@@ -36,9 +36,9 @@ namespace Dreamers.InventorySystem
         [SerializeField] private uint levelRqd;
         public uint LevelRqd => levelRqd;
 
-        [SerializeField] private WeaponType _weaponType;
+        [SerializeField] private WeaponType weaponType;
         [SerializeField] TypeOfDamage typeOfDamage;
-        public WeaponType WeaponType => _weaponType;
+        public WeaponType WeaponType => weaponType;
         [SerializeField] private WeaponSlot slot;
         public WeaponSlot Slot => slot;
         [SerializeField] private float maxDurable;
@@ -46,8 +46,8 @@ namespace Dreamers.InventorySystem
         public float CurrentDurability { get; set; }
         [SerializeField] private bool breakable;
         public bool Breakable => breakable;
-        [SerializeField] private bool _upgradeable;
-        public bool Upgradeable => _upgradeable;
+        [SerializeField] private bool upgradeable;
+        public bool Upgradeable => upgradeable;
 
         public bool AlwaysDrawn => alwaysDrawn;
         [SerializeField] bool alwaysDrawn;
@@ -75,7 +75,7 @@ namespace Dreamers.InventorySystem
         [Range(0, 10)] public int MaxNumberOfEffects;
         [SerializeField] public ModifierSpellSO BaseModelState;
 
-        public SpellSO activeSpell { get; private protected set; }
+        public SpellSO ActiveSpell { get; private protected set; }
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace Dreamers.InventorySystem
 
         public class OnStatusEffectChangeArgs : EventArgs
         {
-            public bool Add;
+            public readonly bool Add;
             public Effects EffectChange;
 
             public OnStatusEffectChangeArgs(Effects effectChange, bool add = true)
@@ -98,7 +98,7 @@ namespace Dreamers.InventorySystem
 
         public virtual bool Equip(BaseCharacterComponent player)
         {
-            OnStatusEffectChange += (object sender, OnStatusEffectChangeArgs eventArgs) =>
+            OnStatusEffectChange += (_, eventArgs) =>
             {
                 if (eventArgs.Add)
                 {
@@ -108,7 +108,7 @@ namespace Dreamers.InventorySystem
                     
             };
             
-            var anim = player.GOrepresentative.GetComponent<Animator>();
+            var anim = player.GORepresentative.GetComponent<Animator>();
             if (player.Level >= LevelRqd)
             {
                 AdderWeaponEffect = new List<Effects>();
@@ -132,7 +132,14 @@ namespace Dreamers.InventorySystem
                     WeaponModel.transform.localPosition = SheathedPos;
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
                 }
-                player.ModCharacterAttributes(Modifiers, true);
+                else
+                {
+                    WeaponModel = new GameObject();
+                    WeaponModel.AddComponent<WeaponDamage>();
+                    WeaponModel.transform.SetParent(anim.transform);
+                }
+
+                player.ModCharacterAttributes(Modifiers);
                 if(alwaysDrawn )
                 {
                     anim.SendMessage("EquipWeaponAnim");
@@ -143,10 +150,10 @@ namespace Dreamers.InventorySystem
 
                 foreach (var permEffect in PermWeaponEffects)
                 {
-                    OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(permEffect,true));
+                    OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(permEffect));
                 }
 
-                return Equipped = true; ;
+                return Equipped = true; 
             }
             else
             {
@@ -167,16 +174,16 @@ namespace Dreamers.InventorySystem
         /// <returns></returns>
         public bool EquipItem(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
-            EquipmentBase Equipment = characterInventory.Equipment;
-            var anim = player.GOrepresentative.GetComponent<Animator>();
+            EquipmentBase equipment = characterInventory.Equipment;
+            var anim = player.GORepresentative.GetComponent<Animator>();
 
             if (player.Level >= LevelRqd)
             {
-                if (Equipment.EquippedWeapons.TryGetValue(this.Slot, out _))
+                if (equipment.EquippedWeapons.TryGetValue(this.Slot, out _))
                 {
-                    Equipment.EquippedWeapons[this.Slot].Unequip(characterInventory, player);
+                    equipment.EquippedWeapons[this.Slot].Unequip(characterInventory, player);
                 }
-                Equipment.EquippedWeapons[this.Slot] = this;
+                equipment.EquippedWeapons[this.Slot] = this;
 
 
                 if (Model != null)
@@ -199,10 +206,16 @@ namespace Dreamers.InventorySystem
                     WeaponModel.transform.localPosition = SheathedPos;
                     WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
 
+                }  
+                else
+                {
+                    WeaponModel = new GameObject();
+                    WeaponModel.AddComponent<WeaponDamage>();
+                    WeaponModel.transform.SetParent(anim.transform);
                 }
                 AdderWeaponEffect = new List<Effects>();
 
-                player.ModCharacterAttributes(Modifiers, true);
+                player.ModCharacterAttributes(Modifiers);
                 characterInventory.Inventory.RemoveFromInventory(this);
                 if (alwaysDrawn)
                 {
@@ -230,12 +243,12 @@ namespace Dreamers.InventorySystem
         /// <returns></returns>
         public bool Unequip(CharacterInventory characterInventory, BaseCharacterComponent player)
         {
-            EquipmentBase Equipment = characterInventory.Equipment;
+            EquipmentBase equipment = characterInventory.Equipment;
             characterInventory.Inventory.AddToInventory(this);
             Destroy(WeaponModel);
 
             player.ModCharacterAttributes(Modifiers, false);
-            Equipment.EquippedWeapons.Remove(this.Slot);
+            equipment.EquippedWeapons.Remove(this.Slot);
             Equipped = false;
             return true; 
         }
@@ -283,7 +296,7 @@ namespace Dreamers.InventorySystem
                     OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(existingEffect,false));
                 }
                 AdderWeaponEffect = new List<Effects> { effect };
-                OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect,true));
+                OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect));
 
                 return true;
             }
@@ -294,7 +307,7 @@ namespace Dreamers.InventorySystem
             }
 
             AdderWeaponEffect.Add(effect);
-            OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect,true));
+            OnStatusEffectChange?.Invoke(this, new OnStatusEffectChangeArgs(effect));
 
             return true;
         }
@@ -329,12 +342,7 @@ namespace Dreamers.InventorySystem
 
             return output;
         }
-
-        public override void Deserialize()
-        {
-            base.Deserialize();
-        }
-
+        
         class SerializedWeaponData : SerializedItemSO
         {     
             public SerializedWeaponData()

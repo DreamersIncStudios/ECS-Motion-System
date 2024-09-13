@@ -58,11 +58,8 @@ namespace Dreamers.InventorySystem.Interfaces
             get { return _stackable; }
         }
 
-        //[SerializeField] bool _disposible;
-        public bool Disposible
-        {
-            get { return !QuestItem; }
-        }
+  
+        public bool Disposable => !QuestItem;
 
         [SerializeField] bool _questItem;
 

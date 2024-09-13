@@ -34,8 +34,9 @@ namespace MotionSystem.Systems
                 {
                     control.Move.Normalize();
                     control.Move = transform.InverseTransformDirection(control.Move);
+                    control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
                 }
-                
+
                 var m_ForwardAmount = control.Move.z;
                 var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
@@ -177,17 +178,20 @@ namespace MotionSystem.Systems
      
                 if (control.Move.magnitude > 1f)
                     control.Move.Normalize();
+                
                 control.Move = transform.InverseTransformDirection(control.Move);
+                control.Move = Vector3.ProjectOnPlane(control.Move, control.GroundNormal);
+                
                 var m_ForwardAmount = control.Move.z;
                 var m_TurnAmount = Mathf.Atan2(control.Move.x, control.Move.z);
 
-                if (!control.Targetting)
-                {
-                    var turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
-                      transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
-                }
-                else
-                {
+                // if (!control.Targetting)
+                // {
+                //     var turnSpeed = Mathf.Lerp(control.m_StationaryTurnSpeed, control.m_MovingTurnSpeed, m_ForwardAmount);
+                //       transform.Rotate(0, m_TurnAmount * turnSpeed * SystemAPI.Time.fixedDeltaTime, 0);
+                // }
+                // else
+                // {
 
                     m_TurnAmount = control.Move.x;
                     if (!control.AI)
@@ -203,7 +207,7 @@ namespace MotionSystem.Systems
 
                         }
                     }
-                }
+               // }
 
                 if (control.IsGrounded)
                 {
@@ -222,8 +226,8 @@ namespace MotionSystem.Systems
 
                 // Animator Updater
                 // update the animator parameters
-                anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
-                anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.fixedDeltaTime);
+                anim.SetFloat(Forward, m_ForwardAmount, 0.1f, SystemAPI.Time.DeltaTime);
+                anim.SetFloat(Turn, m_TurnAmount, 0.1f, SystemAPI.Time.DeltaTime);
                 anim.SetBool(OnGround, control.IsGrounded);
 
                 // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,

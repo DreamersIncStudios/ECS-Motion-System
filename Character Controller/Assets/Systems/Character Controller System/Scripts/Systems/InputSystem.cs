@@ -83,7 +83,6 @@ namespace DreamersInc.Global
             Entities.ForEach((ref CharControllerE control, in Player_Control PC) =>
             {
                 control.CastingInput = casting;
-                bool m_Crouching = new();
 
                 if (control.block)
                 {

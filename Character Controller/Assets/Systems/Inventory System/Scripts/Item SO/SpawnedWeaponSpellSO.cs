@@ -71,7 +71,7 @@ namespace Dreamers.InventorySystem
             spellBookSo.CurSheathedPos = SheathedPos;
             spellBookSo.CurSheathedRot = SheathedRot;
             spellBookSo.WeaponModel= WeaponModel = Instantiate(Model);
-            var anim = player.GOrepresentative.GetComponent<Animator>();
+            var anim = player.GORepresentative.GetComponent<Animator>();
             if (EquipToHuman)
             {
                 Transform bone = anim.GetBoneTransform(EquipBone);

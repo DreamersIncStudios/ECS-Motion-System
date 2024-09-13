@@ -11,7 +11,7 @@ namespace DreamersInc.DamageSystem.Interfaces
     {
         Entity SelfEntityRef { get; }
         public Collider GetCollider { get; }
-        void TakeDamage(int amount, TypeOfDamage typeOf, ElementName elementName);
+        void TakeDamage(int amount, TypeOfDamage typeOf, ElementName elementName, Entity damageDealerEntity, uint level);
         void ReactToHit(float impact, Vector3 hitPosition, Vector3 forward , TypeOfDamage typeOf = TypeOfDamage.Melee , ElementName elementName = ElementName.None);
 
         void SetData(Entity entity, BaseCharacterComponent character);
@@ -22,10 +22,14 @@ namespace DreamersInc.DamageSystem.Interfaces
 
     public struct AdjustHealth : IComponentData {
         public int Value;
+        public Entity DamageDealtByEntity;
+        public readonly uint Level; // Level for calculating ExpGiven if damage causes death;
 
-        public AdjustHealth(int value)
+        public AdjustHealth(int value, Entity damageDealerEntity, uint damageDealersLevel =0)
         {
             Value = value;
+            DamageDealtByEntity = damageDealerEntity;
+            Level = damageDealersLevel;
         }
     }
     public struct AdjustMana : IComponentData
@@ -35,6 +39,16 @@ namespace DreamersInc.DamageSystem.Interfaces
         public AdjustMana(int value)
         {
             Value = value;
+        }
+    }
+
+    public struct AddXP : IComponentData
+    {
+        public uint XP;
+
+        public AddXP(uint expGiven)
+        {
+            XP = expGiven;
         }
     }
 

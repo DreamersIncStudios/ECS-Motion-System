@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Random = UnityEngine.Random;
 using Dreamers.InventorySystem;
 using Stats.Entities;
+using Unity.Entities;
 
 namespace DreamersInc.DamageSystem
 {
     // [RequireComponent(typeof(MeshCollider))]
-    public class WeaponDamage : MonoBehaviour, IDamageDealer
+    public sealed class WeaponDamage : MonoBehaviour, IDamageDealer
     {
         public Action OnHitAction { get; set; }
         public Action ChanceCheck { get; set; }
@@ -22,7 +23,9 @@ namespace DreamersInc.DamageSystem
         public Attributes Skill { get; private set; }
         public Attributes Speed { get; private set; }
 
-        public List<Effects> effects { get; private set; }
+        private List<Effects> Effects { get; set; }
+
+        private Entity ParentEntity => self.SelfEntityRef;
 
         public int BaseDamage
         {
@@ -40,15 +43,15 @@ namespace DreamersInc.DamageSystem
             }
         }
         public float CriticalHitMod => CriticalHit ? Random.Range(1.5f, 2.15f) : 1;
-        private float randomMod => Random.Range(.85f, 1.15f);
+        private float RandomMod => Random.Range(.85f, 1.15f);
         
         public bool CriticalHit
         {
             get
             {
-                int prob = Mathf.RoundToInt(Random.Range(0, 255));
-                int thresold =  (Skill.AdjustBaseValue + Speed.AdjustBaseValue) / 2;
-                return prob < thresold;
+                var prob = Mathf.RoundToInt(Random.Range(0, 255));
+                var threshold =  (Skill.AdjustBaseValue + Speed.AdjustBaseValue) / 2;
+                return prob < threshold;
             }
         }
         public float MagicMod { get; private set; }
@@ -60,7 +63,7 @@ namespace DreamersInc.DamageSystem
 
         public int DamageAmount()
         {
-            return Mathf.RoundToInt(BaseDamage * randomMod );
+            return Mathf.RoundToInt(BaseDamage * RandomMod );
         }
 
         public void SetDamageBool(bool value)
@@ -70,7 +73,7 @@ namespace DreamersInc.DamageSystem
 
         public void SetDamageType()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetElement(ElementName value)
@@ -84,10 +87,10 @@ namespace DreamersInc.DamageSystem
         {
             if (!remove)
             {
-                effects.Add(effect);
+                Effects.Add(effect);
             }
             else
-                effects.Remove(effect);
+                Effects.Remove(effect);
         }
 
         private IDamageable self;
@@ -95,7 +98,9 @@ namespace DreamersInc.DamageSystem
         // Use this for initialization
         private void Start()
         {
-            effects = new List<Effects>();
+            Effects = new List<Effects>();
+            registered = true;
+            
             if (GetComponent<Collider>())
             {
                 TypeOfDamage = TypeOfDamage.Melee;
@@ -104,15 +109,15 @@ namespace DreamersInc.DamageSystem
             }
             else
             {
-                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.name}");
+                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.transform.parent.name}");
             }
         }
 
-        private float critMod;
+        private float criticalHitMod;
         public void CheckChance()
         {
-            critMod = CriticalHitMod;
-            if (critMod != 1) { 
+            criticalHitMod = CriticalHitMod;
+            if (!criticalHitMod.Equals(1.0f)) { 
                 CriticalEventCheck();
             }
             ChanceCheck.Invoke();
@@ -120,45 +125,52 @@ namespace DreamersInc.DamageSystem
 
         public void OnTriggerEnter(Collider other)
         {
-            var hit = other.GetComponent<IDamageable>();
+            if (!other.TryGetComponent<IDamageable>(out var hit)) return;
             //Todo add Friend filter.
-            if (!DoDamage || hit == null || hit == self) return;
-            hit.TakeDamage(DamageAmount(), TypeOfDamage, ElementName);
+            if (!DoDamage || hit == self) return;
+            hit.TakeDamage(DamageAmount(), TypeOfDamage, ElementName, ParentEntity,level);
             CheckForEffectStatusChange();
             var root = transform.root;
             hit.ReactToHit(.5f, root.position, root.forward);
             OnHitAction?.Invoke();
         }
 
-        void CheckForEffectStatusChange()
+        private void CheckForEffectStatusChange()
         {
-            foreach (var effect in effects)
+            foreach (var effect in Effects.Where(effect => Random.Range(0, 1) < effect.Chance))
             {
-                if (Random.Range(0, 1) < effect.Chance)
+                switch (effect.ElementName)
                 {
-                    switch (effect.ElementName)
-                    {
-                        case ElementName.Fire:
-                            break;
-                        case ElementName.Water:
-                            break;
-                        case ElementName.Earth:
-                            break;
-                        case ElementName.Wind:
-                            break;
-                        case ElementName.Ice:
-                            break;
-                        case ElementName.Holy:
-                            break;
-                        case ElementName.Dark:
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                    case ElementName.Fire:
+                        break;
+                    case ElementName.Water:
+                        break;
+                    case ElementName.Earth:
+                        break;
+                    case ElementName.Wind:
+                        break;
+                    case ElementName.Ice:
+                        break;
+                    case ElementName.Holy:
+                        break;
+                    case ElementName.Dark:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
 
+        private uint level;
+
+        private bool registered;
+        
+        /// <summary>
+        /// Sets the stat data for the weapon.
+        /// </summary>
+        /// <param name="stats">The BaseCharacterComponent containing the stats.</param>
+        /// <param name="damageType">The type of damage.</param>
+     
         public void SetStatData(BaseCharacterComponent stats, TypeOfDamage damageType)
         {
             Magic_Offense = stats.GetStat((int)StatName.MagicOffence);
@@ -167,6 +179,11 @@ namespace DreamersInc.DamageSystem
             Speed = stats.GetPrimaryAttribute((int)AttributeName.Speed);
             Skill = stats.GetPrimaryAttribute((int)AttributeName.Skill);
             TypeOfDamage = damageType;
+            level = (uint)stats.Level;
+            
+            if (registered) return;
+            stats.OnStatChanged += ((_, args) => SetStatData(args.Stats, TypeOfDamage));
+            registered = true;
         }
     }
 }

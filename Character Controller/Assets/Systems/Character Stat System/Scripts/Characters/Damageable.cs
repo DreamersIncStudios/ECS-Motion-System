@@ -1,3 +1,4 @@
+using System;
 using DreamersInc.CombatSystem.Animation;
 using DreamersInc.DamageSystem.Interfaces;
 using Stats.Entities;
@@ -8,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace Stats
 {
     [RequireComponent(typeof(Collider))]
-    public class Damageable : MonoBehaviour, IDamageable
+    public sealed class Damageable : MonoBehaviour, IDamageable
     {
 
         public Entity SelfEntityRef { get; private set; }
@@ -17,6 +18,13 @@ namespace Stats
         public Collider GetCollider => GetComponent<Collider>();
         private float MagicDef => 1.0f / (1.0f + (magicDefense.AdjustBaseValue / 100.0f));
         private float MeleeDef => 1.0f / (1.0f + (meleeDefense.AdjustBaseValue / 100.0f));
+
+        private EntityManager manager;
+
+        private void Start()
+        {
+            manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        }
 
         /// <summary>
         /// Reacts to a hit received by the damageable object.
@@ -37,8 +45,8 @@ namespace Stats
                 HitIntensity = 4.45f,//Todo balance the mathe Mathf.FloorToInt(impact / (defense * 10.0f) * Random.Range(.92f, 1.08f)),
                 HitContactPoint = hitPosition
             };
-            if (!World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<ReactToContact>(SelfEntityRef))
-                World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(SelfEntityRef, reactTo);
+            if (!manager.HasComponent<ReactToContact>(SelfEntityRef))
+                manager.AddComponentData(SelfEntityRef, reactTo);
         }
 
         /// <summary>
@@ -47,10 +55,9 @@ namespace Stats
         /// <param name="amount">The amount of damage to be taken.</param>
         /// <param name="typeOf">The type of damage.</param>
         /// <param name="elementName">The element of damage.</param>
-        public void TakeDamage(int amount, TypeOfDamage typeOf, ElementName elementName)
+        /// <param name="damageDealerEntity"></param>
+        public void TakeDamage(int amount, TypeOfDamage typeOf, ElementName elementName, Entity damageDealerEntity, uint level)
         {
-            var manager =
-                World.DefaultGameObjectInjectionWorld.EntityManager;
             var stats = manager.GetComponentData<BaseCharacterComponent>(SelfEntityRef);
             //Todo Figure out element resistances, conditional mods, and possible affinity 
             float defense = typeOf switch
@@ -74,14 +81,14 @@ namespace Stats
 
             var damageToProcess = -Mathf.FloorToInt(amount * defense * Random.Range(.92f, 1.08f)* damageElementMod);
             Debug.Log(damageToProcess + " HP of damage to target "+ this.name);
-            AdjustHealth health = new() { Value = damageToProcess };
-            manager.AddComponentData(SelfEntityRef, health);
+            manager.AddComponentData(SelfEntityRef, new AdjustHealth(damageToProcess, damageDealerEntity,level));
         }
         public void SetData(Entity entity, BaseCharacterComponent character) {
             SelfEntityRef = entity;
             magicDefense = character.GetStat((int)StatName.MagicDefense);
             meleeDefense = character.GetStat((int)StatName.MeleeDefense);
 
+            character.OnStatChanged += ((sender, args) => SetData(SelfEntityRef, args.Stats));
         }
 
     }

@@ -1,9 +1,7 @@
 using Dreamers.InventorySystem.AbilitySystem.Interfaces;
 using Stats;
 using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+using DreamersInc.DamageSystem.Interfaces;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
@@ -11,48 +9,42 @@ namespace Dreamers.InventorySystem.AbilitySystem
 {
     public class AttackMagic : AbilitySO, IAttackAbility
     {
-        public uint DamageAmount { get { return damageAmount; } }
-        [SerializeField] uint damageAmount;
-        public uint ManaCost { get => manaCost; }
+        public uint DamageAmount => damageAmount;
+        [SerializeField] private uint damageAmount;
+        public uint ManaCost => manaCost;
         [SerializeField] uint manaCost;
-        public GameObject VFX { get => vFX; }
-        [SerializeField] GameObject vFX;
-        public Vector3 Offset { get { return offset; } }
+        public GameObject VFX => vFX;
+        [SerializeField] private GameObject vFX;
+        public Vector3 Offset => offset;
 
-        [SerializeField] Vector2 offset;
+        [SerializeField] private Vector2 offset;
 
-        [SerializeField] Vector3 Size;
+        [SerializeField] private Vector3 size;
 
 
-        public override void EquipAbility(Entity CasterEntity)
+        public override void EquipAbility(Entity casterEntity)
         {
-            base.EquipAbility(CasterEntity);
-            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
-            BaseCharacterComponent stat = em.GetComponentData<BaseCharacterComponent>(CasterEntity);
+            base.EquipAbility(casterEntity);
+            var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var stat = em.GetComponentData<BaseCharacterComponent>(casterEntity);
             damageAmount = (uint)stat.GetStat((int)StatName.MagicOffence).AdjustBaseValue * 10;
         }
-        public override void Activate(Entity CasterEntity)
+        public override void Activate(Entity casterEntity)
         {
-            EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var statData = em.GetComponentData<BaseCharacterComponent>(CasterEntity);
-           var transform = em.GetComponentData<LocalTransform>(CasterEntity);
-            if (statData.CurMana >= ManaCost)
-            {
-                Debug.Log($"Casting  {Name} for {damageAmount}. It cost {ManaCost} mana to cast");
-                statData.AdjustMana(-(int)ManaCost);
-                if (VFX)
-                {
-                    var vfxGO = Instantiate(VFX, transform.Position + transform.Forward() * Offset.x+ transform.Up()*Offset.y,
-                        transform.Rotation);
-                    if(vfxGO.GetComponentInChildren<ParticleDamage>())
-                    vfxGO.GetComponentInChildren<ParticleDamage>().SetDamage(500);
-                }
-
-                
-            }
+            var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var statData = em.GetComponentData<BaseCharacterComponent>(casterEntity);
+           var transform = em.GetComponentData<LocalTransform>(casterEntity);
+           if (statData.CurMana < ManaCost) return;
+           Debug.Log($"Casting  {Name} for {damageAmount}. It cost {ManaCost} mana to cast");
+            statData.AdjustMana(-(int)ManaCost);
+            if (!VFX) return;
+            var vfxGO = Instantiate(VFX, transform.Position + transform.Forward() * Offset.x+ transform.Up()*Offset.y,
+                transform.Rotation);
+            if(vfxGO.GetComponentInChildren<ParticleDamage>())
+                vfxGO.GetComponentInChildren<ParticleDamage>().SetStatData(statData,TypeOfDamage.Magic);
         }
 
-        public void DisplayInfo(Entity Character)
+        public void DisplayInfo(Entity character)
         {
             throw new System.NotImplementedException();
         }

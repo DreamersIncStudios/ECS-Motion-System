@@ -124,6 +124,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8697f3e52e1e86f4ba80fea08c5fa7b1, type: 2}
   Inventory:
     ItemsInInventory:
-    - Item: {fileID: 11400000, guid: bf06206f0ed28634b95123db3c7fe84e, type: 2}
+    - Item: {fileID: 11400000, guid: 30221ae827a8c3e4fb342bfb4557b9c1, type: 2}
       Count: 1
     MaxInventorySize: 100

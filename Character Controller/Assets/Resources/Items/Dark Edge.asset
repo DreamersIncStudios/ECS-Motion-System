@@ -23,7 +23,7 @@ MonoBehaviour:
   maxStackCount: 0
   quality: 4
   model: {fileID: 3240189272536465431, guid: 0cc1d7748e7bd5b43b8f8af3cb145b73, type: 3}
-  equipToHuman: 0
+  equipToHuman: 1
   _heldBone: 18
   equipBone: 0
   modifiers:
@@ -45,3 +45,4 @@ MonoBehaviour:
   styleHeldRot: {x: 0, y: 0, z: 0}
   permWeaponEffects: []
   MaxNumberOfEffects: 0
+  BaseModelState: {fileID: 0}

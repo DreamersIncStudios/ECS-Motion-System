@@ -16,7 +16,7 @@ namespace DreamersInc.BestiarySystem
            
             if (info.hasAttack)
             {
-                new CharacterBuilder(info.Name, out entity)
+                entity = new CharacterBuilder(info.Name)
                     .WithModel(info.Prefab, Position, "Enemy NPC", out GO)
                     .WithStats(info.stats,ID, info.ExpGiven,limitHealth, healthlimit)
                     .WithEntityPhysics(info.PhysicsInfo)
@@ -32,7 +32,7 @@ namespace DreamersInc.BestiarySystem
                 return true;
             }
             
-            new  CharacterBuilder(info.Name, out entity)
+          entity =   new  CharacterBuilder(info.Name)
                 .WithModel(info.Prefab, Position, "Enemy NPC", out GO)
                 .WithStats(info.stats,ID, info.ExpGiven,limitHealth, healthlimit)
                 .WithEntityPhysics(info.PhysicsInfo)

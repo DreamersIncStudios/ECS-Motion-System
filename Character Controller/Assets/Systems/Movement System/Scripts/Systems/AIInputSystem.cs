@@ -1,14 +1,10 @@
 using Components.MovementSystem;
 using DreamersInc.Global;
 using MotionSystem.Components;
-using Stats.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using ProjectDawn.Navigation;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace DreamersInc.MovementSys
 {
@@ -17,7 +13,7 @@ namespace DreamersInc.MovementSys
     {
         protected override void OnUpdate()
         {
-            Entities.WithoutBurst().ForEach(( Animator Anim, ref AgentBody Agent, ref CharControllerE Control, ref Movement Mover) => 
+            Entities.WithAll<Animator>().WithoutBurst().ForEach((ref AgentBody Agent, ref CharControllerE Control, ref Movement Mover) => 
             {
                 if (Mover.CanMove)
                 {
@@ -38,11 +34,10 @@ namespace DreamersInc.MovementSys
                 }
 
             }).Run();
-            Entities.WithoutBurst().ForEach(( Animator Anim,ref AgentBody Agent, ref BeastControllerComponent Control, ref Movement Mover) =>
+            Entities.WithAll<Animator>().WithoutBurst().ForEach((ref AgentBody Agent, ref BeastControllerComponent Control, ref Movement Mover) =>
             {
                 if (Mover.CanMove)
                 {
-
                     Control.Move = Agent.Velocity;
                     Control.Jump = false;
                 }
@@ -57,6 +52,7 @@ namespace DreamersInc.MovementSys
                 }
 
             }).Run();
+            
         }
     }
 }

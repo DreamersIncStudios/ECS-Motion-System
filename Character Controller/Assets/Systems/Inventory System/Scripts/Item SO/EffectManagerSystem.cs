@@ -24,7 +24,7 @@ public partial class EffectManagerSystem: SystemBase
             if (stats.CurMana != 0) return;
             foreach (var weapon in inventory.Equipment.EquippedWeapons.Values)
             {
-                weapon.activeSpell.Deactivate(weapon,stats, entity);
+                weapon.ActiveSpell.Deactivate(weapon,stats, entity);
             }
 
         }).Run();

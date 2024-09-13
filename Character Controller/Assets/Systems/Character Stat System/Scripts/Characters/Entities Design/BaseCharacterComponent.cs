@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -20,46 +18,61 @@ namespace Stats.Entities
         public bool InPlay;
         public bool InvincibleMode;
         public uint SpawnID;// { get; private set; }
-        [HideInInspector] public GameObject GOrepresentative;
+        [HideInInspector] public GameObject GORepresentative;
         [HideInInspector] public uint CharacterID;
         [Range(0, 9999)]
-        [SerializeField] int _curHealth;
+        [SerializeField] int curHealth;
 
         public bool HealthCantDropBelow;
         public uint HealthLimit;
+        
+        public event EventHandler<OnStatChangeEventArgs> OnStatChanged;
+        public class OnStatChangeEventArgs : EventArgs
+        {
+            public BaseCharacterComponent Stats;
+
+            public OnStatChangeEventArgs(BaseCharacterComponent stats)
+            {
+                Stats = stats;
+            }
+        }
+
         public int CurHealth
         {
-            get { return _curHealth; }
+            get => curHealth;
             set
             {
 
                 if (value <= 0)
-                    _curHealth = 0;
+                    curHealth = 0;
                 else if (value > MaxHealth && MaxHealth != 0)
-                    _curHealth = MaxHealth;
+                    curHealth = MaxHealth;
                 else
-                    _curHealth = value;
+                    curHealth = value;
             }
         }
 
         [Range(0, 9999)]
         [SerializeField] int maxHealth;
-        public int MaxHealth { get { return MaxHealthMod + maxHealth; } set { maxHealth = value; } }
+        public int MaxHealth { get => MaxHealthMod + maxHealth;
+            set => maxHealth = value;
+        }
         public int MaxHealthMod { get; set; }
         [Range(0, 9999)]
-        [SerializeField] int _curMana;
+        [SerializeField]
+        private int curMana;
         public int CurMana
         {
-            get { return _curMana; }
+            get => curMana;
             set
             {
 
                 if (value <= 0)
-                    _curMana = 0;
+                    curMana = 0;
                 else if (value > MaxMana && MaxHealth != 0)
-                    _curMana = MaxMana;
+                    curMana = MaxMana;
                 else
-                    _curMana = value;
+                    curMana = value;
             }
         }
         [Range(0, 9999)]
@@ -72,24 +85,29 @@ namespace Stats.Entities
 
         public bool Dead => !InvincibleMode && CurHealth <= 0;
 
-        public uint ExpGiven { get; set; }
+        public uint BaseExp { get; protected set; }
+        public uint ExpGiven(uint playerLevel)
+        {
+            var mod = Mathf.Pow((2 * Level + 10) / (Level + playerLevel + 10), 2.5f);
+                return (uint)Mathf.CeilToInt((BaseExp * _level)*.2f *mod );
+        }
 
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get => _name;
+            set => _name = value;
         }
 
         public int Level
         {
-            get { return _level; }
-            set { _level = value; }
+            get => _level;
+            set => _level = value;
         }
 
         public uint FreeExp
         {
-            get { return _freeExp; }
-            set { _freeExp = value; }
+            get => _freeExp;
+            set => _freeExp = value;
         }
         public void AddExp(uint exp)
         {
@@ -98,13 +116,7 @@ namespace Stats.Entities
         }
         //Todo consider adding growth rate levels
 
-        public int ExpToNextLevel
-        {
-            get
-            {
-                return Mathf.FloorToInt(6 / 5 * Mathf.Pow(Level, 3) - 15 * Mathf.Pow(Level, 2) + 100 * Level - 140);
-            }
-        }
+        public int ExpToNextLevel => Mathf.FloorToInt(1.2f * Mathf.Pow(Level, 3) - 15 * Mathf.Pow(Level, 2) + 100 * Level - 140);
 
         public int ExpTilNextLevel => ExpToNextLevel - (int)FreeExp;
 
@@ -114,6 +126,7 @@ namespace Stats.Entities
             FreeExp = 0;
             Level++;
             StatUpdate();
+      
         }
 
         public void Init()
@@ -205,15 +218,18 @@ namespace Stats.Entities
 
         public void StatUpdate()
         {
-            for (int i = 0; i < _vital.Length; i++)
-                _vital[i].Update();
-            for (int j = 0; j < _stats.Length; j++)
-                _stats[j].Update();
-            for (int i = 0; i < _ability.Length; i++)
-                _ability[i].Update();
+            foreach (var vital in _vital)
+                vital.Update();
+
+            foreach (var stat in _stats)
+                stat.Update();
+
+            foreach (var ability in _ability)
+                ability.Update();
 
             CurHealth = MaxHealth = GetVital((int)VitalName.Health).AdjustBaseValue;
             CurMana = MaxMana = GetVital((int)VitalName.Mana).AdjustBaseValue;
+           OnStatChanged?.Invoke(this,new OnStatChangeEventArgs(this));
         }
 
         public void AdjustHealth(int adj)
@@ -235,5 +251,6 @@ namespace Stats.Entities
             if (CurMana > MaxMana) { CurMana = MaxMana; }
 
         }
+
     }
 }

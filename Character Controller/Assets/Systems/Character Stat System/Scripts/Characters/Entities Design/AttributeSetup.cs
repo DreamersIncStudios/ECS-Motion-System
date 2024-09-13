@@ -20,7 +20,7 @@ namespace Stats.Entities
             this.Level = BaseStats.Level;
             float ModValue = BaseStats.LevelMod;
             this.SpawnID = spawnID;
-            this.ExpGiven = ExpGiven;
+            this.BaseExp = Exp;
             this.GetPrimaryAttribute((int)AttributeName.Strength).BaseValue = (int)(BaseStats.Strength * ModValue);
             this.GetPrimaryAttribute((int)AttributeName.Awareness).BaseValue = (int)(BaseStats.Awareness * ModValue);
             this.GetPrimaryAttribute((int)AttributeName.Charisma).BaseValue = (int)(BaseStats.Charisma * ModValue);
