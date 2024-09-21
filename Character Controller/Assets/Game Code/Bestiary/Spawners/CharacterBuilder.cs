@@ -56,13 +56,13 @@ namespace DreamersInc.BestiarySystem
         public CharacterBuilder WithModel(GameObject go, Vector3 position, string tagging, out GameObject spawned)
         {
             spawned = model = Object.Instantiate(go);
-            go.transform.position = position;
-            tag = go.tag = tagging;
+            model.transform.position = position;
+            tag = model.tag = tagging;
             if (entity == Entity.Null) return this;
             manager.SetComponentData(entity, new LocalTransform()
             {
                 Position = position,
-                Rotation = go.transform.rotation,
+                Rotation = model.transform.rotation,
                 Scale = 1
             });
             return this;
@@ -196,7 +196,7 @@ namespace DreamersInc.BestiarySystem
             this.combo = combo;
             if (entity == Entity.Null) return this;
             if (model == null) return this;
-            manager.AddComponent<StoreWeapon>(entity);
+            manager.AddComponent<StorePrimaryWeapon>(entity);
 
             var comboInfo = Object.Instantiate(combo);
             manager.AddComponentObject(entity, new PlayerComboComponent { Combo = comboInfo });

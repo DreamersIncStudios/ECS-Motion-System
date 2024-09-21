@@ -118,6 +118,17 @@ namespace Dreamers.InventorySystem
                 // need to deal with duplicate itemID numbers 
 
             }
+            [MenuItem("Assets/Create/RPG/Project Weapon")]
+            public static void CreateProjectileWeapon()
+            {
+                ScriptableObjectUtility.CreateAsset<ProjectileWeaponSO>("Item", out ProjectileWeaponSO Item);
+                ItemDatabase.LoadDatabaseForce();
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
+                Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon"});
+                // need to deal with duplicate itemID numbers 
+
+            }
             
             [MenuItem("Assets/Create/RPG/Modifier Spell Item")]
             public static void CreateModSpellItem()
@@ -129,17 +140,19 @@ namespace Dreamers.InventorySystem
                 AssetDatabase.SetLabels(Item, new [] {"Item","Equipable","Weapon","Mod Spell", });
                 // need to deal with duplicate itemID numbers 
 
-            }
-            //[MenuItem("Assets/Create/RPG/Projectile Item")]
-            //     static public void CreateBlasterItem()
-            //{
-            //    ScriptableObjectUtility.CreateAsset<BlasterSO>("Item", out BlasterSO Item);
-            //    ItemDatabase.LoadDatabaseForce();
-            //    Item.setItemID((uint)ItemDatabase.Items.Count + 1);
-            //    Debug.Log(Item.ItemID);
-            //    // need to deal with duplicate itemID numbers 
+            }  
+            [MenuItem("Assets/Create/RPG/Spells/ Projectile Spells")]
+            public static void CreateProjectileItem()
+            {
+                ScriptableObjectUtility.CreateAsset<ProjectileSpellSO>("Item", out ProjectileSpellSO Item);
+                ItemDatabase.LoadDatabaseForce();
+                Item.setItemID((uint)ItemDatabase.items.Count + 1);
+                Debug.Log(Item.ItemID);
+                AssetDatabase.SetLabels(Item, new [] {"Equipable","Spell","Projectile", });
+                // need to deal with duplicate itemID numbers 
 
-            //}
+            }
+            
         }
 #endif
     }

@@ -116,8 +116,8 @@ MonoBehaviour:
   Equipment:
     EquippedWeapons:
     - {fileID: 11400000, guid: 0d0acd3bd1c799444be09c9ecdfd4218, type: 2}
-    EquippedArmors:
-    - {fileID: 11400000, guid: 66ea3d90606fcc743bf50a3ab423910a, type: 2}
+    - {fileID: 11400000, guid: a23be05c683344c7db556387b7163800, type: 2}
+    EquippedArmors: []
     EquippedAbilites:
     - {fileID: 11400000, guid: b36289e5e6ea4644296a69639d0e57ba, type: 2}
     - {fileID: 11400000, guid: 4c6467a472903aa4ea0ba41ee5b70b21, type: 2}

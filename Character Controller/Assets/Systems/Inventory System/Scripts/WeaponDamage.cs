@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using Stats.Entities;
 using Unity.Entities;
 
@@ -59,6 +60,9 @@ namespace DreamersInc.DamageSystem
 
         public TypeOfDamage TypeOfDamage { get; private set; }
 
+        public WeaponType Type => type;
+        [SerializeField] WeaponType type;
+
         public bool DoDamage { get; private set; }
 
         public int DamageAmount()
@@ -100,16 +104,44 @@ namespace DreamersInc.DamageSystem
         {
             Effects = new List<Effects>();
             registered = true;
-            
-            if (GetComponent<Collider>())
+
+            switch (Type)
             {
-                TypeOfDamage = TypeOfDamage.Melee;
-                GetComponent<Collider>().isTrigger = true;
-                self = GetComponentInParent<IDamageable>();
-            }
-            else
-            {
-                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.transform.parent.name}");
+                    case WeaponType.Sword:
+                    case WeaponType.H2BoardSword:
+                    case WeaponType.Katana:
+                    case WeaponType.Bo_Staff:
+                    case WeaponType.Mage_Staff:
+                    case WeaponType.Club:
+                    case WeaponType.Axe:
+                    case WeaponType.Gloves:
+                        if (GetComponent<Collider>())
+                        {
+                            TypeOfDamage = TypeOfDamage.Melee;
+                            GetComponent<Collider>().isTrigger = true;
+                            self = GetComponentInParent<IDamageable>();
+                        }
+                        else
+                        {
+                            throw new ArgumentNullException(nameof(gameObject),
+                                $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.transform.parent.name}");
+                        }
+
+                        break;
+
+
+                    case WeaponType.SpellBlade:
+                        break;
+                    case WeaponType.Claws:
+                        break;
+                    case WeaponType.Pistol:
+                        break;
+                    case WeaponType.Bow:
+                        break;
+                    case WeaponType.SpellBook:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -185,5 +217,6 @@ namespace DreamersInc.DamageSystem
             stats.OnStatChanged += ((_, args) => SetStatData(args.Stats, TypeOfDamage));
             registered = true;
         }
+
     }
 }

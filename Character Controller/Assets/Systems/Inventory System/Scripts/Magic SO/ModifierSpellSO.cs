@@ -18,24 +18,6 @@ namespace Dreamers.InventorySystem
         [SerializeField] private List<StatModifier> modifiers;
         [SerializeField] private Effects effects;
         private ParticleSystem vfxObject;
-        public override void Activate(SpellBookSO spellBookSo, BaseCharacterComponent player, Entity entity)
-        {
-            player.ModCharacterStats(modifiers);
-            spellBookSo.SetEffect(effects, false);
-            var weaponInHand = player.GORepresentative.GetComponent<Animator>().GetBool("Weapon In Hand");
-            if (!weaponInHand) return;
-
-            if (effects.VFX != null)
-            {
-                vfxObject = Instantiate(effects.VFX, spellBookSo.WeaponModel.transform).GetComponent<ParticleSystem>();
-                vfxObject.Play();
-            }
-
-            if (effects.StatusEffects == StatusEffects.None) return;
-
-            World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<IncrementalVitalChange>(entity).Add(
-                new IncrementalVitalChange(VitalName.Mana, -2, spellBookSo.WeaponModel.gameObject.GetInstanceID()));
-        }
         
 
         public override void Activate(WeaponSO weapon, BaseCharacterComponent player, Entity entity)
@@ -55,6 +37,7 @@ namespace Dreamers.InventorySystem
                 new IncrementalVitalChange(VitalName.Mana, -2, weapon.WeaponModel.gameObject.GetInstanceID()));
 
         }
+        
         public override async void Deactivate(WeaponSO weapon, BaseCharacterComponent player, Entity entity)
         {
             player.ModCharacterStats(modifiers, false);
@@ -74,23 +57,6 @@ namespace Dreamers.InventorySystem
             Destroy(vfxObject.gameObject);
         }
         
-        public override async void Deactivate(SpellBookSO spellBookSo, BaseCharacterComponent player, Entity entity)
-        {
-            player.ModCharacterStats(modifiers, false);
-            var buffer = World.DefaultGameObjectInjectionWorld.EntityManager.GetBuffer<IncrementalVitalChange>(entity);
-            for (var i = buffer.Length - 1; i >= 0; i--) 
-            {
-                if(buffer[i].ID == spellBookSo.WeaponModel.gameObject.GetInstanceID())
-                {
-                    buffer.RemoveAt(i); 
-                }
-            }
-            if(vfxObject!= null)
-                vfxObject.Stop();
-            await Task.Delay(250);
-            if(vfxObject!= null)
-                Destroy(vfxObject.gameObject);
-        }
     }
 
     [System.Serializable]

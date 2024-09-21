@@ -16,12 +16,12 @@ namespace Dreamers.InventorySystem
     public class WeaponSO : ItemBaseSO, IEquipable, IWeapon
     {
         #region Variables
-        public new ItemType Type => ItemType.Weapon;
+
+        protected new ItemType Type => ItemType.Weapon;
         [SerializeField] Quality quality;
         public Quality Quality => quality;
 
         [SerializeField] GameObject model;
-        public GameObject Model => model;
         [SerializeField] private bool equipToHuman;
         public bool EquipToHuman => equipToHuman;
         [SerializeField] private HumanBodyBones heldBone;
@@ -37,23 +37,15 @@ namespace Dreamers.InventorySystem
         public uint LevelRqd => levelRqd;
 
         [SerializeField] private WeaponType weaponType;
-        [SerializeField] TypeOfDamage typeOfDamage;
+        
         public WeaponType WeaponType => weaponType;
         [SerializeField] private WeaponSlot slot;
         public WeaponSlot Slot => slot;
-        [SerializeField] private float maxDurable;
-        public float MaxDurability => maxDurable;
-        public float CurrentDurability { get; set; }
-        [SerializeField] private bool breakable;
-        public bool Breakable => breakable;
         [SerializeField] private bool upgradeable;
         public bool Upgradeable => upgradeable;
 
         public bool AlwaysDrawn => alwaysDrawn;
         [SerializeField] bool alwaysDrawn;
-
-        public int SkillPoints { get; set; }
-        public int Experience { get; set; }
         [SerializeField] private Vector3 sheathedPos;
         public Vector3 SheathedPos => sheathedPos;
         [SerializeField] private Vector3 heldPos;
@@ -95,7 +87,7 @@ namespace Dreamers.InventorySystem
         }
 
         public event EventHandler<OnStatusEffectChangeArgs> OnStatusEffectChange;
-
+        protected BaseCharacterComponent CharacterEquipped;
         public virtual bool Equip(BaseCharacterComponent player)
         {
             OnStatusEffectChange += (_, eventArgs) =>
@@ -109,13 +101,13 @@ namespace Dreamers.InventorySystem
             };
             
             var anim = player.GORepresentative.GetComponent<Animator>();
+            CharacterEquipped = player;
             if (player.Level >= LevelRqd)
             {
                 AdderWeaponEffect = new List<Effects>();
-                if (Model != null)
+                if (model != null)
                 {
-                    WeaponModel = Instantiate(Model);
-                    WeaponModel.GetComponent<IDamageDealer>().SetStatData(player, typeOfDamage);
+                    WeaponModel = Instantiate(model);
                     // Consider adding and enum as all character maybe not be human 
                     if (EquipToHuman)
                     {
@@ -144,7 +136,7 @@ namespace Dreamers.InventorySystem
                 {
                     anim.SendMessage("EquipWeaponAnim");
                     DrawWeapon(anim);
-                    if(EquipToHuman)
+                    if(EquipToHuman) //Todo Make item dependent 
                         WeaponModel.AddComponent<DissolveSingle>();
                 }
 
@@ -186,9 +178,9 @@ namespace Dreamers.InventorySystem
                 equipment.EquippedWeapons[this.Slot] = this;
 
 
-                if (Model != null)
+                if (model != null)
                 {
-                    WeaponModel = Instantiate(Model);
+                    WeaponModel = Instantiate(model);
                     // Consider adding and enum as all character maybe not be human 
                     if (EquipToHuman)
                     {
@@ -253,12 +245,8 @@ namespace Dreamers.InventorySystem
             return true; 
         }
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void DrawWeapon(Animator anim)
+        public virtual void DrawWeapon(Animator anim)
         {
             if (!equipToHuman) return;
             WeaponModel.transform.SetParent(anim.GetBoneTransform(HeldBone));
@@ -266,7 +254,7 @@ namespace Dreamers.InventorySystem
             WeaponModel.transform.localRotation = Quaternion.Euler(HeldRot);
 
         }
-        public void StoreWeapon(Animator anim)
+        public virtual void StoreWeapon(Animator anim)
         {
             WeaponModel.transform.parent = anim.GetBoneTransform(EquipBone);
             WeaponModel.transform.localPosition = SheathedPos;
@@ -331,7 +319,7 @@ namespace Dreamers.InventorySystem
             WeaponSO weapon = (WeaponSO)obj;
 
             return ItemID == weapon.ItemID && ItemName == weapon.ItemName && Value == weapon.Value && Modifiers.SequenceEqual(weapon.Modifiers) &&
-                Experience == weapon.Experience && LevelRqd == weapon.LevelRqd;
+                LevelRqd == weapon.LevelRqd;
         }
         public override string Serialize()
         {

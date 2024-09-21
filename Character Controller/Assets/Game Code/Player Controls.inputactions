@@ -2,7 +2,7 @@
     "name": "Player Controls",
     "maps": [
         {
-            "name": "Player Controller ",
+            "name": "Player Controller",
             "id": "b5aef3d3-06cc-4324-929f-1f362836dcf2",
             "actions": [
                 {
@@ -96,6 +96,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Projectile1",
+                    "type": "Button",
+                    "id": "6153387c-6c75-45b7-94db-dbc1085673ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause Game ",
                     "type": "Button",
                     "id": "618cec8c-60fc-4d03-8fd9-604673ff5f35",
@@ -165,6 +174,24 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ProjectileChangePos",
+                    "type": "Button",
+                    "id": "2ba03f06-6a18-4711-a7c7-e113e62ac469",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ProjectileChangeNeg",
+                    "type": "Button",
+                    "id": "667cca79-0144-4b83-b503-8c115d863d7c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -304,7 +331,7 @@
                 {
                     "name": "",
                     "id": "b13be56a-2be9-44fa-ac21-d3870fa3d92b",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox;Dual Sense",
@@ -315,7 +342,7 @@
                 {
                     "name": "",
                     "id": "0d4eaeb4-129c-483f-beb9-16f004a50e32",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox;Dual Sense",
@@ -370,7 +397,7 @@
                 {
                     "name": "",
                     "id": "ee41826f-30bc-468f-a4d9-20b9929a6aed",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -414,7 +441,7 @@
                 {
                     "name": "",
                     "id": "70c291fa-37a5-4b96-b6a1-e836aa712058",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Xbox;Dual Sense",
@@ -425,7 +452,7 @@
                 {
                     "name": "",
                     "id": "f285951f-a7ed-478b-887a-5d98954fbc0b",
-                    "path": "<Gamepad>/dpad/left",
+                    "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Xbox;Dual Sense",
@@ -436,11 +463,55 @@
                 {
                     "name": "",
                     "id": "f5145f24-3b6e-4682-85e4-59f7befe4641",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Xbox;Dual Sense",
                     "action": "ChangeTargetPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9e1732f-2641-452e-b257-ea3caae195fe",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "Projectile",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01b8591d-2748-4182-9464-41c481b0f1ce",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "Projectile1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d90b507-d60b-4786-9a7f-2e8dd2a0119a",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "ProjectileChangePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98262f5c-dbb9-437c-acbf-55324a8f1f82",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox;Dual Sense",
+                    "action": "ProjectileChangeNeg",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

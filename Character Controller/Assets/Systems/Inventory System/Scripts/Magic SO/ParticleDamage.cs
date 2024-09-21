@@ -4,6 +4,7 @@ using Stats;
 using System.Collections.Generic;
 using System.Linq;
 using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using PrimeTween;
 using Stats.Entities;
 using Unity.Entities;
@@ -22,6 +23,8 @@ public class ParticleDamage : MonoBehaviour, IDamageDealer
     public Attributes Skill { get; private set; }
     public Attributes Speed { get; private set; }
     public TypeOfDamage TypeOfDamage { get; private set; }
+    public WeaponType Type => type;
+    [SerializeField] WeaponType type;
     int damage;
     [SerializeField] float moveDistance;
     [SerializeField] float growScale = 1;

@@ -228,7 +228,6 @@ namespace DreamersInc.InputSystems
 
         void ToggleMagicInput(InputAction.CallbackContext obj)
         {
-            Debug.Log("I casted light magic");
             if (casting)
             {
                 casting = false;
@@ -285,6 +284,7 @@ namespace DreamersInc.InputSystems
                 handler.MagicInputQueue.Enqueue("A");
             }).Run();
         }
+
 
         private bool switchBlock;
 

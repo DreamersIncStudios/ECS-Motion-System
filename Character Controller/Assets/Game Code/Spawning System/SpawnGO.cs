@@ -59,7 +59,7 @@ namespace GameCode.Spawn
                 }); 
 
                 ecb.RemoveComponent<SpawnGO>(entity);
-                ecb.AddComponent<StoreWeapon>(entity);
+                ecb.AddComponent<StorePrimaryWeapon>(entity);
 
                 combo.WeaponEquipped= true;
             }

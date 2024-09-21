@@ -8,13 +8,7 @@ namespace Dreamers.InventorySystem.Interfaces
         HumanBodyBones HeldBone { get; }
         WeaponType WeaponType { get; }
         WeaponSlot Slot { get; }
-        float MaxDurability { get; }
-        float CurrentDurability { get; set; }
-        bool Breakable { get; }
         bool Upgradeable { get; }
-        int SkillPoints { get; set; }
-        int Experience { get; set; }
-
         Vector3 SheathedPos { get; }
         Vector3 HeldPos { get; }
 
