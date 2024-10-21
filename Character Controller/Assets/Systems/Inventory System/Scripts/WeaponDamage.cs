@@ -15,7 +15,7 @@ namespace DreamersInc.DamageSystem
     // [RequireComponent(typeof(MeshCollider))]
     public sealed class WeaponDamage : MonoBehaviour, IDamageDealer
     {
-        public Action OnHitAction { get; set; }
+        public event EventHandler<OnHitArgs> OnHitAction;
         public Action ChanceCheck { get; set; }
         public Action CriticalEventCheck { get; set; }
         public Stat Magic_Offense { get; private set; }
@@ -25,7 +25,7 @@ namespace DreamersInc.DamageSystem
         public Attributes Speed { get; private set; }
 
         private List<Effects> Effects { get; set; }
-
+        private Animator animator;
         private Entity ParentEntity => self.SelfEntityRef;
 
         public int BaseDamage
@@ -164,7 +164,15 @@ namespace DreamersInc.DamageSystem
             CheckForEffectStatusChange();
             var root = transform.root;
             hit.ReactToHit(.5f, root.position, root.forward);
-            OnHitAction?.Invoke();
+            var attackType = animator.GetCurrentAnimatorStateInfo(0).tagHash switch
+            {
+                var state when state == Animator.StringToHash("Light") => 1,
+                var state when state == Animator.StringToHash("Heavy") => 2,
+                _ => 0
+            };
+            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            OnHitAction?.Invoke(this, new OnHitArgs() { Entity = hit.SelfEntityRef, TypeOfDamage = this.TypeOfDamage, AttackType = attackType, StateInfo  = stateInfo});
+
         }
 
         private void CheckForEffectStatusChange()
@@ -218,5 +226,13 @@ namespace DreamersInc.DamageSystem
             registered = true;
         }
 
+    }
+    public class OnHitArgs : EventArgs
+    {
+        public Entity Entity;
+        public TypeOfDamage TypeOfDamage;
+        public int AttackType;
+        public AnimatorStateInfo StateInfo;
+        public int EnemeyID;
     }
 }

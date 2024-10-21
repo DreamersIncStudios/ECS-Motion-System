@@ -23,7 +23,7 @@ namespace DreamersInc.DamageSystem.Interfaces
         int DamageAmount();
         bool DoDamage { get; }
         void SetDamageBool(bool value);
-        public Action OnHitAction { get; set; }
+        public event EventHandler<OnHitArgs> OnHitAction; 
         public Action ChanceCheck { get; set; }
         Action CriticalEventCheck { get; set; }
         void SetStatData( BaseCharacterComponent stats,TypeOfDamage damageType);

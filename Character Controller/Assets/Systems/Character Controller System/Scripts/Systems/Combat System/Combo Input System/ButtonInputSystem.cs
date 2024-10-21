@@ -146,6 +146,7 @@ namespace DreamersInc.InputSystems
 
         private void OnPlayerShoot(InputAction.CallbackContext obj)
         {
+            
             Entities.WithoutBurst().WithAll<Player_Control>().ForEach(
                 (Animator anim, PlayerComboComponent comboList, Command handler) =>
                 {
@@ -194,7 +195,7 @@ namespace DreamersInc.InputSystems
                         {
                             triggerAnimIndex = 0,
                             AttackType = AttackType.Dodge,
-                            TransitionDuration = .25f,
+                            TransitionDuration = .15f,
                         });
                     }
                     else
@@ -203,7 +204,7 @@ namespace DreamersInc.InputSystems
                         {
                             triggerAnimIndex = 1,
                             AttackType = AttackType.Dodge,
-                            TransitionDuration = 0.25f,
+                            TransitionDuration = 0.05f,
 
                         });
                     }

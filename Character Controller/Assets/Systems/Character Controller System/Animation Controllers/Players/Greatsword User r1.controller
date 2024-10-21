@@ -145,6 +145,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3630616565726713341}
+  - {fileID: -3573964660486862144}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -427,6 +428,21 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-7647244801443479658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690a61b22b0d4a508e60eac9a1a58099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventName: DoDamage
+  OnTriggerTime: 0.223
+  OffTriggerTime: 0.38
 --- !u!1102 &-7517455645354300955
 AnimatorState:
   serializedVersion: 6
@@ -619,6 +635,21 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-6339959480044184974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690a61b22b0d4a508e60eac9a1a58099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventName: DoDamage
+  OnTriggerTime: 0.255
+  OffTriggerTime: 0.435
 --- !u!1102 &-6221665730399536031
 AnimatorState:
   serializedVersion: 6
@@ -1168,7 +1199,9 @@ AnimatorState:
   m_Transitions:
   - {fileID: -6216197605753301358}
   - {fileID: -2171072029559066139}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 6236830753475986751}
+  - {fileID: -6339959480044184974}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1448,6 +1481,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a3c9d19e075a4380d285ebe14da8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1101 &-3573964660486862144
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3541814172559392147}
+  m_Solo: 0
+  m_Mute: 1
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.125
+  m_TransitionOffset: 0
+  m_ExitTime: 0.5
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-3541814172559392147
 AnimatorState:
   serializedVersion: 6
@@ -3370,7 +3425,7 @@ AnimatorStateMachine:
     m_Position: {x: -10, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 539953226279640967}
-    m_Position: {x: 1270, y: 1250, z: 0}
+    m_Position: {x: 1270, y: 1240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7949431416126901885}
     m_Position: {x: 1270, y: 1330, z: 0}
@@ -4530,7 +4585,9 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6024588233673994983}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 3936941553746313480}
+  - {fileID: -7647244801443479658}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -5081,6 +5138,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &3936941553746313480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57814fd440734991a9a09282d81b3001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventName: VFXTrigger
+  TriggerTime: 0.3
 --- !u!1102 &4030735842700287864
 AnimatorState:
   serializedVersion: 6
@@ -5832,6 +5903,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &6236830753475986751
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57814fd440734991a9a09282d81b3001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventName: VFXTrigger
+  TriggerTime: 0.26
 --- !u!1101 &6262110611756353428
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dreamers.InventorySystem;
 using Dreamers.InventorySystem.Interfaces;
+using DreamersInc.DamageSystem;
 using PrimeTween;
 using Stats.Entities;
 using Unity.Entities;
@@ -13,7 +14,7 @@ using Random = UnityEngine.Random;
 
 public class ParticleDamage : MonoBehaviour, IDamageDealer
 {
-    public Action OnHitAction { get; set; }
+    public event EventHandler<OnHitArgs> OnHitAction;
     public Action ChanceCheck { get; set; }
     public Action CriticalEventCheck { get; set; }
 
@@ -89,7 +90,7 @@ public class ParticleDamage : MonoBehaviour, IDamageDealer
         CheckForEffectStatusChange();
 
 
-        OnHitAction?.Invoke();
+        OnHitAction?.Invoke(this, new OnHitArgs(){TypeOfDamage = this.TypeOfDamage});
     }
 
     public int BaseDamage

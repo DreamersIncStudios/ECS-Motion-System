@@ -2932,6 +2932,7 @@ GameObject:
   - component: {fileID: 6594553537872528510}
   - component: {fileID: 6830515560771145970}
   - component: {fileID: 3139431476197196673}
+  - component: {fileID: 2154903418421715396}
   m_Layer: 0
   m_Name: Kas
   m_TagString: Enemy NPC
@@ -3088,6 +3089,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8149adc6abd53409ae6da06f6a0543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2154903418421715396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6082700357839050000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c61addd4a0428d904a364f677bbca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationEvents:
+  - EventName: VFXTrigger
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6594553537872528510}
+          m_TargetAssemblyTypeName: VFXControl, CharacterControllerSystem
+          m_MethodName: TriggerVFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: DoDamangeOn
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1945208150637424510}
+          m_TargetAssemblyTypeName: MotionSystem.Systems.EquipWeaponControl, CharacterControllerSystem
+          m_MethodName: DoDamage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: DoDamangeOff
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1945208150637424510}
+          m_TargetAssemblyTypeName: MotionSystem.Systems.EquipWeaponControl, CharacterControllerSystem
+          m_MethodName: DoDamage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: PlaySFX
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &6214646598634842055
 GameObject:
   m_ObjectHideFlags: 0
