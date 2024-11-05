@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7811728449610485961}
   - component: {fileID: 7192455655752841934}
   - component: {fileID: 7893299784250305013}
-  - component: {fileID: 3980290656003504800}
-  - component: {fileID: 7297418281360722335}
+  - component: {fileID: 5588011434941756359}
+  - component: {fileID: 1219758907688421020}
   m_Layer: 0
   m_Name: Dissolve weapon
   m_TagString: Untagged
@@ -28,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707707522312215392}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.827, z: 0}
-  m_LocalScale: {x: 1, y: 1.1764705, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.067, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8686041750291470767}
@@ -59,7 +59,16 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: -0, y: 0, z: 0}
+        m_Name: Transform_angles
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0.06700004, z: 0}
+        m_Name: Transform_position
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 0.99999994, z: 1}
+        m_Name: Transform_scale
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -123,7 +132,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3980290656003504800
+--- !u!114 &5588011434941756359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,9 +146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
   m_Bindings:
-  - {fileID: 7297418281360722335}
+  - {fileID: 1219758907688421020}
   m_VisualEffect: {fileID: 7192455655752841934}
---- !u!114 &7297418281360722335
+--- !u!114 &1219758907688421020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f578592804bc646b11153598dc3fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!65 &3124040931920844855
 BoxCollider:
   m_ObjectHideFlags: 0

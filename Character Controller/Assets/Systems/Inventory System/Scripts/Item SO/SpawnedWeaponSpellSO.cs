@@ -64,8 +64,10 @@ namespace Dreamers.InventorySystem
 
         #endregion
 
-        public override void Activate(SpellBookSO spellBookSo, BaseCharacterComponent player, Entity entity)
+        public override void Activate(WeaponSO weaponSO, BaseCharacterComponent player,  Entity entity)
         {
+            var spellBookSo = (SpellBookSO)weaponSO;
+            
             spellBookSo.CurHeldPos = HeldPos;
             spellBookSo.CurHeldRot = HeldRot;
             spellBookSo.CurSheathedPos = SheathedPos;
@@ -88,21 +90,15 @@ namespace Dreamers.InventorySystem
             WeaponModel.transform.localRotation = Quaternion.Euler(SheathedRot);
         }
 
-        public override void Activate(WeaponSO weaponSO, BaseCharacterComponent player,  Entity entity)
+        public override void Deactivate(WeaponSO weaponSo, BaseCharacterComponent player, Entity entity)
         {
             throw new NotImplementedException();
         }
 
-        public override void Deactivate(SpellBookSO spellBookSo, BaseCharacterComponent player,  Entity entity)
-        {
-            Destroy(spellBookSo.WeaponModel);
-        }
+
+        
 
         public bool EquipToHuman;
 
-        public override void Use(CharacterInventory characterInventory, BaseCharacterComponent player)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

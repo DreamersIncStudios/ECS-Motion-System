@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Entities;
 using Stats;
 using System;
+using Dreamers.InventorySystem.Interfaces;
 using Stats.Entities;
 
 namespace DreamersInc.DamageSystem.Interfaces
@@ -22,7 +23,7 @@ namespace DreamersInc.DamageSystem.Interfaces
         int DamageAmount();
         bool DoDamage { get; }
         void SetDamageBool(bool value);
-        public Action OnHitAction { get; set; }
+        public event EventHandler<OnHitArgs> OnHitAction; 
         public Action ChanceCheck { get; set; }
         Action CriticalEventCheck { get; set; }
         void SetStatData( BaseCharacterComponent stats,TypeOfDamage damageType);
@@ -31,6 +32,7 @@ namespace DreamersInc.DamageSystem.Interfaces
         public Stat Melee_Offense {get;}
         public Attributes Skill { get; }
         public Attributes Speed { get; }
+        public WeaponType Type { get; }
     }
 
 }

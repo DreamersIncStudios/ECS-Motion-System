@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 using Dreamers.InventorySystem;
+using Dreamers.InventorySystem.Interfaces;
 using Stats.Entities;
 using Unity.Entities;
 
@@ -14,7 +15,7 @@ namespace DreamersInc.DamageSystem
     // [RequireComponent(typeof(MeshCollider))]
     public sealed class WeaponDamage : MonoBehaviour, IDamageDealer
     {
-        public Action OnHitAction { get; set; }
+        public event EventHandler<OnHitArgs> OnHitAction;
         public Action ChanceCheck { get; set; }
         public Action CriticalEventCheck { get; set; }
         public Stat Magic_Offense { get; private set; }
@@ -24,7 +25,7 @@ namespace DreamersInc.DamageSystem
         public Attributes Speed { get; private set; }
 
         private List<Effects> Effects { get; set; }
-
+        private Animator animator;
         private Entity ParentEntity => self.SelfEntityRef;
 
         public int BaseDamage
@@ -58,6 +59,9 @@ namespace DreamersInc.DamageSystem
         public ElementName ElementName { get; private set; }
 
         public TypeOfDamage TypeOfDamage { get; private set; }
+
+        public WeaponType Type => type;
+        [SerializeField] WeaponType type;
 
         public bool DoDamage { get; private set; }
 
@@ -100,16 +104,44 @@ namespace DreamersInc.DamageSystem
         {
             Effects = new List<Effects>();
             registered = true;
-            
-            if (GetComponent<Collider>())
+
+            switch (Type)
             {
-                TypeOfDamage = TypeOfDamage.Melee;
-                GetComponent<Collider>().isTrigger = true;
-                self = GetComponentInParent<IDamageable>();
-            }
-            else
-            {
-                throw new ArgumentNullException(nameof(gameObject), $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.transform.parent.name}");
+                    case WeaponType.Sword:
+                    case WeaponType.H2BoardSword:
+                    case WeaponType.Katana:
+                    case WeaponType.Bo_Staff:
+                    case WeaponType.Mage_Staff:
+                    case WeaponType.Club:
+                    case WeaponType.Axe:
+                    case WeaponType.Gloves:
+                        if (GetComponent<Collider>())
+                        {
+                            TypeOfDamage = TypeOfDamage.Melee;
+                            GetComponent<Collider>().isTrigger = true;
+                            self = GetComponentInParent<IDamageable>();
+                        }
+                        else
+                        {
+                            throw new ArgumentNullException(nameof(gameObject),
+                                $"Collider has not been setup on equipped weapon. Please set up Collider in Editor; {gameObject.transform.parent.name}");
+                        }
+
+                        break;
+
+
+                    case WeaponType.SpellBlade:
+                        break;
+                    case WeaponType.Claws:
+                        break;
+                    case WeaponType.Pistol:
+                        break;
+                    case WeaponType.Bow:
+                        break;
+                    case WeaponType.SpellBook:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -132,7 +164,15 @@ namespace DreamersInc.DamageSystem
             CheckForEffectStatusChange();
             var root = transform.root;
             hit.ReactToHit(.5f, root.position, root.forward);
-            OnHitAction?.Invoke();
+            var attackType = animator.GetCurrentAnimatorStateInfo(0).tagHash switch
+            {
+                var state when state == Animator.StringToHash("Light") => 1,
+                var state when state == Animator.StringToHash("Heavy") => 2,
+                _ => 0
+            };
+            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            OnHitAction?.Invoke(this, new OnHitArgs() { Entity = hit.SelfEntityRef, TypeOfDamage = this.TypeOfDamage, AttackType = attackType, StateInfo  = stateInfo});
+
         }
 
         private void CheckForEffectStatusChange()
@@ -185,5 +225,14 @@ namespace DreamersInc.DamageSystem
             stats.OnStatChanged += ((_, args) => SetStatData(args.Stats, TypeOfDamage));
             registered = true;
         }
+
+    }
+    public class OnHitArgs : EventArgs
+    {
+        public Entity Entity;
+        public TypeOfDamage TypeOfDamage;
+        public int AttackType;
+        public AnimatorStateInfo StateInfo;
+        public int EnemeyID;
     }
 }

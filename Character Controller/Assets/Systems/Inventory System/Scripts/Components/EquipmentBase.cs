@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Stats.Entities;
 using Dreamers.InventorySystem.Interfaces;
 using Sirenix.Serialization;
@@ -62,26 +63,18 @@ namespace Dreamers.InventorySystem.Base {
         {
             if (Save.EquippedArmors.Count != 0)
             {
-                foreach (ArmorSO SO in Save.EquippedArmors)
+                foreach (var copy in from SO in Save.EquippedArmors where SO != null select Object.Instantiate(SO))
                 {
-                    if (SO != null)
-                    {
-                        var copy = Object.Instantiate(SO);
-                        copy.Equip(PC);
-                        EquippedArmor[copy.ArmorType] = copy;
-                    }
+                    copy.Equip(PC);
+                    EquippedArmor[copy.ArmorType] = copy;
                 }
             }
             if (Save.EquippedWeapons.Count != 0)
             {
-                foreach (WeaponSO SO in Save.EquippedWeapons)
+                foreach (var copy in from SO in Save.EquippedWeapons where SO != null select Object.Instantiate(SO))
                 {
-                    if (SO != null)
-                    {
-                        var copy = Object.Instantiate(SO);
-                        copy.Equip(PC);
-                        EquippedWeapons[copy.Slot] = copy;
-                    }
+                    copy.Equip(PC);
+                    EquippedWeapons[copy.Slot] = copy;
                 }
             }
 

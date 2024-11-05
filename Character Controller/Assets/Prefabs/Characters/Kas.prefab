@@ -2646,6 +2646,50 @@ Transform:
   - {fileID: 1089278213087576499}
   m_Father: {fileID: 3174058925740027822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5200961305609453368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6567298000228652524}
+  - component: {fileID: 264699066785495815}
+  m_Layer: 0
+  m_Name: Project VFX Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6567298000228652524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200961305609453368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18, y: 1.433, z: 0.709}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6854978996054200234}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &264699066785495815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200961305609453368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e428752c6f469799b1e7ae0e8d6ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5408854097095223739
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2932,7 @@ GameObject:
   - component: {fileID: 6594553537872528510}
   - component: {fileID: 6830515560771145970}
   - component: {fileID: 3139431476197196673}
+  - component: {fileID: 2154903418421715396}
   m_Layer: 0
   m_Name: Kas
   m_TagString: Enemy NPC
@@ -2920,6 +2965,7 @@ Transform:
   - {fileID: 5399219444292823703}
   - {fileID: 8178783125070836368}
   - {fileID: 8521429536273091382}
+  - {fileID: 6567298000228652524}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &703102258521232848
@@ -3043,6 +3089,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8149adc6abd53409ae6da06f6a0543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2154903418421715396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6082700357839050000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c61addd4a0428d904a364f677bbca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationEvents:
+  - EventName: VFXTrigger
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6594553537872528510}
+          m_TargetAssemblyTypeName: VFXControl, CharacterControllerSystem
+          m_MethodName: TriggerVFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: DoDamangeOn
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1945208150637424510}
+          m_TargetAssemblyTypeName: MotionSystem.Systems.EquipWeaponControl, CharacterControllerSystem
+          m_MethodName: DoDamage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: DoDamangeOff
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1945208150637424510}
+          m_TargetAssemblyTypeName: MotionSystem.Systems.EquipWeaponControl, CharacterControllerSystem
+          m_MethodName: DoDamage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - EventName: OnDissolve
+    OnAnimationEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &6214646598634842055
 GameObject:
   m_ObjectHideFlags: 0

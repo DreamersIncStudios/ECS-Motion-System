@@ -17,7 +17,7 @@ namespace MotionSystem
     public partial struct GroundCheckSystem : ISystem
     {
         private NativeParallelMultiHashMap<int, QuadrantData> quadrantMultiHashMap;
-        private const int QuadrantYMultiplier = 1000;
+        private const int QuadrantZMultiplier = 1000;
         private const int QuadrantCellSize = 100;
         public EntityQuery Query;
 
@@ -30,7 +30,7 @@ namespace MotionSystem
 
         private static int GetPositionHashMapKey(float3 position)
         {
-            return (int)(Mathf.Floor(position.x / QuadrantCellSize) + (QuadrantYMultiplier * Mathf.Floor(position.y / QuadrantCellSize)));
+            return (int)(Mathf.Floor(position.x / QuadrantCellSize) + (QuadrantZMultiplier * Mathf.Floor(position.z / QuadrantCellSize)));
         }
 
         private int GetEntityCountInHashMap(NativeParallelMultiHashMap<int, QuadrantData> quadrantMap, int hashMapKey)
@@ -45,7 +45,7 @@ namespace MotionSystem
             while (quadrantMap.TryGetNextValue(out _, ref iterator));
             return count;
         }
-
+        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PhysicsWorldSingleton>();
@@ -55,6 +55,7 @@ namespace MotionSystem
                 All = new[] { ComponentType.ReadWrite(typeof(LocalTransform)), ComponentType.ReadWrite(typeof(CharControllerE)),
             ComponentType.ReadWrite(typeof(Animator))}
             });
+      
         }
 
 
@@ -99,14 +100,15 @@ namespace MotionSystem
                 control.IsGrounded = GroundCheck(transform, control, HashKey) ||
                                      GroundCheck(transform, control, HashKey + 1) ||
                                      GroundCheck(transform, control, HashKey - 1) ||
-                                     GroundCheck(transform, control, HashKey + QuadrantYMultiplier) ||
-                                     GroundCheck(transform, control, HashKey - QuadrantYMultiplier);
+                                     GroundCheck(transform, control, HashKey + QuadrantZMultiplier) ||
+                                     GroundCheck(transform, control, HashKey - QuadrantZMultiplier);
             }
 
+          
             private bool GroundCheck(LocalTransform transform, CharControllerE control, int hashKeyIndex)
             {
                 if (hashKeyIndex != GetPositionHashMapKey((int3)transform.Position)) return false;
-                var groundRays = new NativeList<RaycastInput>(Allocator.Temp);
+                var groundRays = new NativeList<RaycastInput>(Allocator.TempJob);
                 var filter = new CollisionFilter
                 {
                     BelongsTo = ((1 << 10)),
@@ -157,15 +159,17 @@ namespace MotionSystem
 
             }
         }
-               [BurstCompile]
-               private partial struct SetQuadrantDataHashMapJob : IJobEntity
+
+        [BurstCompile]
+        private partial struct SetQuadrantDataHashMapJob : IJobEntity
         {
             public NativeParallelMultiHashMap<int, QuadrantData>.ParallelWriter QuadrantMap;
 
-            private void Execute(Entity entity, [ReadOnly]in LocalTransform transform)
+            private void Execute(Entity entity, [ReadOnly] in LocalTransform transform)
             {
                 var hashMapKey = GetPositionHashMapKey(transform.Position);
-                QuadrantMap.Add(hashMapKey, new QuadrantData { 
+                QuadrantMap.Add(hashMapKey, new QuadrantData
+                {
                     entity = entity,
                     position = transform.Position
                 });
