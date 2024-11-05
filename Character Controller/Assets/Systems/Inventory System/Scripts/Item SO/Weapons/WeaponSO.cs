@@ -7,9 +7,8 @@ using Dreamers.InventorySystem.Interfaces;
 using System.Linq;
 using DreamersInc.DamageSystem;
 using Stats.Entities;
-using DreamersInc.DamageSystem.Interfaces;
 using Newtonsoft.Json;
-using VisualEffect;
+
 
 namespace Dreamers.InventorySystem
 {
@@ -134,10 +133,7 @@ namespace Dreamers.InventorySystem
                 player.ModCharacterAttributes(Modifiers);
                 if(alwaysDrawn )
                 {
-                    anim.SendMessage("EquipWeaponAnim");
                     DrawWeapon(anim);
-                    if(EquipToHuman) //Todo Make item dependent 
-                        WeaponModel.AddComponent<DissolveSingle>();
                 }
 
                 foreach (var permEffect in PermWeaponEffects)
@@ -213,7 +209,6 @@ namespace Dreamers.InventorySystem
                 {
                     anim.SendMessage("EquipWeaponAnim");
                     DrawWeapon(anim);
-                    WeaponModel.AddComponent<DissolveSingle>();
                 }
 
                 player.StatUpdate();

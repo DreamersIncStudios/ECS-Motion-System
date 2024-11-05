@@ -110,6 +110,29 @@ MonoBehaviour:
         ChanceForNextAttack: 60
         Delay: 0
     - CurrentAnim: 1
+      triggerAnimIndex: 2
+      Alternate: 0
+      NormalizedInputTime:
+        x: 0.05
+        y: 0.6
+      AnimationEndTime: 0.58
+      Trigger:
+        AttackType: 1
+        triggerAnimIndex: 3
+        TransitionDuration: 0.25
+        TransitionOffset: 0.1
+        EndOfCurrentAnim: 0.5
+        AttackVFX:
+          ID: 1
+          Forward: 0.5
+          Up: 0.75
+          Rot: {x: 0, y: 0, z: 0}
+          LifeTime: 1
+          ChanceToPlay: 100
+        Chance: 80
+        ChanceForNextAttack: 60
+        Delay: 0
+    - CurrentAnim: 1
       triggerAnimIndex: 3
       Alternate: 0
       NormalizedInputTime:

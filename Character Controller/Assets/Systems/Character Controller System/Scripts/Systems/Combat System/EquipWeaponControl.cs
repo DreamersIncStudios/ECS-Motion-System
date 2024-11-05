@@ -5,14 +5,12 @@ using Unity.Entities;
 using DreamersInc.DamageSystem;
 using DreamersInc.CombatSystem;
 using System.Linq;
-using System.Xml.Serialization;
 using Dreamers.InventorySystem;
 using Dreamers.InventorySystem.Interfaces;
 using DreamersInc.DamageSystem.Interfaces;
 using PrimeTween;
 using Stats;
 using Stats.Entities;
-using UnityEngine.VFX;
 namespace MotionSystem.Systems
 {
     /// <summary>
@@ -35,9 +33,6 @@ namespace MotionSystem.Systems
              entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             anim = GetComponent<Animator>();
             GetWeapons();
-
-            if (meleeDamage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>())
-                graph = meleeDamage?.GetComponentInChildren<UnityEngine.VFX.VisualEffect>();
         }
 
         private void GetWeapons()
@@ -86,16 +81,13 @@ namespace MotionSystem.Systems
 
             if (!anim)
                 anim = GetComponent<Animator>();
-
+            
             if (!CurEquipWeapon && selfEntity != Entity.Null) 
             {
-                if(!entityManager.HasComponent<CharacterInventory>(selfEntity))
-                    return;
                 var inventory = entityManager.GetComponentData<CharacterInventory>(selfEntity);
                  if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Primary,out var temp)) 
                      return;
                  CurEquipWeapon = temp;
-                 
             }
 
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -122,21 +114,48 @@ namespace MotionSystem.Systems
                 anim = GetComponent<Animator>();
 
             if (selfEntity == Entity.Null) return;
-            if(!entityManager.HasComponent<CharacterInventory>(selfEntity))
-                return;
             var inventory = entityManager.GetComponentData<CharacterInventory>(selfEntity);
-            if(!inventory.Equipment.EquippedWeapons.TryGetValue(WeaponSlot.Projectile,out var temp)) 
+
+            EquipWeaponLogic(inventory,WeaponSlot.Projectile);
+        }
+
+        private void EquipWeaponLogic(CharacterInventory inventory, WeaponSlot slot)
+        {
+            if(!inventory.Equipment.EquippedWeapons.TryGetValue(slot,out var temp)) 
                 return;
-            CurProjectileWeapon = (ProjectileWeaponSO)temp;
-            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
-            if (!anim.GetBool(WeaponInHand))
-                anim.SetBool(WeaponInHand, true);
-            World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
-                .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
-
             var stats = entityManager.GetComponentData<BaseCharacterComponent>(selfEntity);
-            CurProjectileWeapon.ActiveSpell?.Activate(CurProjectileWeapon,stats,selfEntity);
+
+            switch (slot)
+            {
+                case WeaponSlot.Primary:
+                    CurEquipWeapon = (MeleeWeaponSO)temp;
+                    stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+                    if (!anim.GetBool(WeaponInHand))
+                        anim.SetBool(WeaponInHand, true);
+                    World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
+                        .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+
+                    CurEquipWeapon.ActiveSpell?.Activate(CurProjectileWeapon,stats,selfEntity);
+                    break;
+                case WeaponSlot.Secondary:
+                    break;
+                case WeaponSlot.Projectile:
+                    CurProjectileWeapon = (ProjectileWeaponSO)temp;
+                    stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+                    if (!anim.GetBool(WeaponInHand))
+                        anim.SetBool(WeaponInHand, true);
+                    World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EquipSystem>()
+                        .Update(World.DefaultGameObjectInjectionWorld.Unmanaged);
+
+                    CurProjectileWeapon.ActiveSpell?.Activate(CurProjectileWeapon,stats,selfEntity);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(slot), slot, null);
+            }
+    
+ 
         }
 
         /// <summary>
