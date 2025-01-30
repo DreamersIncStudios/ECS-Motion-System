@@ -83,7 +83,7 @@ namespace DreamersInc.ComboSystem
         {
             foreach (ComboSingle combo in ComboLists(style))
             {
-                foreach (AnimationCombo test in combo.ComboList)
+                foreach (AnimationCombo test in combo.comboSingleSO.ComboList)
                 {
                     if (state.IsName(test.Trigger.TriggerString))
                         return test.Trigger;
@@ -143,7 +143,7 @@ namespace DreamersInc.ComboSystem
             foreach (var combo in ComboLists(style))
             {
                 if(combo.Unlocked)
-                    options.Add(combo.ComboList[0].Trigger);
+                    options.Add(combo.comboSingleSO.ComboList[0].Trigger);
             }
             var temp = new System.Random().Next(options.Count);
             

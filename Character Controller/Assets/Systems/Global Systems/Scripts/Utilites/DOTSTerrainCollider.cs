@@ -15,13 +15,16 @@ namespace DreamersInc
         public PhysicsCategoryTags belongsTo;
         public PhysicsCategoryTags collideWith;
 
+        public void OnValidate()
+        {
+            if(terrainCollider == null)
+                Debug.LogWarning("Terrain Collider is null! pleas add it to the inspector!");
+        }
+
         class TerrainBaker : Baker<DOTSTerrainCollider> {
             public override void Bake(DOTSTerrainCollider authoring) {
-                if (authoring.terrainCollider == null || authoring.terrainCollider.terrainData == null)
-                { authoring.terrainCollider = GameObject.FindObjectOfType<TerrainCollider>(); }
                 
                 DependsOn(authoring.terrainCollider);
-
                 var data = authoring.terrainCollider.terrainData;
                 var size = new int2(data.heightmapResolution, data.heightmapResolution);
                 var delta = data.size.x / (size.x - 1);
@@ -48,11 +51,12 @@ namespace DreamersInc
                         GroupIndex = 0
                     });
                 
-                AddComponent(new PhysicsCollider()
+                var entity = GetEntity(TransformUsageFlags.WorldSpace);
+                AddComponent( entity, new PhysicsCollider()
                 {
                     Value = colliders
                 });
-                AddSharedComponent( new PhysicsWorldIndex() { Value = 0 });
+                AddSharedComponent( entity, new PhysicsWorldIndex() { Value = 0 });
 
 
             }

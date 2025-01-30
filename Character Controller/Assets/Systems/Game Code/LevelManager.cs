@@ -7,7 +7,7 @@ using Unity.Entities;
 using UnityEngine;
 using Utilities;
 
-public class LevelManager : MonoBehaviour
+public sealed class LevelManager : MonoBehaviour
 {
     GameMaster GM;
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     {
         GM= GameMaster.Instance;
         BestiaryDB.SpawnPlayer(2,new Vector3(0,0,35));
-        BestiaryDB.SpawnNPC(0, new Vector3(0,1,25));
+        BestiaryDB.SpawnNPC(0, new Vector3(0,1,55));
 
 
         for (int i = 0; i < 5; i++)
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-   public virtual void LoadLevel() {
+   public void LoadLevel() {
         BestiaryDB.SpawnPlayer(2,new Vector3(0,1,25));
 
     }

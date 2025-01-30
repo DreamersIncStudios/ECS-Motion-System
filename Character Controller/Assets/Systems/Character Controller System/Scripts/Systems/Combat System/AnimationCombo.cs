@@ -140,6 +140,6 @@ namespace DreamersInc.ComboSystem
     public enum ComboNames
     {
         None, Combo_1, Combo_2, Combo_3, Combo_4, Combo_5, Combo_6, Combo_7, Combo_8, Combo_9, Combo_10,
-        Projectile1, Dodge,
+        Projectile1, Dodge, In_Air
     }
 }

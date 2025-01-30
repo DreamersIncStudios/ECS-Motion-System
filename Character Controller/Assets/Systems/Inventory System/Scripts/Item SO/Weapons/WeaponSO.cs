@@ -115,6 +115,13 @@ namespace Dreamers.InventorySystem
                         {
                             WeaponModel.transform.SetParent(bone);
                         }
+
+                        if (weaponType == WeaponType.Gloves)
+                        {
+                           var leftGlove = Instantiate(model, anim.GetBoneTransform(HumanBodyBones.LeftHand), true);
+                           leftGlove.transform.localPosition = SheathedPos;
+                           leftGlove.transform.localRotation = Quaternion.Euler(SheathedRot);
+                        }
                     }
                     else
                     {

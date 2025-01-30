@@ -77,7 +77,8 @@ namespace DreamersInc.BestiarySystem
             if (entity == Entity.Null) return this;
             if (model == null) return this;
             var anim = model.GetComponent<Animator>();
-            manager.AddComponentObject(entity, anim);
+            if(anim)
+                manager.AddComponentObject(entity, anim);
 
             manager.AddComponentObject(entity, model.transform);
             if(!model.TryGetComponent<AnimationSpeed>(out var add)){
@@ -87,11 +88,7 @@ namespace DreamersInc.BestiarySystem
             {
                 Link = add
             };
-            TransformGO transformLink = new()
-            {
-                transform = model.transform
-            };
-            manager.AddComponentData(entity, transformLink);
+      
             manager.AddComponentObject(entity, link);
             return this;
         }

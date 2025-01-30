@@ -20,6 +20,7 @@ namespace MotionSystem.Systems
         protected override void OnCreate()
         {
             base.OnCreate();
+            RequireForUpdate<RunningTag>();
             query = GetEntityQuery(new EntityQueryDesc()
             {
                 All = new ComponentType[] { ComponentType.ReadWrite(typeof(LocalTransform)),

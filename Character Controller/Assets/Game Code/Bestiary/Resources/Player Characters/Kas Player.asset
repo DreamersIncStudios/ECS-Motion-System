@@ -102,12 +102,12 @@ MonoBehaviour:
     EquipResetTimer: 5
     MovingTurnSpeed: 360
     StationaryTurnSpeed: 180
-    JumpPower: 12
+    JumpPower: 14
     GravityMultiplier: 2
     RunCycleLegOffset: 0.2
     MoveSpeedMultiplier: 2
     AnimSpeedMultiplier: 1
-    GroundCheckDistance: 0.4
+    GroundCheckDistance: 0.25
     CombatCapable: 1
   factionID: 0
   BaseThreat: 10

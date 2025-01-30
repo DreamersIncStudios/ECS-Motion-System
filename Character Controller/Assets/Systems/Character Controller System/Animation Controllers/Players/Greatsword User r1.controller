@@ -179,14 +179,14 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7333129875705441126, guid: 429b623456af08442aaffda5cc50c3b9,
     type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
+  m_Tag: Light
+  m_SpeedParameter: Forward
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -958,7 +958,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -3680373738196844881, guid: 4176dc994b2109341851be8f93305378,
     type: 3}
-  m_Tag: 
+  m_Tag: Heavy
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1213,7 +1213,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -9052014623662414378, guid: a067be6590f2c144da3d0651fc50890b,
     type: 3}
-  m_Tag: 
+  m_Tag: Light
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1357,7 +1357,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -8324768933284805610, guid: 7f43f1bc11a4afe429a5d59ae8c4ce72,
     type: 3}
-  m_Tag: 
+  m_Tag: Light
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -2051,14 +2051,14 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 4960409498807354063, guid: 1b1747d47e4756e4184984e69d201a51,
     type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
+  m_Tag: Light
+  m_SpeedParameter: Forward
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -2160,14 +2160,14 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 4865009412066033395, guid: 2c29e9a6baa4a83479f5571e57007d4c,
     type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
+  m_Tag: Light
+  m_SpeedParameter: Forward
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -3491,7 +3491,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7165775746209175090, guid: bbba8493ba5b20443ba01d7a7dce57bf,
     type: 3}
-  m_Tag: 
+  m_Tag: Light
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -3955,7 +3955,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -8507929308659628231, guid: 2c6001587f526c143bf7e79fd0070f5a,
     type: 3}
-  m_Tag: 
+  m_Tag: Heavy
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -4598,7 +4598,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 7fb7613b05704a3592a71cea35e616a3, type: 3}
-  m_Tag: 
+  m_Tag: Heavy
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -4942,7 +4942,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 795d5c8e549d4720ba71a13d0bf99d25, type: 3}
-  m_Tag: 
+  m_Tag: Heavy
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -5106,7 +5106,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -9116095625770140418, guid: 95680d2f33150c746891102818215367,
     type: 3}
-  m_Tag: 
+  m_Tag: Light
   m_SpeedParameter: AnimSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -5170,14 +5170,14 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7029741437066087888, guid: bf58b2626d6e5704d900ffcfa2634f77,
     type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
+  m_Tag: Light
+  m_SpeedParameter: Forward
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

@@ -12,8 +12,17 @@ partial class SpeedModSystem : SystemBase
 {
     private static readonly int AnimSpeed = Animator.StringToHash("AnimSpeed");
 
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+        RequireForUpdate<RunningTag>();
+
+
+    }
+
     protected override void OnUpdate()
     {
+        
 
         Entities.WithoutBurst().ForEach((Animator anim, ref AnimationSpeedMod tag, ref CharControllerE controller) =>
         {

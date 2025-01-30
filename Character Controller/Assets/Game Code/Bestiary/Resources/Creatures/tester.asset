@@ -125,7 +125,7 @@ MonoBehaviour:
     EquippedAbilites: []
   Inventory:
     ItemsInInventory:
-    - Item: {fileID: 11400000, guid: 66ea3d90606fcc743bf50a3ab423910a, type: 2}
+    - Item: {fileID: 11400000, guid: 30221ae827a8c3e4fb342bfb4557b9c1, type: 2}
       Count: 1
     MaxInventorySize: 100
   ExpGiven: 0

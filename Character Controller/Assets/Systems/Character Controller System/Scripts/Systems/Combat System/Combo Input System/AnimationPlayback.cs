@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AISenses.VisionSystems.Combat;
 using DreamersInc.CombatSystem;
 using DreamersInc.InputSystems;
+using PrimeTween;
 using UnityEngine.InputSystem;
 
 // ReSharper disable Unity.BurstLoadingManagedType
@@ -115,13 +116,7 @@ namespace DreamersInc.ComboSystem
                         }
                     }
 
-                    if (!attackTarget.TargetInRange)
-                    {
-                        Vector3 dir = ((Vector3)attackTarget.AttackTargetLocation - anim.transform.position).normalized;
-                        var linearVelocity = rb.linearVelocity;
-                        linearVelocity = new Vector3(dir.x * linearVelocity.x, dir.y * linearVelocity.y, dir.z * linearVelocity.z);
-                        rb.linearVelocity = linearVelocity;
-                    }
+         
                     // this need to move to animation event
                 }
                 if (!anim.IsInTransition(0) && handler.TransitionToLocomotion && !handler.StateInfo.IsTag("Airborne") && !handler.StateInfo.IsTag("Defend") && !handler.StateInfo.IsTag("Equip"))
@@ -142,6 +137,32 @@ namespace DreamersInc.ComboSystem
                 EntityManager.AddComponent<StorePrimaryWeapon>(entity);
              
             }).Run();
+            
+            Entities.WithoutBurst().ForEach((Animator anim, Rigidbody rb, Command handler, in AttackTarget attackTarget) =>
+                {
+                    if (!attackTarget.TargetInRange || handler.StateInfo.IsName("Locomotion_Grounded_Weapon0") ||
+                        handler.StateInfo.IsTag("Dodge") || handler.StateInfo.IsName("Grounded0")) return;
+                    if (!attackTarget.TargetInRange) return;
+                    
+                    var dist = Vector3.Distance(anim.transform.position, attackTarget.AttackTargetLocation);
+                    if (dist <= 1.5f)
+                    {
+                        rb.linearVelocity = Vector3.zero;
+                    }
+                    else
+                    {
+                        var speedFactor = Mathf.InverseLerp(1.5f, 0, dist);
+                        var temp = anim.transform.position;
+                        temp.y = attackTarget.AttackTargetLocation.y;
+                        var dir = ((Vector3)attackTarget.AttackTargetLocation -  temp)
+                            .normalized;
+                        Quaternion targetRotation = Quaternion.LookRotation(dir);
+                        Tween.Rotation(anim.transform, targetRotation, .5f);
+                    }
+
+                }
+                ).Run();
+            
         }
     }
 }

@@ -49,6 +49,8 @@ namespace MotionSystem
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PhysicsWorldSingleton>();
+            state.RequireForUpdate<RunningTag>();
+            state.RequireForUpdate<Player_Control>();
             quadrantMultiHashMap = new NativeParallelMultiHashMap<int, QuadrantData>(0, Allocator.Persistent);
             Query = state.GetEntityQuery(new EntityQueryDesc
             {
@@ -86,6 +88,7 @@ namespace MotionSystem
             }.ScheduleParallel(state.Dependency);
         }
 
+
         [BurstCompile]
         public partial struct GroundCheckJob : IJobEntity {
             [ReadOnly] public CollisionWorld World;
@@ -117,31 +120,31 @@ namespace MotionSystem
                 };
                 groundRays.Add(new RaycastInput
                 {
-                    Start = transform.Position + new float3(0, .2f, 0),
+                    Start = transform.Position + new float3(0, .5f, 0),
                     End = transform.Position + new float3(0, -control.GroundCheckDistance, 0),
                     Filter = filter
                 });
                 groundRays.Add(new RaycastInput
                 {
-                    Start = transform.Position + new float3(0, .2f, .25f),
+                    Start = transform.Position + new float3(0, .5f, .25f),
                     End = transform.Position + new float3(0, -control.GroundCheckDistance, .25f),
                     Filter = filter
                 });
                 groundRays.Add(new RaycastInput
                 {
-                    Start = transform.Position + new float3(0, .1f, -.25f),
+                    Start = transform.Position + new float3(0, .5f, -.25f),
                     End = transform.Position + new float3(0, -control.GroundCheckDistance, -.25f),
                     Filter =filter
                 });
                 groundRays.Add(new RaycastInput
                 {
-                    Start = transform.Position + new float3(.25f, .1f, 0),
+                    Start = transform.Position + new float3(.25f, .5f, 0),
                     End = transform.Position + new float3(.25f, -control.GroundCheckDistance, 0),
                     Filter = filter
                 });
                 groundRays.Add(new RaycastInput
                 {
-                    Start = transform.Position + new float3(-.25f, .1f, 0),
+                    Start = transform.Position + new float3(-.25f, .5f, 0),
                     End = transform.Position + new float3(-.25f, -control.GroundCheckDistance, 0),
                     Filter = filter
                 });

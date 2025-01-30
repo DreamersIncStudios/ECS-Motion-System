@@ -57,12 +57,13 @@ namespace AISenses.VisionSystems
         {
             if(!cameraControl)
                 cameraControl = CameraControl.Instance;
+        
             Entities.WithoutBurst().WithAll<Player_Control>().ForEach((DynamicBuffer<ScanPositionBuffer> buffer, ref CharControllerE Control,ref AttackTarget attackTarget) =>
             {
                 var sortedBuffer = buffer.AsNativeArray();
                 sortedBuffer.Sort( new SortScanPositionByDistance());
                 
-                Control.Targetting = !Control.Targetting;
+            Control.Targetting = !Control.Targetting;
                 if (cameraControl.OnTargetingChanged != null)
                 {
                   cameraControl.OnTargetingChanged(this,
@@ -72,7 +73,7 @@ namespace AISenses.VisionSystems
                 index = 0;
                 SetTarget(sortedBuffer);
                 attackTarget.AttackTargetIndex = Control.Targetting ? index : -1;
-                attackTarget.IsTargeting = Control.Targetting;
+               // attackTarget.IsTargeting = Control.Targetting;
                 
             }).Run();
         }

@@ -1,11 +1,13 @@
 using UnityEngine;
 using Unity.Entities;
 using DreamersInc.CombatSystem.Animation;
+using MotionSystem.Systems;
 using Stats.Entities;
 
 namespace DreamersInc.ComboSystem
 {
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+        [UpdateAfter(typeof(AnimatorUpdate))]
     public partial class ReactToHitSystem : SystemBase
     {
 
@@ -13,6 +15,15 @@ namespace DreamersInc.ComboSystem
 
         protected override void OnUpdate()
         {
+            Entities.WithoutBurst().ForEach((Entity entity, Rigidbody RB, ref ReactToContact contact) =>
+            {
+                Direction dir = contact.HitDirection(out Vector3 dirToTarget);
+                RB.AddForce(dirToTarget * contact.HitIntensity, ForceMode.Impulse);
+                
+              EntityManager.RemoveComponent<ReactToContact>(entity);
+            }).WithStructuralChanges().Run();
+        
+               
             Entities.WithoutBurst().ForEach((Entity entity, Animator Anim, Rigidbody RB, ref ReactToContact contact) =>
             {
                 Direction dir = contact.HitDirection(out Vector3 dirToTarget);

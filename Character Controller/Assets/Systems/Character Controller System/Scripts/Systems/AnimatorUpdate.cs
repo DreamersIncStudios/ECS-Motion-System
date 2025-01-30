@@ -2,6 +2,8 @@
 using Unity.Entities;
 using MotionSystem.Components;
 using DreamersStudio.CameraControlSystem;
+using RootMotion;
+using Unity.Mathematics;
 using static PrimeTween.Tween;
 
 // ReSharper disable InconsistentNaming
@@ -141,9 +143,22 @@ namespace MotionSystem.Systems
             UpdateBeast();
 
         }
+
+        private static float3 gravity => Physics.gravity;
+        readonly float groundStickyEffect = 4f;
         void HandleGroundedMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
-            if (!control.Jump) return;
+            if (!control.Jump)
+            {
+                float stickyForceTarget = 0f;
+                Vector3 horizontalVelocity = V3Tools.ExtractHorizontal(RB.linearVelocity, gravity, 1f);
+                float velocityF = horizontalVelocity.magnitude;
+                stickyForceTarget = groundStickyEffect * velocityF * .5f;
+                RB.linearVelocity = RB.linearVelocity -
+                                    Anim.transform.up * stickyForceTarget * SystemAPI.Time.fixedDeltaTime;
+            }
+            else{
+
             if (!Anim.GetCurrentAnimatorStateInfo(0).IsName("Grounded0")
                 && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion_Grounded_Weapon0")
                 && !Anim.GetCurrentAnimatorStateInfo(0).IsName("Targeted_Locomotion0")) return;
@@ -155,7 +170,7 @@ namespace MotionSystem.Systems
             control.IsGrounded = false;
             control.GroundCheckDistance = 0.1f;
             control.SkipGroundCheck = true;
-        }
+        }}
         void HandleAirborneMovement(CharControllerE control, Animator Anim, Rigidbody RB)
         {
             Vector3 extraGravityForce = (Physics.gravity * control.m_GravityMultiplier) - Physics.gravity;

@@ -42,7 +42,7 @@ namespace Stats
                 ForwardVector = forward,
                 positionVector = this.transform.position,
                 RightVector = transform.right,
-                HitIntensity = 4.45f,//Todo balance the mathe Mathf.FloorToInt(impact / (defense * 10.0f) * Random.Range(.92f, 1.08f)),
+                HitIntensity = 20004.45f,//Todo balance the mathe Mathf.FloorToInt(impact / (defense * 10.0f) * Random.Range(.92f, 1.08f)),
                 HitContactPoint = hitPosition
             };
             if (!manager.HasComponent<ReactToContact>(SelfEntityRef))

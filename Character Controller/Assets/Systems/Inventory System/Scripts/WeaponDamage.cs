@@ -15,6 +15,7 @@ namespace DreamersInc.DamageSystem
     // [RequireComponent(typeof(MeshCollider))]
     public sealed class WeaponDamage : MonoBehaviour, IDamageDealer
     {
+        #region Variables
         public event EventHandler<OnHitArgs> OnHitAction;
         public Action ChanceCheck { get; set; }
         public Action CriticalEventCheck { get; set; }
@@ -26,7 +27,22 @@ namespace DreamersInc.DamageSystem
 
         private List<Effects> Effects { get; set; }
         private Animator animator;
+        private IDamageable self;
+
         private Entity ParentEntity => self.SelfEntityRef;
+        
+        public float MagicMod { get; private set; }
+        public ElementName ElementName { get; private set; }
+
+        public TypeOfDamage TypeOfDamage { get; private set; }
+
+        public WeaponType Type => type;
+        [SerializeField] WeaponType type;
+
+        public bool DoDamage { get; private set; }
+        #endregion
+        
+        #region Derived Variables
 
         public int BaseDamage
         {
@@ -55,20 +71,13 @@ namespace DreamersInc.DamageSystem
                 return prob < threshold;
             }
         }
-        public float MagicMod { get; private set; }
-        public ElementName ElementName { get; private set; }
 
-        public TypeOfDamage TypeOfDamage { get; private set; }
-
-        public WeaponType Type => type;
-        [SerializeField] WeaponType type;
-
-        public bool DoDamage { get; private set; }
 
         public int DamageAmount()
         {
             return Mathf.RoundToInt(BaseDamage * RandomMod );
         }
+        #endregion
 
         public void SetDamageBool(bool value)
         {
@@ -97,7 +106,6 @@ namespace DreamersInc.DamageSystem
                 Effects.Remove(effect);
         }
 
-        private IDamageable self;
 
         // Use this for initialization
         private void Start()
@@ -163,15 +171,15 @@ namespace DreamersInc.DamageSystem
             hit.TakeDamage(DamageAmount(), TypeOfDamage, ElementName, ParentEntity,level);
             CheckForEffectStatusChange();
             var root = transform.root;
-            hit.ReactToHit(.5f, root.position, root.forward);
-            var attackType = animator.GetCurrentAnimatorStateInfo(0).tagHash switch
-            {
-                var state when state == Animator.StringToHash("Light") => 1,
-                var state when state == Animator.StringToHash("Heavy") => 2,
-                _ => 0
-            };
-            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            OnHitAction?.Invoke(this, new OnHitArgs() { Entity = hit.SelfEntityRef, TypeOfDamage = this.TypeOfDamage, AttackType = attackType, StateInfo  = stateInfo});
+            hit.ReactToHit(100, root.position, root.forward);
+            // var attackType = animator.GetCurrentAnimatorStateInfo(0).tagHash switch
+            // {
+            //     var state when state == Animator.StringToHash("Light") => 1,
+            //     var state when state == Animator.StringToHash("Heavy") => 2,
+            //     _ => 0
+            // };
+            // var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            // OnHitAction?.Invoke(this, new OnHitArgs() { Entity = hit.SelfEntityRef, TypeOfDamage = this.TypeOfDamage, AttackType = attackType, StateInfo  = stateInfo});
 
         }
 

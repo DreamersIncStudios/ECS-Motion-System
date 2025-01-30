@@ -120,7 +120,8 @@ MonoBehaviour:
   BaseProtection: 5
   Combo: {fileID: 0}
   Equipment:
-    EquippedWeapons: []
+    EquippedWeapons:
+    - {fileID: 11400000, guid: 161551fef4c2a2448903b267dbf18cdc, type: 2}
     EquippedArmors: []
     EquippedAbilites: []
   Inventory:

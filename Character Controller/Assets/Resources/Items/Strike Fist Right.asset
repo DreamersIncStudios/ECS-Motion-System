@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a0ee8eca644834e89372b01366a8ec, type: 3}
+  m_Name: Strike Fist Right
+  m_EditorClassIdentifier: 
+  _itemID: 20
+  _itemName: Strike Fist Right
+  _desc: 
+  _icon: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
+  _value: 0
+  _type: 2
+  _stackable: 0
+  _questItem: 0
+  maxStackCount: 0
+  quality: 0
+  model: {fileID: 8070618694297123218, guid: df4650733831a8242a575abf60c41329, type: 3}
+  equipToHuman: 1
+  heldBone: 18
+  equipBone: 18
+  modifiers: []
+  levelRqd: 0
+  weaponType: 9
+  slot: 0
+  upgradeable: 1
+  alwaysDrawn: 1
+  sheathedPos: {x: 0, y: 0, z: 0}
+  heldPos: {x: 0, y: 0, z: 0}
+  sheathedRot: {x: 0, y: 0, z: 0}
+  heldRot: {x: 0, y: 0, z: 0}
+  styleHeldPost: {x: 0, y: 0, z: 0}
+  styleHeldRot: {x: 0, y: 0, z: 0}
+  permWeaponEffects: []
+  MaxNumberOfEffects: 0
+  BaseModelState: {fileID: 0}

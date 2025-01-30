@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728a8dc29fa3dd042a919390b3eb07ef, type: 3}
+  m_Name: Testing 2
+  m_EditorClassIdentifier: 
+  name: 2
+  comboList:
+  - CurrentAnim: 1
+    triggerAnimIndex: 4
+    Alternate: 0
+    NormalizedInputTime:
+      x: 0
+      y: 0.45
+    AnimationEndTime: 0.5
+    Trigger:
+      AttackType: 2
+      triggerAnimIndex: 3
+      TransitionDuration: 0.2
+      TransitionOffset: 0.05
+      EndOfCurrentAnim: 0.65
+      AttackVFX:
+        ID: 2
+        Forward: 0
+        Up: 0
+        Rot: {x: 0, y: 0, z: 70}
+        LifeTime: 1
+        ChanceToPlay: 100
+      Chance: 0
+      ChanceForNextAttack: 0
+      Delay: 0
+  - CurrentAnim: 2
+    triggerAnimIndex: 3
+    Alternate: 0
+    NormalizedInputTime:
+      x: 0
+      y: 0.5
+    AnimationEndTime: 0.53
+    Trigger:
+      AttackType: 2
+      triggerAnimIndex: 4
+      TransitionDuration: 0.1
+      TransitionOffset: 0
+      EndOfCurrentAnim: 0.53
+      AttackVFX:
+        ID: 3
+        Forward: 0
+        Up: 0
+        Rot: {x: 0, y: 0, z: 0}
+        LifeTime: 1
+        ChanceToPlay: 100
+      Chance: 0
+      ChanceForNextAttack: 0
+      Delay: 0
+  - CurrentAnim: 2
+    triggerAnimIndex: 4
+    Alternate: 0
+    NormalizedInputTime:
+      x: 0
+      y: 0.6
+    AnimationEndTime: 0.55
+    Trigger:
+      AttackType: 2
+      triggerAnimIndex: 5
+      TransitionDuration: 0.25
+      TransitionOffset: 0.06
+      EndOfCurrentAnim: 0.55
+      AttackVFX:
+        ID: 0
+        Forward: 0
+        Up: 0
+        Rot: {x: 0, y: 0, z: 0}
+        LifeTime: 0
+        ChanceToPlay: 0
+      Chance: 0
+      ChanceForNextAttack: 0
+      Delay: 0
+  - CurrentAnim: 2
+    triggerAnimIndex: 5
+    Alternate: 1
+    NormalizedInputTime:
+      x: 0
+      y: 0.65
+    AnimationEndTime: 0.6
+    Trigger:
+      AttackType: 2
+      triggerAnimIndex: 7
+      TransitionDuration: 0.25
+      TransitionOffset: 0.24
+      EndOfCurrentAnim: 0.615
+      AttackVFX:
+        ID: 1
+        Forward: 0.2
+        Up: 0.9
+        Rot: {x: 0, y: 0, z: 0}
+        LifeTime: 1
+        ChanceToPlay: 100
+      Chance: 0
+      ChanceForNextAttack: 0
+      Delay: 0
+  - CurrentAnim: 2
+    triggerAnimIndex: 7
+    Alternate: 0
+    NormalizedInputTime:
+      x: 0
+      y: 0.75
+    AnimationEndTime: 0.7
+    Trigger:
+      AttackType: 1
+      triggerAnimIndex: 1
+      TransitionDuration: 0.25
+      TransitionOffset: 0
+      EndOfCurrentAnim: 0.78
+      AttackVFX:
+        ID: 1
+        Forward: 0.2
+        Up: 0.9
+        Rot: {x: 0, y: 0, z: 0}
+        LifeTime: 1
+        ChanceToPlay: 100
+      Chance: 0
+      ChanceForNextAttack: 0
+      Delay: 0

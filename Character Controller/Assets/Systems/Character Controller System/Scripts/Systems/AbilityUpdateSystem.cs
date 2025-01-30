@@ -6,6 +6,14 @@ namespace Dreamers.InventorySystem.AbilitySystem
 {
     public partial class AbilityUpdateSystem : SystemBase
     {
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            RequireForUpdate<RunningTag>();
+
+
+        }
+
         protected override void OnUpdate()
         {
             Entities.WithoutBurst().ForEach((Entity entity, CharacterInventory inventory, Command handler, ref UpdateCommandHandlerTag tag) => {
