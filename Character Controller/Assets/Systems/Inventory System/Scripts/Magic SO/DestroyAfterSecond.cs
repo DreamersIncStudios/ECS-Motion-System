@@ -17,8 +17,9 @@ namespace DreamersInc.InventorySystem
             collider.isTrigger = true;
         }
 
-        public   async void DestroyAfterSeconds(int delay)
+        public   async void DestroyAfterSeconds(int delay, Entity entity)
         {
+            selfEntityRef = entity;
                 await Task.Delay(delay*1000);
                 if (!hastriggered)
                 {
@@ -30,19 +31,29 @@ namespace DreamersInc.InventorySystem
         {
             if (!Application.isPlaying) return;
             var ecbSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<BeginSimulationEntityCommandBufferSystem>();
-            ecbSystem.CreateCommandBuffer().DestroyEntity(SelfEntityRef);
+            ecbSystem.CreateCommandBuffer().DestroyEntity(selfEntityRef);
             await Task.Delay(2000);
-            if(World.DefaultGameObjectInjectionWorld.EntityManager.Exists(SelfEntityRef))
-                EntityExtensions.RemoveAllComponents(World.DefaultGameObjectInjectionWorld.EntityManager, SelfEntityRef);
+            if(World.DefaultGameObjectInjectionWorld.EntityManager.Exists(selfEntityRef))
+                EntityExtensions.RemoveAllComponents(World.DefaultGameObjectInjectionWorld.EntityManager, selfEntityRef);
             Destroy(this.gameObject);
         }
 
-        public Entity SelfEntityRef { get; set; }
+        void Destroy()
+        {
+            if (!Application.isPlaying) return;
+            var ecbSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<BeginSimulationEntityCommandBufferSystem>();
+            ecbSystem.CreateCommandBuffer().DestroyEntity(selfEntityRef);
+            if(World.DefaultGameObjectInjectionWorld.EntityManager.Exists(selfEntityRef))
+                EntityExtensions.RemoveAllComponents(World.DefaultGameObjectInjectionWorld.EntityManager, selfEntityRef);
+            Destroy(this.gameObject);
+        }
 
-        public async void OnTriggerEnter(Collider other)
+        private Entity selfEntityRef;
+
+        public void OnTriggerEnter(Collider other)
         {
             hastriggered = true;
-            await DestroyEntity();
+           Destroy();
         }
     }
     

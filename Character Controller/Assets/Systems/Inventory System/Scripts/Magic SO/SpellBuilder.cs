@@ -34,7 +34,7 @@ namespace DreamersInc.MagicSystem
             model = Object.Instantiate(vfxPrefab);
            model.transform.position = spawn.position+spawn.forward*.5f;
            model.transform.rotation = spawn.rotation;
-           model.GetComponent<DestroyAfterSecond>().DestroyAfterSeconds(delay);
+           model.GetComponent<DestroyAfterSecond>().DestroyAfterSeconds(delay, entity);
         
             //model.tag = "VFX";
             if (entity == Entity.Null) return this;
@@ -54,8 +54,8 @@ namespace DreamersInc.MagicSystem
         public SpellBuilder WithTrajectory(float  speed)
         {
             if (entity == Entity.Null) return this;
-
-            manager.AddComponentData(entity, new ParticleMovement(speed));
+            model.GetComponent<Rigidbody>().linearVelocity = speed * model.transform.forward;
+           // manager.AddComponentData(entity, new ParticleMovement(speed));
             return this;
         }
 

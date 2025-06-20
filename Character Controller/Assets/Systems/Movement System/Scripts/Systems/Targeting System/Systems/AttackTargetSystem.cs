@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Collections;
+using DreamersIncStudio.FactionSystem;
 using MotionSystem.Components;
 using Unity.Transforms;
 
@@ -34,9 +35,9 @@ namespace AISenses.VisionSystems.Combat
                 {
                     var dirToTarget = ((Vector3)target.target.LastKnownPosition -
                                        (Vector3)(transform.Position + new float3(0, 1, 0))).normalized;
-                    if (!(Vector3.Angle(transform.Forward, dirToTarget) < vision.ViewAngle / 2.0f)) continue;
+                    if (!(Vector3.Angle(transform.Forward, dirToTarget) < vision.ViewAngle / 2.0f) && target.dist>2.0f) continue;
 
-                    if (target.target.IsFriendly) continue;
+                    if (target.target.Affinity is Affinity.Love or Affinity.Positive) continue;
                     if (!(vision.EngageRadius > target.dist)) continue;
                     attackTarget.AttackTargetLocation = target.target.LastKnownPosition;
                     attackTarget.TargetInRange = true;

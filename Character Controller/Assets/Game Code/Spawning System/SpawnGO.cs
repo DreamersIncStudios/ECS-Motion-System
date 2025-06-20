@@ -9,6 +9,8 @@ using Stats;
 using Stats.Entities;
 using System.Collections;
 using System.Collections.Generic;
+using DreamersInc.InfluenceMapSystem;
+using DreamersIncStudio.FactionSystem;
 using Unity.Entities;
 using UnityEngine;
 
@@ -53,10 +55,11 @@ namespace GameCode.Spawn
                 go.GetComponent<VFXControl>().Init(combo.Combo);
                 ecb.SetComponent(entity, new InfluenceComponent
                 {
-                    factionID = 0,
-                    Protection = 10,
-                    Threat = 10
-                }); 
+                    FactionID = FactionNames.Citizen,
+                    DetectionRadius = 15,
+                    
+                    
+                                 }); 
 
                 ecb.RemoveComponent<SpawnGO>(entity);
                 ecb.AddComponent<StorePrimaryWeapon>(entity);

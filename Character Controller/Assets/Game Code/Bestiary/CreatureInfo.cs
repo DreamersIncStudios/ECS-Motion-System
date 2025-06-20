@@ -7,6 +7,7 @@ using UnityEditor;
 using Global.Component;
 using DreamersInc.ComboSystem;
 using Dreamers.InventorySystem.Base;
+using DreamersIncStudio.FactionSystem;
 using MotionSystem.Components;
 using Unity.Mathematics;
 using Sirenix.OdinInspector;
@@ -17,8 +18,7 @@ namespace DreamersInc.BestiarySystem
     {
         [SerializeField] private uint creatureID;
         public uint ID { get { return creatureID; } }
-       
-        public int FactionID { get; set; }
+
 
         public string Name;
         [EnumToggleButtons] public CreatureType creatureType;
@@ -31,9 +31,8 @@ namespace DreamersInc.BestiarySystem
         public float3 CenterOffset;
 
         [Header("influence ")]
-        public int factionID;
-        public int BaseThreat;
-        public int BaseProtection;
+        public FactionNames FactionID;
+        public int InfluenceValue;
         public ComboSO Combo;
         public EquipmentSave Equipment;
         public InventorySave Inventory;

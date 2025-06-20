@@ -17,7 +17,7 @@ namespace DreamersInc.BestiarySystem
                 .WithAnimation()
                 .WithVFX()
                 .WithMovement(info.Move,CreatureType.biped)
-                .WithFactionInfluence(info.factionID, 3, 4, 1, true)
+                .WithFactionInfluence(info.FactionID, info.InfluenceValue, 4 , true)
                 .Build();
         }
     }

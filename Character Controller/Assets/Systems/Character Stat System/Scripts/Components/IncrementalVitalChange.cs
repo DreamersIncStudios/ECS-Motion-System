@@ -4,7 +4,7 @@ using Unity.Entities;
 
 namespace Stats
 {
-    [InternalBufferCapacity(5)]
+    [InternalBufferCapacity(0)]
     public struct IncrementalVitalChange : IBufferElementData
     {
         public readonly VitalName Vital;

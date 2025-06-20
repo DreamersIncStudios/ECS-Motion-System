@@ -10,9 +10,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Permissions;
+using DreamersIncStudio.FactionSystem;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DreamersInc.BestiarySystem
 {
@@ -29,9 +31,8 @@ namespace DreamersInc.BestiarySystem
         public PhysicsInfo PhysicsInfo;
         public MovementData Move;
         [Header("influence ")]
-        public int factionID;
-        public int BaseThreat;
-        public int BaseProtection;
+        public FactionNames FactionID;
+        public int InfluenceValue;
         public ComboSO Combo;
         public EquipmentSave Equipment;
         public InventorySave Inventory;

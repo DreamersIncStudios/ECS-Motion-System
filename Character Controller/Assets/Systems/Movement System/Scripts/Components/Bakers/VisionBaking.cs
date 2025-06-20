@@ -30,8 +30,7 @@ namespace DreamersInc.MovementSys
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
                 var data = new Vision() {
-                    HeadPositionOffset = authoring.HeadPositionOffset,
-                    ThreatPosition = authoring.ThreatPosition,
+
                     ViewAngle = authoring.ViewAngle,
                     EngageRadius = authoring.EngageRadius,
                     AlertModifer = authoring.AlertModifer,

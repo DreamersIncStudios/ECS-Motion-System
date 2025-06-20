@@ -26,7 +26,7 @@ namespace DreamersInc.BestiarySystem
                     .WithAnimation()
                  //   .WithNPCAttack(info.AttackSequence)
                     .WithMovement(info.Move, info.creatureType,true)
-                    .WithFactionInfluence(info.FactionID, 3, 4, 1, true)
+                    .WithFactionInfluence(info.FactionID, info.InfluenceValue, 4,  true)
                    // .WithAI(info.GetNPCLevel,info.AIStatesToAdd,info.CapableOfMelee,info.CapableOfMagic, info.CapableOfRange)
                    .Build();
                 return true;
@@ -41,7 +41,7 @@ namespace DreamersInc.BestiarySystem
                 .WithCharacterDetection()
                 .WithAnimation()
                 .WithMovement(info.Move, info.creatureType,true)
-                .WithFactionInfluence(info.FactionID, 3, 4, 1, true)
+                .WithFactionInfluence(info.FactionID, info.InfluenceValue, 4,  true)
                // .WithAI(info.GetNPCLevel,info.AIStatesToAdd,info.CapableOfMelee,info.CapableOfMagic, info.CapableOfRange)
                 .Build();
             return true;

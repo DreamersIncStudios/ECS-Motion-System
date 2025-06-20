@@ -30,6 +30,6 @@ MonoBehaviour:
   size: 0
   manaCost: 3
   comboID: 0
-  speed: 10
-  vfxPrefab: {fileID: 8345062372787860475, guid: c77c80792183c7b40ad96280f2c6eeb7,
+  speed: 55
+  vfxPrefab: {fileID: 8648252214791138448, guid: e88aa1e779ac766449bda97b9d8eca5d,
     type: 3}

@@ -6,7 +6,9 @@ using Dreamers.InventorySystem;
 using Dreamers.InventorySystem.Base;
 using DreamersInc.CombatSystem;
 using DreamersInc.ComboSystem;
+using DreamersInc.InfluenceMapSystem;
 using DreamersInc.InflunceMapSystem;
+using DreamersIncStudio.FactionSystem;
 using DreamersStudio.CameraControlSystem;
 using Global.Component;
 using MotionSystem;
@@ -32,7 +34,7 @@ namespace DreamersInc.BestiarySystem
         private GameObject model;
         private readonly Entity entity;
         private BaseCharacterComponent character;
-        private int factionID;
+        private FactionNames factionID;
         private uint classLevel;
         private string tag;
         private ComboSO combo;
@@ -249,8 +251,6 @@ namespace DreamersInc.BestiarySystem
             if (model == null) return this;
             manager.AddComponent<Player_Control>(entity);
             manager.AddComponent<AttackTarget>(entity);
-            manager.AddComponentData(entity, new SurroundCharacter());
-            manager.AddComponentData(entity, new createTag());
             manager.AddComponentObject(entity, new Command()
             {
                 EquippedAbilities = new Dreamers.InventorySystem.AbilitySystem.AbilityList(),
@@ -263,19 +263,15 @@ namespace DreamersInc.BestiarySystem
 
             return this;
         }
-        public CharacterBuilder WithFactionInfluence(int factionID, int baseProtection, int baseThreat, uint classLevel,
+        public CharacterBuilder WithFactionInfluence(FactionNames factionID, int influenceValue, uint classLevel,
             bool isPlayer = false)
         {
             this.factionID = factionID;
             this.classLevel = classLevel;
             if (entity == Entity.Null) return this;
             if (model == null) return this;
-            manager.AddComponentData(entity, new InfluenceComponent
-            {
-                factionID = factionID,
-                Protection = baseProtection,
-                Threat = baseThreat
-            });
+            manager.AddComponentData(entity, 
+                new InfluenceComponent(this.factionID,influenceValue, 15)); //Todo add range of Influence to CharacterInfo Scriptable Object
             manager.AddComponentData(entity, new AITarget()
             {
                 FactionID = factionID,

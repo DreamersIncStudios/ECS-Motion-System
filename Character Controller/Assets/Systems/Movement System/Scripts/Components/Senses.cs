@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using DreamersIncStudio.FactionSystem;
 using Unity.Entities;
 using UnityEngine;
 using Stats;
 using Unity.Mathematics;
 using Global.Component;
-using PixelCrushers.LoveHate;
 using Stats.Entities;
 using Unity.Burst;
 
@@ -15,7 +15,6 @@ namespace AISenses
     public struct Vision : ISensor
     {
         public float DetectionRange { get; set; }
-        public float Timer { get; set; } // consider using Variable Rate Manager;
         public bool IsInRange(TargetAlignmentType alignmentType) => !TargetPosition(alignmentType).Equals( float3.zero);
 
         public bool UpdateTargetPosition(TargetAlignmentType alignmentType) =>
@@ -58,41 +57,11 @@ namespace AISenses
         public float3 LastKnownPositionEnemy { get; set; }
         public float3 TargetFriendlyPosition { get; set; }
         public float3 LastKnownPositionFriendly { get; set; }
-        public int DetectionRate
-        {
-            get
-            {
-                int returnValue = new int();
-                switch (EnemyAwarenessLevel)
-                {
-                    case 0:
-                        returnValue = 180;
-                        break;
-                    case 1:
-                        returnValue = 90;
-                        break;
-                    case 2:
-                        returnValue = 45;
-                        break;
-                    case 3:
-                        returnValue = 20;
-                        break;
-                    case 4:
-                        returnValue = 10;
-                        break;
-                    case 5:
-                        returnValue = 5;
-                        break;
-                }
-                return returnValue;
-            }
-        }
+    
         public int AlertRate { get; set; }
 
         [Range(0, 5)]
         public int EnemyAwarenessLevel;  // Character alert level
-        public float3 HeadPositionOffset;
-        public float3 ThreatPosition;
 
         public float ViewRadius;
         [Range(0, 360)]
@@ -143,18 +112,11 @@ namespace AISenses
         }
     }
 
+
     public struct Target
     {
         public Entity Entity;
-        public bool IsFriendly;
-        [BurstDiscard]
-        public void CheckIsFriendly(int factionID)
-        {
-            IsFriendly = factionID == TargetInfo.FactionID ||
-                         LoveHate.factionDatabase.GetFaction(factionID).GetPersonalAffinity(TargetInfo.FactionID) > 51;
-         
-        }
-
+        public Affinity Affinity;
         public AITarget TargetInfo;
         public float DistanceTo;
         public float3 LastKnownPosition;
